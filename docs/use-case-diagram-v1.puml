@@ -1,0 +1,49 @@
+@startuml use-case-diagram-v1
+
+actor User
+
+
+package RobotArm {
+    (Change angle of arm)
+    (Lower/raise magnet)
+    (Change magnet state)
+}
+
+package TransportSlice {
+    (Rotate slice)
+    (Change zone state)
+}
+
+package Backend/Pi {
+    database "System state" as systemState
+    (Run algorithm)
+    (Update system state)
+    (Move arm to 'x')
+    (Rotate slice to 'x')
+    (Pickup item)
+    (Place item)
+}
+
+User --> (Run algorithm)
+
+(Run algorithm) --> (Move arm to 'x')
+(Run algorithm) --> (Rotate slice to 'x')
+(Run algorithm) --> (Pickup item)
+(Run algorithm) --> (Place item)
+
+(Move arm to 'x') --> (Change angle of arm)
+(Change angle of arm) .> (Lower/raise magnet) : <<include>>
+(Lower/raise magnet) ..> (Change magnet state) :  <<include>>
+(Change magnet state) ..> (Update system state) : <<include>>
+
+(Place item) --> (Lower/raise magnet)
+(Place item) --> (Change zone state) : true
+(Pickup item) --> (Change zone state) : false
+(Change zone state) ..> (Update system state) : <<include>>
+
+(Rotate slice to 'x') --> (Rotate slice)
+
+(Pickup item) --> (Lower/raise magnet)
+
+(Update system state) -up-> systemState
+@enduml
