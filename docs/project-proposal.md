@@ -6,6 +6,7 @@ author: |
     Troels Zink Kristensen (tkris17)
 date: 14-02-2013
 ...
+<!-- Uses pandoc "pandoc project-proposal.md -o project-proposal.pdf" -->
 
 # What is it?
 
