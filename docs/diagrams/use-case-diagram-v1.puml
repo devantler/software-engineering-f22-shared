@@ -22,7 +22,7 @@ package Backend {
     (Run algorithm)
     (Update system state)
     (Move arm to 'x')
-    (Rotate slice to 'x')
+    (Rotate slot to pickup/deliver)
     (Pickup/Place item)
 }
 
@@ -33,7 +33,7 @@ package Camera {
 User --> (Run algorithm)
 
 (Run algorithm) --> (Move arm to 'x')
-(Run algorithm) --> (Rotate slice to 'x')
+(Run algorithm) --> (Rotate slot to position) : Scan/Crane/StorageIn
 (Run algorithm) --> (Pickup/Place item)
 
 (Move arm to 'x') ---> (Change angle of arm)
@@ -50,7 +50,7 @@ User --> (Run algorithm)
 (Update holding state) --> armState
 
 
-(Rotate slice to 'x') ---> (Rotate slice)
+(Rotate slot to pickup/deliver) ---> (Rotate slice)
 (Rotate slice) ..> (Update slice position) : <<include>>
 (Update slice position) --> sliceState
 
