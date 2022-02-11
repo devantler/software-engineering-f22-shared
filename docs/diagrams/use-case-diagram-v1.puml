@@ -1,0 +1,60 @@
+@startuml use-case-diagram-v1
+
+actor User
+
+
+package RobotArm {
+    database "Arm state" as armState
+    (Change angle of arm)
+    (Lower/raise magnet)
+    (Update arm position)
+    (Update holding state)
+}
+
+package TransportSlice {
+    database "Slice state" as sliceState
+    (Rotate slice)
+    (Update slice position)
+}
+
+package Backend {
+    database "System state" as systemState
+    (Run algorithm)
+    (Update system state)
+    (Move arm to 'x')
+    (Rotate slice to 'x')
+    (Pickup/Place item)
+}
+
+package Camera {
+    (Scan)
+}
+
+User --> (Run algorithm)
+
+(Run algorithm) --> (Move arm to 'x')
+(Run algorithm) --> (Rotate slice to 'x')
+(Run algorithm) --> (Pickup/Place item)
+
+(Move arm to 'x') ---> (Change angle of arm)
+(Move arm to 'x') ..> (Update system state) : <<include>>
+(Change angle of arm) ..> (Update arm position) : <<include>>
+(Update arm position) --> armState
+
+
+(Pickup/Place item) ..> (Update system state) : <<include>>
+(Pickup/Place item) -up-> (Scan)
+(Scan) -> (Pickup/Place item)   : confirm item exists\ncheck item color
+(Pickup/Place item) --> (Lower/raise magnet)
+(Lower/raise magnet) ..> (Update holding state) : <<include>>
+(Update holding state) --> armState
+
+
+(Rotate slice to 'x') ---> (Rotate slice)
+(Rotate slice) ..> (Update slice position) : <<include>>
+(Update slice position) --> sliceState
+
+
+
+(Update system state) -> systemState
+@enduml
