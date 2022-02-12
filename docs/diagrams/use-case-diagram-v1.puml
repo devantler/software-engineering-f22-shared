@@ -22,7 +22,7 @@ package Backend {
     (Run algorithm)
     (Update system state)
     (Move arm to 'x')
-    (Rotate slot to pickup/deliver)
+    (Rotate slot to position)
     (Pickup/Place item)
 }
 
@@ -50,7 +50,7 @@ User --> (Run algorithm)
 (Update holding state) --> armState
 
 
-(Rotate slot to pickup/deliver) ---> (Rotate slice)
+(Rotate slot to position) ---> (Rotate slice)
 (Rotate slice) ..> (Update slice position) : <<include>>
 (Update slice position) --> sliceState
 
