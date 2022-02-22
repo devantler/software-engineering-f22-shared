@@ -20,14 +20,25 @@ void gotoAngle(int angle) {
     Serial.print("Angle is negative: " + angle);
     return;
   }
+  int degreesToMove = (angle - currentAngle);
 
-  int stepsToGo = (angle - currentAngle) * 112;
+  moveDegrees(degreesToMove);
 
-  myStepper.step(-stepsToGo);
   delay(100);
-
   digitalWrite(8, LOW);
   digitalWrite(9, LOW);
   digitalWrite(10, LOW);
   digitalWrite(11, LOW);
+}
+
+void moveDegrees(int degrees){
+  if(degrees < -100 || degrees > 100){
+    int splitDegrees = degrees / 3;
+    myStepper.step(splitDegrees * 112);
+    myStepper.step(splitDegrees * 112);
+    myStepper.step((degrees - (2*splitDegrees)) * 112);
+  }else{
+    int stepsToGo = degrees * 112;
+    myStepper.step(stepsToGo);
+  }
 }
