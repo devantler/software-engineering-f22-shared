@@ -6,7 +6,7 @@ create crane named "fishing rod"
     with posttion at 140 named "green"
     with position at 160 named "blue"
 
-create storage named "storage"
+create storage named "disc"
     with 8 slots
     with position at slot 3 named "crane"
     with position at slot 6 named "camera"
@@ -19,26 +19,26 @@ create camera named "scanner"
 
 ########logic loop (variable delay)#############
 if capacity in "storage" is not full then 
-    "storage" move empty slot to "intake"
-    "storage" mark slot at "intake" as full
-    "storage" move slot at "intake" to "camera"
+    "disc" move empty slot to "intake"
+    "disc" mark slot at "intake" as full
+    "disc" move slot at "intake" to "camera"
     "scanner" scan color into itemcolor
-    "storage" mark slot at "camera" as itemcolor
+    "disc" mark slot at "camera" as itemcolor
     if itemcolor is red then
-        "storage" mark slot at "camera" as finished in 10 seconds
+        "disc" mark slot at "camera" as finished in 10 seconds
     if itemcolor is green then
-        "storage" mark slot at "camera" as finished in 20 seconds
+        "disc" mark slot at "camera" as finished in 20 seconds
     if itemcolor is blue then
-        "storage" mark slot at "camera" as finished in 30 seconds
+        "disc" mark slot at "camera" as finished in 30 seconds
 
-for each item in "storage" that is finished then
-    "storage" move slot to "crane"
-    "crane" pickup item at "intake"
+for each item in "disc" that is finished then
+    "disc" move slot to "crane"
+    "fishing rod" pickup item at "intake"
     if color of item is red then
-        "crane" drop item at "red"
+        "fishing rod" drop item at "red"
     if color of item is green then
-        "crane" drop item at "green"
+        "fishing rod" drop item at "green"
     if color of item is blue then
-        "crane" drop item at "blue"
-    "storage" mark slot at "intake" as empty
+        "fishing rod" drop item at "blue"
+    "disc" mark slot at "intake" as empty
 ```
