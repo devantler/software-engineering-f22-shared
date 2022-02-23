@@ -1,0 +1,29 @@
+@startuml
+node RaspberryPi {
+    database LoggingDatabase
+    component LogGatherer
+    component Orchestrator {
+        artifact eDSL
+        artifact WebApp
+    }
+    component Camera
+    component MQTT
+}
+node ESP32Crane {
+    component ArduinoCraneLogic
+}
+node ESP32Disc {
+    component ArduinoDiscLogic
+}
+Orchestrator --> MQTT
+Camera --> MQTT
+ESP32Crane -up-> MQTT
+ESP32Disc -up-> MQTT
+
+LogGatherer --> MQTT
+LogGatherer --> LoggingDatabase
+
+
+
+
+@enduml
