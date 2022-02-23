@@ -35,14 +35,12 @@ if capacity is not full then
 "storage" check for finished
 if any is finished then
     "storage" move fishined to "crane"
-    "crane" move to "intake"
-    "crane" pickup item
+    "crane" pickup item at "intake"
     if color of finished is red then
-        "crane" move to "red"
+        "crane" mdrop item at "red"
     if color of finished is green then
-        "crane" move to "green"
+        "crane" drop item at "green"
     if color of finished is blue then
-        "crane" move to "blue"
-    "crane" drop item
+        "crane" drop item at "blue"
     "storage" mark slot at "intake" as empty
 ```
