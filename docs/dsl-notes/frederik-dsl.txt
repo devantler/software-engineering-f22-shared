@@ -1,0 +1,55 @@
+-------------Setup-------------
+create crane named "fishing rod"
+with position at 30 named "intake"
+with position at 120 named "red box"
+with posttion at 140 named "green box"
+with position at 160 named "blue box"
+with position at 240 named "trash"
+
+create storage named "storage"
+with 8 slots
+with position at slot 3 named "crane"
+with position at slot 6 named "camera"
+with position at slot 1 named "intake"
+
+create camera named "scanner"
+with color red
+with color blue
+with color green
+
+--------logic loop-------------
+
+if no "storage" slot is empty then jump to line 26
+    "storage" move empty slot to "intake"
+    "storage" fill slot at "intake"
+    "storage" move slot at "intake" to "camera"
+    "scanner" scan
+
+# Jeg her at sekvensen af disse if statements definere prioritet
+if a "storage" slot is color green and is not 25 seconds old then jump to line 32
+    "storage" move slot to "crane"
+    "crane" move to "intake"
+    "crane" pickup
+    "storage" empty slot
+    "crane" move to "green"
+
+if a "storage" slot is color red and is not 7 minutes old then jump to line 38
+    "storage" move slot to "crane"
+    "crane" move to "intake"
+    "crane" pickup
+    "storage" empty slot
+    "crane" move to "red"
+
+if a "storage" slot is color blue and is not 15 seconds old then jump to line 44
+    "storage" move slot to "crane"
+    "crane" move to "intake"
+    "crane" pickup
+    "storage" empty slot at "crane"
+    "crane" move to "blue"
+
+if any "storage" slot is not 1 hours old then jump to line 49
+    "storage" move slot to "crane"
+    "crane" move to "intake"
+    "crane" pickup
+    "storage" empty slot at "crane"
+    "crane move to "trash"
