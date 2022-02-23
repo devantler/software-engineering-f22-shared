@@ -1,4 +1,5 @@
--------------Setup-------------
+```python
+#############Setup#############
 create crane named "fishing rod"
 with position at 30 named "intake"
 with position at 120 named "red"
@@ -17,19 +18,19 @@ with color blue
 with color green
 
 --------logic loop-------------
-"storage" move empty slot to "intake"
-"storage" fill slot at "intake"
-"storage" move slot at "intake" to "camera"
+"storage" move empty to "intake"
+"storage" fill "intake"
+"storage" move "intake" to "camera"
 "scanner" scan
 "storage" if blue at "camera" wait 10
 "storage" if red at "camera" wait 20
 "storage" if green at "camera" wait 30
 
-"storage" move done slot to "crane"
-"storage" if blue at "crane" and "crane" has less than 4 blue
+"storage" move done to "crane"
+"storage" if blue at "crane" and "crane" < 4 blue
     "crane" put blue from "intake" in "blue"
-"storage" if red at "crane"
+"storage" if red at "crane" and "crane" < 10
     "crane" put from "intake" in "red"
 "storage" if green at "crane"
     "crane" put from "intake" in "green"
-"storage" empty slot at "crane"
+"storage" empty "crane"

@@ -18,29 +18,27 @@ create camera named "scanner"
     with color green
 
 ########logic loop (variable delay)#############
-"storage" check capacity
-if capacity is not full then 
+if capacity in "storage" is not full then 
     "storage" move empty slot to "intake"
     "storage" mark slot at "intake" as full
     "storage" move slot at "intake" to "camera"
-    "scanner" scan color
-    "storage" mark slot at "camera" as color
-    if color is red then
+    "scanner" scan color into itemcolor
+    "storage" mark slot at "camera" as itemcolor
+    if itemcolor is red then
         "storage" mark slot at "camera" as finished in 10 seconds
-    if color is green then
+    if itemcolor is green then
         "storage" mark slot at "camera" as finished in 20 seconds
-    if color is blue then
+    if itemcolor is blue then
         "storage" mark slot at "camera" as finished in 30 seconds
 
-"storage" check for finished
-if any is finished then
-    "storage" move fishined to "crane"
+for each item in "storage" that is finished then
+    "storage" move slot to "crane"
     "crane" pickup item at "intake"
-    if color of finished is red then
-        "crane" mdrop item at "red"
-    if color of finished is green then
+    if color of item is red then
+        "crane" drop item at "red"
+    if color of item is green then
         "crane" drop item at "green"
-    if color of finished is blue then
+    if color of item is blue then
         "crane" drop item at "blue"
     "storage" mark slot at "intake" as empty
 ```
