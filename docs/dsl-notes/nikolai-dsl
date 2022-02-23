@@ -1,9 +1,68 @@
-[storage is empty] item —> scan
-    -[if green]-> deliver
-    -[if blue]-> wait10
-    -[if red]-> storage
-[storage is not full] item —> scan
-    -[if green]-> deliver
-    -[if blue]-> wait10
-    -[if red]-> storage
-[storage is full] item —> scan —> deliver
+-------------Syntax-------------
+device function:
+- disc:rotate @zone|empty|finished --> disc:zone zoneName
+- disc:slot @zone|empty|finished >> slotId
+- disc:set slotId := value|variableName
+- scanner:scan >> nameOfReturnVariable
+- crane:pickup @zone
+- crane:drop @dropoff
+
+transition
+- -->
+
+assign variable to device function 
+- =: variable
+
+retrieve variable 
+- @variable
+
+for
+- for color in disc:slot
+
+-------------Setup-------------
+create crane named "crane"
+with position at 30 named "craneIn"
+with position at 60 named "craneOut"
+with position at 120 named "redBox"
+with posttion at 140 named "greenBox"
+with position at 160 named "blueBox"
+
+create storage named "disc"
+with 8 slots
+with position at slot 1 named "discIn"
+with position at slot 2 named "discOut"
+with position at slot 3-7 named "waiting"
+with position at slot 8 named "scanning"
+
+create camera named "scanner"
+with color red
+with color blue
+with color green
+____________________________________
+
+while disc:capacity > 0 ::
+    crane:pickup @craneIn
+    disc:rotate empty --> disc:zone discIn
+    crane:drop @craneOut
+    disc:rotate @discIn --> disc:zone scanning
+    scanner:scan >> color
+    disc:set @scanning := itemColor = color
+    if @scanning.itemColor is red::
+        disc:rotate @scanning --> disc:zone waiting
+        disc:set @waiting := wait = 30
+    if @scanning.itemColor is green::
+        disc:rotate @scanning --> disc:zone waiting
+        disc:set @waiting := wait = 20
+    if @scanning.itemColor is blue::
+        disc:rotate @scanning --> disc:zone waiting
+        disc:set @waiting := wait = 20
+
+for disc:slot finished >> ref::
+    disc:rotate @ref --> disc:zone craneOut
+    crane:pickup @craneOut
+    if @ref.color is red::
+        crane:drop @redBox
+    if @ref.color is green::
+        crane:drop @greenBox
+    if @ref.color is blue::
+        crane:drop @blueBox
