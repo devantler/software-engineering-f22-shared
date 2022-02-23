@@ -6,7 +6,7 @@ create crane named "fishing rod"
     with posttion at 140 named "green"
     with position at 160 named "blue"
 
-create storage named "storage"
+create storage named "disc"
     with 8 slots
     with position at slot 3 named "crane"
     with position at slot 6 named "camera"
@@ -18,29 +18,27 @@ create camera named "scanner"
     with color green
 
 ########logic loop (variable delay)#############
-"storage" check capacity
-if capacity is not full then 
-    "storage" move empty slot to "intake"
-    "storage" mark slot at "intake" as full
-    "storage" move slot at "intake" to "camera"
-    "scanner" scan color
-    "storage" mark slot at "camera" as color
-    if color is red then
-        "storage" mark slot at "camera" as finished in 10 seconds
-    if color is green then
-        "storage" mark slot at "camera" as finished in 20 seconds
-    if color is blue then
-        "storage" mark slot at "camera" as finished in 30 seconds
+if capacity in "storage" is not full then 
+    "disc" move empty slot to "intake"
+    "disc" mark slot at "intake" as full
+    "disc" move slot at "intake" to "camera"
+    "scanner" scan color into itemcolor
+    "disc" mark slot at "camera" as itemcolor
+    if itemcolor is red then
+        "disc" mark slot at "camera" as finished in 10 seconds
+    if itemcolor is green then
+        "disc" mark slot at "camera" as finished in 20 seconds
+    if itemcolor is blue then
+        "disc" mark slot at "camera" as finished in 30 seconds
 
-"storage" check for finished
-if any is finished then
-    "storage" move fishined to "crane"
-    "crane" pickup item at "intake"
-    if color of finished is red then
-        "crane" mdrop item at "red"
-    if color of finished is green then
-        "crane" drop item at "green"
-    if color of finished is blue then
-        "crane" drop item at "blue"
-    "storage" mark slot at "intake" as empty
+for each item in "disc" that is finished then
+    "disc" move slot to "crane"
+    "fishing rod" pickup item at "intake"
+    if color of item is red then
+        "fishing rod" drop item at "red"
+    if color of item is green then
+        "fishing rod" drop item at "green"
+    if color of item is blue then
+        "fishing rod" drop item at "blue"
+    "disc" mark slot at "intake" as empty
 ```
