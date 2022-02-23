@@ -38,8 +38,7 @@ create camera named "scanner"
 with color red
 with color blue
 with color green
-____________________________________
-
+-------------Compact-------------
 for disc:slot finished >> ref::
     disc:rotate @ref --> disc:zone craneOut
     crane:pickup @craneOut
@@ -66,3 +65,34 @@ if disc:capacity > 0::
     if @scanning.itemColor is blue::
         disc:rotate @scanning --> disc:zone waiting
         disc:set @waiting := wait = 20
+
+-------------Readable-------------
+# Changed all symbols to text equivalents.
+# Changed order of commands for disc:set and if statements.
+# Some other small stuff to improve wording when not using symbols.
+for disc slot finished return ref then
+    disc rotate at ref to disc zone craneOut
+    crane pickup at craneOut
+    if red at ref.color then
+        crane drop at redBox
+    if green at ref.color  then
+        crane drop at greenBox
+    if blue at ref.color then
+        crane drop at blueBox
+        
+if disc capacity is not full then
+    crane pickup at craneIn
+    disc rotate empty to disc zone discIn
+    crane drop at craneOut
+    disc rotate at discIn to disc zone scanning
+    scanner scan return color
+    disc set itemColor to color at scanning
+    if red at scanning.itemColor then
+        disc rotate at scanning to disc zone waiting
+        disc set 30 to wait at waiting
+    if green at scanning.itemColor then
+        disc rotate at scanning to disc zone waiting
+        disc set 20 to wait at waiting
+    if blue at scanning.itemColor then
+        disc rotate at scanning to disc zone waiting
+        disc set 10 to wait at waiting
