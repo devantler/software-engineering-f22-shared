@@ -1,0 +1,9 @@
+[storage is empty] item —> scan
+    -[if green]-> deliver
+    -[if blue]-> wait10
+    -[if red]-> storage
+[storage is not full] item —> scan
+    -[if green]-> deliver
+    -[if blue]-> wait10
+    -[if red]-> storage
+[storage is full] item —> scan —> deliver
