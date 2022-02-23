@@ -45,4 +45,4 @@ if any is finished then
         "crane" move to "blue"
     "crane" drop item
     "storage" mark slot at "intake" as empty
-``
+```
