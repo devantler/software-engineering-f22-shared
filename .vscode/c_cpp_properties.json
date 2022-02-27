@@ -16,7 +16,7 @@
         },
         {
             "name": "Arduino",
-            "compilerPath": "/Users/nikolaiemildamm/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/bin/avr-g++",
+            "compilerPath": "D:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\bin\\avr-g++",
             "compilerArgs": [
                 "-std=gnu++11",
                 "-fpermissive",
@@ -28,21 +28,22 @@
             ],
             "intelliSenseMode": "gcc-x64",
             "includePath": [
-                "/Users/nikolaiemildamm/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/cores/arduino",
-                "/Users/nikolaiemildamm/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/variants/standard",
-                "/Applications/Arduino.app/Contents/Java/libraries/Stepper/src",
-                "/Users/nikolaiemildamm/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include",
-                "/Users/nikolaiemildamm/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/lib/gcc/avr/7.3.0/include-fixed",
-                "/Users/nikolaiemildamm/Library/Arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include"
+                "D:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
+                "D:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\standard",
+                "D:\\Program Files (x86)\\Arduino\\libraries\\Stepper\\src",
+                "d:\\program files (x86)\\arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include",
+                "d:\\program files (x86)\\arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include-fixed",
+                "d:\\program files (x86)\\arduino\\hardware\\tools\\avr\\avr\\include",
+                "${workspaceFolder}/SemesterProject/ArduinoCode/Crane"
             ],
             "forcedInclude": [
-                "/Users/nikolaiemildamm/Library/Arduino15/packages/arduino/hardware/avr/1.8.5/cores/arduino/Arduino.h"
+                "D:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
             ],
             "cStandard": "c11",
             "cppStandard": "c++11",
             "defines": [
                 "F_CPU=16000000L",
-                "ARDUINO=10819",
+                "ARDUINO=10813",
                 "ARDUINO_AVR_UNO",
                 "ARDUINO_ARCH_AVR",
                 "__DBL_MIN_EXP__=(-125)",
