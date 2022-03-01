@@ -5,6 +5,8 @@ namespace DSLCompiler.Parsers.Base
 {
     public abstract class Parser : IParser
     {
+        public string Name { get; set; } = null!;
+
         public IModel Run(FileCollection files)
         {
             // I used some more practical names instead of Lex Parse and NameResolute.

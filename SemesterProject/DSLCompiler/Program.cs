@@ -1,4 +1,6 @@
-﻿using DSLCompiler.IO;
+﻿using DSLCompiler.Generators.ConfigurationGenerator;
+using DSLCompiler.Generators.LogicGenerator;
+using DSLCompiler.IO;
 using DSLCompiler.Parsers.ConfigurationParser;
 using DSLCompiler.Parsers.LogicParser;
 
@@ -9,10 +11,15 @@ var configurationParser = new ConfigurationParser();
 var fileInfo = new FileInfo("configuration.conf"); // where configuration.conf is our configurations DSL file.
 var files = new FileCollection();
 files = (FileCollection)files.Append(fileInfo);
-configurationParser.Run(files);
+var model = configurationParser.Run(files);
+var configurationGenerator = new ConfigurationGenerator();
+var generatedFiles = configurationGenerator.Generate(model);
 
 var logicParser = new LogicParser();
 fileInfo = new FileInfo("logic.lgc"); // where logic.lgc is our logic DSL file.
 files = new FileCollection();
 files = (FileCollection)files.Append(fileInfo);
-logicParser.Run(files);
+model = logicParser.Run(files);
+var logicGenerator = new LogicGenerator();
+generatedFiles = configurationGenerator.Generate(model);
+
