@@ -24,12 +24,12 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@f3c886e26b64d7e5ef5ff5f574efc88b317b8451
+        uses: docker/metadata-action@v1
         with:
           images: ghcr.io/imageName
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
           context: .
           push: true
