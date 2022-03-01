@@ -1,6 +1,7 @@
 using DSLCompiler.IO;
 using DSLCompiler.Metamodel.Base;
 using DSLCompiler.Parsers.Base;
+using DSLCompiler.Tokens;
 
 namespace DSLCompiler.Parsers.ConfigurationParser;
 
