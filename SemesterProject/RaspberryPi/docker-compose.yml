@@ -1,6 +1,7 @@
 version: "3"
 services:
   mqtt:
+    restart: unless-stopped
     image: "eclipse-mosquitto"
     volumes:
       - "./mosquitto.conf:/mosquitto/config/mosquitto.conf"
