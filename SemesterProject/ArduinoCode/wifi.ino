@@ -2,8 +2,8 @@
 #include "Arduino.h"
 
 // Replace with your network credentials
-const char* ssid = "REPLACE_WITH_YOUR_SSID";
-const char* password = "REPLACE_WITH_YOUR_PASSWORD";
+const char* ssid = "LEO1_TEAM_09";
+const char* password = "embeddedlinux";
 
 void initWiFi() {
   WiFi.mode(WIFI_STA);
