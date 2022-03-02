@@ -1,10 +1,11 @@
-//#include <crane.h>
+#include "crane.h"
 #include "mqtt.h"
 #include "wifi.h"
 
 
 
 void callback(char* topic, byte* message, unsigned int length) {
+  String topicTemp = String(topic);
   String messageTemp;
   
   for (int i = 0; i < length; i++) {
@@ -13,7 +14,13 @@ void callback(char* topic, byte* message, unsigned int length) {
   Serial.println("Received:");
   Serial.println(messageTemp);
   Serial.println("On topic:");
-  Serial.println(topic);
+  Serial.println(topicTemp);
+
+  if(topicTemp == "crane/angle"){
+    gotoAngle(messageTemp.toInt());
+  }else if (topicTemp == "crane/magnet"){
+    toggleMagnet(messageTemp.toInt());
+  }
 }
 
 char* topics[] = {
@@ -33,15 +40,11 @@ void setup()
   initWiFi();
   
   setupMqtt();
-  //setupStepper();
+  setupCrane();
 }
 
 void loop()
 {
   mqttLoop();
-  //gotoAngle(200);
-  //delay(300);
-  //gotoAngle(0);
-  publish("crane/angle", "10");
   delay(1000);
 }

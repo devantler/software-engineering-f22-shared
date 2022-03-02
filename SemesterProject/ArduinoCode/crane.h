@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 
-void setupStepper();
+void setupCrane();
 void gotoAngle(int angle);
+void toggleMagnet(int power);
 #endif
