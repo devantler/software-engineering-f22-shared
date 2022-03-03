@@ -16,6 +16,11 @@ namespace Domain.Entities
             _mqttService = mqttService;
         }
 
+        public void AddPosition(string name, int angle)
+        {
+            _positions.Add(name, angle);
+        }
+
         public async Task Goto(string position)
         {
             await _mqttService.SendMessage(MqttTopics.Crane.Angle, _positions[position].ToString());
@@ -34,6 +39,17 @@ namespace Domain.Entities
             {
                 await Task.Delay(100);
             }
+            await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "HIGH");
+        }
+        
+        public async Task DropItem()
+        {
+            await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "LOW");
+            while (_mqttService.GetMessage(MqttTopics.Crane.Moving) != "0")
+            {
+                await Task.Delay(100);
+            }
+            await _mqttService.SendMessage(MqttTopics.Crane.Magnet, "0");
             await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "HIGH");
         }
     }
