@@ -472,3 +472,17 @@ $RECYCLE.BIN/
 ArduinoCode/Crane/.vscode/
 
 SemesterProject/ArduinoCode/Crane/.vscode/
+
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+.idea/
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.DotNetApp.iml\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
