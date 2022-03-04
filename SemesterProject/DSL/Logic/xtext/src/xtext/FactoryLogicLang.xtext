@@ -1,0 +1,35 @@
+grammar xtext.FactoryLogicLang with org.eclipse.xtext.common.Terminals
+
+generate factoryLogicLang "http://www.FactoryLogicLang.xtext"
+
+Model:
+	declarations+=Declaration+
+;
+
+Declaration:
+	Conditional | Loop // | Operation	
+;
+
+Conditional:
+	'if' variable=VARIABLE 'is' (operator=BOOLEAN_OPERATOR)? comparison=VARIABLE 'then'
+;
+
+Loop:
+	'for each' loopvar=VARIABLE 'in' variable=VARIABLE ('of' STRING1=STRING)? 
+	'that is' (operator=BOOLEAN_OPERATOR)? comparison=VARIABLE ('of' STRING2=STRING)? 'then'
+;
+
+enum BOOLEAN_OPERATOR:
+	NOT='not'|LESS='less than'|GREATER='greater than'
+;
+
+terminal VARIABLE:
+	('a'..'z'|'A'..'Z')+
+;
+
+
+
+
+
+
+
