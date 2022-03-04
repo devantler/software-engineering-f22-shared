@@ -4,12 +4,14 @@
 const int stepsPerRevolution = 20200;
 
 int currentAngle = 0;
+int magnetPin = 10;
 
-Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
+Stepper myStepper(stepsPerRevolution, 33, 32, 35, 34);
 
-void setupStepper()
+void setupCrane()
 {
   myStepper.setSpeed(4);
+  pinMode(magnetPin, OUTPUT);
 }
 
 void gotoAngle(int angle)
@@ -33,6 +35,14 @@ void gotoAngle(int angle)
   digitalWrite(9, LOW);
   digitalWrite(10, LOW);
   digitalWrite(11, LOW);
+}
+
+void toggleMagnet(int power){
+  if(power == 1){
+    digitalWrite(magnetPin, HIGH);
+  }else{
+    digitalWrite(magnetPin, LOW);
+  }
 }
 
 void moveDegrees(int degrees){
