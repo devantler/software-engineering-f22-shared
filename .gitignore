@@ -497,5 +497,7 @@ SemesterProject/ArduinoCode/Crane/.vscode/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+**/src-gen/
+**/xtend-gen/
 
 
