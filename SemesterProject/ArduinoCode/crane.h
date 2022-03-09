@@ -6,4 +6,5 @@
 void setupCrane();
 void gotoAngle(int angle);
 void toggleMagnet(int power);
+void toggleElevation(int elevation);
 #endif

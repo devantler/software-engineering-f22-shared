@@ -6,12 +6,17 @@ const int stepsPerRevolution = 20200;
 int currentAngle = 0;
 int magnetPin = 10;
 
-Stepper myStepper(stepsPerRevolution, 33, 32, 35, 34);
+Stepper revolutionStepper(stepsPerRevolution, 33, 32, 35, 34);
+
 
 void setupCrane()
 {
-  myStepper.setSpeed(4);
+  revolutionStepper.setSpeed(4);
   pinMode(magnetPin, OUTPUT);
+}
+
+void toggleElevation(int elevation){
+  
 }
 
 void gotoAngle(int angle)
@@ -48,11 +53,11 @@ void toggleMagnet(int power){
 void moveDegrees(int degrees){
   if(degrees < -100 || degrees > 100){
     int splitDegrees = degrees / 3;
-    myStepper.step(splitDegrees * 112);
-    myStepper.step(splitDegrees * 112);
-    myStepper.step((degrees - (2*splitDegrees)) * 112);
+    revolutionStepper.step(splitDegrees * 112);
+    revolutionStepper.step(splitDegrees * 112);
+    revolutionStepper.step((degrees - (2*splitDegrees)) * 112);
   }else{
     int stepsToGo = degrees * 112;
-    myStepper.step(stepsToGo);
+    revolutionStepper.step(stepsToGo);
   }
 }
