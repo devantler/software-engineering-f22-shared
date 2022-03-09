@@ -68,8 +68,25 @@ public class FactoryLogicLangFactoryImpl extends EFactoryImpl implements Factory
     {
       case FactoryLogicLangPackage.MODEL: return createModel();
       case FactoryLogicLangPackage.DECLARATION: return createDeclaration();
+      case FactoryLogicLangPackage.DEVICE: return createDevice();
+      case FactoryLogicLangPackage.CRANE: return createCrane();
+      case FactoryLogicLangPackage.CRANE_PARAMETER: return createCraneParameter();
+      case FactoryLogicLangPackage.STORAGE: return createStorage();
+      case FactoryLogicLangPackage.STORAGE_PARAMETER: return createStorageParameter();
+      case FactoryLogicLangPackage.STORAGE_SLOT_PARAMETER: return createStorageSlotParameter();
+      case FactoryLogicLangPackage.STORAGE_POSITION_PARAMETER: return createStoragePositionParameter();
+      case FactoryLogicLangPackage.CAMERA: return createCamera();
+      case FactoryLogicLangPackage.CAMERA_PARAMETER: return createCameraParameter();
+      case FactoryLogicLangPackage.LOGIC: return createLogic();
       case FactoryLogicLangPackage.CONDITIONAL: return createConditional();
       case FactoryLogicLangPackage.LOOP: return createLoop();
+      case FactoryLogicLangPackage.OPERATION: return createOperation();
+      case FactoryLogicLangPackage.STORAGE_MOVE_EMPTY_SLOT: return createStorageMoveEmptySlot();
+      case FactoryLogicLangPackage.STORAGE_MOVE_SLOT: return createStorageMoveSlot();
+      case FactoryLogicLangPackage.STORAGE_MARK_SLOT: return createStorageMarkSlot();
+      case FactoryLogicLangPackage.CAMERA_SCAN: return createCameraScan();
+      case FactoryLogicLangPackage.CRANE_PICKUP: return createCranePickup();
+      case FactoryLogicLangPackage.CRANE_DROP: return createCraneDrop();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -85,8 +102,14 @@ public class FactoryLogicLangFactoryImpl extends EFactoryImpl implements Factory
   {
     switch (eDataType.getClassifierID())
     {
+      case FactoryLogicLangPackage.COLOR:
+        return createCOLORFromString(eDataType, initialValue);
+      case FactoryLogicLangPackage.CONST_VARIABLES:
+        return createCONST_VARIABLESFromString(eDataType, initialValue);
       case FactoryLogicLangPackage.BOOLEAN_OPERATOR:
         return createBOOLEAN_OPERATORFromString(eDataType, initialValue);
+      case FactoryLogicLangPackage.TIME:
+        return createTIMEFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -102,8 +125,14 @@ public class FactoryLogicLangFactoryImpl extends EFactoryImpl implements Factory
   {
     switch (eDataType.getClassifierID())
     {
+      case FactoryLogicLangPackage.COLOR:
+        return convertCOLORToString(eDataType, instanceValue);
+      case FactoryLogicLangPackage.CONST_VARIABLES:
+        return convertCONST_VARIABLESToString(eDataType, instanceValue);
       case FactoryLogicLangPackage.BOOLEAN_OPERATOR:
         return convertBOOLEAN_OPERATORToString(eDataType, instanceValue);
+      case FactoryLogicLangPackage.TIME:
+        return convertTIMEToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -139,6 +168,126 @@ public class FactoryLogicLangFactoryImpl extends EFactoryImpl implements Factory
    * @generated
    */
   @Override
+  public Device createDevice()
+  {
+    DeviceImpl device = new DeviceImpl();
+    return device;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Crane createCrane()
+  {
+    CraneImpl crane = new CraneImpl();
+    return crane;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CraneParameter createCraneParameter()
+  {
+    CraneParameterImpl craneParameter = new CraneParameterImpl();
+    return craneParameter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Storage createStorage()
+  {
+    StorageImpl storage = new StorageImpl();
+    return storage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StorageParameter createStorageParameter()
+  {
+    StorageParameterImpl storageParameter = new StorageParameterImpl();
+    return storageParameter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StorageSlotParameter createStorageSlotParameter()
+  {
+    StorageSlotParameterImpl storageSlotParameter = new StorageSlotParameterImpl();
+    return storageSlotParameter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StoragePositionParameter createStoragePositionParameter()
+  {
+    StoragePositionParameterImpl storagePositionParameter = new StoragePositionParameterImpl();
+    return storagePositionParameter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Camera createCamera()
+  {
+    CameraImpl camera = new CameraImpl();
+    return camera;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CameraParameter createCameraParameter()
+  {
+    CameraParameterImpl cameraParameter = new CameraParameterImpl();
+    return cameraParameter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Logic createLogic()
+  {
+    LogicImpl logic = new LogicImpl();
+    return logic;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Conditional createConditional()
   {
     ConditionalImpl conditional = new ConditionalImpl();
@@ -162,6 +311,134 @@ public class FactoryLogicLangFactoryImpl extends EFactoryImpl implements Factory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public Operation createOperation()
+  {
+    OperationImpl operation = new OperationImpl();
+    return operation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StorageMoveEmptySlot createStorageMoveEmptySlot()
+  {
+    StorageMoveEmptySlotImpl storageMoveEmptySlot = new StorageMoveEmptySlotImpl();
+    return storageMoveEmptySlot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StorageMoveSlot createStorageMoveSlot()
+  {
+    StorageMoveSlotImpl storageMoveSlot = new StorageMoveSlotImpl();
+    return storageMoveSlot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StorageMarkSlot createStorageMarkSlot()
+  {
+    StorageMarkSlotImpl storageMarkSlot = new StorageMarkSlotImpl();
+    return storageMarkSlot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CameraScan createCameraScan()
+  {
+    CameraScanImpl cameraScan = new CameraScanImpl();
+    return cameraScan;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CranePickup createCranePickup()
+  {
+    CranePickupImpl cranePickup = new CranePickupImpl();
+    return cranePickup;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CraneDrop createCraneDrop()
+  {
+    CraneDropImpl craneDrop = new CraneDropImpl();
+    return craneDrop;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public COLOR createCOLORFromString(EDataType eDataType, String initialValue)
+  {
+    COLOR result = COLOR.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertCOLORToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CONST_VARIABLES createCONST_VARIABLESFromString(EDataType eDataType, String initialValue)
+  {
+    CONST_VARIABLES result = CONST_VARIABLES.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertCONST_VARIABLESToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public BOOLEAN_OPERATOR createBOOLEAN_OPERATORFromString(EDataType eDataType, String initialValue)
   {
     BOOLEAN_OPERATOR result = BOOLEAN_OPERATOR.get(initialValue);
@@ -175,6 +452,28 @@ public class FactoryLogicLangFactoryImpl extends EFactoryImpl implements Factory
    * @generated
    */
   public String convertBOOLEAN_OPERATORToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TIME createTIMEFromString(EDataType eDataType, String initialValue)
+  {
+    TIME result = TIME.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertTIMEToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

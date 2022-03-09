@@ -21,6 +21,8 @@ import org.eclipse.xtext.builder.nature.NatureAddingEditorCallback;
 import org.eclipse.xtext.builder.preferences.BuilderPreferenceAccess;
 import org.eclipse.xtext.generator.IContextualOutputConfigurationProvider;
 import org.eclipse.xtext.ide.LexerIdeBindings;
+import org.eclipse.xtext.ide.editor.contentassist.CompletionPrefixProvider;
+import org.eclipse.xtext.ide.editor.contentassist.IndentationAwareCompletionPrefixProvider;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.IContentAssistParser;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.Lexer;
 import org.eclipse.xtext.ide.editor.partialEditing.IPartialEditingContentAssistParser;
@@ -71,7 +73,7 @@ import org.eclipse.xtext.ui.shared.Access;
 import org.eclipse.xtext.ui.validation.AbstractValidatorConfigurationBlock;
 import xtext.ide.contentassist.antlr.FactoryLogicLangParser;
 import xtext.ide.contentassist.antlr.PartialFactoryLogicLangContentAssistParser;
-import xtext.ide.contentassist.antlr.internal.InternalFactoryLogicLangLexer;
+import xtext.ide.contentassist.antlr.lexer.InternalFactoryLogicLangLexer;
 import xtext.ui.contentassist.FactoryLogicLangProposalProvider;
 import xtext.ui.labeling.FactoryLogicLangDescriptionLabelProvider;
 import xtext.ui.labeling.FactoryLogicLangLabelProvider;
@@ -110,7 +112,7 @@ public abstract class AbstractFactoryLogicLangUiModule extends DefaultUiModule {
 	public void configureHighlightingLexer(Binder binder) {
 		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class)
 			.annotatedWith(Names.named(LexerIdeBindings.HIGHLIGHTING))
-			.to(xtext.parser.antlr.internal.InternalFactoryLogicLangLexer.class);
+			.to(xtext.parser.antlr.lexer.InternalFactoryLogicLangLexer.class);
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
@@ -133,6 +135,11 @@ public abstract class AbstractFactoryLogicLangUiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
 	public void configureContentAssistLexerProvider(Binder binder) {
 		binder.bind(InternalFactoryLogicLangLexer.class).toProvider(LexerProvider.create(InternalFactoryLogicLangLexer.class));
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
+	public Class<? extends CompletionPrefixProvider> bindCompletionPrefixProvider() {
+		return IndentationAwareCompletionPrefixProvider.class;
 	}
 	
 	// contributed by org.eclipse.xtext.xtext.generator.validation.ValidatorFragment2

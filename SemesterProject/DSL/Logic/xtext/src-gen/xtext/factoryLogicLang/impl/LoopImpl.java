@@ -3,13 +3,27 @@
  */
 package xtext.factoryLogicLang.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import xtext.factoryLogicLang.BOOLEAN_OPERATOR;
+import xtext.factoryLogicLang.COLOR;
+import xtext.factoryLogicLang.CONST_VARIABLES;
+import xtext.factoryLogicLang.Device;
 import xtext.factoryLogicLang.FactoryLogicLangPackage;
+import xtext.factoryLogicLang.Logic;
 import xtext.factoryLogicLang.Loop;
 
 /**
@@ -20,74 +34,159 @@ import xtext.factoryLogicLang.Loop;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getLoopvar <em>Loopvar</em>}</li>
- *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getSTRING1 <em>STRING1</em>}</li>
- *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getSTRING2 <em>STRING2</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getList <em>List</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getComparison_const <em>Comparison const</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getComparison_color <em>Comparison color</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getComparison_int <em>Comparison int</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getLogics <em>Logics</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LoopImpl extends DeclarationImpl implements Loop
+public class LoopImpl extends LogicImpl implements Loop
 {
   /**
-   * The default value of the '{@link #getLoopvar() <em>Loopvar</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLoopvar()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String LOOPVAR_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getLoopvar() <em>Loopvar</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLoopvar()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String loopvar = LOOPVAR_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getSTRING1() <em>STRING1</em>}' attribute.
+   * The default value of the '{@link #getList() <em>List</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSTRING1()
+   * @see #getList()
    * @generated
    * @ordered
    */
-  protected static final String STRING1_EDEFAULT = null;
+  protected static final String LIST_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getSTRING1() <em>STRING1</em>}' attribute.
+   * The cached value of the '{@link #getList() <em>List</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSTRING1()
+   * @see #getList()
    * @generated
    * @ordered
    */
-  protected String string1 = STRING1_EDEFAULT;
+  protected String list = LIST_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getSTRING2() <em>STRING2</em>}' attribute.
+   * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSTRING2()
+   * @see #getSource()
    * @generated
    * @ordered
    */
-  protected static final String STRING2_EDEFAULT = null;
+  protected Device source;
 
   /**
-   * The cached value of the '{@link #getSTRING2() <em>STRING2</em>}' attribute.
+   * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSTRING2()
+   * @see #getOperator()
    * @generated
    * @ordered
    */
-  protected String string2 = STRING2_EDEFAULT;
+  protected static final BOOLEAN_OPERATOR OPERATOR_EDEFAULT = BOOLEAN_OPERATOR.NOT;
+
+  /**
+   * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperator()
+   * @generated
+   * @ordered
+   */
+  protected BOOLEAN_OPERATOR operator = OPERATOR_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getComparison_const() <em>Comparison const</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparison_const()
+   * @generated
+   * @ordered
+   */
+  protected static final CONST_VARIABLES COMPARISON_CONST_EDEFAULT = CONST_VARIABLES.FULL;
+
+  /**
+   * The cached value of the '{@link #getComparison_const() <em>Comparison const</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparison_const()
+   * @generated
+   * @ordered
+   */
+  protected CONST_VARIABLES comparison_const = COMPARISON_CONST_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getComparison_color() <em>Comparison color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparison_color()
+   * @generated
+   * @ordered
+   */
+  protected static final COLOR COMPARISON_COLOR_EDEFAULT = COLOR.RED;
+
+  /**
+   * The cached value of the '{@link #getComparison_color() <em>Comparison color</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparison_color()
+   * @generated
+   * @ordered
+   */
+  protected COLOR comparison_color = COMPARISON_COLOR_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getComparison_int() <em>Comparison int</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparison_int()
+   * @generated
+   * @ordered
+   */
+  protected static final int COMPARISON_INT_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getComparison_int() <em>Comparison int</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparison_int()
+   * @generated
+   * @ordered
+   */
+  protected int comparison_int = COMPARISON_INT_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getLogics() <em>Logics</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLogics()
+   * @generated
+   * @ordered
+   */
+  protected EList<Logic> logics;
 
   /**
    * <!-- begin-user-doc -->
@@ -116,9 +215,9 @@ public class LoopImpl extends DeclarationImpl implements Loop
    * @generated
    */
   @Override
-  public String getLoopvar()
+  public String getName()
   {
-    return loopvar;
+    return name;
   }
 
   /**
@@ -127,12 +226,12 @@ public class LoopImpl extends DeclarationImpl implements Loop
    * @generated
    */
   @Override
-  public void setLoopvar(String newLoopvar)
+  public void setName(String newName)
   {
-    String oldLoopvar = loopvar;
-    loopvar = newLoopvar;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__LOOPVAR, oldLoopvar, loopvar));
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__NAME, oldName, name));
   }
 
   /**
@@ -141,9 +240,9 @@ public class LoopImpl extends DeclarationImpl implements Loop
    * @generated
    */
   @Override
-  public String getSTRING1()
+  public String getList()
   {
-    return string1;
+    return list;
   }
 
   /**
@@ -152,12 +251,12 @@ public class LoopImpl extends DeclarationImpl implements Loop
    * @generated
    */
   @Override
-  public void setSTRING1(String newSTRING1)
+  public void setList(String newList)
   {
-    String oldSTRING1 = string1;
-    string1 = newSTRING1;
+    String oldList = list;
+    list = newList;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__STRING1, oldSTRING1, string1));
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__LIST, oldList, list));
   }
 
   /**
@@ -166,9 +265,29 @@ public class LoopImpl extends DeclarationImpl implements Loop
    * @generated
    */
   @Override
-  public String getSTRING2()
+  public Device getSource()
   {
-    return string2;
+    if (source != null && source.eIsProxy())
+    {
+      InternalEObject oldSource = (InternalEObject)source;
+      source = (Device)eResolveProxy(oldSource);
+      if (source != oldSource)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FactoryLogicLangPackage.LOOP__SOURCE, oldSource, source));
+      }
+    }
+    return source;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Device basicGetSource()
+  {
+    return source;
   }
 
   /**
@@ -177,12 +296,143 @@ public class LoopImpl extends DeclarationImpl implements Loop
    * @generated
    */
   @Override
-  public void setSTRING2(String newSTRING2)
+  public void setSource(Device newSource)
   {
-    String oldSTRING2 = string2;
-    string2 = newSTRING2;
+    Device oldSource = source;
+    source = newSource;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__STRING2, oldSTRING2, string2));
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__SOURCE, oldSource, source));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public BOOLEAN_OPERATOR getOperator()
+  {
+    return operator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setOperator(BOOLEAN_OPERATOR newOperator)
+  {
+    BOOLEAN_OPERATOR oldOperator = operator;
+    operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__OPERATOR, oldOperator, operator));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CONST_VARIABLES getComparison_const()
+  {
+    return comparison_const;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setComparison_const(CONST_VARIABLES newComparison_const)
+  {
+    CONST_VARIABLES oldComparison_const = comparison_const;
+    comparison_const = newComparison_const == null ? COMPARISON_CONST_EDEFAULT : newComparison_const;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__COMPARISON_CONST, oldComparison_const, comparison_const));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public COLOR getComparison_color()
+  {
+    return comparison_color;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setComparison_color(COLOR newComparison_color)
+  {
+    COLOR oldComparison_color = comparison_color;
+    comparison_color = newComparison_color == null ? COMPARISON_COLOR_EDEFAULT : newComparison_color;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__COMPARISON_COLOR, oldComparison_color, comparison_color));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int getComparison_int()
+  {
+    return comparison_int;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setComparison_int(int newComparison_int)
+  {
+    int oldComparison_int = comparison_int;
+    comparison_int = newComparison_int;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__COMPARISON_INT, oldComparison_int, comparison_int));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<Logic> getLogics()
+  {
+    if (logics == null)
+    {
+      logics = new EObjectContainmentEList<Logic>(Logic.class, this, FactoryLogicLangPackage.LOOP__LOGICS);
+    }
+    return logics;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case FactoryLogicLangPackage.LOOP__LOGICS:
+        return ((InternalEList<?>)getLogics()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -195,12 +445,23 @@ public class LoopImpl extends DeclarationImpl implements Loop
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.LOOP__LOOPVAR:
-        return getLoopvar();
-      case FactoryLogicLangPackage.LOOP__STRING1:
-        return getSTRING1();
-      case FactoryLogicLangPackage.LOOP__STRING2:
-        return getSTRING2();
+      case FactoryLogicLangPackage.LOOP__NAME:
+        return getName();
+      case FactoryLogicLangPackage.LOOP__LIST:
+        return getList();
+      case FactoryLogicLangPackage.LOOP__SOURCE:
+        if (resolve) return getSource();
+        return basicGetSource();
+      case FactoryLogicLangPackage.LOOP__OPERATOR:
+        return getOperator();
+      case FactoryLogicLangPackage.LOOP__COMPARISON_CONST:
+        return getComparison_const();
+      case FactoryLogicLangPackage.LOOP__COMPARISON_COLOR:
+        return getComparison_color();
+      case FactoryLogicLangPackage.LOOP__COMPARISON_INT:
+        return getComparison_int();
+      case FactoryLogicLangPackage.LOOP__LOGICS:
+        return getLogics();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -210,19 +471,36 @@ public class LoopImpl extends DeclarationImpl implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.LOOP__LOOPVAR:
-        setLoopvar((String)newValue);
+      case FactoryLogicLangPackage.LOOP__NAME:
+        setName((String)newValue);
         return;
-      case FactoryLogicLangPackage.LOOP__STRING1:
-        setSTRING1((String)newValue);
+      case FactoryLogicLangPackage.LOOP__LIST:
+        setList((String)newValue);
         return;
-      case FactoryLogicLangPackage.LOOP__STRING2:
-        setSTRING2((String)newValue);
+      case FactoryLogicLangPackage.LOOP__SOURCE:
+        setSource((Device)newValue);
+        return;
+      case FactoryLogicLangPackage.LOOP__OPERATOR:
+        setOperator((BOOLEAN_OPERATOR)newValue);
+        return;
+      case FactoryLogicLangPackage.LOOP__COMPARISON_CONST:
+        setComparison_const((CONST_VARIABLES)newValue);
+        return;
+      case FactoryLogicLangPackage.LOOP__COMPARISON_COLOR:
+        setComparison_color((COLOR)newValue);
+        return;
+      case FactoryLogicLangPackage.LOOP__COMPARISON_INT:
+        setComparison_int((Integer)newValue);
+        return;
+      case FactoryLogicLangPackage.LOOP__LOGICS:
+        getLogics().clear();
+        getLogics().addAll((Collection<? extends Logic>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -238,14 +516,29 @@ public class LoopImpl extends DeclarationImpl implements Loop
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.LOOP__LOOPVAR:
-        setLoopvar(LOOPVAR_EDEFAULT);
+      case FactoryLogicLangPackage.LOOP__NAME:
+        setName(NAME_EDEFAULT);
         return;
-      case FactoryLogicLangPackage.LOOP__STRING1:
-        setSTRING1(STRING1_EDEFAULT);
+      case FactoryLogicLangPackage.LOOP__LIST:
+        setList(LIST_EDEFAULT);
         return;
-      case FactoryLogicLangPackage.LOOP__STRING2:
-        setSTRING2(STRING2_EDEFAULT);
+      case FactoryLogicLangPackage.LOOP__SOURCE:
+        setSource((Device)null);
+        return;
+      case FactoryLogicLangPackage.LOOP__OPERATOR:
+        setOperator(OPERATOR_EDEFAULT);
+        return;
+      case FactoryLogicLangPackage.LOOP__COMPARISON_CONST:
+        setComparison_const(COMPARISON_CONST_EDEFAULT);
+        return;
+      case FactoryLogicLangPackage.LOOP__COMPARISON_COLOR:
+        setComparison_color(COMPARISON_COLOR_EDEFAULT);
+        return;
+      case FactoryLogicLangPackage.LOOP__COMPARISON_INT:
+        setComparison_int(COMPARISON_INT_EDEFAULT);
+        return;
+      case FactoryLogicLangPackage.LOOP__LOGICS:
+        getLogics().clear();
         return;
     }
     super.eUnset(featureID);
@@ -261,12 +554,22 @@ public class LoopImpl extends DeclarationImpl implements Loop
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.LOOP__LOOPVAR:
-        return LOOPVAR_EDEFAULT == null ? loopvar != null : !LOOPVAR_EDEFAULT.equals(loopvar);
-      case FactoryLogicLangPackage.LOOP__STRING1:
-        return STRING1_EDEFAULT == null ? string1 != null : !STRING1_EDEFAULT.equals(string1);
-      case FactoryLogicLangPackage.LOOP__STRING2:
-        return STRING2_EDEFAULT == null ? string2 != null : !STRING2_EDEFAULT.equals(string2);
+      case FactoryLogicLangPackage.LOOP__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case FactoryLogicLangPackage.LOOP__LIST:
+        return LIST_EDEFAULT == null ? list != null : !LIST_EDEFAULT.equals(list);
+      case FactoryLogicLangPackage.LOOP__SOURCE:
+        return source != null;
+      case FactoryLogicLangPackage.LOOP__OPERATOR:
+        return operator != OPERATOR_EDEFAULT;
+      case FactoryLogicLangPackage.LOOP__COMPARISON_CONST:
+        return comparison_const != COMPARISON_CONST_EDEFAULT;
+      case FactoryLogicLangPackage.LOOP__COMPARISON_COLOR:
+        return comparison_color != COMPARISON_COLOR_EDEFAULT;
+      case FactoryLogicLangPackage.LOOP__COMPARISON_INT:
+        return comparison_int != COMPARISON_INT_EDEFAULT;
+      case FactoryLogicLangPackage.LOOP__LOGICS:
+        return logics != null && !logics.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -282,12 +585,18 @@ public class LoopImpl extends DeclarationImpl implements Loop
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (loopvar: ");
-    result.append(loopvar);
-    result.append(", STRING1: ");
-    result.append(string1);
-    result.append(", STRING2: ");
-    result.append(string2);
+    result.append(" (name: ");
+    result.append(name);
+    result.append(", list: ");
+    result.append(list);
+    result.append(", operator: ");
+    result.append(operator);
+    result.append(", comparison_const: ");
+    result.append(comparison_const);
+    result.append(", comparison_color: ");
+    result.append(comparison_color);
+    result.append(", comparison_int: ");
+    result.append(comparison_int);
     result.append(')');
     return result.toString();
   }

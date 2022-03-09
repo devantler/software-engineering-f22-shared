@@ -30,8 +30,8 @@ public class FactoryLogicLangStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-		if (!EPackage.Registry.INSTANCE.containsKey("http://www.FactoryLogicLang.xtext")) {
-			EPackage.Registry.INSTANCE.put("http://www.FactoryLogicLang.xtext", FactoryLogicLangPackage.eINSTANCE);
+		if (!EPackage.Registry.INSTANCE.containsKey("http:www.FactoryLogicLang.xtext")) {
+			EPackage.Registry.INSTANCE.put("http:www.FactoryLogicLang.xtext", FactoryLogicLangPackage.eINSTANCE);
 		}
 		IResourceFactory resourceFactory = injector.getInstance(IResourceFactory.class);
 		IResourceServiceProvider serviceProvider = injector.getInstance(IResourceServiceProvider.class);

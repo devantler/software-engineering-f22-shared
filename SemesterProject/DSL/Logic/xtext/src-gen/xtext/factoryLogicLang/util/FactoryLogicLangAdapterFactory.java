@@ -86,6 +86,56 @@ public class FactoryLogicLangAdapterFactory extends AdapterFactoryImpl
         return createDeclarationAdapter();
       }
       @Override
+      public Adapter caseDevice(Device object)
+      {
+        return createDeviceAdapter();
+      }
+      @Override
+      public Adapter caseCrane(Crane object)
+      {
+        return createCraneAdapter();
+      }
+      @Override
+      public Adapter caseCraneParameter(CraneParameter object)
+      {
+        return createCraneParameterAdapter();
+      }
+      @Override
+      public Adapter caseStorage(Storage object)
+      {
+        return createStorageAdapter();
+      }
+      @Override
+      public Adapter caseStorageParameter(StorageParameter object)
+      {
+        return createStorageParameterAdapter();
+      }
+      @Override
+      public Adapter caseStorageSlotParameter(StorageSlotParameter object)
+      {
+        return createStorageSlotParameterAdapter();
+      }
+      @Override
+      public Adapter caseStoragePositionParameter(StoragePositionParameter object)
+      {
+        return createStoragePositionParameterAdapter();
+      }
+      @Override
+      public Adapter caseCamera(Camera object)
+      {
+        return createCameraAdapter();
+      }
+      @Override
+      public Adapter caseCameraParameter(CameraParameter object)
+      {
+        return createCameraParameterAdapter();
+      }
+      @Override
+      public Adapter caseLogic(Logic object)
+      {
+        return createLogicAdapter();
+      }
+      @Override
       public Adapter caseConditional(Conditional object)
       {
         return createConditionalAdapter();
@@ -94,6 +144,41 @@ public class FactoryLogicLangAdapterFactory extends AdapterFactoryImpl
       public Adapter caseLoop(Loop object)
       {
         return createLoopAdapter();
+      }
+      @Override
+      public Adapter caseOperation(Operation object)
+      {
+        return createOperationAdapter();
+      }
+      @Override
+      public Adapter caseStorageMoveEmptySlot(StorageMoveEmptySlot object)
+      {
+        return createStorageMoveEmptySlotAdapter();
+      }
+      @Override
+      public Adapter caseStorageMoveSlot(StorageMoveSlot object)
+      {
+        return createStorageMoveSlotAdapter();
+      }
+      @Override
+      public Adapter caseStorageMarkSlot(StorageMarkSlot object)
+      {
+        return createStorageMarkSlotAdapter();
+      }
+      @Override
+      public Adapter caseCameraScan(CameraScan object)
+      {
+        return createCameraScanAdapter();
+      }
+      @Override
+      public Adapter caseCranePickup(CranePickup object)
+      {
+        return createCranePickupAdapter();
+      }
+      @Override
+      public Adapter caseCraneDrop(CraneDrop object)
+      {
+        return createCraneDropAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -148,6 +233,156 @@ public class FactoryLogicLangAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.Device <em>Device</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.Device
+   * @generated
+   */
+  public Adapter createDeviceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.Crane <em>Crane</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.Crane
+   * @generated
+   */
+  public Adapter createCraneAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.CraneParameter <em>Crane Parameter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.CraneParameter
+   * @generated
+   */
+  public Adapter createCraneParameterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.Storage <em>Storage</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.Storage
+   * @generated
+   */
+  public Adapter createStorageAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.StorageParameter <em>Storage Parameter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.StorageParameter
+   * @generated
+   */
+  public Adapter createStorageParameterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.StorageSlotParameter <em>Storage Slot Parameter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.StorageSlotParameter
+   * @generated
+   */
+  public Adapter createStorageSlotParameterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.StoragePositionParameter <em>Storage Position Parameter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.StoragePositionParameter
+   * @generated
+   */
+  public Adapter createStoragePositionParameterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.Camera <em>Camera</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.Camera
+   * @generated
+   */
+  public Adapter createCameraAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.CameraParameter <em>Camera Parameter</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.CameraParameter
+   * @generated
+   */
+  public Adapter createCameraParameterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.Logic <em>Logic</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.Logic
+   * @generated
+   */
+  public Adapter createLogicAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.Conditional <em>Conditional</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -173,6 +408,111 @@ public class FactoryLogicLangAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createLoopAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.Operation <em>Operation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.Operation
+   * @generated
+   */
+  public Adapter createOperationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.StorageMoveEmptySlot <em>Storage Move Empty Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.StorageMoveEmptySlot
+   * @generated
+   */
+  public Adapter createStorageMoveEmptySlotAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.StorageMoveSlot <em>Storage Move Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.StorageMoveSlot
+   * @generated
+   */
+  public Adapter createStorageMoveSlotAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.StorageMarkSlot <em>Storage Mark Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.StorageMarkSlot
+   * @generated
+   */
+  public Adapter createStorageMarkSlotAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.CameraScan <em>Camera Scan</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.CameraScan
+   * @generated
+   */
+  public Adapter createCameraScanAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.CranePickup <em>Crane Pickup</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.CranePickup
+   * @generated
+   */
+  public Adapter createCranePickupAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.CraneDrop <em>Crane Drop</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.CraneDrop
+   * @generated
+   */
+  public Adapter createCraneDropAdapter()
   {
     return null;
   }

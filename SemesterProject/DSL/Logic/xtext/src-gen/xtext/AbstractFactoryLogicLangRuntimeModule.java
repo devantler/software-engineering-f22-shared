@@ -44,7 +44,7 @@ import org.eclipse.xtext.validation.ConfigurableIssueCodesProvider;
 import xtext.generator.FactoryLogicLangGenerator;
 import xtext.parser.antlr.FactoryLogicLangAntlrTokenFileProvider;
 import xtext.parser.antlr.FactoryLogicLangParser;
-import xtext.parser.antlr.internal.InternalFactoryLogicLangLexer;
+import xtext.parser.antlr.lexer.InternalFactoryLogicLangLexer;
 import xtext.scoping.FactoryLogicLangScopeProvider;
 import xtext.serializer.FactoryLogicLangSemanticSequencer;
 import xtext.serializer.FactoryLogicLangSyntacticSequencer;

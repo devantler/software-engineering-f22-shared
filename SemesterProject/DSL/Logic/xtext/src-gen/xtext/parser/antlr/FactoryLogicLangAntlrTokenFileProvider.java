@@ -11,6 +11,6 @@ public class FactoryLogicLangAntlrTokenFileProvider implements IAntlrTokenFilePr
 	@Override
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-		return classLoader.getResourceAsStream("xtext/parser/antlr/internal/InternalFactoryLogicLang.tokens");
+		return classLoader.getResourceAsStream("xtext/parser/antlr/internal/InternalFactoryLogicLangParser.tokens");
 	}
 }

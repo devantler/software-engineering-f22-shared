@@ -42,6 +42,96 @@ public interface FactoryLogicLangFactory extends EFactory
   Declaration createDeclaration();
 
   /**
+   * Returns a new object of class '<em>Device</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Device</em>'.
+   * @generated
+   */
+  Device createDevice();
+
+  /**
+   * Returns a new object of class '<em>Crane</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Crane</em>'.
+   * @generated
+   */
+  Crane createCrane();
+
+  /**
+   * Returns a new object of class '<em>Crane Parameter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Crane Parameter</em>'.
+   * @generated
+   */
+  CraneParameter createCraneParameter();
+
+  /**
+   * Returns a new object of class '<em>Storage</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Storage</em>'.
+   * @generated
+   */
+  Storage createStorage();
+
+  /**
+   * Returns a new object of class '<em>Storage Parameter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Storage Parameter</em>'.
+   * @generated
+   */
+  StorageParameter createStorageParameter();
+
+  /**
+   * Returns a new object of class '<em>Storage Slot Parameter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Storage Slot Parameter</em>'.
+   * @generated
+   */
+  StorageSlotParameter createStorageSlotParameter();
+
+  /**
+   * Returns a new object of class '<em>Storage Position Parameter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Storage Position Parameter</em>'.
+   * @generated
+   */
+  StoragePositionParameter createStoragePositionParameter();
+
+  /**
+   * Returns a new object of class '<em>Camera</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Camera</em>'.
+   * @generated
+   */
+  Camera createCamera();
+
+  /**
+   * Returns a new object of class '<em>Camera Parameter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Camera Parameter</em>'.
+   * @generated
+   */
+  CameraParameter createCameraParameter();
+
+  /**
+   * Returns a new object of class '<em>Logic</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Logic</em>'.
+   * @generated
+   */
+  Logic createLogic();
+
+  /**
    * Returns a new object of class '<em>Conditional</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -58,6 +148,69 @@ public interface FactoryLogicLangFactory extends EFactory
    * @generated
    */
   Loop createLoop();
+
+  /**
+   * Returns a new object of class '<em>Operation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Operation</em>'.
+   * @generated
+   */
+  Operation createOperation();
+
+  /**
+   * Returns a new object of class '<em>Storage Move Empty Slot</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Storage Move Empty Slot</em>'.
+   * @generated
+   */
+  StorageMoveEmptySlot createStorageMoveEmptySlot();
+
+  /**
+   * Returns a new object of class '<em>Storage Move Slot</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Storage Move Slot</em>'.
+   * @generated
+   */
+  StorageMoveSlot createStorageMoveSlot();
+
+  /**
+   * Returns a new object of class '<em>Storage Mark Slot</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Storage Mark Slot</em>'.
+   * @generated
+   */
+  StorageMarkSlot createStorageMarkSlot();
+
+  /**
+   * Returns a new object of class '<em>Camera Scan</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Camera Scan</em>'.
+   * @generated
+   */
+  CameraScan createCameraScan();
+
+  /**
+   * Returns a new object of class '<em>Crane Pickup</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Crane Pickup</em>'.
+   * @generated
+   */
+  CranePickup createCranePickup();
+
+  /**
+   * Returns a new object of class '<em>Crane Drop</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Crane Drop</em>'.
+   * @generated
+   */
+  CraneDrop createCraneDrop();
 
   /**
    * Returns the package supported by this factory.

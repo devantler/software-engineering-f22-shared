@@ -10,14 +10,6 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Declaration</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link xtext.factoryLogicLang.Declaration#getVariable <em>Variable</em>}</li>
- *   <li>{@link xtext.factoryLogicLang.Declaration#getOperator <em>Operator</em>}</li>
- *   <li>{@link xtext.factoryLogicLang.Declaration#getComparison <em>Comparison</em>}</li>
- * </ul>
  *
  * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getDeclaration()
  * @model
@@ -25,73 +17,4 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Declaration extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Variable</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Variable</em>' attribute.
-   * @see #setVariable(String)
-   * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getDeclaration_Variable()
-   * @model
-   * @generated
-   */
-  String getVariable();
-
-  /**
-   * Sets the value of the '{@link xtext.factoryLogicLang.Declaration#getVariable <em>Variable</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Variable</em>' attribute.
-   * @see #getVariable()
-   * @generated
-   */
-  void setVariable(String value);
-
-  /**
-   * Returns the value of the '<em><b>Operator</b></em>' attribute.
-   * The literals are from the enumeration {@link xtext.factoryLogicLang.BOOLEAN_OPERATOR}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Operator</em>' attribute.
-   * @see xtext.factoryLogicLang.BOOLEAN_OPERATOR
-   * @see #setOperator(BOOLEAN_OPERATOR)
-   * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getDeclaration_Operator()
-   * @model
-   * @generated
-   */
-  BOOLEAN_OPERATOR getOperator();
-
-  /**
-   * Sets the value of the '{@link xtext.factoryLogicLang.Declaration#getOperator <em>Operator</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Operator</em>' attribute.
-   * @see xtext.factoryLogicLang.BOOLEAN_OPERATOR
-   * @see #getOperator()
-   * @generated
-   */
-  void setOperator(BOOLEAN_OPERATOR value);
-
-  /**
-   * Returns the value of the '<em><b>Comparison</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Comparison</em>' attribute.
-   * @see #setComparison(String)
-   * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getDeclaration_Comparison()
-   * @model
-   * @generated
-   */
-  String getComparison();
-
-  /**
-   * Sets the value of the '{@link xtext.factoryLogicLang.Declaration#getComparison <em>Comparison</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Comparison</em>' attribute.
-   * @see #getComparison()
-   * @generated
-   */
-  void setComparison(String value);
-
 } // Declaration

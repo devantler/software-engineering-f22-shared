@@ -3,14 +3,10 @@
  */
 package xtext.factoryLogicLang.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import xtext.factoryLogicLang.BOOLEAN_OPERATOR;
 import xtext.factoryLogicLang.Declaration;
 import xtext.factoryLogicLang.FactoryLogicLangPackage;
 
@@ -18,79 +14,11 @@ import xtext.factoryLogicLang.FactoryLogicLangPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Declaration</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link xtext.factoryLogicLang.impl.DeclarationImpl#getVariable <em>Variable</em>}</li>
- *   <li>{@link xtext.factoryLogicLang.impl.DeclarationImpl#getOperator <em>Operator</em>}</li>
- *   <li>{@link xtext.factoryLogicLang.impl.DeclarationImpl#getComparison <em>Comparison</em>}</li>
- * </ul>
  *
  * @generated
  */
 public class DeclarationImpl extends MinimalEObjectImpl.Container implements Declaration
 {
-  /**
-   * The default value of the '{@link #getVariable() <em>Variable</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVariable()
-   * @generated
-   * @ordered
-   */
-  protected static final String VARIABLE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getVariable() <em>Variable</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVariable()
-   * @generated
-   * @ordered
-   */
-  protected String variable = VARIABLE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOperator()
-   * @generated
-   * @ordered
-   */
-  protected static final BOOLEAN_OPERATOR OPERATOR_EDEFAULT = BOOLEAN_OPERATOR.NOT;
-
-  /**
-   * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOperator()
-   * @generated
-   * @ordered
-   */
-  protected BOOLEAN_OPERATOR operator = OPERATOR_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getComparison() <em>Comparison</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComparison()
-   * @generated
-   * @ordered
-   */
-  protected static final String COMPARISON_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getComparison() <em>Comparison</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComparison()
-   * @generated
-   * @ordered
-   */
-  protected String comparison = COMPARISON_EDEFAULT;
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -110,188 +38,6 @@ public class DeclarationImpl extends MinimalEObjectImpl.Container implements Dec
   protected EClass eStaticClass()
   {
     return FactoryLogicLangPackage.Literals.DECLARATION;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getVariable()
-  {
-    return variable;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setVariable(String newVariable)
-  {
-    String oldVariable = variable;
-    variable = newVariable;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.DECLARATION__VARIABLE, oldVariable, variable));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public BOOLEAN_OPERATOR getOperator()
-  {
-    return operator;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setOperator(BOOLEAN_OPERATOR newOperator)
-  {
-    BOOLEAN_OPERATOR oldOperator = operator;
-    operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.DECLARATION__OPERATOR, oldOperator, operator));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getComparison()
-  {
-    return comparison;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setComparison(String newComparison)
-  {
-    String oldComparison = comparison;
-    comparison = newComparison;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.DECLARATION__COMPARISON, oldComparison, comparison));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case FactoryLogicLangPackage.DECLARATION__VARIABLE:
-        return getVariable();
-      case FactoryLogicLangPackage.DECLARATION__OPERATOR:
-        return getOperator();
-      case FactoryLogicLangPackage.DECLARATION__COMPARISON:
-        return getComparison();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case FactoryLogicLangPackage.DECLARATION__VARIABLE:
-        setVariable((String)newValue);
-        return;
-      case FactoryLogicLangPackage.DECLARATION__OPERATOR:
-        setOperator((BOOLEAN_OPERATOR)newValue);
-        return;
-      case FactoryLogicLangPackage.DECLARATION__COMPARISON:
-        setComparison((String)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case FactoryLogicLangPackage.DECLARATION__VARIABLE:
-        setVariable(VARIABLE_EDEFAULT);
-        return;
-      case FactoryLogicLangPackage.DECLARATION__OPERATOR:
-        setOperator(OPERATOR_EDEFAULT);
-        return;
-      case FactoryLogicLangPackage.DECLARATION__COMPARISON:
-        setComparison(COMPARISON_EDEFAULT);
-        return;
-    }
-    super.eUnset(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case FactoryLogicLangPackage.DECLARATION__VARIABLE:
-        return VARIABLE_EDEFAULT == null ? variable != null : !VARIABLE_EDEFAULT.equals(variable);
-      case FactoryLogicLangPackage.DECLARATION__OPERATOR:
-        return operator != OPERATOR_EDEFAULT;
-      case FactoryLogicLangPackage.DECLARATION__COMPARISON:
-        return COMPARISON_EDEFAULT == null ? comparison != null : !COMPARISON_EDEFAULT.equals(comparison);
-    }
-    return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (variable: ");
-    result.append(variable);
-    result.append(", operator: ");
-    result.append(operator);
-    result.append(", comparison: ");
-    result.append(comparison);
-    result.append(')');
-    return result.toString();
   }
 
 } //DeclarationImpl
