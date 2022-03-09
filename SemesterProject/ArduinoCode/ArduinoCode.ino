@@ -20,6 +20,10 @@ void callback(char* topic, byte* message, unsigned int length) {
     gotoAngle(messageTemp.toInt());
   }else if (topicTemp == "crane/magnet"){
     toggleMagnet(messageTemp.toInt());
+  }else if (topicTemp = "crane/elevation"){
+    publish("crane/moving", "1");
+    toggleElevation(messageTemp.toInt());
+    publish("crane/moving", "0");
   }
 }
 
