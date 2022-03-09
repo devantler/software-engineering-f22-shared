@@ -1,7 +1,7 @@
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 
-# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,csharp
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,csharp
+# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,csharp,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,csharp,visualstudiocode
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -422,8 +422,7 @@ FodyWeavers.xsd
 .LSOverride
 
 # Icon must end with two \r
-Icon
-
+Icon
 
 # Thumbnails
 ._*
@@ -443,6 +442,21 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+### VisualStudioCode ###
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# Support for Project snippet scope
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -465,13 +479,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,csharp
+# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,csharp,visualstudiocode
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
-
-
-
-
 
 ArduinoCode/Crane/.vscode/
 
@@ -499,5 +509,3 @@ SemesterProject/ArduinoCode/Crane/.vscode/
 /httpRequests/
 **/src-gen/
 **/xtend-gen/
-
-
