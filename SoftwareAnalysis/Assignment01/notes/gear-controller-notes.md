@@ -47,6 +47,54 @@ Alternative:
 5. Close clutch
 6. Normal torque
 
+Error are recovered or terminated.
+
 ## Requirements
 
-... got tired
+Performance:
+
+- A gear change should be completed within 1,5 seconds // 1 second under normal operation conditions
+
+Predictability:
+
+- No deadlocks
+- When regulating torque, clutch must be closed.
+- The gear must be set when regulating torque.
+
+Functionality:
+
+- It can use all gears
+- It uses the engine to enhance zero-torque and synchrnous speed over the transmission
+- It uses the gearbox to set and release gears
+- It is allowed to use clutch in difficult situations.
+- It does not require zero-torque when when changing from neutral gears.
+- The gear controller does not request synchronous speed when changing to neutral gear.
+
+Error detection:
+
+- when the clutch is not opened/closed in time.
+- when the gearbox is not able to set/release a gear in time.
+
+## What automata they use to model the system
+
+- GearControl (GC)
+- Interface (I)
+- Clutch (C)
+- Engine (E)
+- GearBox (GB)
+
+Variables:
+
+- GCTimer
+- GBTimer
+- CTimer
+- ETimer
+- FromGear
+- ToGear
+
+Two channels for each service (request/respond)
+
+## Description of their system aswell as validation and verification
+
+See section 6 and 7 in the article
+

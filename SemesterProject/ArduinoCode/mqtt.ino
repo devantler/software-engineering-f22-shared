@@ -44,7 +44,7 @@ void reconnect(char *clientID)
 
 void mqttLoop(){
   if (!client.connected()) {
-    reconnect("crane");
+    reconnect((char*)"crane");
   }
   client.loop();
 }
