@@ -422,7 +422,8 @@ FodyWeavers.xsd
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -507,5 +508,9 @@ SemesterProject/ArduinoCode/Crane/.vscode/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
+
 **/src-gen/
 **/xtend-gen/
+
+SemesterProject/DSL/Logic/xtext/xtend-gen
