@@ -78,15 +78,138 @@ chan OpenClutch, ClutchIsOpen;</declaration>
 	</template>
 	<template>
 		<name>Engine</name>
-		<location id="id8" x="0" y="0">
+		<declaration>
+clock ETimer = 0;
+
+int UseCase = 0;
+
+chan ReqSpeed;
+chan SpeedSet;
+
+chan ReqTorque;
+
+chan ReqZeroTorque;
+chan ZeroTorque;</declaration>
+		<location id="id8" x="34" y="76">
+			<name x="17" y="34">Initial</name>
+		</location>
+		<location id="id9" x="-76" y="-59">
+			<name x="-119" y="-102">ClutchOpen</name>
+		</location>
+		<location id="id10" x="-229" y="-59">
+			<name x="-255" y="-102">ClutchClose</name>
+			<label kind="invariant" x="-331" y="-51">ETimer &lt;= 900</label>
+		</location>
+		<location id="id11" x="-391" y="-195">
+			<name x="-401" y="-229">Torque</name>
+		</location>
+		<location id="id12" x="153" y="-212">
+			<name x="143" y="-246">DecTorque</name>
+			<label kind="invariant" x="178" y="-221">ETimer &lt;= 400</label>
+		</location>
+		<location id="id13" x="161" y="306">
+			<name x="187" y="289">Zero</name>
+		</location>
+		<location id="id14" x="-76" y="289">
+			<name x="-59" y="263">FindSpeed</name>
+			<label kind="invariant" x="-71" y="298">ETimer &lt;= 200</label>
+		</location>
+		<location id="id15" x="-425" y="289">
+			<name x="-484" y="246">Speed</name>
+			<label kind="invariant" x="-544" y="289">ETimer &lt;= 500</label>
+		</location>
+		<location id="id16" x="-229" y="382">
+			<name x="-212" y="357">ErrorSpeed</name>
 		</location>
 		<init ref="id8"/>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id16"/>
+			<label kind="guard" x="-408" y="348">ETimer == 500</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id15"/>
+			<label kind="guard" x="-212" y="238">ETimer &gt;= 50</label>
+			<label kind="synchronisation" x="-212" y="255">SpeedSet!</label>
+			<label kind="assignment" x="-212" y="272">ETimer := 0</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id16"/>
+			<label kind="guard" x="-331" y="102">ETimer == 900</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-170" y="8">ETimer == 200</label>
+			<label kind="assignment" x="-170" y="34">UseCase := 2</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-51" y="144">ReqSpeed?</label>
+			<label kind="assignment" x="-51" y="170">ETimer := 0
+UseCase := 0</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id8"/>
+			<label kind="guard" x="76" y="136">ToGear == 0</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id14"/>
+			<label kind="guard" x="25" y="306">ToGear &gt; 0</label>
+			<label kind="synchronisation" x="25" y="323">ReqSpeed?</label>
+			<label kind="assignment" x="25" y="340">ETimer := 0</label>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id13"/>
+			<label kind="guard" x="170" y="8">ETimer &gt;= 150</label>
+			<label kind="synchronisation" x="170" y="25">TorqueZero!</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-25" y="-17">ToGear == 0</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-187" y="-76">ToGear &gt; 0</label>
+			<label kind="assignment" x="-187" y="-59">ETimer := 0</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id15"/>
+			<label kind="guard" x="-501" y="8">ETimer &lt; 500</label>
+			<label kind="synchronisation" x="-501" y="25">ReqTorque?</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id11"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="-187" y="-272">ReqZeroTorque?</label>
+			<label kind="assignment" x="-187" y="-255">ETimer := 0
+UseCase := 0</label>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-34" y="-178">ETimer == 400</label>
+			<label kind="assignment" x="-34" y="-161">UseCase := 1</label>
+		</transition>
 	</template>
 	<template>
 		<name>GearControl</name>
-		<location id="id9" x="0" y="0">
+		<location id="id17" x="0" y="0">
 		</location>
-		<init ref="id9"/>
+		<init ref="id17"/>
 	</template>
 	<system>// Place template instantiations here.
 Process = Clutch();
