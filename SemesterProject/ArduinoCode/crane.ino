@@ -1,15 +1,19 @@
 #include "Stepper.h"
 #include "Arduino.h"
+#include "crane_elevation.h"
 
 const int stepsPerRevolution = 20200;
-
+const int magnetPin = 10;
 int currentAngle = 0;
 
-Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
 
-void setupStepper()
+Stepper revolutionStepper(stepsPerRevolution, 33, 32, 35, 34);
+
+void setupCrane()
 {
-  myStepper.setSpeed(4);
+  revolutionStepper.setSpeed(4);
+  setupElevationControls();
+  pinMode(magnetPin, OUTPUT);
 }
 
 void gotoAngle(int angle)
@@ -35,14 +39,42 @@ void gotoAngle(int angle)
   digitalWrite(11, LOW);
 }
 
-void moveDegrees(int degrees){
-  if(degrees < -100 || degrees > 100){
+void toggleMagnet(int powerOn)
+{
+  if (powerOn == 1)
+  {
+    digitalWrite(magnetPin, HIGH);
+  }
+  else
+  {
+    digitalWrite(magnetPin, LOW);
+  }
+}
+
+void moveDegrees(int degrees)
+{
+  if (degrees < -100 || degrees > 100)
+  {
     int splitDegrees = degrees / 3;
-    myStepper.step(splitDegrees * 112);
-    myStepper.step(splitDegrees * 112);
-    myStepper.step((degrees - (2*splitDegrees)) * 112);
-  }else{
+    revolutionStepper.step(splitDegrees * 112);
+    revolutionStepper.step(splitDegrees * 112);
+    revolutionStepper.step((degrees - (2 * splitDegrees)) * 112);
+  }
+  else
+  {
     int stepsToGo = degrees * 112;
-    myStepper.step(stepsToGo);
+    revolutionStepper.step(stepsToGo);
+  }
+}
+
+void toggleElevation(int direction)
+{
+  if (direction == 1)
+  {
+    raise();
+  }
+  else
+  {
+    lower();
   }
 }

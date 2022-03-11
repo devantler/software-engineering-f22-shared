@@ -3,18 +3,20 @@
 
 // Add your MQTT Broker IP address, example:
 // const char* mqtt_server = "192.168.1.144";
-const char *mqtt_server = "YOUR_MQTT_BROKER_IP_ADDRESS";
+const char *mqtt_server = "192.168.10.1";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 long lastMsg = 0;
 char msg[50];
 int value = 0;
+//typedef void (*Callback) (char* topic, byte* message, unsigned int length);
 
-void setupMqtt(function *callback)
+void setupMqtt()
 {
     client.setServer(mqtt_server, 1883);
     client.setCallback(callback);
+    subscribeMQTT();
 }
 
 void reconnect(char *clientID)
@@ -27,6 +29,7 @@ void reconnect(char *clientID)
         if (client.connect(clientID))
         {
             Serial.println("connected");
+            subscribeMQTT();
         }
         else
         {
@@ -37,20 +40,31 @@ void reconnect(char *clientID)
             delay(5000);
         }
     }
+}
 
-    void subscribe(char *topic)
-    {
-        Serial.println("Subscribing to:");
-        Serial.println(topic);
-        client.subscribe(topic);
-    }
+void mqttLoop(){
+  if (!client.connected()) {
+    reconnect((char*)"crane");
+  }
+  client.loop();
+}
 
-    void publish(char *topic, char *message)
-    {
-        Serial.println("Sending message:");
-        Serial.println(message);
-        Serial.println("On topic:");
-        Serial.println(topic);
-        client.publish(topic, message);
+void subscribeMQTT()
+{
+    Serial.println(topicSize);
+    for(int i = 0; i < topicSize; i++){
+      char* topic = topics[i];
+      Serial.println("Subscribing to:");
+      Serial.println(topic);
+      client.subscribe(topic);
     }
+}
+
+void publish(char *topic, char *message)
+{
+    Serial.println("Sending message:");
+    Serial.println(message);
+    Serial.println("On topic:");
+    Serial.println(topic);
+    client.publish(topic, message);
 }

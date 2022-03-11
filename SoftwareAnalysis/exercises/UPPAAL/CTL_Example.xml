@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.</declaration>
+	<template>
+		<name x="5" y="5">CTL_Example</name>
+		<declaration>// Place local declarations here.
+bool p = true;
+bool q = false;</declaration>
+		<location id="id0" x="-510" y="-51">
+			<name x="-520" y="-85">s0</name>
+		</location>
+		<location id="id1" x="-416" y="34">
+			<name x="-426" y="0">s2</name>
+		</location>
+		<location id="id2" x="-306" y="-51">
+			<name x="-316" y="-85">s1</name>
+		</location>
+		<location id="id3" x="-178" y="-51">
+			<name x="-188" y="-85">s3</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="-110" y="-68">p:=true, q:=false</label>
+			<nail x="-144" y="-85"/>
+			<nail x="-119" y="-42"/>
+			<nail x="-153" y="-17"/>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="-288" y="-51">p:=true, q:=false</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id0"/>
+			<label kind="assignment" x="-476" y="-51">p:=true, q:=false</label>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="-476" y="-136">p:=true, q:=true</label>
+			<nail x="-416" y="-110"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="-365" y="0">p:=true, q:=true</label>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="assignment" x="-586" y="-8">p:=false, q:=true</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Process = CTL_Example();
+// List one or more processes to be composed into a system.
+system Process;
+    </system>
+	<queries>
+		<query>
+			<formula></formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>

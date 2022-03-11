@@ -1,0 +1,26 @@
+@startuml
+title "Soda Machine User"
+hide empty description
+state Thirsty
+state Full
+state Wait
+state QueueStatus <<choice>>
+state InsertCoin
+state Selection <<choice>>
+
+[*] --> Thirsty
+Thirsty -> QueueStatus
+Thirsty -down-> Thirsty : refill?
+Thirsty -down-> Full : refill?
+QueueStatus --> Wait : [peopleInFront != 0]
+QueueStatus -> InsertCoin : [peopleInFront = 0]
+Wait --> InsertCoin : [peopleInFront = 0]
+InsertCoin --> Selection : insert_coin!\n[coin > 0]
+Selection --> Thirsty : get_sprite?\n[sprite > 0] 
+Selection --> Thirsty : get_coke?\n[coke > 0] 
+Selection --> Thirsty : return_coin?
+Selection --> Full : get_sprite?\n[sprite > 0] 
+Selection --> Full : get_coke?\n[coke > 0] 
+Full --> [*] : full OR impatient
+
+@enduml

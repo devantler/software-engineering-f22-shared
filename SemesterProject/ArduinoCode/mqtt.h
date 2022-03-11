@@ -4,8 +4,8 @@
 
 #include "Arduino.h"
 
-void setupMqtt(function* callback);
+void setupMqtt();
 void reconnect(char* clientID);
-void subscribe(char* topic);
+void mqttLoop();
 void publish(char* topic, char* message);
 #endif
