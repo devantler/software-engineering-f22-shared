@@ -9,5 +9,12 @@
         "target/esp32.cfg"
     ],
     "idf.pythonBinPath": "/home/frederik/.espressif/python_env/idf4.4_py3.8_env/bin/python",
-    "idf.toolsPath": "/home/frederik/.espressif"
+    "idf.toolsPath": "/home/frederik/.espressif",
+    "idf.port": "/dev/ttyUSB0",
+    "files.associations": {
+        "*.inc": "c",
+        "string.h": "c",
+        "err.h": "c",
+        "sockets.h": "c"
+    }
 }
