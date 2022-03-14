@@ -13,10 +13,6 @@ chan ReqSpeed, ReqTorque, ReqZeroTorque;
 chan GearNeu, GearSet;
 chan SpeedSet;
 chan OpenClutch, CloseClutch, ClutchIsOpen, ClutchIsClosed;
-
-
-
-
 </declaration>
 	<template>
 		<name>Interface</name>
