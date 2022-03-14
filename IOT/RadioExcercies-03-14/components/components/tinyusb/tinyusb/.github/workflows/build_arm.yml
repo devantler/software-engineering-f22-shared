@@ -63,7 +63,7 @@ jobs:
         - 'xmc4000'
     steps:
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
 
     - name: Checkout TinyUSB
       uses: actions/checkout@v2
@@ -132,7 +132,7 @@ jobs:
 
     steps:
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
 
     - name: Checkout TinyUSB
       uses: actions/checkout@v2
