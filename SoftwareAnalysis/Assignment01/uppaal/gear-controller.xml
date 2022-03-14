@@ -13,14 +13,10 @@ chan ReqSpeed, ReqTorque, ReqZeroTorque;
 chan GearNeu, GearSet;
 chan SpeedSet;
 chan OpenClutch, CloseClutch, ClutchIsOpen, ClutchIsClosed;
-
-
-
-
 </declaration>
 	<template>
 		<name>Interface</name>
-		<location id="id0" x="-450" y="-144">
+		<location id="id0" x="-450" y="-144" color="#00ff00">
 			<name x="-467" y="-178">GearN</name>
 		</location>
 		<location id="id1" x="-382" y="8">
@@ -226,7 +222,7 @@ ToGear:=6</label>
 	<template>
 		<name>GearBox</name>
 		<declaration>clock GBTimer;</declaration>
-		<location id="id19" x="-306" y="-178">
+		<location id="id19" x="-306" y="-178" color="#00ff00">
 			<name x="-331" y="-212">Neutral</name>
 		</location>
 		<location id="id20" x="-306" y="0">
@@ -240,10 +236,10 @@ ToGear:=6</label>
 			<name x="34" y="-229">Opening</name>
 			<label kind="invariant" x="8" y="-212">GBTimer&lt;=200</label>
 		</location>
-		<location id="id23" x="-212" y="-85">
+		<location id="id23" x="-212" y="-85" color="#000000">
 			<name x="-238" y="-119">ErrorIdle</name>
 		</location>
-		<location id="id24" x="-34" y="-85">
+		<location id="id24" x="-34" y="-85" color="#000000">
 			<name x="-59" y="-68">ErrorNeu</name>
 		</location>
 		<init ref="id19"/>
@@ -287,7 +283,7 @@ ToGear:=6</label>
 	<template>
 		<name x="5" y="5">Clutch</name>
 		<declaration>clock CTimer;</declaration>
-		<location id="id25" x="-161" y="8">
+		<location id="id25" x="-161" y="8" color="#00ff00">
 			<name x="-195" y="25">Closed</name>
 		</location>
 		<location id="id26" x="-161" y="-161">
@@ -301,10 +297,10 @@ ToGear:=6</label>
 			<name x="119" y="25">Closing</name>
 			<label kind="invariant" x="119" y="42">CTimer&lt;=150</label>
 		</location>
-		<location id="id29" x="42" y="-76">
+		<location id="id29" x="42" y="-76" color="#000000">
 			<name x="8" y="-110">ErrorClose</name>
 		</location>
-		<location id="id30" x="-59" y="-76">
+		<location id="id30" x="-59" y="-76" color="#000000">
 			<name x="-93" y="-59">ErrorOpen</name>
 		</location>
 		<init ref="id25"/>
@@ -348,11 +344,12 @@ ToGear:=6</label>
 	<template>
 		<name>Engine</name>
 		<declaration>clock ETimer;</declaration>
-		<location id="id31" x="34" y="76">
+		<location id="id31" x="34" y="76" color="#00ff00">
 			<name x="17" y="34">Initial</name>
 		</location>
-		<location id="id32" x="-76" y="-59">
+		<location id="id32" x="-76" y="-59" color="#00ffff">
 			<name x="-110" y="-85">ClutchOpen</name>
+			<committed/>
 		</location>
 		<location id="id33" x="-229" y="-59">
 			<name x="-272" y="-102">ClutchClose</name>
@@ -376,7 +373,7 @@ ToGear:=6</label>
 			<name x="-450" y="280">Speed</name>
 			<label kind="invariant" x="-476" y="297">ETimer&lt;=500</label>
 		</location>
-		<location id="id39" x="-229" y="382">
+		<location id="id39" x="-229" y="382" color="#000000">
 			<name x="-263" y="391">ErrorSpeed</name>
 		</location>
 		<init ref="id31"/>
@@ -468,27 +465,32 @@ UseCase:=0</label>
 	<template>
 		<name>GearControl</name>
 		<declaration>clock GCTimer;</declaration>
-		<location id="id40" x="-374" y="-340">
+		<location id="id40" x="-374" y="-340" color="#00ff00">
 			<name x="-391" y="-374">Gear</name>
 		</location>
-		<location id="id41" x="-374" y="-51">
+		<location id="id41" x="-374" y="-51" color="#00ffff">
 			<name x="-493" y="-59">ReqNeuGear</name>
+			<committed/>
 		</location>
-		<location id="id42" x="-374" y="93">
+		<location id="id42" x="-374" y="93" color="#00ffff">
 			<name x="-357" y="85">ReqSyncSpeed</name>
+			<committed/>
 		</location>
-		<location id="id43" x="-374" y="272">
+		<location id="id43" x="-374" y="272" color="#00ffff">
 			<name x="-484" y="263">ReqSetGear</name>
+			<committed/>
 		</location>
 		<location id="id44" x="-374" y="366">
 			<name x="-493" y="357">CheckGearSet1</name>
 			<label kind="invariant" x="-493" y="374">GCTimer&lt;=350</label>
 		</location>
-		<location id="id45" x="-374" y="569">
+		<location id="id45" x="-374" y="569" color="#00ffff">
 			<name x="-425" y="578">GearChanged</name>
+			<committed/>
 		</location>
-		<location id="id46" x="-374" y="-263">
+		<location id="id46" x="-374" y="-263" color="#00ffff">
 			<name x="-357" y="-272">Initiate</name>
+			<committed/>
 		</location>
 		<location id="id47" x="-374" y="-170">
 			<name x="-484" y="-178">CheckTorque</name>
@@ -502,20 +504,22 @@ UseCase:=0</label>
 			<name x="-501" y="178">CheckSyncSpeed</name>
 			<label kind="invariant" x="-501" y="195">GCTimer&lt;=155</label>
 		</location>
-		<location id="id50" x="-374" y="433">
+		<location id="id50" x="-374" y="433" color="#00ffff">
 			<name x="-493" y="425">ReqTorqueC</name>
+			<committed/>
 		</location>
 		<location id="id51" x="-76" y="-170">
 			<name x="-136" y="-221">CheckClutch2</name>
 			<label kind="invariant" x="-135" y="-204">GCTimer&lt;=200</label>
 		</location>
-		<location id="id52" x="-76" y="-8">
+		<location id="id52" x="-76" y="-8" color="#000000">
 			<name x="-171" y="-17">COpenError</name>
 		</location>
-		<location id="id53" x="135" y="-52">
+		<location id="id53" x="135" y="-52" color="#00ffff">
 			<name x="153" y="-59">ClutchOpen2</name>
+			<committed/>
 		</location>
-		<location id="id54" x="-25" y="25">
+		<location id="id54" x="-25" y="25" color="#000000">
 			<name x="-59" y="-8">GNeuError</name>
 		</location>
 		<location id="id55" x="136" y="25">
@@ -534,20 +538,23 @@ UseCase:=0</label>
 			<name x="-212" y="433">CheckClutchClosed</name>
 			<label kind="invariant" x="-212" y="450">GCTimer&lt;=200</label>
 		</location>
-		<location id="id59" x="136" y="433">
+		<location id="id59" x="136" y="433" color="#00ffff">
 			<name x="153" y="425">ClutchClose</name>
+			<committed/>
 		</location>
-		<location id="id60" x="-153" y="501">
-			<name x="-195" y="509">CCloseError</name>
+		<location id="id60" x="-153" y="501" color="#000000">
+			<name x="-195" y="510">CCloseError</name>
 		</location>
-		<location id="id61" x="-153" y="365">
+		<location id="id61" x="-153" y="365" color="#000000">
 			<name x="-187" y="374">GSetError</name>
 		</location>
-		<location id="id62" x="68" y="187">
+		<location id="id62" x="68" y="187" color="#00ffff">
 			<name x="85" y="178">ClutchOpen</name>
+			<committed/>
 		</location>
-		<location id="id63" x="136" y="127">
+		<location id="id63" x="136" y="127" color="#00ffff">
 			<name x="153" y="119">ReqSetGear2</name>
+			<committed/>
 		</location>
 		<location id="id64" x="8" y="569">
 			<name x="-68" y="578">CheckClutchClosed2</name>
@@ -771,7 +778,7 @@ GCTimer&lt;=200</label>
 		</transition>
 	</template>
 	<system>// List one or more processes to be composed into a system.
-system Interface, GearControl, GearBox, Engine, Clutch;
+system Interface, GearControl, GearBox, Clutch, Engine;
     </system>
 	<queries>
 		<query>
