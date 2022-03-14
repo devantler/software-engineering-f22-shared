@@ -1,0 +1,112 @@
+grammar xtext.FactoryLogicLang with org.eclipse.xtext.common.Terminals
+
+generate factoryLogicLang "http:www.FactoryLogicLang.xtext"
+
+Model:
+	declarations+=Declaration+
+;
+
+Declaration:
+	Device | Logic
+;
+
+terminal BEGIN:
+	"synthetic:BEGIN"
+;
+
+terminal END:
+	"synthetic:END"
+;
+
+Device:
+	Crane | Storage | Camera
+;
+
+Crane returns Device:
+	'create' 'crane' 'named' name=STRING BEGIN parameters+=CraneParameter+ END
+;
+
+CraneParameter:
+	'with' 'position' 'at' degree=INT 'named' name=STRING
+;
+
+Storage:
+	'create' 'storage' 'named' name=STRING BEGIN parameters+=StorageParameter+ END
+;
+
+StorageParameter:
+	StoragePositionParameter | StorageSlotParameter
+;
+
+StorageSlotParameter:
+	"with" slots=INT "slots"
+;
+
+StoragePositionParameter:
+	'with' 'position' 'at' 'slot' slot=INT 'named' name=STRING
+;
+
+Camera:
+	'create' 'camera' 'named' name=STRING BEGIN parameters+=CameraParameter+ END
+;
+
+CameraParameter:
+	'with' 'color' color=COLOR
+;
+
+enum COLOR:
+	RED='red'|BLUE='blue'|GREEN='green'
+;
+
+enum CONST_VARIABLES:
+	FULL='full'|FINISHED='finished'|EMPTY='empty'
+;
+
+Logic:
+	Conditional | Loop | Operation
+;
+
+
+Conditional:
+	"if" variable=ID ('of' source=[Device])? 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+;
+
+enum BOOLEAN_OPERATOR:
+	NOT='not'|LESS='less than'|GREATER='greater than'
+;
+
+Loop:
+	'for' 'each' name=ID 'in' list=ID ('of' source=[Device])? 'that' 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+;
+
+Operation:
+	StorageMoveEmptySlot | StorageMoveSlot | StorageMarkSlot | CameraScan | CranePickup | CraneDrop
+;
+
+StorageMoveEmptySlot:
+	device=[Storage] 'move' 'empty' 'slot' 'to' destination=[StoragePositionParameter]
+;
+
+StorageMoveSlot:
+	device=[Storage] 'move' 'slot' 'at' position=[StoragePositionParameter] 'to' destination=[StoragePositionParameter] 
+;
+
+StorageMarkSlot:
+	device=[Storage] 'mark' 'slot' 'at' position=[StoragePositionParameter] 'as' ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) ('in' quantity=INT measure=TIME)?
+;
+
+enum TIME:
+	SECOND='seconds'|SECOND='second'|MINUTE='minutes'|MINUTE='minute'|HOUR='hours'|HOUR='hour'
+;
+
+CameraScan:
+	device=[Camera] 'scan' 'color' 'into' name=ID
+
+;
+CranePickup:
+	device=[Crane] 'pickup' 'item' 'at' location=[CraneParameter]
+;
+
+CraneDrop:
+	device=[Crane] 'drop' 'item' 'at' location=[CraneParameter]
+;
