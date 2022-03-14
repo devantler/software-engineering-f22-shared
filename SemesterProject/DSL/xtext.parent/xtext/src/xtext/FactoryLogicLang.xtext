@@ -22,7 +22,7 @@ Device:
 	Crane | Storage | Camera
 ;
 
-Crane:
+Crane returns Device:
 	'create' 'crane' 'named' name=STRING BEGIN parameters+=CraneParameter+ END
 ;
 
