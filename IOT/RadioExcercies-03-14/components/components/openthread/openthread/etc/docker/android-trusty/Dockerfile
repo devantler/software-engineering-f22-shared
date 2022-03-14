@@ -30,7 +30,7 @@
 # Ubuntu 14.04 with tools required to run OpenThread Android check
 #
 
-FROM ubuntu:14.04
+FROM ubuntu:14.04.5
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV ANDROID_JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
