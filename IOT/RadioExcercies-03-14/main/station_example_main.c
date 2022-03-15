@@ -36,13 +36,25 @@ static const char *TAG = "wifi station";
 
 void task_count(void){
    printf("Task reached!\n");
-   struct sockaddr_in addr = hl_wifi_make_addr("10.126.128.100", 8000);
+   fflush(stdout);
+   struct sockaddr_in addr = hl_wifi_make_addr("10.126.128.178", 8000);
    int sock = hl_wifi_tcp_connect(addr);
    if(sock < 0){
-       printf("Error connecting to socket\n");
-       vTaskDelete(NULL);
+      printf("Error connecting to socket\n");
+      fflush(stdout);
+      vTaskDelete(NULL);
    }
    printf("Connected to socket\n");
+   fflush(stdout);
+   uint16_t counter = 1;
+   char* buffer[7];
+   while(1){
+      sprintf(buffer, "%u\n", counter);
+      hl_wifi_tcp_tx(sock, buffer, strlen(buffer));
+      counter++;
+      vTaskDelay(1000 / portTICK_PERIOD_MS);
+   }
+
    vTaskDelete(NULL);
 }
 

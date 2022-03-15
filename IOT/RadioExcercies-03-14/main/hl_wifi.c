@@ -41,7 +41,19 @@ int hl_wifi_tcp_connect(struct sockaddr_in addr){
     return sock;
 }
 
-void hl_wifi_tcp_tx(int sock)
+void hl_wifi_tcp_tx(int sock, void* buffer, uint16_t length){ //The void pointer means that the pointer does not have a type
+    uint16_t offset = 0;
+    while(offset < length){
+        uint16_t remainder = length - offset;
+        int16_t hl_wifi_bytes_sent= send(sock, ((char*)buffer) + offset, remainder, 0);
+        if(hl_wifi_bytes_sent < 0){
+            printf("Error sending data. Error:%i\n", hl_wifi_bytes_sent);
+            return;
+        }
+        offset += hl_wifi_bytes_sent;
+        return;
+    }
+}
 
 struct sockaddr_in hl_wifi_make_addr(char* _cp, uint16_t b){
     struct sockaddr_in addr = {
