@@ -42,9 +42,9 @@ void reconnect(char *clientID)
     }
 }
 
-void mqttLoop(){
+void mqttLoop(char* device){
   if (!client.connected()) {
-    reconnect((char*)"crane");
+    reconnect(device);
   }
   client.loop();
 }

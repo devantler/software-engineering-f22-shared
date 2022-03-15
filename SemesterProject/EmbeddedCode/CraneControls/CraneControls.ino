@@ -1,6 +1,6 @@
 #include "crane.h"
-#include "mqtt.h"
-#include "wifi.h"
+#include "../Common/mqtt.h"
+#include "../Common/wifi.h"
 
 void callback(char* topic, byte *message, unsigned int length)
 {
@@ -54,6 +54,6 @@ void setup()
 
 void loop()
 {
-  mqttLoop();
+  mqttLoop("crane");
   delay(1000);
 }
