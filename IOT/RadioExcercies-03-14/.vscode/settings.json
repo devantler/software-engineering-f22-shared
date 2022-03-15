@@ -15,6 +15,7 @@
         "*.inc": "c",
         "string.h": "c",
         "err.h": "c",
-        "sockets.h": "c"
+        "sockets.h": "c",
+        "event_groups.h": "c"
     }
 }

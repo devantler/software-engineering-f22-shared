@@ -15,6 +15,7 @@
 #include "esp_event.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
+#include "driver/temperature_sensor.h"
 
 #include "lwip/err.h"
 #include "lwip/sys.h"
