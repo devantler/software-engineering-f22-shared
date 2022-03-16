@@ -1,2 +1,7 @@
 {
+  "extends": [
+     "config:base", 
+     ":disableDependencyDashboard"
+  ],
+  "ignorePaths": ["**/IOT/**"]
 }
