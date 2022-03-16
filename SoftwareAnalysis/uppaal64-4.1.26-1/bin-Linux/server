@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Use this script when the native dynamic linker is incompatible
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  HERE=$(cd -P $(dirname "$SOURCE") >/dev/null 2>&1 && pwd)
+  SOURCE=$(readlink "$SOURCE")
+  [[ "$SOURCE" != /* ]] && SOURCE="$HERE/$SOURCE" # resolve symlink if any
+done
+HERE=$(cd -P $(dirname "$SOURCE") >/dev/null 2>&1 && pwd )
+exec -a server "$HERE"/ld-linux.so --library-path "$HERE" "$HERE"/server.bin "$@"
+
