@@ -5,6 +5,8 @@ package xtext.factoryLogicLang;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Conditional</b></em>'.
@@ -14,13 +16,13 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLogicLang.Conditional#getVariable <em>Variable</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.Conditional#getSource <em>Source</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.Conditional#getOperator <em>Operator</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.Conditional#getComparison_const <em>Comparison const</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.Conditional#getComparison_color <em>Comparison color</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.Conditional#getComparison_int <em>Comparison int</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.Conditional#getLogics <em>Logics</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.Conditional#getSource_int <em>Source int</em>}</li>
  * </ul>
  *
  * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getConditional()
@@ -30,38 +32,16 @@ import org.eclipse.emf.common.util.EList;
 public interface Conditional extends Logic
 {
   /**
-   * Returns the value of the '<em><b>Variable</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Variable</em>' attribute.
-   * @see #setVariable(String)
-   * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getConditional_Variable()
-   * @model
-   * @generated
-   */
-  String getVariable();
-
-  /**
-   * Sets the value of the '{@link xtext.factoryLogicLang.Conditional#getVariable <em>Variable</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Variable</em>' attribute.
-   * @see #getVariable()
-   * @generated
-   */
-  void setVariable(String value);
-
-  /**
    * Returns the value of the '<em><b>Source</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Source</em>' reference.
-   * @see #setSource(Device)
+   * @see #setSource(EObject)
    * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getConditional_Source()
    * @model
    * @generated
    */
-  Device getSource();
+  EObject getSource();
 
   /**
    * Sets the value of the '{@link xtext.factoryLogicLang.Conditional#getSource <em>Source</em>}' reference.
@@ -71,7 +51,7 @@ public interface Conditional extends Logic
    * @see #getSource()
    * @generated
    */
-  void setSource(Device value);
+  void setSource(EObject value);
 
   /**
    * Returns the value of the '<em><b>Operator</b></em>' attribute.
@@ -181,5 +161,27 @@ public interface Conditional extends Logic
    * @generated
    */
   EList<Logic> getLogics();
+
+  /**
+   * Returns the value of the '<em><b>Source int</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Source int</em>' attribute.
+   * @see #setSource_int(int)
+   * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getConditional_Source_int()
+   * @model
+   * @generated
+   */
+  int getSource_int();
+
+  /**
+   * Sets the value of the '{@link xtext.factoryLogicLang.Conditional#getSource_int <em>Source int</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Source int</em>' attribute.
+   * @see #getSource_int()
+   * @generated
+   */
+  void setSource_int(int value);
 
 } // Conditional

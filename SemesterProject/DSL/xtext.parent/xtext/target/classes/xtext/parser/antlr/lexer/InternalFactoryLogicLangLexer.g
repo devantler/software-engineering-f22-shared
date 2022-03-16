@@ -41,6 +41,8 @@ Crane : 'crane';
 
 Empty : 'empty';
 
+Equal : 'equal';
+
 Green : 'green';
 
 Hours : 'hours';

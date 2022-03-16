@@ -31,9 +31,11 @@ import xtext.factoryLogicLang.Storage;
 import xtext.factoryLogicLang.StorageMarkSlot;
 import xtext.factoryLogicLang.StorageMoveEmptySlot;
 import xtext.factoryLogicLang.StorageMoveSlot;
+import xtext.factoryLogicLang.StorageMoveVariableSlot;
 import xtext.factoryLogicLang.StorageParameter;
 import xtext.factoryLogicLang.StoragePositionParameter;
 import xtext.factoryLogicLang.StorageSlotParameter;
+import xtext.factoryLogicLang.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -160,6 +162,13 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass storageMoveVariableSlotEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass storageMoveSlotEClass = null;
 
   /**
@@ -175,6 +184,13 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   private EClass cameraScanEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass variableEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -551,20 +567,9 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   @Override
-  public EAttribute getConditional_Variable()
-  {
-    return (EAttribute)conditionalEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EReference getConditional_Source()
   {
-    return (EReference)conditionalEClass.getEStructuralFeatures().get(1);
+    return (EReference)conditionalEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -575,7 +580,7 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
   @Override
   public EAttribute getConditional_Operator()
   {
-    return (EAttribute)conditionalEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)conditionalEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -586,7 +591,7 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
   @Override
   public EAttribute getConditional_Comparison_const()
   {
-    return (EAttribute)conditionalEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)conditionalEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -597,7 +602,7 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
   @Override
   public EAttribute getConditional_Comparison_color()
   {
-    return (EAttribute)conditionalEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)conditionalEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -608,7 +613,7 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
   @Override
   public EAttribute getConditional_Comparison_int()
   {
-    return (EAttribute)conditionalEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)conditionalEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -619,7 +624,18 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
   @Override
   public EReference getConditional_Logics()
   {
-    return (EReference)conditionalEClass.getEStructuralFeatures().get(6);
+    return (EReference)conditionalEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getConditional_Source_int()
+  {
+    return (EAttribute)conditionalEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -639,9 +655,9 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   @Override
-  public EAttribute getLoop_Name()
+  public EReference getLoop_Variable()
   {
-    return (EAttribute)loopEClass.getEStructuralFeatures().get(0);
+    return (EReference)loopEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -771,6 +787,50 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   @Override
+  public EClass getStorageMoveVariableSlot()
+  {
+    return storageMoveVariableSlotEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getStorageMoveVariableSlot_Device()
+  {
+    return (EReference)storageMoveVariableSlotEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getStorageMoveVariableSlot_Position()
+  {
+    return (EReference)storageMoveVariableSlotEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getStorageMoveVariableSlot_Destination()
+  {
+    return (EReference)storageMoveVariableSlotEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getStorageMoveSlot()
   {
     return storageMoveSlotEClass;
@@ -848,9 +908,9 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   @Override
-  public EAttribute getStorageMarkSlot_Comparison_const()
+  public EReference getStorageMarkSlot_Comparison_variable()
   {
-    return (EAttribute)storageMarkSlotEClass.getEStructuralFeatures().get(2);
+    return (EReference)storageMarkSlotEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -859,7 +919,7 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   @Override
-  public EAttribute getStorageMarkSlot_Comparison_color()
+  public EAttribute getStorageMarkSlot_Comparison_const()
   {
     return (EAttribute)storageMarkSlotEClass.getEStructuralFeatures().get(3);
   }
@@ -870,7 +930,7 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   @Override
-  public EAttribute getStorageMarkSlot_Comparison_int()
+  public EAttribute getStorageMarkSlot_Comparison_color()
   {
     return (EAttribute)storageMarkSlotEClass.getEStructuralFeatures().get(4);
   }
@@ -881,7 +941,7 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   @Override
-  public EAttribute getStorageMarkSlot_Quantity()
+  public EAttribute getStorageMarkSlot_Comparison_int()
   {
     return (EAttribute)storageMarkSlotEClass.getEStructuralFeatures().get(5);
   }
@@ -892,9 +952,20 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   @Override
-  public EAttribute getStorageMarkSlot_Measure()
+  public EAttribute getStorageMarkSlot_Quantity()
   {
     return (EAttribute)storageMarkSlotEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getStorageMarkSlot_Measure()
+  {
+    return (EAttribute)storageMarkSlotEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -925,9 +996,31 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   @Override
-  public EAttribute getCameraScan_Name()
+  public EReference getCameraScan_Variable()
   {
-    return (EAttribute)cameraScanEClass.getEStructuralFeatures().get(1);
+    return (EReference)cameraScanEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getVariable()
+  {
+    return variableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getVariable_Name()
+  {
+    return (EAttribute)variableEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1107,16 +1200,16 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
     logicEClass = createEClass(LOGIC);
 
     conditionalEClass = createEClass(CONDITIONAL);
-    createEAttribute(conditionalEClass, CONDITIONAL__VARIABLE);
     createEReference(conditionalEClass, CONDITIONAL__SOURCE);
     createEAttribute(conditionalEClass, CONDITIONAL__OPERATOR);
     createEAttribute(conditionalEClass, CONDITIONAL__COMPARISON_CONST);
     createEAttribute(conditionalEClass, CONDITIONAL__COMPARISON_COLOR);
     createEAttribute(conditionalEClass, CONDITIONAL__COMPARISON_INT);
     createEReference(conditionalEClass, CONDITIONAL__LOGICS);
+    createEAttribute(conditionalEClass, CONDITIONAL__SOURCE_INT);
 
     loopEClass = createEClass(LOOP);
-    createEAttribute(loopEClass, LOOP__NAME);
+    createEReference(loopEClass, LOOP__VARIABLE);
     createEAttribute(loopEClass, LOOP__LIST);
     createEReference(loopEClass, LOOP__SOURCE);
     createEAttribute(loopEClass, LOOP__OPERATOR);
@@ -1131,6 +1224,11 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
     createEReference(storageMoveEmptySlotEClass, STORAGE_MOVE_EMPTY_SLOT__DEVICE);
     createEReference(storageMoveEmptySlotEClass, STORAGE_MOVE_EMPTY_SLOT__DESTINATION);
 
+    storageMoveVariableSlotEClass = createEClass(STORAGE_MOVE_VARIABLE_SLOT);
+    createEReference(storageMoveVariableSlotEClass, STORAGE_MOVE_VARIABLE_SLOT__DEVICE);
+    createEReference(storageMoveVariableSlotEClass, STORAGE_MOVE_VARIABLE_SLOT__POSITION);
+    createEReference(storageMoveVariableSlotEClass, STORAGE_MOVE_VARIABLE_SLOT__DESTINATION);
+
     storageMoveSlotEClass = createEClass(STORAGE_MOVE_SLOT);
     createEReference(storageMoveSlotEClass, STORAGE_MOVE_SLOT__DEVICE);
     createEReference(storageMoveSlotEClass, STORAGE_MOVE_SLOT__POSITION);
@@ -1139,6 +1237,7 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
     storageMarkSlotEClass = createEClass(STORAGE_MARK_SLOT);
     createEReference(storageMarkSlotEClass, STORAGE_MARK_SLOT__DEVICE);
     createEReference(storageMarkSlotEClass, STORAGE_MARK_SLOT__POSITION);
+    createEReference(storageMarkSlotEClass, STORAGE_MARK_SLOT__COMPARISON_VARIABLE);
     createEAttribute(storageMarkSlotEClass, STORAGE_MARK_SLOT__COMPARISON_CONST);
     createEAttribute(storageMarkSlotEClass, STORAGE_MARK_SLOT__COMPARISON_COLOR);
     createEAttribute(storageMarkSlotEClass, STORAGE_MARK_SLOT__COMPARISON_INT);
@@ -1147,7 +1246,10 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
 
     cameraScanEClass = createEClass(CAMERA_SCAN);
     createEReference(cameraScanEClass, CAMERA_SCAN__DEVICE);
-    createEAttribute(cameraScanEClass, CAMERA_SCAN__NAME);
+    createEReference(cameraScanEClass, CAMERA_SCAN__VARIABLE);
+
+    variableEClass = createEClass(VARIABLE);
+    createEAttribute(variableEClass, VARIABLE__NAME);
 
     cranePickupEClass = createEClass(CRANE_PICKUP);
     createEReference(cranePickupEClass, CRANE_PICKUP__DEVICE);
@@ -1204,6 +1306,7 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
     loopEClass.getESuperTypes().add(this.getLogic());
     operationEClass.getESuperTypes().add(this.getLogic());
     storageMoveEmptySlotEClass.getESuperTypes().add(this.getOperation());
+    storageMoveVariableSlotEClass.getESuperTypes().add(this.getOperation());
     storageMoveSlotEClass.getESuperTypes().add(this.getOperation());
     storageMarkSlotEClass.getESuperTypes().add(this.getOperation());
     cameraScanEClass.getESuperTypes().add(this.getOperation());
@@ -1247,16 +1350,16 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
     initEClass(logicEClass, Logic.class, "Logic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(conditionalEClass, Conditional.class, "Conditional", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getConditional_Variable(), ecorePackage.getEString(), "variable", null, 0, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getConditional_Source(), this.getDevice(), null, "source", null, 0, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConditional_Source(), ecorePackage.getEObject(), null, "source", null, 0, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConditional_Operator(), this.getBOOLEAN_OPERATOR(), "operator", null, 0, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConditional_Comparison_const(), this.getCONST_VARIABLES(), "comparison_const", null, 0, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConditional_Comparison_color(), this.getCOLOR(), "comparison_color", null, 0, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getConditional_Comparison_int(), ecorePackage.getEInt(), "comparison_int", null, 0, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConditional_Logics(), this.getLogic(), null, "logics", null, 0, -1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConditional_Source_int(), ecorePackage.getEInt(), "source_int", null, 0, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(loopEClass, Loop.class, "Loop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLoop_Name(), ecorePackage.getEString(), "name", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoop_Variable(), this.getVariable(), null, "variable", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getLoop_List(), ecorePackage.getEString(), "list", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLoop_Source(), this.getDevice(), null, "source", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getLoop_Operator(), this.getBOOLEAN_OPERATOR(), "operator", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1271,6 +1374,11 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
     initEReference(getStorageMoveEmptySlot_Device(), this.getStorage(), null, "device", null, 0, 1, StorageMoveEmptySlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStorageMoveEmptySlot_Destination(), this.getStoragePositionParameter(), null, "destination", null, 0, 1, StorageMoveEmptySlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(storageMoveVariableSlotEClass, StorageMoveVariableSlot.class, "StorageMoveVariableSlot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getStorageMoveVariableSlot_Device(), this.getStorage(), null, "device", null, 0, 1, StorageMoveVariableSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStorageMoveVariableSlot_Position(), this.getVariable(), null, "position", null, 0, 1, StorageMoveVariableSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStorageMoveVariableSlot_Destination(), this.getStoragePositionParameter(), null, "destination", null, 0, 1, StorageMoveVariableSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(storageMoveSlotEClass, StorageMoveSlot.class, "StorageMoveSlot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getStorageMoveSlot_Device(), this.getStorage(), null, "device", null, 0, 1, StorageMoveSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStorageMoveSlot_Position(), this.getStoragePositionParameter(), null, "position", null, 0, 1, StorageMoveSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1279,6 +1387,7 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
     initEClass(storageMarkSlotEClass, StorageMarkSlot.class, "StorageMarkSlot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getStorageMarkSlot_Device(), this.getStorage(), null, "device", null, 0, 1, StorageMarkSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStorageMarkSlot_Position(), this.getStoragePositionParameter(), null, "position", null, 0, 1, StorageMarkSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStorageMarkSlot_Comparison_variable(), this.getVariable(), null, "comparison_variable", null, 0, 1, StorageMarkSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getStorageMarkSlot_Comparison_const(), this.getCONST_VARIABLES(), "comparison_const", null, 0, 1, StorageMarkSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getStorageMarkSlot_Comparison_color(), this.getCOLOR(), "comparison_color", null, 0, 1, StorageMarkSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getStorageMarkSlot_Comparison_int(), ecorePackage.getEInt(), "comparison_int", null, 0, 1, StorageMarkSlot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1287,7 +1396,10 @@ public class FactoryLogicLangPackageImpl extends EPackageImpl implements Factory
 
     initEClass(cameraScanEClass, CameraScan.class, "CameraScan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCameraScan_Device(), this.getCamera(), null, "device", null, 0, 1, CameraScan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCameraScan_Name(), ecorePackage.getEString(), "name", null, 0, 1, CameraScan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCameraScan_Variable(), this.getVariable(), null, "variable", null, 0, 1, CameraScan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(cranePickupEClass, CranePickup.class, "CranePickup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCranePickup_Device(), this.getCrane(), null, "device", null, 0, 1, CranePickup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

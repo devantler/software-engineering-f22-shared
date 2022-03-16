@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLogicLang.Loop#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.Loop#getVariable <em>Variable</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.Loop#getList <em>List</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.Loop#getSource <em>Source</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.Loop#getOperator <em>Operator</em>}</li>
@@ -31,26 +31,26 @@ import org.eclipse.emf.common.util.EList;
 public interface Loop extends Logic
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Variable</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getLoop_Name()
-   * @model
+   * @return the value of the '<em>Variable</em>' containment reference.
+   * @see #setVariable(Variable)
+   * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getLoop_Variable()
+   * @model containment="true"
    * @generated
    */
-  String getName();
+  Variable getVariable();
 
   /**
-   * Sets the value of the '{@link xtext.factoryLogicLang.Loop#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link xtext.factoryLogicLang.Loop#getVariable <em>Variable</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Variable</em>' containment reference.
+   * @see #getVariable()
    * @generated
    */
-  void setName(String value);
+  void setVariable(Variable value);
 
   /**
    * Returns the value of the '<em><b>List</b></em>' attribute.

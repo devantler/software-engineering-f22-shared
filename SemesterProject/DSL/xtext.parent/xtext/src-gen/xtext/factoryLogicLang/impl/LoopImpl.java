@@ -25,6 +25,7 @@ import xtext.factoryLogicLang.Device;
 import xtext.factoryLogicLang.FactoryLogicLangPackage;
 import xtext.factoryLogicLang.Logic;
 import xtext.factoryLogicLang.Loop;
+import xtext.factoryLogicLang.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +35,7 @@ import xtext.factoryLogicLang.Loop;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getList <em>List</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getSource <em>Source</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.LoopImpl#getOperator <em>Operator</em>}</li>
@@ -49,24 +50,14 @@ import xtext.factoryLogicLang.Loop;
 public class LoopImpl extends LogicImpl implements Loop
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getVariable()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected Variable variable;
 
   /**
    * The default value of the '{@link #getList() <em>List</em>}' attribute.
@@ -215,9 +206,26 @@ public class LoopImpl extends LogicImpl implements Loop
    * @generated
    */
   @Override
-  public String getName()
+  public Variable getVariable()
   {
-    return name;
+    return variable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetVariable(Variable newVariable, NotificationChain msgs)
+  {
+    Variable oldVariable = variable;
+    variable = newVariable;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__VARIABLE, oldVariable, newVariable);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -226,12 +234,20 @@ public class LoopImpl extends LogicImpl implements Loop
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setVariable(Variable newVariable)
   {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__NAME, oldName, name));
+    if (newVariable != variable)
+    {
+      NotificationChain msgs = null;
+      if (variable != null)
+        msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FactoryLogicLangPackage.LOOP__VARIABLE, null, msgs);
+      if (newVariable != null)
+        msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FactoryLogicLangPackage.LOOP__VARIABLE, null, msgs);
+      msgs = basicSetVariable(newVariable, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.LOOP__VARIABLE, newVariable, newVariable));
   }
 
   /**
@@ -429,6 +445,8 @@ public class LoopImpl extends LogicImpl implements Loop
   {
     switch (featureID)
     {
+      case FactoryLogicLangPackage.LOOP__VARIABLE:
+        return basicSetVariable(null, msgs);
       case FactoryLogicLangPackage.LOOP__LOGICS:
         return ((InternalEList<?>)getLogics()).basicRemove(otherEnd, msgs);
     }
@@ -445,8 +463,8 @@ public class LoopImpl extends LogicImpl implements Loop
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.LOOP__NAME:
-        return getName();
+      case FactoryLogicLangPackage.LOOP__VARIABLE:
+        return getVariable();
       case FactoryLogicLangPackage.LOOP__LIST:
         return getList();
       case FactoryLogicLangPackage.LOOP__SOURCE:
@@ -477,8 +495,8 @@ public class LoopImpl extends LogicImpl implements Loop
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.LOOP__NAME:
-        setName((String)newValue);
+      case FactoryLogicLangPackage.LOOP__VARIABLE:
+        setVariable((Variable)newValue);
         return;
       case FactoryLogicLangPackage.LOOP__LIST:
         setList((String)newValue);
@@ -516,8 +534,8 @@ public class LoopImpl extends LogicImpl implements Loop
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.LOOP__NAME:
-        setName(NAME_EDEFAULT);
+      case FactoryLogicLangPackage.LOOP__VARIABLE:
+        setVariable((Variable)null);
         return;
       case FactoryLogicLangPackage.LOOP__LIST:
         setList(LIST_EDEFAULT);
@@ -554,8 +572,8 @@ public class LoopImpl extends LogicImpl implements Loop
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.LOOP__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case FactoryLogicLangPackage.LOOP__VARIABLE:
+        return variable != null;
       case FactoryLogicLangPackage.LOOP__LIST:
         return LIST_EDEFAULT == null ? list != null : !LIST_EDEFAULT.equals(list);
       case FactoryLogicLangPackage.LOOP__SOURCE:
@@ -585,9 +603,7 @@ public class LoopImpl extends LogicImpl implements Loop
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(", list: ");
+    result.append(" (list: ");
     result.append(list);
     result.append(", operator: ");
     result.append(operator);

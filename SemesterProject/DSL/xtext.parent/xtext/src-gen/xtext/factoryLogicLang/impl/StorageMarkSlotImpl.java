@@ -17,6 +17,7 @@ import xtext.factoryLogicLang.Storage;
 import xtext.factoryLogicLang.StorageMarkSlot;
 import xtext.factoryLogicLang.StoragePositionParameter;
 import xtext.factoryLogicLang.TIME;
+import xtext.factoryLogicLang.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +29,7 @@ import xtext.factoryLogicLang.TIME;
  * <ul>
  *   <li>{@link xtext.factoryLogicLang.impl.StorageMarkSlotImpl#getDevice <em>Device</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.StorageMarkSlotImpl#getPosition <em>Position</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.StorageMarkSlotImpl#getComparison_variable <em>Comparison variable</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.StorageMarkSlotImpl#getComparison_const <em>Comparison const</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.StorageMarkSlotImpl#getComparison_color <em>Comparison color</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.StorageMarkSlotImpl#getComparison_int <em>Comparison int</em>}</li>
@@ -58,6 +60,16 @@ public class StorageMarkSlotImpl extends OperationImpl implements StorageMarkSlo
    * @ordered
    */
   protected StoragePositionParameter position;
+
+  /**
+   * The cached value of the '{@link #getComparison_variable() <em>Comparison variable</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComparison_variable()
+   * @generated
+   * @ordered
+   */
+  protected Variable comparison_variable;
 
   /**
    * The default value of the '{@link #getComparison_const() <em>Comparison const</em>}' attribute.
@@ -276,6 +288,51 @@ public class StorageMarkSlotImpl extends OperationImpl implements StorageMarkSlo
    * @generated
    */
   @Override
+  public Variable getComparison_variable()
+  {
+    if (comparison_variable != null && comparison_variable.eIsProxy())
+    {
+      InternalEObject oldComparison_variable = (InternalEObject)comparison_variable;
+      comparison_variable = (Variable)eResolveProxy(oldComparison_variable);
+      if (comparison_variable != oldComparison_variable)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_VARIABLE, oldComparison_variable, comparison_variable));
+      }
+    }
+    return comparison_variable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Variable basicGetComparison_variable()
+  {
+    return comparison_variable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setComparison_variable(Variable newComparison_variable)
+  {
+    Variable oldComparison_variable = comparison_variable;
+    comparison_variable = newComparison_variable;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_VARIABLE, oldComparison_variable, comparison_variable));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public CONST_VARIABLES getComparison_const()
   {
     return comparison_const;
@@ -411,6 +468,9 @@ public class StorageMarkSlotImpl extends OperationImpl implements StorageMarkSlo
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT__POSITION:
         if (resolve) return getPosition();
         return basicGetPosition();
+      case FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_VARIABLE:
+        if (resolve) return getComparison_variable();
+        return basicGetComparison_variable();
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_CONST:
         return getComparison_const();
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_COLOR:
@@ -440,6 +500,9 @@ public class StorageMarkSlotImpl extends OperationImpl implements StorageMarkSlo
         return;
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT__POSITION:
         setPosition((StoragePositionParameter)newValue);
+        return;
+      case FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_VARIABLE:
+        setComparison_variable((Variable)newValue);
         return;
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_CONST:
         setComparison_const((CONST_VARIABLES)newValue);
@@ -476,6 +539,9 @@ public class StorageMarkSlotImpl extends OperationImpl implements StorageMarkSlo
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT__POSITION:
         setPosition((StoragePositionParameter)null);
         return;
+      case FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_VARIABLE:
+        setComparison_variable((Variable)null);
+        return;
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_CONST:
         setComparison_const(COMPARISON_CONST_EDEFAULT);
         return;
@@ -509,6 +575,8 @@ public class StorageMarkSlotImpl extends OperationImpl implements StorageMarkSlo
         return device != null;
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT__POSITION:
         return position != null;
+      case FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_VARIABLE:
+        return comparison_variable != null;
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_CONST:
         return comparison_const != COMPARISON_CONST_EDEFAULT;
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT__COMPARISON_COLOR:

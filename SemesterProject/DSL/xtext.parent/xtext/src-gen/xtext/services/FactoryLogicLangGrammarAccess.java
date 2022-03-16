@@ -400,420 +400,222 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 	public class LogicElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.Logic");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cConditionalParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cLoopParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cOperationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cDeviceConditionalParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cNumberConditionalParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cVariableConditionalParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cLoopParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cOperationParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//Logic:
-		//    Conditional | Loop | Operation
+		//    DeviceConditional | NumberConditional | VariableConditional | Loop | Operation
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Conditional | Loop | Operation
+		//DeviceConditional | NumberConditional | VariableConditional | Loop | Operation
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//Conditional
-		public RuleCall getConditionalParserRuleCall_0() { return cConditionalParserRuleCall_0; }
+		//DeviceConditional
+		public RuleCall getDeviceConditionalParserRuleCall_0() { return cDeviceConditionalParserRuleCall_0; }
+		
+		//NumberConditional
+		public RuleCall getNumberConditionalParserRuleCall_1() { return cNumberConditionalParserRuleCall_1; }
+		
+		//VariableConditional
+		public RuleCall getVariableConditionalParserRuleCall_2() { return cVariableConditionalParserRuleCall_2; }
 		
 		//Loop
-		public RuleCall getLoopParserRuleCall_1() { return cLoopParserRuleCall_1; }
+		public RuleCall getLoopParserRuleCall_3() { return cLoopParserRuleCall_3; }
 		
 		//Operation
-		public RuleCall getOperationParserRuleCall_2() { return cOperationParserRuleCall_2; }
+		public RuleCall getOperationParserRuleCall_4() { return cOperationParserRuleCall_4; }
 	}
-	public class ConditionalElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.Conditional");
+	public class DeviceConditionalElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.DeviceConditional");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cIfKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cVariableAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cVariableIDTerminalRuleCall_1_0 = (RuleCall)cVariableAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cOfKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cSourceAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final CrossReference cSourceDeviceCrossReference_2_1_0 = (CrossReference)cSourceAssignment_2_1.eContents().get(0);
-		private final RuleCall cSourceDeviceIDTerminalRuleCall_2_1_0_1 = (RuleCall)cSourceDeviceCrossReference_2_1_0.eContents().get(1);
-		private final Keyword cIsKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cOperatorAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOperatorBOOLEAN_OPERATOREnumRuleCall_4_0 = (RuleCall)cOperatorAssignment_4.eContents().get(0);
-		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
-		private final Assignment cComparison_constAssignment_5_0 = (Assignment)cAlternatives_5.eContents().get(0);
-		private final RuleCall cComparison_constCONST_VARIABLESEnumRuleCall_5_0_0 = (RuleCall)cComparison_constAssignment_5_0.eContents().get(0);
-		private final Assignment cComparison_colorAssignment_5_1 = (Assignment)cAlternatives_5.eContents().get(1);
-		private final RuleCall cComparison_colorCOLOREnumRuleCall_5_1_0 = (RuleCall)cComparison_colorAssignment_5_1.eContents().get(0);
-		private final Assignment cComparison_intAssignment_5_2 = (Assignment)cAlternatives_5.eContents().get(2);
-		private final RuleCall cComparison_intINTTerminalRuleCall_5_2_0 = (RuleCall)cComparison_intAssignment_5_2.eContents().get(0);
-		private final Keyword cThenKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final RuleCall cBEGINTerminalRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
-		private final Assignment cLogicsAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cLogicsLogicParserRuleCall_8_0 = (RuleCall)cLogicsAssignment_8.eContents().get(0);
-		private final RuleCall cENDTerminalRuleCall_9 = (RuleCall)cGroup.eContents().get(9);
+		private final Assignment cSourceAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cSourceDeviceCrossReference_1_0 = (CrossReference)cSourceAssignment_1.eContents().get(0);
+		private final RuleCall cSourceDeviceSTRINGTerminalRuleCall_1_0_1 = (RuleCall)cSourceDeviceCrossReference_1_0.eContents().get(1);
+		private final Keyword cIsKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cOperatorAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOperatorBOOLEAN_OPERATOREnumRuleCall_3_0 = (RuleCall)cOperatorAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
+		private final Assignment cComparison_constAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
+		private final RuleCall cComparison_constCONST_VARIABLESEnumRuleCall_4_0_0 = (RuleCall)cComparison_constAssignment_4_0.eContents().get(0);
+		private final Assignment cComparison_colorAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
+		private final RuleCall cComparison_colorCOLOREnumRuleCall_4_1_0 = (RuleCall)cComparison_colorAssignment_4_1.eContents().get(0);
+		private final Assignment cComparison_intAssignment_4_2 = (Assignment)cAlternatives_4.eContents().get(2);
+		private final RuleCall cComparison_intINTTerminalRuleCall_4_2_0 = (RuleCall)cComparison_intAssignment_4_2.eContents().get(0);
+		private final Keyword cThenKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final RuleCall cBEGINTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cLogicsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cLogicsLogicParserRuleCall_7_0 = (RuleCall)cLogicsAssignment_7.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
 		
-		//Conditional:
-		//    "if" variable=ID ('of' source=[Device])? 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+		//DeviceConditional returns Conditional:
+		//    "if" source=[Device|STRING] 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"if" variable=ID ('of' source=[Device])? 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+		//"if" source=[Device|STRING] 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
 		public Group getGroup() { return cGroup; }
 		
 		//"if"
 		public Keyword getIfKeyword_0() { return cIfKeyword_0; }
 		
-		//variable=ID
-		public Assignment getVariableAssignment_1() { return cVariableAssignment_1; }
+		//source=[Device|STRING]
+		public Assignment getSourceAssignment_1() { return cSourceAssignment_1; }
 		
-		//ID
-		public RuleCall getVariableIDTerminalRuleCall_1_0() { return cVariableIDTerminalRuleCall_1_0; }
+		//[Device|STRING]
+		public CrossReference getSourceDeviceCrossReference_1_0() { return cSourceDeviceCrossReference_1_0; }
 		
-		//('of' source=[Device])?
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//'of'
-		public Keyword getOfKeyword_2_0() { return cOfKeyword_2_0; }
-		
-		//source=[Device]
-		public Assignment getSourceAssignment_2_1() { return cSourceAssignment_2_1; }
-		
-		//[Device]
-		public CrossReference getSourceDeviceCrossReference_2_1_0() { return cSourceDeviceCrossReference_2_1_0; }
-		
-		//ID
-		public RuleCall getSourceDeviceIDTerminalRuleCall_2_1_0_1() { return cSourceDeviceIDTerminalRuleCall_2_1_0_1; }
+		//STRING
+		public RuleCall getSourceDeviceSTRINGTerminalRuleCall_1_0_1() { return cSourceDeviceSTRINGTerminalRuleCall_1_0_1; }
 		
 		//'is'
-		public Keyword getIsKeyword_3() { return cIsKeyword_3; }
+		public Keyword getIsKeyword_2() { return cIsKeyword_2; }
 		
 		//(operator=BOOLEAN_OPERATOR)?
-		public Assignment getOperatorAssignment_4() { return cOperatorAssignment_4; }
+		public Assignment getOperatorAssignment_3() { return cOperatorAssignment_3; }
 		
 		//BOOLEAN_OPERATOR
-		public RuleCall getOperatorBOOLEAN_OPERATOREnumRuleCall_4_0() { return cOperatorBOOLEAN_OPERATOREnumRuleCall_4_0; }
+		public RuleCall getOperatorBOOLEAN_OPERATOREnumRuleCall_3_0() { return cOperatorBOOLEAN_OPERATOREnumRuleCall_3_0; }
 		
 		//((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT))
-		public Alternatives getAlternatives_5() { return cAlternatives_5; }
+		public Alternatives getAlternatives_4() { return cAlternatives_4; }
 		
 		//(comparison_const=CONST_VARIABLES)
-		public Assignment getComparison_constAssignment_5_0() { return cComparison_constAssignment_5_0; }
+		public Assignment getComparison_constAssignment_4_0() { return cComparison_constAssignment_4_0; }
 		
 		//CONST_VARIABLES
-		public RuleCall getComparison_constCONST_VARIABLESEnumRuleCall_5_0_0() { return cComparison_constCONST_VARIABLESEnumRuleCall_5_0_0; }
+		public RuleCall getComparison_constCONST_VARIABLESEnumRuleCall_4_0_0() { return cComparison_constCONST_VARIABLESEnumRuleCall_4_0_0; }
 		
 		//(comparison_color=COLOR)
-		public Assignment getComparison_colorAssignment_5_1() { return cComparison_colorAssignment_5_1; }
+		public Assignment getComparison_colorAssignment_4_1() { return cComparison_colorAssignment_4_1; }
 		
 		//COLOR
-		public RuleCall getComparison_colorCOLOREnumRuleCall_5_1_0() { return cComparison_colorCOLOREnumRuleCall_5_1_0; }
+		public RuleCall getComparison_colorCOLOREnumRuleCall_4_1_0() { return cComparison_colorCOLOREnumRuleCall_4_1_0; }
 		
 		//(comparison_int=INT)
-		public Assignment getComparison_intAssignment_5_2() { return cComparison_intAssignment_5_2; }
+		public Assignment getComparison_intAssignment_4_2() { return cComparison_intAssignment_4_2; }
 		
 		//INT
-		public RuleCall getComparison_intINTTerminalRuleCall_5_2_0() { return cComparison_intINTTerminalRuleCall_5_2_0; }
+		public RuleCall getComparison_intINTTerminalRuleCall_4_2_0() { return cComparison_intINTTerminalRuleCall_4_2_0; }
 		
 		//'then'
-		public Keyword getThenKeyword_6() { return cThenKeyword_6; }
+		public Keyword getThenKeyword_5() { return cThenKeyword_5; }
 		
 		//BEGIN
-		public RuleCall getBEGINTerminalRuleCall_7() { return cBEGINTerminalRuleCall_7; }
+		public RuleCall getBEGINTerminalRuleCall_6() { return cBEGINTerminalRuleCall_6; }
 		
 		//logics+=Logic+
-		public Assignment getLogicsAssignment_8() { return cLogicsAssignment_8; }
+		public Assignment getLogicsAssignment_7() { return cLogicsAssignment_7; }
 		
 		//Logic
-		public RuleCall getLogicsLogicParserRuleCall_8_0() { return cLogicsLogicParserRuleCall_8_0; }
+		public RuleCall getLogicsLogicParserRuleCall_7_0() { return cLogicsLogicParserRuleCall_7_0; }
 		
 		//END
-		public RuleCall getENDTerminalRuleCall_9() { return cENDTerminalRuleCall_9; }
+		public RuleCall getENDTerminalRuleCall_8() { return cENDTerminalRuleCall_8; }
 	}
-	public class LoopElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.Loop");
+	public class VariableConditionalElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.VariableConditional");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cForKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cEachKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cInKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cListAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cListIDTerminalRuleCall_4_0 = (RuleCall)cListAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cOfKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cSourceAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final CrossReference cSourceDeviceCrossReference_5_1_0 = (CrossReference)cSourceAssignment_5_1.eContents().get(0);
-		private final RuleCall cSourceDeviceIDTerminalRuleCall_5_1_0_1 = (RuleCall)cSourceDeviceCrossReference_5_1_0.eContents().get(1);
-		private final Keyword cThatKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Keyword cIsKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Assignment cOperatorAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cOperatorBOOLEAN_OPERATOREnumRuleCall_8_0 = (RuleCall)cOperatorAssignment_8.eContents().get(0);
-		private final Alternatives cAlternatives_9 = (Alternatives)cGroup.eContents().get(9);
-		private final Assignment cComparison_constAssignment_9_0 = (Assignment)cAlternatives_9.eContents().get(0);
-		private final RuleCall cComparison_constCONST_VARIABLESEnumRuleCall_9_0_0 = (RuleCall)cComparison_constAssignment_9_0.eContents().get(0);
-		private final Assignment cComparison_colorAssignment_9_1 = (Assignment)cAlternatives_9.eContents().get(1);
-		private final RuleCall cComparison_colorCOLOREnumRuleCall_9_1_0 = (RuleCall)cComparison_colorAssignment_9_1.eContents().get(0);
-		private final Assignment cComparison_intAssignment_9_2 = (Assignment)cAlternatives_9.eContents().get(2);
-		private final RuleCall cComparison_intINTTerminalRuleCall_9_2_0 = (RuleCall)cComparison_intAssignment_9_2.eContents().get(0);
-		private final Keyword cThenKeyword_10 = (Keyword)cGroup.eContents().get(10);
-		private final RuleCall cBEGINTerminalRuleCall_11 = (RuleCall)cGroup.eContents().get(11);
-		private final Assignment cLogicsAssignment_12 = (Assignment)cGroup.eContents().get(12);
-		private final RuleCall cLogicsLogicParserRuleCall_12_0 = (RuleCall)cLogicsAssignment_12.eContents().get(0);
-		private final RuleCall cENDTerminalRuleCall_13 = (RuleCall)cGroup.eContents().get(13);
+		private final Keyword cIfKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSourceAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cSourceVariableCrossReference_1_0 = (CrossReference)cSourceAssignment_1.eContents().get(0);
+		private final RuleCall cSourceVariableIDTerminalRuleCall_1_0_1 = (RuleCall)cSourceVariableCrossReference_1_0.eContents().get(1);
+		private final Keyword cIsKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cOperatorAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOperatorBOOLEAN_OPERATOREnumRuleCall_3_0 = (RuleCall)cOperatorAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
+		private final Assignment cComparison_constAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
+		private final RuleCall cComparison_constCONST_VARIABLESEnumRuleCall_4_0_0 = (RuleCall)cComparison_constAssignment_4_0.eContents().get(0);
+		private final Assignment cComparison_colorAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
+		private final RuleCall cComparison_colorCOLOREnumRuleCall_4_1_0 = (RuleCall)cComparison_colorAssignment_4_1.eContents().get(0);
+		private final Assignment cComparison_intAssignment_4_2 = (Assignment)cAlternatives_4.eContents().get(2);
+		private final RuleCall cComparison_intINTTerminalRuleCall_4_2_0 = (RuleCall)cComparison_intAssignment_4_2.eContents().get(0);
+		private final Keyword cThenKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final RuleCall cBEGINTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cLogicsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cLogicsLogicParserRuleCall_7_0 = (RuleCall)cLogicsAssignment_7.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
 		
-		//Loop:
-		//    'for' 'each' name=ID 'in' list=ID ('of' source=[Device])? 'that' 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+		//VariableConditional returns Conditional:
+		//    "if" source=[Variable] 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'for' 'each' name=ID 'in' list=ID ('of' source=[Device])? 'that' 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+		//"if" source=[Variable] 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
 		public Group getGroup() { return cGroup; }
 		
-		//'for'
-		public Keyword getForKeyword_0() { return cForKeyword_0; }
+		//"if"
+		public Keyword getIfKeyword_0() { return cIfKeyword_0; }
 		
-		//'each'
-		public Keyword getEachKeyword_1() { return cEachKeyword_1; }
+		//source=[Variable]
+		public Assignment getSourceAssignment_1() { return cSourceAssignment_1; }
 		
-		//name=ID
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
-		
-		//'in'
-		public Keyword getInKeyword_3() { return cInKeyword_3; }
-		
-		//list=ID
-		public Assignment getListAssignment_4() { return cListAssignment_4; }
+		//[Variable]
+		public CrossReference getSourceVariableCrossReference_1_0() { return cSourceVariableCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getListIDTerminalRuleCall_4_0() { return cListIDTerminalRuleCall_4_0; }
-		
-		//('of' source=[Device])?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//'of'
-		public Keyword getOfKeyword_5_0() { return cOfKeyword_5_0; }
-		
-		//source=[Device]
-		public Assignment getSourceAssignment_5_1() { return cSourceAssignment_5_1; }
-		
-		//[Device]
-		public CrossReference getSourceDeviceCrossReference_5_1_0() { return cSourceDeviceCrossReference_5_1_0; }
-		
-		//ID
-		public RuleCall getSourceDeviceIDTerminalRuleCall_5_1_0_1() { return cSourceDeviceIDTerminalRuleCall_5_1_0_1; }
-		
-		//'that'
-		public Keyword getThatKeyword_6() { return cThatKeyword_6; }
+		public RuleCall getSourceVariableIDTerminalRuleCall_1_0_1() { return cSourceVariableIDTerminalRuleCall_1_0_1; }
 		
 		//'is'
-		public Keyword getIsKeyword_7() { return cIsKeyword_7; }
+		public Keyword getIsKeyword_2() { return cIsKeyword_2; }
 		
 		//(operator=BOOLEAN_OPERATOR)?
-		public Assignment getOperatorAssignment_8() { return cOperatorAssignment_8; }
+		public Assignment getOperatorAssignment_3() { return cOperatorAssignment_3; }
 		
 		//BOOLEAN_OPERATOR
-		public RuleCall getOperatorBOOLEAN_OPERATOREnumRuleCall_8_0() { return cOperatorBOOLEAN_OPERATOREnumRuleCall_8_0; }
+		public RuleCall getOperatorBOOLEAN_OPERATOREnumRuleCall_3_0() { return cOperatorBOOLEAN_OPERATOREnumRuleCall_3_0; }
 		
 		//((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT))
-		public Alternatives getAlternatives_9() { return cAlternatives_9; }
+		public Alternatives getAlternatives_4() { return cAlternatives_4; }
 		
 		//(comparison_const=CONST_VARIABLES)
-		public Assignment getComparison_constAssignment_9_0() { return cComparison_constAssignment_9_0; }
+		public Assignment getComparison_constAssignment_4_0() { return cComparison_constAssignment_4_0; }
 		
 		//CONST_VARIABLES
-		public RuleCall getComparison_constCONST_VARIABLESEnumRuleCall_9_0_0() { return cComparison_constCONST_VARIABLESEnumRuleCall_9_0_0; }
+		public RuleCall getComparison_constCONST_VARIABLESEnumRuleCall_4_0_0() { return cComparison_constCONST_VARIABLESEnumRuleCall_4_0_0; }
 		
 		//(comparison_color=COLOR)
-		public Assignment getComparison_colorAssignment_9_1() { return cComparison_colorAssignment_9_1; }
+		public Assignment getComparison_colorAssignment_4_1() { return cComparison_colorAssignment_4_1; }
 		
 		//COLOR
-		public RuleCall getComparison_colorCOLOREnumRuleCall_9_1_0() { return cComparison_colorCOLOREnumRuleCall_9_1_0; }
+		public RuleCall getComparison_colorCOLOREnumRuleCall_4_1_0() { return cComparison_colorCOLOREnumRuleCall_4_1_0; }
 		
 		//(comparison_int=INT)
-		public Assignment getComparison_intAssignment_9_2() { return cComparison_intAssignment_9_2; }
+		public Assignment getComparison_intAssignment_4_2() { return cComparison_intAssignment_4_2; }
 		
 		//INT
-		public RuleCall getComparison_intINTTerminalRuleCall_9_2_0() { return cComparison_intINTTerminalRuleCall_9_2_0; }
+		public RuleCall getComparison_intINTTerminalRuleCall_4_2_0() { return cComparison_intINTTerminalRuleCall_4_2_0; }
 		
 		//'then'
-		public Keyword getThenKeyword_10() { return cThenKeyword_10; }
+		public Keyword getThenKeyword_5() { return cThenKeyword_5; }
 		
 		//BEGIN
-		public RuleCall getBEGINTerminalRuleCall_11() { return cBEGINTerminalRuleCall_11; }
+		public RuleCall getBEGINTerminalRuleCall_6() { return cBEGINTerminalRuleCall_6; }
 		
 		//logics+=Logic+
-		public Assignment getLogicsAssignment_12() { return cLogicsAssignment_12; }
+		public Assignment getLogicsAssignment_7() { return cLogicsAssignment_7; }
 		
 		//Logic
-		public RuleCall getLogicsLogicParserRuleCall_12_0() { return cLogicsLogicParserRuleCall_12_0; }
+		public RuleCall getLogicsLogicParserRuleCall_7_0() { return cLogicsLogicParserRuleCall_7_0; }
 		
 		//END
-		public RuleCall getENDTerminalRuleCall_13() { return cENDTerminalRuleCall_13; }
+		public RuleCall getENDTerminalRuleCall_8() { return cENDTerminalRuleCall_8; }
 	}
-	public class OperationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.Operation");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cStorageMoveEmptySlotParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cStorageMoveSlotParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cStorageMarkSlotParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cCameraScanParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cCranePickupParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cCraneDropParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		
-		//Operation:
-		//    StorageMoveEmptySlot | StorageMoveSlot | StorageMarkSlot | CameraScan | CranePickup | CraneDrop
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//StorageMoveEmptySlot | StorageMoveSlot | StorageMarkSlot | CameraScan | CranePickup | CraneDrop
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//StorageMoveEmptySlot
-		public RuleCall getStorageMoveEmptySlotParserRuleCall_0() { return cStorageMoveEmptySlotParserRuleCall_0; }
-		
-		//StorageMoveSlot
-		public RuleCall getStorageMoveSlotParserRuleCall_1() { return cStorageMoveSlotParserRuleCall_1; }
-		
-		//StorageMarkSlot
-		public RuleCall getStorageMarkSlotParserRuleCall_2() { return cStorageMarkSlotParserRuleCall_2; }
-		
-		//CameraScan
-		public RuleCall getCameraScanParserRuleCall_3() { return cCameraScanParserRuleCall_3; }
-		
-		//CranePickup
-		public RuleCall getCranePickupParserRuleCall_4() { return cCranePickupParserRuleCall_4; }
-		
-		//CraneDrop
-		public RuleCall getCraneDropParserRuleCall_5() { return cCraneDropParserRuleCall_5; }
-	}
-	public class StorageMoveEmptySlotElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.StorageMoveEmptySlot");
+	public class NumberConditionalElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.NumberConditional");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cDeviceAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cDeviceStorageCrossReference_0_0 = (CrossReference)cDeviceAssignment_0.eContents().get(0);
-		private final RuleCall cDeviceStorageIDTerminalRuleCall_0_0_1 = (RuleCall)cDeviceStorageCrossReference_0_0.eContents().get(1);
-		private final Keyword cMoveKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cEmptyKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cSlotKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cToKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cDestinationAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final CrossReference cDestinationStoragePositionParameterCrossReference_5_0 = (CrossReference)cDestinationAssignment_5.eContents().get(0);
-		private final RuleCall cDestinationStoragePositionParameterIDTerminalRuleCall_5_0_1 = (RuleCall)cDestinationStoragePositionParameterCrossReference_5_0.eContents().get(1);
-		
-		//StorageMoveEmptySlot:
-		//    device=[Storage] 'move' 'empty' 'slot' 'to' destination=[StoragePositionParameter]
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//device=[Storage] 'move' 'empty' 'slot' 'to' destination=[StoragePositionParameter]
-		public Group getGroup() { return cGroup; }
-		
-		//device=[Storage]
-		public Assignment getDeviceAssignment_0() { return cDeviceAssignment_0; }
-		
-		//[Storage]
-		public CrossReference getDeviceStorageCrossReference_0_0() { return cDeviceStorageCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getDeviceStorageIDTerminalRuleCall_0_0_1() { return cDeviceStorageIDTerminalRuleCall_0_0_1; }
-		
-		//'move'
-		public Keyword getMoveKeyword_1() { return cMoveKeyword_1; }
-		
-		//'empty'
-		public Keyword getEmptyKeyword_2() { return cEmptyKeyword_2; }
-		
-		//'slot'
-		public Keyword getSlotKeyword_3() { return cSlotKeyword_3; }
-		
-		//'to'
-		public Keyword getToKeyword_4() { return cToKeyword_4; }
-		
-		//destination=[StoragePositionParameter]
-		public Assignment getDestinationAssignment_5() { return cDestinationAssignment_5; }
-		
-		//[StoragePositionParameter]
-		public CrossReference getDestinationStoragePositionParameterCrossReference_5_0() { return cDestinationStoragePositionParameterCrossReference_5_0; }
-		
-		//ID
-		public RuleCall getDestinationStoragePositionParameterIDTerminalRuleCall_5_0_1() { return cDestinationStoragePositionParameterIDTerminalRuleCall_5_0_1; }
-	}
-	public class StorageMoveSlotElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.StorageMoveSlot");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cDeviceAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cDeviceStorageCrossReference_0_0 = (CrossReference)cDeviceAssignment_0.eContents().get(0);
-		private final RuleCall cDeviceStorageIDTerminalRuleCall_0_0_1 = (RuleCall)cDeviceStorageCrossReference_0_0.eContents().get(1);
-		private final Keyword cMoveKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cSlotKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cAtKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPositionAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cPositionStoragePositionParameterCrossReference_4_0 = (CrossReference)cPositionAssignment_4.eContents().get(0);
-		private final RuleCall cPositionStoragePositionParameterIDTerminalRuleCall_4_0_1 = (RuleCall)cPositionStoragePositionParameterCrossReference_4_0.eContents().get(1);
+		private final Keyword cIfKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSource_intAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cSource_intINTTerminalRuleCall_1_0 = (RuleCall)cSource_intAssignment_1.eContents().get(0);
+		private final Keyword cIsKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cOperatorAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cOperatorBOOLEAN_OPERATOREnumRuleCall_3_0 = (RuleCall)cOperatorAssignment_3.eContents().get(0);
+		private final Keyword cEqualKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cToKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cDestinationAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final CrossReference cDestinationStoragePositionParameterCrossReference_6_0 = (CrossReference)cDestinationAssignment_6.eContents().get(0);
-		private final RuleCall cDestinationStoragePositionParameterIDTerminalRuleCall_6_0_1 = (RuleCall)cDestinationStoragePositionParameterCrossReference_6_0.eContents().get(1);
-		
-		//StorageMoveSlot:
-		//    device=[Storage] 'move' 'slot' 'at' position=[StoragePositionParameter] 'to' destination=[StoragePositionParameter]
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//device=[Storage] 'move' 'slot' 'at' position=[StoragePositionParameter] 'to' destination=[StoragePositionParameter]
-		public Group getGroup() { return cGroup; }
-		
-		//device=[Storage]
-		public Assignment getDeviceAssignment_0() { return cDeviceAssignment_0; }
-		
-		//[Storage]
-		public CrossReference getDeviceStorageCrossReference_0_0() { return cDeviceStorageCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getDeviceStorageIDTerminalRuleCall_0_0_1() { return cDeviceStorageIDTerminalRuleCall_0_0_1; }
-		
-		//'move'
-		public Keyword getMoveKeyword_1() { return cMoveKeyword_1; }
-		
-		//'slot'
-		public Keyword getSlotKeyword_2() { return cSlotKeyword_2; }
-		
-		//'at'
-		public Keyword getAtKeyword_3() { return cAtKeyword_3; }
-		
-		//position=[StoragePositionParameter]
-		public Assignment getPositionAssignment_4() { return cPositionAssignment_4; }
-		
-		//[StoragePositionParameter]
-		public CrossReference getPositionStoragePositionParameterCrossReference_4_0() { return cPositionStoragePositionParameterCrossReference_4_0; }
-		
-		//ID
-		public RuleCall getPositionStoragePositionParameterIDTerminalRuleCall_4_0_1() { return cPositionStoragePositionParameterIDTerminalRuleCall_4_0_1; }
-		
-		//'to'
-		public Keyword getToKeyword_5() { return cToKeyword_5; }
-		
-		//destination=[StoragePositionParameter]
-		public Assignment getDestinationAssignment_6() { return cDestinationAssignment_6; }
-		
-		//[StoragePositionParameter]
-		public CrossReference getDestinationStoragePositionParameterCrossReference_6_0() { return cDestinationStoragePositionParameterCrossReference_6_0; }
-		
-		//ID
-		public RuleCall getDestinationStoragePositionParameterIDTerminalRuleCall_6_0_1() { return cDestinationStoragePositionParameterIDTerminalRuleCall_6_0_1; }
-	}
-	public class StorageMarkSlotElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.StorageMarkSlot");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cDeviceAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cDeviceStorageCrossReference_0_0 = (CrossReference)cDeviceAssignment_0.eContents().get(0);
-		private final RuleCall cDeviceStorageIDTerminalRuleCall_0_0_1 = (RuleCall)cDeviceStorageCrossReference_0_0.eContents().get(1);
-		private final Keyword cMarkKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cSlotKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cAtKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPositionAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cPositionStoragePositionParameterCrossReference_4_0 = (CrossReference)cPositionAssignment_4.eContents().get(0);
-		private final RuleCall cPositionStoragePositionParameterIDTerminalRuleCall_4_0_1 = (RuleCall)cPositionStoragePositionParameterCrossReference_4_0.eContents().get(1);
-		private final Keyword cAsKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Alternatives cAlternatives_6 = (Alternatives)cGroup.eContents().get(6);
 		private final Assignment cComparison_constAssignment_6_0 = (Assignment)cAlternatives_6.eContents().get(0);
 		private final RuleCall cComparison_constCONST_VARIABLESEnumRuleCall_6_0_0 = (RuleCall)cComparison_constAssignment_6_0.eContents().get(0);
@@ -821,50 +623,43 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 		private final RuleCall cComparison_colorCOLOREnumRuleCall_6_1_0 = (RuleCall)cComparison_colorAssignment_6_1.eContents().get(0);
 		private final Assignment cComparison_intAssignment_6_2 = (Assignment)cAlternatives_6.eContents().get(2);
 		private final RuleCall cComparison_intINTTerminalRuleCall_6_2_0 = (RuleCall)cComparison_intAssignment_6_2.eContents().get(0);
-		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cInKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Assignment cQuantityAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final RuleCall cQuantityINTTerminalRuleCall_7_1_0 = (RuleCall)cQuantityAssignment_7_1.eContents().get(0);
-		private final Assignment cMeasureAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
-		private final RuleCall cMeasureTIMEEnumRuleCall_7_2_0 = (RuleCall)cMeasureAssignment_7_2.eContents().get(0);
+		private final Keyword cThenKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final RuleCall cBEGINTerminalRuleCall_8 = (RuleCall)cGroup.eContents().get(8);
+		private final Assignment cLogicsAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cLogicsLogicParserRuleCall_9_0 = (RuleCall)cLogicsAssignment_9.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_10 = (RuleCall)cGroup.eContents().get(10);
 		
-		//StorageMarkSlot:
-		//    device=[Storage] 'mark' 'slot' 'at' position=[StoragePositionParameter] 'as' ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) ('in' quantity=INT measure=TIME)?
+		//NumberConditional returns Conditional:
+		//    'if' source_int=INT 'is' (operator=BOOLEAN_OPERATOR)? 'equal' 'to' ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//device=[Storage] 'mark' 'slot' 'at' position=[StoragePositionParameter] 'as' ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) ('in' quantity=INT measure=TIME)?
+		//'if' source_int=INT 'is' (operator=BOOLEAN_OPERATOR)? 'equal' 'to' ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
 		public Group getGroup() { return cGroup; }
 		
-		//device=[Storage]
-		public Assignment getDeviceAssignment_0() { return cDeviceAssignment_0; }
+		//'if'
+		public Keyword getIfKeyword_0() { return cIfKeyword_0; }
 		
-		//[Storage]
-		public CrossReference getDeviceStorageCrossReference_0_0() { return cDeviceStorageCrossReference_0_0; }
+		//source_int=INT
+		public Assignment getSource_intAssignment_1() { return cSource_intAssignment_1; }
 		
-		//ID
-		public RuleCall getDeviceStorageIDTerminalRuleCall_0_0_1() { return cDeviceStorageIDTerminalRuleCall_0_0_1; }
+		//INT
+		public RuleCall getSource_intINTTerminalRuleCall_1_0() { return cSource_intINTTerminalRuleCall_1_0; }
 		
-		//'mark'
-		public Keyword getMarkKeyword_1() { return cMarkKeyword_1; }
+		//'is'
+		public Keyword getIsKeyword_2() { return cIsKeyword_2; }
 		
-		//'slot'
-		public Keyword getSlotKeyword_2() { return cSlotKeyword_2; }
+		//(operator=BOOLEAN_OPERATOR)?
+		public Assignment getOperatorAssignment_3() { return cOperatorAssignment_3; }
 		
-		//'at'
-		public Keyword getAtKeyword_3() { return cAtKeyword_3; }
+		//BOOLEAN_OPERATOR
+		public RuleCall getOperatorBOOLEAN_OPERATOREnumRuleCall_3_0() { return cOperatorBOOLEAN_OPERATOREnumRuleCall_3_0; }
 		
-		//position=[StoragePositionParameter]
-		public Assignment getPositionAssignment_4() { return cPositionAssignment_4; }
+		//'equal'
+		public Keyword getEqualKeyword_4() { return cEqualKeyword_4; }
 		
-		//[StoragePositionParameter]
-		public CrossReference getPositionStoragePositionParameterCrossReference_4_0() { return cPositionStoragePositionParameterCrossReference_4_0; }
-		
-		//ID
-		public RuleCall getPositionStoragePositionParameterIDTerminalRuleCall_4_0_1() { return cPositionStoragePositionParameterIDTerminalRuleCall_4_0_1; }
-		
-		//'as'
-		public Keyword getAsKeyword_5() { return cAsKeyword_5; }
+		//'to'
+		public Keyword getToKeyword_5() { return cToKeyword_5; }
 		
 		//((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT))
 		public Alternatives getAlternatives_6() { return cAlternatives_6; }
@@ -886,6 +681,459 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 		
 		//INT
 		public RuleCall getComparison_intINTTerminalRuleCall_6_2_0() { return cComparison_intINTTerminalRuleCall_6_2_0; }
+		
+		//'then'
+		public Keyword getThenKeyword_7() { return cThenKeyword_7; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_8() { return cBEGINTerminalRuleCall_8; }
+		
+		//logics+=Logic+
+		public Assignment getLogicsAssignment_9() { return cLogicsAssignment_9; }
+		
+		//Logic
+		public RuleCall getLogicsLogicParserRuleCall_9_0() { return cLogicsLogicParserRuleCall_9_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_10() { return cENDTerminalRuleCall_10; }
+	}
+	public class LoopElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.Loop");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cForKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cVariableAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cVariableLoopVariableParserRuleCall_1_0 = (RuleCall)cVariableAssignment_1.eContents().get(0);
+		private final Keyword cInKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cListAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cListIDTerminalRuleCall_3_0 = (RuleCall)cListAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cOfKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cSourceAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final CrossReference cSourceDeviceCrossReference_4_1_0 = (CrossReference)cSourceAssignment_4_1.eContents().get(0);
+		private final RuleCall cSourceDeviceSTRINGTerminalRuleCall_4_1_0_1 = (RuleCall)cSourceDeviceCrossReference_4_1_0.eContents().get(1);
+		private final Keyword cThatKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cIsKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cOperatorAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cOperatorBOOLEAN_OPERATOREnumRuleCall_7_0 = (RuleCall)cOperatorAssignment_7.eContents().get(0);
+		private final Alternatives cAlternatives_8 = (Alternatives)cGroup.eContents().get(8);
+		private final Assignment cComparison_constAssignment_8_0 = (Assignment)cAlternatives_8.eContents().get(0);
+		private final RuleCall cComparison_constCONST_VARIABLESEnumRuleCall_8_0_0 = (RuleCall)cComparison_constAssignment_8_0.eContents().get(0);
+		private final Assignment cComparison_colorAssignment_8_1 = (Assignment)cAlternatives_8.eContents().get(1);
+		private final RuleCall cComparison_colorCOLOREnumRuleCall_8_1_0 = (RuleCall)cComparison_colorAssignment_8_1.eContents().get(0);
+		private final Assignment cComparison_intAssignment_8_2 = (Assignment)cAlternatives_8.eContents().get(2);
+		private final RuleCall cComparison_intINTTerminalRuleCall_8_2_0 = (RuleCall)cComparison_intAssignment_8_2.eContents().get(0);
+		private final Keyword cThenKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final RuleCall cBEGINTerminalRuleCall_10 = (RuleCall)cGroup.eContents().get(10);
+		private final Assignment cLogicsAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final RuleCall cLogicsLogicParserRuleCall_11_0 = (RuleCall)cLogicsAssignment_11.eContents().get(0);
+		private final RuleCall cENDTerminalRuleCall_12 = (RuleCall)cGroup.eContents().get(12);
+		
+		//Loop:
+		//    'for' variable=LoopVariable 'in' list=ID ('of' source=[Device|STRING])? 'that' 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'for' variable=LoopVariable 'in' list=ID ('of' source=[Device|STRING])? 'that' 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+		public Group getGroup() { return cGroup; }
+		
+		//'for'
+		public Keyword getForKeyword_0() { return cForKeyword_0; }
+		
+		//variable=LoopVariable
+		public Assignment getVariableAssignment_1() { return cVariableAssignment_1; }
+		
+		//LoopVariable
+		public RuleCall getVariableLoopVariableParserRuleCall_1_0() { return cVariableLoopVariableParserRuleCall_1_0; }
+		
+		//'in'
+		public Keyword getInKeyword_2() { return cInKeyword_2; }
+		
+		//list=ID
+		public Assignment getListAssignment_3() { return cListAssignment_3; }
+		
+		//ID
+		public RuleCall getListIDTerminalRuleCall_3_0() { return cListIDTerminalRuleCall_3_0; }
+		
+		//('of' source=[Device|STRING])?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//'of'
+		public Keyword getOfKeyword_4_0() { return cOfKeyword_4_0; }
+		
+		//source=[Device|STRING]
+		public Assignment getSourceAssignment_4_1() { return cSourceAssignment_4_1; }
+		
+		//[Device|STRING]
+		public CrossReference getSourceDeviceCrossReference_4_1_0() { return cSourceDeviceCrossReference_4_1_0; }
+		
+		//STRING
+		public RuleCall getSourceDeviceSTRINGTerminalRuleCall_4_1_0_1() { return cSourceDeviceSTRINGTerminalRuleCall_4_1_0_1; }
+		
+		//'that'
+		public Keyword getThatKeyword_5() { return cThatKeyword_5; }
+		
+		//'is'
+		public Keyword getIsKeyword_6() { return cIsKeyword_6; }
+		
+		//(operator=BOOLEAN_OPERATOR)?
+		public Assignment getOperatorAssignment_7() { return cOperatorAssignment_7; }
+		
+		//BOOLEAN_OPERATOR
+		public RuleCall getOperatorBOOLEAN_OPERATOREnumRuleCall_7_0() { return cOperatorBOOLEAN_OPERATOREnumRuleCall_7_0; }
+		
+		//((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT))
+		public Alternatives getAlternatives_8() { return cAlternatives_8; }
+		
+		//(comparison_const=CONST_VARIABLES)
+		public Assignment getComparison_constAssignment_8_0() { return cComparison_constAssignment_8_0; }
+		
+		//CONST_VARIABLES
+		public RuleCall getComparison_constCONST_VARIABLESEnumRuleCall_8_0_0() { return cComparison_constCONST_VARIABLESEnumRuleCall_8_0_0; }
+		
+		//(comparison_color=COLOR)
+		public Assignment getComparison_colorAssignment_8_1() { return cComparison_colorAssignment_8_1; }
+		
+		//COLOR
+		public RuleCall getComparison_colorCOLOREnumRuleCall_8_1_0() { return cComparison_colorCOLOREnumRuleCall_8_1_0; }
+		
+		//(comparison_int=INT)
+		public Assignment getComparison_intAssignment_8_2() { return cComparison_intAssignment_8_2; }
+		
+		//INT
+		public RuleCall getComparison_intINTTerminalRuleCall_8_2_0() { return cComparison_intINTTerminalRuleCall_8_2_0; }
+		
+		//'then'
+		public Keyword getThenKeyword_9() { return cThenKeyword_9; }
+		
+		//BEGIN
+		public RuleCall getBEGINTerminalRuleCall_10() { return cBEGINTerminalRuleCall_10; }
+		
+		//logics+=Logic+
+		public Assignment getLogicsAssignment_11() { return cLogicsAssignment_11; }
+		
+		//Logic
+		public RuleCall getLogicsLogicParserRuleCall_11_0() { return cLogicsLogicParserRuleCall_11_0; }
+		
+		//END
+		public RuleCall getENDTerminalRuleCall_12() { return cENDTerminalRuleCall_12; }
+	}
+	public class OperationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.Operation");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cStorageMoveEmptySlotParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cStorageMoveSlotParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cStorageMarkSlotParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cStorageMoveVariableSlotParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cCameraScanParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cCranePickupParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cCraneDropParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		
+		//Operation:
+		//    StorageMoveEmptySlot | StorageMoveSlot | StorageMarkSlot | StorageMoveVariableSlot | CameraScan | CranePickup | CraneDrop
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//StorageMoveEmptySlot | StorageMoveSlot | StorageMarkSlot | StorageMoveVariableSlot | CameraScan | CranePickup | CraneDrop
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//StorageMoveEmptySlot
+		public RuleCall getStorageMoveEmptySlotParserRuleCall_0() { return cStorageMoveEmptySlotParserRuleCall_0; }
+		
+		//StorageMoveSlot
+		public RuleCall getStorageMoveSlotParserRuleCall_1() { return cStorageMoveSlotParserRuleCall_1; }
+		
+		//StorageMarkSlot
+		public RuleCall getStorageMarkSlotParserRuleCall_2() { return cStorageMarkSlotParserRuleCall_2; }
+		
+		//StorageMoveVariableSlot
+		public RuleCall getStorageMoveVariableSlotParserRuleCall_3() { return cStorageMoveVariableSlotParserRuleCall_3; }
+		
+		//CameraScan
+		public RuleCall getCameraScanParserRuleCall_4() { return cCameraScanParserRuleCall_4; }
+		
+		//CranePickup
+		public RuleCall getCranePickupParserRuleCall_5() { return cCranePickupParserRuleCall_5; }
+		
+		//CraneDrop
+		public RuleCall getCraneDropParserRuleCall_6() { return cCraneDropParserRuleCall_6; }
+	}
+	public class StorageMoveEmptySlotElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.StorageMoveEmptySlot");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDeviceAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cDeviceStorageCrossReference_0_0 = (CrossReference)cDeviceAssignment_0.eContents().get(0);
+		private final RuleCall cDeviceStorageSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cDeviceStorageCrossReference_0_0.eContents().get(1);
+		private final Keyword cMoveKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cEmptyKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cSlotKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cToKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cDestinationAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cDestinationStoragePositionParameterCrossReference_5_0 = (CrossReference)cDestinationAssignment_5.eContents().get(0);
+		private final RuleCall cDestinationStoragePositionParameterSTRINGTerminalRuleCall_5_0_1 = (RuleCall)cDestinationStoragePositionParameterCrossReference_5_0.eContents().get(1);
+		
+		//StorageMoveEmptySlot:
+		//    device=[Storage|STRING] 'move' 'empty' 'slot' 'to' destination=[StoragePositionParameter|STRING]
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//device=[Storage|STRING] 'move' 'empty' 'slot' 'to' destination=[StoragePositionParameter|STRING]
+		public Group getGroup() { return cGroup; }
+		
+		//device=[Storage|STRING]
+		public Assignment getDeviceAssignment_0() { return cDeviceAssignment_0; }
+		
+		//[Storage|STRING]
+		public CrossReference getDeviceStorageCrossReference_0_0() { return cDeviceStorageCrossReference_0_0; }
+		
+		//STRING
+		public RuleCall getDeviceStorageSTRINGTerminalRuleCall_0_0_1() { return cDeviceStorageSTRINGTerminalRuleCall_0_0_1; }
+		
+		//'move'
+		public Keyword getMoveKeyword_1() { return cMoveKeyword_1; }
+		
+		//'empty'
+		public Keyword getEmptyKeyword_2() { return cEmptyKeyword_2; }
+		
+		//'slot'
+		public Keyword getSlotKeyword_3() { return cSlotKeyword_3; }
+		
+		//'to'
+		public Keyword getToKeyword_4() { return cToKeyword_4; }
+		
+		//destination=[StoragePositionParameter|STRING]
+		public Assignment getDestinationAssignment_5() { return cDestinationAssignment_5; }
+		
+		//[StoragePositionParameter|STRING]
+		public CrossReference getDestinationStoragePositionParameterCrossReference_5_0() { return cDestinationStoragePositionParameterCrossReference_5_0; }
+		
+		//STRING
+		public RuleCall getDestinationStoragePositionParameterSTRINGTerminalRuleCall_5_0_1() { return cDestinationStoragePositionParameterSTRINGTerminalRuleCall_5_0_1; }
+	}
+	public class StorageMoveVariableSlotElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.StorageMoveVariableSlot");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDeviceAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cDeviceStorageCrossReference_0_0 = (CrossReference)cDeviceAssignment_0.eContents().get(0);
+		private final RuleCall cDeviceStorageSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cDeviceStorageCrossReference_0_0.eContents().get(1);
+		private final Keyword cMoveKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cSlotKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cOfKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cPositionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cPositionVariableCrossReference_4_0 = (CrossReference)cPositionAssignment_4.eContents().get(0);
+		private final RuleCall cPositionVariableIDTerminalRuleCall_4_0_1 = (RuleCall)cPositionVariableCrossReference_4_0.eContents().get(1);
+		private final Keyword cToKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cDestinationAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final CrossReference cDestinationStoragePositionParameterCrossReference_6_0 = (CrossReference)cDestinationAssignment_6.eContents().get(0);
+		private final RuleCall cDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1 = (RuleCall)cDestinationStoragePositionParameterCrossReference_6_0.eContents().get(1);
+		
+		//StorageMoveVariableSlot:
+		//    device=[Storage|STRING] 'move' 'slot' 'of' position=[Variable] 'to' destination=[StoragePositionParameter|STRING]
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//device=[Storage|STRING] 'move' 'slot' 'of' position=[Variable] 'to' destination=[StoragePositionParameter|STRING]
+		public Group getGroup() { return cGroup; }
+		
+		//device=[Storage|STRING]
+		public Assignment getDeviceAssignment_0() { return cDeviceAssignment_0; }
+		
+		//[Storage|STRING]
+		public CrossReference getDeviceStorageCrossReference_0_0() { return cDeviceStorageCrossReference_0_0; }
+		
+		//STRING
+		public RuleCall getDeviceStorageSTRINGTerminalRuleCall_0_0_1() { return cDeviceStorageSTRINGTerminalRuleCall_0_0_1; }
+		
+		//'move'
+		public Keyword getMoveKeyword_1() { return cMoveKeyword_1; }
+		
+		//'slot'
+		public Keyword getSlotKeyword_2() { return cSlotKeyword_2; }
+		
+		//'of'
+		public Keyword getOfKeyword_3() { return cOfKeyword_3; }
+		
+		//position=[Variable]
+		public Assignment getPositionAssignment_4() { return cPositionAssignment_4; }
+		
+		//[Variable]
+		public CrossReference getPositionVariableCrossReference_4_0() { return cPositionVariableCrossReference_4_0; }
+		
+		//ID
+		public RuleCall getPositionVariableIDTerminalRuleCall_4_0_1() { return cPositionVariableIDTerminalRuleCall_4_0_1; }
+		
+		//'to'
+		public Keyword getToKeyword_5() { return cToKeyword_5; }
+		
+		//destination=[StoragePositionParameter|STRING]
+		public Assignment getDestinationAssignment_6() { return cDestinationAssignment_6; }
+		
+		//[StoragePositionParameter|STRING]
+		public CrossReference getDestinationStoragePositionParameterCrossReference_6_0() { return cDestinationStoragePositionParameterCrossReference_6_0; }
+		
+		//STRING
+		public RuleCall getDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1() { return cDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1; }
+	}
+	public class StorageMoveSlotElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.StorageMoveSlot");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDeviceAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cDeviceStorageCrossReference_0_0 = (CrossReference)cDeviceAssignment_0.eContents().get(0);
+		private final RuleCall cDeviceStorageSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cDeviceStorageCrossReference_0_0.eContents().get(1);
+		private final Keyword cMoveKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cSlotKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cAtKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cPositionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cPositionStoragePositionParameterCrossReference_4_0 = (CrossReference)cPositionAssignment_4.eContents().get(0);
+		private final RuleCall cPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1 = (RuleCall)cPositionStoragePositionParameterCrossReference_4_0.eContents().get(1);
+		private final Keyword cToKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cDestinationAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final CrossReference cDestinationStoragePositionParameterCrossReference_6_0 = (CrossReference)cDestinationAssignment_6.eContents().get(0);
+		private final RuleCall cDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1 = (RuleCall)cDestinationStoragePositionParameterCrossReference_6_0.eContents().get(1);
+		
+		//StorageMoveSlot:
+		//    device=[Storage|STRING] 'move' 'slot' 'at' position=[StoragePositionParameter|STRING] 'to' destination=[StoragePositionParameter|STRING]
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//device=[Storage|STRING] 'move' 'slot' 'at' position=[StoragePositionParameter|STRING] 'to' destination=[StoragePositionParameter|STRING]
+		public Group getGroup() { return cGroup; }
+		
+		//device=[Storage|STRING]
+		public Assignment getDeviceAssignment_0() { return cDeviceAssignment_0; }
+		
+		//[Storage|STRING]
+		public CrossReference getDeviceStorageCrossReference_0_0() { return cDeviceStorageCrossReference_0_0; }
+		
+		//STRING
+		public RuleCall getDeviceStorageSTRINGTerminalRuleCall_0_0_1() { return cDeviceStorageSTRINGTerminalRuleCall_0_0_1; }
+		
+		//'move'
+		public Keyword getMoveKeyword_1() { return cMoveKeyword_1; }
+		
+		//'slot'
+		public Keyword getSlotKeyword_2() { return cSlotKeyword_2; }
+		
+		//'at'
+		public Keyword getAtKeyword_3() { return cAtKeyword_3; }
+		
+		//position=[StoragePositionParameter|STRING]
+		public Assignment getPositionAssignment_4() { return cPositionAssignment_4; }
+		
+		//[StoragePositionParameter|STRING]
+		public CrossReference getPositionStoragePositionParameterCrossReference_4_0() { return cPositionStoragePositionParameterCrossReference_4_0; }
+		
+		//STRING
+		public RuleCall getPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1() { return cPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1; }
+		
+		//'to'
+		public Keyword getToKeyword_5() { return cToKeyword_5; }
+		
+		//destination=[StoragePositionParameter|STRING]
+		public Assignment getDestinationAssignment_6() { return cDestinationAssignment_6; }
+		
+		//[StoragePositionParameter|STRING]
+		public CrossReference getDestinationStoragePositionParameterCrossReference_6_0() { return cDestinationStoragePositionParameterCrossReference_6_0; }
+		
+		//STRING
+		public RuleCall getDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1() { return cDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1; }
+	}
+	public class StorageMarkSlotElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.StorageMarkSlot");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDeviceAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cDeviceStorageCrossReference_0_0 = (CrossReference)cDeviceAssignment_0.eContents().get(0);
+		private final RuleCall cDeviceStorageSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cDeviceStorageCrossReference_0_0.eContents().get(1);
+		private final Keyword cMarkKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cSlotKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cAtKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cPositionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cPositionStoragePositionParameterCrossReference_4_0 = (CrossReference)cPositionAssignment_4.eContents().get(0);
+		private final RuleCall cPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1 = (RuleCall)cPositionStoragePositionParameterCrossReference_4_0.eContents().get(1);
+		private final Keyword cAsKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Alternatives cAlternatives_6 = (Alternatives)cGroup.eContents().get(6);
+		private final Assignment cComparison_variableAssignment_6_0 = (Assignment)cAlternatives_6.eContents().get(0);
+		private final CrossReference cComparison_variableVariableCrossReference_6_0_0 = (CrossReference)cComparison_variableAssignment_6_0.eContents().get(0);
+		private final RuleCall cComparison_variableVariableIDTerminalRuleCall_6_0_0_1 = (RuleCall)cComparison_variableVariableCrossReference_6_0_0.eContents().get(1);
+		private final Assignment cComparison_constAssignment_6_1 = (Assignment)cAlternatives_6.eContents().get(1);
+		private final RuleCall cComparison_constCONST_VARIABLESEnumRuleCall_6_1_0 = (RuleCall)cComparison_constAssignment_6_1.eContents().get(0);
+		private final Assignment cComparison_colorAssignment_6_2 = (Assignment)cAlternatives_6.eContents().get(2);
+		private final RuleCall cComparison_colorCOLOREnumRuleCall_6_2_0 = (RuleCall)cComparison_colorAssignment_6_2.eContents().get(0);
+		private final Assignment cComparison_intAssignment_6_3 = (Assignment)cAlternatives_6.eContents().get(3);
+		private final RuleCall cComparison_intINTTerminalRuleCall_6_3_0 = (RuleCall)cComparison_intAssignment_6_3.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cInKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cQuantityAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cQuantityINTTerminalRuleCall_7_1_0 = (RuleCall)cQuantityAssignment_7_1.eContents().get(0);
+		private final Assignment cMeasureAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
+		private final RuleCall cMeasureTIMEEnumRuleCall_7_2_0 = (RuleCall)cMeasureAssignment_7_2.eContents().get(0);
+		
+		//StorageMarkSlot:
+		//    device=[Storage|STRING] 'mark' 'slot' 'at' position=[StoragePositionParameter|STRING] 'as' ((comparison_variable=[Variable])|(comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) ('in' quantity=INT measure=TIME)?
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//device=[Storage|STRING] 'mark' 'slot' 'at' position=[StoragePositionParameter|STRING] 'as' ((comparison_variable=[Variable])|(comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) ('in' quantity=INT measure=TIME)?
+		public Group getGroup() { return cGroup; }
+		
+		//device=[Storage|STRING]
+		public Assignment getDeviceAssignment_0() { return cDeviceAssignment_0; }
+		
+		//[Storage|STRING]
+		public CrossReference getDeviceStorageCrossReference_0_0() { return cDeviceStorageCrossReference_0_0; }
+		
+		//STRING
+		public RuleCall getDeviceStorageSTRINGTerminalRuleCall_0_0_1() { return cDeviceStorageSTRINGTerminalRuleCall_0_0_1; }
+		
+		//'mark'
+		public Keyword getMarkKeyword_1() { return cMarkKeyword_1; }
+		
+		//'slot'
+		public Keyword getSlotKeyword_2() { return cSlotKeyword_2; }
+		
+		//'at'
+		public Keyword getAtKeyword_3() { return cAtKeyword_3; }
+		
+		//position=[StoragePositionParameter|STRING]
+		public Assignment getPositionAssignment_4() { return cPositionAssignment_4; }
+		
+		//[StoragePositionParameter|STRING]
+		public CrossReference getPositionStoragePositionParameterCrossReference_4_0() { return cPositionStoragePositionParameterCrossReference_4_0; }
+		
+		//STRING
+		public RuleCall getPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1() { return cPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1; }
+		
+		//'as'
+		public Keyword getAsKeyword_5() { return cAsKeyword_5; }
+		
+		//((comparison_variable=[Variable])|(comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT))
+		public Alternatives getAlternatives_6() { return cAlternatives_6; }
+		
+		//(comparison_variable=[Variable])
+		public Assignment getComparison_variableAssignment_6_0() { return cComparison_variableAssignment_6_0; }
+		
+		//[Variable]
+		public CrossReference getComparison_variableVariableCrossReference_6_0_0() { return cComparison_variableVariableCrossReference_6_0_0; }
+		
+		//ID
+		public RuleCall getComparison_variableVariableIDTerminalRuleCall_6_0_0_1() { return cComparison_variableVariableIDTerminalRuleCall_6_0_0_1; }
+		
+		//(comparison_const=CONST_VARIABLES)
+		public Assignment getComparison_constAssignment_6_1() { return cComparison_constAssignment_6_1; }
+		
+		//CONST_VARIABLES
+		public RuleCall getComparison_constCONST_VARIABLESEnumRuleCall_6_1_0() { return cComparison_constCONST_VARIABLESEnumRuleCall_6_1_0; }
+		
+		//(comparison_color=COLOR)
+		public Assignment getComparison_colorAssignment_6_2() { return cComparison_colorAssignment_6_2; }
+		
+		//COLOR
+		public RuleCall getComparison_colorCOLOREnumRuleCall_6_2_0() { return cComparison_colorCOLOREnumRuleCall_6_2_0; }
+		
+		//(comparison_int=INT)
+		public Assignment getComparison_intAssignment_6_3() { return cComparison_intAssignment_6_3; }
+		
+		//INT
+		public RuleCall getComparison_intINTTerminalRuleCall_6_3_0() { return cComparison_intINTTerminalRuleCall_6_3_0; }
 		
 		//('in' quantity=INT measure=TIME)?
 		public Group getGroup_7() { return cGroup_7; }
@@ -910,29 +1158,28 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDeviceAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cDeviceCameraCrossReference_0_0 = (CrossReference)cDeviceAssignment_0.eContents().get(0);
-		private final RuleCall cDeviceCameraIDTerminalRuleCall_0_0_1 = (RuleCall)cDeviceCameraCrossReference_0_0.eContents().get(1);
+		private final RuleCall cDeviceCameraSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cDeviceCameraCrossReference_0_0.eContents().get(1);
 		private final Keyword cScanKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cColorKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cIntoKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cNameAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cNameIDTerminalRuleCall_4_0 = (RuleCall)cNameAssignment_4.eContents().get(0);
+		private final Assignment cVariableAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cVariableGloablVariableParserRuleCall_3_0 = (RuleCall)cVariableAssignment_3.eContents().get(0);
 		
 		//CameraScan:
-		//    device=[Camera] 'scan' 'color' 'into' name=ID
+		//    device=[Camera|STRING] 'scan' 'color' variable=GloablVariable
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//device=[Camera] 'scan' 'color' 'into' name=ID
+		//device=[Camera|STRING] 'scan' 'color' variable=GloablVariable
 		public Group getGroup() { return cGroup; }
 		
-		//device=[Camera]
+		//device=[Camera|STRING]
 		public Assignment getDeviceAssignment_0() { return cDeviceAssignment_0; }
 		
-		//[Camera]
+		//[Camera|STRING]
 		public CrossReference getDeviceCameraCrossReference_0_0() { return cDeviceCameraCrossReference_0_0; }
 		
-		//ID
-		public RuleCall getDeviceCameraIDTerminalRuleCall_0_0_1() { return cDeviceCameraIDTerminalRuleCall_0_0_1; }
+		//STRING
+		public RuleCall getDeviceCameraSTRINGTerminalRuleCall_0_0_1() { return cDeviceCameraSTRINGTerminalRuleCall_0_0_1; }
 		
 		//'scan'
 		public Keyword getScanKeyword_1() { return cScanKeyword_1; }
@@ -940,44 +1187,89 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 		//'color'
 		public Keyword getColorKeyword_2() { return cColorKeyword_2; }
 		
-		//'into'
-		public Keyword getIntoKeyword_3() { return cIntoKeyword_3; }
+		//variable=GloablVariable
+		public Assignment getVariableAssignment_3() { return cVariableAssignment_3; }
+		
+		//GloablVariable
+		public RuleCall getVariableGloablVariableParserRuleCall_3_0() { return cVariableGloablVariableParserRuleCall_3_0; }
+	}
+	public class LoopVariableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.LoopVariable");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cEachKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//LoopVariable returns Variable:
+		//    'each' name=ID
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'each' name=ID
+		public Group getGroup() { return cGroup; }
+		
+		//'each'
+		public Keyword getEachKeyword_0() { return cEachKeyword_0; }
 		
 		//name=ID
-		public Assignment getNameAssignment_4() { return cNameAssignment_4; }
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_4_0() { return cNameIDTerminalRuleCall_4_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+	}
+	public class GloablVariableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.GloablVariable");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cIntoKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		
+		//GloablVariable returns Variable:
+		//    'into' name=ID
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'into' name=ID
+		public Group getGroup() { return cGroup; }
+		
+		//'into'
+		public Keyword getIntoKeyword_0() { return cIntoKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 	}
 	public class CranePickupElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.CranePickup");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDeviceAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cDeviceCraneCrossReference_0_0 = (CrossReference)cDeviceAssignment_0.eContents().get(0);
-		private final RuleCall cDeviceCraneIDTerminalRuleCall_0_0_1 = (RuleCall)cDeviceCraneCrossReference_0_0.eContents().get(1);
+		private final RuleCall cDeviceCraneSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cDeviceCraneCrossReference_0_0.eContents().get(1);
 		private final Keyword cPickupKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cItemKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cAtKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cLocationAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cLocationCraneParameterCrossReference_4_0 = (CrossReference)cLocationAssignment_4.eContents().get(0);
-		private final RuleCall cLocationCraneParameterIDTerminalRuleCall_4_0_1 = (RuleCall)cLocationCraneParameterCrossReference_4_0.eContents().get(1);
+		private final RuleCall cLocationCraneParameterSTRINGTerminalRuleCall_4_0_1 = (RuleCall)cLocationCraneParameterCrossReference_4_0.eContents().get(1);
 		
 		//CranePickup:
-		//    device=[Crane] 'pickup' 'item' 'at' location=[CraneParameter]
+		//    device=[Crane|STRING] 'pickup' 'item' 'at' location=[CraneParameter|STRING]
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//device=[Crane] 'pickup' 'item' 'at' location=[CraneParameter]
+		//device=[Crane|STRING] 'pickup' 'item' 'at' location=[CraneParameter|STRING]
 		public Group getGroup() { return cGroup; }
 		
-		//device=[Crane]
+		//device=[Crane|STRING]
 		public Assignment getDeviceAssignment_0() { return cDeviceAssignment_0; }
 		
-		//[Crane]
+		//[Crane|STRING]
 		public CrossReference getDeviceCraneCrossReference_0_0() { return cDeviceCraneCrossReference_0_0; }
 		
-		//ID
-		public RuleCall getDeviceCraneIDTerminalRuleCall_0_0_1() { return cDeviceCraneIDTerminalRuleCall_0_0_1; }
+		//STRING
+		public RuleCall getDeviceCraneSTRINGTerminalRuleCall_0_0_1() { return cDeviceCraneSTRINGTerminalRuleCall_0_0_1; }
 		
 		//'pickup'
 		public Keyword getPickupKeyword_1() { return cPickupKeyword_1; }
@@ -988,44 +1280,44 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 		//'at'
 		public Keyword getAtKeyword_3() { return cAtKeyword_3; }
 		
-		//location=[CraneParameter]
+		//location=[CraneParameter|STRING]
 		public Assignment getLocationAssignment_4() { return cLocationAssignment_4; }
 		
-		//[CraneParameter]
+		//[CraneParameter|STRING]
 		public CrossReference getLocationCraneParameterCrossReference_4_0() { return cLocationCraneParameterCrossReference_4_0; }
 		
-		//ID
-		public RuleCall getLocationCraneParameterIDTerminalRuleCall_4_0_1() { return cLocationCraneParameterIDTerminalRuleCall_4_0_1; }
+		//STRING
+		public RuleCall getLocationCraneParameterSTRINGTerminalRuleCall_4_0_1() { return cLocationCraneParameterSTRINGTerminalRuleCall_4_0_1; }
 	}
 	public class CraneDropElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "xtext.FactoryLogicLang.CraneDrop");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDeviceAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cDeviceCraneCrossReference_0_0 = (CrossReference)cDeviceAssignment_0.eContents().get(0);
-		private final RuleCall cDeviceCraneIDTerminalRuleCall_0_0_1 = (RuleCall)cDeviceCraneCrossReference_0_0.eContents().get(1);
+		private final RuleCall cDeviceCraneSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cDeviceCraneCrossReference_0_0.eContents().get(1);
 		private final Keyword cDropKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cItemKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Keyword cAtKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cLocationAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cLocationCraneParameterCrossReference_4_0 = (CrossReference)cLocationAssignment_4.eContents().get(0);
-		private final RuleCall cLocationCraneParameterIDTerminalRuleCall_4_0_1 = (RuleCall)cLocationCraneParameterCrossReference_4_0.eContents().get(1);
+		private final RuleCall cLocationCraneParameterSTRINGTerminalRuleCall_4_0_1 = (RuleCall)cLocationCraneParameterCrossReference_4_0.eContents().get(1);
 		
 		//CraneDrop:
-		//    device=[Crane] 'drop' 'item' 'at' location=[CraneParameter]
+		//    device=[Crane|STRING] 'drop' 'item' 'at' location=[CraneParameter|STRING]
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//device=[Crane] 'drop' 'item' 'at' location=[CraneParameter]
+		//device=[Crane|STRING] 'drop' 'item' 'at' location=[CraneParameter|STRING]
 		public Group getGroup() { return cGroup; }
 		
-		//device=[Crane]
+		//device=[Crane|STRING]
 		public Assignment getDeviceAssignment_0() { return cDeviceAssignment_0; }
 		
-		//[Crane]
+		//[Crane|STRING]
 		public CrossReference getDeviceCraneCrossReference_0_0() { return cDeviceCraneCrossReference_0_0; }
 		
-		//ID
-		public RuleCall getDeviceCraneIDTerminalRuleCall_0_0_1() { return cDeviceCraneIDTerminalRuleCall_0_0_1; }
+		//STRING
+		public RuleCall getDeviceCraneSTRINGTerminalRuleCall_0_0_1() { return cDeviceCraneSTRINGTerminalRuleCall_0_0_1; }
 		
 		//'drop'
 		public Keyword getDropKeyword_1() { return cDropKeyword_1; }
@@ -1036,14 +1328,14 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 		//'at'
 		public Keyword getAtKeyword_3() { return cAtKeyword_3; }
 		
-		//location=[CraneParameter]
+		//location=[CraneParameter|STRING]
 		public Assignment getLocationAssignment_4() { return cLocationAssignment_4; }
 		
-		//[CraneParameter]
+		//[CraneParameter|STRING]
 		public CrossReference getLocationCraneParameterCrossReference_4_0() { return cLocationCraneParameterCrossReference_4_0; }
 		
-		//ID
-		public RuleCall getLocationCraneParameterIDTerminalRuleCall_4_0_1() { return cLocationCraneParameterIDTerminalRuleCall_4_0_1; }
+		//STRING
+		public RuleCall getLocationCraneParameterSTRINGTerminalRuleCall_4_0_1() { return cLocationCraneParameterSTRINGTerminalRuleCall_4_0_1; }
 	}
 	
 	public class COLORElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
@@ -1231,15 +1523,20 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 	private final COLORElements eCOLOR;
 	private final CONST_VARIABLESElements eCONST_VARIABLES;
 	private final LogicElements pLogic;
-	private final ConditionalElements pConditional;
+	private final DeviceConditionalElements pDeviceConditional;
+	private final VariableConditionalElements pVariableConditional;
+	private final NumberConditionalElements pNumberConditional;
 	private final BOOLEAN_OPERATORElements eBOOLEAN_OPERATOR;
 	private final LoopElements pLoop;
 	private final OperationElements pOperation;
 	private final StorageMoveEmptySlotElements pStorageMoveEmptySlot;
+	private final StorageMoveVariableSlotElements pStorageMoveVariableSlot;
 	private final StorageMoveSlotElements pStorageMoveSlot;
 	private final StorageMarkSlotElements pStorageMarkSlot;
 	private final TIMEElements eTIME;
 	private final CameraScanElements pCameraScan;
+	private final LoopVariableElements pLoopVariable;
+	private final GloablVariableElements pGloablVariable;
 	private final CranePickupElements pCranePickup;
 	private final CraneDropElements pCraneDrop;
 	
@@ -1268,15 +1565,20 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 		this.eCOLOR = new COLORElements();
 		this.eCONST_VARIABLES = new CONST_VARIABLESElements();
 		this.pLogic = new LogicElements();
-		this.pConditional = new ConditionalElements();
+		this.pDeviceConditional = new DeviceConditionalElements();
+		this.pVariableConditional = new VariableConditionalElements();
+		this.pNumberConditional = new NumberConditionalElements();
 		this.eBOOLEAN_OPERATOR = new BOOLEAN_OPERATORElements();
 		this.pLoop = new LoopElements();
 		this.pOperation = new OperationElements();
 		this.pStorageMoveEmptySlot = new StorageMoveEmptySlotElements();
+		this.pStorageMoveVariableSlot = new StorageMoveVariableSlotElements();
 		this.pStorageMoveSlot = new StorageMoveSlotElements();
 		this.pStorageMarkSlot = new StorageMarkSlotElements();
 		this.eTIME = new TIMEElements();
 		this.pCameraScan = new CameraScanElements();
+		this.pLoopVariable = new LoopVariableElements();
+		this.pGloablVariable = new GloablVariableElements();
 		this.pCranePickup = new CranePickupElements();
 		this.pCraneDrop = new CraneDropElements();
 	}
@@ -1466,7 +1768,7 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//Logic:
-	//    Conditional | Loop | Operation
+	//    DeviceConditional | NumberConditional | VariableConditional | Loop | Operation
 	//;
 	public LogicElements getLogicAccess() {
 		return pLogic;
@@ -1476,15 +1778,37 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 		return getLogicAccess().getRule();
 	}
 	
-	//Conditional:
-	//    "if" variable=ID ('of' source=[Device])? 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+	//DeviceConditional returns Conditional:
+	//    "if" source=[Device|STRING] 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
 	//;
-	public ConditionalElements getConditionalAccess() {
-		return pConditional;
+	public DeviceConditionalElements getDeviceConditionalAccess() {
+		return pDeviceConditional;
 	}
 	
-	public ParserRule getConditionalRule() {
-		return getConditionalAccess().getRule();
+	public ParserRule getDeviceConditionalRule() {
+		return getDeviceConditionalAccess().getRule();
+	}
+	
+	//VariableConditional returns Conditional:
+	//    "if" source=[Variable] 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+	//;
+	public VariableConditionalElements getVariableConditionalAccess() {
+		return pVariableConditional;
+	}
+	
+	public ParserRule getVariableConditionalRule() {
+		return getVariableConditionalAccess().getRule();
+	}
+	
+	//NumberConditional returns Conditional:
+	//    'if' source_int=INT 'is' (operator=BOOLEAN_OPERATOR)? 'equal' 'to' ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+	//;
+	public NumberConditionalElements getNumberConditionalAccess() {
+		return pNumberConditional;
+	}
+	
+	public ParserRule getNumberConditionalRule() {
+		return getNumberConditionalAccess().getRule();
 	}
 	
 	//enum BOOLEAN_OPERATOR:
@@ -1499,7 +1823,7 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//Loop:
-	//    'for' 'each' name=ID 'in' list=ID ('of' source=[Device])? 'that' 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+	//    'for' variable=LoopVariable 'in' list=ID ('of' source=[Device|STRING])? 'that' 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
 	//;
 	public LoopElements getLoopAccess() {
 		return pLoop;
@@ -1510,7 +1834,7 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//Operation:
-	//    StorageMoveEmptySlot | StorageMoveSlot | StorageMarkSlot | CameraScan | CranePickup | CraneDrop
+	//    StorageMoveEmptySlot | StorageMoveSlot | StorageMarkSlot | StorageMoveVariableSlot | CameraScan | CranePickup | CraneDrop
 	//;
 	public OperationElements getOperationAccess() {
 		return pOperation;
@@ -1521,7 +1845,7 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//StorageMoveEmptySlot:
-	//    device=[Storage] 'move' 'empty' 'slot' 'to' destination=[StoragePositionParameter]
+	//    device=[Storage|STRING] 'move' 'empty' 'slot' 'to' destination=[StoragePositionParameter|STRING]
 	//;
 	public StorageMoveEmptySlotElements getStorageMoveEmptySlotAccess() {
 		return pStorageMoveEmptySlot;
@@ -1531,8 +1855,19 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 		return getStorageMoveEmptySlotAccess().getRule();
 	}
 	
+	//StorageMoveVariableSlot:
+	//    device=[Storage|STRING] 'move' 'slot' 'of' position=[Variable] 'to' destination=[StoragePositionParameter|STRING]
+	//;
+	public StorageMoveVariableSlotElements getStorageMoveVariableSlotAccess() {
+		return pStorageMoveVariableSlot;
+	}
+	
+	public ParserRule getStorageMoveVariableSlotRule() {
+		return getStorageMoveVariableSlotAccess().getRule();
+	}
+	
 	//StorageMoveSlot:
-	//    device=[Storage] 'move' 'slot' 'at' position=[StoragePositionParameter] 'to' destination=[StoragePositionParameter]
+	//    device=[Storage|STRING] 'move' 'slot' 'at' position=[StoragePositionParameter|STRING] 'to' destination=[StoragePositionParameter|STRING]
 	//;
 	public StorageMoveSlotElements getStorageMoveSlotAccess() {
 		return pStorageMoveSlot;
@@ -1543,7 +1878,7 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//StorageMarkSlot:
-	//    device=[Storage] 'mark' 'slot' 'at' position=[StoragePositionParameter] 'as' ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) ('in' quantity=INT measure=TIME)?
+	//    device=[Storage|STRING] 'mark' 'slot' 'at' position=[StoragePositionParameter|STRING] 'as' ((comparison_variable=[Variable])|(comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) ('in' quantity=INT measure=TIME)?
 	//;
 	public StorageMarkSlotElements getStorageMarkSlotAccess() {
 		return pStorageMarkSlot;
@@ -1565,7 +1900,7 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//CameraScan:
-	//    device=[Camera] 'scan' 'color' 'into' name=ID
+	//    device=[Camera|STRING] 'scan' 'color' variable=GloablVariable
 	//;
 	public CameraScanElements getCameraScanAccess() {
 		return pCameraScan;
@@ -1575,8 +1910,30 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 		return getCameraScanAccess().getRule();
 	}
 	
+	//LoopVariable returns Variable:
+	//    'each' name=ID
+	//;
+	public LoopVariableElements getLoopVariableAccess() {
+		return pLoopVariable;
+	}
+	
+	public ParserRule getLoopVariableRule() {
+		return getLoopVariableAccess().getRule();
+	}
+	
+	//GloablVariable returns Variable:
+	//    'into' name=ID
+	//;
+	public GloablVariableElements getGloablVariableAccess() {
+		return pGloablVariable;
+	}
+	
+	public ParserRule getGloablVariableRule() {
+		return getGloablVariableAccess().getRule();
+	}
+	
 	//CranePickup:
-	//    device=[Crane] 'pickup' 'item' 'at' location=[CraneParameter]
+	//    device=[Crane|STRING] 'pickup' 'item' 'at' location=[CraneParameter|STRING]
 	//;
 	public CranePickupElements getCranePickupAccess() {
 		return pCranePickup;
@@ -1587,7 +1944,7 @@ public class FactoryLogicLangGrammarAccess extends AbstractElementFinder.Abstrac
 	}
 	
 	//CraneDrop:
-	//    device=[Crane] 'drop' 'item' 'at' location=[CraneParameter]
+	//    device=[Crane|STRING] 'drop' 'item' 'at' location=[CraneParameter|STRING]
 	//;
 	public CraneDropElements getCraneDropAccess() {
 		return pCraneDrop;

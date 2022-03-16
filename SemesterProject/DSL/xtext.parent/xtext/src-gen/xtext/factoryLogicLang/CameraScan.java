@@ -14,7 +14,7 @@ package xtext.factoryLogicLang;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLogicLang.CameraScan#getDevice <em>Device</em>}</li>
- *   <li>{@link xtext.factoryLogicLang.CameraScan#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.CameraScan#getVariable <em>Variable</em>}</li>
  * </ul>
  *
  * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getCameraScan()
@@ -46,25 +46,25 @@ public interface CameraScan extends Operation
   void setDevice(Camera value);
 
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Variable</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getCameraScan_Name()
-   * @model
+   * @return the value of the '<em>Variable</em>' containment reference.
+   * @see #setVariable(Variable)
+   * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getCameraScan_Variable()
+   * @model containment="true"
    * @generated
    */
-  String getName();
+  Variable getVariable();
 
   /**
-   * Sets the value of the '{@link xtext.factoryLogicLang.CameraScan#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link xtext.factoryLogicLang.CameraScan#getVariable <em>Variable</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Variable</em>' containment reference.
+   * @see #getVariable()
    * @generated
    */
-  void setName(String value);
+  void setVariable(Variable value);
 
 } // CameraScan

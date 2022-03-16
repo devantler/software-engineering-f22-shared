@@ -204,6 +204,16 @@ public class FactoryLogicLangSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case FactoryLogicLangPackage.STORAGE_MOVE_VARIABLE_SLOT:
+      {
+        StorageMoveVariableSlot storageMoveVariableSlot = (StorageMoveVariableSlot)theEObject;
+        T result = caseStorageMoveVariableSlot(storageMoveVariableSlot);
+        if (result == null) result = caseOperation(storageMoveVariableSlot);
+        if (result == null) result = caseLogic(storageMoveVariableSlot);
+        if (result == null) result = caseDeclaration(storageMoveVariableSlot);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case FactoryLogicLangPackage.STORAGE_MOVE_SLOT:
       {
         StorageMoveSlot storageMoveSlot = (StorageMoveSlot)theEObject;
@@ -231,6 +241,13 @@ public class FactoryLogicLangSwitch<T> extends Switch<T>
         if (result == null) result = caseOperation(cameraScan);
         if (result == null) result = caseLogic(cameraScan);
         if (result == null) result = caseDeclaration(cameraScan);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case FactoryLogicLangPackage.VARIABLE:
+      {
+        Variable variable = (Variable)theEObject;
+        T result = caseVariable(variable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -515,6 +532,22 @@ public class FactoryLogicLangSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Storage Move Variable Slot</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Storage Move Variable Slot</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStorageMoveVariableSlot(StorageMoveVariableSlot object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Storage Move Slot</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -558,6 +591,22 @@ public class FactoryLogicLangSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCameraScan(CameraScan object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVariable(Variable object)
   {
     return null;
   }

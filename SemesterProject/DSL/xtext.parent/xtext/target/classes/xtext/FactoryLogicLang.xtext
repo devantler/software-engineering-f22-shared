@@ -63,12 +63,19 @@ enum CONST_VARIABLES:
 ;
 
 Logic:
-	Conditional | Loop | Operation
+	DeviceConditional | NumberConditional | VariableConditional | Loop | Operation
 ;
 
+DeviceConditional returns Conditional:
+	"if" source=[Device|STRING] 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+;
 
-Conditional:
-	"if" variable=ID ('of' source=[Device])? 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+VariableConditional returns Conditional:
+	"if" source=[Variable] 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+;
+
+NumberConditional returns Conditional:
+	'if' source_int=INT 'is' (operator=BOOLEAN_OPERATOR)? 'equal' 'to' ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
 ;
 
 enum BOOLEAN_OPERATOR:
@@ -76,23 +83,27 @@ enum BOOLEAN_OPERATOR:
 ;
 
 Loop:
-	'for' 'each' name=ID 'in' list=ID ('of' source=[Device])? 'that' 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+	'for' variable=LoopVariable 'in' list=ID ('of' source=[Device|STRING])? 'that' 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
 ;
 
 Operation:
-	StorageMoveEmptySlot | StorageMoveSlot | StorageMarkSlot | CameraScan | CranePickup | CraneDrop
+	StorageMoveEmptySlot | StorageMoveSlot | StorageMarkSlot | StorageMoveVariableSlot | CameraScan | CranePickup | CraneDrop
 ;
 
 StorageMoveEmptySlot:
-	device=[Storage] 'move' 'empty' 'slot' 'to' destination=[StoragePositionParameter]
+	device=[Storage|STRING] 'move' 'empty' 'slot' 'to' destination=[StoragePositionParameter|STRING]
+;
+
+StorageMoveVariableSlot:
+	device=[Storage|STRING] 'move' 'slot' 'of' position=[Variable] 'to' destination=[StoragePositionParameter|STRING] 
 ;
 
 StorageMoveSlot:
-	device=[Storage] 'move' 'slot' 'at' position=[StoragePositionParameter] 'to' destination=[StoragePositionParameter] 
+	device=[Storage|STRING] 'move' 'slot' 'at' position=[StoragePositionParameter|STRING] 'to' destination=[StoragePositionParameter|STRING] 
 ;
 
 StorageMarkSlot:
-	device=[Storage] 'mark' 'slot' 'at' position=[StoragePositionParameter] 'as' ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) ('in' quantity=INT measure=TIME)?
+	device=[Storage|STRING] 'mark' 'slot' 'at' position=[StoragePositionParameter|STRING] 'as' ((comparison_variable=[Variable])|(comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) ('in' quantity=INT measure=TIME)?
 ;
 
 enum TIME:
@@ -100,13 +111,20 @@ enum TIME:
 ;
 
 CameraScan:
-	device=[Camera] 'scan' 'color' 'into' name=ID
+	device=[Camera|STRING] 'scan' 'color' variable=GloablVariable
+;
 
+LoopVariable returns Variable:
+	'each' name=ID
+;
+
+GloablVariable returns Variable:
+	'into' name=ID
 ;
 CranePickup:
-	device=[Crane] 'pickup' 'item' 'at' location=[CraneParameter]
+	device=[Crane|STRING] 'pickup' 'item' 'at' location=[CraneParameter|STRING]
 ;
 
 CraneDrop:
-	device=[Crane] 'drop' 'item' 'at' location=[CraneParameter]
+	device=[Crane|STRING] 'drop' 'item' 'at' location=[CraneParameter|STRING]
 ;

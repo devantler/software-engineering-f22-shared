@@ -59,16 +59,16 @@
     </genClasses>
     <genClasses ecoreClass="FactoryLogicLang.ecore#//Logic"/>
     <genClasses ecoreClass="FactoryLogicLang.ecore#//Conditional">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//Conditional/variable"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//Conditional/source"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//Conditional/operator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//Conditional/comparison_const"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//Conditional/comparison_color"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//Conditional/comparison_int"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//Conditional/logics"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//Conditional/source_int"/>
     </genClasses>
     <genClasses ecoreClass="FactoryLogicLang.ecore#//Loop">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//Loop/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//Loop/variable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//Loop/list"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//Loop/source"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//Loop/operator"/>
@@ -82,6 +82,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//StorageMoveEmptySlot/device"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//StorageMoveEmptySlot/destination"/>
     </genClasses>
+    <genClasses ecoreClass="FactoryLogicLang.ecore#//StorageMoveVariableSlot">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//StorageMoveVariableSlot/device"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//StorageMoveVariableSlot/position"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//StorageMoveVariableSlot/destination"/>
+    </genClasses>
     <genClasses ecoreClass="FactoryLogicLang.ecore#//StorageMoveSlot">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//StorageMoveSlot/device"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//StorageMoveSlot/position"/>
@@ -90,6 +95,7 @@
     <genClasses ecoreClass="FactoryLogicLang.ecore#//StorageMarkSlot">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//StorageMarkSlot/device"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//StorageMarkSlot/position"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//StorageMarkSlot/comparison_variable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//StorageMarkSlot/comparison_const"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//StorageMarkSlot/comparison_color"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//StorageMarkSlot/comparison_int"/>
@@ -98,7 +104,10 @@
     </genClasses>
     <genClasses ecoreClass="FactoryLogicLang.ecore#//CameraScan">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//CameraScan/device"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//CameraScan/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//CameraScan/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="FactoryLogicLang.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLogicLang.ecore#//Variable/name"/>
     </genClasses>
     <genClasses ecoreClass="FactoryLogicLang.ecore#//CranePickup">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLogicLang.ecore#//CranePickup/device"/>

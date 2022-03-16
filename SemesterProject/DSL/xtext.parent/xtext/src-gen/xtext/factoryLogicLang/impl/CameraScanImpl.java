@@ -4,6 +4,7 @@
 package xtext.factoryLogicLang.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import xtext.factoryLogicLang.Camera;
 import xtext.factoryLogicLang.CameraScan;
 import xtext.factoryLogicLang.FactoryLogicLangPackage;
+import xtext.factoryLogicLang.Variable;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +25,7 @@ import xtext.factoryLogicLang.FactoryLogicLangPackage;
  * </p>
  * <ul>
  *   <li>{@link xtext.factoryLogicLang.impl.CameraScanImpl#getDevice <em>Device</em>}</li>
- *   <li>{@link xtext.factoryLogicLang.impl.CameraScanImpl#getName <em>Name</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.CameraScanImpl#getVariable <em>Variable</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,24 +43,14 @@ public class CameraScanImpl extends OperationImpl implements CameraScan
   protected Camera device;
 
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getVariable()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected Variable variable;
 
   /**
    * <!-- begin-user-doc -->
@@ -132,9 +124,26 @@ public class CameraScanImpl extends OperationImpl implements CameraScan
    * @generated
    */
   @Override
-  public String getName()
+  public Variable getVariable()
   {
-    return name;
+    return variable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetVariable(Variable newVariable, NotificationChain msgs)
+  {
+    Variable oldVariable = variable;
+    variable = newVariable;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.CAMERA_SCAN__VARIABLE, oldVariable, newVariable);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -143,12 +152,36 @@ public class CameraScanImpl extends OperationImpl implements CameraScan
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setVariable(Variable newVariable)
   {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.CAMERA_SCAN__NAME, oldName, name));
+    if (newVariable != variable)
+    {
+      NotificationChain msgs = null;
+      if (variable != null)
+        msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FactoryLogicLangPackage.CAMERA_SCAN__VARIABLE, null, msgs);
+      if (newVariable != null)
+        msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FactoryLogicLangPackage.CAMERA_SCAN__VARIABLE, null, msgs);
+      msgs = basicSetVariable(newVariable, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.CAMERA_SCAN__VARIABLE, newVariable, newVariable));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case FactoryLogicLangPackage.CAMERA_SCAN__VARIABLE:
+        return basicSetVariable(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -164,8 +197,8 @@ public class CameraScanImpl extends OperationImpl implements CameraScan
       case FactoryLogicLangPackage.CAMERA_SCAN__DEVICE:
         if (resolve) return getDevice();
         return basicGetDevice();
-      case FactoryLogicLangPackage.CAMERA_SCAN__NAME:
-        return getName();
+      case FactoryLogicLangPackage.CAMERA_SCAN__VARIABLE:
+        return getVariable();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -183,8 +216,8 @@ public class CameraScanImpl extends OperationImpl implements CameraScan
       case FactoryLogicLangPackage.CAMERA_SCAN__DEVICE:
         setDevice((Camera)newValue);
         return;
-      case FactoryLogicLangPackage.CAMERA_SCAN__NAME:
-        setName((String)newValue);
+      case FactoryLogicLangPackage.CAMERA_SCAN__VARIABLE:
+        setVariable((Variable)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -203,8 +236,8 @@ public class CameraScanImpl extends OperationImpl implements CameraScan
       case FactoryLogicLangPackage.CAMERA_SCAN__DEVICE:
         setDevice((Camera)null);
         return;
-      case FactoryLogicLangPackage.CAMERA_SCAN__NAME:
-        setName(NAME_EDEFAULT);
+      case FactoryLogicLangPackage.CAMERA_SCAN__VARIABLE:
+        setVariable((Variable)null);
         return;
     }
     super.eUnset(featureID);
@@ -222,27 +255,10 @@ public class CameraScanImpl extends OperationImpl implements CameraScan
     {
       case FactoryLogicLangPackage.CAMERA_SCAN__DEVICE:
         return device != null;
-      case FactoryLogicLangPackage.CAMERA_SCAN__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case FactoryLogicLangPackage.CAMERA_SCAN__VARIABLE:
+        return variable != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //CameraScanImpl

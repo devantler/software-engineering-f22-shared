@@ -168,6 +168,15 @@ public interface FactoryLogicLangFactory extends EFactory
   StorageMoveEmptySlot createStorageMoveEmptySlot();
 
   /**
+   * Returns a new object of class '<em>Storage Move Variable Slot</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Storage Move Variable Slot</em>'.
+   * @generated
+   */
+  StorageMoveVariableSlot createStorageMoveVariableSlot();
+
+  /**
    * Returns a new object of class '<em>Storage Move Slot</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -193,6 +202,15 @@ public interface FactoryLogicLangFactory extends EFactory
    * @generated
    */
   CameraScan createCameraScan();
+
+  /**
+   * Returns a new object of class '<em>Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variable</em>'.
+   * @generated
+   */
+  Variable createVariable();
 
   /**
    * Returns a new object of class '<em>Crane Pickup</em>'.

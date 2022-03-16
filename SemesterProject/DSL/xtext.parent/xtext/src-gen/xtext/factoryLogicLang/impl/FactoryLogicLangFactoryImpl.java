@@ -82,9 +82,11 @@ public class FactoryLogicLangFactoryImpl extends EFactoryImpl implements Factory
       case FactoryLogicLangPackage.LOOP: return createLoop();
       case FactoryLogicLangPackage.OPERATION: return createOperation();
       case FactoryLogicLangPackage.STORAGE_MOVE_EMPTY_SLOT: return createStorageMoveEmptySlot();
+      case FactoryLogicLangPackage.STORAGE_MOVE_VARIABLE_SLOT: return createStorageMoveVariableSlot();
       case FactoryLogicLangPackage.STORAGE_MOVE_SLOT: return createStorageMoveSlot();
       case FactoryLogicLangPackage.STORAGE_MARK_SLOT: return createStorageMarkSlot();
       case FactoryLogicLangPackage.CAMERA_SCAN: return createCameraScan();
+      case FactoryLogicLangPackage.VARIABLE: return createVariable();
       case FactoryLogicLangPackage.CRANE_PICKUP: return createCranePickup();
       case FactoryLogicLangPackage.CRANE_DROP: return createCraneDrop();
       default:
@@ -336,6 +338,18 @@ public class FactoryLogicLangFactoryImpl extends EFactoryImpl implements Factory
    * @generated
    */
   @Override
+  public StorageMoveVariableSlot createStorageMoveVariableSlot()
+  {
+    StorageMoveVariableSlotImpl storageMoveVariableSlot = new StorageMoveVariableSlotImpl();
+    return storageMoveVariableSlot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public StorageMoveSlot createStorageMoveSlot()
   {
     StorageMoveSlotImpl storageMoveSlot = new StorageMoveSlotImpl();
@@ -364,6 +378,18 @@ public class FactoryLogicLangFactoryImpl extends EFactoryImpl implements Factory
   {
     CameraScanImpl cameraScan = new CameraScanImpl();
     return cameraScan;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Variable createVariable()
+  {
+    VariableImpl variable = new VariableImpl();
+    return variable;
   }
 
   /**

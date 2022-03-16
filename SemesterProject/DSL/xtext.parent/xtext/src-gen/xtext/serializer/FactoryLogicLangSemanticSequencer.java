@@ -29,8 +29,10 @@ import xtext.factoryLogicLang.Storage;
 import xtext.factoryLogicLang.StorageMarkSlot;
 import xtext.factoryLogicLang.StorageMoveEmptySlot;
 import xtext.factoryLogicLang.StorageMoveSlot;
+import xtext.factoryLogicLang.StorageMoveVariableSlot;
 import xtext.factoryLogicLang.StoragePositionParameter;
 import xtext.factoryLogicLang.StorageSlotParameter;
+import xtext.factoryLogicLang.Variable;
 import xtext.services.FactoryLogicLangGrammarAccess;
 
 @SuppressWarnings("all")
@@ -57,8 +59,24 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 				sequence_CameraScan(context, (CameraScan) semanticObject); 
 				return; 
 			case FactoryLogicLangPackage.CONDITIONAL:
-				sequence_Conditional(context, (Conditional) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getDeviceConditionalRule()) {
+					sequence_DeviceConditional(context, (Conditional) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getDeclarationRule()
+						|| rule == grammarAccess.getLogicRule()) {
+					sequence_DeviceConditional_NumberConditional_VariableConditional(context, (Conditional) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getNumberConditionalRule()) {
+					sequence_NumberConditional(context, (Conditional) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getVariableConditionalRule()) {
+					sequence_VariableConditional(context, (Conditional) semanticObject); 
+					return; 
+				}
+				else break;
 			case FactoryLogicLangPackage.CRANE:
 				sequence_Crane(context, (Crane) semanticObject); 
 				return; 
@@ -89,12 +107,25 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 			case FactoryLogicLangPackage.STORAGE_MOVE_SLOT:
 				sequence_StorageMoveSlot(context, (StorageMoveSlot) semanticObject); 
 				return; 
+			case FactoryLogicLangPackage.STORAGE_MOVE_VARIABLE_SLOT:
+				sequence_StorageMoveVariableSlot(context, (StorageMoveVariableSlot) semanticObject); 
+				return; 
 			case FactoryLogicLangPackage.STORAGE_POSITION_PARAMETER:
 				sequence_StoragePositionParameter(context, (StoragePositionParameter) semanticObject); 
 				return; 
 			case FactoryLogicLangPackage.STORAGE_SLOT_PARAMETER:
 				sequence_StorageSlotParameter(context, (StorageSlotParameter) semanticObject); 
 				return; 
+			case FactoryLogicLangPackage.VARIABLE:
+				if (rule == grammarAccess.getGloablVariableRule()) {
+					sequence_GloablVariable(context, (Variable) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getLoopVariableRule()) {
+					sequence_LoopVariable(context, (Variable) semanticObject); 
+					return; 
+				}
+				else break;
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -126,18 +157,18 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 	 *     CameraScan returns CameraScan
 	 *
 	 * Constraint:
-	 *     (device=[Camera|ID] name=ID)
+	 *     (device=[Camera|STRING] variable=GloablVariable)
 	 */
 	protected void sequence_CameraScan(ISerializationContext context, CameraScan semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, FactoryLogicLangPackage.Literals.CAMERA_SCAN__DEVICE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.CAMERA_SCAN__DEVICE));
-			if (transientValues.isValueTransient(semanticObject, FactoryLogicLangPackage.Literals.CAMERA_SCAN__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.CAMERA_SCAN__NAME));
+			if (transientValues.isValueTransient(semanticObject, FactoryLogicLangPackage.Literals.CAMERA_SCAN__VARIABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.CAMERA_SCAN__VARIABLE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCameraScanAccess().getDeviceCameraIDTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.CAMERA_SCAN__DEVICE, false));
-		feeder.accept(grammarAccess.getCameraScanAccess().getNameIDTerminalRuleCall_4_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getCameraScanAccess().getDeviceCameraSTRINGTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.CAMERA_SCAN__DEVICE, false));
+		feeder.accept(grammarAccess.getCameraScanAccess().getVariableGloablVariableParserRuleCall_3_0(), semanticObject.getVariable());
 		feeder.finish();
 	}
 	
@@ -158,33 +189,13 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 	
 	/**
 	 * Contexts:
-	 *     Declaration returns Conditional
-	 *     Logic returns Conditional
-	 *     Conditional returns Conditional
-	 *
-	 * Constraint:
-	 *     (
-	 *         variable=ID 
-	 *         source=[Device|ID]? 
-	 *         operator=BOOLEAN_OPERATOR? 
-	 *         (comparison_const=CONST_VARIABLES | comparison_color=COLOR | comparison_int=INT) 
-	 *         logics+=Logic+
-	 *     )
-	 */
-	protected void sequence_Conditional(ISerializationContext context, Conditional semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Declaration returns CraneDrop
 	 *     Logic returns CraneDrop
 	 *     Operation returns CraneDrop
 	 *     CraneDrop returns CraneDrop
 	 *
 	 * Constraint:
-	 *     (device=[Crane|ID] location=[CraneParameter|ID])
+	 *     (device=[Crane|STRING] location=[CraneParameter|STRING])
 	 */
 	protected void sequence_CraneDrop(ISerializationContext context, CraneDrop semanticObject) {
 		if (errorAcceptor != null) {
@@ -194,8 +205,8 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.CRANE_DROP__LOCATION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCraneDropAccess().getDeviceCraneIDTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.CRANE_DROP__DEVICE, false));
-		feeder.accept(grammarAccess.getCraneDropAccess().getLocationCraneParameterIDTerminalRuleCall_4_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.CRANE_DROP__LOCATION, false));
+		feeder.accept(grammarAccess.getCraneDropAccess().getDeviceCraneSTRINGTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.CRANE_DROP__DEVICE, false));
+		feeder.accept(grammarAccess.getCraneDropAccess().getLocationCraneParameterSTRINGTerminalRuleCall_4_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.CRANE_DROP__LOCATION, false));
 		feeder.finish();
 	}
 	
@@ -229,7 +240,7 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 	 *     CranePickup returns CranePickup
 	 *
 	 * Constraint:
-	 *     (device=[Crane|ID] location=[CraneParameter|ID])
+	 *     (device=[Crane|STRING] location=[CraneParameter|STRING])
 	 */
 	protected void sequence_CranePickup(ISerializationContext context, CranePickup semanticObject) {
 		if (errorAcceptor != null) {
@@ -239,8 +250,8 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.CRANE_PICKUP__LOCATION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCranePickupAccess().getDeviceCraneIDTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.CRANE_PICKUP__DEVICE, false));
-		feeder.accept(grammarAccess.getCranePickupAccess().getLocationCraneParameterIDTerminalRuleCall_4_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.CRANE_PICKUP__LOCATION, false));
+		feeder.accept(grammarAccess.getCranePickupAccess().getDeviceCraneSTRINGTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.CRANE_PICKUP__DEVICE, false));
+		feeder.accept(grammarAccess.getCranePickupAccess().getLocationCraneParameterSTRINGTerminalRuleCall_4_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.CRANE_PICKUP__LOCATION, false));
 		feeder.finish();
 	}
 	
@@ -261,15 +272,90 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 	
 	/**
 	 * Contexts:
+	 *     DeviceConditional returns Conditional
+	 *
+	 * Constraint:
+	 *     (
+	 *         source=[Device|STRING] 
+	 *         operator=BOOLEAN_OPERATOR? 
+	 *         (comparison_const=CONST_VARIABLES | comparison_color=COLOR | comparison_int=INT) 
+	 *         logics+=Logic+
+	 *     )
+	 */
+	protected void sequence_DeviceConditional(ISerializationContext context, Conditional semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Declaration returns Conditional
+	 *     Logic returns Conditional
+	 *
+	 * Constraint:
+	 *     (
+	 *         (
+	 *             source=[Device|STRING] 
+	 *             operator=BOOLEAN_OPERATOR? 
+	 *             (comparison_const=CONST_VARIABLES | comparison_color=COLOR | comparison_int=INT) 
+	 *             logics+=Logic+
+	 *         ) | 
+	 *         (source=[Variable|ID] operator=BOOLEAN_OPERATOR? (comparison_const=CONST_VARIABLES | comparison_color=COLOR | comparison_int=INT) logics+=Logic+) | 
+	 *         (source_int=INT operator=BOOLEAN_OPERATOR? (comparison_const=CONST_VARIABLES | comparison_color=COLOR | comparison_int=INT) logics+=Logic+)
+	 *     )
+	 */
+	protected void sequence_DeviceConditional_NumberConditional_VariableConditional(ISerializationContext context, Conditional semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     GloablVariable returns Variable
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_GloablVariable(ISerializationContext context, Variable semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FactoryLogicLangPackage.Literals.VARIABLE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.VARIABLE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getGloablVariableAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LoopVariable returns Variable
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_LoopVariable(ISerializationContext context, Variable semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FactoryLogicLangPackage.Literals.VARIABLE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.VARIABLE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLoopVariableAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Declaration returns Loop
 	 *     Logic returns Loop
 	 *     Loop returns Loop
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=ID 
+	 *         variable=LoopVariable 
 	 *         list=ID 
-	 *         source=[Device|ID]? 
+	 *         source=[Device|STRING]? 
 	 *         operator=BOOLEAN_OPERATOR? 
 	 *         (comparison_const=CONST_VARIABLES | comparison_color=COLOR | comparison_int=INT) 
 	 *         logics+=Logic+
@@ -294,6 +380,18 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 	
 	/**
 	 * Contexts:
+	 *     NumberConditional returns Conditional
+	 *
+	 * Constraint:
+	 *     (source_int=INT operator=BOOLEAN_OPERATOR? (comparison_const=CONST_VARIABLES | comparison_color=COLOR | comparison_int=INT) logics+=Logic+)
+	 */
+	protected void sequence_NumberConditional(ISerializationContext context, Conditional semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Declaration returns StorageMarkSlot
 	 *     Logic returns StorageMarkSlot
 	 *     Operation returns StorageMarkSlot
@@ -301,9 +399,9 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 	 *
 	 * Constraint:
 	 *     (
-	 *         device=[Storage|ID] 
-	 *         position=[StoragePositionParameter|ID] 
-	 *         (comparison_const=CONST_VARIABLES | comparison_color=COLOR | comparison_int=INT) 
+	 *         device=[Storage|STRING] 
+	 *         position=[StoragePositionParameter|STRING] 
+	 *         (comparison_variable=[Variable|ID] | comparison_const=CONST_VARIABLES | comparison_color=COLOR | comparison_int=INT) 
 	 *         (quantity=INT measure=TIME)?
 	 *     )
 	 */
@@ -320,7 +418,7 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 	 *     StorageMoveEmptySlot returns StorageMoveEmptySlot
 	 *
 	 * Constraint:
-	 *     (device=[Storage|ID] destination=[StoragePositionParameter|ID])
+	 *     (device=[Storage|STRING] destination=[StoragePositionParameter|STRING])
 	 */
 	protected void sequence_StorageMoveEmptySlot(ISerializationContext context, StorageMoveEmptySlot semanticObject) {
 		if (errorAcceptor != null) {
@@ -330,8 +428,8 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.STORAGE_MOVE_EMPTY_SLOT__DESTINATION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getStorageMoveEmptySlotAccess().getDeviceStorageIDTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_EMPTY_SLOT__DEVICE, false));
-		feeder.accept(grammarAccess.getStorageMoveEmptySlotAccess().getDestinationStoragePositionParameterIDTerminalRuleCall_5_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_EMPTY_SLOT__DESTINATION, false));
+		feeder.accept(grammarAccess.getStorageMoveEmptySlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_EMPTY_SLOT__DEVICE, false));
+		feeder.accept(grammarAccess.getStorageMoveEmptySlotAccess().getDestinationStoragePositionParameterSTRINGTerminalRuleCall_5_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_EMPTY_SLOT__DESTINATION, false));
 		feeder.finish();
 	}
 	
@@ -344,7 +442,7 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 	 *     StorageMoveSlot returns StorageMoveSlot
 	 *
 	 * Constraint:
-	 *     (device=[Storage|ID] position=[StoragePositionParameter|ID] destination=[StoragePositionParameter|ID])
+	 *     (device=[Storage|STRING] position=[StoragePositionParameter|STRING] destination=[StoragePositionParameter|STRING])
 	 */
 	protected void sequence_StorageMoveSlot(ISerializationContext context, StorageMoveSlot semanticObject) {
 		if (errorAcceptor != null) {
@@ -356,9 +454,36 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.STORAGE_MOVE_SLOT__DESTINATION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getStorageMoveSlotAccess().getDeviceStorageIDTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_SLOT__DEVICE, false));
-		feeder.accept(grammarAccess.getStorageMoveSlotAccess().getPositionStoragePositionParameterIDTerminalRuleCall_4_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_SLOT__POSITION, false));
-		feeder.accept(grammarAccess.getStorageMoveSlotAccess().getDestinationStoragePositionParameterIDTerminalRuleCall_6_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_SLOT__DESTINATION, false));
+		feeder.accept(grammarAccess.getStorageMoveSlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_SLOT__DEVICE, false));
+		feeder.accept(grammarAccess.getStorageMoveSlotAccess().getPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_SLOT__POSITION, false));
+		feeder.accept(grammarAccess.getStorageMoveSlotAccess().getDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_SLOT__DESTINATION, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Declaration returns StorageMoveVariableSlot
+	 *     Logic returns StorageMoveVariableSlot
+	 *     Operation returns StorageMoveVariableSlot
+	 *     StorageMoveVariableSlot returns StorageMoveVariableSlot
+	 *
+	 * Constraint:
+	 *     (device=[Storage|STRING] position=[Variable|ID] destination=[StoragePositionParameter|STRING])
+	 */
+	protected void sequence_StorageMoveVariableSlot(ISerializationContext context, StorageMoveVariableSlot semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, FactoryLogicLangPackage.Literals.STORAGE_MOVE_VARIABLE_SLOT__DEVICE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.STORAGE_MOVE_VARIABLE_SLOT__DEVICE));
+			if (transientValues.isValueTransient(semanticObject, FactoryLogicLangPackage.Literals.STORAGE_MOVE_VARIABLE_SLOT__POSITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.STORAGE_MOVE_VARIABLE_SLOT__POSITION));
+			if (transientValues.isValueTransient(semanticObject, FactoryLogicLangPackage.Literals.STORAGE_MOVE_VARIABLE_SLOT__DESTINATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, FactoryLogicLangPackage.Literals.STORAGE_MOVE_VARIABLE_SLOT__DESTINATION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getStorageMoveVariableSlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_VARIABLE_SLOT__DEVICE, false));
+		feeder.accept(grammarAccess.getStorageMoveVariableSlotAccess().getPositionVariableIDTerminalRuleCall_4_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_VARIABLE_SLOT__POSITION, false));
+		feeder.accept(grammarAccess.getStorageMoveVariableSlotAccess().getDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1(), semanticObject.eGet(FactoryLogicLangPackage.Literals.STORAGE_MOVE_VARIABLE_SLOT__DESTINATION, false));
 		feeder.finish();
 	}
 	
@@ -414,6 +539,18 @@ public class FactoryLogicLangSemanticSequencer extends AbstractDelegatingSemanti
 	 *     (name=STRING parameters+=StorageParameter+)
 	 */
 	protected void sequence_Storage(ISerializationContext context, Storage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     VariableConditional returns Conditional
+	 *
+	 * Constraint:
+	 *     (source=[Variable|ID] operator=BOOLEAN_OPERATOR? (comparison_const=CONST_VARIABLES | comparison_color=COLOR | comparison_int=INT) logics+=Logic+)
+	 */
+	protected void sequence_VariableConditional(ISerializationContext context, Conditional semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

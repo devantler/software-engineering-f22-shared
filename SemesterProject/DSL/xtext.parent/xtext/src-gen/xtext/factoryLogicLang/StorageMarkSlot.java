@@ -15,6 +15,7 @@ package xtext.factoryLogicLang;
  * <ul>
  *   <li>{@link xtext.factoryLogicLang.StorageMarkSlot#getDevice <em>Device</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.StorageMarkSlot#getPosition <em>Position</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.StorageMarkSlot#getComparison_variable <em>Comparison variable</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.StorageMarkSlot#getComparison_const <em>Comparison const</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.StorageMarkSlot#getComparison_color <em>Comparison color</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.StorageMarkSlot#getComparison_int <em>Comparison int</em>}</li>
@@ -71,6 +72,28 @@ public interface StorageMarkSlot extends Operation
    * @generated
    */
   void setPosition(StoragePositionParameter value);
+
+  /**
+   * Returns the value of the '<em><b>Comparison variable</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Comparison variable</em>' reference.
+   * @see #setComparison_variable(Variable)
+   * @see xtext.factoryLogicLang.FactoryLogicLangPackage#getStorageMarkSlot_Comparison_variable()
+   * @model
+   * @generated
+   */
+  Variable getComparison_variable();
+
+  /**
+   * Sets the value of the '{@link xtext.factoryLogicLang.StorageMarkSlot#getComparison_variable <em>Comparison variable</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Comparison variable</em>' reference.
+   * @see #getComparison_variable()
+   * @generated
+   */
+  void setComparison_variable(Variable value);
 
   /**
    * Returns the value of the '<em><b>Comparison const</b></em>' attribute.

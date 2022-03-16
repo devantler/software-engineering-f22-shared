@@ -12,59 +12,60 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalFactoryLogicLangLexer extends Lexer {
-    public static final int Each=25;
-    public static final int RULE_BEGIN=47;
+    public static final int Each=26;
+    public static final int RULE_BEGIN=48;
     public static final int Crane=17;
     public static final int Minutes=8;
-    public static final int Full=26;
-    public static final int Item=29;
+    public static final int Full=27;
+    public static final int Item=30;
     public static final int LessThan=5;
     public static final int GreaterThan=4;
-    public static final int Then=35;
+    public static final int Equal=19;
+    public static final int Then=36;
     public static final int Camera=11;
-    public static final int To=46;
+    public static final int To=47;
     public static final int Finished=6;
-    public static final int Into=28;
-    public static final int RULE_ID=49;
+    public static final int Into=29;
+    public static final int RULE_ID=50;
     public static final int Position=7;
-    public static final int Hour=27;
+    public static final int Hour=28;
     public static final int Color=16;
-    public static final int For=37;
-    public static final int Drop=24;
-    public static final int Not=38;
+    public static final int For=38;
+    public static final int Drop=25;
+    public static final int Not=39;
     public static final int Storage=10;
-    public static final int RULE_INT=50;
-    public static final int RULE_ML_COMMENT=52;
-    public static final int Slot=33;
-    public static final int Scan=32;
-    public static final int If=42;
-    public static final int RULE_END=48;
-    public static final int Hours=20;
-    public static final int In=43;
-    public static final int Mark=30;
-    public static final int Is=44;
-    public static final int RULE_STRING=51;
-    public static final int With=36;
-    public static final int RULE_SL_COMMENT=53;
-    public static final int Slots=22;
+    public static final int RULE_INT=51;
+    public static final int RULE_ML_COMMENT=53;
+    public static final int Slot=34;
+    public static final int Scan=33;
+    public static final int If=43;
+    public static final int RULE_END=49;
+    public static final int Hours=21;
+    public static final int In=44;
+    public static final int Mark=31;
+    public static final int Is=45;
+    public static final int RULE_STRING=52;
+    public static final int With=37;
+    public static final int RULE_SL_COMMENT=54;
+    public static final int Slots=23;
     public static final int Empty=18;
-    public static final int As=40;
-    public static final int At=41;
+    public static final int As=41;
+    public static final int At=42;
     public static final int Minute=13;
-    public static final int Move=31;
+    public static final int Move=32;
     public static final int Create=12;
     public static final int EOF=-1;
-    public static final int That=34;
-    public static final int Named=21;
+    public static final int That=35;
+    public static final int Named=22;
     public static final int Pickup=14;
-    public static final int Blue=23;
-    public static final int RULE_WS=54;
-    public static final int RULE_ANY_OTHER=55;
-    public static final int Red=39;
+    public static final int Blue=24;
+    public static final int RULE_WS=55;
+    public static final int RULE_ANY_OTHER=56;
+    public static final int Red=40;
     public static final int Second=15;
-    public static final int Of=45;
+    public static final int Of=46;
     public static final int Seconds=9;
-    public static final int Green=19;
+    public static final int Green=20;
 
     // delegates
     // delegators
@@ -394,13 +395,34 @@ public class InternalFactoryLogicLangLexer extends Lexer {
     }
     // $ANTLR end "Empty"
 
+    // $ANTLR start "Equal"
+    public final void mEqual() throws RecognitionException {
+        try {
+            int _type = Equal;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalFactoryLogicLangLexer.g:44:7: ( 'equal' )
+            // InternalFactoryLogicLangLexer.g:44:9: 'equal'
+            {
+            match("equal"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "Equal"
+
     // $ANTLR start "Green"
     public final void mGreen() throws RecognitionException {
         try {
             int _type = Green;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:44:7: ( 'green' )
-            // InternalFactoryLogicLangLexer.g:44:9: 'green'
+            // InternalFactoryLogicLangLexer.g:46:7: ( 'green' )
+            // InternalFactoryLogicLangLexer.g:46:9: 'green'
             {
             match("green"); 
 
@@ -420,8 +442,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Hours;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:46:7: ( 'hours' )
-            // InternalFactoryLogicLangLexer.g:46:9: 'hours'
+            // InternalFactoryLogicLangLexer.g:48:7: ( 'hours' )
+            // InternalFactoryLogicLangLexer.g:48:9: 'hours'
             {
             match("hours"); 
 
@@ -441,8 +463,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Named;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:48:7: ( 'named' )
-            // InternalFactoryLogicLangLexer.g:48:9: 'named'
+            // InternalFactoryLogicLangLexer.g:50:7: ( 'named' )
+            // InternalFactoryLogicLangLexer.g:50:9: 'named'
             {
             match("named"); 
 
@@ -462,8 +484,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Slots;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:50:7: ( 'slots' )
-            // InternalFactoryLogicLangLexer.g:50:9: 'slots'
+            // InternalFactoryLogicLangLexer.g:52:7: ( 'slots' )
+            // InternalFactoryLogicLangLexer.g:52:9: 'slots'
             {
             match("slots"); 
 
@@ -483,8 +505,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Blue;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:52:6: ( 'blue' )
-            // InternalFactoryLogicLangLexer.g:52:8: 'blue'
+            // InternalFactoryLogicLangLexer.g:54:6: ( 'blue' )
+            // InternalFactoryLogicLangLexer.g:54:8: 'blue'
             {
             match("blue"); 
 
@@ -504,8 +526,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Drop;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:54:6: ( 'drop' )
-            // InternalFactoryLogicLangLexer.g:54:8: 'drop'
+            // InternalFactoryLogicLangLexer.g:56:6: ( 'drop' )
+            // InternalFactoryLogicLangLexer.g:56:8: 'drop'
             {
             match("drop"); 
 
@@ -525,8 +547,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Each;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:56:6: ( 'each' )
-            // InternalFactoryLogicLangLexer.g:56:8: 'each'
+            // InternalFactoryLogicLangLexer.g:58:6: ( 'each' )
+            // InternalFactoryLogicLangLexer.g:58:8: 'each'
             {
             match("each"); 
 
@@ -546,8 +568,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Full;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:58:6: ( 'full' )
-            // InternalFactoryLogicLangLexer.g:58:8: 'full'
+            // InternalFactoryLogicLangLexer.g:60:6: ( 'full' )
+            // InternalFactoryLogicLangLexer.g:60:8: 'full'
             {
             match("full"); 
 
@@ -567,8 +589,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Hour;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:60:6: ( 'hour' )
-            // InternalFactoryLogicLangLexer.g:60:8: 'hour'
+            // InternalFactoryLogicLangLexer.g:62:6: ( 'hour' )
+            // InternalFactoryLogicLangLexer.g:62:8: 'hour'
             {
             match("hour"); 
 
@@ -588,8 +610,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Into;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:62:6: ( 'into' )
-            // InternalFactoryLogicLangLexer.g:62:8: 'into'
+            // InternalFactoryLogicLangLexer.g:64:6: ( 'into' )
+            // InternalFactoryLogicLangLexer.g:64:8: 'into'
             {
             match("into"); 
 
@@ -609,8 +631,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Item;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:64:6: ( 'item' )
-            // InternalFactoryLogicLangLexer.g:64:8: 'item'
+            // InternalFactoryLogicLangLexer.g:66:6: ( 'item' )
+            // InternalFactoryLogicLangLexer.g:66:8: 'item'
             {
             match("item"); 
 
@@ -630,8 +652,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Mark;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:66:6: ( 'mark' )
-            // InternalFactoryLogicLangLexer.g:66:8: 'mark'
+            // InternalFactoryLogicLangLexer.g:68:6: ( 'mark' )
+            // InternalFactoryLogicLangLexer.g:68:8: 'mark'
             {
             match("mark"); 
 
@@ -651,8 +673,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Move;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:68:6: ( 'move' )
-            // InternalFactoryLogicLangLexer.g:68:8: 'move'
+            // InternalFactoryLogicLangLexer.g:70:6: ( 'move' )
+            // InternalFactoryLogicLangLexer.g:70:8: 'move'
             {
             match("move"); 
 
@@ -672,8 +694,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Scan;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:70:6: ( 'scan' )
-            // InternalFactoryLogicLangLexer.g:70:8: 'scan'
+            // InternalFactoryLogicLangLexer.g:72:6: ( 'scan' )
+            // InternalFactoryLogicLangLexer.g:72:8: 'scan'
             {
             match("scan"); 
 
@@ -693,8 +715,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Slot;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:72:6: ( 'slot' )
-            // InternalFactoryLogicLangLexer.g:72:8: 'slot'
+            // InternalFactoryLogicLangLexer.g:74:6: ( 'slot' )
+            // InternalFactoryLogicLangLexer.g:74:8: 'slot'
             {
             match("slot"); 
 
@@ -714,8 +736,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = That;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:74:6: ( 'that' )
-            // InternalFactoryLogicLangLexer.g:74:8: 'that'
+            // InternalFactoryLogicLangLexer.g:76:6: ( 'that' )
+            // InternalFactoryLogicLangLexer.g:76:8: 'that'
             {
             match("that"); 
 
@@ -735,8 +757,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Then;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:76:6: ( 'then' )
-            // InternalFactoryLogicLangLexer.g:76:8: 'then'
+            // InternalFactoryLogicLangLexer.g:78:6: ( 'then' )
+            // InternalFactoryLogicLangLexer.g:78:8: 'then'
             {
             match("then"); 
 
@@ -756,8 +778,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = With;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:78:6: ( 'with' )
-            // InternalFactoryLogicLangLexer.g:78:8: 'with'
+            // InternalFactoryLogicLangLexer.g:80:6: ( 'with' )
+            // InternalFactoryLogicLangLexer.g:80:8: 'with'
             {
             match("with"); 
 
@@ -777,8 +799,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = For;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:80:5: ( 'for' )
-            // InternalFactoryLogicLangLexer.g:80:7: 'for'
+            // InternalFactoryLogicLangLexer.g:82:5: ( 'for' )
+            // InternalFactoryLogicLangLexer.g:82:7: 'for'
             {
             match("for"); 
 
@@ -798,8 +820,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Not;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:82:5: ( 'not' )
-            // InternalFactoryLogicLangLexer.g:82:7: 'not'
+            // InternalFactoryLogicLangLexer.g:84:5: ( 'not' )
+            // InternalFactoryLogicLangLexer.g:84:7: 'not'
             {
             match("not"); 
 
@@ -819,8 +841,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Red;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:84:5: ( 'red' )
-            // InternalFactoryLogicLangLexer.g:84:7: 'red'
+            // InternalFactoryLogicLangLexer.g:86:5: ( 'red' )
+            // InternalFactoryLogicLangLexer.g:86:7: 'red'
             {
             match("red"); 
 
@@ -840,8 +862,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = As;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:86:4: ( 'as' )
-            // InternalFactoryLogicLangLexer.g:86:6: 'as'
+            // InternalFactoryLogicLangLexer.g:88:4: ( 'as' )
+            // InternalFactoryLogicLangLexer.g:88:6: 'as'
             {
             match("as"); 
 
@@ -861,8 +883,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = At;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:88:4: ( 'at' )
-            // InternalFactoryLogicLangLexer.g:88:6: 'at'
+            // InternalFactoryLogicLangLexer.g:90:4: ( 'at' )
+            // InternalFactoryLogicLangLexer.g:90:6: 'at'
             {
             match("at"); 
 
@@ -882,8 +904,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = If;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:90:4: ( 'if' )
-            // InternalFactoryLogicLangLexer.g:90:6: 'if'
+            // InternalFactoryLogicLangLexer.g:92:4: ( 'if' )
+            // InternalFactoryLogicLangLexer.g:92:6: 'if'
             {
             match("if"); 
 
@@ -903,8 +925,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = In;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:92:4: ( 'in' )
-            // InternalFactoryLogicLangLexer.g:92:6: 'in'
+            // InternalFactoryLogicLangLexer.g:94:4: ( 'in' )
+            // InternalFactoryLogicLangLexer.g:94:6: 'in'
             {
             match("in"); 
 
@@ -924,8 +946,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Is;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:94:4: ( 'is' )
-            // InternalFactoryLogicLangLexer.g:94:6: 'is'
+            // InternalFactoryLogicLangLexer.g:96:4: ( 'is' )
+            // InternalFactoryLogicLangLexer.g:96:6: 'is'
             {
             match("is"); 
 
@@ -945,8 +967,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = Of;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:96:4: ( 'of' )
-            // InternalFactoryLogicLangLexer.g:96:6: 'of'
+            // InternalFactoryLogicLangLexer.g:98:4: ( 'of' )
+            // InternalFactoryLogicLangLexer.g:98:6: 'of'
             {
             match("of"); 
 
@@ -966,8 +988,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = To;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:98:4: ( 'to' )
-            // InternalFactoryLogicLangLexer.g:98:6: 'to'
+            // InternalFactoryLogicLangLexer.g:100:4: ( 'to' )
+            // InternalFactoryLogicLangLexer.g:100:6: 'to'
             {
             match("to"); 
 
@@ -985,8 +1007,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
     // $ANTLR start "RULE_BEGIN"
     public final void mRULE_BEGIN() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangLexer.g:100:21: ()
-            // InternalFactoryLogicLangLexer.g:100:23: 
+            // InternalFactoryLogicLangLexer.g:102:21: ()
+            // InternalFactoryLogicLangLexer.g:102:23: 
             {
             }
 
@@ -999,8 +1021,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
     // $ANTLR start "RULE_END"
     public final void mRULE_END() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangLexer.g:102:19: ()
-            // InternalFactoryLogicLangLexer.g:102:21: 
+            // InternalFactoryLogicLangLexer.g:104:19: ()
+            // InternalFactoryLogicLangLexer.g:104:21: 
             {
             }
 
@@ -1015,10 +1037,10 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:104:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalFactoryLogicLangLexer.g:104:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalFactoryLogicLangLexer.g:106:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalFactoryLogicLangLexer.g:106:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalFactoryLogicLangLexer.g:104:11: ( '^' )?
+            // InternalFactoryLogicLangLexer.g:106:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -1027,7 +1049,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalFactoryLogicLangLexer.g:104:11: '^'
+                    // InternalFactoryLogicLangLexer.g:106:11: '^'
                     {
                     match('^'); 
 
@@ -1045,7 +1067,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalFactoryLogicLangLexer.g:104:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalFactoryLogicLangLexer.g:106:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -1094,10 +1116,10 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:106:10: ( ( '0' .. '9' )+ )
-            // InternalFactoryLogicLangLexer.g:106:12: ( '0' .. '9' )+
+            // InternalFactoryLogicLangLexer.g:108:10: ( ( '0' .. '9' )+ )
+            // InternalFactoryLogicLangLexer.g:108:12: ( '0' .. '9' )+
             {
-            // InternalFactoryLogicLangLexer.g:106:12: ( '0' .. '9' )+
+            // InternalFactoryLogicLangLexer.g:108:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -1111,7 +1133,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalFactoryLogicLangLexer.g:106:13: '0' .. '9'
+            	    // InternalFactoryLogicLangLexer.g:108:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1143,10 +1165,10 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:108:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalFactoryLogicLangLexer.g:108:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalFactoryLogicLangLexer.g:110:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalFactoryLogicLangLexer.g:110:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalFactoryLogicLangLexer.g:108:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalFactoryLogicLangLexer.g:110:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1164,10 +1186,10 @@ public class InternalFactoryLogicLangLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalFactoryLogicLangLexer.g:108:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalFactoryLogicLangLexer.g:110:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalFactoryLogicLangLexer.g:108:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalFactoryLogicLangLexer.g:110:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -1183,7 +1205,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalFactoryLogicLangLexer.g:108:21: '\\\\' .
+                    	    // InternalFactoryLogicLangLexer.g:110:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1191,7 +1213,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalFactoryLogicLangLexer.g:108:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalFactoryLogicLangLexer.g:110:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1216,10 +1238,10 @@ public class InternalFactoryLogicLangLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangLexer.g:108:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalFactoryLogicLangLexer.g:110:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalFactoryLogicLangLexer.g:108:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalFactoryLogicLangLexer.g:110:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -1235,7 +1257,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalFactoryLogicLangLexer.g:108:54: '\\\\' .
+                    	    // InternalFactoryLogicLangLexer.g:110:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1243,7 +1265,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalFactoryLogicLangLexer.g:108:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalFactoryLogicLangLexer.g:110:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1286,12 +1308,12 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:110:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalFactoryLogicLangLexer.g:110:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalFactoryLogicLangLexer.g:112:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalFactoryLogicLangLexer.g:112:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalFactoryLogicLangLexer.g:110:24: ( options {greedy=false; } : . )*
+            // InternalFactoryLogicLangLexer.g:112:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -1316,7 +1338,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalFactoryLogicLangLexer.g:110:52: .
+            	    // InternalFactoryLogicLangLexer.g:112:52: .
             	    {
             	    matchAny(); 
 
@@ -1346,12 +1368,12 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:112:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalFactoryLogicLangLexer.g:112:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalFactoryLogicLangLexer.g:114:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalFactoryLogicLangLexer.g:114:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalFactoryLogicLangLexer.g:112:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalFactoryLogicLangLexer.g:114:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -1364,7 +1386,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalFactoryLogicLangLexer.g:112:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalFactoryLogicLangLexer.g:114:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1384,7 +1406,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalFactoryLogicLangLexer.g:112:40: ( ( '\\r' )? '\\n' )?
+            // InternalFactoryLogicLangLexer.g:114:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1393,9 +1415,9 @@ public class InternalFactoryLogicLangLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalFactoryLogicLangLexer.g:112:41: ( '\\r' )? '\\n'
+                    // InternalFactoryLogicLangLexer.g:114:41: ( '\\r' )? '\\n'
                     {
-                    // InternalFactoryLogicLangLexer.g:112:41: ( '\\r' )?
+                    // InternalFactoryLogicLangLexer.g:114:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1404,7 +1426,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // InternalFactoryLogicLangLexer.g:112:41: '\\r'
+                            // InternalFactoryLogicLangLexer.g:114:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1436,10 +1458,10 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:114:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalFactoryLogicLangLexer.g:114:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalFactoryLogicLangLexer.g:116:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalFactoryLogicLangLexer.g:116:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalFactoryLogicLangLexer.g:114:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalFactoryLogicLangLexer.g:116:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1493,8 +1515,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalFactoryLogicLangLexer.g:116:16: ( . )
-            // InternalFactoryLogicLangLexer.g:116:18: .
+            // InternalFactoryLogicLangLexer.g:118:16: ( . )
+            // InternalFactoryLogicLangLexer.g:118:18: .
             {
             matchAny(); 
 
@@ -1509,8 +1531,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // InternalFactoryLogicLangLexer.g:1:8: ( GreaterThan | LessThan | Finished | Position | Minutes | Seconds | Storage | Camera | Create | Minute | Pickup | Second | Color | Crane | Empty | Green | Hours | Named | Slots | Blue | Drop | Each | Full | Hour | Into | Item | Mark | Move | Scan | Slot | That | Then | With | For | Not | Red | As | At | If | In | Is | Of | To | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=50;
+        // InternalFactoryLogicLangLexer.g:1:8: ( GreaterThan | LessThan | Finished | Position | Minutes | Seconds | Storage | Camera | Create | Minute | Pickup | Second | Color | Crane | Empty | Equal | Green | Hours | Named | Slots | Blue | Drop | Each | Full | Hour | Into | Item | Mark | Move | Scan | Slot | That | Then | With | For | Not | Red | As | At | If | In | Is | Of | To | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=51;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -1619,245 +1641,252 @@ public class InternalFactoryLogicLangLexer extends Lexer {
                 }
                 break;
             case 16 :
-                // InternalFactoryLogicLangLexer.g:1:126: Green
+                // InternalFactoryLogicLangLexer.g:1:126: Equal
+                {
+                mEqual(); 
+
+                }
+                break;
+            case 17 :
+                // InternalFactoryLogicLangLexer.g:1:132: Green
                 {
                 mGreen(); 
 
                 }
                 break;
-            case 17 :
-                // InternalFactoryLogicLangLexer.g:1:132: Hours
+            case 18 :
+                // InternalFactoryLogicLangLexer.g:1:138: Hours
                 {
                 mHours(); 
 
                 }
                 break;
-            case 18 :
-                // InternalFactoryLogicLangLexer.g:1:138: Named
+            case 19 :
+                // InternalFactoryLogicLangLexer.g:1:144: Named
                 {
                 mNamed(); 
 
                 }
                 break;
-            case 19 :
-                // InternalFactoryLogicLangLexer.g:1:144: Slots
+            case 20 :
+                // InternalFactoryLogicLangLexer.g:1:150: Slots
                 {
                 mSlots(); 
 
                 }
                 break;
-            case 20 :
-                // InternalFactoryLogicLangLexer.g:1:150: Blue
+            case 21 :
+                // InternalFactoryLogicLangLexer.g:1:156: Blue
                 {
                 mBlue(); 
 
                 }
                 break;
-            case 21 :
-                // InternalFactoryLogicLangLexer.g:1:155: Drop
+            case 22 :
+                // InternalFactoryLogicLangLexer.g:1:161: Drop
                 {
                 mDrop(); 
 
                 }
                 break;
-            case 22 :
-                // InternalFactoryLogicLangLexer.g:1:160: Each
+            case 23 :
+                // InternalFactoryLogicLangLexer.g:1:166: Each
                 {
                 mEach(); 
 
                 }
                 break;
-            case 23 :
-                // InternalFactoryLogicLangLexer.g:1:165: Full
+            case 24 :
+                // InternalFactoryLogicLangLexer.g:1:171: Full
                 {
                 mFull(); 
 
                 }
                 break;
-            case 24 :
-                // InternalFactoryLogicLangLexer.g:1:170: Hour
+            case 25 :
+                // InternalFactoryLogicLangLexer.g:1:176: Hour
                 {
                 mHour(); 
 
                 }
                 break;
-            case 25 :
-                // InternalFactoryLogicLangLexer.g:1:175: Into
+            case 26 :
+                // InternalFactoryLogicLangLexer.g:1:181: Into
                 {
                 mInto(); 
 
                 }
                 break;
-            case 26 :
-                // InternalFactoryLogicLangLexer.g:1:180: Item
+            case 27 :
+                // InternalFactoryLogicLangLexer.g:1:186: Item
                 {
                 mItem(); 
 
                 }
                 break;
-            case 27 :
-                // InternalFactoryLogicLangLexer.g:1:185: Mark
+            case 28 :
+                // InternalFactoryLogicLangLexer.g:1:191: Mark
                 {
                 mMark(); 
 
                 }
                 break;
-            case 28 :
-                // InternalFactoryLogicLangLexer.g:1:190: Move
+            case 29 :
+                // InternalFactoryLogicLangLexer.g:1:196: Move
                 {
                 mMove(); 
 
                 }
                 break;
-            case 29 :
-                // InternalFactoryLogicLangLexer.g:1:195: Scan
+            case 30 :
+                // InternalFactoryLogicLangLexer.g:1:201: Scan
                 {
                 mScan(); 
 
                 }
                 break;
-            case 30 :
-                // InternalFactoryLogicLangLexer.g:1:200: Slot
+            case 31 :
+                // InternalFactoryLogicLangLexer.g:1:206: Slot
                 {
                 mSlot(); 
 
                 }
                 break;
-            case 31 :
-                // InternalFactoryLogicLangLexer.g:1:205: That
+            case 32 :
+                // InternalFactoryLogicLangLexer.g:1:211: That
                 {
                 mThat(); 
 
                 }
                 break;
-            case 32 :
-                // InternalFactoryLogicLangLexer.g:1:210: Then
+            case 33 :
+                // InternalFactoryLogicLangLexer.g:1:216: Then
                 {
                 mThen(); 
 
                 }
                 break;
-            case 33 :
-                // InternalFactoryLogicLangLexer.g:1:215: With
+            case 34 :
+                // InternalFactoryLogicLangLexer.g:1:221: With
                 {
                 mWith(); 
 
                 }
                 break;
-            case 34 :
-                // InternalFactoryLogicLangLexer.g:1:220: For
+            case 35 :
+                // InternalFactoryLogicLangLexer.g:1:226: For
                 {
                 mFor(); 
 
                 }
                 break;
-            case 35 :
-                // InternalFactoryLogicLangLexer.g:1:224: Not
+            case 36 :
+                // InternalFactoryLogicLangLexer.g:1:230: Not
                 {
                 mNot(); 
 
                 }
                 break;
-            case 36 :
-                // InternalFactoryLogicLangLexer.g:1:228: Red
+            case 37 :
+                // InternalFactoryLogicLangLexer.g:1:234: Red
                 {
                 mRed(); 
 
                 }
                 break;
-            case 37 :
-                // InternalFactoryLogicLangLexer.g:1:232: As
+            case 38 :
+                // InternalFactoryLogicLangLexer.g:1:238: As
                 {
                 mAs(); 
 
                 }
                 break;
-            case 38 :
-                // InternalFactoryLogicLangLexer.g:1:235: At
+            case 39 :
+                // InternalFactoryLogicLangLexer.g:1:241: At
                 {
                 mAt(); 
 
                 }
                 break;
-            case 39 :
-                // InternalFactoryLogicLangLexer.g:1:238: If
+            case 40 :
+                // InternalFactoryLogicLangLexer.g:1:244: If
                 {
                 mIf(); 
 
                 }
                 break;
-            case 40 :
-                // InternalFactoryLogicLangLexer.g:1:241: In
+            case 41 :
+                // InternalFactoryLogicLangLexer.g:1:247: In
                 {
                 mIn(); 
 
                 }
                 break;
-            case 41 :
-                // InternalFactoryLogicLangLexer.g:1:244: Is
+            case 42 :
+                // InternalFactoryLogicLangLexer.g:1:250: Is
                 {
                 mIs(); 
 
                 }
                 break;
-            case 42 :
-                // InternalFactoryLogicLangLexer.g:1:247: Of
+            case 43 :
+                // InternalFactoryLogicLangLexer.g:1:253: Of
                 {
                 mOf(); 
 
                 }
                 break;
-            case 43 :
-                // InternalFactoryLogicLangLexer.g:1:250: To
+            case 44 :
+                // InternalFactoryLogicLangLexer.g:1:256: To
                 {
                 mTo(); 
 
                 }
                 break;
-            case 44 :
-                // InternalFactoryLogicLangLexer.g:1:253: RULE_ID
+            case 45 :
+                // InternalFactoryLogicLangLexer.g:1:259: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 45 :
-                // InternalFactoryLogicLangLexer.g:1:261: RULE_INT
+            case 46 :
+                // InternalFactoryLogicLangLexer.g:1:267: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 46 :
-                // InternalFactoryLogicLangLexer.g:1:270: RULE_STRING
+            case 47 :
+                // InternalFactoryLogicLangLexer.g:1:276: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 47 :
-                // InternalFactoryLogicLangLexer.g:1:282: RULE_ML_COMMENT
+            case 48 :
+                // InternalFactoryLogicLangLexer.g:1:288: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 48 :
-                // InternalFactoryLogicLangLexer.g:1:298: RULE_SL_COMMENT
+            case 49 :
+                // InternalFactoryLogicLangLexer.g:1:304: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 49 :
-                // InternalFactoryLogicLangLexer.g:1:314: RULE_WS
+            case 50 :
+                // InternalFactoryLogicLangLexer.g:1:320: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 50 :
-                // InternalFactoryLogicLangLexer.g:1:322: RULE_ANY_OTHER
+            case 51 :
+                // InternalFactoryLogicLangLexer.g:1:328: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1871,17 +1900,17 @@ public class InternalFactoryLogicLangLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\22\34\1\32\2\uffff\3\32\2\uffff\1\34\1\uffff\27\34\1\136\1\34\1\140\1\141\1\34\1\144\2\34\1\147\1\150\1\151\5\uffff\4\34\1\157\21\34\1\u0081\3\34\1\uffff\1\34\2\uffff\2\34\1\uffff\1\34\1\u0089\3\uffff\4\34\1\u008e\1\uffff\3\34\1\u0092\1\u0093\2\34\1\u0097\1\u0098\5\34\1\u009e\1\u00a0\1\34\1\uffff\1\u00a2\1\u00a3\1\u00a4\1\u00a5\1\u00a6\1\u00a7\1\u00a8\1\uffff\1\34\1\u00aa\1\uffff\1\34\1\uffff\3\34\2\uffff\2\34\1\u00b1\2\uffff\2\34\1\u00b4\1\u00b5\1\u00b6\1\uffff\1\u00b7\1\uffff\1\u00b8\7\uffff\1\34\1\uffff\2\34\1\u00bc\1\u00be\1\u00c0\1\34\1\uffff\1\u00c2\1\u00c3\5\uffff\3\34\1\uffff\1\u00c7\1\uffff\1\u00c8\1\uffff\1\u00c9\3\uffff\1\u00ca\1\u00cb\5\uffff";
+        "\1\uffff\22\34\1\32\2\uffff\3\32\2\uffff\1\34\1\uffff\30\34\1\140\1\34\1\142\1\143\1\34\1\146\2\34\1\151\1\152\1\153\5\uffff\4\34\1\161\22\34\1\u0084\3\34\1\uffff\1\34\2\uffff\2\34\1\uffff\1\34\1\u008c\3\uffff\4\34\1\u0091\1\uffff\3\34\1\u0095\1\u0096\2\34\1\u009a\1\u009b\6\34\1\u00a2\1\u00a4\1\34\1\uffff\1\u00a6\1\u00a7\1\u00a8\1\u00a9\1\u00aa\1\u00ab\1\u00ac\1\uffff\1\34\1\u00ae\1\uffff\1\34\1\uffff\3\34\2\uffff\2\34\1\u00b5\2\uffff\2\34\1\u00b8\1\u00b9\1\u00ba\1\u00bb\1\uffff\1\u00bc\1\uffff\1\u00bd\7\uffff\1\34\1\uffff\2\34\1\u00c1\1\u00c3\1\u00c5\1\34\1\uffff\1\u00c7\1\u00c8\6\uffff\3\34\1\uffff\1\u00cc\1\uffff\1\u00cd\1\uffff\1\u00ce\3\uffff\1\u00cf\1\u00d0\5\uffff";
     static final String DFA12_eofS =
-        "\u00cc\uffff";
+        "\u00d1\uffff";
     static final String DFA12_minS =
-        "\1\0\1\162\1\145\2\151\1\141\1\143\2\141\1\157\1\141\1\154\1\162\1\146\1\150\1\151\1\145\1\163\1\146\1\101\2\uffff\2\0\1\52\2\uffff\1\145\1\uffff\1\163\1\156\1\154\1\162\1\163\1\143\1\156\1\162\1\166\1\143\2\157\1\141\1\155\1\141\1\154\1\160\1\143\1\165\1\155\1\164\1\165\1\157\1\60\1\145\2\60\1\141\1\60\1\164\1\144\3\60\5\uffff\1\141\1\163\1\151\1\154\1\60\1\151\1\153\1\165\1\153\1\145\1\157\1\162\1\164\1\156\1\145\1\141\1\156\1\157\1\164\1\150\1\162\1\145\1\60\1\145\1\160\1\157\1\uffff\1\155\2\uffff\1\164\1\156\1\uffff\1\150\1\60\3\uffff\1\164\1\156\1\40\1\163\1\60\1\uffff\1\164\1\165\1\164\2\60\1\156\1\141\2\60\1\162\1\164\1\145\1\162\1\171\2\60\1\144\1\uffff\7\60\1\uffff\1\145\1\60\1\uffff\1\150\1\uffff\1\151\1\160\1\145\2\uffff\1\144\1\147\1\60\2\uffff\1\141\1\145\3\60\1\uffff\1\60\1\uffff\1\60\7\uffff\1\162\1\uffff\1\145\1\157\3\60\1\145\1\uffff\2\60\5\uffff\1\40\1\144\1\156\1\uffff\1\60\1\uffff\1\60\1\uffff\1\60\3\uffff\2\60\5\uffff";
+        "\1\0\1\162\1\145\2\151\1\141\1\143\2\141\1\157\1\141\1\154\1\162\1\146\1\150\1\151\1\145\1\163\1\146\1\101\2\uffff\2\0\1\52\2\uffff\1\145\1\uffff\1\163\1\156\1\154\1\162\1\163\1\143\1\156\1\162\1\166\1\143\2\157\1\141\1\155\1\141\1\154\1\160\1\165\1\143\1\165\1\155\1\164\1\165\1\157\1\60\1\145\2\60\1\141\1\60\1\164\1\144\3\60\5\uffff\1\141\1\163\1\151\1\154\1\60\1\151\1\153\1\165\1\153\1\145\1\157\1\162\1\164\1\156\1\145\1\141\1\156\1\157\1\164\1\141\1\150\1\162\1\145\1\60\1\145\1\160\1\157\1\uffff\1\155\2\uffff\1\164\1\156\1\uffff\1\150\1\60\3\uffff\1\164\1\156\1\40\1\163\1\60\1\uffff\1\164\1\165\1\164\2\60\1\156\1\141\2\60\1\162\1\164\1\145\1\162\1\171\1\154\2\60\1\144\1\uffff\7\60\1\uffff\1\145\1\60\1\uffff\1\150\1\uffff\1\151\1\160\1\145\2\uffff\1\144\1\147\1\60\2\uffff\1\141\1\145\4\60\1\uffff\1\60\1\uffff\1\60\7\uffff\1\162\1\uffff\1\145\1\157\3\60\1\145\1\uffff\2\60\6\uffff\1\40\1\144\1\156\1\uffff\1\60\1\uffff\1\60\1\uffff\1\60\3\uffff\2\60\5\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\162\1\145\1\165\2\157\1\164\1\162\1\155\2\157\1\154\1\162\1\164\1\157\1\151\1\145\1\164\1\146\1\172\2\uffff\2\uffff\1\57\2\uffff\1\145\1\uffff\1\163\1\156\1\154\1\162\1\163\1\143\1\156\1\162\1\166\1\143\2\157\1\141\1\155\1\145\1\154\1\160\1\143\1\165\1\155\1\164\1\165\1\157\1\172\1\145\2\172\1\145\1\172\1\164\1\144\3\172\5\uffff\1\145\1\163\1\151\1\154\1\172\1\151\1\153\1\165\1\153\1\145\1\157\1\162\1\164\1\156\1\145\1\141\1\156\1\157\1\164\1\150\1\162\1\145\1\172\1\145\1\160\1\157\1\uffff\1\155\2\uffff\1\164\1\156\1\uffff\1\150\1\172\3\uffff\1\164\1\156\1\40\1\163\1\172\1\uffff\1\164\1\165\1\164\2\172\1\156\1\141\2\172\1\162\1\164\1\145\1\162\1\171\2\172\1\144\1\uffff\7\172\1\uffff\1\145\1\172\1\uffff\1\150\1\uffff\1\151\1\160\1\145\2\uffff\1\144\1\147\1\172\2\uffff\1\141\1\145\3\172\1\uffff\1\172\1\uffff\1\172\7\uffff\1\162\1\uffff\1\145\1\157\3\172\1\145\1\uffff\2\172\5\uffff\1\40\1\144\1\156\1\uffff\1\172\1\uffff\1\172\1\uffff\1\172\3\uffff\2\172\5\uffff";
+        "\1\uffff\1\162\1\145\1\165\2\157\1\164\1\162\1\161\2\157\1\154\1\162\1\164\1\157\1\151\1\145\1\164\1\146\1\172\2\uffff\2\uffff\1\57\2\uffff\1\145\1\uffff\1\163\1\156\1\154\1\162\1\163\1\143\1\156\1\162\1\166\1\143\2\157\1\141\1\155\1\145\1\154\1\160\1\165\1\143\1\165\1\155\1\164\1\165\1\157\1\172\1\145\2\172\1\145\1\172\1\164\1\144\3\172\5\uffff\1\145\1\163\1\151\1\154\1\172\1\151\1\153\1\165\1\153\1\145\1\157\1\162\1\164\1\156\1\145\1\141\1\156\1\157\1\164\1\141\1\150\1\162\1\145\1\172\1\145\1\160\1\157\1\uffff\1\155\2\uffff\1\164\1\156\1\uffff\1\150\1\172\3\uffff\1\164\1\156\1\40\1\163\1\172\1\uffff\1\164\1\165\1\164\2\172\1\156\1\141\2\172\1\162\1\164\1\145\1\162\1\171\1\154\2\172\1\144\1\uffff\7\172\1\uffff\1\145\1\172\1\uffff\1\150\1\uffff\1\151\1\160\1\145\2\uffff\1\144\1\147\1\172\2\uffff\1\141\1\145\4\172\1\uffff\1\172\1\uffff\1\172\7\uffff\1\162\1\uffff\1\145\1\157\3\172\1\145\1\uffff\2\172\6\uffff\1\40\1\144\1\156\1\uffff\1\172\1\uffff\1\172\1\uffff\1\172\3\uffff\2\172\5\uffff";
     static final String DFA12_acceptS =
-        "\24\uffff\1\54\1\55\3\uffff\1\61\1\62\1\uffff\1\54\42\uffff\1\55\1\56\1\57\1\60\1\61\32\uffff\1\50\1\uffff\1\47\1\51\2\uffff\1\53\2\uffff\1\45\1\46\1\52\5\uffff\1\42\21\uffff\1\43\7\uffff\1\44\2\uffff\1\2\1\uffff\1\27\3\uffff\1\33\1\34\3\uffff\1\36\1\35\5\uffff\1\26\1\uffff\1\30\1\uffff\1\24\1\25\1\31\1\32\1\37\1\40\1\41\1\uffff\1\20\6\uffff\1\23\2\uffff\1\16\1\15\1\17\1\21\1\22\3\uffff\1\13\1\uffff\1\12\1\uffff\1\14\1\uffff\1\10\1\11\1\1\2\uffff\1\5\1\6\1\7\1\3\1\4";
+        "\24\uffff\1\55\1\56\3\uffff\1\62\1\63\1\uffff\1\55\43\uffff\1\56\1\57\1\60\1\61\1\62\33\uffff\1\51\1\uffff\1\50\1\52\2\uffff\1\54\2\uffff\1\46\1\47\1\53\5\uffff\1\43\22\uffff\1\44\7\uffff\1\45\2\uffff\1\2\1\uffff\1\30\3\uffff\1\34\1\35\3\uffff\1\37\1\36\6\uffff\1\27\1\uffff\1\31\1\uffff\1\25\1\26\1\32\1\33\1\40\1\41\1\42\1\uffff\1\21\6\uffff\1\24\2\uffff\1\16\1\15\1\17\1\20\1\22\1\23\3\uffff\1\13\1\uffff\1\12\1\uffff\1\14\1\uffff\1\10\1\11\1\1\2\uffff\1\5\1\6\1\7\1\3\1\4";
     static final String DFA12_specialS =
-        "\1\1\25\uffff\1\2\1\0\u00b4\uffff}>";
+        "\1\1\25\uffff\1\2\1\0\u00b9\uffff}>";
     static final String[] DFA12_transitionS = {
             "\11\32\2\31\2\32\1\31\22\32\1\31\1\32\1\26\4\32\1\27\7\32\1\30\12\25\7\32\32\24\3\32\1\23\1\24\1\32\1\21\1\13\1\7\1\14\1\10\1\3\1\1\1\11\1\15\2\24\1\2\1\5\1\12\1\22\1\4\1\24\1\20\1\6\1\16\2\24\1\17\3\24\uff85\32",
             "\1\33",
@@ -1891,28 +1920,27 @@ public class InternalFactoryLogicLangLexer extends Lexer {
             "\1\44\7\uffff\1\43\5\uffff\1\45",
             "\1\51\1\uffff\1\46\6\uffff\1\50\7\uffff\1\47",
             "\1\52\15\uffff\1\54\2\uffff\1\53",
-            "\1\56\13\uffff\1\55",
-            "\1\57",
-            "\1\60\15\uffff\1\61",
-            "\1\62",
+            "\1\57\13\uffff\1\55\3\uffff\1\56",
+            "\1\60",
+            "\1\61\15\uffff\1\62",
             "\1\63",
-            "\1\66\7\uffff\1\64\4\uffff\1\67\1\65",
-            "\1\70\6\uffff\1\71",
-            "\1\72",
+            "\1\64",
+            "\1\67\7\uffff\1\65\4\uffff\1\70\1\66",
+            "\1\71\6\uffff\1\72",
             "\1\73",
-            "\1\74\1\75",
-            "\1\76",
+            "\1\74",
+            "\1\75\1\76",
+            "\1\77",
             "\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
             "",
-            "\0\100",
-            "\0\100",
-            "\1\101\4\uffff\1\102",
+            "\0\101",
+            "\0\101",
+            "\1\102\4\uffff\1\103",
             "",
-            "",
-            "\1\104",
             "",
             "\1\105",
+            "",
             "\1\106",
             "\1\107",
             "\1\110",
@@ -1926,8 +1954,8 @@ public class InternalFactoryLogicLangLexer extends Lexer {
             "\1\120",
             "\1\121",
             "\1\122",
-            "\1\124\3\uffff\1\123",
-            "\1\125",
+            "\1\123",
+            "\1\125\3\uffff\1\124",
             "\1\126",
             "\1\127",
             "\1\130",
@@ -1935,14 +1963,16 @@ public class InternalFactoryLogicLangLexer extends Lexer {
             "\1\132",
             "\1\133",
             "\1\134",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\23\34\1\135\6\34",
-            "\1\137",
+            "\1\135",
+            "\1\136",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\23\34\1\137\6\34",
+            "\1\141",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "\1\142\3\uffff\1\143",
+            "\1\144\3\uffff\1\145",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "\1\145",
-            "\1\146",
+            "\1\147",
+            "\1\150",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
@@ -1951,13 +1981,11 @@ public class InternalFactoryLogicLangLexer extends Lexer {
             "",
             "",
             "",
-            "\1\152\3\uffff\1\153",
-            "\1\154",
-            "\1\155",
+            "\1\154\3\uffff\1\155",
             "\1\156",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\157",
             "\1\160",
-            "\1\161",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\162",
             "\1\163",
             "\1\164",
@@ -1973,45 +2001,49 @@ public class InternalFactoryLogicLangLexer extends Lexer {
             "\1\176",
             "\1\177",
             "\1\u0080",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\u0081",
             "\1\u0082",
             "\1\u0083",
-            "\1\u0084",
-            "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\u0085",
-            "",
-            "",
             "\1\u0086",
             "\1\u0087",
             "",
             "\1\u0088",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
             "",
-            "",
+            "\1\u0089",
             "\1\u008a",
+            "",
             "\1\u008b",
-            "\1\u008c",
-            "\1\u008d",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
+            "",
+            "",
+            "\1\u008d",
+            "\1\u008e",
             "\1\u008f",
             "\1\u0090",
-            "\1\u0091",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "",
+            "\1\u0092",
+            "\1\u0093",
             "\1\u0094",
-            "\1\u0095",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\22\34\1\u0096\7\34",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "\1\u0099",
-            "\1\u009a",
-            "\1\u009b",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\1\u0097",
+            "\1\u0098",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\22\34\1\u0099\7\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\1\u009c",
             "\1\u009d",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\22\34\1\u009f\7\34",
+            "\1\u009e",
+            "\1\u009f",
+            "\1\u00a0",
             "\1\u00a1",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\22\34\1\u00a3\7\34",
+            "\1\u00a5",
             "",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
@@ -2021,56 +2053,58 @@ public class InternalFactoryLogicLangLexer extends Lexer {
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
-            "\1\u00a9",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "",
-            "\1\u00ab",
-            "",
-            "\1\u00ac",
             "\1\u00ad",
-            "\1\u00ae",
-            "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
             "\1\u00af",
+            "",
             "\1\u00b0",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "",
-            "",
+            "\1\u00b1",
             "\1\u00b2",
+            "",
+            "",
             "\1\u00b3",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "",
+            "\1\u00b4",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
             "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\u00b9",
-            "",
-            "\1\u00ba",
-            "\1\u00bb",
+            "\1\u00b6",
+            "\1\u00b7",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\22\34\1\u00bd\7\34",
-            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\22\34\1\u00bf\7\34",
-            "\1\u00c1",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
             "",
             "",
             "",
             "",
-            "\1\u00c4",
-            "\1\u00c5",
+            "",
+            "",
+            "\1\u00be",
+            "",
+            "\1\u00bf",
+            "\1\u00c0",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\22\34\1\u00c2\7\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\22\34\1\u00c4\7\34",
             "\1\u00c6",
+            "",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\u00c9",
+            "\1\u00ca",
+            "\1\u00cb",
             "",
             "\12\34\7\uffff\32\34\4\uffff\1\34\1\uffff\32\34",
             "",
@@ -2119,7 +2153,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( GreaterThan | LessThan | Finished | Position | Minutes | Seconds | Storage | Camera | Create | Minute | Pickup | Second | Color | Crane | Empty | Green | Hours | Named | Slots | Blue | Drop | Each | Full | Hour | Into | Item | Mark | Move | Scan | Slot | That | Then | With | For | Not | Red | As | At | If | In | Is | Of | To | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( GreaterThan | LessThan | Finished | Position | Minutes | Seconds | Storage | Camera | Create | Minute | Pickup | Second | Color | Crane | Empty | Equal | Green | Hours | Named | Slots | Blue | Drop | Each | Full | Hour | Into | Item | Mark | Move | Scan | Slot | That | Then | With | For | Not | Red | As | At | If | In | Is | Of | To | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
@@ -2129,7 +2163,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
                         int LA12_23 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_23>='\u0000' && LA12_23<='\uFFFF')) ) {s = 64;}
+                        if ( ((LA12_23>='\u0000' && LA12_23<='\uFFFF')) ) {s = 65;}
 
                         else s = 26;
 
@@ -2197,7 +2231,7 @@ public class InternalFactoryLogicLangLexer extends Lexer {
                         int LA12_22 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_22>='\u0000' && LA12_22<='\uFFFF')) ) {s = 64;}
+                        if ( ((LA12_22>='\u0000' && LA12_22<='\uFFFF')) ) {s = 65;}
 
                         else s = 26;
 

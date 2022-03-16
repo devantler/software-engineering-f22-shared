@@ -423,22 +423,13 @@ public interface FactoryLogicLangPackage extends EPackage
   int CONDITIONAL = 12;
 
   /**
-   * The feature id for the '<em><b>Variable</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONDITIONAL__VARIABLE = LOGIC_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Source</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONDITIONAL__SOURCE = LOGIC_FEATURE_COUNT + 1;
+  int CONDITIONAL__SOURCE = LOGIC_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -447,7 +438,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITIONAL__OPERATOR = LOGIC_FEATURE_COUNT + 2;
+  int CONDITIONAL__OPERATOR = LOGIC_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Comparison const</b></em>' attribute.
@@ -456,7 +447,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITIONAL__COMPARISON_CONST = LOGIC_FEATURE_COUNT + 3;
+  int CONDITIONAL__COMPARISON_CONST = LOGIC_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Comparison color</b></em>' attribute.
@@ -465,7 +456,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITIONAL__COMPARISON_COLOR = LOGIC_FEATURE_COUNT + 4;
+  int CONDITIONAL__COMPARISON_COLOR = LOGIC_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Comparison int</b></em>' attribute.
@@ -474,7 +465,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITIONAL__COMPARISON_INT = LOGIC_FEATURE_COUNT + 5;
+  int CONDITIONAL__COMPARISON_INT = LOGIC_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>Logics</b></em>' containment reference list.
@@ -483,7 +474,16 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONDITIONAL__LOGICS = LOGIC_FEATURE_COUNT + 6;
+  int CONDITIONAL__LOGICS = LOGIC_FEATURE_COUNT + 5;
+
+  /**
+   * The feature id for the '<em><b>Source int</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONDITIONAL__SOURCE_INT = LOGIC_FEATURE_COUNT + 6;
 
   /**
    * The number of structural features of the '<em>Conditional</em>' class.
@@ -505,13 +505,13 @@ public interface FactoryLogicLangPackage extends EPackage
   int LOOP = 13;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Variable</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LOOP__NAME = LOGIC_FEATURE_COUNT + 0;
+  int LOOP__VARIABLE = LOGIC_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>List</b></em>' attribute.
@@ -642,6 +642,52 @@ public interface FactoryLogicLangPackage extends EPackage
   int STORAGE_MOVE_EMPTY_SLOT_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link xtext.factoryLogicLang.impl.StorageMoveVariableSlotImpl <em>Storage Move Variable Slot</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLogicLang.impl.StorageMoveVariableSlotImpl
+   * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getStorageMoveVariableSlot()
+   * @generated
+   */
+  int STORAGE_MOVE_VARIABLE_SLOT = 16;
+
+  /**
+   * The feature id for the '<em><b>Device</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STORAGE_MOVE_VARIABLE_SLOT__DEVICE = OPERATION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Position</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STORAGE_MOVE_VARIABLE_SLOT__POSITION = OPERATION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Destination</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STORAGE_MOVE_VARIABLE_SLOT__DESTINATION = OPERATION_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Storage Move Variable Slot</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STORAGE_MOVE_VARIABLE_SLOT_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 3;
+
+  /**
    * The meta object id for the '{@link xtext.factoryLogicLang.impl.StorageMoveSlotImpl <em>Storage Move Slot</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -649,7 +695,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getStorageMoveSlot()
    * @generated
    */
-  int STORAGE_MOVE_SLOT = 16;
+  int STORAGE_MOVE_SLOT = 17;
 
   /**
    * The feature id for the '<em><b>Device</b></em>' reference.
@@ -695,7 +741,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getStorageMarkSlot()
    * @generated
    */
-  int STORAGE_MARK_SLOT = 17;
+  int STORAGE_MARK_SLOT = 18;
 
   /**
    * The feature id for the '<em><b>Device</b></em>' reference.
@@ -716,13 +762,22 @@ public interface FactoryLogicLangPackage extends EPackage
   int STORAGE_MARK_SLOT__POSITION = OPERATION_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Comparison variable</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STORAGE_MARK_SLOT__COMPARISON_VARIABLE = OPERATION_FEATURE_COUNT + 2;
+
+  /**
    * The feature id for the '<em><b>Comparison const</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STORAGE_MARK_SLOT__COMPARISON_CONST = OPERATION_FEATURE_COUNT + 2;
+  int STORAGE_MARK_SLOT__COMPARISON_CONST = OPERATION_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Comparison color</b></em>' attribute.
@@ -731,7 +786,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STORAGE_MARK_SLOT__COMPARISON_COLOR = OPERATION_FEATURE_COUNT + 3;
+  int STORAGE_MARK_SLOT__COMPARISON_COLOR = OPERATION_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>Comparison int</b></em>' attribute.
@@ -740,7 +795,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STORAGE_MARK_SLOT__COMPARISON_INT = OPERATION_FEATURE_COUNT + 4;
+  int STORAGE_MARK_SLOT__COMPARISON_INT = OPERATION_FEATURE_COUNT + 5;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' attribute.
@@ -749,7 +804,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STORAGE_MARK_SLOT__QUANTITY = OPERATION_FEATURE_COUNT + 5;
+  int STORAGE_MARK_SLOT__QUANTITY = OPERATION_FEATURE_COUNT + 6;
 
   /**
    * The feature id for the '<em><b>Measure</b></em>' attribute.
@@ -758,7 +813,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STORAGE_MARK_SLOT__MEASURE = OPERATION_FEATURE_COUNT + 6;
+  int STORAGE_MARK_SLOT__MEASURE = OPERATION_FEATURE_COUNT + 7;
 
   /**
    * The number of structural features of the '<em>Storage Mark Slot</em>' class.
@@ -767,7 +822,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STORAGE_MARK_SLOT_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 7;
+  int STORAGE_MARK_SLOT_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 8;
 
   /**
    * The meta object id for the '{@link xtext.factoryLogicLang.impl.CameraScanImpl <em>Camera Scan</em>}' class.
@@ -777,7 +832,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getCameraScan()
    * @generated
    */
-  int CAMERA_SCAN = 18;
+  int CAMERA_SCAN = 19;
 
   /**
    * The feature id for the '<em><b>Device</b></em>' reference.
@@ -789,13 +844,13 @@ public interface FactoryLogicLangPackage extends EPackage
   int CAMERA_SCAN__DEVICE = OPERATION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Variable</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CAMERA_SCAN__NAME = OPERATION_FEATURE_COUNT + 1;
+  int CAMERA_SCAN__VARIABLE = OPERATION_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Camera Scan</em>' class.
@@ -807,6 +862,34 @@ public interface FactoryLogicLangPackage extends EPackage
   int CAMERA_SCAN_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link xtext.factoryLogicLang.impl.VariableImpl <em>Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.factoryLogicLang.impl.VariableImpl
+   * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getVariable()
+   * @generated
+   */
+  int VARIABLE = 20;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link xtext.factoryLogicLang.impl.CranePickupImpl <em>Crane Pickup</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -814,7 +897,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getCranePickup()
    * @generated
    */
-  int CRANE_PICKUP = 19;
+  int CRANE_PICKUP = 21;
 
   /**
    * The feature id for the '<em><b>Device</b></em>' reference.
@@ -851,7 +934,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getCraneDrop()
    * @generated
    */
-  int CRANE_DROP = 20;
+  int CRANE_DROP = 22;
 
   /**
    * The feature id for the '<em><b>Device</b></em>' reference.
@@ -888,7 +971,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getCOLOR()
    * @generated
    */
-  int COLOR = 21;
+  int COLOR = 23;
 
   /**
    * The meta object id for the '{@link xtext.factoryLogicLang.CONST_VARIABLES <em>CONST VARIABLES</em>}' enum.
@@ -898,7 +981,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getCONST_VARIABLES()
    * @generated
    */
-  int CONST_VARIABLES = 22;
+  int CONST_VARIABLES = 24;
 
   /**
    * The meta object id for the '{@link xtext.factoryLogicLang.BOOLEAN_OPERATOR <em>BOOLEAN OPERATOR</em>}' enum.
@@ -908,7 +991,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getBOOLEAN_OPERATOR()
    * @generated
    */
-  int BOOLEAN_OPERATOR = 23;
+  int BOOLEAN_OPERATOR = 25;
 
   /**
    * The meta object id for the '{@link xtext.factoryLogicLang.TIME <em>TIME</em>}' enum.
@@ -918,7 +1001,7 @@ public interface FactoryLogicLangPackage extends EPackage
    * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getTIME()
    * @generated
    */
-  int TIME = 24;
+  int TIME = 26;
 
 
   /**
@@ -1173,17 +1256,6 @@ public interface FactoryLogicLangPackage extends EPackage
   EClass getConditional();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLogicLang.Conditional#getVariable <em>Variable</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Variable</em>'.
-   * @see xtext.factoryLogicLang.Conditional#getVariable()
-   * @see #getConditional()
-   * @generated
-   */
-  EAttribute getConditional_Variable();
-
-  /**
    * Returns the meta object for the reference '{@link xtext.factoryLogicLang.Conditional#getSource <em>Source</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1250,6 +1322,17 @@ public interface FactoryLogicLangPackage extends EPackage
   EReference getConditional_Logics();
 
   /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLogicLang.Conditional#getSource_int <em>Source int</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Source int</em>'.
+   * @see xtext.factoryLogicLang.Conditional#getSource_int()
+   * @see #getConditional()
+   * @generated
+   */
+  EAttribute getConditional_Source_int();
+
+  /**
    * Returns the meta object for class '{@link xtext.factoryLogicLang.Loop <em>Loop</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1260,15 +1343,15 @@ public interface FactoryLogicLangPackage extends EPackage
   EClass getLoop();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLogicLang.Loop#getName <em>Name</em>}'.
+   * Returns the meta object for the containment reference '{@link xtext.factoryLogicLang.Loop#getVariable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see xtext.factoryLogicLang.Loop#getName()
+   * @return the meta object for the containment reference '<em>Variable</em>'.
+   * @see xtext.factoryLogicLang.Loop#getVariable()
    * @see #getLoop()
    * @generated
    */
-  EAttribute getLoop_Name();
+  EReference getLoop_Variable();
 
   /**
    * Returns the meta object for the attribute '{@link xtext.factoryLogicLang.Loop#getList <em>List</em>}'.
@@ -1390,6 +1473,49 @@ public interface FactoryLogicLangPackage extends EPackage
   EReference getStorageMoveEmptySlot_Destination();
 
   /**
+   * Returns the meta object for class '{@link xtext.factoryLogicLang.StorageMoveVariableSlot <em>Storage Move Variable Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Storage Move Variable Slot</em>'.
+   * @see xtext.factoryLogicLang.StorageMoveVariableSlot
+   * @generated
+   */
+  EClass getStorageMoveVariableSlot();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLogicLang.StorageMoveVariableSlot#getDevice <em>Device</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Device</em>'.
+   * @see xtext.factoryLogicLang.StorageMoveVariableSlot#getDevice()
+   * @see #getStorageMoveVariableSlot()
+   * @generated
+   */
+  EReference getStorageMoveVariableSlot_Device();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLogicLang.StorageMoveVariableSlot#getPosition <em>Position</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Position</em>'.
+   * @see xtext.factoryLogicLang.StorageMoveVariableSlot#getPosition()
+   * @see #getStorageMoveVariableSlot()
+   * @generated
+   */
+  EReference getStorageMoveVariableSlot_Position();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLogicLang.StorageMoveVariableSlot#getDestination <em>Destination</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Destination</em>'.
+   * @see xtext.factoryLogicLang.StorageMoveVariableSlot#getDestination()
+   * @see #getStorageMoveVariableSlot()
+   * @generated
+   */
+  EReference getStorageMoveVariableSlot_Destination();
+
+  /**
    * Returns the meta object for class '{@link xtext.factoryLogicLang.StorageMoveSlot <em>Storage Move Slot</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1463,6 +1589,17 @@ public interface FactoryLogicLangPackage extends EPackage
    * @generated
    */
   EReference getStorageMarkSlot_Position();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.factoryLogicLang.StorageMarkSlot#getComparison_variable <em>Comparison variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Comparison variable</em>'.
+   * @see xtext.factoryLogicLang.StorageMarkSlot#getComparison_variable()
+   * @see #getStorageMarkSlot()
+   * @generated
+   */
+  EReference getStorageMarkSlot_Comparison_variable();
 
   /**
    * Returns the meta object for the attribute '{@link xtext.factoryLogicLang.StorageMarkSlot#getComparison_const <em>Comparison const</em>}'.
@@ -1541,15 +1678,36 @@ public interface FactoryLogicLangPackage extends EPackage
   EReference getCameraScan_Device();
 
   /**
-   * Returns the meta object for the attribute '{@link xtext.factoryLogicLang.CameraScan#getName <em>Name</em>}'.
+   * Returns the meta object for the containment reference '{@link xtext.factoryLogicLang.CameraScan#getVariable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see xtext.factoryLogicLang.CameraScan#getName()
+   * @return the meta object for the containment reference '<em>Variable</em>'.
+   * @see xtext.factoryLogicLang.CameraScan#getVariable()
    * @see #getCameraScan()
    * @generated
    */
-  EAttribute getCameraScan_Name();
+  EReference getCameraScan_Variable();
+
+  /**
+   * Returns the meta object for class '{@link xtext.factoryLogicLang.Variable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Variable</em>'.
+   * @see xtext.factoryLogicLang.Variable
+   * @generated
+   */
+  EClass getVariable();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.factoryLogicLang.Variable#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see xtext.factoryLogicLang.Variable#getName()
+   * @see #getVariable()
+   * @generated
+   */
+  EAttribute getVariable_Name();
 
   /**
    * Returns the meta object for class '{@link xtext.factoryLogicLang.CranePickup <em>Crane Pickup</em>}'.
@@ -1897,14 +2055,6 @@ public interface FactoryLogicLangPackage extends EPackage
     EClass CONDITIONAL = eINSTANCE.getConditional();
 
     /**
-     * The meta object literal for the '<em><b>Variable</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONDITIONAL__VARIABLE = eINSTANCE.getConditional_Variable();
-
-    /**
      * The meta object literal for the '<em><b>Source</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1953,6 +2103,14 @@ public interface FactoryLogicLangPackage extends EPackage
     EReference CONDITIONAL__LOGICS = eINSTANCE.getConditional_Logics();
 
     /**
+     * The meta object literal for the '<em><b>Source int</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONDITIONAL__SOURCE_INT = eINSTANCE.getConditional_Source_int();
+
+    /**
      * The meta object literal for the '{@link xtext.factoryLogicLang.impl.LoopImpl <em>Loop</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1963,12 +2121,12 @@ public interface FactoryLogicLangPackage extends EPackage
     EClass LOOP = eINSTANCE.getLoop();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute LOOP__NAME = eINSTANCE.getLoop_Name();
+    EReference LOOP__VARIABLE = eINSTANCE.getLoop_Variable();
 
     /**
      * The meta object literal for the '<em><b>List</b></em>' attribute feature.
@@ -2063,6 +2221,40 @@ public interface FactoryLogicLangPackage extends EPackage
     EReference STORAGE_MOVE_EMPTY_SLOT__DESTINATION = eINSTANCE.getStorageMoveEmptySlot_Destination();
 
     /**
+     * The meta object literal for the '{@link xtext.factoryLogicLang.impl.StorageMoveVariableSlotImpl <em>Storage Move Variable Slot</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLogicLang.impl.StorageMoveVariableSlotImpl
+     * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getStorageMoveVariableSlot()
+     * @generated
+     */
+    EClass STORAGE_MOVE_VARIABLE_SLOT = eINSTANCE.getStorageMoveVariableSlot();
+
+    /**
+     * The meta object literal for the '<em><b>Device</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STORAGE_MOVE_VARIABLE_SLOT__DEVICE = eINSTANCE.getStorageMoveVariableSlot_Device();
+
+    /**
+     * The meta object literal for the '<em><b>Position</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STORAGE_MOVE_VARIABLE_SLOT__POSITION = eINSTANCE.getStorageMoveVariableSlot_Position();
+
+    /**
+     * The meta object literal for the '<em><b>Destination</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STORAGE_MOVE_VARIABLE_SLOT__DESTINATION = eINSTANCE.getStorageMoveVariableSlot_Destination();
+
+    /**
      * The meta object literal for the '{@link xtext.factoryLogicLang.impl.StorageMoveSlotImpl <em>Storage Move Slot</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2123,6 +2315,14 @@ public interface FactoryLogicLangPackage extends EPackage
     EReference STORAGE_MARK_SLOT__POSITION = eINSTANCE.getStorageMarkSlot_Position();
 
     /**
+     * The meta object literal for the '<em><b>Comparison variable</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STORAGE_MARK_SLOT__COMPARISON_VARIABLE = eINSTANCE.getStorageMarkSlot_Comparison_variable();
+
+    /**
      * The meta object literal for the '<em><b>Comparison const</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2181,12 +2381,30 @@ public interface FactoryLogicLangPackage extends EPackage
     EReference CAMERA_SCAN__DEVICE = eINSTANCE.getCameraScan_Device();
 
     /**
+     * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CAMERA_SCAN__VARIABLE = eINSTANCE.getCameraScan_Variable();
+
+    /**
+     * The meta object literal for the '{@link xtext.factoryLogicLang.impl.VariableImpl <em>Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.factoryLogicLang.impl.VariableImpl
+     * @see xtext.factoryLogicLang.impl.FactoryLogicLangPackageImpl#getVariable()
+     * @generated
+     */
+    EClass VARIABLE = eINSTANCE.getVariable();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CAMERA_SCAN__NAME = eINSTANCE.getCameraScan_Name();
+    EAttribute VARIABLE__NAME = eINSTANCE.getVariable_Name();
 
     /**
      * The meta object literal for the '{@link xtext.factoryLogicLang.impl.CranePickupImpl <em>Crane Pickup</em>}' class.

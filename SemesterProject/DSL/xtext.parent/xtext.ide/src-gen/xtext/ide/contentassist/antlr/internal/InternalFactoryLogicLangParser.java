@@ -24,61 +24,62 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalFactoryLogicLangParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "GreaterThan", "LessThan", "Finished", "Position", "Minutes", "Seconds", "Storage", "Camera", "Create", "Minute", "Pickup", "Second", "Color", "Crane", "Empty", "Green", "Hours", "Named", "Slots", "Blue", "Drop", "Each", "Full", "Hour", "Into", "Item", "Mark", "Move", "Scan", "Slot", "That", "Then", "With", "For", "Not", "Red", "As", "At", "If", "In", "Is", "Of", "To", "RULE_BEGIN", "RULE_END", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "GreaterThan", "LessThan", "Finished", "Position", "Minutes", "Seconds", "Storage", "Camera", "Create", "Minute", "Pickup", "Second", "Color", "Crane", "Empty", "Equal", "Green", "Hours", "Named", "Slots", "Blue", "Drop", "Each", "Full", "Hour", "Into", "Item", "Mark", "Move", "Scan", "Slot", "That", "Then", "With", "For", "Not", "Red", "As", "At", "If", "In", "Is", "Of", "To", "RULE_BEGIN", "RULE_END", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER"
     };
-    public static final int Each=25;
-    public static final int RULE_BEGIN=47;
+    public static final int Each=26;
+    public static final int RULE_BEGIN=48;
     public static final int Crane=17;
     public static final int Minutes=8;
-    public static final int Full=26;
-    public static final int Item=29;
+    public static final int Full=27;
+    public static final int Item=30;
     public static final int LessThan=5;
     public static final int GreaterThan=4;
-    public static final int Then=35;
+    public static final int Equal=19;
+    public static final int Then=36;
     public static final int Camera=11;
-    public static final int To=46;
+    public static final int To=47;
     public static final int Finished=6;
-    public static final int Into=28;
-    public static final int RULE_ID=49;
+    public static final int Into=29;
+    public static final int RULE_ID=50;
     public static final int Position=7;
-    public static final int Hour=27;
+    public static final int Hour=28;
     public static final int Color=16;
-    public static final int For=37;
-    public static final int Drop=24;
-    public static final int Not=38;
+    public static final int For=38;
+    public static final int Drop=25;
+    public static final int Not=39;
     public static final int Storage=10;
-    public static final int RULE_INT=50;
-    public static final int RULE_ML_COMMENT=52;
-    public static final int Slot=33;
-    public static final int Scan=32;
-    public static final int If=42;
-    public static final int RULE_END=48;
-    public static final int Hours=20;
-    public static final int In=43;
-    public static final int Mark=30;
-    public static final int Is=44;
-    public static final int RULE_STRING=51;
-    public static final int With=36;
-    public static final int RULE_SL_COMMENT=53;
-    public static final int Slots=22;
+    public static final int RULE_INT=51;
+    public static final int RULE_ML_COMMENT=53;
+    public static final int Slot=34;
+    public static final int Scan=33;
+    public static final int If=43;
+    public static final int RULE_END=49;
+    public static final int Hours=21;
+    public static final int In=44;
+    public static final int Mark=31;
+    public static final int Is=45;
+    public static final int RULE_STRING=52;
+    public static final int With=37;
+    public static final int RULE_SL_COMMENT=54;
+    public static final int Slots=23;
     public static final int Empty=18;
-    public static final int As=40;
-    public static final int At=41;
+    public static final int As=41;
+    public static final int At=42;
     public static final int Minute=13;
-    public static final int Move=31;
+    public static final int Move=32;
     public static final int Create=12;
     public static final int EOF=-1;
-    public static final int That=34;
-    public static final int Named=21;
+    public static final int That=35;
+    public static final int Named=22;
     public static final int Pickup=14;
-    public static final int Blue=23;
-    public static final int RULE_WS=54;
-    public static final int RULE_ANY_OTHER=55;
-    public static final int Red=39;
+    public static final int Blue=24;
+    public static final int RULE_WS=55;
+    public static final int RULE_ANY_OTHER=56;
+    public static final int Red=40;
     public static final int Second=15;
-    public static final int Of=45;
+    public static final int Of=46;
     public static final int Seconds=9;
-    public static final int Green=19;
+    public static final int Green=20;
 
     // delegates
     // delegators
@@ -128,6 +129,7 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     		tokenNameToValue.put("Color", "'color'");
     		tokenNameToValue.put("Crane", "'crane'");
     		tokenNameToValue.put("Empty", "'empty'");
+    		tokenNameToValue.put("Equal", "'equal'");
     		tokenNameToValue.put("Green", "'green'");
     		tokenNameToValue.put("Hours", "'hours'");
     		tokenNameToValue.put("Named", "'named'");
@@ -166,11 +168,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleModel"
-    // InternalFactoryLogicLangParser.g:98:1: entryRuleModel : ruleModel EOF ;
+    // InternalFactoryLogicLangParser.g:99:1: entryRuleModel : ruleModel EOF ;
     public final void entryRuleModel() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:99:1: ( ruleModel EOF )
-            // InternalFactoryLogicLangParser.g:100:1: ruleModel EOF
+            // InternalFactoryLogicLangParser.g:100:1: ( ruleModel EOF )
+            // InternalFactoryLogicLangParser.g:101:1: ruleModel EOF
             {
              before(grammarAccess.getModelRule()); 
             pushFollow(FOLLOW_1);
@@ -196,24 +198,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleModel"
-    // InternalFactoryLogicLangParser.g:107:1: ruleModel : ( ( ( rule__Model__DeclarationsAssignment ) ) ( ( rule__Model__DeclarationsAssignment )* ) ) ;
+    // InternalFactoryLogicLangParser.g:108:1: ruleModel : ( ( ( rule__Model__DeclarationsAssignment ) ) ( ( rule__Model__DeclarationsAssignment )* ) ) ;
     public final void ruleModel() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:111:2: ( ( ( ( rule__Model__DeclarationsAssignment ) ) ( ( rule__Model__DeclarationsAssignment )* ) ) )
-            // InternalFactoryLogicLangParser.g:112:2: ( ( ( rule__Model__DeclarationsAssignment ) ) ( ( rule__Model__DeclarationsAssignment )* ) )
+            // InternalFactoryLogicLangParser.g:112:2: ( ( ( ( rule__Model__DeclarationsAssignment ) ) ( ( rule__Model__DeclarationsAssignment )* ) ) )
+            // InternalFactoryLogicLangParser.g:113:2: ( ( ( rule__Model__DeclarationsAssignment ) ) ( ( rule__Model__DeclarationsAssignment )* ) )
             {
-            // InternalFactoryLogicLangParser.g:112:2: ( ( ( rule__Model__DeclarationsAssignment ) ) ( ( rule__Model__DeclarationsAssignment )* ) )
-            // InternalFactoryLogicLangParser.g:113:3: ( ( rule__Model__DeclarationsAssignment ) ) ( ( rule__Model__DeclarationsAssignment )* )
+            // InternalFactoryLogicLangParser.g:113:2: ( ( ( rule__Model__DeclarationsAssignment ) ) ( ( rule__Model__DeclarationsAssignment )* ) )
+            // InternalFactoryLogicLangParser.g:114:3: ( ( rule__Model__DeclarationsAssignment ) ) ( ( rule__Model__DeclarationsAssignment )* )
             {
-            // InternalFactoryLogicLangParser.g:113:3: ( ( rule__Model__DeclarationsAssignment ) )
-            // InternalFactoryLogicLangParser.g:114:4: ( rule__Model__DeclarationsAssignment )
+            // InternalFactoryLogicLangParser.g:114:3: ( ( rule__Model__DeclarationsAssignment ) )
+            // InternalFactoryLogicLangParser.g:115:4: ( rule__Model__DeclarationsAssignment )
             {
              before(grammarAccess.getModelAccess().getDeclarationsAssignment()); 
-            // InternalFactoryLogicLangParser.g:115:4: ( rule__Model__DeclarationsAssignment )
-            // InternalFactoryLogicLangParser.g:115:5: rule__Model__DeclarationsAssignment
+            // InternalFactoryLogicLangParser.g:116:4: ( rule__Model__DeclarationsAssignment )
+            // InternalFactoryLogicLangParser.g:116:5: rule__Model__DeclarationsAssignment
             {
             pushFollow(FOLLOW_3);
             rule__Model__DeclarationsAssignment();
@@ -227,24 +229,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
             }
 
-            // InternalFactoryLogicLangParser.g:118:3: ( ( rule__Model__DeclarationsAssignment )* )
-            // InternalFactoryLogicLangParser.g:119:4: ( rule__Model__DeclarationsAssignment )*
+            // InternalFactoryLogicLangParser.g:119:3: ( ( rule__Model__DeclarationsAssignment )* )
+            // InternalFactoryLogicLangParser.g:120:4: ( rule__Model__DeclarationsAssignment )*
             {
              before(grammarAccess.getModelAccess().getDeclarationsAssignment()); 
-            // InternalFactoryLogicLangParser.g:120:4: ( rule__Model__DeclarationsAssignment )*
+            // InternalFactoryLogicLangParser.g:121:4: ( rule__Model__DeclarationsAssignment )*
             loop1:
             do {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==Create||LA1_0==For||LA1_0==If||LA1_0==RULE_ID) ) {
+                if ( (LA1_0==Create||LA1_0==For||LA1_0==If||LA1_0==RULE_STRING) ) {
                     alt1=1;
                 }
 
 
                 switch (alt1) {
             	case 1 :
-            	    // InternalFactoryLogicLangParser.g:120:5: rule__Model__DeclarationsAssignment
+            	    // InternalFactoryLogicLangParser.g:121:5: rule__Model__DeclarationsAssignment
             	    {
             	    pushFollow(FOLLOW_3);
             	    rule__Model__DeclarationsAssignment();
@@ -286,11 +288,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleDeclaration"
-    // InternalFactoryLogicLangParser.g:130:1: entryRuleDeclaration : ruleDeclaration EOF ;
+    // InternalFactoryLogicLangParser.g:131:1: entryRuleDeclaration : ruleDeclaration EOF ;
     public final void entryRuleDeclaration() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:131:1: ( ruleDeclaration EOF )
-            // InternalFactoryLogicLangParser.g:132:1: ruleDeclaration EOF
+            // InternalFactoryLogicLangParser.g:132:1: ( ruleDeclaration EOF )
+            // InternalFactoryLogicLangParser.g:133:1: ruleDeclaration EOF
             {
              before(grammarAccess.getDeclarationRule()); 
             pushFollow(FOLLOW_1);
@@ -316,21 +318,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleDeclaration"
-    // InternalFactoryLogicLangParser.g:139:1: ruleDeclaration : ( ( rule__Declaration__Alternatives ) ) ;
+    // InternalFactoryLogicLangParser.g:140:1: ruleDeclaration : ( ( rule__Declaration__Alternatives ) ) ;
     public final void ruleDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:143:2: ( ( ( rule__Declaration__Alternatives ) ) )
-            // InternalFactoryLogicLangParser.g:144:2: ( ( rule__Declaration__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:144:2: ( ( ( rule__Declaration__Alternatives ) ) )
+            // InternalFactoryLogicLangParser.g:145:2: ( ( rule__Declaration__Alternatives ) )
             {
-            // InternalFactoryLogicLangParser.g:144:2: ( ( rule__Declaration__Alternatives ) )
-            // InternalFactoryLogicLangParser.g:145:3: ( rule__Declaration__Alternatives )
+            // InternalFactoryLogicLangParser.g:145:2: ( ( rule__Declaration__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:146:3: ( rule__Declaration__Alternatives )
             {
              before(grammarAccess.getDeclarationAccess().getAlternatives()); 
-            // InternalFactoryLogicLangParser.g:146:3: ( rule__Declaration__Alternatives )
-            // InternalFactoryLogicLangParser.g:146:4: rule__Declaration__Alternatives
+            // InternalFactoryLogicLangParser.g:147:3: ( rule__Declaration__Alternatives )
+            // InternalFactoryLogicLangParser.g:147:4: rule__Declaration__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__Declaration__Alternatives();
@@ -363,11 +365,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleDevice"
-    // InternalFactoryLogicLangParser.g:155:1: entryRuleDevice : ruleDevice EOF ;
+    // InternalFactoryLogicLangParser.g:156:1: entryRuleDevice : ruleDevice EOF ;
     public final void entryRuleDevice() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:156:1: ( ruleDevice EOF )
-            // InternalFactoryLogicLangParser.g:157:1: ruleDevice EOF
+            // InternalFactoryLogicLangParser.g:157:1: ( ruleDevice EOF )
+            // InternalFactoryLogicLangParser.g:158:1: ruleDevice EOF
             {
              before(grammarAccess.getDeviceRule()); 
             pushFollow(FOLLOW_1);
@@ -393,21 +395,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleDevice"
-    // InternalFactoryLogicLangParser.g:164:1: ruleDevice : ( ( rule__Device__Alternatives ) ) ;
+    // InternalFactoryLogicLangParser.g:165:1: ruleDevice : ( ( rule__Device__Alternatives ) ) ;
     public final void ruleDevice() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:168:2: ( ( ( rule__Device__Alternatives ) ) )
-            // InternalFactoryLogicLangParser.g:169:2: ( ( rule__Device__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:169:2: ( ( ( rule__Device__Alternatives ) ) )
+            // InternalFactoryLogicLangParser.g:170:2: ( ( rule__Device__Alternatives ) )
             {
-            // InternalFactoryLogicLangParser.g:169:2: ( ( rule__Device__Alternatives ) )
-            // InternalFactoryLogicLangParser.g:170:3: ( rule__Device__Alternatives )
+            // InternalFactoryLogicLangParser.g:170:2: ( ( rule__Device__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:171:3: ( rule__Device__Alternatives )
             {
              before(grammarAccess.getDeviceAccess().getAlternatives()); 
-            // InternalFactoryLogicLangParser.g:171:3: ( rule__Device__Alternatives )
-            // InternalFactoryLogicLangParser.g:171:4: rule__Device__Alternatives
+            // InternalFactoryLogicLangParser.g:172:3: ( rule__Device__Alternatives )
+            // InternalFactoryLogicLangParser.g:172:4: rule__Device__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__Device__Alternatives();
@@ -440,11 +442,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleCrane"
-    // InternalFactoryLogicLangParser.g:180:1: entryRuleCrane : ruleCrane EOF ;
+    // InternalFactoryLogicLangParser.g:181:1: entryRuleCrane : ruleCrane EOF ;
     public final void entryRuleCrane() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:181:1: ( ruleCrane EOF )
-            // InternalFactoryLogicLangParser.g:182:1: ruleCrane EOF
+            // InternalFactoryLogicLangParser.g:182:1: ( ruleCrane EOF )
+            // InternalFactoryLogicLangParser.g:183:1: ruleCrane EOF
             {
              before(grammarAccess.getCraneRule()); 
             pushFollow(FOLLOW_1);
@@ -470,21 +472,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleCrane"
-    // InternalFactoryLogicLangParser.g:189:1: ruleCrane : ( ( rule__Crane__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:190:1: ruleCrane : ( ( rule__Crane__Group__0 ) ) ;
     public final void ruleCrane() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:193:2: ( ( ( rule__Crane__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:194:2: ( ( rule__Crane__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:194:2: ( ( ( rule__Crane__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:195:2: ( ( rule__Crane__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:194:2: ( ( rule__Crane__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:195:3: ( rule__Crane__Group__0 )
+            // InternalFactoryLogicLangParser.g:195:2: ( ( rule__Crane__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:196:3: ( rule__Crane__Group__0 )
             {
              before(grammarAccess.getCraneAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:196:3: ( rule__Crane__Group__0 )
-            // InternalFactoryLogicLangParser.g:196:4: rule__Crane__Group__0
+            // InternalFactoryLogicLangParser.g:197:3: ( rule__Crane__Group__0 )
+            // InternalFactoryLogicLangParser.g:197:4: rule__Crane__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__Crane__Group__0();
@@ -517,11 +519,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleCraneParameter"
-    // InternalFactoryLogicLangParser.g:205:1: entryRuleCraneParameter : ruleCraneParameter EOF ;
+    // InternalFactoryLogicLangParser.g:206:1: entryRuleCraneParameter : ruleCraneParameter EOF ;
     public final void entryRuleCraneParameter() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:206:1: ( ruleCraneParameter EOF )
-            // InternalFactoryLogicLangParser.g:207:1: ruleCraneParameter EOF
+            // InternalFactoryLogicLangParser.g:207:1: ( ruleCraneParameter EOF )
+            // InternalFactoryLogicLangParser.g:208:1: ruleCraneParameter EOF
             {
              before(grammarAccess.getCraneParameterRule()); 
             pushFollow(FOLLOW_1);
@@ -547,21 +549,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleCraneParameter"
-    // InternalFactoryLogicLangParser.g:214:1: ruleCraneParameter : ( ( rule__CraneParameter__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:215:1: ruleCraneParameter : ( ( rule__CraneParameter__Group__0 ) ) ;
     public final void ruleCraneParameter() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:218:2: ( ( ( rule__CraneParameter__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:219:2: ( ( rule__CraneParameter__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:219:2: ( ( ( rule__CraneParameter__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:220:2: ( ( rule__CraneParameter__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:219:2: ( ( rule__CraneParameter__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:220:3: ( rule__CraneParameter__Group__0 )
+            // InternalFactoryLogicLangParser.g:220:2: ( ( rule__CraneParameter__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:221:3: ( rule__CraneParameter__Group__0 )
             {
              before(grammarAccess.getCraneParameterAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:221:3: ( rule__CraneParameter__Group__0 )
-            // InternalFactoryLogicLangParser.g:221:4: rule__CraneParameter__Group__0
+            // InternalFactoryLogicLangParser.g:222:3: ( rule__CraneParameter__Group__0 )
+            // InternalFactoryLogicLangParser.g:222:4: rule__CraneParameter__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__CraneParameter__Group__0();
@@ -594,11 +596,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleStorage"
-    // InternalFactoryLogicLangParser.g:230:1: entryRuleStorage : ruleStorage EOF ;
+    // InternalFactoryLogicLangParser.g:231:1: entryRuleStorage : ruleStorage EOF ;
     public final void entryRuleStorage() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:231:1: ( ruleStorage EOF )
-            // InternalFactoryLogicLangParser.g:232:1: ruleStorage EOF
+            // InternalFactoryLogicLangParser.g:232:1: ( ruleStorage EOF )
+            // InternalFactoryLogicLangParser.g:233:1: ruleStorage EOF
             {
              before(grammarAccess.getStorageRule()); 
             pushFollow(FOLLOW_1);
@@ -624,21 +626,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleStorage"
-    // InternalFactoryLogicLangParser.g:239:1: ruleStorage : ( ( rule__Storage__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:240:1: ruleStorage : ( ( rule__Storage__Group__0 ) ) ;
     public final void ruleStorage() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:243:2: ( ( ( rule__Storage__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:244:2: ( ( rule__Storage__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:244:2: ( ( ( rule__Storage__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:245:2: ( ( rule__Storage__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:244:2: ( ( rule__Storage__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:245:3: ( rule__Storage__Group__0 )
+            // InternalFactoryLogicLangParser.g:245:2: ( ( rule__Storage__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:246:3: ( rule__Storage__Group__0 )
             {
              before(grammarAccess.getStorageAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:246:3: ( rule__Storage__Group__0 )
-            // InternalFactoryLogicLangParser.g:246:4: rule__Storage__Group__0
+            // InternalFactoryLogicLangParser.g:247:3: ( rule__Storage__Group__0 )
+            // InternalFactoryLogicLangParser.g:247:4: rule__Storage__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__Storage__Group__0();
@@ -671,11 +673,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleStorageParameter"
-    // InternalFactoryLogicLangParser.g:255:1: entryRuleStorageParameter : ruleStorageParameter EOF ;
+    // InternalFactoryLogicLangParser.g:256:1: entryRuleStorageParameter : ruleStorageParameter EOF ;
     public final void entryRuleStorageParameter() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:256:1: ( ruleStorageParameter EOF )
-            // InternalFactoryLogicLangParser.g:257:1: ruleStorageParameter EOF
+            // InternalFactoryLogicLangParser.g:257:1: ( ruleStorageParameter EOF )
+            // InternalFactoryLogicLangParser.g:258:1: ruleStorageParameter EOF
             {
              before(grammarAccess.getStorageParameterRule()); 
             pushFollow(FOLLOW_1);
@@ -701,21 +703,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleStorageParameter"
-    // InternalFactoryLogicLangParser.g:264:1: ruleStorageParameter : ( ( rule__StorageParameter__Alternatives ) ) ;
+    // InternalFactoryLogicLangParser.g:265:1: ruleStorageParameter : ( ( rule__StorageParameter__Alternatives ) ) ;
     public final void ruleStorageParameter() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:268:2: ( ( ( rule__StorageParameter__Alternatives ) ) )
-            // InternalFactoryLogicLangParser.g:269:2: ( ( rule__StorageParameter__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:269:2: ( ( ( rule__StorageParameter__Alternatives ) ) )
+            // InternalFactoryLogicLangParser.g:270:2: ( ( rule__StorageParameter__Alternatives ) )
             {
-            // InternalFactoryLogicLangParser.g:269:2: ( ( rule__StorageParameter__Alternatives ) )
-            // InternalFactoryLogicLangParser.g:270:3: ( rule__StorageParameter__Alternatives )
+            // InternalFactoryLogicLangParser.g:270:2: ( ( rule__StorageParameter__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:271:3: ( rule__StorageParameter__Alternatives )
             {
              before(grammarAccess.getStorageParameterAccess().getAlternatives()); 
-            // InternalFactoryLogicLangParser.g:271:3: ( rule__StorageParameter__Alternatives )
-            // InternalFactoryLogicLangParser.g:271:4: rule__StorageParameter__Alternatives
+            // InternalFactoryLogicLangParser.g:272:3: ( rule__StorageParameter__Alternatives )
+            // InternalFactoryLogicLangParser.g:272:4: rule__StorageParameter__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__StorageParameter__Alternatives();
@@ -748,11 +750,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleStorageSlotParameter"
-    // InternalFactoryLogicLangParser.g:280:1: entryRuleStorageSlotParameter : ruleStorageSlotParameter EOF ;
+    // InternalFactoryLogicLangParser.g:281:1: entryRuleStorageSlotParameter : ruleStorageSlotParameter EOF ;
     public final void entryRuleStorageSlotParameter() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:281:1: ( ruleStorageSlotParameter EOF )
-            // InternalFactoryLogicLangParser.g:282:1: ruleStorageSlotParameter EOF
+            // InternalFactoryLogicLangParser.g:282:1: ( ruleStorageSlotParameter EOF )
+            // InternalFactoryLogicLangParser.g:283:1: ruleStorageSlotParameter EOF
             {
              before(grammarAccess.getStorageSlotParameterRule()); 
             pushFollow(FOLLOW_1);
@@ -778,21 +780,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleStorageSlotParameter"
-    // InternalFactoryLogicLangParser.g:289:1: ruleStorageSlotParameter : ( ( rule__StorageSlotParameter__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:290:1: ruleStorageSlotParameter : ( ( rule__StorageSlotParameter__Group__0 ) ) ;
     public final void ruleStorageSlotParameter() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:293:2: ( ( ( rule__StorageSlotParameter__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:294:2: ( ( rule__StorageSlotParameter__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:294:2: ( ( ( rule__StorageSlotParameter__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:295:2: ( ( rule__StorageSlotParameter__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:294:2: ( ( rule__StorageSlotParameter__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:295:3: ( rule__StorageSlotParameter__Group__0 )
+            // InternalFactoryLogicLangParser.g:295:2: ( ( rule__StorageSlotParameter__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:296:3: ( rule__StorageSlotParameter__Group__0 )
             {
              before(grammarAccess.getStorageSlotParameterAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:296:3: ( rule__StorageSlotParameter__Group__0 )
-            // InternalFactoryLogicLangParser.g:296:4: rule__StorageSlotParameter__Group__0
+            // InternalFactoryLogicLangParser.g:297:3: ( rule__StorageSlotParameter__Group__0 )
+            // InternalFactoryLogicLangParser.g:297:4: rule__StorageSlotParameter__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__StorageSlotParameter__Group__0();
@@ -825,11 +827,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleStoragePositionParameter"
-    // InternalFactoryLogicLangParser.g:305:1: entryRuleStoragePositionParameter : ruleStoragePositionParameter EOF ;
+    // InternalFactoryLogicLangParser.g:306:1: entryRuleStoragePositionParameter : ruleStoragePositionParameter EOF ;
     public final void entryRuleStoragePositionParameter() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:306:1: ( ruleStoragePositionParameter EOF )
-            // InternalFactoryLogicLangParser.g:307:1: ruleStoragePositionParameter EOF
+            // InternalFactoryLogicLangParser.g:307:1: ( ruleStoragePositionParameter EOF )
+            // InternalFactoryLogicLangParser.g:308:1: ruleStoragePositionParameter EOF
             {
              before(grammarAccess.getStoragePositionParameterRule()); 
             pushFollow(FOLLOW_1);
@@ -855,21 +857,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleStoragePositionParameter"
-    // InternalFactoryLogicLangParser.g:314:1: ruleStoragePositionParameter : ( ( rule__StoragePositionParameter__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:315:1: ruleStoragePositionParameter : ( ( rule__StoragePositionParameter__Group__0 ) ) ;
     public final void ruleStoragePositionParameter() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:318:2: ( ( ( rule__StoragePositionParameter__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:319:2: ( ( rule__StoragePositionParameter__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:319:2: ( ( ( rule__StoragePositionParameter__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:320:2: ( ( rule__StoragePositionParameter__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:319:2: ( ( rule__StoragePositionParameter__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:320:3: ( rule__StoragePositionParameter__Group__0 )
+            // InternalFactoryLogicLangParser.g:320:2: ( ( rule__StoragePositionParameter__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:321:3: ( rule__StoragePositionParameter__Group__0 )
             {
              before(grammarAccess.getStoragePositionParameterAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:321:3: ( rule__StoragePositionParameter__Group__0 )
-            // InternalFactoryLogicLangParser.g:321:4: rule__StoragePositionParameter__Group__0
+            // InternalFactoryLogicLangParser.g:322:3: ( rule__StoragePositionParameter__Group__0 )
+            // InternalFactoryLogicLangParser.g:322:4: rule__StoragePositionParameter__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__StoragePositionParameter__Group__0();
@@ -902,11 +904,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleCamera"
-    // InternalFactoryLogicLangParser.g:330:1: entryRuleCamera : ruleCamera EOF ;
+    // InternalFactoryLogicLangParser.g:331:1: entryRuleCamera : ruleCamera EOF ;
     public final void entryRuleCamera() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:331:1: ( ruleCamera EOF )
-            // InternalFactoryLogicLangParser.g:332:1: ruleCamera EOF
+            // InternalFactoryLogicLangParser.g:332:1: ( ruleCamera EOF )
+            // InternalFactoryLogicLangParser.g:333:1: ruleCamera EOF
             {
              before(grammarAccess.getCameraRule()); 
             pushFollow(FOLLOW_1);
@@ -932,21 +934,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleCamera"
-    // InternalFactoryLogicLangParser.g:339:1: ruleCamera : ( ( rule__Camera__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:340:1: ruleCamera : ( ( rule__Camera__Group__0 ) ) ;
     public final void ruleCamera() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:343:2: ( ( ( rule__Camera__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:344:2: ( ( rule__Camera__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:344:2: ( ( ( rule__Camera__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:345:2: ( ( rule__Camera__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:344:2: ( ( rule__Camera__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:345:3: ( rule__Camera__Group__0 )
+            // InternalFactoryLogicLangParser.g:345:2: ( ( rule__Camera__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:346:3: ( rule__Camera__Group__0 )
             {
              before(grammarAccess.getCameraAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:346:3: ( rule__Camera__Group__0 )
-            // InternalFactoryLogicLangParser.g:346:4: rule__Camera__Group__0
+            // InternalFactoryLogicLangParser.g:347:3: ( rule__Camera__Group__0 )
+            // InternalFactoryLogicLangParser.g:347:4: rule__Camera__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__Camera__Group__0();
@@ -979,11 +981,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleCameraParameter"
-    // InternalFactoryLogicLangParser.g:355:1: entryRuleCameraParameter : ruleCameraParameter EOF ;
+    // InternalFactoryLogicLangParser.g:356:1: entryRuleCameraParameter : ruleCameraParameter EOF ;
     public final void entryRuleCameraParameter() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:356:1: ( ruleCameraParameter EOF )
-            // InternalFactoryLogicLangParser.g:357:1: ruleCameraParameter EOF
+            // InternalFactoryLogicLangParser.g:357:1: ( ruleCameraParameter EOF )
+            // InternalFactoryLogicLangParser.g:358:1: ruleCameraParameter EOF
             {
              before(grammarAccess.getCameraParameterRule()); 
             pushFollow(FOLLOW_1);
@@ -1009,21 +1011,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleCameraParameter"
-    // InternalFactoryLogicLangParser.g:364:1: ruleCameraParameter : ( ( rule__CameraParameter__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:365:1: ruleCameraParameter : ( ( rule__CameraParameter__Group__0 ) ) ;
     public final void ruleCameraParameter() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:368:2: ( ( ( rule__CameraParameter__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:369:2: ( ( rule__CameraParameter__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:369:2: ( ( ( rule__CameraParameter__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:370:2: ( ( rule__CameraParameter__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:369:2: ( ( rule__CameraParameter__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:370:3: ( rule__CameraParameter__Group__0 )
+            // InternalFactoryLogicLangParser.g:370:2: ( ( rule__CameraParameter__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:371:3: ( rule__CameraParameter__Group__0 )
             {
              before(grammarAccess.getCameraParameterAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:371:3: ( rule__CameraParameter__Group__0 )
-            // InternalFactoryLogicLangParser.g:371:4: rule__CameraParameter__Group__0
+            // InternalFactoryLogicLangParser.g:372:3: ( rule__CameraParameter__Group__0 )
+            // InternalFactoryLogicLangParser.g:372:4: rule__CameraParameter__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__CameraParameter__Group__0();
@@ -1056,11 +1058,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleLogic"
-    // InternalFactoryLogicLangParser.g:380:1: entryRuleLogic : ruleLogic EOF ;
+    // InternalFactoryLogicLangParser.g:381:1: entryRuleLogic : ruleLogic EOF ;
     public final void entryRuleLogic() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:381:1: ( ruleLogic EOF )
-            // InternalFactoryLogicLangParser.g:382:1: ruleLogic EOF
+            // InternalFactoryLogicLangParser.g:382:1: ( ruleLogic EOF )
+            // InternalFactoryLogicLangParser.g:383:1: ruleLogic EOF
             {
              before(grammarAccess.getLogicRule()); 
             pushFollow(FOLLOW_1);
@@ -1086,21 +1088,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleLogic"
-    // InternalFactoryLogicLangParser.g:389:1: ruleLogic : ( ( rule__Logic__Alternatives ) ) ;
+    // InternalFactoryLogicLangParser.g:390:1: ruleLogic : ( ( rule__Logic__Alternatives ) ) ;
     public final void ruleLogic() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:393:2: ( ( ( rule__Logic__Alternatives ) ) )
-            // InternalFactoryLogicLangParser.g:394:2: ( ( rule__Logic__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:394:2: ( ( ( rule__Logic__Alternatives ) ) )
+            // InternalFactoryLogicLangParser.g:395:2: ( ( rule__Logic__Alternatives ) )
             {
-            // InternalFactoryLogicLangParser.g:394:2: ( ( rule__Logic__Alternatives ) )
-            // InternalFactoryLogicLangParser.g:395:3: ( rule__Logic__Alternatives )
+            // InternalFactoryLogicLangParser.g:395:2: ( ( rule__Logic__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:396:3: ( rule__Logic__Alternatives )
             {
              before(grammarAccess.getLogicAccess().getAlternatives()); 
-            // InternalFactoryLogicLangParser.g:396:3: ( rule__Logic__Alternatives )
-            // InternalFactoryLogicLangParser.g:396:4: rule__Logic__Alternatives
+            // InternalFactoryLogicLangParser.g:397:3: ( rule__Logic__Alternatives )
+            // InternalFactoryLogicLangParser.g:397:4: rule__Logic__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__Logic__Alternatives();
@@ -1132,20 +1134,20 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "ruleLogic"
 
 
-    // $ANTLR start "entryRuleConditional"
-    // InternalFactoryLogicLangParser.g:405:1: entryRuleConditional : ruleConditional EOF ;
-    public final void entryRuleConditional() throws RecognitionException {
+    // $ANTLR start "entryRuleDeviceConditional"
+    // InternalFactoryLogicLangParser.g:406:1: entryRuleDeviceConditional : ruleDeviceConditional EOF ;
+    public final void entryRuleDeviceConditional() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:406:1: ( ruleConditional EOF )
-            // InternalFactoryLogicLangParser.g:407:1: ruleConditional EOF
+            // InternalFactoryLogicLangParser.g:407:1: ( ruleDeviceConditional EOF )
+            // InternalFactoryLogicLangParser.g:408:1: ruleDeviceConditional EOF
             {
-             before(grammarAccess.getConditionalRule()); 
+             before(grammarAccess.getDeviceConditionalRule()); 
             pushFollow(FOLLOW_1);
-            ruleConditional();
+            ruleDeviceConditional();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalRule()); 
+             after(grammarAccess.getDeviceConditionalRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1159,35 +1161,35 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "entryRuleConditional"
+    // $ANTLR end "entryRuleDeviceConditional"
 
 
-    // $ANTLR start "ruleConditional"
-    // InternalFactoryLogicLangParser.g:414:1: ruleConditional : ( ( rule__Conditional__Group__0 ) ) ;
-    public final void ruleConditional() throws RecognitionException {
+    // $ANTLR start "ruleDeviceConditional"
+    // InternalFactoryLogicLangParser.g:415:1: ruleDeviceConditional : ( ( rule__DeviceConditional__Group__0 ) ) ;
+    public final void ruleDeviceConditional() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:418:2: ( ( ( rule__Conditional__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:419:2: ( ( rule__Conditional__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:419:2: ( ( ( rule__DeviceConditional__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:420:2: ( ( rule__DeviceConditional__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:419:2: ( ( rule__Conditional__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:420:3: ( rule__Conditional__Group__0 )
+            // InternalFactoryLogicLangParser.g:420:2: ( ( rule__DeviceConditional__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:421:3: ( rule__DeviceConditional__Group__0 )
             {
-             before(grammarAccess.getConditionalAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:421:3: ( rule__Conditional__Group__0 )
-            // InternalFactoryLogicLangParser.g:421:4: rule__Conditional__Group__0
+             before(grammarAccess.getDeviceConditionalAccess().getGroup()); 
+            // InternalFactoryLogicLangParser.g:422:3: ( rule__DeviceConditional__Group__0 )
+            // InternalFactoryLogicLangParser.g:422:4: rule__DeviceConditional__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group__0();
+            rule__DeviceConditional__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getConditionalAccess().getGroup()); 
+             after(grammarAccess.getDeviceConditionalAccess().getGroup()); 
 
             }
 
@@ -1206,15 +1208,169 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "ruleConditional"
+    // $ANTLR end "ruleDeviceConditional"
+
+
+    // $ANTLR start "entryRuleVariableConditional"
+    // InternalFactoryLogicLangParser.g:431:1: entryRuleVariableConditional : ruleVariableConditional EOF ;
+    public final void entryRuleVariableConditional() throws RecognitionException {
+        try {
+            // InternalFactoryLogicLangParser.g:432:1: ( ruleVariableConditional EOF )
+            // InternalFactoryLogicLangParser.g:433:1: ruleVariableConditional EOF
+            {
+             before(grammarAccess.getVariableConditionalRule()); 
+            pushFollow(FOLLOW_1);
+            ruleVariableConditional();
+
+            state._fsp--;
+
+             after(grammarAccess.getVariableConditionalRule()); 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleVariableConditional"
+
+
+    // $ANTLR start "ruleVariableConditional"
+    // InternalFactoryLogicLangParser.g:440:1: ruleVariableConditional : ( ( rule__VariableConditional__Group__0 ) ) ;
+    public final void ruleVariableConditional() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:444:2: ( ( ( rule__VariableConditional__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:445:2: ( ( rule__VariableConditional__Group__0 ) )
+            {
+            // InternalFactoryLogicLangParser.g:445:2: ( ( rule__VariableConditional__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:446:3: ( rule__VariableConditional__Group__0 )
+            {
+             before(grammarAccess.getVariableConditionalAccess().getGroup()); 
+            // InternalFactoryLogicLangParser.g:447:3: ( rule__VariableConditional__Group__0 )
+            // InternalFactoryLogicLangParser.g:447:4: rule__VariableConditional__Group__0
+            {
+            pushFollow(FOLLOW_2);
+            rule__VariableConditional__Group__0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getVariableConditionalAccess().getGroup()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleVariableConditional"
+
+
+    // $ANTLR start "entryRuleNumberConditional"
+    // InternalFactoryLogicLangParser.g:456:1: entryRuleNumberConditional : ruleNumberConditional EOF ;
+    public final void entryRuleNumberConditional() throws RecognitionException {
+        try {
+            // InternalFactoryLogicLangParser.g:457:1: ( ruleNumberConditional EOF )
+            // InternalFactoryLogicLangParser.g:458:1: ruleNumberConditional EOF
+            {
+             before(grammarAccess.getNumberConditionalRule()); 
+            pushFollow(FOLLOW_1);
+            ruleNumberConditional();
+
+            state._fsp--;
+
+             after(grammarAccess.getNumberConditionalRule()); 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleNumberConditional"
+
+
+    // $ANTLR start "ruleNumberConditional"
+    // InternalFactoryLogicLangParser.g:465:1: ruleNumberConditional : ( ( rule__NumberConditional__Group__0 ) ) ;
+    public final void ruleNumberConditional() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:469:2: ( ( ( rule__NumberConditional__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:470:2: ( ( rule__NumberConditional__Group__0 ) )
+            {
+            // InternalFactoryLogicLangParser.g:470:2: ( ( rule__NumberConditional__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:471:3: ( rule__NumberConditional__Group__0 )
+            {
+             before(grammarAccess.getNumberConditionalAccess().getGroup()); 
+            // InternalFactoryLogicLangParser.g:472:3: ( rule__NumberConditional__Group__0 )
+            // InternalFactoryLogicLangParser.g:472:4: rule__NumberConditional__Group__0
+            {
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getNumberConditionalAccess().getGroup()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleNumberConditional"
 
 
     // $ANTLR start "entryRuleLoop"
-    // InternalFactoryLogicLangParser.g:430:1: entryRuleLoop : ruleLoop EOF ;
+    // InternalFactoryLogicLangParser.g:481:1: entryRuleLoop : ruleLoop EOF ;
     public final void entryRuleLoop() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:431:1: ( ruleLoop EOF )
-            // InternalFactoryLogicLangParser.g:432:1: ruleLoop EOF
+            // InternalFactoryLogicLangParser.g:482:1: ( ruleLoop EOF )
+            // InternalFactoryLogicLangParser.g:483:1: ruleLoop EOF
             {
              before(grammarAccess.getLoopRule()); 
             pushFollow(FOLLOW_1);
@@ -1240,21 +1396,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleLoop"
-    // InternalFactoryLogicLangParser.g:439:1: ruleLoop : ( ( rule__Loop__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:490:1: ruleLoop : ( ( rule__Loop__Group__0 ) ) ;
     public final void ruleLoop() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:443:2: ( ( ( rule__Loop__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:444:2: ( ( rule__Loop__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:494:2: ( ( ( rule__Loop__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:495:2: ( ( rule__Loop__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:444:2: ( ( rule__Loop__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:445:3: ( rule__Loop__Group__0 )
+            // InternalFactoryLogicLangParser.g:495:2: ( ( rule__Loop__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:496:3: ( rule__Loop__Group__0 )
             {
              before(grammarAccess.getLoopAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:446:3: ( rule__Loop__Group__0 )
-            // InternalFactoryLogicLangParser.g:446:4: rule__Loop__Group__0
+            // InternalFactoryLogicLangParser.g:497:3: ( rule__Loop__Group__0 )
+            // InternalFactoryLogicLangParser.g:497:4: rule__Loop__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__Loop__Group__0();
@@ -1287,11 +1443,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleOperation"
-    // InternalFactoryLogicLangParser.g:455:1: entryRuleOperation : ruleOperation EOF ;
+    // InternalFactoryLogicLangParser.g:506:1: entryRuleOperation : ruleOperation EOF ;
     public final void entryRuleOperation() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:456:1: ( ruleOperation EOF )
-            // InternalFactoryLogicLangParser.g:457:1: ruleOperation EOF
+            // InternalFactoryLogicLangParser.g:507:1: ( ruleOperation EOF )
+            // InternalFactoryLogicLangParser.g:508:1: ruleOperation EOF
             {
              before(grammarAccess.getOperationRule()); 
             pushFollow(FOLLOW_1);
@@ -1317,21 +1473,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleOperation"
-    // InternalFactoryLogicLangParser.g:464:1: ruleOperation : ( ( rule__Operation__Alternatives ) ) ;
+    // InternalFactoryLogicLangParser.g:515:1: ruleOperation : ( ( rule__Operation__Alternatives ) ) ;
     public final void ruleOperation() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:468:2: ( ( ( rule__Operation__Alternatives ) ) )
-            // InternalFactoryLogicLangParser.g:469:2: ( ( rule__Operation__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:519:2: ( ( ( rule__Operation__Alternatives ) ) )
+            // InternalFactoryLogicLangParser.g:520:2: ( ( rule__Operation__Alternatives ) )
             {
-            // InternalFactoryLogicLangParser.g:469:2: ( ( rule__Operation__Alternatives ) )
-            // InternalFactoryLogicLangParser.g:470:3: ( rule__Operation__Alternatives )
+            // InternalFactoryLogicLangParser.g:520:2: ( ( rule__Operation__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:521:3: ( rule__Operation__Alternatives )
             {
              before(grammarAccess.getOperationAccess().getAlternatives()); 
-            // InternalFactoryLogicLangParser.g:471:3: ( rule__Operation__Alternatives )
-            // InternalFactoryLogicLangParser.g:471:4: rule__Operation__Alternatives
+            // InternalFactoryLogicLangParser.g:522:3: ( rule__Operation__Alternatives )
+            // InternalFactoryLogicLangParser.g:522:4: rule__Operation__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__Operation__Alternatives();
@@ -1364,11 +1520,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleStorageMoveEmptySlot"
-    // InternalFactoryLogicLangParser.g:480:1: entryRuleStorageMoveEmptySlot : ruleStorageMoveEmptySlot EOF ;
+    // InternalFactoryLogicLangParser.g:531:1: entryRuleStorageMoveEmptySlot : ruleStorageMoveEmptySlot EOF ;
     public final void entryRuleStorageMoveEmptySlot() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:481:1: ( ruleStorageMoveEmptySlot EOF )
-            // InternalFactoryLogicLangParser.g:482:1: ruleStorageMoveEmptySlot EOF
+            // InternalFactoryLogicLangParser.g:532:1: ( ruleStorageMoveEmptySlot EOF )
+            // InternalFactoryLogicLangParser.g:533:1: ruleStorageMoveEmptySlot EOF
             {
              before(grammarAccess.getStorageMoveEmptySlotRule()); 
             pushFollow(FOLLOW_1);
@@ -1394,21 +1550,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleStorageMoveEmptySlot"
-    // InternalFactoryLogicLangParser.g:489:1: ruleStorageMoveEmptySlot : ( ( rule__StorageMoveEmptySlot__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:540:1: ruleStorageMoveEmptySlot : ( ( rule__StorageMoveEmptySlot__Group__0 ) ) ;
     public final void ruleStorageMoveEmptySlot() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:493:2: ( ( ( rule__StorageMoveEmptySlot__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:494:2: ( ( rule__StorageMoveEmptySlot__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:544:2: ( ( ( rule__StorageMoveEmptySlot__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:545:2: ( ( rule__StorageMoveEmptySlot__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:494:2: ( ( rule__StorageMoveEmptySlot__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:495:3: ( rule__StorageMoveEmptySlot__Group__0 )
+            // InternalFactoryLogicLangParser.g:545:2: ( ( rule__StorageMoveEmptySlot__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:546:3: ( rule__StorageMoveEmptySlot__Group__0 )
             {
              before(grammarAccess.getStorageMoveEmptySlotAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:496:3: ( rule__StorageMoveEmptySlot__Group__0 )
-            // InternalFactoryLogicLangParser.g:496:4: rule__StorageMoveEmptySlot__Group__0
+            // InternalFactoryLogicLangParser.g:547:3: ( rule__StorageMoveEmptySlot__Group__0 )
+            // InternalFactoryLogicLangParser.g:547:4: rule__StorageMoveEmptySlot__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__StorageMoveEmptySlot__Group__0();
@@ -1440,12 +1596,89 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "ruleStorageMoveEmptySlot"
 
 
+    // $ANTLR start "entryRuleStorageMoveVariableSlot"
+    // InternalFactoryLogicLangParser.g:556:1: entryRuleStorageMoveVariableSlot : ruleStorageMoveVariableSlot EOF ;
+    public final void entryRuleStorageMoveVariableSlot() throws RecognitionException {
+        try {
+            // InternalFactoryLogicLangParser.g:557:1: ( ruleStorageMoveVariableSlot EOF )
+            // InternalFactoryLogicLangParser.g:558:1: ruleStorageMoveVariableSlot EOF
+            {
+             before(grammarAccess.getStorageMoveVariableSlotRule()); 
+            pushFollow(FOLLOW_1);
+            ruleStorageMoveVariableSlot();
+
+            state._fsp--;
+
+             after(grammarAccess.getStorageMoveVariableSlotRule()); 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleStorageMoveVariableSlot"
+
+
+    // $ANTLR start "ruleStorageMoveVariableSlot"
+    // InternalFactoryLogicLangParser.g:565:1: ruleStorageMoveVariableSlot : ( ( rule__StorageMoveVariableSlot__Group__0 ) ) ;
+    public final void ruleStorageMoveVariableSlot() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:569:2: ( ( ( rule__StorageMoveVariableSlot__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:570:2: ( ( rule__StorageMoveVariableSlot__Group__0 ) )
+            {
+            // InternalFactoryLogicLangParser.g:570:2: ( ( rule__StorageMoveVariableSlot__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:571:3: ( rule__StorageMoveVariableSlot__Group__0 )
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getGroup()); 
+            // InternalFactoryLogicLangParser.g:572:3: ( rule__StorageMoveVariableSlot__Group__0 )
+            // InternalFactoryLogicLangParser.g:572:4: rule__StorageMoveVariableSlot__Group__0
+            {
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__Group__0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getGroup()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleStorageMoveVariableSlot"
+
+
     // $ANTLR start "entryRuleStorageMoveSlot"
-    // InternalFactoryLogicLangParser.g:505:1: entryRuleStorageMoveSlot : ruleStorageMoveSlot EOF ;
+    // InternalFactoryLogicLangParser.g:581:1: entryRuleStorageMoveSlot : ruleStorageMoveSlot EOF ;
     public final void entryRuleStorageMoveSlot() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:506:1: ( ruleStorageMoveSlot EOF )
-            // InternalFactoryLogicLangParser.g:507:1: ruleStorageMoveSlot EOF
+            // InternalFactoryLogicLangParser.g:582:1: ( ruleStorageMoveSlot EOF )
+            // InternalFactoryLogicLangParser.g:583:1: ruleStorageMoveSlot EOF
             {
              before(grammarAccess.getStorageMoveSlotRule()); 
             pushFollow(FOLLOW_1);
@@ -1471,21 +1704,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleStorageMoveSlot"
-    // InternalFactoryLogicLangParser.g:514:1: ruleStorageMoveSlot : ( ( rule__StorageMoveSlot__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:590:1: ruleStorageMoveSlot : ( ( rule__StorageMoveSlot__Group__0 ) ) ;
     public final void ruleStorageMoveSlot() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:518:2: ( ( ( rule__StorageMoveSlot__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:519:2: ( ( rule__StorageMoveSlot__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:594:2: ( ( ( rule__StorageMoveSlot__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:595:2: ( ( rule__StorageMoveSlot__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:519:2: ( ( rule__StorageMoveSlot__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:520:3: ( rule__StorageMoveSlot__Group__0 )
+            // InternalFactoryLogicLangParser.g:595:2: ( ( rule__StorageMoveSlot__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:596:3: ( rule__StorageMoveSlot__Group__0 )
             {
              before(grammarAccess.getStorageMoveSlotAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:521:3: ( rule__StorageMoveSlot__Group__0 )
-            // InternalFactoryLogicLangParser.g:521:4: rule__StorageMoveSlot__Group__0
+            // InternalFactoryLogicLangParser.g:597:3: ( rule__StorageMoveSlot__Group__0 )
+            // InternalFactoryLogicLangParser.g:597:4: rule__StorageMoveSlot__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__StorageMoveSlot__Group__0();
@@ -1518,11 +1751,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleStorageMarkSlot"
-    // InternalFactoryLogicLangParser.g:530:1: entryRuleStorageMarkSlot : ruleStorageMarkSlot EOF ;
+    // InternalFactoryLogicLangParser.g:606:1: entryRuleStorageMarkSlot : ruleStorageMarkSlot EOF ;
     public final void entryRuleStorageMarkSlot() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:531:1: ( ruleStorageMarkSlot EOF )
-            // InternalFactoryLogicLangParser.g:532:1: ruleStorageMarkSlot EOF
+            // InternalFactoryLogicLangParser.g:607:1: ( ruleStorageMarkSlot EOF )
+            // InternalFactoryLogicLangParser.g:608:1: ruleStorageMarkSlot EOF
             {
              before(grammarAccess.getStorageMarkSlotRule()); 
             pushFollow(FOLLOW_1);
@@ -1548,21 +1781,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleStorageMarkSlot"
-    // InternalFactoryLogicLangParser.g:539:1: ruleStorageMarkSlot : ( ( rule__StorageMarkSlot__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:615:1: ruleStorageMarkSlot : ( ( rule__StorageMarkSlot__Group__0 ) ) ;
     public final void ruleStorageMarkSlot() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:543:2: ( ( ( rule__StorageMarkSlot__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:544:2: ( ( rule__StorageMarkSlot__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:619:2: ( ( ( rule__StorageMarkSlot__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:620:2: ( ( rule__StorageMarkSlot__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:544:2: ( ( rule__StorageMarkSlot__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:545:3: ( rule__StorageMarkSlot__Group__0 )
+            // InternalFactoryLogicLangParser.g:620:2: ( ( rule__StorageMarkSlot__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:621:3: ( rule__StorageMarkSlot__Group__0 )
             {
              before(grammarAccess.getStorageMarkSlotAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:546:3: ( rule__StorageMarkSlot__Group__0 )
-            // InternalFactoryLogicLangParser.g:546:4: rule__StorageMarkSlot__Group__0
+            // InternalFactoryLogicLangParser.g:622:3: ( rule__StorageMarkSlot__Group__0 )
+            // InternalFactoryLogicLangParser.g:622:4: rule__StorageMarkSlot__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__StorageMarkSlot__Group__0();
@@ -1595,11 +1828,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleCameraScan"
-    // InternalFactoryLogicLangParser.g:555:1: entryRuleCameraScan : ruleCameraScan EOF ;
+    // InternalFactoryLogicLangParser.g:631:1: entryRuleCameraScan : ruleCameraScan EOF ;
     public final void entryRuleCameraScan() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:556:1: ( ruleCameraScan EOF )
-            // InternalFactoryLogicLangParser.g:557:1: ruleCameraScan EOF
+            // InternalFactoryLogicLangParser.g:632:1: ( ruleCameraScan EOF )
+            // InternalFactoryLogicLangParser.g:633:1: ruleCameraScan EOF
             {
              before(grammarAccess.getCameraScanRule()); 
             pushFollow(FOLLOW_1);
@@ -1625,21 +1858,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleCameraScan"
-    // InternalFactoryLogicLangParser.g:564:1: ruleCameraScan : ( ( rule__CameraScan__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:640:1: ruleCameraScan : ( ( rule__CameraScan__Group__0 ) ) ;
     public final void ruleCameraScan() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:568:2: ( ( ( rule__CameraScan__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:569:2: ( ( rule__CameraScan__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:644:2: ( ( ( rule__CameraScan__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:645:2: ( ( rule__CameraScan__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:569:2: ( ( rule__CameraScan__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:570:3: ( rule__CameraScan__Group__0 )
+            // InternalFactoryLogicLangParser.g:645:2: ( ( rule__CameraScan__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:646:3: ( rule__CameraScan__Group__0 )
             {
              before(grammarAccess.getCameraScanAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:571:3: ( rule__CameraScan__Group__0 )
-            // InternalFactoryLogicLangParser.g:571:4: rule__CameraScan__Group__0
+            // InternalFactoryLogicLangParser.g:647:3: ( rule__CameraScan__Group__0 )
+            // InternalFactoryLogicLangParser.g:647:4: rule__CameraScan__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__CameraScan__Group__0();
@@ -1671,12 +1904,166 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "ruleCameraScan"
 
 
+    // $ANTLR start "entryRuleLoopVariable"
+    // InternalFactoryLogicLangParser.g:656:1: entryRuleLoopVariable : ruleLoopVariable EOF ;
+    public final void entryRuleLoopVariable() throws RecognitionException {
+        try {
+            // InternalFactoryLogicLangParser.g:657:1: ( ruleLoopVariable EOF )
+            // InternalFactoryLogicLangParser.g:658:1: ruleLoopVariable EOF
+            {
+             before(grammarAccess.getLoopVariableRule()); 
+            pushFollow(FOLLOW_1);
+            ruleLoopVariable();
+
+            state._fsp--;
+
+             after(grammarAccess.getLoopVariableRule()); 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleLoopVariable"
+
+
+    // $ANTLR start "ruleLoopVariable"
+    // InternalFactoryLogicLangParser.g:665:1: ruleLoopVariable : ( ( rule__LoopVariable__Group__0 ) ) ;
+    public final void ruleLoopVariable() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:669:2: ( ( ( rule__LoopVariable__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:670:2: ( ( rule__LoopVariable__Group__0 ) )
+            {
+            // InternalFactoryLogicLangParser.g:670:2: ( ( rule__LoopVariable__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:671:3: ( rule__LoopVariable__Group__0 )
+            {
+             before(grammarAccess.getLoopVariableAccess().getGroup()); 
+            // InternalFactoryLogicLangParser.g:672:3: ( rule__LoopVariable__Group__0 )
+            // InternalFactoryLogicLangParser.g:672:4: rule__LoopVariable__Group__0
+            {
+            pushFollow(FOLLOW_2);
+            rule__LoopVariable__Group__0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getLoopVariableAccess().getGroup()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleLoopVariable"
+
+
+    // $ANTLR start "entryRuleGloablVariable"
+    // InternalFactoryLogicLangParser.g:681:1: entryRuleGloablVariable : ruleGloablVariable EOF ;
+    public final void entryRuleGloablVariable() throws RecognitionException {
+        try {
+            // InternalFactoryLogicLangParser.g:682:1: ( ruleGloablVariable EOF )
+            // InternalFactoryLogicLangParser.g:683:1: ruleGloablVariable EOF
+            {
+             before(grammarAccess.getGloablVariableRule()); 
+            pushFollow(FOLLOW_1);
+            ruleGloablVariable();
+
+            state._fsp--;
+
+             after(grammarAccess.getGloablVariableRule()); 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRuleGloablVariable"
+
+
+    // $ANTLR start "ruleGloablVariable"
+    // InternalFactoryLogicLangParser.g:690:1: ruleGloablVariable : ( ( rule__GloablVariable__Group__0 ) ) ;
+    public final void ruleGloablVariable() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:694:2: ( ( ( rule__GloablVariable__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:695:2: ( ( rule__GloablVariable__Group__0 ) )
+            {
+            // InternalFactoryLogicLangParser.g:695:2: ( ( rule__GloablVariable__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:696:3: ( rule__GloablVariable__Group__0 )
+            {
+             before(grammarAccess.getGloablVariableAccess().getGroup()); 
+            // InternalFactoryLogicLangParser.g:697:3: ( rule__GloablVariable__Group__0 )
+            // InternalFactoryLogicLangParser.g:697:4: rule__GloablVariable__Group__0
+            {
+            pushFollow(FOLLOW_2);
+            rule__GloablVariable__Group__0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getGloablVariableAccess().getGroup()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "ruleGloablVariable"
+
+
     // $ANTLR start "entryRuleCranePickup"
-    // InternalFactoryLogicLangParser.g:580:1: entryRuleCranePickup : ruleCranePickup EOF ;
+    // InternalFactoryLogicLangParser.g:706:1: entryRuleCranePickup : ruleCranePickup EOF ;
     public final void entryRuleCranePickup() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:581:1: ( ruleCranePickup EOF )
-            // InternalFactoryLogicLangParser.g:582:1: ruleCranePickup EOF
+            // InternalFactoryLogicLangParser.g:707:1: ( ruleCranePickup EOF )
+            // InternalFactoryLogicLangParser.g:708:1: ruleCranePickup EOF
             {
              before(grammarAccess.getCranePickupRule()); 
             pushFollow(FOLLOW_1);
@@ -1702,21 +2089,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleCranePickup"
-    // InternalFactoryLogicLangParser.g:589:1: ruleCranePickup : ( ( rule__CranePickup__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:715:1: ruleCranePickup : ( ( rule__CranePickup__Group__0 ) ) ;
     public final void ruleCranePickup() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:593:2: ( ( ( rule__CranePickup__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:594:2: ( ( rule__CranePickup__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:719:2: ( ( ( rule__CranePickup__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:720:2: ( ( rule__CranePickup__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:594:2: ( ( rule__CranePickup__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:595:3: ( rule__CranePickup__Group__0 )
+            // InternalFactoryLogicLangParser.g:720:2: ( ( rule__CranePickup__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:721:3: ( rule__CranePickup__Group__0 )
             {
              before(grammarAccess.getCranePickupAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:596:3: ( rule__CranePickup__Group__0 )
-            // InternalFactoryLogicLangParser.g:596:4: rule__CranePickup__Group__0
+            // InternalFactoryLogicLangParser.g:722:3: ( rule__CranePickup__Group__0 )
+            // InternalFactoryLogicLangParser.g:722:4: rule__CranePickup__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__CranePickup__Group__0();
@@ -1749,11 +2136,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "entryRuleCraneDrop"
-    // InternalFactoryLogicLangParser.g:605:1: entryRuleCraneDrop : ruleCraneDrop EOF ;
+    // InternalFactoryLogicLangParser.g:731:1: entryRuleCraneDrop : ruleCraneDrop EOF ;
     public final void entryRuleCraneDrop() throws RecognitionException {
         try {
-            // InternalFactoryLogicLangParser.g:606:1: ( ruleCraneDrop EOF )
-            // InternalFactoryLogicLangParser.g:607:1: ruleCraneDrop EOF
+            // InternalFactoryLogicLangParser.g:732:1: ( ruleCraneDrop EOF )
+            // InternalFactoryLogicLangParser.g:733:1: ruleCraneDrop EOF
             {
              before(grammarAccess.getCraneDropRule()); 
             pushFollow(FOLLOW_1);
@@ -1779,21 +2166,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleCraneDrop"
-    // InternalFactoryLogicLangParser.g:614:1: ruleCraneDrop : ( ( rule__CraneDrop__Group__0 ) ) ;
+    // InternalFactoryLogicLangParser.g:740:1: ruleCraneDrop : ( ( rule__CraneDrop__Group__0 ) ) ;
     public final void ruleCraneDrop() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:618:2: ( ( ( rule__CraneDrop__Group__0 ) ) )
-            // InternalFactoryLogicLangParser.g:619:2: ( ( rule__CraneDrop__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:744:2: ( ( ( rule__CraneDrop__Group__0 ) ) )
+            // InternalFactoryLogicLangParser.g:745:2: ( ( rule__CraneDrop__Group__0 ) )
             {
-            // InternalFactoryLogicLangParser.g:619:2: ( ( rule__CraneDrop__Group__0 ) )
-            // InternalFactoryLogicLangParser.g:620:3: ( rule__CraneDrop__Group__0 )
+            // InternalFactoryLogicLangParser.g:745:2: ( ( rule__CraneDrop__Group__0 ) )
+            // InternalFactoryLogicLangParser.g:746:3: ( rule__CraneDrop__Group__0 )
             {
              before(grammarAccess.getCraneDropAccess().getGroup()); 
-            // InternalFactoryLogicLangParser.g:621:3: ( rule__CraneDrop__Group__0 )
-            // InternalFactoryLogicLangParser.g:621:4: rule__CraneDrop__Group__0
+            // InternalFactoryLogicLangParser.g:747:3: ( rule__CraneDrop__Group__0 )
+            // InternalFactoryLogicLangParser.g:747:4: rule__CraneDrop__Group__0
             {
             pushFollow(FOLLOW_2);
             rule__CraneDrop__Group__0();
@@ -1826,21 +2213,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleCOLOR"
-    // InternalFactoryLogicLangParser.g:630:1: ruleCOLOR : ( ( rule__COLOR__Alternatives ) ) ;
+    // InternalFactoryLogicLangParser.g:756:1: ruleCOLOR : ( ( rule__COLOR__Alternatives ) ) ;
     public final void ruleCOLOR() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:634:1: ( ( ( rule__COLOR__Alternatives ) ) )
-            // InternalFactoryLogicLangParser.g:635:2: ( ( rule__COLOR__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:760:1: ( ( ( rule__COLOR__Alternatives ) ) )
+            // InternalFactoryLogicLangParser.g:761:2: ( ( rule__COLOR__Alternatives ) )
             {
-            // InternalFactoryLogicLangParser.g:635:2: ( ( rule__COLOR__Alternatives ) )
-            // InternalFactoryLogicLangParser.g:636:3: ( rule__COLOR__Alternatives )
+            // InternalFactoryLogicLangParser.g:761:2: ( ( rule__COLOR__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:762:3: ( rule__COLOR__Alternatives )
             {
              before(grammarAccess.getCOLORAccess().getAlternatives()); 
-            // InternalFactoryLogicLangParser.g:637:3: ( rule__COLOR__Alternatives )
-            // InternalFactoryLogicLangParser.g:637:4: rule__COLOR__Alternatives
+            // InternalFactoryLogicLangParser.g:763:3: ( rule__COLOR__Alternatives )
+            // InternalFactoryLogicLangParser.g:763:4: rule__COLOR__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__COLOR__Alternatives();
@@ -1873,21 +2260,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleCONST_VARIABLES"
-    // InternalFactoryLogicLangParser.g:646:1: ruleCONST_VARIABLES : ( ( rule__CONST_VARIABLES__Alternatives ) ) ;
+    // InternalFactoryLogicLangParser.g:772:1: ruleCONST_VARIABLES : ( ( rule__CONST_VARIABLES__Alternatives ) ) ;
     public final void ruleCONST_VARIABLES() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:650:1: ( ( ( rule__CONST_VARIABLES__Alternatives ) ) )
-            // InternalFactoryLogicLangParser.g:651:2: ( ( rule__CONST_VARIABLES__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:776:1: ( ( ( rule__CONST_VARIABLES__Alternatives ) ) )
+            // InternalFactoryLogicLangParser.g:777:2: ( ( rule__CONST_VARIABLES__Alternatives ) )
             {
-            // InternalFactoryLogicLangParser.g:651:2: ( ( rule__CONST_VARIABLES__Alternatives ) )
-            // InternalFactoryLogicLangParser.g:652:3: ( rule__CONST_VARIABLES__Alternatives )
+            // InternalFactoryLogicLangParser.g:777:2: ( ( rule__CONST_VARIABLES__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:778:3: ( rule__CONST_VARIABLES__Alternatives )
             {
              before(grammarAccess.getCONST_VARIABLESAccess().getAlternatives()); 
-            // InternalFactoryLogicLangParser.g:653:3: ( rule__CONST_VARIABLES__Alternatives )
-            // InternalFactoryLogicLangParser.g:653:4: rule__CONST_VARIABLES__Alternatives
+            // InternalFactoryLogicLangParser.g:779:3: ( rule__CONST_VARIABLES__Alternatives )
+            // InternalFactoryLogicLangParser.g:779:4: rule__CONST_VARIABLES__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__CONST_VARIABLES__Alternatives();
@@ -1920,21 +2307,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleBOOLEAN_OPERATOR"
-    // InternalFactoryLogicLangParser.g:662:1: ruleBOOLEAN_OPERATOR : ( ( rule__BOOLEAN_OPERATOR__Alternatives ) ) ;
+    // InternalFactoryLogicLangParser.g:788:1: ruleBOOLEAN_OPERATOR : ( ( rule__BOOLEAN_OPERATOR__Alternatives ) ) ;
     public final void ruleBOOLEAN_OPERATOR() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:666:1: ( ( ( rule__BOOLEAN_OPERATOR__Alternatives ) ) )
-            // InternalFactoryLogicLangParser.g:667:2: ( ( rule__BOOLEAN_OPERATOR__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:792:1: ( ( ( rule__BOOLEAN_OPERATOR__Alternatives ) ) )
+            // InternalFactoryLogicLangParser.g:793:2: ( ( rule__BOOLEAN_OPERATOR__Alternatives ) )
             {
-            // InternalFactoryLogicLangParser.g:667:2: ( ( rule__BOOLEAN_OPERATOR__Alternatives ) )
-            // InternalFactoryLogicLangParser.g:668:3: ( rule__BOOLEAN_OPERATOR__Alternatives )
+            // InternalFactoryLogicLangParser.g:793:2: ( ( rule__BOOLEAN_OPERATOR__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:794:3: ( rule__BOOLEAN_OPERATOR__Alternatives )
             {
              before(grammarAccess.getBOOLEAN_OPERATORAccess().getAlternatives()); 
-            // InternalFactoryLogicLangParser.g:669:3: ( rule__BOOLEAN_OPERATOR__Alternatives )
-            // InternalFactoryLogicLangParser.g:669:4: rule__BOOLEAN_OPERATOR__Alternatives
+            // InternalFactoryLogicLangParser.g:795:3: ( rule__BOOLEAN_OPERATOR__Alternatives )
+            // InternalFactoryLogicLangParser.g:795:4: rule__BOOLEAN_OPERATOR__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__BOOLEAN_OPERATOR__Alternatives();
@@ -1967,21 +2354,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "ruleTIME"
-    // InternalFactoryLogicLangParser.g:678:1: ruleTIME : ( ( rule__TIME__Alternatives ) ) ;
+    // InternalFactoryLogicLangParser.g:804:1: ruleTIME : ( ( rule__TIME__Alternatives ) ) ;
     public final void ruleTIME() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:682:1: ( ( ( rule__TIME__Alternatives ) ) )
-            // InternalFactoryLogicLangParser.g:683:2: ( ( rule__TIME__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:808:1: ( ( ( rule__TIME__Alternatives ) ) )
+            // InternalFactoryLogicLangParser.g:809:2: ( ( rule__TIME__Alternatives ) )
             {
-            // InternalFactoryLogicLangParser.g:683:2: ( ( rule__TIME__Alternatives ) )
-            // InternalFactoryLogicLangParser.g:684:3: ( rule__TIME__Alternatives )
+            // InternalFactoryLogicLangParser.g:809:2: ( ( rule__TIME__Alternatives ) )
+            // InternalFactoryLogicLangParser.g:810:3: ( rule__TIME__Alternatives )
             {
              before(grammarAccess.getTIMEAccess().getAlternatives()); 
-            // InternalFactoryLogicLangParser.g:685:3: ( rule__TIME__Alternatives )
-            // InternalFactoryLogicLangParser.g:685:4: rule__TIME__Alternatives
+            // InternalFactoryLogicLangParser.g:811:3: ( rule__TIME__Alternatives )
+            // InternalFactoryLogicLangParser.g:811:4: rule__TIME__Alternatives
             {
             pushFollow(FOLLOW_2);
             rule__TIME__Alternatives();
@@ -2014,20 +2401,20 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Declaration__Alternatives"
-    // InternalFactoryLogicLangParser.g:693:1: rule__Declaration__Alternatives : ( ( ruleDevice ) | ( ruleLogic ) );
+    // InternalFactoryLogicLangParser.g:819:1: rule__Declaration__Alternatives : ( ( ruleDevice ) | ( ruleLogic ) );
     public final void rule__Declaration__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:697:1: ( ( ruleDevice ) | ( ruleLogic ) )
+            // InternalFactoryLogicLangParser.g:823:1: ( ( ruleDevice ) | ( ruleLogic ) )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
             if ( (LA2_0==Create) ) {
                 alt2=1;
             }
-            else if ( (LA2_0==For||LA2_0==If||LA2_0==RULE_ID) ) {
+            else if ( (LA2_0==For||LA2_0==If||LA2_0==RULE_STRING) ) {
                 alt2=2;
             }
             else {
@@ -2038,10 +2425,10 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
             }
             switch (alt2) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:698:2: ( ruleDevice )
+                    // InternalFactoryLogicLangParser.g:824:2: ( ruleDevice )
                     {
-                    // InternalFactoryLogicLangParser.g:698:2: ( ruleDevice )
-                    // InternalFactoryLogicLangParser.g:699:3: ruleDevice
+                    // InternalFactoryLogicLangParser.g:824:2: ( ruleDevice )
+                    // InternalFactoryLogicLangParser.g:825:3: ruleDevice
                     {
                      before(grammarAccess.getDeclarationAccess().getDeviceParserRuleCall_0()); 
                     pushFollow(FOLLOW_2);
@@ -2057,10 +2444,10 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:704:2: ( ruleLogic )
+                    // InternalFactoryLogicLangParser.g:830:2: ( ruleLogic )
                     {
-                    // InternalFactoryLogicLangParser.g:704:2: ( ruleLogic )
-                    // InternalFactoryLogicLangParser.g:705:3: ruleLogic
+                    // InternalFactoryLogicLangParser.g:830:2: ( ruleLogic )
+                    // InternalFactoryLogicLangParser.g:831:3: ruleLogic
                     {
                      before(grammarAccess.getDeclarationAccess().getLogicParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -2093,13 +2480,13 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Device__Alternatives"
-    // InternalFactoryLogicLangParser.g:714:1: rule__Device__Alternatives : ( ( ruleCrane ) | ( ruleStorage ) | ( ruleCamera ) );
+    // InternalFactoryLogicLangParser.g:840:1: rule__Device__Alternatives : ( ( ruleCrane ) | ( ruleStorage ) | ( ruleCamera ) );
     public final void rule__Device__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:718:1: ( ( ruleCrane ) | ( ruleStorage ) | ( ruleCamera ) )
+            // InternalFactoryLogicLangParser.g:844:1: ( ( ruleCrane ) | ( ruleStorage ) | ( ruleCamera ) )
             int alt3=3;
             int LA3_0 = input.LA(1);
 
@@ -2136,10 +2523,10 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
             }
             switch (alt3) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:719:2: ( ruleCrane )
+                    // InternalFactoryLogicLangParser.g:845:2: ( ruleCrane )
                     {
-                    // InternalFactoryLogicLangParser.g:719:2: ( ruleCrane )
-                    // InternalFactoryLogicLangParser.g:720:3: ruleCrane
+                    // InternalFactoryLogicLangParser.g:845:2: ( ruleCrane )
+                    // InternalFactoryLogicLangParser.g:846:3: ruleCrane
                     {
                      before(grammarAccess.getDeviceAccess().getCraneParserRuleCall_0()); 
                     pushFollow(FOLLOW_2);
@@ -2155,10 +2542,10 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:725:2: ( ruleStorage )
+                    // InternalFactoryLogicLangParser.g:851:2: ( ruleStorage )
                     {
-                    // InternalFactoryLogicLangParser.g:725:2: ( ruleStorage )
-                    // InternalFactoryLogicLangParser.g:726:3: ruleStorage
+                    // InternalFactoryLogicLangParser.g:851:2: ( ruleStorage )
+                    // InternalFactoryLogicLangParser.g:852:3: ruleStorage
                     {
                      before(grammarAccess.getDeviceAccess().getStorageParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -2174,10 +2561,10 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalFactoryLogicLangParser.g:731:2: ( ruleCamera )
+                    // InternalFactoryLogicLangParser.g:857:2: ( ruleCamera )
                     {
-                    // InternalFactoryLogicLangParser.g:731:2: ( ruleCamera )
-                    // InternalFactoryLogicLangParser.g:732:3: ruleCamera
+                    // InternalFactoryLogicLangParser.g:857:2: ( ruleCamera )
+                    // InternalFactoryLogicLangParser.g:858:3: ruleCamera
                     {
                      before(grammarAccess.getDeviceAccess().getCameraParserRuleCall_2()); 
                     pushFollow(FOLLOW_2);
@@ -2210,24 +2597,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageParameter__Alternatives"
-    // InternalFactoryLogicLangParser.g:741:1: rule__StorageParameter__Alternatives : ( ( ruleStoragePositionParameter ) | ( ruleStorageSlotParameter ) );
+    // InternalFactoryLogicLangParser.g:867:1: rule__StorageParameter__Alternatives : ( ( ruleStoragePositionParameter ) | ( ruleStorageSlotParameter ) );
     public final void rule__StorageParameter__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:745:1: ( ( ruleStoragePositionParameter ) | ( ruleStorageSlotParameter ) )
+            // InternalFactoryLogicLangParser.g:871:1: ( ( ruleStoragePositionParameter ) | ( ruleStorageSlotParameter ) )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
             if ( (LA4_0==With) ) {
                 int LA4_1 = input.LA(2);
 
-                if ( (LA4_1==Position) ) {
-                    alt4=1;
-                }
-                else if ( (LA4_1==RULE_INT) ) {
+                if ( (LA4_1==RULE_INT) ) {
                     alt4=2;
+                }
+                else if ( (LA4_1==Position) ) {
+                    alt4=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -2244,10 +2631,10 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
             }
             switch (alt4) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:746:2: ( ruleStoragePositionParameter )
+                    // InternalFactoryLogicLangParser.g:872:2: ( ruleStoragePositionParameter )
                     {
-                    // InternalFactoryLogicLangParser.g:746:2: ( ruleStoragePositionParameter )
-                    // InternalFactoryLogicLangParser.g:747:3: ruleStoragePositionParameter
+                    // InternalFactoryLogicLangParser.g:872:2: ( ruleStoragePositionParameter )
+                    // InternalFactoryLogicLangParser.g:873:3: ruleStoragePositionParameter
                     {
                      before(grammarAccess.getStorageParameterAccess().getStoragePositionParameterParserRuleCall_0()); 
                     pushFollow(FOLLOW_2);
@@ -2263,10 +2650,10 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:752:2: ( ruleStorageSlotParameter )
+                    // InternalFactoryLogicLangParser.g:878:2: ( ruleStorageSlotParameter )
                     {
-                    // InternalFactoryLogicLangParser.g:752:2: ( ruleStorageSlotParameter )
-                    // InternalFactoryLogicLangParser.g:753:3: ruleStorageSlotParameter
+                    // InternalFactoryLogicLangParser.g:878:2: ( ruleStorageSlotParameter )
+                    // InternalFactoryLogicLangParser.g:879:3: ruleStorageSlotParameter
                     {
                      before(grammarAccess.getStorageParameterAccess().getStorageSlotParameterParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
@@ -2299,28 +2686,50 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Logic__Alternatives"
-    // InternalFactoryLogicLangParser.g:762:1: rule__Logic__Alternatives : ( ( ruleConditional ) | ( ruleLoop ) | ( ruleOperation ) );
+    // InternalFactoryLogicLangParser.g:888:1: rule__Logic__Alternatives : ( ( ruleDeviceConditional ) | ( ruleNumberConditional ) | ( ruleVariableConditional ) | ( ruleLoop ) | ( ruleOperation ) );
     public final void rule__Logic__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:766:1: ( ( ruleConditional ) | ( ruleLoop ) | ( ruleOperation ) )
-            int alt5=3;
+            // InternalFactoryLogicLangParser.g:892:1: ( ( ruleDeviceConditional ) | ( ruleNumberConditional ) | ( ruleVariableConditional ) | ( ruleLoop ) | ( ruleOperation ) )
+            int alt5=5;
             switch ( input.LA(1) ) {
             case If:
                 {
-                alt5=1;
+                switch ( input.LA(2) ) {
+                case RULE_INT:
+                    {
+                    alt5=2;
+                    }
+                    break;
+                case RULE_STRING:
+                    {
+                    alt5=1;
+                    }
+                    break;
+                case RULE_ID:
+                    {
+                    alt5=3;
+                    }
+                    break;
+                default:
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 5, 1, input);
+
+                    throw nvae;
+                }
+
                 }
                 break;
             case For:
                 {
-                alt5=2;
+                alt5=4;
                 }
                 break;
-            case RULE_ID:
+            case RULE_STRING:
                 {
-                alt5=3;
+                alt5=5;
                 }
                 break;
             default:
@@ -2332,18 +2741,18 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
             switch (alt5) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:767:2: ( ruleConditional )
+                    // InternalFactoryLogicLangParser.g:893:2: ( ruleDeviceConditional )
                     {
-                    // InternalFactoryLogicLangParser.g:767:2: ( ruleConditional )
-                    // InternalFactoryLogicLangParser.g:768:3: ruleConditional
+                    // InternalFactoryLogicLangParser.g:893:2: ( ruleDeviceConditional )
+                    // InternalFactoryLogicLangParser.g:894:3: ruleDeviceConditional
                     {
-                     before(grammarAccess.getLogicAccess().getConditionalParserRuleCall_0()); 
+                     before(grammarAccess.getLogicAccess().getDeviceConditionalParserRuleCall_0()); 
                     pushFollow(FOLLOW_2);
-                    ruleConditional();
+                    ruleDeviceConditional();
 
                     state._fsp--;
 
-                     after(grammarAccess.getLogicAccess().getConditionalParserRuleCall_0()); 
+                     after(grammarAccess.getLogicAccess().getDeviceConditionalParserRuleCall_0()); 
 
                     }
 
@@ -2351,18 +2760,18 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:773:2: ( ruleLoop )
+                    // InternalFactoryLogicLangParser.g:899:2: ( ruleNumberConditional )
                     {
-                    // InternalFactoryLogicLangParser.g:773:2: ( ruleLoop )
-                    // InternalFactoryLogicLangParser.g:774:3: ruleLoop
+                    // InternalFactoryLogicLangParser.g:899:2: ( ruleNumberConditional )
+                    // InternalFactoryLogicLangParser.g:900:3: ruleNumberConditional
                     {
-                     before(grammarAccess.getLogicAccess().getLoopParserRuleCall_1()); 
+                     before(grammarAccess.getLogicAccess().getNumberConditionalParserRuleCall_1()); 
                     pushFollow(FOLLOW_2);
-                    ruleLoop();
+                    ruleNumberConditional();
 
                     state._fsp--;
 
-                     after(grammarAccess.getLogicAccess().getLoopParserRuleCall_1()); 
+                     after(grammarAccess.getLogicAccess().getNumberConditionalParserRuleCall_1()); 
 
                     }
 
@@ -2370,18 +2779,56 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalFactoryLogicLangParser.g:779:2: ( ruleOperation )
+                    // InternalFactoryLogicLangParser.g:905:2: ( ruleVariableConditional )
                     {
-                    // InternalFactoryLogicLangParser.g:779:2: ( ruleOperation )
-                    // InternalFactoryLogicLangParser.g:780:3: ruleOperation
+                    // InternalFactoryLogicLangParser.g:905:2: ( ruleVariableConditional )
+                    // InternalFactoryLogicLangParser.g:906:3: ruleVariableConditional
                     {
-                     before(grammarAccess.getLogicAccess().getOperationParserRuleCall_2()); 
+                     before(grammarAccess.getLogicAccess().getVariableConditionalParserRuleCall_2()); 
+                    pushFollow(FOLLOW_2);
+                    ruleVariableConditional();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getLogicAccess().getVariableConditionalParserRuleCall_2()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 4 :
+                    // InternalFactoryLogicLangParser.g:911:2: ( ruleLoop )
+                    {
+                    // InternalFactoryLogicLangParser.g:911:2: ( ruleLoop )
+                    // InternalFactoryLogicLangParser.g:912:3: ruleLoop
+                    {
+                     before(grammarAccess.getLogicAccess().getLoopParserRuleCall_3()); 
+                    pushFollow(FOLLOW_2);
+                    ruleLoop();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getLogicAccess().getLoopParserRuleCall_3()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 5 :
+                    // InternalFactoryLogicLangParser.g:917:2: ( ruleOperation )
+                    {
+                    // InternalFactoryLogicLangParser.g:917:2: ( ruleOperation )
+                    // InternalFactoryLogicLangParser.g:918:3: ruleOperation
+                    {
+                     before(grammarAccess.getLogicAccess().getOperationParserRuleCall_4()); 
                     pushFollow(FOLLOW_2);
                     ruleOperation();
 
                     state._fsp--;
 
-                     after(grammarAccess.getLogicAccess().getOperationParserRuleCall_2()); 
+                     after(grammarAccess.getLogicAccess().getOperationParserRuleCall_4()); 
 
                     }
 
@@ -2405,14 +2852,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__Logic__Alternatives"
 
 
-    // $ANTLR start "rule__Conditional__Alternatives_5"
-    // InternalFactoryLogicLangParser.g:789:1: rule__Conditional__Alternatives_5 : ( ( ( rule__Conditional__Comparison_constAssignment_5_0 ) ) | ( ( rule__Conditional__Comparison_colorAssignment_5_1 ) ) | ( ( rule__Conditional__Comparison_intAssignment_5_2 ) ) );
-    public final void rule__Conditional__Alternatives_5() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Alternatives_4"
+    // InternalFactoryLogicLangParser.g:927:1: rule__DeviceConditional__Alternatives_4 : ( ( ( rule__DeviceConditional__Comparison_constAssignment_4_0 ) ) | ( ( rule__DeviceConditional__Comparison_colorAssignment_4_1 ) ) | ( ( rule__DeviceConditional__Comparison_intAssignment_4_2 ) ) );
+    public final void rule__DeviceConditional__Alternatives_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:793:1: ( ( ( rule__Conditional__Comparison_constAssignment_5_0 ) ) | ( ( rule__Conditional__Comparison_colorAssignment_5_1 ) ) | ( ( rule__Conditional__Comparison_intAssignment_5_2 ) ) )
+            // InternalFactoryLogicLangParser.g:931:1: ( ( ( rule__DeviceConditional__Comparison_constAssignment_4_0 ) ) | ( ( rule__DeviceConditional__Comparison_colorAssignment_4_1 ) ) | ( ( rule__DeviceConditional__Comparison_intAssignment_4_2 ) ) )
             int alt6=3;
             switch ( input.LA(1) ) {
             case Finished:
@@ -2443,24 +2890,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
             switch (alt6) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:794:2: ( ( rule__Conditional__Comparison_constAssignment_5_0 ) )
+                    // InternalFactoryLogicLangParser.g:932:2: ( ( rule__DeviceConditional__Comparison_constAssignment_4_0 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:794:2: ( ( rule__Conditional__Comparison_constAssignment_5_0 ) )
-                    // InternalFactoryLogicLangParser.g:795:3: ( rule__Conditional__Comparison_constAssignment_5_0 )
+                    // InternalFactoryLogicLangParser.g:932:2: ( ( rule__DeviceConditional__Comparison_constAssignment_4_0 ) )
+                    // InternalFactoryLogicLangParser.g:933:3: ( rule__DeviceConditional__Comparison_constAssignment_4_0 )
                     {
-                     before(grammarAccess.getConditionalAccess().getComparison_constAssignment_5_0()); 
-                    // InternalFactoryLogicLangParser.g:796:3: ( rule__Conditional__Comparison_constAssignment_5_0 )
-                    // InternalFactoryLogicLangParser.g:796:4: rule__Conditional__Comparison_constAssignment_5_0
+                     before(grammarAccess.getDeviceConditionalAccess().getComparison_constAssignment_4_0()); 
+                    // InternalFactoryLogicLangParser.g:934:3: ( rule__DeviceConditional__Comparison_constAssignment_4_0 )
+                    // InternalFactoryLogicLangParser.g:934:4: rule__DeviceConditional__Comparison_constAssignment_4_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Conditional__Comparison_constAssignment_5_0();
+                    rule__DeviceConditional__Comparison_constAssignment_4_0();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getConditionalAccess().getComparison_constAssignment_5_0()); 
+                     after(grammarAccess.getDeviceConditionalAccess().getComparison_constAssignment_4_0()); 
 
                     }
 
@@ -2468,24 +2915,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:800:2: ( ( rule__Conditional__Comparison_colorAssignment_5_1 ) )
+                    // InternalFactoryLogicLangParser.g:938:2: ( ( rule__DeviceConditional__Comparison_colorAssignment_4_1 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:800:2: ( ( rule__Conditional__Comparison_colorAssignment_5_1 ) )
-                    // InternalFactoryLogicLangParser.g:801:3: ( rule__Conditional__Comparison_colorAssignment_5_1 )
+                    // InternalFactoryLogicLangParser.g:938:2: ( ( rule__DeviceConditional__Comparison_colorAssignment_4_1 ) )
+                    // InternalFactoryLogicLangParser.g:939:3: ( rule__DeviceConditional__Comparison_colorAssignment_4_1 )
                     {
-                     before(grammarAccess.getConditionalAccess().getComparison_colorAssignment_5_1()); 
-                    // InternalFactoryLogicLangParser.g:802:3: ( rule__Conditional__Comparison_colorAssignment_5_1 )
-                    // InternalFactoryLogicLangParser.g:802:4: rule__Conditional__Comparison_colorAssignment_5_1
+                     before(grammarAccess.getDeviceConditionalAccess().getComparison_colorAssignment_4_1()); 
+                    // InternalFactoryLogicLangParser.g:940:3: ( rule__DeviceConditional__Comparison_colorAssignment_4_1 )
+                    // InternalFactoryLogicLangParser.g:940:4: rule__DeviceConditional__Comparison_colorAssignment_4_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Conditional__Comparison_colorAssignment_5_1();
+                    rule__DeviceConditional__Comparison_colorAssignment_4_1();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getConditionalAccess().getComparison_colorAssignment_5_1()); 
+                     after(grammarAccess.getDeviceConditionalAccess().getComparison_colorAssignment_4_1()); 
 
                     }
 
@@ -2493,24 +2940,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalFactoryLogicLangParser.g:806:2: ( ( rule__Conditional__Comparison_intAssignment_5_2 ) )
+                    // InternalFactoryLogicLangParser.g:944:2: ( ( rule__DeviceConditional__Comparison_intAssignment_4_2 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:806:2: ( ( rule__Conditional__Comparison_intAssignment_5_2 ) )
-                    // InternalFactoryLogicLangParser.g:807:3: ( rule__Conditional__Comparison_intAssignment_5_2 )
+                    // InternalFactoryLogicLangParser.g:944:2: ( ( rule__DeviceConditional__Comparison_intAssignment_4_2 ) )
+                    // InternalFactoryLogicLangParser.g:945:3: ( rule__DeviceConditional__Comparison_intAssignment_4_2 )
                     {
-                     before(grammarAccess.getConditionalAccess().getComparison_intAssignment_5_2()); 
-                    // InternalFactoryLogicLangParser.g:808:3: ( rule__Conditional__Comparison_intAssignment_5_2 )
-                    // InternalFactoryLogicLangParser.g:808:4: rule__Conditional__Comparison_intAssignment_5_2
+                     before(grammarAccess.getDeviceConditionalAccess().getComparison_intAssignment_4_2()); 
+                    // InternalFactoryLogicLangParser.g:946:3: ( rule__DeviceConditional__Comparison_intAssignment_4_2 )
+                    // InternalFactoryLogicLangParser.g:946:4: rule__DeviceConditional__Comparison_intAssignment_4_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Conditional__Comparison_intAssignment_5_2();
+                    rule__DeviceConditional__Comparison_intAssignment_4_2();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getConditionalAccess().getComparison_intAssignment_5_2()); 
+                     after(grammarAccess.getDeviceConditionalAccess().getComparison_intAssignment_4_2()); 
 
                     }
 
@@ -2531,17 +2978,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Alternatives_5"
+    // $ANTLR end "rule__DeviceConditional__Alternatives_4"
 
 
-    // $ANTLR start "rule__Loop__Alternatives_9"
-    // InternalFactoryLogicLangParser.g:816:1: rule__Loop__Alternatives_9 : ( ( ( rule__Loop__Comparison_constAssignment_9_0 ) ) | ( ( rule__Loop__Comparison_colorAssignment_9_1 ) ) | ( ( rule__Loop__Comparison_intAssignment_9_2 ) ) );
-    public final void rule__Loop__Alternatives_9() throws RecognitionException {
+    // $ANTLR start "rule__VariableConditional__Alternatives_4"
+    // InternalFactoryLogicLangParser.g:954:1: rule__VariableConditional__Alternatives_4 : ( ( ( rule__VariableConditional__Comparison_constAssignment_4_0 ) ) | ( ( rule__VariableConditional__Comparison_colorAssignment_4_1 ) ) | ( ( rule__VariableConditional__Comparison_intAssignment_4_2 ) ) );
+    public final void rule__VariableConditional__Alternatives_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:820:1: ( ( ( rule__Loop__Comparison_constAssignment_9_0 ) ) | ( ( rule__Loop__Comparison_colorAssignment_9_1 ) ) | ( ( rule__Loop__Comparison_intAssignment_9_2 ) ) )
+            // InternalFactoryLogicLangParser.g:958:1: ( ( ( rule__VariableConditional__Comparison_constAssignment_4_0 ) ) | ( ( rule__VariableConditional__Comparison_colorAssignment_4_1 ) ) | ( ( rule__VariableConditional__Comparison_intAssignment_4_2 ) ) )
             int alt7=3;
             switch ( input.LA(1) ) {
             case Finished:
@@ -2572,24 +3019,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
             switch (alt7) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:821:2: ( ( rule__Loop__Comparison_constAssignment_9_0 ) )
+                    // InternalFactoryLogicLangParser.g:959:2: ( ( rule__VariableConditional__Comparison_constAssignment_4_0 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:821:2: ( ( rule__Loop__Comparison_constAssignment_9_0 ) )
-                    // InternalFactoryLogicLangParser.g:822:3: ( rule__Loop__Comparison_constAssignment_9_0 )
+                    // InternalFactoryLogicLangParser.g:959:2: ( ( rule__VariableConditional__Comparison_constAssignment_4_0 ) )
+                    // InternalFactoryLogicLangParser.g:960:3: ( rule__VariableConditional__Comparison_constAssignment_4_0 )
                     {
-                     before(grammarAccess.getLoopAccess().getComparison_constAssignment_9_0()); 
-                    // InternalFactoryLogicLangParser.g:823:3: ( rule__Loop__Comparison_constAssignment_9_0 )
-                    // InternalFactoryLogicLangParser.g:823:4: rule__Loop__Comparison_constAssignment_9_0
+                     before(grammarAccess.getVariableConditionalAccess().getComparison_constAssignment_4_0()); 
+                    // InternalFactoryLogicLangParser.g:961:3: ( rule__VariableConditional__Comparison_constAssignment_4_0 )
+                    // InternalFactoryLogicLangParser.g:961:4: rule__VariableConditional__Comparison_constAssignment_4_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Loop__Comparison_constAssignment_9_0();
+                    rule__VariableConditional__Comparison_constAssignment_4_0();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getLoopAccess().getComparison_constAssignment_9_0()); 
+                     after(grammarAccess.getVariableConditionalAccess().getComparison_constAssignment_4_0()); 
 
                     }
 
@@ -2597,24 +3044,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:827:2: ( ( rule__Loop__Comparison_colorAssignment_9_1 ) )
+                    // InternalFactoryLogicLangParser.g:965:2: ( ( rule__VariableConditional__Comparison_colorAssignment_4_1 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:827:2: ( ( rule__Loop__Comparison_colorAssignment_9_1 ) )
-                    // InternalFactoryLogicLangParser.g:828:3: ( rule__Loop__Comparison_colorAssignment_9_1 )
+                    // InternalFactoryLogicLangParser.g:965:2: ( ( rule__VariableConditional__Comparison_colorAssignment_4_1 ) )
+                    // InternalFactoryLogicLangParser.g:966:3: ( rule__VariableConditional__Comparison_colorAssignment_4_1 )
                     {
-                     before(grammarAccess.getLoopAccess().getComparison_colorAssignment_9_1()); 
-                    // InternalFactoryLogicLangParser.g:829:3: ( rule__Loop__Comparison_colorAssignment_9_1 )
-                    // InternalFactoryLogicLangParser.g:829:4: rule__Loop__Comparison_colorAssignment_9_1
+                     before(grammarAccess.getVariableConditionalAccess().getComparison_colorAssignment_4_1()); 
+                    // InternalFactoryLogicLangParser.g:967:3: ( rule__VariableConditional__Comparison_colorAssignment_4_1 )
+                    // InternalFactoryLogicLangParser.g:967:4: rule__VariableConditional__Comparison_colorAssignment_4_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Loop__Comparison_colorAssignment_9_1();
+                    rule__VariableConditional__Comparison_colorAssignment_4_1();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getLoopAccess().getComparison_colorAssignment_9_1()); 
+                     after(grammarAccess.getVariableConditionalAccess().getComparison_colorAssignment_4_1()); 
 
                     }
 
@@ -2622,24 +3069,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalFactoryLogicLangParser.g:833:2: ( ( rule__Loop__Comparison_intAssignment_9_2 ) )
+                    // InternalFactoryLogicLangParser.g:971:2: ( ( rule__VariableConditional__Comparison_intAssignment_4_2 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:833:2: ( ( rule__Loop__Comparison_intAssignment_9_2 ) )
-                    // InternalFactoryLogicLangParser.g:834:3: ( rule__Loop__Comparison_intAssignment_9_2 )
+                    // InternalFactoryLogicLangParser.g:971:2: ( ( rule__VariableConditional__Comparison_intAssignment_4_2 ) )
+                    // InternalFactoryLogicLangParser.g:972:3: ( rule__VariableConditional__Comparison_intAssignment_4_2 )
                     {
-                     before(grammarAccess.getLoopAccess().getComparison_intAssignment_9_2()); 
-                    // InternalFactoryLogicLangParser.g:835:3: ( rule__Loop__Comparison_intAssignment_9_2 )
-                    // InternalFactoryLogicLangParser.g:835:4: rule__Loop__Comparison_intAssignment_9_2
+                     before(grammarAccess.getVariableConditionalAccess().getComparison_intAssignment_4_2()); 
+                    // InternalFactoryLogicLangParser.g:973:3: ( rule__VariableConditional__Comparison_intAssignment_4_2 )
+                    // InternalFactoryLogicLangParser.g:973:4: rule__VariableConditional__Comparison_intAssignment_4_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Loop__Comparison_intAssignment_9_2();
+                    rule__VariableConditional__Comparison_intAssignment_4_2();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getLoopAccess().getComparison_intAssignment_9_2()); 
+                     after(grammarAccess.getVariableConditionalAccess().getComparison_intAssignment_4_2()); 
 
                     }
 
@@ -2660,88 +3107,65 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__Alternatives_9"
+    // $ANTLR end "rule__VariableConditional__Alternatives_4"
 
 
-    // $ANTLR start "rule__Operation__Alternatives"
-    // InternalFactoryLogicLangParser.g:843:1: rule__Operation__Alternatives : ( ( ruleStorageMoveEmptySlot ) | ( ruleStorageMoveSlot ) | ( ruleStorageMarkSlot ) | ( ruleCameraScan ) | ( ruleCranePickup ) | ( ruleCraneDrop ) );
-    public final void rule__Operation__Alternatives() throws RecognitionException {
+    // $ANTLR start "rule__NumberConditional__Alternatives_6"
+    // InternalFactoryLogicLangParser.g:981:1: rule__NumberConditional__Alternatives_6 : ( ( ( rule__NumberConditional__Comparison_constAssignment_6_0 ) ) | ( ( rule__NumberConditional__Comparison_colorAssignment_6_1 ) ) | ( ( rule__NumberConditional__Comparison_intAssignment_6_2 ) ) );
+    public final void rule__NumberConditional__Alternatives_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:847:1: ( ( ruleStorageMoveEmptySlot ) | ( ruleStorageMoveSlot ) | ( ruleStorageMarkSlot ) | ( ruleCameraScan ) | ( ruleCranePickup ) | ( ruleCraneDrop ) )
-            int alt8=6;
-            int LA8_0 = input.LA(1);
-
-            if ( (LA8_0==RULE_ID) ) {
-                switch ( input.LA(2) ) {
-                case Move:
-                    {
-                    int LA8_2 = input.LA(3);
-
-                    if ( (LA8_2==Empty) ) {
-                        alt8=1;
-                    }
-                    else if ( (LA8_2==Slot) ) {
-                        alt8=2;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 8, 2, input);
-
-                        throw nvae;
-                    }
-                    }
-                    break;
-                case Scan:
-                    {
-                    alt8=4;
-                    }
-                    break;
-                case Pickup:
-                    {
-                    alt8=5;
-                    }
-                    break;
-                case Drop:
-                    {
-                    alt8=6;
-                    }
-                    break;
-                case Mark:
-                    {
-                    alt8=3;
-                    }
-                    break;
-                default:
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 8, 1, input);
-
-                    throw nvae;
+            // InternalFactoryLogicLangParser.g:985:1: ( ( ( rule__NumberConditional__Comparison_constAssignment_6_0 ) ) | ( ( rule__NumberConditional__Comparison_colorAssignment_6_1 ) ) | ( ( rule__NumberConditional__Comparison_intAssignment_6_2 ) ) )
+            int alt8=3;
+            switch ( input.LA(1) ) {
+            case Finished:
+            case Empty:
+            case Full:
+                {
+                alt8=1;
                 }
-
-            }
-            else {
+                break;
+            case Green:
+            case Blue:
+            case Red:
+                {
+                alt8=2;
+                }
+                break;
+            case RULE_INT:
+                {
+                alt8=3;
+                }
+                break;
+            default:
                 NoViableAltException nvae =
                     new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
+
             switch (alt8) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:848:2: ( ruleStorageMoveEmptySlot )
+                    // InternalFactoryLogicLangParser.g:986:2: ( ( rule__NumberConditional__Comparison_constAssignment_6_0 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:848:2: ( ruleStorageMoveEmptySlot )
-                    // InternalFactoryLogicLangParser.g:849:3: ruleStorageMoveEmptySlot
+                    // InternalFactoryLogicLangParser.g:986:2: ( ( rule__NumberConditional__Comparison_constAssignment_6_0 ) )
+                    // InternalFactoryLogicLangParser.g:987:3: ( rule__NumberConditional__Comparison_constAssignment_6_0 )
                     {
-                     before(grammarAccess.getOperationAccess().getStorageMoveEmptySlotParserRuleCall_0()); 
+                     before(grammarAccess.getNumberConditionalAccess().getComparison_constAssignment_6_0()); 
+                    // InternalFactoryLogicLangParser.g:988:3: ( rule__NumberConditional__Comparison_constAssignment_6_0 )
+                    // InternalFactoryLogicLangParser.g:988:4: rule__NumberConditional__Comparison_constAssignment_6_0
+                    {
                     pushFollow(FOLLOW_2);
-                    ruleStorageMoveEmptySlot();
+                    rule__NumberConditional__Comparison_constAssignment_6_0();
 
                     state._fsp--;
 
-                     after(grammarAccess.getOperationAccess().getStorageMoveEmptySlotParserRuleCall_0()); 
+
+                    }
+
+                     after(grammarAccess.getNumberConditionalAccess().getComparison_constAssignment_6_0()); 
 
                     }
 
@@ -2749,18 +3173,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:854:2: ( ruleStorageMoveSlot )
+                    // InternalFactoryLogicLangParser.g:992:2: ( ( rule__NumberConditional__Comparison_colorAssignment_6_1 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:854:2: ( ruleStorageMoveSlot )
-                    // InternalFactoryLogicLangParser.g:855:3: ruleStorageMoveSlot
+                    // InternalFactoryLogicLangParser.g:992:2: ( ( rule__NumberConditional__Comparison_colorAssignment_6_1 ) )
+                    // InternalFactoryLogicLangParser.g:993:3: ( rule__NumberConditional__Comparison_colorAssignment_6_1 )
                     {
-                     before(grammarAccess.getOperationAccess().getStorageMoveSlotParserRuleCall_1()); 
+                     before(grammarAccess.getNumberConditionalAccess().getComparison_colorAssignment_6_1()); 
+                    // InternalFactoryLogicLangParser.g:994:3: ( rule__NumberConditional__Comparison_colorAssignment_6_1 )
+                    // InternalFactoryLogicLangParser.g:994:4: rule__NumberConditional__Comparison_colorAssignment_6_1
+                    {
                     pushFollow(FOLLOW_2);
-                    ruleStorageMoveSlot();
+                    rule__NumberConditional__Comparison_colorAssignment_6_1();
 
                     state._fsp--;
 
-                     after(grammarAccess.getOperationAccess().getStorageMoveSlotParserRuleCall_1()); 
+
+                    }
+
+                     after(grammarAccess.getNumberConditionalAccess().getComparison_colorAssignment_6_1()); 
 
                     }
 
@@ -2768,75 +3198,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalFactoryLogicLangParser.g:860:2: ( ruleStorageMarkSlot )
+                    // InternalFactoryLogicLangParser.g:998:2: ( ( rule__NumberConditional__Comparison_intAssignment_6_2 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:860:2: ( ruleStorageMarkSlot )
-                    // InternalFactoryLogicLangParser.g:861:3: ruleStorageMarkSlot
+                    // InternalFactoryLogicLangParser.g:998:2: ( ( rule__NumberConditional__Comparison_intAssignment_6_2 ) )
+                    // InternalFactoryLogicLangParser.g:999:3: ( rule__NumberConditional__Comparison_intAssignment_6_2 )
                     {
-                     before(grammarAccess.getOperationAccess().getStorageMarkSlotParserRuleCall_2()); 
+                     before(grammarAccess.getNumberConditionalAccess().getComparison_intAssignment_6_2()); 
+                    // InternalFactoryLogicLangParser.g:1000:3: ( rule__NumberConditional__Comparison_intAssignment_6_2 )
+                    // InternalFactoryLogicLangParser.g:1000:4: rule__NumberConditional__Comparison_intAssignment_6_2
+                    {
                     pushFollow(FOLLOW_2);
-                    ruleStorageMarkSlot();
+                    rule__NumberConditional__Comparison_intAssignment_6_2();
 
                     state._fsp--;
 
-                     after(grammarAccess.getOperationAccess().getStorageMarkSlotParserRuleCall_2()); 
 
                     }
 
-
-                    }
-                    break;
-                case 4 :
-                    // InternalFactoryLogicLangParser.g:866:2: ( ruleCameraScan )
-                    {
-                    // InternalFactoryLogicLangParser.g:866:2: ( ruleCameraScan )
-                    // InternalFactoryLogicLangParser.g:867:3: ruleCameraScan
-                    {
-                     before(grammarAccess.getOperationAccess().getCameraScanParserRuleCall_3()); 
-                    pushFollow(FOLLOW_2);
-                    ruleCameraScan();
-
-                    state._fsp--;
-
-                     after(grammarAccess.getOperationAccess().getCameraScanParserRuleCall_3()); 
-
-                    }
-
-
-                    }
-                    break;
-                case 5 :
-                    // InternalFactoryLogicLangParser.g:872:2: ( ruleCranePickup )
-                    {
-                    // InternalFactoryLogicLangParser.g:872:2: ( ruleCranePickup )
-                    // InternalFactoryLogicLangParser.g:873:3: ruleCranePickup
-                    {
-                     before(grammarAccess.getOperationAccess().getCranePickupParserRuleCall_4()); 
-                    pushFollow(FOLLOW_2);
-                    ruleCranePickup();
-
-                    state._fsp--;
-
-                     after(grammarAccess.getOperationAccess().getCranePickupParserRuleCall_4()); 
-
-                    }
-
-
-                    }
-                    break;
-                case 6 :
-                    // InternalFactoryLogicLangParser.g:878:2: ( ruleCraneDrop )
-                    {
-                    // InternalFactoryLogicLangParser.g:878:2: ( ruleCraneDrop )
-                    // InternalFactoryLogicLangParser.g:879:3: ruleCraneDrop
-                    {
-                     before(grammarAccess.getOperationAccess().getCraneDropParserRuleCall_5()); 
-                    pushFollow(FOLLOW_2);
-                    ruleCraneDrop();
-
-                    state._fsp--;
-
-                     after(grammarAccess.getOperationAccess().getCraneDropParserRuleCall_5()); 
+                     after(grammarAccess.getNumberConditionalAccess().getComparison_intAssignment_6_2()); 
 
                     }
 
@@ -2857,17 +3236,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Operation__Alternatives"
+    // $ANTLR end "rule__NumberConditional__Alternatives_6"
 
 
-    // $ANTLR start "rule__StorageMarkSlot__Alternatives_6"
-    // InternalFactoryLogicLangParser.g:888:1: rule__StorageMarkSlot__Alternatives_6 : ( ( ( rule__StorageMarkSlot__Comparison_constAssignment_6_0 ) ) | ( ( rule__StorageMarkSlot__Comparison_colorAssignment_6_1 ) ) | ( ( rule__StorageMarkSlot__Comparison_intAssignment_6_2 ) ) );
-    public final void rule__StorageMarkSlot__Alternatives_6() throws RecognitionException {
+    // $ANTLR start "rule__Loop__Alternatives_8"
+    // InternalFactoryLogicLangParser.g:1008:1: rule__Loop__Alternatives_8 : ( ( ( rule__Loop__Comparison_constAssignment_8_0 ) ) | ( ( rule__Loop__Comparison_colorAssignment_8_1 ) ) | ( ( rule__Loop__Comparison_intAssignment_8_2 ) ) );
+    public final void rule__Loop__Alternatives_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:892:1: ( ( ( rule__StorageMarkSlot__Comparison_constAssignment_6_0 ) ) | ( ( rule__StorageMarkSlot__Comparison_colorAssignment_6_1 ) ) | ( ( rule__StorageMarkSlot__Comparison_intAssignment_6_2 ) ) )
+            // InternalFactoryLogicLangParser.g:1012:1: ( ( ( rule__Loop__Comparison_constAssignment_8_0 ) ) | ( ( rule__Loop__Comparison_colorAssignment_8_1 ) ) | ( ( rule__Loop__Comparison_intAssignment_8_2 ) ) )
             int alt9=3;
             switch ( input.LA(1) ) {
             case Finished:
@@ -2898,24 +3277,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
             switch (alt9) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:893:2: ( ( rule__StorageMarkSlot__Comparison_constAssignment_6_0 ) )
+                    // InternalFactoryLogicLangParser.g:1013:2: ( ( rule__Loop__Comparison_constAssignment_8_0 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:893:2: ( ( rule__StorageMarkSlot__Comparison_constAssignment_6_0 ) )
-                    // InternalFactoryLogicLangParser.g:894:3: ( rule__StorageMarkSlot__Comparison_constAssignment_6_0 )
+                    // InternalFactoryLogicLangParser.g:1013:2: ( ( rule__Loop__Comparison_constAssignment_8_0 ) )
+                    // InternalFactoryLogicLangParser.g:1014:3: ( rule__Loop__Comparison_constAssignment_8_0 )
                     {
-                     before(grammarAccess.getStorageMarkSlotAccess().getComparison_constAssignment_6_0()); 
-                    // InternalFactoryLogicLangParser.g:895:3: ( rule__StorageMarkSlot__Comparison_constAssignment_6_0 )
-                    // InternalFactoryLogicLangParser.g:895:4: rule__StorageMarkSlot__Comparison_constAssignment_6_0
+                     before(grammarAccess.getLoopAccess().getComparison_constAssignment_8_0()); 
+                    // InternalFactoryLogicLangParser.g:1015:3: ( rule__Loop__Comparison_constAssignment_8_0 )
+                    // InternalFactoryLogicLangParser.g:1015:4: rule__Loop__Comparison_constAssignment_8_0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__StorageMarkSlot__Comparison_constAssignment_6_0();
+                    rule__Loop__Comparison_constAssignment_8_0();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getStorageMarkSlotAccess().getComparison_constAssignment_6_0()); 
+                     after(grammarAccess.getLoopAccess().getComparison_constAssignment_8_0()); 
 
                     }
 
@@ -2923,24 +3302,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:899:2: ( ( rule__StorageMarkSlot__Comparison_colorAssignment_6_1 ) )
+                    // InternalFactoryLogicLangParser.g:1019:2: ( ( rule__Loop__Comparison_colorAssignment_8_1 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:899:2: ( ( rule__StorageMarkSlot__Comparison_colorAssignment_6_1 ) )
-                    // InternalFactoryLogicLangParser.g:900:3: ( rule__StorageMarkSlot__Comparison_colorAssignment_6_1 )
+                    // InternalFactoryLogicLangParser.g:1019:2: ( ( rule__Loop__Comparison_colorAssignment_8_1 ) )
+                    // InternalFactoryLogicLangParser.g:1020:3: ( rule__Loop__Comparison_colorAssignment_8_1 )
                     {
-                     before(grammarAccess.getStorageMarkSlotAccess().getComparison_colorAssignment_6_1()); 
-                    // InternalFactoryLogicLangParser.g:901:3: ( rule__StorageMarkSlot__Comparison_colorAssignment_6_1 )
-                    // InternalFactoryLogicLangParser.g:901:4: rule__StorageMarkSlot__Comparison_colorAssignment_6_1
+                     before(grammarAccess.getLoopAccess().getComparison_colorAssignment_8_1()); 
+                    // InternalFactoryLogicLangParser.g:1021:3: ( rule__Loop__Comparison_colorAssignment_8_1 )
+                    // InternalFactoryLogicLangParser.g:1021:4: rule__Loop__Comparison_colorAssignment_8_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__StorageMarkSlot__Comparison_colorAssignment_6_1();
+                    rule__Loop__Comparison_colorAssignment_8_1();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getStorageMarkSlotAccess().getComparison_colorAssignment_6_1()); 
+                     after(grammarAccess.getLoopAccess().getComparison_colorAssignment_8_1()); 
 
                     }
 
@@ -2948,24 +3327,344 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalFactoryLogicLangParser.g:905:2: ( ( rule__StorageMarkSlot__Comparison_intAssignment_6_2 ) )
+                    // InternalFactoryLogicLangParser.g:1025:2: ( ( rule__Loop__Comparison_intAssignment_8_2 ) )
                     {
-                    // InternalFactoryLogicLangParser.g:905:2: ( ( rule__StorageMarkSlot__Comparison_intAssignment_6_2 ) )
-                    // InternalFactoryLogicLangParser.g:906:3: ( rule__StorageMarkSlot__Comparison_intAssignment_6_2 )
+                    // InternalFactoryLogicLangParser.g:1025:2: ( ( rule__Loop__Comparison_intAssignment_8_2 ) )
+                    // InternalFactoryLogicLangParser.g:1026:3: ( rule__Loop__Comparison_intAssignment_8_2 )
                     {
-                     before(grammarAccess.getStorageMarkSlotAccess().getComparison_intAssignment_6_2()); 
-                    // InternalFactoryLogicLangParser.g:907:3: ( rule__StorageMarkSlot__Comparison_intAssignment_6_2 )
-                    // InternalFactoryLogicLangParser.g:907:4: rule__StorageMarkSlot__Comparison_intAssignment_6_2
+                     before(grammarAccess.getLoopAccess().getComparison_intAssignment_8_2()); 
+                    // InternalFactoryLogicLangParser.g:1027:3: ( rule__Loop__Comparison_intAssignment_8_2 )
+                    // InternalFactoryLogicLangParser.g:1027:4: rule__Loop__Comparison_intAssignment_8_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__StorageMarkSlot__Comparison_intAssignment_6_2();
+                    rule__Loop__Comparison_intAssignment_8_2();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getStorageMarkSlotAccess().getComparison_intAssignment_6_2()); 
+                     after(grammarAccess.getLoopAccess().getComparison_intAssignment_8_2()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Loop__Alternatives_8"
+
+
+    // $ANTLR start "rule__Operation__Alternatives"
+    // InternalFactoryLogicLangParser.g:1035:1: rule__Operation__Alternatives : ( ( ruleStorageMoveEmptySlot ) | ( ruleStorageMoveSlot ) | ( ruleStorageMarkSlot ) | ( ruleStorageMoveVariableSlot ) | ( ruleCameraScan ) | ( ruleCranePickup ) | ( ruleCraneDrop ) );
+    public final void rule__Operation__Alternatives() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:1039:1: ( ( ruleStorageMoveEmptySlot ) | ( ruleStorageMoveSlot ) | ( ruleStorageMarkSlot ) | ( ruleStorageMoveVariableSlot ) | ( ruleCameraScan ) | ( ruleCranePickup ) | ( ruleCraneDrop ) )
+            int alt10=7;
+            alt10 = dfa10.predict(input);
+            switch (alt10) {
+                case 1 :
+                    // InternalFactoryLogicLangParser.g:1040:2: ( ruleStorageMoveEmptySlot )
+                    {
+                    // InternalFactoryLogicLangParser.g:1040:2: ( ruleStorageMoveEmptySlot )
+                    // InternalFactoryLogicLangParser.g:1041:3: ruleStorageMoveEmptySlot
+                    {
+                     before(grammarAccess.getOperationAccess().getStorageMoveEmptySlotParserRuleCall_0()); 
+                    pushFollow(FOLLOW_2);
+                    ruleStorageMoveEmptySlot();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getOperationAccess().getStorageMoveEmptySlotParserRuleCall_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalFactoryLogicLangParser.g:1046:2: ( ruleStorageMoveSlot )
+                    {
+                    // InternalFactoryLogicLangParser.g:1046:2: ( ruleStorageMoveSlot )
+                    // InternalFactoryLogicLangParser.g:1047:3: ruleStorageMoveSlot
+                    {
+                     before(grammarAccess.getOperationAccess().getStorageMoveSlotParserRuleCall_1()); 
+                    pushFollow(FOLLOW_2);
+                    ruleStorageMoveSlot();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getOperationAccess().getStorageMoveSlotParserRuleCall_1()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // InternalFactoryLogicLangParser.g:1052:2: ( ruleStorageMarkSlot )
+                    {
+                    // InternalFactoryLogicLangParser.g:1052:2: ( ruleStorageMarkSlot )
+                    // InternalFactoryLogicLangParser.g:1053:3: ruleStorageMarkSlot
+                    {
+                     before(grammarAccess.getOperationAccess().getStorageMarkSlotParserRuleCall_2()); 
+                    pushFollow(FOLLOW_2);
+                    ruleStorageMarkSlot();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getOperationAccess().getStorageMarkSlotParserRuleCall_2()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 4 :
+                    // InternalFactoryLogicLangParser.g:1058:2: ( ruleStorageMoveVariableSlot )
+                    {
+                    // InternalFactoryLogicLangParser.g:1058:2: ( ruleStorageMoveVariableSlot )
+                    // InternalFactoryLogicLangParser.g:1059:3: ruleStorageMoveVariableSlot
+                    {
+                     before(grammarAccess.getOperationAccess().getStorageMoveVariableSlotParserRuleCall_3()); 
+                    pushFollow(FOLLOW_2);
+                    ruleStorageMoveVariableSlot();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getOperationAccess().getStorageMoveVariableSlotParserRuleCall_3()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 5 :
+                    // InternalFactoryLogicLangParser.g:1064:2: ( ruleCameraScan )
+                    {
+                    // InternalFactoryLogicLangParser.g:1064:2: ( ruleCameraScan )
+                    // InternalFactoryLogicLangParser.g:1065:3: ruleCameraScan
+                    {
+                     before(grammarAccess.getOperationAccess().getCameraScanParserRuleCall_4()); 
+                    pushFollow(FOLLOW_2);
+                    ruleCameraScan();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getOperationAccess().getCameraScanParserRuleCall_4()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 6 :
+                    // InternalFactoryLogicLangParser.g:1070:2: ( ruleCranePickup )
+                    {
+                    // InternalFactoryLogicLangParser.g:1070:2: ( ruleCranePickup )
+                    // InternalFactoryLogicLangParser.g:1071:3: ruleCranePickup
+                    {
+                     before(grammarAccess.getOperationAccess().getCranePickupParserRuleCall_5()); 
+                    pushFollow(FOLLOW_2);
+                    ruleCranePickup();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getOperationAccess().getCranePickupParserRuleCall_5()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 7 :
+                    // InternalFactoryLogicLangParser.g:1076:2: ( ruleCraneDrop )
+                    {
+                    // InternalFactoryLogicLangParser.g:1076:2: ( ruleCraneDrop )
+                    // InternalFactoryLogicLangParser.g:1077:3: ruleCraneDrop
+                    {
+                     before(grammarAccess.getOperationAccess().getCraneDropParserRuleCall_6()); 
+                    pushFollow(FOLLOW_2);
+                    ruleCraneDrop();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getOperationAccess().getCraneDropParserRuleCall_6()); 
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Operation__Alternatives"
+
+
+    // $ANTLR start "rule__StorageMarkSlot__Alternatives_6"
+    // InternalFactoryLogicLangParser.g:1086:1: rule__StorageMarkSlot__Alternatives_6 : ( ( ( rule__StorageMarkSlot__Comparison_variableAssignment_6_0 ) ) | ( ( rule__StorageMarkSlot__Comparison_constAssignment_6_1 ) ) | ( ( rule__StorageMarkSlot__Comparison_colorAssignment_6_2 ) ) | ( ( rule__StorageMarkSlot__Comparison_intAssignment_6_3 ) ) );
+    public final void rule__StorageMarkSlot__Alternatives_6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:1090:1: ( ( ( rule__StorageMarkSlot__Comparison_variableAssignment_6_0 ) ) | ( ( rule__StorageMarkSlot__Comparison_constAssignment_6_1 ) ) | ( ( rule__StorageMarkSlot__Comparison_colorAssignment_6_2 ) ) | ( ( rule__StorageMarkSlot__Comparison_intAssignment_6_3 ) ) )
+            int alt11=4;
+            switch ( input.LA(1) ) {
+            case RULE_ID:
+                {
+                alt11=1;
+                }
+                break;
+            case Finished:
+            case Empty:
+            case Full:
+                {
+                alt11=2;
+                }
+                break;
+            case Green:
+            case Blue:
+            case Red:
+                {
+                alt11=3;
+                }
+                break;
+            case RULE_INT:
+                {
+                alt11=4;
+                }
+                break;
+            default:
+                NoViableAltException nvae =
+                    new NoViableAltException("", 11, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt11) {
+                case 1 :
+                    // InternalFactoryLogicLangParser.g:1091:2: ( ( rule__StorageMarkSlot__Comparison_variableAssignment_6_0 ) )
+                    {
+                    // InternalFactoryLogicLangParser.g:1091:2: ( ( rule__StorageMarkSlot__Comparison_variableAssignment_6_0 ) )
+                    // InternalFactoryLogicLangParser.g:1092:3: ( rule__StorageMarkSlot__Comparison_variableAssignment_6_0 )
+                    {
+                     before(grammarAccess.getStorageMarkSlotAccess().getComparison_variableAssignment_6_0()); 
+                    // InternalFactoryLogicLangParser.g:1093:3: ( rule__StorageMarkSlot__Comparison_variableAssignment_6_0 )
+                    // InternalFactoryLogicLangParser.g:1093:4: rule__StorageMarkSlot__Comparison_variableAssignment_6_0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__StorageMarkSlot__Comparison_variableAssignment_6_0();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getStorageMarkSlotAccess().getComparison_variableAssignment_6_0()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // InternalFactoryLogicLangParser.g:1097:2: ( ( rule__StorageMarkSlot__Comparison_constAssignment_6_1 ) )
+                    {
+                    // InternalFactoryLogicLangParser.g:1097:2: ( ( rule__StorageMarkSlot__Comparison_constAssignment_6_1 ) )
+                    // InternalFactoryLogicLangParser.g:1098:3: ( rule__StorageMarkSlot__Comparison_constAssignment_6_1 )
+                    {
+                     before(grammarAccess.getStorageMarkSlotAccess().getComparison_constAssignment_6_1()); 
+                    // InternalFactoryLogicLangParser.g:1099:3: ( rule__StorageMarkSlot__Comparison_constAssignment_6_1 )
+                    // InternalFactoryLogicLangParser.g:1099:4: rule__StorageMarkSlot__Comparison_constAssignment_6_1
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__StorageMarkSlot__Comparison_constAssignment_6_1();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getStorageMarkSlotAccess().getComparison_constAssignment_6_1()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // InternalFactoryLogicLangParser.g:1103:2: ( ( rule__StorageMarkSlot__Comparison_colorAssignment_6_2 ) )
+                    {
+                    // InternalFactoryLogicLangParser.g:1103:2: ( ( rule__StorageMarkSlot__Comparison_colorAssignment_6_2 ) )
+                    // InternalFactoryLogicLangParser.g:1104:3: ( rule__StorageMarkSlot__Comparison_colorAssignment_6_2 )
+                    {
+                     before(grammarAccess.getStorageMarkSlotAccess().getComparison_colorAssignment_6_2()); 
+                    // InternalFactoryLogicLangParser.g:1105:3: ( rule__StorageMarkSlot__Comparison_colorAssignment_6_2 )
+                    // InternalFactoryLogicLangParser.g:1105:4: rule__StorageMarkSlot__Comparison_colorAssignment_6_2
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__StorageMarkSlot__Comparison_colorAssignment_6_2();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getStorageMarkSlotAccess().getComparison_colorAssignment_6_2()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 4 :
+                    // InternalFactoryLogicLangParser.g:1109:2: ( ( rule__StorageMarkSlot__Comparison_intAssignment_6_3 ) )
+                    {
+                    // InternalFactoryLogicLangParser.g:1109:2: ( ( rule__StorageMarkSlot__Comparison_intAssignment_6_3 ) )
+                    // InternalFactoryLogicLangParser.g:1110:3: ( rule__StorageMarkSlot__Comparison_intAssignment_6_3 )
+                    {
+                     before(grammarAccess.getStorageMarkSlotAccess().getComparison_intAssignment_6_3()); 
+                    // InternalFactoryLogicLangParser.g:1111:3: ( rule__StorageMarkSlot__Comparison_intAssignment_6_3 )
+                    // InternalFactoryLogicLangParser.g:1111:4: rule__StorageMarkSlot__Comparison_intAssignment_6_3
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__StorageMarkSlot__Comparison_intAssignment_6_3();
+
+                    state._fsp--;
+
+
+                    }
+
+                     after(grammarAccess.getStorageMarkSlotAccess().getComparison_intAssignment_6_3()); 
 
                     }
 
@@ -2990,47 +3689,47 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__COLOR__Alternatives"
-    // InternalFactoryLogicLangParser.g:915:1: rule__COLOR__Alternatives : ( ( ( Red ) ) | ( ( Blue ) ) | ( ( Green ) ) );
+    // InternalFactoryLogicLangParser.g:1119:1: rule__COLOR__Alternatives : ( ( ( Red ) ) | ( ( Blue ) ) | ( ( Green ) ) );
     public final void rule__COLOR__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:919:1: ( ( ( Red ) ) | ( ( Blue ) ) | ( ( Green ) ) )
-            int alt10=3;
+            // InternalFactoryLogicLangParser.g:1123:1: ( ( ( Red ) ) | ( ( Blue ) ) | ( ( Green ) ) )
+            int alt12=3;
             switch ( input.LA(1) ) {
             case Red:
                 {
-                alt10=1;
+                alt12=1;
                 }
                 break;
             case Blue:
                 {
-                alt10=2;
+                alt12=2;
                 }
                 break;
             case Green:
                 {
-                alt10=3;
+                alt12=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 10, 0, input);
+                    new NoViableAltException("", 12, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt10) {
+            switch (alt12) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:920:2: ( ( Red ) )
+                    // InternalFactoryLogicLangParser.g:1124:2: ( ( Red ) )
                     {
-                    // InternalFactoryLogicLangParser.g:920:2: ( ( Red ) )
-                    // InternalFactoryLogicLangParser.g:921:3: ( Red )
+                    // InternalFactoryLogicLangParser.g:1124:2: ( ( Red ) )
+                    // InternalFactoryLogicLangParser.g:1125:3: ( Red )
                     {
                      before(grammarAccess.getCOLORAccess().getREDEnumLiteralDeclaration_0()); 
-                    // InternalFactoryLogicLangParser.g:922:3: ( Red )
-                    // InternalFactoryLogicLangParser.g:922:4: Red
+                    // InternalFactoryLogicLangParser.g:1126:3: ( Red )
+                    // InternalFactoryLogicLangParser.g:1126:4: Red
                     {
                     match(input,Red,FOLLOW_2); 
 
@@ -3044,14 +3743,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:926:2: ( ( Blue ) )
+                    // InternalFactoryLogicLangParser.g:1130:2: ( ( Blue ) )
                     {
-                    // InternalFactoryLogicLangParser.g:926:2: ( ( Blue ) )
-                    // InternalFactoryLogicLangParser.g:927:3: ( Blue )
+                    // InternalFactoryLogicLangParser.g:1130:2: ( ( Blue ) )
+                    // InternalFactoryLogicLangParser.g:1131:3: ( Blue )
                     {
                      before(grammarAccess.getCOLORAccess().getBLUEEnumLiteralDeclaration_1()); 
-                    // InternalFactoryLogicLangParser.g:928:3: ( Blue )
-                    // InternalFactoryLogicLangParser.g:928:4: Blue
+                    // InternalFactoryLogicLangParser.g:1132:3: ( Blue )
+                    // InternalFactoryLogicLangParser.g:1132:4: Blue
                     {
                     match(input,Blue,FOLLOW_2); 
 
@@ -3065,14 +3764,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalFactoryLogicLangParser.g:932:2: ( ( Green ) )
+                    // InternalFactoryLogicLangParser.g:1136:2: ( ( Green ) )
                     {
-                    // InternalFactoryLogicLangParser.g:932:2: ( ( Green ) )
-                    // InternalFactoryLogicLangParser.g:933:3: ( Green )
+                    // InternalFactoryLogicLangParser.g:1136:2: ( ( Green ) )
+                    // InternalFactoryLogicLangParser.g:1137:3: ( Green )
                     {
                      before(grammarAccess.getCOLORAccess().getGREENEnumLiteralDeclaration_2()); 
-                    // InternalFactoryLogicLangParser.g:934:3: ( Green )
-                    // InternalFactoryLogicLangParser.g:934:4: Green
+                    // InternalFactoryLogicLangParser.g:1138:3: ( Green )
+                    // InternalFactoryLogicLangParser.g:1138:4: Green
                     {
                     match(input,Green,FOLLOW_2); 
 
@@ -3103,47 +3802,47 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CONST_VARIABLES__Alternatives"
-    // InternalFactoryLogicLangParser.g:942:1: rule__CONST_VARIABLES__Alternatives : ( ( ( Full ) ) | ( ( Finished ) ) | ( ( Empty ) ) );
+    // InternalFactoryLogicLangParser.g:1146:1: rule__CONST_VARIABLES__Alternatives : ( ( ( Full ) ) | ( ( Finished ) ) | ( ( Empty ) ) );
     public final void rule__CONST_VARIABLES__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:946:1: ( ( ( Full ) ) | ( ( Finished ) ) | ( ( Empty ) ) )
-            int alt11=3;
+            // InternalFactoryLogicLangParser.g:1150:1: ( ( ( Full ) ) | ( ( Finished ) ) | ( ( Empty ) ) )
+            int alt13=3;
             switch ( input.LA(1) ) {
             case Full:
                 {
-                alt11=1;
+                alt13=1;
                 }
                 break;
             case Finished:
                 {
-                alt11=2;
+                alt13=2;
                 }
                 break;
             case Empty:
                 {
-                alt11=3;
+                alt13=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 11, 0, input);
+                    new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt11) {
+            switch (alt13) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:947:2: ( ( Full ) )
+                    // InternalFactoryLogicLangParser.g:1151:2: ( ( Full ) )
                     {
-                    // InternalFactoryLogicLangParser.g:947:2: ( ( Full ) )
-                    // InternalFactoryLogicLangParser.g:948:3: ( Full )
+                    // InternalFactoryLogicLangParser.g:1151:2: ( ( Full ) )
+                    // InternalFactoryLogicLangParser.g:1152:3: ( Full )
                     {
                      before(grammarAccess.getCONST_VARIABLESAccess().getFULLEnumLiteralDeclaration_0()); 
-                    // InternalFactoryLogicLangParser.g:949:3: ( Full )
-                    // InternalFactoryLogicLangParser.g:949:4: Full
+                    // InternalFactoryLogicLangParser.g:1153:3: ( Full )
+                    // InternalFactoryLogicLangParser.g:1153:4: Full
                     {
                     match(input,Full,FOLLOW_2); 
 
@@ -3157,14 +3856,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:953:2: ( ( Finished ) )
+                    // InternalFactoryLogicLangParser.g:1157:2: ( ( Finished ) )
                     {
-                    // InternalFactoryLogicLangParser.g:953:2: ( ( Finished ) )
-                    // InternalFactoryLogicLangParser.g:954:3: ( Finished )
+                    // InternalFactoryLogicLangParser.g:1157:2: ( ( Finished ) )
+                    // InternalFactoryLogicLangParser.g:1158:3: ( Finished )
                     {
                      before(grammarAccess.getCONST_VARIABLESAccess().getFINISHEDEnumLiteralDeclaration_1()); 
-                    // InternalFactoryLogicLangParser.g:955:3: ( Finished )
-                    // InternalFactoryLogicLangParser.g:955:4: Finished
+                    // InternalFactoryLogicLangParser.g:1159:3: ( Finished )
+                    // InternalFactoryLogicLangParser.g:1159:4: Finished
                     {
                     match(input,Finished,FOLLOW_2); 
 
@@ -3178,14 +3877,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalFactoryLogicLangParser.g:959:2: ( ( Empty ) )
+                    // InternalFactoryLogicLangParser.g:1163:2: ( ( Empty ) )
                     {
-                    // InternalFactoryLogicLangParser.g:959:2: ( ( Empty ) )
-                    // InternalFactoryLogicLangParser.g:960:3: ( Empty )
+                    // InternalFactoryLogicLangParser.g:1163:2: ( ( Empty ) )
+                    // InternalFactoryLogicLangParser.g:1164:3: ( Empty )
                     {
                      before(grammarAccess.getCONST_VARIABLESAccess().getEMPTYEnumLiteralDeclaration_2()); 
-                    // InternalFactoryLogicLangParser.g:961:3: ( Empty )
-                    // InternalFactoryLogicLangParser.g:961:4: Empty
+                    // InternalFactoryLogicLangParser.g:1165:3: ( Empty )
+                    // InternalFactoryLogicLangParser.g:1165:4: Empty
                     {
                     match(input,Empty,FOLLOW_2); 
 
@@ -3216,47 +3915,47 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__BOOLEAN_OPERATOR__Alternatives"
-    // InternalFactoryLogicLangParser.g:969:1: rule__BOOLEAN_OPERATOR__Alternatives : ( ( ( Not ) ) | ( ( LessThan ) ) | ( ( GreaterThan ) ) );
+    // InternalFactoryLogicLangParser.g:1173:1: rule__BOOLEAN_OPERATOR__Alternatives : ( ( ( Not ) ) | ( ( LessThan ) ) | ( ( GreaterThan ) ) );
     public final void rule__BOOLEAN_OPERATOR__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:973:1: ( ( ( Not ) ) | ( ( LessThan ) ) | ( ( GreaterThan ) ) )
-            int alt12=3;
+            // InternalFactoryLogicLangParser.g:1177:1: ( ( ( Not ) ) | ( ( LessThan ) ) | ( ( GreaterThan ) ) )
+            int alt14=3;
             switch ( input.LA(1) ) {
             case Not:
                 {
-                alt12=1;
+                alt14=1;
                 }
                 break;
             case LessThan:
                 {
-                alt12=2;
+                alt14=2;
                 }
                 break;
             case GreaterThan:
                 {
-                alt12=3;
+                alt14=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 12, 0, input);
+                    new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt12) {
+            switch (alt14) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:974:2: ( ( Not ) )
+                    // InternalFactoryLogicLangParser.g:1178:2: ( ( Not ) )
                     {
-                    // InternalFactoryLogicLangParser.g:974:2: ( ( Not ) )
-                    // InternalFactoryLogicLangParser.g:975:3: ( Not )
+                    // InternalFactoryLogicLangParser.g:1178:2: ( ( Not ) )
+                    // InternalFactoryLogicLangParser.g:1179:3: ( Not )
                     {
                      before(grammarAccess.getBOOLEAN_OPERATORAccess().getNOTEnumLiteralDeclaration_0()); 
-                    // InternalFactoryLogicLangParser.g:976:3: ( Not )
-                    // InternalFactoryLogicLangParser.g:976:4: Not
+                    // InternalFactoryLogicLangParser.g:1180:3: ( Not )
+                    // InternalFactoryLogicLangParser.g:1180:4: Not
                     {
                     match(input,Not,FOLLOW_2); 
 
@@ -3270,14 +3969,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:980:2: ( ( LessThan ) )
+                    // InternalFactoryLogicLangParser.g:1184:2: ( ( LessThan ) )
                     {
-                    // InternalFactoryLogicLangParser.g:980:2: ( ( LessThan ) )
-                    // InternalFactoryLogicLangParser.g:981:3: ( LessThan )
+                    // InternalFactoryLogicLangParser.g:1184:2: ( ( LessThan ) )
+                    // InternalFactoryLogicLangParser.g:1185:3: ( LessThan )
                     {
                      before(grammarAccess.getBOOLEAN_OPERATORAccess().getLESSEnumLiteralDeclaration_1()); 
-                    // InternalFactoryLogicLangParser.g:982:3: ( LessThan )
-                    // InternalFactoryLogicLangParser.g:982:4: LessThan
+                    // InternalFactoryLogicLangParser.g:1186:3: ( LessThan )
+                    // InternalFactoryLogicLangParser.g:1186:4: LessThan
                     {
                     match(input,LessThan,FOLLOW_2); 
 
@@ -3291,14 +3990,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalFactoryLogicLangParser.g:986:2: ( ( GreaterThan ) )
+                    // InternalFactoryLogicLangParser.g:1190:2: ( ( GreaterThan ) )
                     {
-                    // InternalFactoryLogicLangParser.g:986:2: ( ( GreaterThan ) )
-                    // InternalFactoryLogicLangParser.g:987:3: ( GreaterThan )
+                    // InternalFactoryLogicLangParser.g:1190:2: ( ( GreaterThan ) )
+                    // InternalFactoryLogicLangParser.g:1191:3: ( GreaterThan )
                     {
                      before(grammarAccess.getBOOLEAN_OPERATORAccess().getGREATEREnumLiteralDeclaration_2()); 
-                    // InternalFactoryLogicLangParser.g:988:3: ( GreaterThan )
-                    // InternalFactoryLogicLangParser.g:988:4: GreaterThan
+                    // InternalFactoryLogicLangParser.g:1192:3: ( GreaterThan )
+                    // InternalFactoryLogicLangParser.g:1192:4: GreaterThan
                     {
                     match(input,GreaterThan,FOLLOW_2); 
 
@@ -3329,62 +4028,62 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__TIME__Alternatives"
-    // InternalFactoryLogicLangParser.g:996:1: rule__TIME__Alternatives : ( ( ( Seconds ) ) | ( ( Second ) ) | ( ( Minutes ) ) | ( ( Minute ) ) | ( ( Hours ) ) | ( ( Hour ) ) );
+    // InternalFactoryLogicLangParser.g:1200:1: rule__TIME__Alternatives : ( ( ( Seconds ) ) | ( ( Second ) ) | ( ( Minutes ) ) | ( ( Minute ) ) | ( ( Hours ) ) | ( ( Hour ) ) );
     public final void rule__TIME__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1000:1: ( ( ( Seconds ) ) | ( ( Second ) ) | ( ( Minutes ) ) | ( ( Minute ) ) | ( ( Hours ) ) | ( ( Hour ) ) )
-            int alt13=6;
+            // InternalFactoryLogicLangParser.g:1204:1: ( ( ( Seconds ) ) | ( ( Second ) ) | ( ( Minutes ) ) | ( ( Minute ) ) | ( ( Hours ) ) | ( ( Hour ) ) )
+            int alt15=6;
             switch ( input.LA(1) ) {
             case Seconds:
                 {
-                alt13=1;
+                alt15=1;
                 }
                 break;
             case Second:
                 {
-                alt13=2;
+                alt15=2;
                 }
                 break;
             case Minutes:
                 {
-                alt13=3;
+                alt15=3;
                 }
                 break;
             case Minute:
                 {
-                alt13=4;
+                alt15=4;
                 }
                 break;
             case Hours:
                 {
-                alt13=5;
+                alt15=5;
                 }
                 break;
             case Hour:
                 {
-                alt13=6;
+                alt15=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
+                    new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt13) {
+            switch (alt15) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:1001:2: ( ( Seconds ) )
+                    // InternalFactoryLogicLangParser.g:1205:2: ( ( Seconds ) )
                     {
-                    // InternalFactoryLogicLangParser.g:1001:2: ( ( Seconds ) )
-                    // InternalFactoryLogicLangParser.g:1002:3: ( Seconds )
+                    // InternalFactoryLogicLangParser.g:1205:2: ( ( Seconds ) )
+                    // InternalFactoryLogicLangParser.g:1206:3: ( Seconds )
                     {
                      before(grammarAccess.getTIMEAccess().getSECONDEnumLiteralDeclaration_0()); 
-                    // InternalFactoryLogicLangParser.g:1003:3: ( Seconds )
-                    // InternalFactoryLogicLangParser.g:1003:4: Seconds
+                    // InternalFactoryLogicLangParser.g:1207:3: ( Seconds )
+                    // InternalFactoryLogicLangParser.g:1207:4: Seconds
                     {
                     match(input,Seconds,FOLLOW_2); 
 
@@ -3398,14 +4097,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 2 :
-                    // InternalFactoryLogicLangParser.g:1007:2: ( ( Second ) )
+                    // InternalFactoryLogicLangParser.g:1211:2: ( ( Second ) )
                     {
-                    // InternalFactoryLogicLangParser.g:1007:2: ( ( Second ) )
-                    // InternalFactoryLogicLangParser.g:1008:3: ( Second )
+                    // InternalFactoryLogicLangParser.g:1211:2: ( ( Second ) )
+                    // InternalFactoryLogicLangParser.g:1212:3: ( Second )
                     {
                      before(grammarAccess.getTIMEAccess().getSECONDEnumLiteralDeclaration_1()); 
-                    // InternalFactoryLogicLangParser.g:1009:3: ( Second )
-                    // InternalFactoryLogicLangParser.g:1009:4: Second
+                    // InternalFactoryLogicLangParser.g:1213:3: ( Second )
+                    // InternalFactoryLogicLangParser.g:1213:4: Second
                     {
                     match(input,Second,FOLLOW_2); 
 
@@ -3419,14 +4118,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // InternalFactoryLogicLangParser.g:1013:2: ( ( Minutes ) )
+                    // InternalFactoryLogicLangParser.g:1217:2: ( ( Minutes ) )
                     {
-                    // InternalFactoryLogicLangParser.g:1013:2: ( ( Minutes ) )
-                    // InternalFactoryLogicLangParser.g:1014:3: ( Minutes )
+                    // InternalFactoryLogicLangParser.g:1217:2: ( ( Minutes ) )
+                    // InternalFactoryLogicLangParser.g:1218:3: ( Minutes )
                     {
                      before(grammarAccess.getTIMEAccess().getMINUTEEnumLiteralDeclaration_2()); 
-                    // InternalFactoryLogicLangParser.g:1015:3: ( Minutes )
-                    // InternalFactoryLogicLangParser.g:1015:4: Minutes
+                    // InternalFactoryLogicLangParser.g:1219:3: ( Minutes )
+                    // InternalFactoryLogicLangParser.g:1219:4: Minutes
                     {
                     match(input,Minutes,FOLLOW_2); 
 
@@ -3440,14 +4139,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 4 :
-                    // InternalFactoryLogicLangParser.g:1019:2: ( ( Minute ) )
+                    // InternalFactoryLogicLangParser.g:1223:2: ( ( Minute ) )
                     {
-                    // InternalFactoryLogicLangParser.g:1019:2: ( ( Minute ) )
-                    // InternalFactoryLogicLangParser.g:1020:3: ( Minute )
+                    // InternalFactoryLogicLangParser.g:1223:2: ( ( Minute ) )
+                    // InternalFactoryLogicLangParser.g:1224:3: ( Minute )
                     {
                      before(grammarAccess.getTIMEAccess().getMINUTEEnumLiteralDeclaration_3()); 
-                    // InternalFactoryLogicLangParser.g:1021:3: ( Minute )
-                    // InternalFactoryLogicLangParser.g:1021:4: Minute
+                    // InternalFactoryLogicLangParser.g:1225:3: ( Minute )
+                    // InternalFactoryLogicLangParser.g:1225:4: Minute
                     {
                     match(input,Minute,FOLLOW_2); 
 
@@ -3461,14 +4160,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 5 :
-                    // InternalFactoryLogicLangParser.g:1025:2: ( ( Hours ) )
+                    // InternalFactoryLogicLangParser.g:1229:2: ( ( Hours ) )
                     {
-                    // InternalFactoryLogicLangParser.g:1025:2: ( ( Hours ) )
-                    // InternalFactoryLogicLangParser.g:1026:3: ( Hours )
+                    // InternalFactoryLogicLangParser.g:1229:2: ( ( Hours ) )
+                    // InternalFactoryLogicLangParser.g:1230:3: ( Hours )
                     {
                      before(grammarAccess.getTIMEAccess().getHOUREnumLiteralDeclaration_4()); 
-                    // InternalFactoryLogicLangParser.g:1027:3: ( Hours )
-                    // InternalFactoryLogicLangParser.g:1027:4: Hours
+                    // InternalFactoryLogicLangParser.g:1231:3: ( Hours )
+                    // InternalFactoryLogicLangParser.g:1231:4: Hours
                     {
                     match(input,Hours,FOLLOW_2); 
 
@@ -3482,14 +4181,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 6 :
-                    // InternalFactoryLogicLangParser.g:1031:2: ( ( Hour ) )
+                    // InternalFactoryLogicLangParser.g:1235:2: ( ( Hour ) )
                     {
-                    // InternalFactoryLogicLangParser.g:1031:2: ( ( Hour ) )
-                    // InternalFactoryLogicLangParser.g:1032:3: ( Hour )
+                    // InternalFactoryLogicLangParser.g:1235:2: ( ( Hour ) )
+                    // InternalFactoryLogicLangParser.g:1236:3: ( Hour )
                     {
                      before(grammarAccess.getTIMEAccess().getHOUREnumLiteralDeclaration_5()); 
-                    // InternalFactoryLogicLangParser.g:1033:3: ( Hour )
-                    // InternalFactoryLogicLangParser.g:1033:4: Hour
+                    // InternalFactoryLogicLangParser.g:1237:3: ( Hour )
+                    // InternalFactoryLogicLangParser.g:1237:4: Hour
                     {
                     match(input,Hour,FOLLOW_2); 
 
@@ -3520,14 +4219,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__0"
-    // InternalFactoryLogicLangParser.g:1041:1: rule__Crane__Group__0 : rule__Crane__Group__0__Impl rule__Crane__Group__1 ;
+    // InternalFactoryLogicLangParser.g:1245:1: rule__Crane__Group__0 : rule__Crane__Group__0__Impl rule__Crane__Group__1 ;
     public final void rule__Crane__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1045:1: ( rule__Crane__Group__0__Impl rule__Crane__Group__1 )
-            // InternalFactoryLogicLangParser.g:1046:2: rule__Crane__Group__0__Impl rule__Crane__Group__1
+            // InternalFactoryLogicLangParser.g:1249:1: ( rule__Crane__Group__0__Impl rule__Crane__Group__1 )
+            // InternalFactoryLogicLangParser.g:1250:2: rule__Crane__Group__0__Impl rule__Crane__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__Crane__Group__0__Impl();
@@ -3558,17 +4257,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:1053:1: rule__Crane__Group__0__Impl : ( Create ) ;
+    // InternalFactoryLogicLangParser.g:1257:1: rule__Crane__Group__0__Impl : ( Create ) ;
     public final void rule__Crane__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1057:1: ( ( Create ) )
-            // InternalFactoryLogicLangParser.g:1058:1: ( Create )
+            // InternalFactoryLogicLangParser.g:1261:1: ( ( Create ) )
+            // InternalFactoryLogicLangParser.g:1262:1: ( Create )
             {
-            // InternalFactoryLogicLangParser.g:1058:1: ( Create )
-            // InternalFactoryLogicLangParser.g:1059:2: Create
+            // InternalFactoryLogicLangParser.g:1262:1: ( Create )
+            // InternalFactoryLogicLangParser.g:1263:2: Create
             {
              before(grammarAccess.getCraneAccess().getCreateKeyword_0()); 
             match(input,Create,FOLLOW_2); 
@@ -3595,14 +4294,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__1"
-    // InternalFactoryLogicLangParser.g:1068:1: rule__Crane__Group__1 : rule__Crane__Group__1__Impl rule__Crane__Group__2 ;
+    // InternalFactoryLogicLangParser.g:1272:1: rule__Crane__Group__1 : rule__Crane__Group__1__Impl rule__Crane__Group__2 ;
     public final void rule__Crane__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1072:1: ( rule__Crane__Group__1__Impl rule__Crane__Group__2 )
-            // InternalFactoryLogicLangParser.g:1073:2: rule__Crane__Group__1__Impl rule__Crane__Group__2
+            // InternalFactoryLogicLangParser.g:1276:1: ( rule__Crane__Group__1__Impl rule__Crane__Group__2 )
+            // InternalFactoryLogicLangParser.g:1277:2: rule__Crane__Group__1__Impl rule__Crane__Group__2
             {
             pushFollow(FOLLOW_5);
             rule__Crane__Group__1__Impl();
@@ -3633,17 +4332,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:1080:1: rule__Crane__Group__1__Impl : ( Crane ) ;
+    // InternalFactoryLogicLangParser.g:1284:1: rule__Crane__Group__1__Impl : ( Crane ) ;
     public final void rule__Crane__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1084:1: ( ( Crane ) )
-            // InternalFactoryLogicLangParser.g:1085:1: ( Crane )
+            // InternalFactoryLogicLangParser.g:1288:1: ( ( Crane ) )
+            // InternalFactoryLogicLangParser.g:1289:1: ( Crane )
             {
-            // InternalFactoryLogicLangParser.g:1085:1: ( Crane )
-            // InternalFactoryLogicLangParser.g:1086:2: Crane
+            // InternalFactoryLogicLangParser.g:1289:1: ( Crane )
+            // InternalFactoryLogicLangParser.g:1290:2: Crane
             {
              before(grammarAccess.getCraneAccess().getCraneKeyword_1()); 
             match(input,Crane,FOLLOW_2); 
@@ -3670,14 +4369,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__2"
-    // InternalFactoryLogicLangParser.g:1095:1: rule__Crane__Group__2 : rule__Crane__Group__2__Impl rule__Crane__Group__3 ;
+    // InternalFactoryLogicLangParser.g:1299:1: rule__Crane__Group__2 : rule__Crane__Group__2__Impl rule__Crane__Group__3 ;
     public final void rule__Crane__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1099:1: ( rule__Crane__Group__2__Impl rule__Crane__Group__3 )
-            // InternalFactoryLogicLangParser.g:1100:2: rule__Crane__Group__2__Impl rule__Crane__Group__3
+            // InternalFactoryLogicLangParser.g:1303:1: ( rule__Crane__Group__2__Impl rule__Crane__Group__3 )
+            // InternalFactoryLogicLangParser.g:1304:2: rule__Crane__Group__2__Impl rule__Crane__Group__3
             {
             pushFollow(FOLLOW_6);
             rule__Crane__Group__2__Impl();
@@ -3708,17 +4407,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:1107:1: rule__Crane__Group__2__Impl : ( Named ) ;
+    // InternalFactoryLogicLangParser.g:1311:1: rule__Crane__Group__2__Impl : ( Named ) ;
     public final void rule__Crane__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1111:1: ( ( Named ) )
-            // InternalFactoryLogicLangParser.g:1112:1: ( Named )
+            // InternalFactoryLogicLangParser.g:1315:1: ( ( Named ) )
+            // InternalFactoryLogicLangParser.g:1316:1: ( Named )
             {
-            // InternalFactoryLogicLangParser.g:1112:1: ( Named )
-            // InternalFactoryLogicLangParser.g:1113:2: Named
+            // InternalFactoryLogicLangParser.g:1316:1: ( Named )
+            // InternalFactoryLogicLangParser.g:1317:2: Named
             {
              before(grammarAccess.getCraneAccess().getNamedKeyword_2()); 
             match(input,Named,FOLLOW_2); 
@@ -3745,14 +4444,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__3"
-    // InternalFactoryLogicLangParser.g:1122:1: rule__Crane__Group__3 : rule__Crane__Group__3__Impl rule__Crane__Group__4 ;
+    // InternalFactoryLogicLangParser.g:1326:1: rule__Crane__Group__3 : rule__Crane__Group__3__Impl rule__Crane__Group__4 ;
     public final void rule__Crane__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1126:1: ( rule__Crane__Group__3__Impl rule__Crane__Group__4 )
-            // InternalFactoryLogicLangParser.g:1127:2: rule__Crane__Group__3__Impl rule__Crane__Group__4
+            // InternalFactoryLogicLangParser.g:1330:1: ( rule__Crane__Group__3__Impl rule__Crane__Group__4 )
+            // InternalFactoryLogicLangParser.g:1331:2: rule__Crane__Group__3__Impl rule__Crane__Group__4
             {
             pushFollow(FOLLOW_7);
             rule__Crane__Group__3__Impl();
@@ -3783,21 +4482,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:1134:1: rule__Crane__Group__3__Impl : ( ( rule__Crane__NameAssignment_3 ) ) ;
+    // InternalFactoryLogicLangParser.g:1338:1: rule__Crane__Group__3__Impl : ( ( rule__Crane__NameAssignment_3 ) ) ;
     public final void rule__Crane__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1138:1: ( ( ( rule__Crane__NameAssignment_3 ) ) )
-            // InternalFactoryLogicLangParser.g:1139:1: ( ( rule__Crane__NameAssignment_3 ) )
+            // InternalFactoryLogicLangParser.g:1342:1: ( ( ( rule__Crane__NameAssignment_3 ) ) )
+            // InternalFactoryLogicLangParser.g:1343:1: ( ( rule__Crane__NameAssignment_3 ) )
             {
-            // InternalFactoryLogicLangParser.g:1139:1: ( ( rule__Crane__NameAssignment_3 ) )
-            // InternalFactoryLogicLangParser.g:1140:2: ( rule__Crane__NameAssignment_3 )
+            // InternalFactoryLogicLangParser.g:1343:1: ( ( rule__Crane__NameAssignment_3 ) )
+            // InternalFactoryLogicLangParser.g:1344:2: ( rule__Crane__NameAssignment_3 )
             {
              before(grammarAccess.getCraneAccess().getNameAssignment_3()); 
-            // InternalFactoryLogicLangParser.g:1141:2: ( rule__Crane__NameAssignment_3 )
-            // InternalFactoryLogicLangParser.g:1141:3: rule__Crane__NameAssignment_3
+            // InternalFactoryLogicLangParser.g:1345:2: ( rule__Crane__NameAssignment_3 )
+            // InternalFactoryLogicLangParser.g:1345:3: rule__Crane__NameAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__Crane__NameAssignment_3();
@@ -3830,14 +4529,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__4"
-    // InternalFactoryLogicLangParser.g:1149:1: rule__Crane__Group__4 : rule__Crane__Group__4__Impl rule__Crane__Group__5 ;
+    // InternalFactoryLogicLangParser.g:1353:1: rule__Crane__Group__4 : rule__Crane__Group__4__Impl rule__Crane__Group__5 ;
     public final void rule__Crane__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1153:1: ( rule__Crane__Group__4__Impl rule__Crane__Group__5 )
-            // InternalFactoryLogicLangParser.g:1154:2: rule__Crane__Group__4__Impl rule__Crane__Group__5
+            // InternalFactoryLogicLangParser.g:1357:1: ( rule__Crane__Group__4__Impl rule__Crane__Group__5 )
+            // InternalFactoryLogicLangParser.g:1358:2: rule__Crane__Group__4__Impl rule__Crane__Group__5
             {
             pushFollow(FOLLOW_8);
             rule__Crane__Group__4__Impl();
@@ -3868,17 +4567,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:1161:1: rule__Crane__Group__4__Impl : ( RULE_BEGIN ) ;
+    // InternalFactoryLogicLangParser.g:1365:1: rule__Crane__Group__4__Impl : ( RULE_BEGIN ) ;
     public final void rule__Crane__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1165:1: ( ( RULE_BEGIN ) )
-            // InternalFactoryLogicLangParser.g:1166:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:1369:1: ( ( RULE_BEGIN ) )
+            // InternalFactoryLogicLangParser.g:1370:1: ( RULE_BEGIN )
             {
-            // InternalFactoryLogicLangParser.g:1166:1: ( RULE_BEGIN )
-            // InternalFactoryLogicLangParser.g:1167:2: RULE_BEGIN
+            // InternalFactoryLogicLangParser.g:1370:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:1371:2: RULE_BEGIN
             {
              before(grammarAccess.getCraneAccess().getBEGINTerminalRuleCall_4()); 
             match(input,RULE_BEGIN,FOLLOW_2); 
@@ -3905,14 +4604,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__5"
-    // InternalFactoryLogicLangParser.g:1176:1: rule__Crane__Group__5 : rule__Crane__Group__5__Impl rule__Crane__Group__6 ;
+    // InternalFactoryLogicLangParser.g:1380:1: rule__Crane__Group__5 : rule__Crane__Group__5__Impl rule__Crane__Group__6 ;
     public final void rule__Crane__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1180:1: ( rule__Crane__Group__5__Impl rule__Crane__Group__6 )
-            // InternalFactoryLogicLangParser.g:1181:2: rule__Crane__Group__5__Impl rule__Crane__Group__6
+            // InternalFactoryLogicLangParser.g:1384:1: ( rule__Crane__Group__5__Impl rule__Crane__Group__6 )
+            // InternalFactoryLogicLangParser.g:1385:2: rule__Crane__Group__5__Impl rule__Crane__Group__6
             {
             pushFollow(FOLLOW_9);
             rule__Crane__Group__5__Impl();
@@ -3943,24 +4642,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__5__Impl"
-    // InternalFactoryLogicLangParser.g:1188:1: rule__Crane__Group__5__Impl : ( ( ( rule__Crane__ParametersAssignment_5 ) ) ( ( rule__Crane__ParametersAssignment_5 )* ) ) ;
+    // InternalFactoryLogicLangParser.g:1392:1: rule__Crane__Group__5__Impl : ( ( ( rule__Crane__ParametersAssignment_5 ) ) ( ( rule__Crane__ParametersAssignment_5 )* ) ) ;
     public final void rule__Crane__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1192:1: ( ( ( ( rule__Crane__ParametersAssignment_5 ) ) ( ( rule__Crane__ParametersAssignment_5 )* ) ) )
-            // InternalFactoryLogicLangParser.g:1193:1: ( ( ( rule__Crane__ParametersAssignment_5 ) ) ( ( rule__Crane__ParametersAssignment_5 )* ) )
+            // InternalFactoryLogicLangParser.g:1396:1: ( ( ( ( rule__Crane__ParametersAssignment_5 ) ) ( ( rule__Crane__ParametersAssignment_5 )* ) ) )
+            // InternalFactoryLogicLangParser.g:1397:1: ( ( ( rule__Crane__ParametersAssignment_5 ) ) ( ( rule__Crane__ParametersAssignment_5 )* ) )
             {
-            // InternalFactoryLogicLangParser.g:1193:1: ( ( ( rule__Crane__ParametersAssignment_5 ) ) ( ( rule__Crane__ParametersAssignment_5 )* ) )
-            // InternalFactoryLogicLangParser.g:1194:2: ( ( rule__Crane__ParametersAssignment_5 ) ) ( ( rule__Crane__ParametersAssignment_5 )* )
+            // InternalFactoryLogicLangParser.g:1397:1: ( ( ( rule__Crane__ParametersAssignment_5 ) ) ( ( rule__Crane__ParametersAssignment_5 )* ) )
+            // InternalFactoryLogicLangParser.g:1398:2: ( ( rule__Crane__ParametersAssignment_5 ) ) ( ( rule__Crane__ParametersAssignment_5 )* )
             {
-            // InternalFactoryLogicLangParser.g:1194:2: ( ( rule__Crane__ParametersAssignment_5 ) )
-            // InternalFactoryLogicLangParser.g:1195:3: ( rule__Crane__ParametersAssignment_5 )
+            // InternalFactoryLogicLangParser.g:1398:2: ( ( rule__Crane__ParametersAssignment_5 ) )
+            // InternalFactoryLogicLangParser.g:1399:3: ( rule__Crane__ParametersAssignment_5 )
             {
              before(grammarAccess.getCraneAccess().getParametersAssignment_5()); 
-            // InternalFactoryLogicLangParser.g:1196:3: ( rule__Crane__ParametersAssignment_5 )
-            // InternalFactoryLogicLangParser.g:1196:4: rule__Crane__ParametersAssignment_5
+            // InternalFactoryLogicLangParser.g:1400:3: ( rule__Crane__ParametersAssignment_5 )
+            // InternalFactoryLogicLangParser.g:1400:4: rule__Crane__ParametersAssignment_5
             {
             pushFollow(FOLLOW_10);
             rule__Crane__ParametersAssignment_5();
@@ -3974,24 +4673,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
             }
 
-            // InternalFactoryLogicLangParser.g:1199:2: ( ( rule__Crane__ParametersAssignment_5 )* )
-            // InternalFactoryLogicLangParser.g:1200:3: ( rule__Crane__ParametersAssignment_5 )*
+            // InternalFactoryLogicLangParser.g:1403:2: ( ( rule__Crane__ParametersAssignment_5 )* )
+            // InternalFactoryLogicLangParser.g:1404:3: ( rule__Crane__ParametersAssignment_5 )*
             {
              before(grammarAccess.getCraneAccess().getParametersAssignment_5()); 
-            // InternalFactoryLogicLangParser.g:1201:3: ( rule__Crane__ParametersAssignment_5 )*
-            loop14:
+            // InternalFactoryLogicLangParser.g:1405:3: ( rule__Crane__ParametersAssignment_5 )*
+            loop16:
             do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( (LA14_0==With) ) {
-                    alt14=1;
+                if ( (LA16_0==With) ) {
+                    alt16=1;
                 }
 
 
-                switch (alt14) {
+                switch (alt16) {
             	case 1 :
-            	    // InternalFactoryLogicLangParser.g:1201:4: rule__Crane__ParametersAssignment_5
+            	    // InternalFactoryLogicLangParser.g:1405:4: rule__Crane__ParametersAssignment_5
             	    {
             	    pushFollow(FOLLOW_10);
             	    rule__Crane__ParametersAssignment_5();
@@ -4003,7 +4702,7 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop14;
+            	    break loop16;
                 }
             } while (true);
 
@@ -4033,14 +4732,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__6"
-    // InternalFactoryLogicLangParser.g:1210:1: rule__Crane__Group__6 : rule__Crane__Group__6__Impl ;
+    // InternalFactoryLogicLangParser.g:1414:1: rule__Crane__Group__6 : rule__Crane__Group__6__Impl ;
     public final void rule__Crane__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1214:1: ( rule__Crane__Group__6__Impl )
-            // InternalFactoryLogicLangParser.g:1215:2: rule__Crane__Group__6__Impl
+            // InternalFactoryLogicLangParser.g:1418:1: ( rule__Crane__Group__6__Impl )
+            // InternalFactoryLogicLangParser.g:1419:2: rule__Crane__Group__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Crane__Group__6__Impl();
@@ -4066,17 +4765,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__Group__6__Impl"
-    // InternalFactoryLogicLangParser.g:1221:1: rule__Crane__Group__6__Impl : ( RULE_END ) ;
+    // InternalFactoryLogicLangParser.g:1425:1: rule__Crane__Group__6__Impl : ( RULE_END ) ;
     public final void rule__Crane__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1225:1: ( ( RULE_END ) )
-            // InternalFactoryLogicLangParser.g:1226:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:1429:1: ( ( RULE_END ) )
+            // InternalFactoryLogicLangParser.g:1430:1: ( RULE_END )
             {
-            // InternalFactoryLogicLangParser.g:1226:1: ( RULE_END )
-            // InternalFactoryLogicLangParser.g:1227:2: RULE_END
+            // InternalFactoryLogicLangParser.g:1430:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:1431:2: RULE_END
             {
              before(grammarAccess.getCraneAccess().getENDTerminalRuleCall_6()); 
             match(input,RULE_END,FOLLOW_2); 
@@ -4103,14 +4802,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__0"
-    // InternalFactoryLogicLangParser.g:1237:1: rule__CraneParameter__Group__0 : rule__CraneParameter__Group__0__Impl rule__CraneParameter__Group__1 ;
+    // InternalFactoryLogicLangParser.g:1441:1: rule__CraneParameter__Group__0 : rule__CraneParameter__Group__0__Impl rule__CraneParameter__Group__1 ;
     public final void rule__CraneParameter__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1241:1: ( rule__CraneParameter__Group__0__Impl rule__CraneParameter__Group__1 )
-            // InternalFactoryLogicLangParser.g:1242:2: rule__CraneParameter__Group__0__Impl rule__CraneParameter__Group__1
+            // InternalFactoryLogicLangParser.g:1445:1: ( rule__CraneParameter__Group__0__Impl rule__CraneParameter__Group__1 )
+            // InternalFactoryLogicLangParser.g:1446:2: rule__CraneParameter__Group__0__Impl rule__CraneParameter__Group__1
             {
             pushFollow(FOLLOW_11);
             rule__CraneParameter__Group__0__Impl();
@@ -4141,17 +4840,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:1249:1: rule__CraneParameter__Group__0__Impl : ( With ) ;
+    // InternalFactoryLogicLangParser.g:1453:1: rule__CraneParameter__Group__0__Impl : ( With ) ;
     public final void rule__CraneParameter__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1253:1: ( ( With ) )
-            // InternalFactoryLogicLangParser.g:1254:1: ( With )
+            // InternalFactoryLogicLangParser.g:1457:1: ( ( With ) )
+            // InternalFactoryLogicLangParser.g:1458:1: ( With )
             {
-            // InternalFactoryLogicLangParser.g:1254:1: ( With )
-            // InternalFactoryLogicLangParser.g:1255:2: With
+            // InternalFactoryLogicLangParser.g:1458:1: ( With )
+            // InternalFactoryLogicLangParser.g:1459:2: With
             {
              before(grammarAccess.getCraneParameterAccess().getWithKeyword_0()); 
             match(input,With,FOLLOW_2); 
@@ -4178,14 +4877,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__1"
-    // InternalFactoryLogicLangParser.g:1264:1: rule__CraneParameter__Group__1 : rule__CraneParameter__Group__1__Impl rule__CraneParameter__Group__2 ;
+    // InternalFactoryLogicLangParser.g:1468:1: rule__CraneParameter__Group__1 : rule__CraneParameter__Group__1__Impl rule__CraneParameter__Group__2 ;
     public final void rule__CraneParameter__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1268:1: ( rule__CraneParameter__Group__1__Impl rule__CraneParameter__Group__2 )
-            // InternalFactoryLogicLangParser.g:1269:2: rule__CraneParameter__Group__1__Impl rule__CraneParameter__Group__2
+            // InternalFactoryLogicLangParser.g:1472:1: ( rule__CraneParameter__Group__1__Impl rule__CraneParameter__Group__2 )
+            // InternalFactoryLogicLangParser.g:1473:2: rule__CraneParameter__Group__1__Impl rule__CraneParameter__Group__2
             {
             pushFollow(FOLLOW_12);
             rule__CraneParameter__Group__1__Impl();
@@ -4216,17 +4915,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:1276:1: rule__CraneParameter__Group__1__Impl : ( Position ) ;
+    // InternalFactoryLogicLangParser.g:1480:1: rule__CraneParameter__Group__1__Impl : ( Position ) ;
     public final void rule__CraneParameter__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1280:1: ( ( Position ) )
-            // InternalFactoryLogicLangParser.g:1281:1: ( Position )
+            // InternalFactoryLogicLangParser.g:1484:1: ( ( Position ) )
+            // InternalFactoryLogicLangParser.g:1485:1: ( Position )
             {
-            // InternalFactoryLogicLangParser.g:1281:1: ( Position )
-            // InternalFactoryLogicLangParser.g:1282:2: Position
+            // InternalFactoryLogicLangParser.g:1485:1: ( Position )
+            // InternalFactoryLogicLangParser.g:1486:2: Position
             {
              before(grammarAccess.getCraneParameterAccess().getPositionKeyword_1()); 
             match(input,Position,FOLLOW_2); 
@@ -4253,14 +4952,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__2"
-    // InternalFactoryLogicLangParser.g:1291:1: rule__CraneParameter__Group__2 : rule__CraneParameter__Group__2__Impl rule__CraneParameter__Group__3 ;
+    // InternalFactoryLogicLangParser.g:1495:1: rule__CraneParameter__Group__2 : rule__CraneParameter__Group__2__Impl rule__CraneParameter__Group__3 ;
     public final void rule__CraneParameter__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1295:1: ( rule__CraneParameter__Group__2__Impl rule__CraneParameter__Group__3 )
-            // InternalFactoryLogicLangParser.g:1296:2: rule__CraneParameter__Group__2__Impl rule__CraneParameter__Group__3
+            // InternalFactoryLogicLangParser.g:1499:1: ( rule__CraneParameter__Group__2__Impl rule__CraneParameter__Group__3 )
+            // InternalFactoryLogicLangParser.g:1500:2: rule__CraneParameter__Group__2__Impl rule__CraneParameter__Group__3
             {
             pushFollow(FOLLOW_13);
             rule__CraneParameter__Group__2__Impl();
@@ -4291,17 +4990,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:1303:1: rule__CraneParameter__Group__2__Impl : ( At ) ;
+    // InternalFactoryLogicLangParser.g:1507:1: rule__CraneParameter__Group__2__Impl : ( At ) ;
     public final void rule__CraneParameter__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1307:1: ( ( At ) )
-            // InternalFactoryLogicLangParser.g:1308:1: ( At )
+            // InternalFactoryLogicLangParser.g:1511:1: ( ( At ) )
+            // InternalFactoryLogicLangParser.g:1512:1: ( At )
             {
-            // InternalFactoryLogicLangParser.g:1308:1: ( At )
-            // InternalFactoryLogicLangParser.g:1309:2: At
+            // InternalFactoryLogicLangParser.g:1512:1: ( At )
+            // InternalFactoryLogicLangParser.g:1513:2: At
             {
              before(grammarAccess.getCraneParameterAccess().getAtKeyword_2()); 
             match(input,At,FOLLOW_2); 
@@ -4328,14 +5027,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__3"
-    // InternalFactoryLogicLangParser.g:1318:1: rule__CraneParameter__Group__3 : rule__CraneParameter__Group__3__Impl rule__CraneParameter__Group__4 ;
+    // InternalFactoryLogicLangParser.g:1522:1: rule__CraneParameter__Group__3 : rule__CraneParameter__Group__3__Impl rule__CraneParameter__Group__4 ;
     public final void rule__CraneParameter__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1322:1: ( rule__CraneParameter__Group__3__Impl rule__CraneParameter__Group__4 )
-            // InternalFactoryLogicLangParser.g:1323:2: rule__CraneParameter__Group__3__Impl rule__CraneParameter__Group__4
+            // InternalFactoryLogicLangParser.g:1526:1: ( rule__CraneParameter__Group__3__Impl rule__CraneParameter__Group__4 )
+            // InternalFactoryLogicLangParser.g:1527:2: rule__CraneParameter__Group__3__Impl rule__CraneParameter__Group__4
             {
             pushFollow(FOLLOW_5);
             rule__CraneParameter__Group__3__Impl();
@@ -4366,21 +5065,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:1330:1: rule__CraneParameter__Group__3__Impl : ( ( rule__CraneParameter__DegreeAssignment_3 ) ) ;
+    // InternalFactoryLogicLangParser.g:1534:1: rule__CraneParameter__Group__3__Impl : ( ( rule__CraneParameter__DegreeAssignment_3 ) ) ;
     public final void rule__CraneParameter__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1334:1: ( ( ( rule__CraneParameter__DegreeAssignment_3 ) ) )
-            // InternalFactoryLogicLangParser.g:1335:1: ( ( rule__CraneParameter__DegreeAssignment_3 ) )
+            // InternalFactoryLogicLangParser.g:1538:1: ( ( ( rule__CraneParameter__DegreeAssignment_3 ) ) )
+            // InternalFactoryLogicLangParser.g:1539:1: ( ( rule__CraneParameter__DegreeAssignment_3 ) )
             {
-            // InternalFactoryLogicLangParser.g:1335:1: ( ( rule__CraneParameter__DegreeAssignment_3 ) )
-            // InternalFactoryLogicLangParser.g:1336:2: ( rule__CraneParameter__DegreeAssignment_3 )
+            // InternalFactoryLogicLangParser.g:1539:1: ( ( rule__CraneParameter__DegreeAssignment_3 ) )
+            // InternalFactoryLogicLangParser.g:1540:2: ( rule__CraneParameter__DegreeAssignment_3 )
             {
              before(grammarAccess.getCraneParameterAccess().getDegreeAssignment_3()); 
-            // InternalFactoryLogicLangParser.g:1337:2: ( rule__CraneParameter__DegreeAssignment_3 )
-            // InternalFactoryLogicLangParser.g:1337:3: rule__CraneParameter__DegreeAssignment_3
+            // InternalFactoryLogicLangParser.g:1541:2: ( rule__CraneParameter__DegreeAssignment_3 )
+            // InternalFactoryLogicLangParser.g:1541:3: rule__CraneParameter__DegreeAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__CraneParameter__DegreeAssignment_3();
@@ -4413,14 +5112,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__4"
-    // InternalFactoryLogicLangParser.g:1345:1: rule__CraneParameter__Group__4 : rule__CraneParameter__Group__4__Impl rule__CraneParameter__Group__5 ;
+    // InternalFactoryLogicLangParser.g:1549:1: rule__CraneParameter__Group__4 : rule__CraneParameter__Group__4__Impl rule__CraneParameter__Group__5 ;
     public final void rule__CraneParameter__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1349:1: ( rule__CraneParameter__Group__4__Impl rule__CraneParameter__Group__5 )
-            // InternalFactoryLogicLangParser.g:1350:2: rule__CraneParameter__Group__4__Impl rule__CraneParameter__Group__5
+            // InternalFactoryLogicLangParser.g:1553:1: ( rule__CraneParameter__Group__4__Impl rule__CraneParameter__Group__5 )
+            // InternalFactoryLogicLangParser.g:1554:2: rule__CraneParameter__Group__4__Impl rule__CraneParameter__Group__5
             {
             pushFollow(FOLLOW_6);
             rule__CraneParameter__Group__4__Impl();
@@ -4451,17 +5150,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:1357:1: rule__CraneParameter__Group__4__Impl : ( Named ) ;
+    // InternalFactoryLogicLangParser.g:1561:1: rule__CraneParameter__Group__4__Impl : ( Named ) ;
     public final void rule__CraneParameter__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1361:1: ( ( Named ) )
-            // InternalFactoryLogicLangParser.g:1362:1: ( Named )
+            // InternalFactoryLogicLangParser.g:1565:1: ( ( Named ) )
+            // InternalFactoryLogicLangParser.g:1566:1: ( Named )
             {
-            // InternalFactoryLogicLangParser.g:1362:1: ( Named )
-            // InternalFactoryLogicLangParser.g:1363:2: Named
+            // InternalFactoryLogicLangParser.g:1566:1: ( Named )
+            // InternalFactoryLogicLangParser.g:1567:2: Named
             {
              before(grammarAccess.getCraneParameterAccess().getNamedKeyword_4()); 
             match(input,Named,FOLLOW_2); 
@@ -4488,14 +5187,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__5"
-    // InternalFactoryLogicLangParser.g:1372:1: rule__CraneParameter__Group__5 : rule__CraneParameter__Group__5__Impl ;
+    // InternalFactoryLogicLangParser.g:1576:1: rule__CraneParameter__Group__5 : rule__CraneParameter__Group__5__Impl ;
     public final void rule__CraneParameter__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1376:1: ( rule__CraneParameter__Group__5__Impl )
-            // InternalFactoryLogicLangParser.g:1377:2: rule__CraneParameter__Group__5__Impl
+            // InternalFactoryLogicLangParser.g:1580:1: ( rule__CraneParameter__Group__5__Impl )
+            // InternalFactoryLogicLangParser.g:1581:2: rule__CraneParameter__Group__5__Impl
             {
             pushFollow(FOLLOW_2);
             rule__CraneParameter__Group__5__Impl();
@@ -4521,21 +5220,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__Group__5__Impl"
-    // InternalFactoryLogicLangParser.g:1383:1: rule__CraneParameter__Group__5__Impl : ( ( rule__CraneParameter__NameAssignment_5 ) ) ;
+    // InternalFactoryLogicLangParser.g:1587:1: rule__CraneParameter__Group__5__Impl : ( ( rule__CraneParameter__NameAssignment_5 ) ) ;
     public final void rule__CraneParameter__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1387:1: ( ( ( rule__CraneParameter__NameAssignment_5 ) ) )
-            // InternalFactoryLogicLangParser.g:1388:1: ( ( rule__CraneParameter__NameAssignment_5 ) )
+            // InternalFactoryLogicLangParser.g:1591:1: ( ( ( rule__CraneParameter__NameAssignment_5 ) ) )
+            // InternalFactoryLogicLangParser.g:1592:1: ( ( rule__CraneParameter__NameAssignment_5 ) )
             {
-            // InternalFactoryLogicLangParser.g:1388:1: ( ( rule__CraneParameter__NameAssignment_5 ) )
-            // InternalFactoryLogicLangParser.g:1389:2: ( rule__CraneParameter__NameAssignment_5 )
+            // InternalFactoryLogicLangParser.g:1592:1: ( ( rule__CraneParameter__NameAssignment_5 ) )
+            // InternalFactoryLogicLangParser.g:1593:2: ( rule__CraneParameter__NameAssignment_5 )
             {
              before(grammarAccess.getCraneParameterAccess().getNameAssignment_5()); 
-            // InternalFactoryLogicLangParser.g:1390:2: ( rule__CraneParameter__NameAssignment_5 )
-            // InternalFactoryLogicLangParser.g:1390:3: rule__CraneParameter__NameAssignment_5
+            // InternalFactoryLogicLangParser.g:1594:2: ( rule__CraneParameter__NameAssignment_5 )
+            // InternalFactoryLogicLangParser.g:1594:3: rule__CraneParameter__NameAssignment_5
             {
             pushFollow(FOLLOW_2);
             rule__CraneParameter__NameAssignment_5();
@@ -4568,14 +5267,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__0"
-    // InternalFactoryLogicLangParser.g:1399:1: rule__Storage__Group__0 : rule__Storage__Group__0__Impl rule__Storage__Group__1 ;
+    // InternalFactoryLogicLangParser.g:1603:1: rule__Storage__Group__0 : rule__Storage__Group__0__Impl rule__Storage__Group__1 ;
     public final void rule__Storage__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1403:1: ( rule__Storage__Group__0__Impl rule__Storage__Group__1 )
-            // InternalFactoryLogicLangParser.g:1404:2: rule__Storage__Group__0__Impl rule__Storage__Group__1
+            // InternalFactoryLogicLangParser.g:1607:1: ( rule__Storage__Group__0__Impl rule__Storage__Group__1 )
+            // InternalFactoryLogicLangParser.g:1608:2: rule__Storage__Group__0__Impl rule__Storage__Group__1
             {
             pushFollow(FOLLOW_14);
             rule__Storage__Group__0__Impl();
@@ -4606,17 +5305,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:1411:1: rule__Storage__Group__0__Impl : ( Create ) ;
+    // InternalFactoryLogicLangParser.g:1615:1: rule__Storage__Group__0__Impl : ( Create ) ;
     public final void rule__Storage__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1415:1: ( ( Create ) )
-            // InternalFactoryLogicLangParser.g:1416:1: ( Create )
+            // InternalFactoryLogicLangParser.g:1619:1: ( ( Create ) )
+            // InternalFactoryLogicLangParser.g:1620:1: ( Create )
             {
-            // InternalFactoryLogicLangParser.g:1416:1: ( Create )
-            // InternalFactoryLogicLangParser.g:1417:2: Create
+            // InternalFactoryLogicLangParser.g:1620:1: ( Create )
+            // InternalFactoryLogicLangParser.g:1621:2: Create
             {
              before(grammarAccess.getStorageAccess().getCreateKeyword_0()); 
             match(input,Create,FOLLOW_2); 
@@ -4643,14 +5342,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__1"
-    // InternalFactoryLogicLangParser.g:1426:1: rule__Storage__Group__1 : rule__Storage__Group__1__Impl rule__Storage__Group__2 ;
+    // InternalFactoryLogicLangParser.g:1630:1: rule__Storage__Group__1 : rule__Storage__Group__1__Impl rule__Storage__Group__2 ;
     public final void rule__Storage__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1430:1: ( rule__Storage__Group__1__Impl rule__Storage__Group__2 )
-            // InternalFactoryLogicLangParser.g:1431:2: rule__Storage__Group__1__Impl rule__Storage__Group__2
+            // InternalFactoryLogicLangParser.g:1634:1: ( rule__Storage__Group__1__Impl rule__Storage__Group__2 )
+            // InternalFactoryLogicLangParser.g:1635:2: rule__Storage__Group__1__Impl rule__Storage__Group__2
             {
             pushFollow(FOLLOW_5);
             rule__Storage__Group__1__Impl();
@@ -4681,17 +5380,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:1438:1: rule__Storage__Group__1__Impl : ( Storage ) ;
+    // InternalFactoryLogicLangParser.g:1642:1: rule__Storage__Group__1__Impl : ( Storage ) ;
     public final void rule__Storage__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1442:1: ( ( Storage ) )
-            // InternalFactoryLogicLangParser.g:1443:1: ( Storage )
+            // InternalFactoryLogicLangParser.g:1646:1: ( ( Storage ) )
+            // InternalFactoryLogicLangParser.g:1647:1: ( Storage )
             {
-            // InternalFactoryLogicLangParser.g:1443:1: ( Storage )
-            // InternalFactoryLogicLangParser.g:1444:2: Storage
+            // InternalFactoryLogicLangParser.g:1647:1: ( Storage )
+            // InternalFactoryLogicLangParser.g:1648:2: Storage
             {
              before(grammarAccess.getStorageAccess().getStorageKeyword_1()); 
             match(input,Storage,FOLLOW_2); 
@@ -4718,14 +5417,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__2"
-    // InternalFactoryLogicLangParser.g:1453:1: rule__Storage__Group__2 : rule__Storage__Group__2__Impl rule__Storage__Group__3 ;
+    // InternalFactoryLogicLangParser.g:1657:1: rule__Storage__Group__2 : rule__Storage__Group__2__Impl rule__Storage__Group__3 ;
     public final void rule__Storage__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1457:1: ( rule__Storage__Group__2__Impl rule__Storage__Group__3 )
-            // InternalFactoryLogicLangParser.g:1458:2: rule__Storage__Group__2__Impl rule__Storage__Group__3
+            // InternalFactoryLogicLangParser.g:1661:1: ( rule__Storage__Group__2__Impl rule__Storage__Group__3 )
+            // InternalFactoryLogicLangParser.g:1662:2: rule__Storage__Group__2__Impl rule__Storage__Group__3
             {
             pushFollow(FOLLOW_6);
             rule__Storage__Group__2__Impl();
@@ -4756,17 +5455,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:1465:1: rule__Storage__Group__2__Impl : ( Named ) ;
+    // InternalFactoryLogicLangParser.g:1669:1: rule__Storage__Group__2__Impl : ( Named ) ;
     public final void rule__Storage__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1469:1: ( ( Named ) )
-            // InternalFactoryLogicLangParser.g:1470:1: ( Named )
+            // InternalFactoryLogicLangParser.g:1673:1: ( ( Named ) )
+            // InternalFactoryLogicLangParser.g:1674:1: ( Named )
             {
-            // InternalFactoryLogicLangParser.g:1470:1: ( Named )
-            // InternalFactoryLogicLangParser.g:1471:2: Named
+            // InternalFactoryLogicLangParser.g:1674:1: ( Named )
+            // InternalFactoryLogicLangParser.g:1675:2: Named
             {
              before(grammarAccess.getStorageAccess().getNamedKeyword_2()); 
             match(input,Named,FOLLOW_2); 
@@ -4793,14 +5492,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__3"
-    // InternalFactoryLogicLangParser.g:1480:1: rule__Storage__Group__3 : rule__Storage__Group__3__Impl rule__Storage__Group__4 ;
+    // InternalFactoryLogicLangParser.g:1684:1: rule__Storage__Group__3 : rule__Storage__Group__3__Impl rule__Storage__Group__4 ;
     public final void rule__Storage__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1484:1: ( rule__Storage__Group__3__Impl rule__Storage__Group__4 )
-            // InternalFactoryLogicLangParser.g:1485:2: rule__Storage__Group__3__Impl rule__Storage__Group__4
+            // InternalFactoryLogicLangParser.g:1688:1: ( rule__Storage__Group__3__Impl rule__Storage__Group__4 )
+            // InternalFactoryLogicLangParser.g:1689:2: rule__Storage__Group__3__Impl rule__Storage__Group__4
             {
             pushFollow(FOLLOW_7);
             rule__Storage__Group__3__Impl();
@@ -4831,21 +5530,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:1492:1: rule__Storage__Group__3__Impl : ( ( rule__Storage__NameAssignment_3 ) ) ;
+    // InternalFactoryLogicLangParser.g:1696:1: rule__Storage__Group__3__Impl : ( ( rule__Storage__NameAssignment_3 ) ) ;
     public final void rule__Storage__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1496:1: ( ( ( rule__Storage__NameAssignment_3 ) ) )
-            // InternalFactoryLogicLangParser.g:1497:1: ( ( rule__Storage__NameAssignment_3 ) )
+            // InternalFactoryLogicLangParser.g:1700:1: ( ( ( rule__Storage__NameAssignment_3 ) ) )
+            // InternalFactoryLogicLangParser.g:1701:1: ( ( rule__Storage__NameAssignment_3 ) )
             {
-            // InternalFactoryLogicLangParser.g:1497:1: ( ( rule__Storage__NameAssignment_3 ) )
-            // InternalFactoryLogicLangParser.g:1498:2: ( rule__Storage__NameAssignment_3 )
+            // InternalFactoryLogicLangParser.g:1701:1: ( ( rule__Storage__NameAssignment_3 ) )
+            // InternalFactoryLogicLangParser.g:1702:2: ( rule__Storage__NameAssignment_3 )
             {
              before(grammarAccess.getStorageAccess().getNameAssignment_3()); 
-            // InternalFactoryLogicLangParser.g:1499:2: ( rule__Storage__NameAssignment_3 )
-            // InternalFactoryLogicLangParser.g:1499:3: rule__Storage__NameAssignment_3
+            // InternalFactoryLogicLangParser.g:1703:2: ( rule__Storage__NameAssignment_3 )
+            // InternalFactoryLogicLangParser.g:1703:3: rule__Storage__NameAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__Storage__NameAssignment_3();
@@ -4878,14 +5577,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__4"
-    // InternalFactoryLogicLangParser.g:1507:1: rule__Storage__Group__4 : rule__Storage__Group__4__Impl rule__Storage__Group__5 ;
+    // InternalFactoryLogicLangParser.g:1711:1: rule__Storage__Group__4 : rule__Storage__Group__4__Impl rule__Storage__Group__5 ;
     public final void rule__Storage__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1511:1: ( rule__Storage__Group__4__Impl rule__Storage__Group__5 )
-            // InternalFactoryLogicLangParser.g:1512:2: rule__Storage__Group__4__Impl rule__Storage__Group__5
+            // InternalFactoryLogicLangParser.g:1715:1: ( rule__Storage__Group__4__Impl rule__Storage__Group__5 )
+            // InternalFactoryLogicLangParser.g:1716:2: rule__Storage__Group__4__Impl rule__Storage__Group__5
             {
             pushFollow(FOLLOW_8);
             rule__Storage__Group__4__Impl();
@@ -4916,17 +5615,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:1519:1: rule__Storage__Group__4__Impl : ( RULE_BEGIN ) ;
+    // InternalFactoryLogicLangParser.g:1723:1: rule__Storage__Group__4__Impl : ( RULE_BEGIN ) ;
     public final void rule__Storage__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1523:1: ( ( RULE_BEGIN ) )
-            // InternalFactoryLogicLangParser.g:1524:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:1727:1: ( ( RULE_BEGIN ) )
+            // InternalFactoryLogicLangParser.g:1728:1: ( RULE_BEGIN )
             {
-            // InternalFactoryLogicLangParser.g:1524:1: ( RULE_BEGIN )
-            // InternalFactoryLogicLangParser.g:1525:2: RULE_BEGIN
+            // InternalFactoryLogicLangParser.g:1728:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:1729:2: RULE_BEGIN
             {
              before(grammarAccess.getStorageAccess().getBEGINTerminalRuleCall_4()); 
             match(input,RULE_BEGIN,FOLLOW_2); 
@@ -4953,14 +5652,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__5"
-    // InternalFactoryLogicLangParser.g:1534:1: rule__Storage__Group__5 : rule__Storage__Group__5__Impl rule__Storage__Group__6 ;
+    // InternalFactoryLogicLangParser.g:1738:1: rule__Storage__Group__5 : rule__Storage__Group__5__Impl rule__Storage__Group__6 ;
     public final void rule__Storage__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1538:1: ( rule__Storage__Group__5__Impl rule__Storage__Group__6 )
-            // InternalFactoryLogicLangParser.g:1539:2: rule__Storage__Group__5__Impl rule__Storage__Group__6
+            // InternalFactoryLogicLangParser.g:1742:1: ( rule__Storage__Group__5__Impl rule__Storage__Group__6 )
+            // InternalFactoryLogicLangParser.g:1743:2: rule__Storage__Group__5__Impl rule__Storage__Group__6
             {
             pushFollow(FOLLOW_9);
             rule__Storage__Group__5__Impl();
@@ -4991,24 +5690,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__5__Impl"
-    // InternalFactoryLogicLangParser.g:1546:1: rule__Storage__Group__5__Impl : ( ( ( rule__Storage__ParametersAssignment_5 ) ) ( ( rule__Storage__ParametersAssignment_5 )* ) ) ;
+    // InternalFactoryLogicLangParser.g:1750:1: rule__Storage__Group__5__Impl : ( ( ( rule__Storage__ParametersAssignment_5 ) ) ( ( rule__Storage__ParametersAssignment_5 )* ) ) ;
     public final void rule__Storage__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1550:1: ( ( ( ( rule__Storage__ParametersAssignment_5 ) ) ( ( rule__Storage__ParametersAssignment_5 )* ) ) )
-            // InternalFactoryLogicLangParser.g:1551:1: ( ( ( rule__Storage__ParametersAssignment_5 ) ) ( ( rule__Storage__ParametersAssignment_5 )* ) )
+            // InternalFactoryLogicLangParser.g:1754:1: ( ( ( ( rule__Storage__ParametersAssignment_5 ) ) ( ( rule__Storage__ParametersAssignment_5 )* ) ) )
+            // InternalFactoryLogicLangParser.g:1755:1: ( ( ( rule__Storage__ParametersAssignment_5 ) ) ( ( rule__Storage__ParametersAssignment_5 )* ) )
             {
-            // InternalFactoryLogicLangParser.g:1551:1: ( ( ( rule__Storage__ParametersAssignment_5 ) ) ( ( rule__Storage__ParametersAssignment_5 )* ) )
-            // InternalFactoryLogicLangParser.g:1552:2: ( ( rule__Storage__ParametersAssignment_5 ) ) ( ( rule__Storage__ParametersAssignment_5 )* )
+            // InternalFactoryLogicLangParser.g:1755:1: ( ( ( rule__Storage__ParametersAssignment_5 ) ) ( ( rule__Storage__ParametersAssignment_5 )* ) )
+            // InternalFactoryLogicLangParser.g:1756:2: ( ( rule__Storage__ParametersAssignment_5 ) ) ( ( rule__Storage__ParametersAssignment_5 )* )
             {
-            // InternalFactoryLogicLangParser.g:1552:2: ( ( rule__Storage__ParametersAssignment_5 ) )
-            // InternalFactoryLogicLangParser.g:1553:3: ( rule__Storage__ParametersAssignment_5 )
+            // InternalFactoryLogicLangParser.g:1756:2: ( ( rule__Storage__ParametersAssignment_5 ) )
+            // InternalFactoryLogicLangParser.g:1757:3: ( rule__Storage__ParametersAssignment_5 )
             {
              before(grammarAccess.getStorageAccess().getParametersAssignment_5()); 
-            // InternalFactoryLogicLangParser.g:1554:3: ( rule__Storage__ParametersAssignment_5 )
-            // InternalFactoryLogicLangParser.g:1554:4: rule__Storage__ParametersAssignment_5
+            // InternalFactoryLogicLangParser.g:1758:3: ( rule__Storage__ParametersAssignment_5 )
+            // InternalFactoryLogicLangParser.g:1758:4: rule__Storage__ParametersAssignment_5
             {
             pushFollow(FOLLOW_10);
             rule__Storage__ParametersAssignment_5();
@@ -5022,24 +5721,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
             }
 
-            // InternalFactoryLogicLangParser.g:1557:2: ( ( rule__Storage__ParametersAssignment_5 )* )
-            // InternalFactoryLogicLangParser.g:1558:3: ( rule__Storage__ParametersAssignment_5 )*
+            // InternalFactoryLogicLangParser.g:1761:2: ( ( rule__Storage__ParametersAssignment_5 )* )
+            // InternalFactoryLogicLangParser.g:1762:3: ( rule__Storage__ParametersAssignment_5 )*
             {
              before(grammarAccess.getStorageAccess().getParametersAssignment_5()); 
-            // InternalFactoryLogicLangParser.g:1559:3: ( rule__Storage__ParametersAssignment_5 )*
-            loop15:
+            // InternalFactoryLogicLangParser.g:1763:3: ( rule__Storage__ParametersAssignment_5 )*
+            loop17:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt17=2;
+                int LA17_0 = input.LA(1);
 
-                if ( (LA15_0==With) ) {
-                    alt15=1;
+                if ( (LA17_0==With) ) {
+                    alt17=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt17) {
             	case 1 :
-            	    // InternalFactoryLogicLangParser.g:1559:4: rule__Storage__ParametersAssignment_5
+            	    // InternalFactoryLogicLangParser.g:1763:4: rule__Storage__ParametersAssignment_5
             	    {
             	    pushFollow(FOLLOW_10);
             	    rule__Storage__ParametersAssignment_5();
@@ -5051,7 +5750,7 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop15;
+            	    break loop17;
                 }
             } while (true);
 
@@ -5081,14 +5780,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__6"
-    // InternalFactoryLogicLangParser.g:1568:1: rule__Storage__Group__6 : rule__Storage__Group__6__Impl ;
+    // InternalFactoryLogicLangParser.g:1772:1: rule__Storage__Group__6 : rule__Storage__Group__6__Impl ;
     public final void rule__Storage__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1572:1: ( rule__Storage__Group__6__Impl )
-            // InternalFactoryLogicLangParser.g:1573:2: rule__Storage__Group__6__Impl
+            // InternalFactoryLogicLangParser.g:1776:1: ( rule__Storage__Group__6__Impl )
+            // InternalFactoryLogicLangParser.g:1777:2: rule__Storage__Group__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Storage__Group__6__Impl();
@@ -5114,17 +5813,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__Group__6__Impl"
-    // InternalFactoryLogicLangParser.g:1579:1: rule__Storage__Group__6__Impl : ( RULE_END ) ;
+    // InternalFactoryLogicLangParser.g:1783:1: rule__Storage__Group__6__Impl : ( RULE_END ) ;
     public final void rule__Storage__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1583:1: ( ( RULE_END ) )
-            // InternalFactoryLogicLangParser.g:1584:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:1787:1: ( ( RULE_END ) )
+            // InternalFactoryLogicLangParser.g:1788:1: ( RULE_END )
             {
-            // InternalFactoryLogicLangParser.g:1584:1: ( RULE_END )
-            // InternalFactoryLogicLangParser.g:1585:2: RULE_END
+            // InternalFactoryLogicLangParser.g:1788:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:1789:2: RULE_END
             {
              before(grammarAccess.getStorageAccess().getENDTerminalRuleCall_6()); 
             match(input,RULE_END,FOLLOW_2); 
@@ -5151,14 +5850,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageSlotParameter__Group__0"
-    // InternalFactoryLogicLangParser.g:1595:1: rule__StorageSlotParameter__Group__0 : rule__StorageSlotParameter__Group__0__Impl rule__StorageSlotParameter__Group__1 ;
+    // InternalFactoryLogicLangParser.g:1799:1: rule__StorageSlotParameter__Group__0 : rule__StorageSlotParameter__Group__0__Impl rule__StorageSlotParameter__Group__1 ;
     public final void rule__StorageSlotParameter__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1599:1: ( rule__StorageSlotParameter__Group__0__Impl rule__StorageSlotParameter__Group__1 )
-            // InternalFactoryLogicLangParser.g:1600:2: rule__StorageSlotParameter__Group__0__Impl rule__StorageSlotParameter__Group__1
+            // InternalFactoryLogicLangParser.g:1803:1: ( rule__StorageSlotParameter__Group__0__Impl rule__StorageSlotParameter__Group__1 )
+            // InternalFactoryLogicLangParser.g:1804:2: rule__StorageSlotParameter__Group__0__Impl rule__StorageSlotParameter__Group__1
             {
             pushFollow(FOLLOW_13);
             rule__StorageSlotParameter__Group__0__Impl();
@@ -5189,17 +5888,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageSlotParameter__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:1607:1: rule__StorageSlotParameter__Group__0__Impl : ( With ) ;
+    // InternalFactoryLogicLangParser.g:1811:1: rule__StorageSlotParameter__Group__0__Impl : ( With ) ;
     public final void rule__StorageSlotParameter__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1611:1: ( ( With ) )
-            // InternalFactoryLogicLangParser.g:1612:1: ( With )
+            // InternalFactoryLogicLangParser.g:1815:1: ( ( With ) )
+            // InternalFactoryLogicLangParser.g:1816:1: ( With )
             {
-            // InternalFactoryLogicLangParser.g:1612:1: ( With )
-            // InternalFactoryLogicLangParser.g:1613:2: With
+            // InternalFactoryLogicLangParser.g:1816:1: ( With )
+            // InternalFactoryLogicLangParser.g:1817:2: With
             {
              before(grammarAccess.getStorageSlotParameterAccess().getWithKeyword_0()); 
             match(input,With,FOLLOW_2); 
@@ -5226,14 +5925,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageSlotParameter__Group__1"
-    // InternalFactoryLogicLangParser.g:1622:1: rule__StorageSlotParameter__Group__1 : rule__StorageSlotParameter__Group__1__Impl rule__StorageSlotParameter__Group__2 ;
+    // InternalFactoryLogicLangParser.g:1826:1: rule__StorageSlotParameter__Group__1 : rule__StorageSlotParameter__Group__1__Impl rule__StorageSlotParameter__Group__2 ;
     public final void rule__StorageSlotParameter__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1626:1: ( rule__StorageSlotParameter__Group__1__Impl rule__StorageSlotParameter__Group__2 )
-            // InternalFactoryLogicLangParser.g:1627:2: rule__StorageSlotParameter__Group__1__Impl rule__StorageSlotParameter__Group__2
+            // InternalFactoryLogicLangParser.g:1830:1: ( rule__StorageSlotParameter__Group__1__Impl rule__StorageSlotParameter__Group__2 )
+            // InternalFactoryLogicLangParser.g:1831:2: rule__StorageSlotParameter__Group__1__Impl rule__StorageSlotParameter__Group__2
             {
             pushFollow(FOLLOW_15);
             rule__StorageSlotParameter__Group__1__Impl();
@@ -5264,21 +5963,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageSlotParameter__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:1634:1: rule__StorageSlotParameter__Group__1__Impl : ( ( rule__StorageSlotParameter__SlotsAssignment_1 ) ) ;
+    // InternalFactoryLogicLangParser.g:1838:1: rule__StorageSlotParameter__Group__1__Impl : ( ( rule__StorageSlotParameter__SlotsAssignment_1 ) ) ;
     public final void rule__StorageSlotParameter__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1638:1: ( ( ( rule__StorageSlotParameter__SlotsAssignment_1 ) ) )
-            // InternalFactoryLogicLangParser.g:1639:1: ( ( rule__StorageSlotParameter__SlotsAssignment_1 ) )
+            // InternalFactoryLogicLangParser.g:1842:1: ( ( ( rule__StorageSlotParameter__SlotsAssignment_1 ) ) )
+            // InternalFactoryLogicLangParser.g:1843:1: ( ( rule__StorageSlotParameter__SlotsAssignment_1 ) )
             {
-            // InternalFactoryLogicLangParser.g:1639:1: ( ( rule__StorageSlotParameter__SlotsAssignment_1 ) )
-            // InternalFactoryLogicLangParser.g:1640:2: ( rule__StorageSlotParameter__SlotsAssignment_1 )
+            // InternalFactoryLogicLangParser.g:1843:1: ( ( rule__StorageSlotParameter__SlotsAssignment_1 ) )
+            // InternalFactoryLogicLangParser.g:1844:2: ( rule__StorageSlotParameter__SlotsAssignment_1 )
             {
              before(grammarAccess.getStorageSlotParameterAccess().getSlotsAssignment_1()); 
-            // InternalFactoryLogicLangParser.g:1641:2: ( rule__StorageSlotParameter__SlotsAssignment_1 )
-            // InternalFactoryLogicLangParser.g:1641:3: rule__StorageSlotParameter__SlotsAssignment_1
+            // InternalFactoryLogicLangParser.g:1845:2: ( rule__StorageSlotParameter__SlotsAssignment_1 )
+            // InternalFactoryLogicLangParser.g:1845:3: rule__StorageSlotParameter__SlotsAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__StorageSlotParameter__SlotsAssignment_1();
@@ -5311,14 +6010,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageSlotParameter__Group__2"
-    // InternalFactoryLogicLangParser.g:1649:1: rule__StorageSlotParameter__Group__2 : rule__StorageSlotParameter__Group__2__Impl ;
+    // InternalFactoryLogicLangParser.g:1853:1: rule__StorageSlotParameter__Group__2 : rule__StorageSlotParameter__Group__2__Impl ;
     public final void rule__StorageSlotParameter__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1653:1: ( rule__StorageSlotParameter__Group__2__Impl )
-            // InternalFactoryLogicLangParser.g:1654:2: rule__StorageSlotParameter__Group__2__Impl
+            // InternalFactoryLogicLangParser.g:1857:1: ( rule__StorageSlotParameter__Group__2__Impl )
+            // InternalFactoryLogicLangParser.g:1858:2: rule__StorageSlotParameter__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__StorageSlotParameter__Group__2__Impl();
@@ -5344,17 +6043,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageSlotParameter__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:1660:1: rule__StorageSlotParameter__Group__2__Impl : ( Slots ) ;
+    // InternalFactoryLogicLangParser.g:1864:1: rule__StorageSlotParameter__Group__2__Impl : ( Slots ) ;
     public final void rule__StorageSlotParameter__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1664:1: ( ( Slots ) )
-            // InternalFactoryLogicLangParser.g:1665:1: ( Slots )
+            // InternalFactoryLogicLangParser.g:1868:1: ( ( Slots ) )
+            // InternalFactoryLogicLangParser.g:1869:1: ( Slots )
             {
-            // InternalFactoryLogicLangParser.g:1665:1: ( Slots )
-            // InternalFactoryLogicLangParser.g:1666:2: Slots
+            // InternalFactoryLogicLangParser.g:1869:1: ( Slots )
+            // InternalFactoryLogicLangParser.g:1870:2: Slots
             {
              before(grammarAccess.getStorageSlotParameterAccess().getSlotsKeyword_2()); 
             match(input,Slots,FOLLOW_2); 
@@ -5381,14 +6080,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__0"
-    // InternalFactoryLogicLangParser.g:1676:1: rule__StoragePositionParameter__Group__0 : rule__StoragePositionParameter__Group__0__Impl rule__StoragePositionParameter__Group__1 ;
+    // InternalFactoryLogicLangParser.g:1880:1: rule__StoragePositionParameter__Group__0 : rule__StoragePositionParameter__Group__0__Impl rule__StoragePositionParameter__Group__1 ;
     public final void rule__StoragePositionParameter__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1680:1: ( rule__StoragePositionParameter__Group__0__Impl rule__StoragePositionParameter__Group__1 )
-            // InternalFactoryLogicLangParser.g:1681:2: rule__StoragePositionParameter__Group__0__Impl rule__StoragePositionParameter__Group__1
+            // InternalFactoryLogicLangParser.g:1884:1: ( rule__StoragePositionParameter__Group__0__Impl rule__StoragePositionParameter__Group__1 )
+            // InternalFactoryLogicLangParser.g:1885:2: rule__StoragePositionParameter__Group__0__Impl rule__StoragePositionParameter__Group__1
             {
             pushFollow(FOLLOW_11);
             rule__StoragePositionParameter__Group__0__Impl();
@@ -5419,17 +6118,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:1688:1: rule__StoragePositionParameter__Group__0__Impl : ( With ) ;
+    // InternalFactoryLogicLangParser.g:1892:1: rule__StoragePositionParameter__Group__0__Impl : ( With ) ;
     public final void rule__StoragePositionParameter__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1692:1: ( ( With ) )
-            // InternalFactoryLogicLangParser.g:1693:1: ( With )
+            // InternalFactoryLogicLangParser.g:1896:1: ( ( With ) )
+            // InternalFactoryLogicLangParser.g:1897:1: ( With )
             {
-            // InternalFactoryLogicLangParser.g:1693:1: ( With )
-            // InternalFactoryLogicLangParser.g:1694:2: With
+            // InternalFactoryLogicLangParser.g:1897:1: ( With )
+            // InternalFactoryLogicLangParser.g:1898:2: With
             {
              before(grammarAccess.getStoragePositionParameterAccess().getWithKeyword_0()); 
             match(input,With,FOLLOW_2); 
@@ -5456,14 +6155,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__1"
-    // InternalFactoryLogicLangParser.g:1703:1: rule__StoragePositionParameter__Group__1 : rule__StoragePositionParameter__Group__1__Impl rule__StoragePositionParameter__Group__2 ;
+    // InternalFactoryLogicLangParser.g:1907:1: rule__StoragePositionParameter__Group__1 : rule__StoragePositionParameter__Group__1__Impl rule__StoragePositionParameter__Group__2 ;
     public final void rule__StoragePositionParameter__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1707:1: ( rule__StoragePositionParameter__Group__1__Impl rule__StoragePositionParameter__Group__2 )
-            // InternalFactoryLogicLangParser.g:1708:2: rule__StoragePositionParameter__Group__1__Impl rule__StoragePositionParameter__Group__2
+            // InternalFactoryLogicLangParser.g:1911:1: ( rule__StoragePositionParameter__Group__1__Impl rule__StoragePositionParameter__Group__2 )
+            // InternalFactoryLogicLangParser.g:1912:2: rule__StoragePositionParameter__Group__1__Impl rule__StoragePositionParameter__Group__2
             {
             pushFollow(FOLLOW_12);
             rule__StoragePositionParameter__Group__1__Impl();
@@ -5494,17 +6193,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:1715:1: rule__StoragePositionParameter__Group__1__Impl : ( Position ) ;
+    // InternalFactoryLogicLangParser.g:1919:1: rule__StoragePositionParameter__Group__1__Impl : ( Position ) ;
     public final void rule__StoragePositionParameter__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1719:1: ( ( Position ) )
-            // InternalFactoryLogicLangParser.g:1720:1: ( Position )
+            // InternalFactoryLogicLangParser.g:1923:1: ( ( Position ) )
+            // InternalFactoryLogicLangParser.g:1924:1: ( Position )
             {
-            // InternalFactoryLogicLangParser.g:1720:1: ( Position )
-            // InternalFactoryLogicLangParser.g:1721:2: Position
+            // InternalFactoryLogicLangParser.g:1924:1: ( Position )
+            // InternalFactoryLogicLangParser.g:1925:2: Position
             {
              before(grammarAccess.getStoragePositionParameterAccess().getPositionKeyword_1()); 
             match(input,Position,FOLLOW_2); 
@@ -5531,14 +6230,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__2"
-    // InternalFactoryLogicLangParser.g:1730:1: rule__StoragePositionParameter__Group__2 : rule__StoragePositionParameter__Group__2__Impl rule__StoragePositionParameter__Group__3 ;
+    // InternalFactoryLogicLangParser.g:1934:1: rule__StoragePositionParameter__Group__2 : rule__StoragePositionParameter__Group__2__Impl rule__StoragePositionParameter__Group__3 ;
     public final void rule__StoragePositionParameter__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1734:1: ( rule__StoragePositionParameter__Group__2__Impl rule__StoragePositionParameter__Group__3 )
-            // InternalFactoryLogicLangParser.g:1735:2: rule__StoragePositionParameter__Group__2__Impl rule__StoragePositionParameter__Group__3
+            // InternalFactoryLogicLangParser.g:1938:1: ( rule__StoragePositionParameter__Group__2__Impl rule__StoragePositionParameter__Group__3 )
+            // InternalFactoryLogicLangParser.g:1939:2: rule__StoragePositionParameter__Group__2__Impl rule__StoragePositionParameter__Group__3
             {
             pushFollow(FOLLOW_16);
             rule__StoragePositionParameter__Group__2__Impl();
@@ -5569,17 +6268,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:1742:1: rule__StoragePositionParameter__Group__2__Impl : ( At ) ;
+    // InternalFactoryLogicLangParser.g:1946:1: rule__StoragePositionParameter__Group__2__Impl : ( At ) ;
     public final void rule__StoragePositionParameter__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1746:1: ( ( At ) )
-            // InternalFactoryLogicLangParser.g:1747:1: ( At )
+            // InternalFactoryLogicLangParser.g:1950:1: ( ( At ) )
+            // InternalFactoryLogicLangParser.g:1951:1: ( At )
             {
-            // InternalFactoryLogicLangParser.g:1747:1: ( At )
-            // InternalFactoryLogicLangParser.g:1748:2: At
+            // InternalFactoryLogicLangParser.g:1951:1: ( At )
+            // InternalFactoryLogicLangParser.g:1952:2: At
             {
              before(grammarAccess.getStoragePositionParameterAccess().getAtKeyword_2()); 
             match(input,At,FOLLOW_2); 
@@ -5606,14 +6305,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__3"
-    // InternalFactoryLogicLangParser.g:1757:1: rule__StoragePositionParameter__Group__3 : rule__StoragePositionParameter__Group__3__Impl rule__StoragePositionParameter__Group__4 ;
+    // InternalFactoryLogicLangParser.g:1961:1: rule__StoragePositionParameter__Group__3 : rule__StoragePositionParameter__Group__3__Impl rule__StoragePositionParameter__Group__4 ;
     public final void rule__StoragePositionParameter__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1761:1: ( rule__StoragePositionParameter__Group__3__Impl rule__StoragePositionParameter__Group__4 )
-            // InternalFactoryLogicLangParser.g:1762:2: rule__StoragePositionParameter__Group__3__Impl rule__StoragePositionParameter__Group__4
+            // InternalFactoryLogicLangParser.g:1965:1: ( rule__StoragePositionParameter__Group__3__Impl rule__StoragePositionParameter__Group__4 )
+            // InternalFactoryLogicLangParser.g:1966:2: rule__StoragePositionParameter__Group__3__Impl rule__StoragePositionParameter__Group__4
             {
             pushFollow(FOLLOW_13);
             rule__StoragePositionParameter__Group__3__Impl();
@@ -5644,17 +6343,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:1769:1: rule__StoragePositionParameter__Group__3__Impl : ( Slot ) ;
+    // InternalFactoryLogicLangParser.g:1973:1: rule__StoragePositionParameter__Group__3__Impl : ( Slot ) ;
     public final void rule__StoragePositionParameter__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1773:1: ( ( Slot ) )
-            // InternalFactoryLogicLangParser.g:1774:1: ( Slot )
+            // InternalFactoryLogicLangParser.g:1977:1: ( ( Slot ) )
+            // InternalFactoryLogicLangParser.g:1978:1: ( Slot )
             {
-            // InternalFactoryLogicLangParser.g:1774:1: ( Slot )
-            // InternalFactoryLogicLangParser.g:1775:2: Slot
+            // InternalFactoryLogicLangParser.g:1978:1: ( Slot )
+            // InternalFactoryLogicLangParser.g:1979:2: Slot
             {
              before(grammarAccess.getStoragePositionParameterAccess().getSlotKeyword_3()); 
             match(input,Slot,FOLLOW_2); 
@@ -5681,14 +6380,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__4"
-    // InternalFactoryLogicLangParser.g:1784:1: rule__StoragePositionParameter__Group__4 : rule__StoragePositionParameter__Group__4__Impl rule__StoragePositionParameter__Group__5 ;
+    // InternalFactoryLogicLangParser.g:1988:1: rule__StoragePositionParameter__Group__4 : rule__StoragePositionParameter__Group__4__Impl rule__StoragePositionParameter__Group__5 ;
     public final void rule__StoragePositionParameter__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1788:1: ( rule__StoragePositionParameter__Group__4__Impl rule__StoragePositionParameter__Group__5 )
-            // InternalFactoryLogicLangParser.g:1789:2: rule__StoragePositionParameter__Group__4__Impl rule__StoragePositionParameter__Group__5
+            // InternalFactoryLogicLangParser.g:1992:1: ( rule__StoragePositionParameter__Group__4__Impl rule__StoragePositionParameter__Group__5 )
+            // InternalFactoryLogicLangParser.g:1993:2: rule__StoragePositionParameter__Group__4__Impl rule__StoragePositionParameter__Group__5
             {
             pushFollow(FOLLOW_5);
             rule__StoragePositionParameter__Group__4__Impl();
@@ -5719,21 +6418,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:1796:1: rule__StoragePositionParameter__Group__4__Impl : ( ( rule__StoragePositionParameter__SlotAssignment_4 ) ) ;
+    // InternalFactoryLogicLangParser.g:2000:1: rule__StoragePositionParameter__Group__4__Impl : ( ( rule__StoragePositionParameter__SlotAssignment_4 ) ) ;
     public final void rule__StoragePositionParameter__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1800:1: ( ( ( rule__StoragePositionParameter__SlotAssignment_4 ) ) )
-            // InternalFactoryLogicLangParser.g:1801:1: ( ( rule__StoragePositionParameter__SlotAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:2004:1: ( ( ( rule__StoragePositionParameter__SlotAssignment_4 ) ) )
+            // InternalFactoryLogicLangParser.g:2005:1: ( ( rule__StoragePositionParameter__SlotAssignment_4 ) )
             {
-            // InternalFactoryLogicLangParser.g:1801:1: ( ( rule__StoragePositionParameter__SlotAssignment_4 ) )
-            // InternalFactoryLogicLangParser.g:1802:2: ( rule__StoragePositionParameter__SlotAssignment_4 )
+            // InternalFactoryLogicLangParser.g:2005:1: ( ( rule__StoragePositionParameter__SlotAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:2006:2: ( rule__StoragePositionParameter__SlotAssignment_4 )
             {
              before(grammarAccess.getStoragePositionParameterAccess().getSlotAssignment_4()); 
-            // InternalFactoryLogicLangParser.g:1803:2: ( rule__StoragePositionParameter__SlotAssignment_4 )
-            // InternalFactoryLogicLangParser.g:1803:3: rule__StoragePositionParameter__SlotAssignment_4
+            // InternalFactoryLogicLangParser.g:2007:2: ( rule__StoragePositionParameter__SlotAssignment_4 )
+            // InternalFactoryLogicLangParser.g:2007:3: rule__StoragePositionParameter__SlotAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__StoragePositionParameter__SlotAssignment_4();
@@ -5766,14 +6465,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__5"
-    // InternalFactoryLogicLangParser.g:1811:1: rule__StoragePositionParameter__Group__5 : rule__StoragePositionParameter__Group__5__Impl rule__StoragePositionParameter__Group__6 ;
+    // InternalFactoryLogicLangParser.g:2015:1: rule__StoragePositionParameter__Group__5 : rule__StoragePositionParameter__Group__5__Impl rule__StoragePositionParameter__Group__6 ;
     public final void rule__StoragePositionParameter__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1815:1: ( rule__StoragePositionParameter__Group__5__Impl rule__StoragePositionParameter__Group__6 )
-            // InternalFactoryLogicLangParser.g:1816:2: rule__StoragePositionParameter__Group__5__Impl rule__StoragePositionParameter__Group__6
+            // InternalFactoryLogicLangParser.g:2019:1: ( rule__StoragePositionParameter__Group__5__Impl rule__StoragePositionParameter__Group__6 )
+            // InternalFactoryLogicLangParser.g:2020:2: rule__StoragePositionParameter__Group__5__Impl rule__StoragePositionParameter__Group__6
             {
             pushFollow(FOLLOW_6);
             rule__StoragePositionParameter__Group__5__Impl();
@@ -5804,17 +6503,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__5__Impl"
-    // InternalFactoryLogicLangParser.g:1823:1: rule__StoragePositionParameter__Group__5__Impl : ( Named ) ;
+    // InternalFactoryLogicLangParser.g:2027:1: rule__StoragePositionParameter__Group__5__Impl : ( Named ) ;
     public final void rule__StoragePositionParameter__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1827:1: ( ( Named ) )
-            // InternalFactoryLogicLangParser.g:1828:1: ( Named )
+            // InternalFactoryLogicLangParser.g:2031:1: ( ( Named ) )
+            // InternalFactoryLogicLangParser.g:2032:1: ( Named )
             {
-            // InternalFactoryLogicLangParser.g:1828:1: ( Named )
-            // InternalFactoryLogicLangParser.g:1829:2: Named
+            // InternalFactoryLogicLangParser.g:2032:1: ( Named )
+            // InternalFactoryLogicLangParser.g:2033:2: Named
             {
              before(grammarAccess.getStoragePositionParameterAccess().getNamedKeyword_5()); 
             match(input,Named,FOLLOW_2); 
@@ -5841,14 +6540,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__6"
-    // InternalFactoryLogicLangParser.g:1838:1: rule__StoragePositionParameter__Group__6 : rule__StoragePositionParameter__Group__6__Impl ;
+    // InternalFactoryLogicLangParser.g:2042:1: rule__StoragePositionParameter__Group__6 : rule__StoragePositionParameter__Group__6__Impl ;
     public final void rule__StoragePositionParameter__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1842:1: ( rule__StoragePositionParameter__Group__6__Impl )
-            // InternalFactoryLogicLangParser.g:1843:2: rule__StoragePositionParameter__Group__6__Impl
+            // InternalFactoryLogicLangParser.g:2046:1: ( rule__StoragePositionParameter__Group__6__Impl )
+            // InternalFactoryLogicLangParser.g:2047:2: rule__StoragePositionParameter__Group__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__StoragePositionParameter__Group__6__Impl();
@@ -5874,21 +6573,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__Group__6__Impl"
-    // InternalFactoryLogicLangParser.g:1849:1: rule__StoragePositionParameter__Group__6__Impl : ( ( rule__StoragePositionParameter__NameAssignment_6 ) ) ;
+    // InternalFactoryLogicLangParser.g:2053:1: rule__StoragePositionParameter__Group__6__Impl : ( ( rule__StoragePositionParameter__NameAssignment_6 ) ) ;
     public final void rule__StoragePositionParameter__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1853:1: ( ( ( rule__StoragePositionParameter__NameAssignment_6 ) ) )
-            // InternalFactoryLogicLangParser.g:1854:1: ( ( rule__StoragePositionParameter__NameAssignment_6 ) )
+            // InternalFactoryLogicLangParser.g:2057:1: ( ( ( rule__StoragePositionParameter__NameAssignment_6 ) ) )
+            // InternalFactoryLogicLangParser.g:2058:1: ( ( rule__StoragePositionParameter__NameAssignment_6 ) )
             {
-            // InternalFactoryLogicLangParser.g:1854:1: ( ( rule__StoragePositionParameter__NameAssignment_6 ) )
-            // InternalFactoryLogicLangParser.g:1855:2: ( rule__StoragePositionParameter__NameAssignment_6 )
+            // InternalFactoryLogicLangParser.g:2058:1: ( ( rule__StoragePositionParameter__NameAssignment_6 ) )
+            // InternalFactoryLogicLangParser.g:2059:2: ( rule__StoragePositionParameter__NameAssignment_6 )
             {
              before(grammarAccess.getStoragePositionParameterAccess().getNameAssignment_6()); 
-            // InternalFactoryLogicLangParser.g:1856:2: ( rule__StoragePositionParameter__NameAssignment_6 )
-            // InternalFactoryLogicLangParser.g:1856:3: rule__StoragePositionParameter__NameAssignment_6
+            // InternalFactoryLogicLangParser.g:2060:2: ( rule__StoragePositionParameter__NameAssignment_6 )
+            // InternalFactoryLogicLangParser.g:2060:3: rule__StoragePositionParameter__NameAssignment_6
             {
             pushFollow(FOLLOW_2);
             rule__StoragePositionParameter__NameAssignment_6();
@@ -5921,14 +6620,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__0"
-    // InternalFactoryLogicLangParser.g:1865:1: rule__Camera__Group__0 : rule__Camera__Group__0__Impl rule__Camera__Group__1 ;
+    // InternalFactoryLogicLangParser.g:2069:1: rule__Camera__Group__0 : rule__Camera__Group__0__Impl rule__Camera__Group__1 ;
     public final void rule__Camera__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1869:1: ( rule__Camera__Group__0__Impl rule__Camera__Group__1 )
-            // InternalFactoryLogicLangParser.g:1870:2: rule__Camera__Group__0__Impl rule__Camera__Group__1
+            // InternalFactoryLogicLangParser.g:2073:1: ( rule__Camera__Group__0__Impl rule__Camera__Group__1 )
+            // InternalFactoryLogicLangParser.g:2074:2: rule__Camera__Group__0__Impl rule__Camera__Group__1
             {
             pushFollow(FOLLOW_17);
             rule__Camera__Group__0__Impl();
@@ -5959,17 +6658,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:1877:1: rule__Camera__Group__0__Impl : ( Create ) ;
+    // InternalFactoryLogicLangParser.g:2081:1: rule__Camera__Group__0__Impl : ( Create ) ;
     public final void rule__Camera__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1881:1: ( ( Create ) )
-            // InternalFactoryLogicLangParser.g:1882:1: ( Create )
+            // InternalFactoryLogicLangParser.g:2085:1: ( ( Create ) )
+            // InternalFactoryLogicLangParser.g:2086:1: ( Create )
             {
-            // InternalFactoryLogicLangParser.g:1882:1: ( Create )
-            // InternalFactoryLogicLangParser.g:1883:2: Create
+            // InternalFactoryLogicLangParser.g:2086:1: ( Create )
+            // InternalFactoryLogicLangParser.g:2087:2: Create
             {
              before(grammarAccess.getCameraAccess().getCreateKeyword_0()); 
             match(input,Create,FOLLOW_2); 
@@ -5996,14 +6695,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__1"
-    // InternalFactoryLogicLangParser.g:1892:1: rule__Camera__Group__1 : rule__Camera__Group__1__Impl rule__Camera__Group__2 ;
+    // InternalFactoryLogicLangParser.g:2096:1: rule__Camera__Group__1 : rule__Camera__Group__1__Impl rule__Camera__Group__2 ;
     public final void rule__Camera__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1896:1: ( rule__Camera__Group__1__Impl rule__Camera__Group__2 )
-            // InternalFactoryLogicLangParser.g:1897:2: rule__Camera__Group__1__Impl rule__Camera__Group__2
+            // InternalFactoryLogicLangParser.g:2100:1: ( rule__Camera__Group__1__Impl rule__Camera__Group__2 )
+            // InternalFactoryLogicLangParser.g:2101:2: rule__Camera__Group__1__Impl rule__Camera__Group__2
             {
             pushFollow(FOLLOW_5);
             rule__Camera__Group__1__Impl();
@@ -6034,17 +6733,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:1904:1: rule__Camera__Group__1__Impl : ( Camera ) ;
+    // InternalFactoryLogicLangParser.g:2108:1: rule__Camera__Group__1__Impl : ( Camera ) ;
     public final void rule__Camera__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1908:1: ( ( Camera ) )
-            // InternalFactoryLogicLangParser.g:1909:1: ( Camera )
+            // InternalFactoryLogicLangParser.g:2112:1: ( ( Camera ) )
+            // InternalFactoryLogicLangParser.g:2113:1: ( Camera )
             {
-            // InternalFactoryLogicLangParser.g:1909:1: ( Camera )
-            // InternalFactoryLogicLangParser.g:1910:2: Camera
+            // InternalFactoryLogicLangParser.g:2113:1: ( Camera )
+            // InternalFactoryLogicLangParser.g:2114:2: Camera
             {
              before(grammarAccess.getCameraAccess().getCameraKeyword_1()); 
             match(input,Camera,FOLLOW_2); 
@@ -6071,14 +6770,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__2"
-    // InternalFactoryLogicLangParser.g:1919:1: rule__Camera__Group__2 : rule__Camera__Group__2__Impl rule__Camera__Group__3 ;
+    // InternalFactoryLogicLangParser.g:2123:1: rule__Camera__Group__2 : rule__Camera__Group__2__Impl rule__Camera__Group__3 ;
     public final void rule__Camera__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1923:1: ( rule__Camera__Group__2__Impl rule__Camera__Group__3 )
-            // InternalFactoryLogicLangParser.g:1924:2: rule__Camera__Group__2__Impl rule__Camera__Group__3
+            // InternalFactoryLogicLangParser.g:2127:1: ( rule__Camera__Group__2__Impl rule__Camera__Group__3 )
+            // InternalFactoryLogicLangParser.g:2128:2: rule__Camera__Group__2__Impl rule__Camera__Group__3
             {
             pushFollow(FOLLOW_6);
             rule__Camera__Group__2__Impl();
@@ -6109,17 +6808,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:1931:1: rule__Camera__Group__2__Impl : ( Named ) ;
+    // InternalFactoryLogicLangParser.g:2135:1: rule__Camera__Group__2__Impl : ( Named ) ;
     public final void rule__Camera__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1935:1: ( ( Named ) )
-            // InternalFactoryLogicLangParser.g:1936:1: ( Named )
+            // InternalFactoryLogicLangParser.g:2139:1: ( ( Named ) )
+            // InternalFactoryLogicLangParser.g:2140:1: ( Named )
             {
-            // InternalFactoryLogicLangParser.g:1936:1: ( Named )
-            // InternalFactoryLogicLangParser.g:1937:2: Named
+            // InternalFactoryLogicLangParser.g:2140:1: ( Named )
+            // InternalFactoryLogicLangParser.g:2141:2: Named
             {
              before(grammarAccess.getCameraAccess().getNamedKeyword_2()); 
             match(input,Named,FOLLOW_2); 
@@ -6146,14 +6845,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__3"
-    // InternalFactoryLogicLangParser.g:1946:1: rule__Camera__Group__3 : rule__Camera__Group__3__Impl rule__Camera__Group__4 ;
+    // InternalFactoryLogicLangParser.g:2150:1: rule__Camera__Group__3 : rule__Camera__Group__3__Impl rule__Camera__Group__4 ;
     public final void rule__Camera__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1950:1: ( rule__Camera__Group__3__Impl rule__Camera__Group__4 )
-            // InternalFactoryLogicLangParser.g:1951:2: rule__Camera__Group__3__Impl rule__Camera__Group__4
+            // InternalFactoryLogicLangParser.g:2154:1: ( rule__Camera__Group__3__Impl rule__Camera__Group__4 )
+            // InternalFactoryLogicLangParser.g:2155:2: rule__Camera__Group__3__Impl rule__Camera__Group__4
             {
             pushFollow(FOLLOW_7);
             rule__Camera__Group__3__Impl();
@@ -6184,21 +6883,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:1958:1: rule__Camera__Group__3__Impl : ( ( rule__Camera__NameAssignment_3 ) ) ;
+    // InternalFactoryLogicLangParser.g:2162:1: rule__Camera__Group__3__Impl : ( ( rule__Camera__NameAssignment_3 ) ) ;
     public final void rule__Camera__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1962:1: ( ( ( rule__Camera__NameAssignment_3 ) ) )
-            // InternalFactoryLogicLangParser.g:1963:1: ( ( rule__Camera__NameAssignment_3 ) )
+            // InternalFactoryLogicLangParser.g:2166:1: ( ( ( rule__Camera__NameAssignment_3 ) ) )
+            // InternalFactoryLogicLangParser.g:2167:1: ( ( rule__Camera__NameAssignment_3 ) )
             {
-            // InternalFactoryLogicLangParser.g:1963:1: ( ( rule__Camera__NameAssignment_3 ) )
-            // InternalFactoryLogicLangParser.g:1964:2: ( rule__Camera__NameAssignment_3 )
+            // InternalFactoryLogicLangParser.g:2167:1: ( ( rule__Camera__NameAssignment_3 ) )
+            // InternalFactoryLogicLangParser.g:2168:2: ( rule__Camera__NameAssignment_3 )
             {
              before(grammarAccess.getCameraAccess().getNameAssignment_3()); 
-            // InternalFactoryLogicLangParser.g:1965:2: ( rule__Camera__NameAssignment_3 )
-            // InternalFactoryLogicLangParser.g:1965:3: rule__Camera__NameAssignment_3
+            // InternalFactoryLogicLangParser.g:2169:2: ( rule__Camera__NameAssignment_3 )
+            // InternalFactoryLogicLangParser.g:2169:3: rule__Camera__NameAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__Camera__NameAssignment_3();
@@ -6231,14 +6930,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__4"
-    // InternalFactoryLogicLangParser.g:1973:1: rule__Camera__Group__4 : rule__Camera__Group__4__Impl rule__Camera__Group__5 ;
+    // InternalFactoryLogicLangParser.g:2177:1: rule__Camera__Group__4 : rule__Camera__Group__4__Impl rule__Camera__Group__5 ;
     public final void rule__Camera__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1977:1: ( rule__Camera__Group__4__Impl rule__Camera__Group__5 )
-            // InternalFactoryLogicLangParser.g:1978:2: rule__Camera__Group__4__Impl rule__Camera__Group__5
+            // InternalFactoryLogicLangParser.g:2181:1: ( rule__Camera__Group__4__Impl rule__Camera__Group__5 )
+            // InternalFactoryLogicLangParser.g:2182:2: rule__Camera__Group__4__Impl rule__Camera__Group__5
             {
             pushFollow(FOLLOW_8);
             rule__Camera__Group__4__Impl();
@@ -6269,17 +6968,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:1985:1: rule__Camera__Group__4__Impl : ( RULE_BEGIN ) ;
+    // InternalFactoryLogicLangParser.g:2189:1: rule__Camera__Group__4__Impl : ( RULE_BEGIN ) ;
     public final void rule__Camera__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:1989:1: ( ( RULE_BEGIN ) )
-            // InternalFactoryLogicLangParser.g:1990:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:2193:1: ( ( RULE_BEGIN ) )
+            // InternalFactoryLogicLangParser.g:2194:1: ( RULE_BEGIN )
             {
-            // InternalFactoryLogicLangParser.g:1990:1: ( RULE_BEGIN )
-            // InternalFactoryLogicLangParser.g:1991:2: RULE_BEGIN
+            // InternalFactoryLogicLangParser.g:2194:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:2195:2: RULE_BEGIN
             {
              before(grammarAccess.getCameraAccess().getBEGINTerminalRuleCall_4()); 
             match(input,RULE_BEGIN,FOLLOW_2); 
@@ -6306,14 +7005,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__5"
-    // InternalFactoryLogicLangParser.g:2000:1: rule__Camera__Group__5 : rule__Camera__Group__5__Impl rule__Camera__Group__6 ;
+    // InternalFactoryLogicLangParser.g:2204:1: rule__Camera__Group__5 : rule__Camera__Group__5__Impl rule__Camera__Group__6 ;
     public final void rule__Camera__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2004:1: ( rule__Camera__Group__5__Impl rule__Camera__Group__6 )
-            // InternalFactoryLogicLangParser.g:2005:2: rule__Camera__Group__5__Impl rule__Camera__Group__6
+            // InternalFactoryLogicLangParser.g:2208:1: ( rule__Camera__Group__5__Impl rule__Camera__Group__6 )
+            // InternalFactoryLogicLangParser.g:2209:2: rule__Camera__Group__5__Impl rule__Camera__Group__6
             {
             pushFollow(FOLLOW_9);
             rule__Camera__Group__5__Impl();
@@ -6344,24 +7043,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__5__Impl"
-    // InternalFactoryLogicLangParser.g:2012:1: rule__Camera__Group__5__Impl : ( ( ( rule__Camera__ParametersAssignment_5 ) ) ( ( rule__Camera__ParametersAssignment_5 )* ) ) ;
+    // InternalFactoryLogicLangParser.g:2216:1: rule__Camera__Group__5__Impl : ( ( ( rule__Camera__ParametersAssignment_5 ) ) ( ( rule__Camera__ParametersAssignment_5 )* ) ) ;
     public final void rule__Camera__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2016:1: ( ( ( ( rule__Camera__ParametersAssignment_5 ) ) ( ( rule__Camera__ParametersAssignment_5 )* ) ) )
-            // InternalFactoryLogicLangParser.g:2017:1: ( ( ( rule__Camera__ParametersAssignment_5 ) ) ( ( rule__Camera__ParametersAssignment_5 )* ) )
+            // InternalFactoryLogicLangParser.g:2220:1: ( ( ( ( rule__Camera__ParametersAssignment_5 ) ) ( ( rule__Camera__ParametersAssignment_5 )* ) ) )
+            // InternalFactoryLogicLangParser.g:2221:1: ( ( ( rule__Camera__ParametersAssignment_5 ) ) ( ( rule__Camera__ParametersAssignment_5 )* ) )
             {
-            // InternalFactoryLogicLangParser.g:2017:1: ( ( ( rule__Camera__ParametersAssignment_5 ) ) ( ( rule__Camera__ParametersAssignment_5 )* ) )
-            // InternalFactoryLogicLangParser.g:2018:2: ( ( rule__Camera__ParametersAssignment_5 ) ) ( ( rule__Camera__ParametersAssignment_5 )* )
+            // InternalFactoryLogicLangParser.g:2221:1: ( ( ( rule__Camera__ParametersAssignment_5 ) ) ( ( rule__Camera__ParametersAssignment_5 )* ) )
+            // InternalFactoryLogicLangParser.g:2222:2: ( ( rule__Camera__ParametersAssignment_5 ) ) ( ( rule__Camera__ParametersAssignment_5 )* )
             {
-            // InternalFactoryLogicLangParser.g:2018:2: ( ( rule__Camera__ParametersAssignment_5 ) )
-            // InternalFactoryLogicLangParser.g:2019:3: ( rule__Camera__ParametersAssignment_5 )
+            // InternalFactoryLogicLangParser.g:2222:2: ( ( rule__Camera__ParametersAssignment_5 ) )
+            // InternalFactoryLogicLangParser.g:2223:3: ( rule__Camera__ParametersAssignment_5 )
             {
              before(grammarAccess.getCameraAccess().getParametersAssignment_5()); 
-            // InternalFactoryLogicLangParser.g:2020:3: ( rule__Camera__ParametersAssignment_5 )
-            // InternalFactoryLogicLangParser.g:2020:4: rule__Camera__ParametersAssignment_5
+            // InternalFactoryLogicLangParser.g:2224:3: ( rule__Camera__ParametersAssignment_5 )
+            // InternalFactoryLogicLangParser.g:2224:4: rule__Camera__ParametersAssignment_5
             {
             pushFollow(FOLLOW_10);
             rule__Camera__ParametersAssignment_5();
@@ -6375,24 +7074,24 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
             }
 
-            // InternalFactoryLogicLangParser.g:2023:2: ( ( rule__Camera__ParametersAssignment_5 )* )
-            // InternalFactoryLogicLangParser.g:2024:3: ( rule__Camera__ParametersAssignment_5 )*
+            // InternalFactoryLogicLangParser.g:2227:2: ( ( rule__Camera__ParametersAssignment_5 )* )
+            // InternalFactoryLogicLangParser.g:2228:3: ( rule__Camera__ParametersAssignment_5 )*
             {
              before(grammarAccess.getCameraAccess().getParametersAssignment_5()); 
-            // InternalFactoryLogicLangParser.g:2025:3: ( rule__Camera__ParametersAssignment_5 )*
-            loop16:
+            // InternalFactoryLogicLangParser.g:2229:3: ( rule__Camera__ParametersAssignment_5 )*
+            loop18:
             do {
-                int alt16=2;
-                int LA16_0 = input.LA(1);
+                int alt18=2;
+                int LA18_0 = input.LA(1);
 
-                if ( (LA16_0==With) ) {
-                    alt16=1;
+                if ( (LA18_0==With) ) {
+                    alt18=1;
                 }
 
 
-                switch (alt16) {
+                switch (alt18) {
             	case 1 :
-            	    // InternalFactoryLogicLangParser.g:2025:4: rule__Camera__ParametersAssignment_5
+            	    // InternalFactoryLogicLangParser.g:2229:4: rule__Camera__ParametersAssignment_5
             	    {
             	    pushFollow(FOLLOW_10);
             	    rule__Camera__ParametersAssignment_5();
@@ -6404,7 +7103,7 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop16;
+            	    break loop18;
                 }
             } while (true);
 
@@ -6434,14 +7133,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__6"
-    // InternalFactoryLogicLangParser.g:2034:1: rule__Camera__Group__6 : rule__Camera__Group__6__Impl ;
+    // InternalFactoryLogicLangParser.g:2238:1: rule__Camera__Group__6 : rule__Camera__Group__6__Impl ;
     public final void rule__Camera__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2038:1: ( rule__Camera__Group__6__Impl )
-            // InternalFactoryLogicLangParser.g:2039:2: rule__Camera__Group__6__Impl
+            // InternalFactoryLogicLangParser.g:2242:1: ( rule__Camera__Group__6__Impl )
+            // InternalFactoryLogicLangParser.g:2243:2: rule__Camera__Group__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Camera__Group__6__Impl();
@@ -6467,17 +7166,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__Group__6__Impl"
-    // InternalFactoryLogicLangParser.g:2045:1: rule__Camera__Group__6__Impl : ( RULE_END ) ;
+    // InternalFactoryLogicLangParser.g:2249:1: rule__Camera__Group__6__Impl : ( RULE_END ) ;
     public final void rule__Camera__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2049:1: ( ( RULE_END ) )
-            // InternalFactoryLogicLangParser.g:2050:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:2253:1: ( ( RULE_END ) )
+            // InternalFactoryLogicLangParser.g:2254:1: ( RULE_END )
             {
-            // InternalFactoryLogicLangParser.g:2050:1: ( RULE_END )
-            // InternalFactoryLogicLangParser.g:2051:2: RULE_END
+            // InternalFactoryLogicLangParser.g:2254:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:2255:2: RULE_END
             {
              before(grammarAccess.getCameraAccess().getENDTerminalRuleCall_6()); 
             match(input,RULE_END,FOLLOW_2); 
@@ -6504,14 +7203,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraParameter__Group__0"
-    // InternalFactoryLogicLangParser.g:2061:1: rule__CameraParameter__Group__0 : rule__CameraParameter__Group__0__Impl rule__CameraParameter__Group__1 ;
+    // InternalFactoryLogicLangParser.g:2265:1: rule__CameraParameter__Group__0 : rule__CameraParameter__Group__0__Impl rule__CameraParameter__Group__1 ;
     public final void rule__CameraParameter__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2065:1: ( rule__CameraParameter__Group__0__Impl rule__CameraParameter__Group__1 )
-            // InternalFactoryLogicLangParser.g:2066:2: rule__CameraParameter__Group__0__Impl rule__CameraParameter__Group__1
+            // InternalFactoryLogicLangParser.g:2269:1: ( rule__CameraParameter__Group__0__Impl rule__CameraParameter__Group__1 )
+            // InternalFactoryLogicLangParser.g:2270:2: rule__CameraParameter__Group__0__Impl rule__CameraParameter__Group__1
             {
             pushFollow(FOLLOW_18);
             rule__CameraParameter__Group__0__Impl();
@@ -6542,17 +7241,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraParameter__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:2073:1: rule__CameraParameter__Group__0__Impl : ( With ) ;
+    // InternalFactoryLogicLangParser.g:2277:1: rule__CameraParameter__Group__0__Impl : ( With ) ;
     public final void rule__CameraParameter__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2077:1: ( ( With ) )
-            // InternalFactoryLogicLangParser.g:2078:1: ( With )
+            // InternalFactoryLogicLangParser.g:2281:1: ( ( With ) )
+            // InternalFactoryLogicLangParser.g:2282:1: ( With )
             {
-            // InternalFactoryLogicLangParser.g:2078:1: ( With )
-            // InternalFactoryLogicLangParser.g:2079:2: With
+            // InternalFactoryLogicLangParser.g:2282:1: ( With )
+            // InternalFactoryLogicLangParser.g:2283:2: With
             {
              before(grammarAccess.getCameraParameterAccess().getWithKeyword_0()); 
             match(input,With,FOLLOW_2); 
@@ -6579,14 +7278,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraParameter__Group__1"
-    // InternalFactoryLogicLangParser.g:2088:1: rule__CameraParameter__Group__1 : rule__CameraParameter__Group__1__Impl rule__CameraParameter__Group__2 ;
+    // InternalFactoryLogicLangParser.g:2292:1: rule__CameraParameter__Group__1 : rule__CameraParameter__Group__1__Impl rule__CameraParameter__Group__2 ;
     public final void rule__CameraParameter__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2092:1: ( rule__CameraParameter__Group__1__Impl rule__CameraParameter__Group__2 )
-            // InternalFactoryLogicLangParser.g:2093:2: rule__CameraParameter__Group__1__Impl rule__CameraParameter__Group__2
+            // InternalFactoryLogicLangParser.g:2296:1: ( rule__CameraParameter__Group__1__Impl rule__CameraParameter__Group__2 )
+            // InternalFactoryLogicLangParser.g:2297:2: rule__CameraParameter__Group__1__Impl rule__CameraParameter__Group__2
             {
             pushFollow(FOLLOW_19);
             rule__CameraParameter__Group__1__Impl();
@@ -6617,17 +7316,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraParameter__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:2100:1: rule__CameraParameter__Group__1__Impl : ( Color ) ;
+    // InternalFactoryLogicLangParser.g:2304:1: rule__CameraParameter__Group__1__Impl : ( Color ) ;
     public final void rule__CameraParameter__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2104:1: ( ( Color ) )
-            // InternalFactoryLogicLangParser.g:2105:1: ( Color )
+            // InternalFactoryLogicLangParser.g:2308:1: ( ( Color ) )
+            // InternalFactoryLogicLangParser.g:2309:1: ( Color )
             {
-            // InternalFactoryLogicLangParser.g:2105:1: ( Color )
-            // InternalFactoryLogicLangParser.g:2106:2: Color
+            // InternalFactoryLogicLangParser.g:2309:1: ( Color )
+            // InternalFactoryLogicLangParser.g:2310:2: Color
             {
              before(grammarAccess.getCameraParameterAccess().getColorKeyword_1()); 
             match(input,Color,FOLLOW_2); 
@@ -6654,14 +7353,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraParameter__Group__2"
-    // InternalFactoryLogicLangParser.g:2115:1: rule__CameraParameter__Group__2 : rule__CameraParameter__Group__2__Impl ;
+    // InternalFactoryLogicLangParser.g:2319:1: rule__CameraParameter__Group__2 : rule__CameraParameter__Group__2__Impl ;
     public final void rule__CameraParameter__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2119:1: ( rule__CameraParameter__Group__2__Impl )
-            // InternalFactoryLogicLangParser.g:2120:2: rule__CameraParameter__Group__2__Impl
+            // InternalFactoryLogicLangParser.g:2323:1: ( rule__CameraParameter__Group__2__Impl )
+            // InternalFactoryLogicLangParser.g:2324:2: rule__CameraParameter__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__CameraParameter__Group__2__Impl();
@@ -6687,21 +7386,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraParameter__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:2126:1: rule__CameraParameter__Group__2__Impl : ( ( rule__CameraParameter__ColorAssignment_2 ) ) ;
+    // InternalFactoryLogicLangParser.g:2330:1: rule__CameraParameter__Group__2__Impl : ( ( rule__CameraParameter__ColorAssignment_2 ) ) ;
     public final void rule__CameraParameter__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2130:1: ( ( ( rule__CameraParameter__ColorAssignment_2 ) ) )
-            // InternalFactoryLogicLangParser.g:2131:1: ( ( rule__CameraParameter__ColorAssignment_2 ) )
+            // InternalFactoryLogicLangParser.g:2334:1: ( ( ( rule__CameraParameter__ColorAssignment_2 ) ) )
+            // InternalFactoryLogicLangParser.g:2335:1: ( ( rule__CameraParameter__ColorAssignment_2 ) )
             {
-            // InternalFactoryLogicLangParser.g:2131:1: ( ( rule__CameraParameter__ColorAssignment_2 ) )
-            // InternalFactoryLogicLangParser.g:2132:2: ( rule__CameraParameter__ColorAssignment_2 )
+            // InternalFactoryLogicLangParser.g:2335:1: ( ( rule__CameraParameter__ColorAssignment_2 ) )
+            // InternalFactoryLogicLangParser.g:2336:2: ( rule__CameraParameter__ColorAssignment_2 )
             {
              before(grammarAccess.getCameraParameterAccess().getColorAssignment_2()); 
-            // InternalFactoryLogicLangParser.g:2133:2: ( rule__CameraParameter__ColorAssignment_2 )
-            // InternalFactoryLogicLangParser.g:2133:3: rule__CameraParameter__ColorAssignment_2
+            // InternalFactoryLogicLangParser.g:2337:2: ( rule__CameraParameter__ColorAssignment_2 )
+            // InternalFactoryLogicLangParser.g:2337:3: rule__CameraParameter__ColorAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__CameraParameter__ColorAssignment_2();
@@ -6733,23 +7432,98 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__CameraParameter__Group__2__Impl"
 
 
-    // $ANTLR start "rule__Conditional__Group__0"
-    // InternalFactoryLogicLangParser.g:2142:1: rule__Conditional__Group__0 : rule__Conditional__Group__0__Impl rule__Conditional__Group__1 ;
-    public final void rule__Conditional__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__0"
+    // InternalFactoryLogicLangParser.g:2346:1: rule__DeviceConditional__Group__0 : rule__DeviceConditional__Group__0__Impl rule__DeviceConditional__Group__1 ;
+    public final void rule__DeviceConditional__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2146:1: ( rule__Conditional__Group__0__Impl rule__Conditional__Group__1 )
-            // InternalFactoryLogicLangParser.g:2147:2: rule__Conditional__Group__0__Impl rule__Conditional__Group__1
+            // InternalFactoryLogicLangParser.g:2350:1: ( rule__DeviceConditional__Group__0__Impl rule__DeviceConditional__Group__1 )
+            // InternalFactoryLogicLangParser.g:2351:2: rule__DeviceConditional__Group__0__Impl rule__DeviceConditional__Group__1
+            {
+            pushFollow(FOLLOW_6);
+            rule__DeviceConditional__Group__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__DeviceConditional__Group__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__DeviceConditional__Group__0"
+
+
+    // $ANTLR start "rule__DeviceConditional__Group__0__Impl"
+    // InternalFactoryLogicLangParser.g:2358:1: rule__DeviceConditional__Group__0__Impl : ( If ) ;
+    public final void rule__DeviceConditional__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2362:1: ( ( If ) )
+            // InternalFactoryLogicLangParser.g:2363:1: ( If )
+            {
+            // InternalFactoryLogicLangParser.g:2363:1: ( If )
+            // InternalFactoryLogicLangParser.g:2364:2: If
+            {
+             before(grammarAccess.getDeviceConditionalAccess().getIfKeyword_0()); 
+            match(input,If,FOLLOW_2); 
+             after(grammarAccess.getDeviceConditionalAccess().getIfKeyword_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__DeviceConditional__Group__0__Impl"
+
+
+    // $ANTLR start "rule__DeviceConditional__Group__1"
+    // InternalFactoryLogicLangParser.g:2373:1: rule__DeviceConditional__Group__1 : rule__DeviceConditional__Group__1__Impl rule__DeviceConditional__Group__2 ;
+    public final void rule__DeviceConditional__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2377:1: ( rule__DeviceConditional__Group__1__Impl rule__DeviceConditional__Group__2 )
+            // InternalFactoryLogicLangParser.g:2378:2: rule__DeviceConditional__Group__1__Impl rule__DeviceConditional__Group__2
             {
             pushFollow(FOLLOW_20);
-            rule__Conditional__Group__0__Impl();
+            rule__DeviceConditional__Group__1__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group__1();
+            rule__DeviceConditional__Group__2();
 
             state._fsp--;
 
@@ -6768,25 +7542,35 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__0"
+    // $ANTLR end "rule__DeviceConditional__Group__1"
 
 
-    // $ANTLR start "rule__Conditional__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:2154:1: rule__Conditional__Group__0__Impl : ( If ) ;
-    public final void rule__Conditional__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__1__Impl"
+    // InternalFactoryLogicLangParser.g:2385:1: rule__DeviceConditional__Group__1__Impl : ( ( rule__DeviceConditional__SourceAssignment_1 ) ) ;
+    public final void rule__DeviceConditional__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2158:1: ( ( If ) )
-            // InternalFactoryLogicLangParser.g:2159:1: ( If )
+            // InternalFactoryLogicLangParser.g:2389:1: ( ( ( rule__DeviceConditional__SourceAssignment_1 ) ) )
+            // InternalFactoryLogicLangParser.g:2390:1: ( ( rule__DeviceConditional__SourceAssignment_1 ) )
             {
-            // InternalFactoryLogicLangParser.g:2159:1: ( If )
-            // InternalFactoryLogicLangParser.g:2160:2: If
+            // InternalFactoryLogicLangParser.g:2390:1: ( ( rule__DeviceConditional__SourceAssignment_1 ) )
+            // InternalFactoryLogicLangParser.g:2391:2: ( rule__DeviceConditional__SourceAssignment_1 )
             {
-             before(grammarAccess.getConditionalAccess().getIfKeyword_0()); 
-            match(input,If,FOLLOW_2); 
-             after(grammarAccess.getConditionalAccess().getIfKeyword_0()); 
+             before(grammarAccess.getDeviceConditionalAccess().getSourceAssignment_1()); 
+            // InternalFactoryLogicLangParser.g:2392:2: ( rule__DeviceConditional__SourceAssignment_1 )
+            // InternalFactoryLogicLangParser.g:2392:3: rule__DeviceConditional__SourceAssignment_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__DeviceConditional__SourceAssignment_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getDeviceConditionalAccess().getSourceAssignment_1()); 
 
             }
 
@@ -6805,26 +7589,26 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__0__Impl"
+    // $ANTLR end "rule__DeviceConditional__Group__1__Impl"
 
 
-    // $ANTLR start "rule__Conditional__Group__1"
-    // InternalFactoryLogicLangParser.g:2169:1: rule__Conditional__Group__1 : rule__Conditional__Group__1__Impl rule__Conditional__Group__2 ;
-    public final void rule__Conditional__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__2"
+    // InternalFactoryLogicLangParser.g:2400:1: rule__DeviceConditional__Group__2 : rule__DeviceConditional__Group__2__Impl rule__DeviceConditional__Group__3 ;
+    public final void rule__DeviceConditional__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2173:1: ( rule__Conditional__Group__1__Impl rule__Conditional__Group__2 )
-            // InternalFactoryLogicLangParser.g:2174:2: rule__Conditional__Group__1__Impl rule__Conditional__Group__2
+            // InternalFactoryLogicLangParser.g:2404:1: ( rule__DeviceConditional__Group__2__Impl rule__DeviceConditional__Group__3 )
+            // InternalFactoryLogicLangParser.g:2405:2: rule__DeviceConditional__Group__2__Impl rule__DeviceConditional__Group__3
             {
             pushFollow(FOLLOW_21);
-            rule__Conditional__Group__1__Impl();
+            rule__DeviceConditional__Group__2__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group__2();
+            rule__DeviceConditional__Group__3();
 
             state._fsp--;
 
@@ -6843,206 +7627,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__1"
+    // $ANTLR end "rule__DeviceConditional__Group__2"
 
 
-    // $ANTLR start "rule__Conditional__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:2181:1: rule__Conditional__Group__1__Impl : ( ( rule__Conditional__VariableAssignment_1 ) ) ;
-    public final void rule__Conditional__Group__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalFactoryLogicLangParser.g:2185:1: ( ( ( rule__Conditional__VariableAssignment_1 ) ) )
-            // InternalFactoryLogicLangParser.g:2186:1: ( ( rule__Conditional__VariableAssignment_1 ) )
-            {
-            // InternalFactoryLogicLangParser.g:2186:1: ( ( rule__Conditional__VariableAssignment_1 ) )
-            // InternalFactoryLogicLangParser.g:2187:2: ( rule__Conditional__VariableAssignment_1 )
-            {
-             before(grammarAccess.getConditionalAccess().getVariableAssignment_1()); 
-            // InternalFactoryLogicLangParser.g:2188:2: ( rule__Conditional__VariableAssignment_1 )
-            // InternalFactoryLogicLangParser.g:2188:3: rule__Conditional__VariableAssignment_1
-            {
-            pushFollow(FOLLOW_2);
-            rule__Conditional__VariableAssignment_1();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getConditionalAccess().getVariableAssignment_1()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Conditional__Group__1__Impl"
-
-
-    // $ANTLR start "rule__Conditional__Group__2"
-    // InternalFactoryLogicLangParser.g:2196:1: rule__Conditional__Group__2 : rule__Conditional__Group__2__Impl rule__Conditional__Group__3 ;
-    public final void rule__Conditional__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__2__Impl"
+    // InternalFactoryLogicLangParser.g:2412:1: rule__DeviceConditional__Group__2__Impl : ( Is ) ;
+    public final void rule__DeviceConditional__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2200:1: ( rule__Conditional__Group__2__Impl rule__Conditional__Group__3 )
-            // InternalFactoryLogicLangParser.g:2201:2: rule__Conditional__Group__2__Impl rule__Conditional__Group__3
+            // InternalFactoryLogicLangParser.g:2416:1: ( ( Is ) )
+            // InternalFactoryLogicLangParser.g:2417:1: ( Is )
             {
-            pushFollow(FOLLOW_21);
-            rule__Conditional__Group__2__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_2);
-            rule__Conditional__Group__3();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Conditional__Group__2"
-
-
-    // $ANTLR start "rule__Conditional__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:2208:1: rule__Conditional__Group__2__Impl : ( ( rule__Conditional__Group_2__0 )? ) ;
-    public final void rule__Conditional__Group__2__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalFactoryLogicLangParser.g:2212:1: ( ( ( rule__Conditional__Group_2__0 )? ) )
-            // InternalFactoryLogicLangParser.g:2213:1: ( ( rule__Conditional__Group_2__0 )? )
+            // InternalFactoryLogicLangParser.g:2417:1: ( Is )
+            // InternalFactoryLogicLangParser.g:2418:2: Is
             {
-            // InternalFactoryLogicLangParser.g:2213:1: ( ( rule__Conditional__Group_2__0 )? )
-            // InternalFactoryLogicLangParser.g:2214:2: ( rule__Conditional__Group_2__0 )?
-            {
-             before(grammarAccess.getConditionalAccess().getGroup_2()); 
-            // InternalFactoryLogicLangParser.g:2215:2: ( rule__Conditional__Group_2__0 )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
-
-            if ( (LA17_0==Of) ) {
-                alt17=1;
-            }
-            switch (alt17) {
-                case 1 :
-                    // InternalFactoryLogicLangParser.g:2215:3: rule__Conditional__Group_2__0
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__Conditional__Group_2__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getConditionalAccess().getGroup_2()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Conditional__Group__2__Impl"
-
-
-    // $ANTLR start "rule__Conditional__Group__3"
-    // InternalFactoryLogicLangParser.g:2223:1: rule__Conditional__Group__3 : rule__Conditional__Group__3__Impl rule__Conditional__Group__4 ;
-    public final void rule__Conditional__Group__3() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalFactoryLogicLangParser.g:2227:1: ( rule__Conditional__Group__3__Impl rule__Conditional__Group__4 )
-            // InternalFactoryLogicLangParser.g:2228:2: rule__Conditional__Group__3__Impl rule__Conditional__Group__4
-            {
-            pushFollow(FOLLOW_22);
-            rule__Conditional__Group__3__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_2);
-            rule__Conditional__Group__4();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Conditional__Group__3"
-
-
-    // $ANTLR start "rule__Conditional__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:2235:1: rule__Conditional__Group__3__Impl : ( Is ) ;
-    public final void rule__Conditional__Group__3__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalFactoryLogicLangParser.g:2239:1: ( ( Is ) )
-            // InternalFactoryLogicLangParser.g:2240:1: ( Is )
-            {
-            // InternalFactoryLogicLangParser.g:2240:1: ( Is )
-            // InternalFactoryLogicLangParser.g:2241:2: Is
-            {
-             before(grammarAccess.getConditionalAccess().getIsKeyword_3()); 
+             before(grammarAccess.getDeviceConditionalAccess().getIsKeyword_2()); 
             match(input,Is,FOLLOW_2); 
-             after(grammarAccess.getConditionalAccess().getIsKeyword_3()); 
+             after(grammarAccess.getDeviceConditionalAccess().getIsKeyword_2()); 
 
             }
 
@@ -7061,26 +7664,26 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__3__Impl"
+    // $ANTLR end "rule__DeviceConditional__Group__2__Impl"
 
 
-    // $ANTLR start "rule__Conditional__Group__4"
-    // InternalFactoryLogicLangParser.g:2250:1: rule__Conditional__Group__4 : rule__Conditional__Group__4__Impl rule__Conditional__Group__5 ;
-    public final void rule__Conditional__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__3"
+    // InternalFactoryLogicLangParser.g:2427:1: rule__DeviceConditional__Group__3 : rule__DeviceConditional__Group__3__Impl rule__DeviceConditional__Group__4 ;
+    public final void rule__DeviceConditional__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2254:1: ( rule__Conditional__Group__4__Impl rule__Conditional__Group__5 )
-            // InternalFactoryLogicLangParser.g:2255:2: rule__Conditional__Group__4__Impl rule__Conditional__Group__5
+            // InternalFactoryLogicLangParser.g:2431:1: ( rule__DeviceConditional__Group__3__Impl rule__DeviceConditional__Group__4 )
+            // InternalFactoryLogicLangParser.g:2432:2: rule__DeviceConditional__Group__3__Impl rule__DeviceConditional__Group__4
             {
-            pushFollow(FOLLOW_22);
-            rule__Conditional__Group__4__Impl();
+            pushFollow(FOLLOW_21);
+            rule__DeviceConditional__Group__3__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group__5();
+            rule__DeviceConditional__Group__4();
 
             state._fsp--;
 
@@ -7099,36 +7702,36 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__4"
+    // $ANTLR end "rule__DeviceConditional__Group__3"
 
 
-    // $ANTLR start "rule__Conditional__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:2262:1: rule__Conditional__Group__4__Impl : ( ( rule__Conditional__OperatorAssignment_4 )? ) ;
-    public final void rule__Conditional__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__3__Impl"
+    // InternalFactoryLogicLangParser.g:2439:1: rule__DeviceConditional__Group__3__Impl : ( ( rule__DeviceConditional__OperatorAssignment_3 )? ) ;
+    public final void rule__DeviceConditional__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2266:1: ( ( ( rule__Conditional__OperatorAssignment_4 )? ) )
-            // InternalFactoryLogicLangParser.g:2267:1: ( ( rule__Conditional__OperatorAssignment_4 )? )
+            // InternalFactoryLogicLangParser.g:2443:1: ( ( ( rule__DeviceConditional__OperatorAssignment_3 )? ) )
+            // InternalFactoryLogicLangParser.g:2444:1: ( ( rule__DeviceConditional__OperatorAssignment_3 )? )
             {
-            // InternalFactoryLogicLangParser.g:2267:1: ( ( rule__Conditional__OperatorAssignment_4 )? )
-            // InternalFactoryLogicLangParser.g:2268:2: ( rule__Conditional__OperatorAssignment_4 )?
+            // InternalFactoryLogicLangParser.g:2444:1: ( ( rule__DeviceConditional__OperatorAssignment_3 )? )
+            // InternalFactoryLogicLangParser.g:2445:2: ( rule__DeviceConditional__OperatorAssignment_3 )?
             {
-             before(grammarAccess.getConditionalAccess().getOperatorAssignment_4()); 
-            // InternalFactoryLogicLangParser.g:2269:2: ( rule__Conditional__OperatorAssignment_4 )?
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+             before(grammarAccess.getDeviceConditionalAccess().getOperatorAssignment_3()); 
+            // InternalFactoryLogicLangParser.g:2446:2: ( rule__DeviceConditional__OperatorAssignment_3 )?
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-            if ( ((LA18_0>=GreaterThan && LA18_0<=LessThan)||LA18_0==Not) ) {
-                alt18=1;
+            if ( ((LA19_0>=GreaterThan && LA19_0<=LessThan)||LA19_0==Not) ) {
+                alt19=1;
             }
-            switch (alt18) {
+            switch (alt19) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:2269:3: rule__Conditional__OperatorAssignment_4
+                    // InternalFactoryLogicLangParser.g:2446:3: rule__DeviceConditional__OperatorAssignment_3
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Conditional__OperatorAssignment_4();
+                    rule__DeviceConditional__OperatorAssignment_3();
 
                     state._fsp--;
 
@@ -7138,7 +7741,7 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
             }
 
-             after(grammarAccess.getConditionalAccess().getOperatorAssignment_4()); 
+             after(grammarAccess.getDeviceConditionalAccess().getOperatorAssignment_3()); 
 
             }
 
@@ -7157,26 +7760,26 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__4__Impl"
+    // $ANTLR end "rule__DeviceConditional__Group__3__Impl"
 
 
-    // $ANTLR start "rule__Conditional__Group__5"
-    // InternalFactoryLogicLangParser.g:2277:1: rule__Conditional__Group__5 : rule__Conditional__Group__5__Impl rule__Conditional__Group__6 ;
-    public final void rule__Conditional__Group__5() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__4"
+    // InternalFactoryLogicLangParser.g:2454:1: rule__DeviceConditional__Group__4 : rule__DeviceConditional__Group__4__Impl rule__DeviceConditional__Group__5 ;
+    public final void rule__DeviceConditional__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2281:1: ( rule__Conditional__Group__5__Impl rule__Conditional__Group__6 )
-            // InternalFactoryLogicLangParser.g:2282:2: rule__Conditional__Group__5__Impl rule__Conditional__Group__6
+            // InternalFactoryLogicLangParser.g:2458:1: ( rule__DeviceConditional__Group__4__Impl rule__DeviceConditional__Group__5 )
+            // InternalFactoryLogicLangParser.g:2459:2: rule__DeviceConditional__Group__4__Impl rule__DeviceConditional__Group__5
             {
-            pushFollow(FOLLOW_23);
-            rule__Conditional__Group__5__Impl();
+            pushFollow(FOLLOW_22);
+            rule__DeviceConditional__Group__4__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group__6();
+            rule__DeviceConditional__Group__5();
 
             state._fsp--;
 
@@ -7195,35 +7798,35 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__5"
+    // $ANTLR end "rule__DeviceConditional__Group__4"
 
 
-    // $ANTLR start "rule__Conditional__Group__5__Impl"
-    // InternalFactoryLogicLangParser.g:2289:1: rule__Conditional__Group__5__Impl : ( ( rule__Conditional__Alternatives_5 ) ) ;
-    public final void rule__Conditional__Group__5__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__4__Impl"
+    // InternalFactoryLogicLangParser.g:2466:1: rule__DeviceConditional__Group__4__Impl : ( ( rule__DeviceConditional__Alternatives_4 ) ) ;
+    public final void rule__DeviceConditional__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2293:1: ( ( ( rule__Conditional__Alternatives_5 ) ) )
-            // InternalFactoryLogicLangParser.g:2294:1: ( ( rule__Conditional__Alternatives_5 ) )
+            // InternalFactoryLogicLangParser.g:2470:1: ( ( ( rule__DeviceConditional__Alternatives_4 ) ) )
+            // InternalFactoryLogicLangParser.g:2471:1: ( ( rule__DeviceConditional__Alternatives_4 ) )
             {
-            // InternalFactoryLogicLangParser.g:2294:1: ( ( rule__Conditional__Alternatives_5 ) )
-            // InternalFactoryLogicLangParser.g:2295:2: ( rule__Conditional__Alternatives_5 )
+            // InternalFactoryLogicLangParser.g:2471:1: ( ( rule__DeviceConditional__Alternatives_4 ) )
+            // InternalFactoryLogicLangParser.g:2472:2: ( rule__DeviceConditional__Alternatives_4 )
             {
-             before(grammarAccess.getConditionalAccess().getAlternatives_5()); 
-            // InternalFactoryLogicLangParser.g:2296:2: ( rule__Conditional__Alternatives_5 )
-            // InternalFactoryLogicLangParser.g:2296:3: rule__Conditional__Alternatives_5
+             before(grammarAccess.getDeviceConditionalAccess().getAlternatives_4()); 
+            // InternalFactoryLogicLangParser.g:2473:2: ( rule__DeviceConditional__Alternatives_4 )
+            // InternalFactoryLogicLangParser.g:2473:3: rule__DeviceConditional__Alternatives_4
             {
             pushFollow(FOLLOW_2);
-            rule__Conditional__Alternatives_5();
+            rule__DeviceConditional__Alternatives_4();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getConditionalAccess().getAlternatives_5()); 
+             after(grammarAccess.getDeviceConditionalAccess().getAlternatives_4()); 
 
             }
 
@@ -7242,26 +7845,26 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__5__Impl"
+    // $ANTLR end "rule__DeviceConditional__Group__4__Impl"
 
 
-    // $ANTLR start "rule__Conditional__Group__6"
-    // InternalFactoryLogicLangParser.g:2304:1: rule__Conditional__Group__6 : rule__Conditional__Group__6__Impl rule__Conditional__Group__7 ;
-    public final void rule__Conditional__Group__6() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__5"
+    // InternalFactoryLogicLangParser.g:2481:1: rule__DeviceConditional__Group__5 : rule__DeviceConditional__Group__5__Impl rule__DeviceConditional__Group__6 ;
+    public final void rule__DeviceConditional__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2308:1: ( rule__Conditional__Group__6__Impl rule__Conditional__Group__7 )
-            // InternalFactoryLogicLangParser.g:2309:2: rule__Conditional__Group__6__Impl rule__Conditional__Group__7
+            // InternalFactoryLogicLangParser.g:2485:1: ( rule__DeviceConditional__Group__5__Impl rule__DeviceConditional__Group__6 )
+            // InternalFactoryLogicLangParser.g:2486:2: rule__DeviceConditional__Group__5__Impl rule__DeviceConditional__Group__6
             {
             pushFollow(FOLLOW_7);
-            rule__Conditional__Group__6__Impl();
+            rule__DeviceConditional__Group__5__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group__7();
+            rule__DeviceConditional__Group__6();
 
             state._fsp--;
 
@@ -7280,25 +7883,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__6"
+    // $ANTLR end "rule__DeviceConditional__Group__5"
 
 
-    // $ANTLR start "rule__Conditional__Group__6__Impl"
-    // InternalFactoryLogicLangParser.g:2316:1: rule__Conditional__Group__6__Impl : ( Then ) ;
-    public final void rule__Conditional__Group__6__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__5__Impl"
+    // InternalFactoryLogicLangParser.g:2493:1: rule__DeviceConditional__Group__5__Impl : ( Then ) ;
+    public final void rule__DeviceConditional__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2320:1: ( ( Then ) )
-            // InternalFactoryLogicLangParser.g:2321:1: ( Then )
+            // InternalFactoryLogicLangParser.g:2497:1: ( ( Then ) )
+            // InternalFactoryLogicLangParser.g:2498:1: ( Then )
             {
-            // InternalFactoryLogicLangParser.g:2321:1: ( Then )
-            // InternalFactoryLogicLangParser.g:2322:2: Then
+            // InternalFactoryLogicLangParser.g:2498:1: ( Then )
+            // InternalFactoryLogicLangParser.g:2499:2: Then
             {
-             before(grammarAccess.getConditionalAccess().getThenKeyword_6()); 
+             before(grammarAccess.getDeviceConditionalAccess().getThenKeyword_5()); 
             match(input,Then,FOLLOW_2); 
-             after(grammarAccess.getConditionalAccess().getThenKeyword_6()); 
+             after(grammarAccess.getDeviceConditionalAccess().getThenKeyword_5()); 
 
             }
 
@@ -7317,26 +7920,26 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__6__Impl"
+    // $ANTLR end "rule__DeviceConditional__Group__5__Impl"
 
 
-    // $ANTLR start "rule__Conditional__Group__7"
-    // InternalFactoryLogicLangParser.g:2331:1: rule__Conditional__Group__7 : rule__Conditional__Group__7__Impl rule__Conditional__Group__8 ;
-    public final void rule__Conditional__Group__7() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__6"
+    // InternalFactoryLogicLangParser.g:2508:1: rule__DeviceConditional__Group__6 : rule__DeviceConditional__Group__6__Impl rule__DeviceConditional__Group__7 ;
+    public final void rule__DeviceConditional__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2335:1: ( rule__Conditional__Group__7__Impl rule__Conditional__Group__8 )
-            // InternalFactoryLogicLangParser.g:2336:2: rule__Conditional__Group__7__Impl rule__Conditional__Group__8
+            // InternalFactoryLogicLangParser.g:2512:1: ( rule__DeviceConditional__Group__6__Impl rule__DeviceConditional__Group__7 )
+            // InternalFactoryLogicLangParser.g:2513:2: rule__DeviceConditional__Group__6__Impl rule__DeviceConditional__Group__7
             {
-            pushFollow(FOLLOW_24);
-            rule__Conditional__Group__7__Impl();
+            pushFollow(FOLLOW_23);
+            rule__DeviceConditional__Group__6__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group__8();
+            rule__DeviceConditional__Group__7();
 
             state._fsp--;
 
@@ -7355,25 +7958,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__7"
+    // $ANTLR end "rule__DeviceConditional__Group__6"
 
 
-    // $ANTLR start "rule__Conditional__Group__7__Impl"
-    // InternalFactoryLogicLangParser.g:2343:1: rule__Conditional__Group__7__Impl : ( RULE_BEGIN ) ;
-    public final void rule__Conditional__Group__7__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__6__Impl"
+    // InternalFactoryLogicLangParser.g:2520:1: rule__DeviceConditional__Group__6__Impl : ( RULE_BEGIN ) ;
+    public final void rule__DeviceConditional__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2347:1: ( ( RULE_BEGIN ) )
-            // InternalFactoryLogicLangParser.g:2348:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:2524:1: ( ( RULE_BEGIN ) )
+            // InternalFactoryLogicLangParser.g:2525:1: ( RULE_BEGIN )
             {
-            // InternalFactoryLogicLangParser.g:2348:1: ( RULE_BEGIN )
-            // InternalFactoryLogicLangParser.g:2349:2: RULE_BEGIN
+            // InternalFactoryLogicLangParser.g:2525:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:2526:2: RULE_BEGIN
             {
-             before(grammarAccess.getConditionalAccess().getBEGINTerminalRuleCall_7()); 
+             before(grammarAccess.getDeviceConditionalAccess().getBEGINTerminalRuleCall_6()); 
             match(input,RULE_BEGIN,FOLLOW_2); 
-             after(grammarAccess.getConditionalAccess().getBEGINTerminalRuleCall_7()); 
+             after(grammarAccess.getDeviceConditionalAccess().getBEGINTerminalRuleCall_6()); 
 
             }
 
@@ -7392,26 +7995,26 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__7__Impl"
+    // $ANTLR end "rule__DeviceConditional__Group__6__Impl"
 
 
-    // $ANTLR start "rule__Conditional__Group__8"
-    // InternalFactoryLogicLangParser.g:2358:1: rule__Conditional__Group__8 : rule__Conditional__Group__8__Impl rule__Conditional__Group__9 ;
-    public final void rule__Conditional__Group__8() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__7"
+    // InternalFactoryLogicLangParser.g:2535:1: rule__DeviceConditional__Group__7 : rule__DeviceConditional__Group__7__Impl rule__DeviceConditional__Group__8 ;
+    public final void rule__DeviceConditional__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2362:1: ( rule__Conditional__Group__8__Impl rule__Conditional__Group__9 )
-            // InternalFactoryLogicLangParser.g:2363:2: rule__Conditional__Group__8__Impl rule__Conditional__Group__9
+            // InternalFactoryLogicLangParser.g:2539:1: ( rule__DeviceConditional__Group__7__Impl rule__DeviceConditional__Group__8 )
+            // InternalFactoryLogicLangParser.g:2540:2: rule__DeviceConditional__Group__7__Impl rule__DeviceConditional__Group__8
             {
             pushFollow(FOLLOW_9);
-            rule__Conditional__Group__8__Impl();
+            rule__DeviceConditional__Group__7__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group__9();
+            rule__DeviceConditional__Group__8();
 
             state._fsp--;
 
@@ -7430,62 +8033,62 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__8"
+    // $ANTLR end "rule__DeviceConditional__Group__7"
 
 
-    // $ANTLR start "rule__Conditional__Group__8__Impl"
-    // InternalFactoryLogicLangParser.g:2370:1: rule__Conditional__Group__8__Impl : ( ( ( rule__Conditional__LogicsAssignment_8 ) ) ( ( rule__Conditional__LogicsAssignment_8 )* ) ) ;
-    public final void rule__Conditional__Group__8__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__7__Impl"
+    // InternalFactoryLogicLangParser.g:2547:1: rule__DeviceConditional__Group__7__Impl : ( ( ( rule__DeviceConditional__LogicsAssignment_7 ) ) ( ( rule__DeviceConditional__LogicsAssignment_7 )* ) ) ;
+    public final void rule__DeviceConditional__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2374:1: ( ( ( ( rule__Conditional__LogicsAssignment_8 ) ) ( ( rule__Conditional__LogicsAssignment_8 )* ) ) )
-            // InternalFactoryLogicLangParser.g:2375:1: ( ( ( rule__Conditional__LogicsAssignment_8 ) ) ( ( rule__Conditional__LogicsAssignment_8 )* ) )
+            // InternalFactoryLogicLangParser.g:2551:1: ( ( ( ( rule__DeviceConditional__LogicsAssignment_7 ) ) ( ( rule__DeviceConditional__LogicsAssignment_7 )* ) ) )
+            // InternalFactoryLogicLangParser.g:2552:1: ( ( ( rule__DeviceConditional__LogicsAssignment_7 ) ) ( ( rule__DeviceConditional__LogicsAssignment_7 )* ) )
             {
-            // InternalFactoryLogicLangParser.g:2375:1: ( ( ( rule__Conditional__LogicsAssignment_8 ) ) ( ( rule__Conditional__LogicsAssignment_8 )* ) )
-            // InternalFactoryLogicLangParser.g:2376:2: ( ( rule__Conditional__LogicsAssignment_8 ) ) ( ( rule__Conditional__LogicsAssignment_8 )* )
+            // InternalFactoryLogicLangParser.g:2552:1: ( ( ( rule__DeviceConditional__LogicsAssignment_7 ) ) ( ( rule__DeviceConditional__LogicsAssignment_7 )* ) )
+            // InternalFactoryLogicLangParser.g:2553:2: ( ( rule__DeviceConditional__LogicsAssignment_7 ) ) ( ( rule__DeviceConditional__LogicsAssignment_7 )* )
             {
-            // InternalFactoryLogicLangParser.g:2376:2: ( ( rule__Conditional__LogicsAssignment_8 ) )
-            // InternalFactoryLogicLangParser.g:2377:3: ( rule__Conditional__LogicsAssignment_8 )
+            // InternalFactoryLogicLangParser.g:2553:2: ( ( rule__DeviceConditional__LogicsAssignment_7 ) )
+            // InternalFactoryLogicLangParser.g:2554:3: ( rule__DeviceConditional__LogicsAssignment_7 )
             {
-             before(grammarAccess.getConditionalAccess().getLogicsAssignment_8()); 
-            // InternalFactoryLogicLangParser.g:2378:3: ( rule__Conditional__LogicsAssignment_8 )
-            // InternalFactoryLogicLangParser.g:2378:4: rule__Conditional__LogicsAssignment_8
+             before(grammarAccess.getDeviceConditionalAccess().getLogicsAssignment_7()); 
+            // InternalFactoryLogicLangParser.g:2555:3: ( rule__DeviceConditional__LogicsAssignment_7 )
+            // InternalFactoryLogicLangParser.g:2555:4: rule__DeviceConditional__LogicsAssignment_7
             {
             pushFollow(FOLLOW_3);
-            rule__Conditional__LogicsAssignment_8();
+            rule__DeviceConditional__LogicsAssignment_7();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getConditionalAccess().getLogicsAssignment_8()); 
+             after(grammarAccess.getDeviceConditionalAccess().getLogicsAssignment_7()); 
 
             }
 
-            // InternalFactoryLogicLangParser.g:2381:2: ( ( rule__Conditional__LogicsAssignment_8 )* )
-            // InternalFactoryLogicLangParser.g:2382:3: ( rule__Conditional__LogicsAssignment_8 )*
+            // InternalFactoryLogicLangParser.g:2558:2: ( ( rule__DeviceConditional__LogicsAssignment_7 )* )
+            // InternalFactoryLogicLangParser.g:2559:3: ( rule__DeviceConditional__LogicsAssignment_7 )*
             {
-             before(grammarAccess.getConditionalAccess().getLogicsAssignment_8()); 
-            // InternalFactoryLogicLangParser.g:2383:3: ( rule__Conditional__LogicsAssignment_8 )*
-            loop19:
+             before(grammarAccess.getDeviceConditionalAccess().getLogicsAssignment_7()); 
+            // InternalFactoryLogicLangParser.g:2560:3: ( rule__DeviceConditional__LogicsAssignment_7 )*
+            loop20:
             do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
+                int alt20=2;
+                int LA20_0 = input.LA(1);
 
-                if ( (LA19_0==For||LA19_0==If||LA19_0==RULE_ID) ) {
-                    alt19=1;
+                if ( (LA20_0==For||LA20_0==If||LA20_0==RULE_STRING) ) {
+                    alt20=1;
                 }
 
 
-                switch (alt19) {
+                switch (alt20) {
             	case 1 :
-            	    // InternalFactoryLogicLangParser.g:2383:4: rule__Conditional__LogicsAssignment_8
+            	    // InternalFactoryLogicLangParser.g:2560:4: rule__DeviceConditional__LogicsAssignment_7
             	    {
             	    pushFollow(FOLLOW_3);
-            	    rule__Conditional__LogicsAssignment_8();
+            	    rule__DeviceConditional__LogicsAssignment_7();
 
             	    state._fsp--;
 
@@ -7494,11 +8097,11 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
             	    break;
 
             	default :
-            	    break loop19;
+            	    break loop20;
                 }
             } while (true);
 
-             after(grammarAccess.getConditionalAccess().getLogicsAssignment_8()); 
+             after(grammarAccess.getDeviceConditionalAccess().getLogicsAssignment_7()); 
 
             }
 
@@ -7520,21 +8123,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__8__Impl"
+    // $ANTLR end "rule__DeviceConditional__Group__7__Impl"
 
 
-    // $ANTLR start "rule__Conditional__Group__9"
-    // InternalFactoryLogicLangParser.g:2392:1: rule__Conditional__Group__9 : rule__Conditional__Group__9__Impl ;
-    public final void rule__Conditional__Group__9() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__8"
+    // InternalFactoryLogicLangParser.g:2569:1: rule__DeviceConditional__Group__8 : rule__DeviceConditional__Group__8__Impl ;
+    public final void rule__DeviceConditional__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2396:1: ( rule__Conditional__Group__9__Impl )
-            // InternalFactoryLogicLangParser.g:2397:2: rule__Conditional__Group__9__Impl
+            // InternalFactoryLogicLangParser.g:2573:1: ( rule__DeviceConditional__Group__8__Impl )
+            // InternalFactoryLogicLangParser.g:2574:2: rule__DeviceConditional__Group__8__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group__9__Impl();
+            rule__DeviceConditional__Group__8__Impl();
 
             state._fsp--;
 
@@ -7553,25 +8156,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__9"
+    // $ANTLR end "rule__DeviceConditional__Group__8"
 
 
-    // $ANTLR start "rule__Conditional__Group__9__Impl"
-    // InternalFactoryLogicLangParser.g:2403:1: rule__Conditional__Group__9__Impl : ( RULE_END ) ;
-    public final void rule__Conditional__Group__9__Impl() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Group__8__Impl"
+    // InternalFactoryLogicLangParser.g:2580:1: rule__DeviceConditional__Group__8__Impl : ( RULE_END ) ;
+    public final void rule__DeviceConditional__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2407:1: ( ( RULE_END ) )
-            // InternalFactoryLogicLangParser.g:2408:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:2584:1: ( ( RULE_END ) )
+            // InternalFactoryLogicLangParser.g:2585:1: ( RULE_END )
             {
-            // InternalFactoryLogicLangParser.g:2408:1: ( RULE_END )
-            // InternalFactoryLogicLangParser.g:2409:2: RULE_END
+            // InternalFactoryLogicLangParser.g:2585:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:2586:2: RULE_END
             {
-             before(grammarAccess.getConditionalAccess().getENDTerminalRuleCall_9()); 
+             before(grammarAccess.getDeviceConditionalAccess().getENDTerminalRuleCall_8()); 
             match(input,RULE_END,FOLLOW_2); 
-             after(grammarAccess.getConditionalAccess().getENDTerminalRuleCall_9()); 
+             after(grammarAccess.getDeviceConditionalAccess().getENDTerminalRuleCall_8()); 
 
             }
 
@@ -7590,26 +8193,101 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group__9__Impl"
+    // $ANTLR end "rule__DeviceConditional__Group__8__Impl"
 
 
-    // $ANTLR start "rule__Conditional__Group_2__0"
-    // InternalFactoryLogicLangParser.g:2419:1: rule__Conditional__Group_2__0 : rule__Conditional__Group_2__0__Impl rule__Conditional__Group_2__1 ;
-    public final void rule__Conditional__Group_2__0() throws RecognitionException {
+    // $ANTLR start "rule__VariableConditional__Group__0"
+    // InternalFactoryLogicLangParser.g:2596:1: rule__VariableConditional__Group__0 : rule__VariableConditional__Group__0__Impl rule__VariableConditional__Group__1 ;
+    public final void rule__VariableConditional__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2423:1: ( rule__Conditional__Group_2__0__Impl rule__Conditional__Group_2__1 )
-            // InternalFactoryLogicLangParser.g:2424:2: rule__Conditional__Group_2__0__Impl rule__Conditional__Group_2__1
+            // InternalFactoryLogicLangParser.g:2600:1: ( rule__VariableConditional__Group__0__Impl rule__VariableConditional__Group__1 )
+            // InternalFactoryLogicLangParser.g:2601:2: rule__VariableConditional__Group__0__Impl rule__VariableConditional__Group__1
+            {
+            pushFollow(FOLLOW_24);
+            rule__VariableConditional__Group__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__VariableConditional__Group__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__0"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__0__Impl"
+    // InternalFactoryLogicLangParser.g:2608:1: rule__VariableConditional__Group__0__Impl : ( If ) ;
+    public final void rule__VariableConditional__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2612:1: ( ( If ) )
+            // InternalFactoryLogicLangParser.g:2613:1: ( If )
+            {
+            // InternalFactoryLogicLangParser.g:2613:1: ( If )
+            // InternalFactoryLogicLangParser.g:2614:2: If
+            {
+             before(grammarAccess.getVariableConditionalAccess().getIfKeyword_0()); 
+            match(input,If,FOLLOW_2); 
+             after(grammarAccess.getVariableConditionalAccess().getIfKeyword_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__0__Impl"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__1"
+    // InternalFactoryLogicLangParser.g:2623:1: rule__VariableConditional__Group__1 : rule__VariableConditional__Group__1__Impl rule__VariableConditional__Group__2 ;
+    public final void rule__VariableConditional__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2627:1: ( rule__VariableConditional__Group__1__Impl rule__VariableConditional__Group__2 )
+            // InternalFactoryLogicLangParser.g:2628:2: rule__VariableConditional__Group__1__Impl rule__VariableConditional__Group__2
             {
             pushFollow(FOLLOW_20);
-            rule__Conditional__Group_2__0__Impl();
+            rule__VariableConditional__Group__1__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group_2__1();
+            rule__VariableConditional__Group__2();
 
             state._fsp--;
 
@@ -7628,60 +8306,37 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group_2__0"
+    // $ANTLR end "rule__VariableConditional__Group__1"
 
 
-    // $ANTLR start "rule__Conditional__Group_2__0__Impl"
-    // InternalFactoryLogicLangParser.g:2431:1: rule__Conditional__Group_2__0__Impl : ( Of ) ;
-    public final void rule__Conditional__Group_2__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalFactoryLogicLangParser.g:2435:1: ( ( Of ) )
-            // InternalFactoryLogicLangParser.g:2436:1: ( Of )
-            {
-            // InternalFactoryLogicLangParser.g:2436:1: ( Of )
-            // InternalFactoryLogicLangParser.g:2437:2: Of
-            {
-             before(grammarAccess.getConditionalAccess().getOfKeyword_2_0()); 
-            match(input,Of,FOLLOW_2); 
-             after(grammarAccess.getConditionalAccess().getOfKeyword_2_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Conditional__Group_2__0__Impl"
-
-
-    // $ANTLR start "rule__Conditional__Group_2__1"
-    // InternalFactoryLogicLangParser.g:2446:1: rule__Conditional__Group_2__1 : rule__Conditional__Group_2__1__Impl ;
-    public final void rule__Conditional__Group_2__1() throws RecognitionException {
+    // $ANTLR start "rule__VariableConditional__Group__1__Impl"
+    // InternalFactoryLogicLangParser.g:2635:1: rule__VariableConditional__Group__1__Impl : ( ( rule__VariableConditional__SourceAssignment_1 ) ) ;
+    public final void rule__VariableConditional__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2450:1: ( rule__Conditional__Group_2__1__Impl )
-            // InternalFactoryLogicLangParser.g:2451:2: rule__Conditional__Group_2__1__Impl
+            // InternalFactoryLogicLangParser.g:2639:1: ( ( ( rule__VariableConditional__SourceAssignment_1 ) ) )
+            // InternalFactoryLogicLangParser.g:2640:1: ( ( rule__VariableConditional__SourceAssignment_1 ) )
+            {
+            // InternalFactoryLogicLangParser.g:2640:1: ( ( rule__VariableConditional__SourceAssignment_1 ) )
+            // InternalFactoryLogicLangParser.g:2641:2: ( rule__VariableConditional__SourceAssignment_1 )
+            {
+             before(grammarAccess.getVariableConditionalAccess().getSourceAssignment_1()); 
+            // InternalFactoryLogicLangParser.g:2642:2: ( rule__VariableConditional__SourceAssignment_1 )
+            // InternalFactoryLogicLangParser.g:2642:3: rule__VariableConditional__SourceAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Conditional__Group_2__1__Impl();
+            rule__VariableConditional__SourceAssignment_1();
 
             state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getVariableConditionalAccess().getSourceAssignment_1()); 
+
+            }
 
 
             }
@@ -7698,35 +8353,63 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group_2__1"
+    // $ANTLR end "rule__VariableConditional__Group__1__Impl"
 
 
-    // $ANTLR start "rule__Conditional__Group_2__1__Impl"
-    // InternalFactoryLogicLangParser.g:2457:1: rule__Conditional__Group_2__1__Impl : ( ( rule__Conditional__SourceAssignment_2_1 ) ) ;
-    public final void rule__Conditional__Group_2__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__VariableConditional__Group__2"
+    // InternalFactoryLogicLangParser.g:2650:1: rule__VariableConditional__Group__2 : rule__VariableConditional__Group__2__Impl rule__VariableConditional__Group__3 ;
+    public final void rule__VariableConditional__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2461:1: ( ( ( rule__Conditional__SourceAssignment_2_1 ) ) )
-            // InternalFactoryLogicLangParser.g:2462:1: ( ( rule__Conditional__SourceAssignment_2_1 ) )
+            // InternalFactoryLogicLangParser.g:2654:1: ( rule__VariableConditional__Group__2__Impl rule__VariableConditional__Group__3 )
+            // InternalFactoryLogicLangParser.g:2655:2: rule__VariableConditional__Group__2__Impl rule__VariableConditional__Group__3
             {
-            // InternalFactoryLogicLangParser.g:2462:1: ( ( rule__Conditional__SourceAssignment_2_1 ) )
-            // InternalFactoryLogicLangParser.g:2463:2: ( rule__Conditional__SourceAssignment_2_1 )
-            {
-             before(grammarAccess.getConditionalAccess().getSourceAssignment_2_1()); 
-            // InternalFactoryLogicLangParser.g:2464:2: ( rule__Conditional__SourceAssignment_2_1 )
-            // InternalFactoryLogicLangParser.g:2464:3: rule__Conditional__SourceAssignment_2_1
-            {
+            pushFollow(FOLLOW_21);
+            rule__VariableConditional__Group__2__Impl();
+
+            state._fsp--;
+
             pushFollow(FOLLOW_2);
-            rule__Conditional__SourceAssignment_2_1();
+            rule__VariableConditional__Group__3();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getConditionalAccess().getSourceAssignment_2_1()); 
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__2"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__2__Impl"
+    // InternalFactoryLogicLangParser.g:2662:1: rule__VariableConditional__Group__2__Impl : ( Is ) ;
+    public final void rule__VariableConditional__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2666:1: ( ( Is ) )
+            // InternalFactoryLogicLangParser.g:2667:1: ( Is )
+            {
+            // InternalFactoryLogicLangParser.g:2667:1: ( Is )
+            // InternalFactoryLogicLangParser.g:2668:2: Is
+            {
+             before(grammarAccess.getVariableConditionalAccess().getIsKeyword_2()); 
+            match(input,Is,FOLLOW_2); 
+             after(grammarAccess.getVariableConditionalAccess().getIsKeyword_2()); 
 
             }
 
@@ -7745,20 +8428,1463 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Group_2__1__Impl"
+    // $ANTLR end "rule__VariableConditional__Group__2__Impl"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__3"
+    // InternalFactoryLogicLangParser.g:2677:1: rule__VariableConditional__Group__3 : rule__VariableConditional__Group__3__Impl rule__VariableConditional__Group__4 ;
+    public final void rule__VariableConditional__Group__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2681:1: ( rule__VariableConditional__Group__3__Impl rule__VariableConditional__Group__4 )
+            // InternalFactoryLogicLangParser.g:2682:2: rule__VariableConditional__Group__3__Impl rule__VariableConditional__Group__4
+            {
+            pushFollow(FOLLOW_21);
+            rule__VariableConditional__Group__3__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__VariableConditional__Group__4();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__3"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__3__Impl"
+    // InternalFactoryLogicLangParser.g:2689:1: rule__VariableConditional__Group__3__Impl : ( ( rule__VariableConditional__OperatorAssignment_3 )? ) ;
+    public final void rule__VariableConditional__Group__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2693:1: ( ( ( rule__VariableConditional__OperatorAssignment_3 )? ) )
+            // InternalFactoryLogicLangParser.g:2694:1: ( ( rule__VariableConditional__OperatorAssignment_3 )? )
+            {
+            // InternalFactoryLogicLangParser.g:2694:1: ( ( rule__VariableConditional__OperatorAssignment_3 )? )
+            // InternalFactoryLogicLangParser.g:2695:2: ( rule__VariableConditional__OperatorAssignment_3 )?
+            {
+             before(grammarAccess.getVariableConditionalAccess().getOperatorAssignment_3()); 
+            // InternalFactoryLogicLangParser.g:2696:2: ( rule__VariableConditional__OperatorAssignment_3 )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
+
+            if ( ((LA21_0>=GreaterThan && LA21_0<=LessThan)||LA21_0==Not) ) {
+                alt21=1;
+            }
+            switch (alt21) {
+                case 1 :
+                    // InternalFactoryLogicLangParser.g:2696:3: rule__VariableConditional__OperatorAssignment_3
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__VariableConditional__OperatorAssignment_3();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getVariableConditionalAccess().getOperatorAssignment_3()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__3__Impl"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__4"
+    // InternalFactoryLogicLangParser.g:2704:1: rule__VariableConditional__Group__4 : rule__VariableConditional__Group__4__Impl rule__VariableConditional__Group__5 ;
+    public final void rule__VariableConditional__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2708:1: ( rule__VariableConditional__Group__4__Impl rule__VariableConditional__Group__5 )
+            // InternalFactoryLogicLangParser.g:2709:2: rule__VariableConditional__Group__4__Impl rule__VariableConditional__Group__5
+            {
+            pushFollow(FOLLOW_22);
+            rule__VariableConditional__Group__4__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__VariableConditional__Group__5();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__4"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__4__Impl"
+    // InternalFactoryLogicLangParser.g:2716:1: rule__VariableConditional__Group__4__Impl : ( ( rule__VariableConditional__Alternatives_4 ) ) ;
+    public final void rule__VariableConditional__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2720:1: ( ( ( rule__VariableConditional__Alternatives_4 ) ) )
+            // InternalFactoryLogicLangParser.g:2721:1: ( ( rule__VariableConditional__Alternatives_4 ) )
+            {
+            // InternalFactoryLogicLangParser.g:2721:1: ( ( rule__VariableConditional__Alternatives_4 ) )
+            // InternalFactoryLogicLangParser.g:2722:2: ( rule__VariableConditional__Alternatives_4 )
+            {
+             before(grammarAccess.getVariableConditionalAccess().getAlternatives_4()); 
+            // InternalFactoryLogicLangParser.g:2723:2: ( rule__VariableConditional__Alternatives_4 )
+            // InternalFactoryLogicLangParser.g:2723:3: rule__VariableConditional__Alternatives_4
+            {
+            pushFollow(FOLLOW_2);
+            rule__VariableConditional__Alternatives_4();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getVariableConditionalAccess().getAlternatives_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__4__Impl"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__5"
+    // InternalFactoryLogicLangParser.g:2731:1: rule__VariableConditional__Group__5 : rule__VariableConditional__Group__5__Impl rule__VariableConditional__Group__6 ;
+    public final void rule__VariableConditional__Group__5() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2735:1: ( rule__VariableConditional__Group__5__Impl rule__VariableConditional__Group__6 )
+            // InternalFactoryLogicLangParser.g:2736:2: rule__VariableConditional__Group__5__Impl rule__VariableConditional__Group__6
+            {
+            pushFollow(FOLLOW_7);
+            rule__VariableConditional__Group__5__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__VariableConditional__Group__6();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__5"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__5__Impl"
+    // InternalFactoryLogicLangParser.g:2743:1: rule__VariableConditional__Group__5__Impl : ( Then ) ;
+    public final void rule__VariableConditional__Group__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2747:1: ( ( Then ) )
+            // InternalFactoryLogicLangParser.g:2748:1: ( Then )
+            {
+            // InternalFactoryLogicLangParser.g:2748:1: ( Then )
+            // InternalFactoryLogicLangParser.g:2749:2: Then
+            {
+             before(grammarAccess.getVariableConditionalAccess().getThenKeyword_5()); 
+            match(input,Then,FOLLOW_2); 
+             after(grammarAccess.getVariableConditionalAccess().getThenKeyword_5()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__5__Impl"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__6"
+    // InternalFactoryLogicLangParser.g:2758:1: rule__VariableConditional__Group__6 : rule__VariableConditional__Group__6__Impl rule__VariableConditional__Group__7 ;
+    public final void rule__VariableConditional__Group__6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2762:1: ( rule__VariableConditional__Group__6__Impl rule__VariableConditional__Group__7 )
+            // InternalFactoryLogicLangParser.g:2763:2: rule__VariableConditional__Group__6__Impl rule__VariableConditional__Group__7
+            {
+            pushFollow(FOLLOW_23);
+            rule__VariableConditional__Group__6__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__VariableConditional__Group__7();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__6"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__6__Impl"
+    // InternalFactoryLogicLangParser.g:2770:1: rule__VariableConditional__Group__6__Impl : ( RULE_BEGIN ) ;
+    public final void rule__VariableConditional__Group__6__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2774:1: ( ( RULE_BEGIN ) )
+            // InternalFactoryLogicLangParser.g:2775:1: ( RULE_BEGIN )
+            {
+            // InternalFactoryLogicLangParser.g:2775:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:2776:2: RULE_BEGIN
+            {
+             before(grammarAccess.getVariableConditionalAccess().getBEGINTerminalRuleCall_6()); 
+            match(input,RULE_BEGIN,FOLLOW_2); 
+             after(grammarAccess.getVariableConditionalAccess().getBEGINTerminalRuleCall_6()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__6__Impl"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__7"
+    // InternalFactoryLogicLangParser.g:2785:1: rule__VariableConditional__Group__7 : rule__VariableConditional__Group__7__Impl rule__VariableConditional__Group__8 ;
+    public final void rule__VariableConditional__Group__7() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2789:1: ( rule__VariableConditional__Group__7__Impl rule__VariableConditional__Group__8 )
+            // InternalFactoryLogicLangParser.g:2790:2: rule__VariableConditional__Group__7__Impl rule__VariableConditional__Group__8
+            {
+            pushFollow(FOLLOW_9);
+            rule__VariableConditional__Group__7__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__VariableConditional__Group__8();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__7"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__7__Impl"
+    // InternalFactoryLogicLangParser.g:2797:1: rule__VariableConditional__Group__7__Impl : ( ( ( rule__VariableConditional__LogicsAssignment_7 ) ) ( ( rule__VariableConditional__LogicsAssignment_7 )* ) ) ;
+    public final void rule__VariableConditional__Group__7__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2801:1: ( ( ( ( rule__VariableConditional__LogicsAssignment_7 ) ) ( ( rule__VariableConditional__LogicsAssignment_7 )* ) ) )
+            // InternalFactoryLogicLangParser.g:2802:1: ( ( ( rule__VariableConditional__LogicsAssignment_7 ) ) ( ( rule__VariableConditional__LogicsAssignment_7 )* ) )
+            {
+            // InternalFactoryLogicLangParser.g:2802:1: ( ( ( rule__VariableConditional__LogicsAssignment_7 ) ) ( ( rule__VariableConditional__LogicsAssignment_7 )* ) )
+            // InternalFactoryLogicLangParser.g:2803:2: ( ( rule__VariableConditional__LogicsAssignment_7 ) ) ( ( rule__VariableConditional__LogicsAssignment_7 )* )
+            {
+            // InternalFactoryLogicLangParser.g:2803:2: ( ( rule__VariableConditional__LogicsAssignment_7 ) )
+            // InternalFactoryLogicLangParser.g:2804:3: ( rule__VariableConditional__LogicsAssignment_7 )
+            {
+             before(grammarAccess.getVariableConditionalAccess().getLogicsAssignment_7()); 
+            // InternalFactoryLogicLangParser.g:2805:3: ( rule__VariableConditional__LogicsAssignment_7 )
+            // InternalFactoryLogicLangParser.g:2805:4: rule__VariableConditional__LogicsAssignment_7
+            {
+            pushFollow(FOLLOW_3);
+            rule__VariableConditional__LogicsAssignment_7();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getVariableConditionalAccess().getLogicsAssignment_7()); 
+
+            }
+
+            // InternalFactoryLogicLangParser.g:2808:2: ( ( rule__VariableConditional__LogicsAssignment_7 )* )
+            // InternalFactoryLogicLangParser.g:2809:3: ( rule__VariableConditional__LogicsAssignment_7 )*
+            {
+             before(grammarAccess.getVariableConditionalAccess().getLogicsAssignment_7()); 
+            // InternalFactoryLogicLangParser.g:2810:3: ( rule__VariableConditional__LogicsAssignment_7 )*
+            loop22:
+            do {
+                int alt22=2;
+                int LA22_0 = input.LA(1);
+
+                if ( (LA22_0==For||LA22_0==If||LA22_0==RULE_STRING) ) {
+                    alt22=1;
+                }
+
+
+                switch (alt22) {
+            	case 1 :
+            	    // InternalFactoryLogicLangParser.g:2810:4: rule__VariableConditional__LogicsAssignment_7
+            	    {
+            	    pushFollow(FOLLOW_3);
+            	    rule__VariableConditional__LogicsAssignment_7();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop22;
+                }
+            } while (true);
+
+             after(grammarAccess.getVariableConditionalAccess().getLogicsAssignment_7()); 
+
+            }
+
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__7__Impl"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__8"
+    // InternalFactoryLogicLangParser.g:2819:1: rule__VariableConditional__Group__8 : rule__VariableConditional__Group__8__Impl ;
+    public final void rule__VariableConditional__Group__8() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2823:1: ( rule__VariableConditional__Group__8__Impl )
+            // InternalFactoryLogicLangParser.g:2824:2: rule__VariableConditional__Group__8__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__VariableConditional__Group__8__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__8"
+
+
+    // $ANTLR start "rule__VariableConditional__Group__8__Impl"
+    // InternalFactoryLogicLangParser.g:2830:1: rule__VariableConditional__Group__8__Impl : ( RULE_END ) ;
+    public final void rule__VariableConditional__Group__8__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2834:1: ( ( RULE_END ) )
+            // InternalFactoryLogicLangParser.g:2835:1: ( RULE_END )
+            {
+            // InternalFactoryLogicLangParser.g:2835:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:2836:2: RULE_END
+            {
+             before(grammarAccess.getVariableConditionalAccess().getENDTerminalRuleCall_8()); 
+            match(input,RULE_END,FOLLOW_2); 
+             after(grammarAccess.getVariableConditionalAccess().getENDTerminalRuleCall_8()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableConditional__Group__8__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__0"
+    // InternalFactoryLogicLangParser.g:2846:1: rule__NumberConditional__Group__0 : rule__NumberConditional__Group__0__Impl rule__NumberConditional__Group__1 ;
+    public final void rule__NumberConditional__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2850:1: ( rule__NumberConditional__Group__0__Impl rule__NumberConditional__Group__1 )
+            // InternalFactoryLogicLangParser.g:2851:2: rule__NumberConditional__Group__0__Impl rule__NumberConditional__Group__1
+            {
+            pushFollow(FOLLOW_13);
+            rule__NumberConditional__Group__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__0"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__0__Impl"
+    // InternalFactoryLogicLangParser.g:2858:1: rule__NumberConditional__Group__0__Impl : ( If ) ;
+    public final void rule__NumberConditional__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2862:1: ( ( If ) )
+            // InternalFactoryLogicLangParser.g:2863:1: ( If )
+            {
+            // InternalFactoryLogicLangParser.g:2863:1: ( If )
+            // InternalFactoryLogicLangParser.g:2864:2: If
+            {
+             before(grammarAccess.getNumberConditionalAccess().getIfKeyword_0()); 
+            match(input,If,FOLLOW_2); 
+             after(grammarAccess.getNumberConditionalAccess().getIfKeyword_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__0__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__1"
+    // InternalFactoryLogicLangParser.g:2873:1: rule__NumberConditional__Group__1 : rule__NumberConditional__Group__1__Impl rule__NumberConditional__Group__2 ;
+    public final void rule__NumberConditional__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2877:1: ( rule__NumberConditional__Group__1__Impl rule__NumberConditional__Group__2 )
+            // InternalFactoryLogicLangParser.g:2878:2: rule__NumberConditional__Group__1__Impl rule__NumberConditional__Group__2
+            {
+            pushFollow(FOLLOW_20);
+            rule__NumberConditional__Group__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__1"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__1__Impl"
+    // InternalFactoryLogicLangParser.g:2885:1: rule__NumberConditional__Group__1__Impl : ( ( rule__NumberConditional__Source_intAssignment_1 ) ) ;
+    public final void rule__NumberConditional__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2889:1: ( ( ( rule__NumberConditional__Source_intAssignment_1 ) ) )
+            // InternalFactoryLogicLangParser.g:2890:1: ( ( rule__NumberConditional__Source_intAssignment_1 ) )
+            {
+            // InternalFactoryLogicLangParser.g:2890:1: ( ( rule__NumberConditional__Source_intAssignment_1 ) )
+            // InternalFactoryLogicLangParser.g:2891:2: ( rule__NumberConditional__Source_intAssignment_1 )
+            {
+             before(grammarAccess.getNumberConditionalAccess().getSource_intAssignment_1()); 
+            // InternalFactoryLogicLangParser.g:2892:2: ( rule__NumberConditional__Source_intAssignment_1 )
+            // InternalFactoryLogicLangParser.g:2892:3: rule__NumberConditional__Source_intAssignment_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Source_intAssignment_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getNumberConditionalAccess().getSource_intAssignment_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__1__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__2"
+    // InternalFactoryLogicLangParser.g:2900:1: rule__NumberConditional__Group__2 : rule__NumberConditional__Group__2__Impl rule__NumberConditional__Group__3 ;
+    public final void rule__NumberConditional__Group__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2904:1: ( rule__NumberConditional__Group__2__Impl rule__NumberConditional__Group__3 )
+            // InternalFactoryLogicLangParser.g:2905:2: rule__NumberConditional__Group__2__Impl rule__NumberConditional__Group__3
+            {
+            pushFollow(FOLLOW_25);
+            rule__NumberConditional__Group__2__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__3();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__2"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__2__Impl"
+    // InternalFactoryLogicLangParser.g:2912:1: rule__NumberConditional__Group__2__Impl : ( Is ) ;
+    public final void rule__NumberConditional__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2916:1: ( ( Is ) )
+            // InternalFactoryLogicLangParser.g:2917:1: ( Is )
+            {
+            // InternalFactoryLogicLangParser.g:2917:1: ( Is )
+            // InternalFactoryLogicLangParser.g:2918:2: Is
+            {
+             before(grammarAccess.getNumberConditionalAccess().getIsKeyword_2()); 
+            match(input,Is,FOLLOW_2); 
+             after(grammarAccess.getNumberConditionalAccess().getIsKeyword_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__2__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__3"
+    // InternalFactoryLogicLangParser.g:2927:1: rule__NumberConditional__Group__3 : rule__NumberConditional__Group__3__Impl rule__NumberConditional__Group__4 ;
+    public final void rule__NumberConditional__Group__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2931:1: ( rule__NumberConditional__Group__3__Impl rule__NumberConditional__Group__4 )
+            // InternalFactoryLogicLangParser.g:2932:2: rule__NumberConditional__Group__3__Impl rule__NumberConditional__Group__4
+            {
+            pushFollow(FOLLOW_25);
+            rule__NumberConditional__Group__3__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__4();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__3"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__3__Impl"
+    // InternalFactoryLogicLangParser.g:2939:1: rule__NumberConditional__Group__3__Impl : ( ( rule__NumberConditional__OperatorAssignment_3 )? ) ;
+    public final void rule__NumberConditional__Group__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2943:1: ( ( ( rule__NumberConditional__OperatorAssignment_3 )? ) )
+            // InternalFactoryLogicLangParser.g:2944:1: ( ( rule__NumberConditional__OperatorAssignment_3 )? )
+            {
+            // InternalFactoryLogicLangParser.g:2944:1: ( ( rule__NumberConditional__OperatorAssignment_3 )? )
+            // InternalFactoryLogicLangParser.g:2945:2: ( rule__NumberConditional__OperatorAssignment_3 )?
+            {
+             before(grammarAccess.getNumberConditionalAccess().getOperatorAssignment_3()); 
+            // InternalFactoryLogicLangParser.g:2946:2: ( rule__NumberConditional__OperatorAssignment_3 )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
+
+            if ( ((LA23_0>=GreaterThan && LA23_0<=LessThan)||LA23_0==Not) ) {
+                alt23=1;
+            }
+            switch (alt23) {
+                case 1 :
+                    // InternalFactoryLogicLangParser.g:2946:3: rule__NumberConditional__OperatorAssignment_3
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__NumberConditional__OperatorAssignment_3();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getNumberConditionalAccess().getOperatorAssignment_3()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__3__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__4"
+    // InternalFactoryLogicLangParser.g:2954:1: rule__NumberConditional__Group__4 : rule__NumberConditional__Group__4__Impl rule__NumberConditional__Group__5 ;
+    public final void rule__NumberConditional__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2958:1: ( rule__NumberConditional__Group__4__Impl rule__NumberConditional__Group__5 )
+            // InternalFactoryLogicLangParser.g:2959:2: rule__NumberConditional__Group__4__Impl rule__NumberConditional__Group__5
+            {
+            pushFollow(FOLLOW_26);
+            rule__NumberConditional__Group__4__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__5();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__4"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__4__Impl"
+    // InternalFactoryLogicLangParser.g:2966:1: rule__NumberConditional__Group__4__Impl : ( Equal ) ;
+    public final void rule__NumberConditional__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2970:1: ( ( Equal ) )
+            // InternalFactoryLogicLangParser.g:2971:1: ( Equal )
+            {
+            // InternalFactoryLogicLangParser.g:2971:1: ( Equal )
+            // InternalFactoryLogicLangParser.g:2972:2: Equal
+            {
+             before(grammarAccess.getNumberConditionalAccess().getEqualKeyword_4()); 
+            match(input,Equal,FOLLOW_2); 
+             after(grammarAccess.getNumberConditionalAccess().getEqualKeyword_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__4__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__5"
+    // InternalFactoryLogicLangParser.g:2981:1: rule__NumberConditional__Group__5 : rule__NumberConditional__Group__5__Impl rule__NumberConditional__Group__6 ;
+    public final void rule__NumberConditional__Group__5() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2985:1: ( rule__NumberConditional__Group__5__Impl rule__NumberConditional__Group__6 )
+            // InternalFactoryLogicLangParser.g:2986:2: rule__NumberConditional__Group__5__Impl rule__NumberConditional__Group__6
+            {
+            pushFollow(FOLLOW_27);
+            rule__NumberConditional__Group__5__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__6();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__5"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__5__Impl"
+    // InternalFactoryLogicLangParser.g:2993:1: rule__NumberConditional__Group__5__Impl : ( To ) ;
+    public final void rule__NumberConditional__Group__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:2997:1: ( ( To ) )
+            // InternalFactoryLogicLangParser.g:2998:1: ( To )
+            {
+            // InternalFactoryLogicLangParser.g:2998:1: ( To )
+            // InternalFactoryLogicLangParser.g:2999:2: To
+            {
+             before(grammarAccess.getNumberConditionalAccess().getToKeyword_5()); 
+            match(input,To,FOLLOW_2); 
+             after(grammarAccess.getNumberConditionalAccess().getToKeyword_5()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__5__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__6"
+    // InternalFactoryLogicLangParser.g:3008:1: rule__NumberConditional__Group__6 : rule__NumberConditional__Group__6__Impl rule__NumberConditional__Group__7 ;
+    public final void rule__NumberConditional__Group__6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3012:1: ( rule__NumberConditional__Group__6__Impl rule__NumberConditional__Group__7 )
+            // InternalFactoryLogicLangParser.g:3013:2: rule__NumberConditional__Group__6__Impl rule__NumberConditional__Group__7
+            {
+            pushFollow(FOLLOW_22);
+            rule__NumberConditional__Group__6__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__7();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__6"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__6__Impl"
+    // InternalFactoryLogicLangParser.g:3020:1: rule__NumberConditional__Group__6__Impl : ( ( rule__NumberConditional__Alternatives_6 ) ) ;
+    public final void rule__NumberConditional__Group__6__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3024:1: ( ( ( rule__NumberConditional__Alternatives_6 ) ) )
+            // InternalFactoryLogicLangParser.g:3025:1: ( ( rule__NumberConditional__Alternatives_6 ) )
+            {
+            // InternalFactoryLogicLangParser.g:3025:1: ( ( rule__NumberConditional__Alternatives_6 ) )
+            // InternalFactoryLogicLangParser.g:3026:2: ( rule__NumberConditional__Alternatives_6 )
+            {
+             before(grammarAccess.getNumberConditionalAccess().getAlternatives_6()); 
+            // InternalFactoryLogicLangParser.g:3027:2: ( rule__NumberConditional__Alternatives_6 )
+            // InternalFactoryLogicLangParser.g:3027:3: rule__NumberConditional__Alternatives_6
+            {
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Alternatives_6();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getNumberConditionalAccess().getAlternatives_6()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__6__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__7"
+    // InternalFactoryLogicLangParser.g:3035:1: rule__NumberConditional__Group__7 : rule__NumberConditional__Group__7__Impl rule__NumberConditional__Group__8 ;
+    public final void rule__NumberConditional__Group__7() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3039:1: ( rule__NumberConditional__Group__7__Impl rule__NumberConditional__Group__8 )
+            // InternalFactoryLogicLangParser.g:3040:2: rule__NumberConditional__Group__7__Impl rule__NumberConditional__Group__8
+            {
+            pushFollow(FOLLOW_7);
+            rule__NumberConditional__Group__7__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__8();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__7"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__7__Impl"
+    // InternalFactoryLogicLangParser.g:3047:1: rule__NumberConditional__Group__7__Impl : ( Then ) ;
+    public final void rule__NumberConditional__Group__7__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3051:1: ( ( Then ) )
+            // InternalFactoryLogicLangParser.g:3052:1: ( Then )
+            {
+            // InternalFactoryLogicLangParser.g:3052:1: ( Then )
+            // InternalFactoryLogicLangParser.g:3053:2: Then
+            {
+             before(grammarAccess.getNumberConditionalAccess().getThenKeyword_7()); 
+            match(input,Then,FOLLOW_2); 
+             after(grammarAccess.getNumberConditionalAccess().getThenKeyword_7()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__7__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__8"
+    // InternalFactoryLogicLangParser.g:3062:1: rule__NumberConditional__Group__8 : rule__NumberConditional__Group__8__Impl rule__NumberConditional__Group__9 ;
+    public final void rule__NumberConditional__Group__8() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3066:1: ( rule__NumberConditional__Group__8__Impl rule__NumberConditional__Group__9 )
+            // InternalFactoryLogicLangParser.g:3067:2: rule__NumberConditional__Group__8__Impl rule__NumberConditional__Group__9
+            {
+            pushFollow(FOLLOW_23);
+            rule__NumberConditional__Group__8__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__9();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__8"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__8__Impl"
+    // InternalFactoryLogicLangParser.g:3074:1: rule__NumberConditional__Group__8__Impl : ( RULE_BEGIN ) ;
+    public final void rule__NumberConditional__Group__8__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3078:1: ( ( RULE_BEGIN ) )
+            // InternalFactoryLogicLangParser.g:3079:1: ( RULE_BEGIN )
+            {
+            // InternalFactoryLogicLangParser.g:3079:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:3080:2: RULE_BEGIN
+            {
+             before(grammarAccess.getNumberConditionalAccess().getBEGINTerminalRuleCall_8()); 
+            match(input,RULE_BEGIN,FOLLOW_2); 
+             after(grammarAccess.getNumberConditionalAccess().getBEGINTerminalRuleCall_8()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__8__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__9"
+    // InternalFactoryLogicLangParser.g:3089:1: rule__NumberConditional__Group__9 : rule__NumberConditional__Group__9__Impl rule__NumberConditional__Group__10 ;
+    public final void rule__NumberConditional__Group__9() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3093:1: ( rule__NumberConditional__Group__9__Impl rule__NumberConditional__Group__10 )
+            // InternalFactoryLogicLangParser.g:3094:2: rule__NumberConditional__Group__9__Impl rule__NumberConditional__Group__10
+            {
+            pushFollow(FOLLOW_9);
+            rule__NumberConditional__Group__9__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__10();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__9"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__9__Impl"
+    // InternalFactoryLogicLangParser.g:3101:1: rule__NumberConditional__Group__9__Impl : ( ( ( rule__NumberConditional__LogicsAssignment_9 ) ) ( ( rule__NumberConditional__LogicsAssignment_9 )* ) ) ;
+    public final void rule__NumberConditional__Group__9__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3105:1: ( ( ( ( rule__NumberConditional__LogicsAssignment_9 ) ) ( ( rule__NumberConditional__LogicsAssignment_9 )* ) ) )
+            // InternalFactoryLogicLangParser.g:3106:1: ( ( ( rule__NumberConditional__LogicsAssignment_9 ) ) ( ( rule__NumberConditional__LogicsAssignment_9 )* ) )
+            {
+            // InternalFactoryLogicLangParser.g:3106:1: ( ( ( rule__NumberConditional__LogicsAssignment_9 ) ) ( ( rule__NumberConditional__LogicsAssignment_9 )* ) )
+            // InternalFactoryLogicLangParser.g:3107:2: ( ( rule__NumberConditional__LogicsAssignment_9 ) ) ( ( rule__NumberConditional__LogicsAssignment_9 )* )
+            {
+            // InternalFactoryLogicLangParser.g:3107:2: ( ( rule__NumberConditional__LogicsAssignment_9 ) )
+            // InternalFactoryLogicLangParser.g:3108:3: ( rule__NumberConditional__LogicsAssignment_9 )
+            {
+             before(grammarAccess.getNumberConditionalAccess().getLogicsAssignment_9()); 
+            // InternalFactoryLogicLangParser.g:3109:3: ( rule__NumberConditional__LogicsAssignment_9 )
+            // InternalFactoryLogicLangParser.g:3109:4: rule__NumberConditional__LogicsAssignment_9
+            {
+            pushFollow(FOLLOW_3);
+            rule__NumberConditional__LogicsAssignment_9();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getNumberConditionalAccess().getLogicsAssignment_9()); 
+
+            }
+
+            // InternalFactoryLogicLangParser.g:3112:2: ( ( rule__NumberConditional__LogicsAssignment_9 )* )
+            // InternalFactoryLogicLangParser.g:3113:3: ( rule__NumberConditional__LogicsAssignment_9 )*
+            {
+             before(grammarAccess.getNumberConditionalAccess().getLogicsAssignment_9()); 
+            // InternalFactoryLogicLangParser.g:3114:3: ( rule__NumberConditional__LogicsAssignment_9 )*
+            loop24:
+            do {
+                int alt24=2;
+                int LA24_0 = input.LA(1);
+
+                if ( (LA24_0==For||LA24_0==If||LA24_0==RULE_STRING) ) {
+                    alt24=1;
+                }
+
+
+                switch (alt24) {
+            	case 1 :
+            	    // InternalFactoryLogicLangParser.g:3114:4: rule__NumberConditional__LogicsAssignment_9
+            	    {
+            	    pushFollow(FOLLOW_3);
+            	    rule__NumberConditional__LogicsAssignment_9();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop24;
+                }
+            } while (true);
+
+             after(grammarAccess.getNumberConditionalAccess().getLogicsAssignment_9()); 
+
+            }
+
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__9__Impl"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__10"
+    // InternalFactoryLogicLangParser.g:3123:1: rule__NumberConditional__Group__10 : rule__NumberConditional__Group__10__Impl ;
+    public final void rule__NumberConditional__Group__10() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3127:1: ( rule__NumberConditional__Group__10__Impl )
+            // InternalFactoryLogicLangParser.g:3128:2: rule__NumberConditional__Group__10__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__NumberConditional__Group__10__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__10"
+
+
+    // $ANTLR start "rule__NumberConditional__Group__10__Impl"
+    // InternalFactoryLogicLangParser.g:3134:1: rule__NumberConditional__Group__10__Impl : ( RULE_END ) ;
+    public final void rule__NumberConditional__Group__10__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3138:1: ( ( RULE_END ) )
+            // InternalFactoryLogicLangParser.g:3139:1: ( RULE_END )
+            {
+            // InternalFactoryLogicLangParser.g:3139:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:3140:2: RULE_END
+            {
+             before(grammarAccess.getNumberConditionalAccess().getENDTerminalRuleCall_10()); 
+            match(input,RULE_END,FOLLOW_2); 
+             after(grammarAccess.getNumberConditionalAccess().getENDTerminalRuleCall_10()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Group__10__Impl"
 
 
     // $ANTLR start "rule__Loop__Group__0"
-    // InternalFactoryLogicLangParser.g:2473:1: rule__Loop__Group__0 : rule__Loop__Group__0__Impl rule__Loop__Group__1 ;
+    // InternalFactoryLogicLangParser.g:3150:1: rule__Loop__Group__0 : rule__Loop__Group__0__Impl rule__Loop__Group__1 ;
     public final void rule__Loop__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2477:1: ( rule__Loop__Group__0__Impl rule__Loop__Group__1 )
-            // InternalFactoryLogicLangParser.g:2478:2: rule__Loop__Group__0__Impl rule__Loop__Group__1
+            // InternalFactoryLogicLangParser.g:3154:1: ( rule__Loop__Group__0__Impl rule__Loop__Group__1 )
+            // InternalFactoryLogicLangParser.g:3155:2: rule__Loop__Group__0__Impl rule__Loop__Group__1
             {
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_28);
             rule__Loop__Group__0__Impl();
 
             state._fsp--;
@@ -7787,17 +9913,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:2485:1: rule__Loop__Group__0__Impl : ( For ) ;
+    // InternalFactoryLogicLangParser.g:3162:1: rule__Loop__Group__0__Impl : ( For ) ;
     public final void rule__Loop__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2489:1: ( ( For ) )
-            // InternalFactoryLogicLangParser.g:2490:1: ( For )
+            // InternalFactoryLogicLangParser.g:3166:1: ( ( For ) )
+            // InternalFactoryLogicLangParser.g:3167:1: ( For )
             {
-            // InternalFactoryLogicLangParser.g:2490:1: ( For )
-            // InternalFactoryLogicLangParser.g:2491:2: For
+            // InternalFactoryLogicLangParser.g:3167:1: ( For )
+            // InternalFactoryLogicLangParser.g:3168:2: For
             {
              before(grammarAccess.getLoopAccess().getForKeyword_0()); 
             match(input,For,FOLLOW_2); 
@@ -7824,16 +9950,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__1"
-    // InternalFactoryLogicLangParser.g:2500:1: rule__Loop__Group__1 : rule__Loop__Group__1__Impl rule__Loop__Group__2 ;
+    // InternalFactoryLogicLangParser.g:3177:1: rule__Loop__Group__1 : rule__Loop__Group__1__Impl rule__Loop__Group__2 ;
     public final void rule__Loop__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2504:1: ( rule__Loop__Group__1__Impl rule__Loop__Group__2 )
-            // InternalFactoryLogicLangParser.g:2505:2: rule__Loop__Group__1__Impl rule__Loop__Group__2
+            // InternalFactoryLogicLangParser.g:3181:1: ( rule__Loop__Group__1__Impl rule__Loop__Group__2 )
+            // InternalFactoryLogicLangParser.g:3182:2: rule__Loop__Group__1__Impl rule__Loop__Group__2
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_29);
             rule__Loop__Group__1__Impl();
 
             state._fsp--;
@@ -7862,21 +9988,31 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:2512:1: rule__Loop__Group__1__Impl : ( Each ) ;
+    // InternalFactoryLogicLangParser.g:3189:1: rule__Loop__Group__1__Impl : ( ( rule__Loop__VariableAssignment_1 ) ) ;
     public final void rule__Loop__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2516:1: ( ( Each ) )
-            // InternalFactoryLogicLangParser.g:2517:1: ( Each )
+            // InternalFactoryLogicLangParser.g:3193:1: ( ( ( rule__Loop__VariableAssignment_1 ) ) )
+            // InternalFactoryLogicLangParser.g:3194:1: ( ( rule__Loop__VariableAssignment_1 ) )
             {
-            // InternalFactoryLogicLangParser.g:2517:1: ( Each )
-            // InternalFactoryLogicLangParser.g:2518:2: Each
+            // InternalFactoryLogicLangParser.g:3194:1: ( ( rule__Loop__VariableAssignment_1 ) )
+            // InternalFactoryLogicLangParser.g:3195:2: ( rule__Loop__VariableAssignment_1 )
             {
-             before(grammarAccess.getLoopAccess().getEachKeyword_1()); 
-            match(input,Each,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getEachKeyword_1()); 
+             before(grammarAccess.getLoopAccess().getVariableAssignment_1()); 
+            // InternalFactoryLogicLangParser.g:3196:2: ( rule__Loop__VariableAssignment_1 )
+            // InternalFactoryLogicLangParser.g:3196:3: rule__Loop__VariableAssignment_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__Loop__VariableAssignment_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getLoopAccess().getVariableAssignment_1()); 
 
             }
 
@@ -7899,16 +10035,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__2"
-    // InternalFactoryLogicLangParser.g:2527:1: rule__Loop__Group__2 : rule__Loop__Group__2__Impl rule__Loop__Group__3 ;
+    // InternalFactoryLogicLangParser.g:3204:1: rule__Loop__Group__2 : rule__Loop__Group__2__Impl rule__Loop__Group__3 ;
     public final void rule__Loop__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2531:1: ( rule__Loop__Group__2__Impl rule__Loop__Group__3 )
-            // InternalFactoryLogicLangParser.g:2532:2: rule__Loop__Group__2__Impl rule__Loop__Group__3
+            // InternalFactoryLogicLangParser.g:3208:1: ( rule__Loop__Group__2__Impl rule__Loop__Group__3 )
+            // InternalFactoryLogicLangParser.g:3209:2: rule__Loop__Group__2__Impl rule__Loop__Group__3
             {
-            pushFollow(FOLLOW_26);
+            pushFollow(FOLLOW_24);
             rule__Loop__Group__2__Impl();
 
             state._fsp--;
@@ -7937,31 +10073,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:2539:1: rule__Loop__Group__2__Impl : ( ( rule__Loop__NameAssignment_2 ) ) ;
+    // InternalFactoryLogicLangParser.g:3216:1: rule__Loop__Group__2__Impl : ( In ) ;
     public final void rule__Loop__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2543:1: ( ( ( rule__Loop__NameAssignment_2 ) ) )
-            // InternalFactoryLogicLangParser.g:2544:1: ( ( rule__Loop__NameAssignment_2 ) )
+            // InternalFactoryLogicLangParser.g:3220:1: ( ( In ) )
+            // InternalFactoryLogicLangParser.g:3221:1: ( In )
             {
-            // InternalFactoryLogicLangParser.g:2544:1: ( ( rule__Loop__NameAssignment_2 ) )
-            // InternalFactoryLogicLangParser.g:2545:2: ( rule__Loop__NameAssignment_2 )
+            // InternalFactoryLogicLangParser.g:3221:1: ( In )
+            // InternalFactoryLogicLangParser.g:3222:2: In
             {
-             before(grammarAccess.getLoopAccess().getNameAssignment_2()); 
-            // InternalFactoryLogicLangParser.g:2546:2: ( rule__Loop__NameAssignment_2 )
-            // InternalFactoryLogicLangParser.g:2546:3: rule__Loop__NameAssignment_2
-            {
-            pushFollow(FOLLOW_2);
-            rule__Loop__NameAssignment_2();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getLoopAccess().getNameAssignment_2()); 
+             before(grammarAccess.getLoopAccess().getInKeyword_2()); 
+            match(input,In,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getInKeyword_2()); 
 
             }
 
@@ -7984,16 +10110,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__3"
-    // InternalFactoryLogicLangParser.g:2554:1: rule__Loop__Group__3 : rule__Loop__Group__3__Impl rule__Loop__Group__4 ;
+    // InternalFactoryLogicLangParser.g:3231:1: rule__Loop__Group__3 : rule__Loop__Group__3__Impl rule__Loop__Group__4 ;
     public final void rule__Loop__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2558:1: ( rule__Loop__Group__3__Impl rule__Loop__Group__4 )
-            // InternalFactoryLogicLangParser.g:2559:2: rule__Loop__Group__3__Impl rule__Loop__Group__4
+            // InternalFactoryLogicLangParser.g:3235:1: ( rule__Loop__Group__3__Impl rule__Loop__Group__4 )
+            // InternalFactoryLogicLangParser.g:3236:2: rule__Loop__Group__3__Impl rule__Loop__Group__4
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_30);
             rule__Loop__Group__3__Impl();
 
             state._fsp--;
@@ -8022,21 +10148,31 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:2566:1: rule__Loop__Group__3__Impl : ( In ) ;
+    // InternalFactoryLogicLangParser.g:3243:1: rule__Loop__Group__3__Impl : ( ( rule__Loop__ListAssignment_3 ) ) ;
     public final void rule__Loop__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2570:1: ( ( In ) )
-            // InternalFactoryLogicLangParser.g:2571:1: ( In )
+            // InternalFactoryLogicLangParser.g:3247:1: ( ( ( rule__Loop__ListAssignment_3 ) ) )
+            // InternalFactoryLogicLangParser.g:3248:1: ( ( rule__Loop__ListAssignment_3 ) )
             {
-            // InternalFactoryLogicLangParser.g:2571:1: ( In )
-            // InternalFactoryLogicLangParser.g:2572:2: In
+            // InternalFactoryLogicLangParser.g:3248:1: ( ( rule__Loop__ListAssignment_3 ) )
+            // InternalFactoryLogicLangParser.g:3249:2: ( rule__Loop__ListAssignment_3 )
             {
-             before(grammarAccess.getLoopAccess().getInKeyword_3()); 
-            match(input,In,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getInKeyword_3()); 
+             before(grammarAccess.getLoopAccess().getListAssignment_3()); 
+            // InternalFactoryLogicLangParser.g:3250:2: ( rule__Loop__ListAssignment_3 )
+            // InternalFactoryLogicLangParser.g:3250:3: rule__Loop__ListAssignment_3
+            {
+            pushFollow(FOLLOW_2);
+            rule__Loop__ListAssignment_3();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getLoopAccess().getListAssignment_3()); 
 
             }
 
@@ -8059,16 +10195,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__4"
-    // InternalFactoryLogicLangParser.g:2581:1: rule__Loop__Group__4 : rule__Loop__Group__4__Impl rule__Loop__Group__5 ;
+    // InternalFactoryLogicLangParser.g:3258:1: rule__Loop__Group__4 : rule__Loop__Group__4__Impl rule__Loop__Group__5 ;
     public final void rule__Loop__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2585:1: ( rule__Loop__Group__4__Impl rule__Loop__Group__5 )
-            // InternalFactoryLogicLangParser.g:2586:2: rule__Loop__Group__4__Impl rule__Loop__Group__5
+            // InternalFactoryLogicLangParser.g:3262:1: ( rule__Loop__Group__4__Impl rule__Loop__Group__5 )
+            // InternalFactoryLogicLangParser.g:3263:2: rule__Loop__Group__4__Impl rule__Loop__Group__5
             {
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_30);
             rule__Loop__Group__4__Impl();
 
             state._fsp--;
@@ -8097,31 +10233,42 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:2593:1: rule__Loop__Group__4__Impl : ( ( rule__Loop__ListAssignment_4 ) ) ;
+    // InternalFactoryLogicLangParser.g:3270:1: rule__Loop__Group__4__Impl : ( ( rule__Loop__Group_4__0 )? ) ;
     public final void rule__Loop__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2597:1: ( ( ( rule__Loop__ListAssignment_4 ) ) )
-            // InternalFactoryLogicLangParser.g:2598:1: ( ( rule__Loop__ListAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:3274:1: ( ( ( rule__Loop__Group_4__0 )? ) )
+            // InternalFactoryLogicLangParser.g:3275:1: ( ( rule__Loop__Group_4__0 )? )
             {
-            // InternalFactoryLogicLangParser.g:2598:1: ( ( rule__Loop__ListAssignment_4 ) )
-            // InternalFactoryLogicLangParser.g:2599:2: ( rule__Loop__ListAssignment_4 )
+            // InternalFactoryLogicLangParser.g:3275:1: ( ( rule__Loop__Group_4__0 )? )
+            // InternalFactoryLogicLangParser.g:3276:2: ( rule__Loop__Group_4__0 )?
             {
-             before(grammarAccess.getLoopAccess().getListAssignment_4()); 
-            // InternalFactoryLogicLangParser.g:2600:2: ( rule__Loop__ListAssignment_4 )
-            // InternalFactoryLogicLangParser.g:2600:3: rule__Loop__ListAssignment_4
-            {
-            pushFollow(FOLLOW_2);
-            rule__Loop__ListAssignment_4();
+             before(grammarAccess.getLoopAccess().getGroup_4()); 
+            // InternalFactoryLogicLangParser.g:3277:2: ( rule__Loop__Group_4__0 )?
+            int alt25=2;
+            int LA25_0 = input.LA(1);
 
-            state._fsp--;
+            if ( (LA25_0==Of) ) {
+                alt25=1;
+            }
+            switch (alt25) {
+                case 1 :
+                    // InternalFactoryLogicLangParser.g:3277:3: rule__Loop__Group_4__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__Loop__Group_4__0();
 
+                    state._fsp--;
+
+
+                    }
+                    break;
 
             }
 
-             after(grammarAccess.getLoopAccess().getListAssignment_4()); 
+             after(grammarAccess.getLoopAccess().getGroup_4()); 
 
             }
 
@@ -8144,16 +10291,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__5"
-    // InternalFactoryLogicLangParser.g:2608:1: rule__Loop__Group__5 : rule__Loop__Group__5__Impl rule__Loop__Group__6 ;
+    // InternalFactoryLogicLangParser.g:3285:1: rule__Loop__Group__5 : rule__Loop__Group__5__Impl rule__Loop__Group__6 ;
     public final void rule__Loop__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2612:1: ( rule__Loop__Group__5__Impl rule__Loop__Group__6 )
-            // InternalFactoryLogicLangParser.g:2613:2: rule__Loop__Group__5__Impl rule__Loop__Group__6
+            // InternalFactoryLogicLangParser.g:3289:1: ( rule__Loop__Group__5__Impl rule__Loop__Group__6 )
+            // InternalFactoryLogicLangParser.g:3290:2: rule__Loop__Group__5__Impl rule__Loop__Group__6
             {
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_20);
             rule__Loop__Group__5__Impl();
 
             state._fsp--;
@@ -8182,42 +10329,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__5__Impl"
-    // InternalFactoryLogicLangParser.g:2620:1: rule__Loop__Group__5__Impl : ( ( rule__Loop__Group_5__0 )? ) ;
+    // InternalFactoryLogicLangParser.g:3297:1: rule__Loop__Group__5__Impl : ( That ) ;
     public final void rule__Loop__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2624:1: ( ( ( rule__Loop__Group_5__0 )? ) )
-            // InternalFactoryLogicLangParser.g:2625:1: ( ( rule__Loop__Group_5__0 )? )
+            // InternalFactoryLogicLangParser.g:3301:1: ( ( That ) )
+            // InternalFactoryLogicLangParser.g:3302:1: ( That )
             {
-            // InternalFactoryLogicLangParser.g:2625:1: ( ( rule__Loop__Group_5__0 )? )
-            // InternalFactoryLogicLangParser.g:2626:2: ( rule__Loop__Group_5__0 )?
+            // InternalFactoryLogicLangParser.g:3302:1: ( That )
+            // InternalFactoryLogicLangParser.g:3303:2: That
             {
-             before(grammarAccess.getLoopAccess().getGroup_5()); 
-            // InternalFactoryLogicLangParser.g:2627:2: ( rule__Loop__Group_5__0 )?
-            int alt20=2;
-            int LA20_0 = input.LA(1);
-
-            if ( (LA20_0==Of) ) {
-                alt20=1;
-            }
-            switch (alt20) {
-                case 1 :
-                    // InternalFactoryLogicLangParser.g:2627:3: rule__Loop__Group_5__0
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__Loop__Group_5__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getLoopAccess().getGroup_5()); 
+             before(grammarAccess.getLoopAccess().getThatKeyword_5()); 
+            match(input,That,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getThatKeyword_5()); 
 
             }
 
@@ -8240,16 +10366,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__6"
-    // InternalFactoryLogicLangParser.g:2635:1: rule__Loop__Group__6 : rule__Loop__Group__6__Impl rule__Loop__Group__7 ;
+    // InternalFactoryLogicLangParser.g:3312:1: rule__Loop__Group__6 : rule__Loop__Group__6__Impl rule__Loop__Group__7 ;
     public final void rule__Loop__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2639:1: ( rule__Loop__Group__6__Impl rule__Loop__Group__7 )
-            // InternalFactoryLogicLangParser.g:2640:2: rule__Loop__Group__6__Impl rule__Loop__Group__7
+            // InternalFactoryLogicLangParser.g:3316:1: ( rule__Loop__Group__6__Impl rule__Loop__Group__7 )
+            // InternalFactoryLogicLangParser.g:3317:2: rule__Loop__Group__6__Impl rule__Loop__Group__7
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_21);
             rule__Loop__Group__6__Impl();
 
             state._fsp--;
@@ -8278,21 +10404,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__6__Impl"
-    // InternalFactoryLogicLangParser.g:2647:1: rule__Loop__Group__6__Impl : ( That ) ;
+    // InternalFactoryLogicLangParser.g:3324:1: rule__Loop__Group__6__Impl : ( Is ) ;
     public final void rule__Loop__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2651:1: ( ( That ) )
-            // InternalFactoryLogicLangParser.g:2652:1: ( That )
+            // InternalFactoryLogicLangParser.g:3328:1: ( ( Is ) )
+            // InternalFactoryLogicLangParser.g:3329:1: ( Is )
             {
-            // InternalFactoryLogicLangParser.g:2652:1: ( That )
-            // InternalFactoryLogicLangParser.g:2653:2: That
+            // InternalFactoryLogicLangParser.g:3329:1: ( Is )
+            // InternalFactoryLogicLangParser.g:3330:2: Is
             {
-             before(grammarAccess.getLoopAccess().getThatKeyword_6()); 
-            match(input,That,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getThatKeyword_6()); 
+             before(grammarAccess.getLoopAccess().getIsKeyword_6()); 
+            match(input,Is,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getIsKeyword_6()); 
 
             }
 
@@ -8315,16 +10441,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__7"
-    // InternalFactoryLogicLangParser.g:2662:1: rule__Loop__Group__7 : rule__Loop__Group__7__Impl rule__Loop__Group__8 ;
+    // InternalFactoryLogicLangParser.g:3339:1: rule__Loop__Group__7 : rule__Loop__Group__7__Impl rule__Loop__Group__8 ;
     public final void rule__Loop__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2666:1: ( rule__Loop__Group__7__Impl rule__Loop__Group__8 )
-            // InternalFactoryLogicLangParser.g:2667:2: rule__Loop__Group__7__Impl rule__Loop__Group__8
+            // InternalFactoryLogicLangParser.g:3343:1: ( rule__Loop__Group__7__Impl rule__Loop__Group__8 )
+            // InternalFactoryLogicLangParser.g:3344:2: rule__Loop__Group__7__Impl rule__Loop__Group__8
             {
-            pushFollow(FOLLOW_22);
+            pushFollow(FOLLOW_21);
             rule__Loop__Group__7__Impl();
 
             state._fsp--;
@@ -8353,21 +10479,42 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__7__Impl"
-    // InternalFactoryLogicLangParser.g:2674:1: rule__Loop__Group__7__Impl : ( Is ) ;
+    // InternalFactoryLogicLangParser.g:3351:1: rule__Loop__Group__7__Impl : ( ( rule__Loop__OperatorAssignment_7 )? ) ;
     public final void rule__Loop__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2678:1: ( ( Is ) )
-            // InternalFactoryLogicLangParser.g:2679:1: ( Is )
+            // InternalFactoryLogicLangParser.g:3355:1: ( ( ( rule__Loop__OperatorAssignment_7 )? ) )
+            // InternalFactoryLogicLangParser.g:3356:1: ( ( rule__Loop__OperatorAssignment_7 )? )
             {
-            // InternalFactoryLogicLangParser.g:2679:1: ( Is )
-            // InternalFactoryLogicLangParser.g:2680:2: Is
+            // InternalFactoryLogicLangParser.g:3356:1: ( ( rule__Loop__OperatorAssignment_7 )? )
+            // InternalFactoryLogicLangParser.g:3357:2: ( rule__Loop__OperatorAssignment_7 )?
             {
-             before(grammarAccess.getLoopAccess().getIsKeyword_7()); 
-            match(input,Is,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getIsKeyword_7()); 
+             before(grammarAccess.getLoopAccess().getOperatorAssignment_7()); 
+            // InternalFactoryLogicLangParser.g:3358:2: ( rule__Loop__OperatorAssignment_7 )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
+
+            if ( ((LA26_0>=GreaterThan && LA26_0<=LessThan)||LA26_0==Not) ) {
+                alt26=1;
+            }
+            switch (alt26) {
+                case 1 :
+                    // InternalFactoryLogicLangParser.g:3358:3: rule__Loop__OperatorAssignment_7
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__Loop__OperatorAssignment_7();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getLoopAccess().getOperatorAssignment_7()); 
 
             }
 
@@ -8390,14 +10537,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__8"
-    // InternalFactoryLogicLangParser.g:2689:1: rule__Loop__Group__8 : rule__Loop__Group__8__Impl rule__Loop__Group__9 ;
+    // InternalFactoryLogicLangParser.g:3366:1: rule__Loop__Group__8 : rule__Loop__Group__8__Impl rule__Loop__Group__9 ;
     public final void rule__Loop__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2693:1: ( rule__Loop__Group__8__Impl rule__Loop__Group__9 )
-            // InternalFactoryLogicLangParser.g:2694:2: rule__Loop__Group__8__Impl rule__Loop__Group__9
+            // InternalFactoryLogicLangParser.g:3370:1: ( rule__Loop__Group__8__Impl rule__Loop__Group__9 )
+            // InternalFactoryLogicLangParser.g:3371:2: rule__Loop__Group__8__Impl rule__Loop__Group__9
             {
             pushFollow(FOLLOW_22);
             rule__Loop__Group__8__Impl();
@@ -8428,42 +10575,31 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__8__Impl"
-    // InternalFactoryLogicLangParser.g:2701:1: rule__Loop__Group__8__Impl : ( ( rule__Loop__OperatorAssignment_8 )? ) ;
+    // InternalFactoryLogicLangParser.g:3378:1: rule__Loop__Group__8__Impl : ( ( rule__Loop__Alternatives_8 ) ) ;
     public final void rule__Loop__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2705:1: ( ( ( rule__Loop__OperatorAssignment_8 )? ) )
-            // InternalFactoryLogicLangParser.g:2706:1: ( ( rule__Loop__OperatorAssignment_8 )? )
+            // InternalFactoryLogicLangParser.g:3382:1: ( ( ( rule__Loop__Alternatives_8 ) ) )
+            // InternalFactoryLogicLangParser.g:3383:1: ( ( rule__Loop__Alternatives_8 ) )
             {
-            // InternalFactoryLogicLangParser.g:2706:1: ( ( rule__Loop__OperatorAssignment_8 )? )
-            // InternalFactoryLogicLangParser.g:2707:2: ( rule__Loop__OperatorAssignment_8 )?
+            // InternalFactoryLogicLangParser.g:3383:1: ( ( rule__Loop__Alternatives_8 ) )
+            // InternalFactoryLogicLangParser.g:3384:2: ( rule__Loop__Alternatives_8 )
             {
-             before(grammarAccess.getLoopAccess().getOperatorAssignment_8()); 
-            // InternalFactoryLogicLangParser.g:2708:2: ( rule__Loop__OperatorAssignment_8 )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+             before(grammarAccess.getLoopAccess().getAlternatives_8()); 
+            // InternalFactoryLogicLangParser.g:3385:2: ( rule__Loop__Alternatives_8 )
+            // InternalFactoryLogicLangParser.g:3385:3: rule__Loop__Alternatives_8
+            {
+            pushFollow(FOLLOW_2);
+            rule__Loop__Alternatives_8();
 
-            if ( ((LA21_0>=GreaterThan && LA21_0<=LessThan)||LA21_0==Not) ) {
-                alt21=1;
-            }
-            switch (alt21) {
-                case 1 :
-                    // InternalFactoryLogicLangParser.g:2708:3: rule__Loop__OperatorAssignment_8
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__Loop__OperatorAssignment_8();
+            state._fsp--;
 
-                    state._fsp--;
-
-
-                    }
-                    break;
 
             }
 
-             after(grammarAccess.getLoopAccess().getOperatorAssignment_8()); 
+             after(grammarAccess.getLoopAccess().getAlternatives_8()); 
 
             }
 
@@ -8486,16 +10622,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__9"
-    // InternalFactoryLogicLangParser.g:2716:1: rule__Loop__Group__9 : rule__Loop__Group__9__Impl rule__Loop__Group__10 ;
+    // InternalFactoryLogicLangParser.g:3393:1: rule__Loop__Group__9 : rule__Loop__Group__9__Impl rule__Loop__Group__10 ;
     public final void rule__Loop__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2720:1: ( rule__Loop__Group__9__Impl rule__Loop__Group__10 )
-            // InternalFactoryLogicLangParser.g:2721:2: rule__Loop__Group__9__Impl rule__Loop__Group__10
+            // InternalFactoryLogicLangParser.g:3397:1: ( rule__Loop__Group__9__Impl rule__Loop__Group__10 )
+            // InternalFactoryLogicLangParser.g:3398:2: rule__Loop__Group__9__Impl rule__Loop__Group__10
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_7);
             rule__Loop__Group__9__Impl();
 
             state._fsp--;
@@ -8524,31 +10660,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__9__Impl"
-    // InternalFactoryLogicLangParser.g:2728:1: rule__Loop__Group__9__Impl : ( ( rule__Loop__Alternatives_9 ) ) ;
+    // InternalFactoryLogicLangParser.g:3405:1: rule__Loop__Group__9__Impl : ( Then ) ;
     public final void rule__Loop__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2732:1: ( ( ( rule__Loop__Alternatives_9 ) ) )
-            // InternalFactoryLogicLangParser.g:2733:1: ( ( rule__Loop__Alternatives_9 ) )
+            // InternalFactoryLogicLangParser.g:3409:1: ( ( Then ) )
+            // InternalFactoryLogicLangParser.g:3410:1: ( Then )
             {
-            // InternalFactoryLogicLangParser.g:2733:1: ( ( rule__Loop__Alternatives_9 ) )
-            // InternalFactoryLogicLangParser.g:2734:2: ( rule__Loop__Alternatives_9 )
+            // InternalFactoryLogicLangParser.g:3410:1: ( Then )
+            // InternalFactoryLogicLangParser.g:3411:2: Then
             {
-             before(grammarAccess.getLoopAccess().getAlternatives_9()); 
-            // InternalFactoryLogicLangParser.g:2735:2: ( rule__Loop__Alternatives_9 )
-            // InternalFactoryLogicLangParser.g:2735:3: rule__Loop__Alternatives_9
-            {
-            pushFollow(FOLLOW_2);
-            rule__Loop__Alternatives_9();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getLoopAccess().getAlternatives_9()); 
+             before(grammarAccess.getLoopAccess().getThenKeyword_9()); 
+            match(input,Then,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getThenKeyword_9()); 
 
             }
 
@@ -8571,16 +10697,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__10"
-    // InternalFactoryLogicLangParser.g:2743:1: rule__Loop__Group__10 : rule__Loop__Group__10__Impl rule__Loop__Group__11 ;
+    // InternalFactoryLogicLangParser.g:3420:1: rule__Loop__Group__10 : rule__Loop__Group__10__Impl rule__Loop__Group__11 ;
     public final void rule__Loop__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2747:1: ( rule__Loop__Group__10__Impl rule__Loop__Group__11 )
-            // InternalFactoryLogicLangParser.g:2748:2: rule__Loop__Group__10__Impl rule__Loop__Group__11
+            // InternalFactoryLogicLangParser.g:3424:1: ( rule__Loop__Group__10__Impl rule__Loop__Group__11 )
+            // InternalFactoryLogicLangParser.g:3425:2: rule__Loop__Group__10__Impl rule__Loop__Group__11
             {
-            pushFollow(FOLLOW_7);
+            pushFollow(FOLLOW_23);
             rule__Loop__Group__10__Impl();
 
             state._fsp--;
@@ -8609,21 +10735,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__10__Impl"
-    // InternalFactoryLogicLangParser.g:2755:1: rule__Loop__Group__10__Impl : ( Then ) ;
+    // InternalFactoryLogicLangParser.g:3432:1: rule__Loop__Group__10__Impl : ( RULE_BEGIN ) ;
     public final void rule__Loop__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2759:1: ( ( Then ) )
-            // InternalFactoryLogicLangParser.g:2760:1: ( Then )
+            // InternalFactoryLogicLangParser.g:3436:1: ( ( RULE_BEGIN ) )
+            // InternalFactoryLogicLangParser.g:3437:1: ( RULE_BEGIN )
             {
-            // InternalFactoryLogicLangParser.g:2760:1: ( Then )
-            // InternalFactoryLogicLangParser.g:2761:2: Then
+            // InternalFactoryLogicLangParser.g:3437:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:3438:2: RULE_BEGIN
             {
-             before(grammarAccess.getLoopAccess().getThenKeyword_10()); 
-            match(input,Then,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getThenKeyword_10()); 
+             before(grammarAccess.getLoopAccess().getBEGINTerminalRuleCall_10()); 
+            match(input,RULE_BEGIN,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getBEGINTerminalRuleCall_10()); 
 
             }
 
@@ -8646,16 +10772,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__11"
-    // InternalFactoryLogicLangParser.g:2770:1: rule__Loop__Group__11 : rule__Loop__Group__11__Impl rule__Loop__Group__12 ;
+    // InternalFactoryLogicLangParser.g:3447:1: rule__Loop__Group__11 : rule__Loop__Group__11__Impl rule__Loop__Group__12 ;
     public final void rule__Loop__Group__11() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2774:1: ( rule__Loop__Group__11__Impl rule__Loop__Group__12 )
-            // InternalFactoryLogicLangParser.g:2775:2: rule__Loop__Group__11__Impl rule__Loop__Group__12
+            // InternalFactoryLogicLangParser.g:3451:1: ( rule__Loop__Group__11__Impl rule__Loop__Group__12 )
+            // InternalFactoryLogicLangParser.g:3452:2: rule__Loop__Group__11__Impl rule__Loop__Group__12
             {
-            pushFollow(FOLLOW_24);
+            pushFollow(FOLLOW_9);
             rule__Loop__Group__11__Impl();
 
             state._fsp--;
@@ -8684,21 +10810,74 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__11__Impl"
-    // InternalFactoryLogicLangParser.g:2782:1: rule__Loop__Group__11__Impl : ( RULE_BEGIN ) ;
+    // InternalFactoryLogicLangParser.g:3459:1: rule__Loop__Group__11__Impl : ( ( ( rule__Loop__LogicsAssignment_11 ) ) ( ( rule__Loop__LogicsAssignment_11 )* ) ) ;
     public final void rule__Loop__Group__11__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2786:1: ( ( RULE_BEGIN ) )
-            // InternalFactoryLogicLangParser.g:2787:1: ( RULE_BEGIN )
+            // InternalFactoryLogicLangParser.g:3463:1: ( ( ( ( rule__Loop__LogicsAssignment_11 ) ) ( ( rule__Loop__LogicsAssignment_11 )* ) ) )
+            // InternalFactoryLogicLangParser.g:3464:1: ( ( ( rule__Loop__LogicsAssignment_11 ) ) ( ( rule__Loop__LogicsAssignment_11 )* ) )
             {
-            // InternalFactoryLogicLangParser.g:2787:1: ( RULE_BEGIN )
-            // InternalFactoryLogicLangParser.g:2788:2: RULE_BEGIN
+            // InternalFactoryLogicLangParser.g:3464:1: ( ( ( rule__Loop__LogicsAssignment_11 ) ) ( ( rule__Loop__LogicsAssignment_11 )* ) )
+            // InternalFactoryLogicLangParser.g:3465:2: ( ( rule__Loop__LogicsAssignment_11 ) ) ( ( rule__Loop__LogicsAssignment_11 )* )
             {
-             before(grammarAccess.getLoopAccess().getBEGINTerminalRuleCall_11()); 
-            match(input,RULE_BEGIN,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getBEGINTerminalRuleCall_11()); 
+            // InternalFactoryLogicLangParser.g:3465:2: ( ( rule__Loop__LogicsAssignment_11 ) )
+            // InternalFactoryLogicLangParser.g:3466:3: ( rule__Loop__LogicsAssignment_11 )
+            {
+             before(grammarAccess.getLoopAccess().getLogicsAssignment_11()); 
+            // InternalFactoryLogicLangParser.g:3467:3: ( rule__Loop__LogicsAssignment_11 )
+            // InternalFactoryLogicLangParser.g:3467:4: rule__Loop__LogicsAssignment_11
+            {
+            pushFollow(FOLLOW_3);
+            rule__Loop__LogicsAssignment_11();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getLoopAccess().getLogicsAssignment_11()); 
+
+            }
+
+            // InternalFactoryLogicLangParser.g:3470:2: ( ( rule__Loop__LogicsAssignment_11 )* )
+            // InternalFactoryLogicLangParser.g:3471:3: ( rule__Loop__LogicsAssignment_11 )*
+            {
+             before(grammarAccess.getLoopAccess().getLogicsAssignment_11()); 
+            // InternalFactoryLogicLangParser.g:3472:3: ( rule__Loop__LogicsAssignment_11 )*
+            loop27:
+            do {
+                int alt27=2;
+                int LA27_0 = input.LA(1);
+
+                if ( (LA27_0==For||LA27_0==If||LA27_0==RULE_STRING) ) {
+                    alt27=1;
+                }
+
+
+                switch (alt27) {
+            	case 1 :
+            	    // InternalFactoryLogicLangParser.g:3472:4: rule__Loop__LogicsAssignment_11
+            	    {
+            	    pushFollow(FOLLOW_3);
+            	    rule__Loop__LogicsAssignment_11();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop27;
+                }
+            } while (true);
+
+             after(grammarAccess.getLoopAccess().getLogicsAssignment_11()); 
+
+            }
+
 
             }
 
@@ -8721,22 +10900,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__12"
-    // InternalFactoryLogicLangParser.g:2797:1: rule__Loop__Group__12 : rule__Loop__Group__12__Impl rule__Loop__Group__13 ;
+    // InternalFactoryLogicLangParser.g:3481:1: rule__Loop__Group__12 : rule__Loop__Group__12__Impl ;
     public final void rule__Loop__Group__12() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2801:1: ( rule__Loop__Group__12__Impl rule__Loop__Group__13 )
-            // InternalFactoryLogicLangParser.g:2802:2: rule__Loop__Group__12__Impl rule__Loop__Group__13
+            // InternalFactoryLogicLangParser.g:3485:1: ( rule__Loop__Group__12__Impl )
+            // InternalFactoryLogicLangParser.g:3486:2: rule__Loop__Group__12__Impl
             {
-            pushFollow(FOLLOW_9);
-            rule__Loop__Group__12__Impl();
-
-            state._fsp--;
-
             pushFollow(FOLLOW_2);
-            rule__Loop__Group__13();
+            rule__Loop__Group__12__Impl();
 
             state._fsp--;
 
@@ -8759,74 +10933,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Loop__Group__12__Impl"
-    // InternalFactoryLogicLangParser.g:2809:1: rule__Loop__Group__12__Impl : ( ( ( rule__Loop__LogicsAssignment_12 ) ) ( ( rule__Loop__LogicsAssignment_12 )* ) ) ;
+    // InternalFactoryLogicLangParser.g:3492:1: rule__Loop__Group__12__Impl : ( RULE_END ) ;
     public final void rule__Loop__Group__12__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2813:1: ( ( ( ( rule__Loop__LogicsAssignment_12 ) ) ( ( rule__Loop__LogicsAssignment_12 )* ) ) )
-            // InternalFactoryLogicLangParser.g:2814:1: ( ( ( rule__Loop__LogicsAssignment_12 ) ) ( ( rule__Loop__LogicsAssignment_12 )* ) )
+            // InternalFactoryLogicLangParser.g:3496:1: ( ( RULE_END ) )
+            // InternalFactoryLogicLangParser.g:3497:1: ( RULE_END )
             {
-            // InternalFactoryLogicLangParser.g:2814:1: ( ( ( rule__Loop__LogicsAssignment_12 ) ) ( ( rule__Loop__LogicsAssignment_12 )* ) )
-            // InternalFactoryLogicLangParser.g:2815:2: ( ( rule__Loop__LogicsAssignment_12 ) ) ( ( rule__Loop__LogicsAssignment_12 )* )
+            // InternalFactoryLogicLangParser.g:3497:1: ( RULE_END )
+            // InternalFactoryLogicLangParser.g:3498:2: RULE_END
             {
-            // InternalFactoryLogicLangParser.g:2815:2: ( ( rule__Loop__LogicsAssignment_12 ) )
-            // InternalFactoryLogicLangParser.g:2816:3: ( rule__Loop__LogicsAssignment_12 )
-            {
-             before(grammarAccess.getLoopAccess().getLogicsAssignment_12()); 
-            // InternalFactoryLogicLangParser.g:2817:3: ( rule__Loop__LogicsAssignment_12 )
-            // InternalFactoryLogicLangParser.g:2817:4: rule__Loop__LogicsAssignment_12
-            {
-            pushFollow(FOLLOW_3);
-            rule__Loop__LogicsAssignment_12();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getLoopAccess().getLogicsAssignment_12()); 
-
-            }
-
-            // InternalFactoryLogicLangParser.g:2820:2: ( ( rule__Loop__LogicsAssignment_12 )* )
-            // InternalFactoryLogicLangParser.g:2821:3: ( rule__Loop__LogicsAssignment_12 )*
-            {
-             before(grammarAccess.getLoopAccess().getLogicsAssignment_12()); 
-            // InternalFactoryLogicLangParser.g:2822:3: ( rule__Loop__LogicsAssignment_12 )*
-            loop22:
-            do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
-
-                if ( (LA22_0==For||LA22_0==If||LA22_0==RULE_ID) ) {
-                    alt22=1;
-                }
-
-
-                switch (alt22) {
-            	case 1 :
-            	    // InternalFactoryLogicLangParser.g:2822:4: rule__Loop__LogicsAssignment_12
-            	    {
-            	    pushFollow(FOLLOW_3);
-            	    rule__Loop__LogicsAssignment_12();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop22;
-                }
-            } while (true);
-
-             after(grammarAccess.getLoopAccess().getLogicsAssignment_12()); 
-
-            }
-
+             before(grammarAccess.getLoopAccess().getENDTerminalRuleCall_12()); 
+            match(input,RULE_END,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getENDTerminalRuleCall_12()); 
 
             }
 
@@ -8848,93 +10969,23 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__Loop__Group__12__Impl"
 
 
-    // $ANTLR start "rule__Loop__Group__13"
-    // InternalFactoryLogicLangParser.g:2831:1: rule__Loop__Group__13 : rule__Loop__Group__13__Impl ;
-    public final void rule__Loop__Group__13() throws RecognitionException {
+    // $ANTLR start "rule__Loop__Group_4__0"
+    // InternalFactoryLogicLangParser.g:3508:1: rule__Loop__Group_4__0 : rule__Loop__Group_4__0__Impl rule__Loop__Group_4__1 ;
+    public final void rule__Loop__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2835:1: ( rule__Loop__Group__13__Impl )
-            // InternalFactoryLogicLangParser.g:2836:2: rule__Loop__Group__13__Impl
+            // InternalFactoryLogicLangParser.g:3512:1: ( rule__Loop__Group_4__0__Impl rule__Loop__Group_4__1 )
+            // InternalFactoryLogicLangParser.g:3513:2: rule__Loop__Group_4__0__Impl rule__Loop__Group_4__1
             {
-            pushFollow(FOLLOW_2);
-            rule__Loop__Group__13__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Loop__Group__13"
-
-
-    // $ANTLR start "rule__Loop__Group__13__Impl"
-    // InternalFactoryLogicLangParser.g:2842:1: rule__Loop__Group__13__Impl : ( RULE_END ) ;
-    public final void rule__Loop__Group__13__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalFactoryLogicLangParser.g:2846:1: ( ( RULE_END ) )
-            // InternalFactoryLogicLangParser.g:2847:1: ( RULE_END )
-            {
-            // InternalFactoryLogicLangParser.g:2847:1: ( RULE_END )
-            // InternalFactoryLogicLangParser.g:2848:2: RULE_END
-            {
-             before(grammarAccess.getLoopAccess().getENDTerminalRuleCall_13()); 
-            match(input,RULE_END,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getENDTerminalRuleCall_13()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Loop__Group__13__Impl"
-
-
-    // $ANTLR start "rule__Loop__Group_5__0"
-    // InternalFactoryLogicLangParser.g:2858:1: rule__Loop__Group_5__0 : rule__Loop__Group_5__0__Impl rule__Loop__Group_5__1 ;
-    public final void rule__Loop__Group_5__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalFactoryLogicLangParser.g:2862:1: ( rule__Loop__Group_5__0__Impl rule__Loop__Group_5__1 )
-            // InternalFactoryLogicLangParser.g:2863:2: rule__Loop__Group_5__0__Impl rule__Loop__Group_5__1
-            {
-            pushFollow(FOLLOW_20);
-            rule__Loop__Group_5__0__Impl();
+            pushFollow(FOLLOW_6);
+            rule__Loop__Group_4__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Loop__Group_5__1();
+            rule__Loop__Group_4__1();
 
             state._fsp--;
 
@@ -8953,25 +11004,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__Group_5__0"
+    // $ANTLR end "rule__Loop__Group_4__0"
 
 
-    // $ANTLR start "rule__Loop__Group_5__0__Impl"
-    // InternalFactoryLogicLangParser.g:2870:1: rule__Loop__Group_5__0__Impl : ( Of ) ;
-    public final void rule__Loop__Group_5__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Loop__Group_4__0__Impl"
+    // InternalFactoryLogicLangParser.g:3520:1: rule__Loop__Group_4__0__Impl : ( Of ) ;
+    public final void rule__Loop__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2874:1: ( ( Of ) )
-            // InternalFactoryLogicLangParser.g:2875:1: ( Of )
+            // InternalFactoryLogicLangParser.g:3524:1: ( ( Of ) )
+            // InternalFactoryLogicLangParser.g:3525:1: ( Of )
             {
-            // InternalFactoryLogicLangParser.g:2875:1: ( Of )
-            // InternalFactoryLogicLangParser.g:2876:2: Of
+            // InternalFactoryLogicLangParser.g:3525:1: ( Of )
+            // InternalFactoryLogicLangParser.g:3526:2: Of
             {
-             before(grammarAccess.getLoopAccess().getOfKeyword_5_0()); 
+             before(grammarAccess.getLoopAccess().getOfKeyword_4_0()); 
             match(input,Of,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getOfKeyword_5_0()); 
+             after(grammarAccess.getLoopAccess().getOfKeyword_4_0()); 
 
             }
 
@@ -8990,21 +11041,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__Group_5__0__Impl"
+    // $ANTLR end "rule__Loop__Group_4__0__Impl"
 
 
-    // $ANTLR start "rule__Loop__Group_5__1"
-    // InternalFactoryLogicLangParser.g:2885:1: rule__Loop__Group_5__1 : rule__Loop__Group_5__1__Impl ;
-    public final void rule__Loop__Group_5__1() throws RecognitionException {
+    // $ANTLR start "rule__Loop__Group_4__1"
+    // InternalFactoryLogicLangParser.g:3535:1: rule__Loop__Group_4__1 : rule__Loop__Group_4__1__Impl ;
+    public final void rule__Loop__Group_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2889:1: ( rule__Loop__Group_5__1__Impl )
-            // InternalFactoryLogicLangParser.g:2890:2: rule__Loop__Group_5__1__Impl
+            // InternalFactoryLogicLangParser.g:3539:1: ( rule__Loop__Group_4__1__Impl )
+            // InternalFactoryLogicLangParser.g:3540:2: rule__Loop__Group_4__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__Loop__Group_5__1__Impl();
+            rule__Loop__Group_4__1__Impl();
 
             state._fsp--;
 
@@ -9023,35 +11074,35 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__Group_5__1"
+    // $ANTLR end "rule__Loop__Group_4__1"
 
 
-    // $ANTLR start "rule__Loop__Group_5__1__Impl"
-    // InternalFactoryLogicLangParser.g:2896:1: rule__Loop__Group_5__1__Impl : ( ( rule__Loop__SourceAssignment_5_1 ) ) ;
-    public final void rule__Loop__Group_5__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Loop__Group_4__1__Impl"
+    // InternalFactoryLogicLangParser.g:3546:1: rule__Loop__Group_4__1__Impl : ( ( rule__Loop__SourceAssignment_4_1 ) ) ;
+    public final void rule__Loop__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2900:1: ( ( ( rule__Loop__SourceAssignment_5_1 ) ) )
-            // InternalFactoryLogicLangParser.g:2901:1: ( ( rule__Loop__SourceAssignment_5_1 ) )
+            // InternalFactoryLogicLangParser.g:3550:1: ( ( ( rule__Loop__SourceAssignment_4_1 ) ) )
+            // InternalFactoryLogicLangParser.g:3551:1: ( ( rule__Loop__SourceAssignment_4_1 ) )
             {
-            // InternalFactoryLogicLangParser.g:2901:1: ( ( rule__Loop__SourceAssignment_5_1 ) )
-            // InternalFactoryLogicLangParser.g:2902:2: ( rule__Loop__SourceAssignment_5_1 )
+            // InternalFactoryLogicLangParser.g:3551:1: ( ( rule__Loop__SourceAssignment_4_1 ) )
+            // InternalFactoryLogicLangParser.g:3552:2: ( rule__Loop__SourceAssignment_4_1 )
             {
-             before(grammarAccess.getLoopAccess().getSourceAssignment_5_1()); 
-            // InternalFactoryLogicLangParser.g:2903:2: ( rule__Loop__SourceAssignment_5_1 )
-            // InternalFactoryLogicLangParser.g:2903:3: rule__Loop__SourceAssignment_5_1
+             before(grammarAccess.getLoopAccess().getSourceAssignment_4_1()); 
+            // InternalFactoryLogicLangParser.g:3553:2: ( rule__Loop__SourceAssignment_4_1 )
+            // InternalFactoryLogicLangParser.g:3553:3: rule__Loop__SourceAssignment_4_1
             {
             pushFollow(FOLLOW_2);
-            rule__Loop__SourceAssignment_5_1();
+            rule__Loop__SourceAssignment_4_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getLoopAccess().getSourceAssignment_5_1()); 
+             after(grammarAccess.getLoopAccess().getSourceAssignment_4_1()); 
 
             }
 
@@ -9070,20 +11121,20 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__Group_5__1__Impl"
+    // $ANTLR end "rule__Loop__Group_4__1__Impl"
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__0"
-    // InternalFactoryLogicLangParser.g:2912:1: rule__StorageMoveEmptySlot__Group__0 : rule__StorageMoveEmptySlot__Group__0__Impl rule__StorageMoveEmptySlot__Group__1 ;
+    // InternalFactoryLogicLangParser.g:3562:1: rule__StorageMoveEmptySlot__Group__0 : rule__StorageMoveEmptySlot__Group__0__Impl rule__StorageMoveEmptySlot__Group__1 ;
     public final void rule__StorageMoveEmptySlot__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2916:1: ( rule__StorageMoveEmptySlot__Group__0__Impl rule__StorageMoveEmptySlot__Group__1 )
-            // InternalFactoryLogicLangParser.g:2917:2: rule__StorageMoveEmptySlot__Group__0__Impl rule__StorageMoveEmptySlot__Group__1
+            // InternalFactoryLogicLangParser.g:3566:1: ( rule__StorageMoveEmptySlot__Group__0__Impl rule__StorageMoveEmptySlot__Group__1 )
+            // InternalFactoryLogicLangParser.g:3567:2: rule__StorageMoveEmptySlot__Group__0__Impl rule__StorageMoveEmptySlot__Group__1
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_31);
             rule__StorageMoveEmptySlot__Group__0__Impl();
 
             state._fsp--;
@@ -9112,21 +11163,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:2924:1: rule__StorageMoveEmptySlot__Group__0__Impl : ( ( rule__StorageMoveEmptySlot__DeviceAssignment_0 ) ) ;
+    // InternalFactoryLogicLangParser.g:3574:1: rule__StorageMoveEmptySlot__Group__0__Impl : ( ( rule__StorageMoveEmptySlot__DeviceAssignment_0 ) ) ;
     public final void rule__StorageMoveEmptySlot__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2928:1: ( ( ( rule__StorageMoveEmptySlot__DeviceAssignment_0 ) ) )
-            // InternalFactoryLogicLangParser.g:2929:1: ( ( rule__StorageMoveEmptySlot__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:3578:1: ( ( ( rule__StorageMoveEmptySlot__DeviceAssignment_0 ) ) )
+            // InternalFactoryLogicLangParser.g:3579:1: ( ( rule__StorageMoveEmptySlot__DeviceAssignment_0 ) )
             {
-            // InternalFactoryLogicLangParser.g:2929:1: ( ( rule__StorageMoveEmptySlot__DeviceAssignment_0 ) )
-            // InternalFactoryLogicLangParser.g:2930:2: ( rule__StorageMoveEmptySlot__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:3579:1: ( ( rule__StorageMoveEmptySlot__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:3580:2: ( rule__StorageMoveEmptySlot__DeviceAssignment_0 )
             {
              before(grammarAccess.getStorageMoveEmptySlotAccess().getDeviceAssignment_0()); 
-            // InternalFactoryLogicLangParser.g:2931:2: ( rule__StorageMoveEmptySlot__DeviceAssignment_0 )
-            // InternalFactoryLogicLangParser.g:2931:3: rule__StorageMoveEmptySlot__DeviceAssignment_0
+            // InternalFactoryLogicLangParser.g:3581:2: ( rule__StorageMoveEmptySlot__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:3581:3: rule__StorageMoveEmptySlot__DeviceAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__StorageMoveEmptySlot__DeviceAssignment_0();
@@ -9159,16 +11210,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__1"
-    // InternalFactoryLogicLangParser.g:2939:1: rule__StorageMoveEmptySlot__Group__1 : rule__StorageMoveEmptySlot__Group__1__Impl rule__StorageMoveEmptySlot__Group__2 ;
+    // InternalFactoryLogicLangParser.g:3589:1: rule__StorageMoveEmptySlot__Group__1 : rule__StorageMoveEmptySlot__Group__1__Impl rule__StorageMoveEmptySlot__Group__2 ;
     public final void rule__StorageMoveEmptySlot__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2943:1: ( rule__StorageMoveEmptySlot__Group__1__Impl rule__StorageMoveEmptySlot__Group__2 )
-            // InternalFactoryLogicLangParser.g:2944:2: rule__StorageMoveEmptySlot__Group__1__Impl rule__StorageMoveEmptySlot__Group__2
+            // InternalFactoryLogicLangParser.g:3593:1: ( rule__StorageMoveEmptySlot__Group__1__Impl rule__StorageMoveEmptySlot__Group__2 )
+            // InternalFactoryLogicLangParser.g:3594:2: rule__StorageMoveEmptySlot__Group__1__Impl rule__StorageMoveEmptySlot__Group__2
             {
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_32);
             rule__StorageMoveEmptySlot__Group__1__Impl();
 
             state._fsp--;
@@ -9197,17 +11248,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:2951:1: rule__StorageMoveEmptySlot__Group__1__Impl : ( Move ) ;
+    // InternalFactoryLogicLangParser.g:3601:1: rule__StorageMoveEmptySlot__Group__1__Impl : ( Move ) ;
     public final void rule__StorageMoveEmptySlot__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2955:1: ( ( Move ) )
-            // InternalFactoryLogicLangParser.g:2956:1: ( Move )
+            // InternalFactoryLogicLangParser.g:3605:1: ( ( Move ) )
+            // InternalFactoryLogicLangParser.g:3606:1: ( Move )
             {
-            // InternalFactoryLogicLangParser.g:2956:1: ( Move )
-            // InternalFactoryLogicLangParser.g:2957:2: Move
+            // InternalFactoryLogicLangParser.g:3606:1: ( Move )
+            // InternalFactoryLogicLangParser.g:3607:2: Move
             {
              before(grammarAccess.getStorageMoveEmptySlotAccess().getMoveKeyword_1()); 
             match(input,Move,FOLLOW_2); 
@@ -9234,14 +11285,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__2"
-    // InternalFactoryLogicLangParser.g:2966:1: rule__StorageMoveEmptySlot__Group__2 : rule__StorageMoveEmptySlot__Group__2__Impl rule__StorageMoveEmptySlot__Group__3 ;
+    // InternalFactoryLogicLangParser.g:3616:1: rule__StorageMoveEmptySlot__Group__2 : rule__StorageMoveEmptySlot__Group__2__Impl rule__StorageMoveEmptySlot__Group__3 ;
     public final void rule__StorageMoveEmptySlot__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2970:1: ( rule__StorageMoveEmptySlot__Group__2__Impl rule__StorageMoveEmptySlot__Group__3 )
-            // InternalFactoryLogicLangParser.g:2971:2: rule__StorageMoveEmptySlot__Group__2__Impl rule__StorageMoveEmptySlot__Group__3
+            // InternalFactoryLogicLangParser.g:3620:1: ( rule__StorageMoveEmptySlot__Group__2__Impl rule__StorageMoveEmptySlot__Group__3 )
+            // InternalFactoryLogicLangParser.g:3621:2: rule__StorageMoveEmptySlot__Group__2__Impl rule__StorageMoveEmptySlot__Group__3
             {
             pushFollow(FOLLOW_16);
             rule__StorageMoveEmptySlot__Group__2__Impl();
@@ -9272,17 +11323,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:2978:1: rule__StorageMoveEmptySlot__Group__2__Impl : ( Empty ) ;
+    // InternalFactoryLogicLangParser.g:3628:1: rule__StorageMoveEmptySlot__Group__2__Impl : ( Empty ) ;
     public final void rule__StorageMoveEmptySlot__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2982:1: ( ( Empty ) )
-            // InternalFactoryLogicLangParser.g:2983:1: ( Empty )
+            // InternalFactoryLogicLangParser.g:3632:1: ( ( Empty ) )
+            // InternalFactoryLogicLangParser.g:3633:1: ( Empty )
             {
-            // InternalFactoryLogicLangParser.g:2983:1: ( Empty )
-            // InternalFactoryLogicLangParser.g:2984:2: Empty
+            // InternalFactoryLogicLangParser.g:3633:1: ( Empty )
+            // InternalFactoryLogicLangParser.g:3634:2: Empty
             {
              before(grammarAccess.getStorageMoveEmptySlotAccess().getEmptyKeyword_2()); 
             match(input,Empty,FOLLOW_2); 
@@ -9309,16 +11360,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__3"
-    // InternalFactoryLogicLangParser.g:2993:1: rule__StorageMoveEmptySlot__Group__3 : rule__StorageMoveEmptySlot__Group__3__Impl rule__StorageMoveEmptySlot__Group__4 ;
+    // InternalFactoryLogicLangParser.g:3643:1: rule__StorageMoveEmptySlot__Group__3 : rule__StorageMoveEmptySlot__Group__3__Impl rule__StorageMoveEmptySlot__Group__4 ;
     public final void rule__StorageMoveEmptySlot__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:2997:1: ( rule__StorageMoveEmptySlot__Group__3__Impl rule__StorageMoveEmptySlot__Group__4 )
-            // InternalFactoryLogicLangParser.g:2998:2: rule__StorageMoveEmptySlot__Group__3__Impl rule__StorageMoveEmptySlot__Group__4
+            // InternalFactoryLogicLangParser.g:3647:1: ( rule__StorageMoveEmptySlot__Group__3__Impl rule__StorageMoveEmptySlot__Group__4 )
+            // InternalFactoryLogicLangParser.g:3648:2: rule__StorageMoveEmptySlot__Group__3__Impl rule__StorageMoveEmptySlot__Group__4
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_26);
             rule__StorageMoveEmptySlot__Group__3__Impl();
 
             state._fsp--;
@@ -9347,17 +11398,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:3005:1: rule__StorageMoveEmptySlot__Group__3__Impl : ( Slot ) ;
+    // InternalFactoryLogicLangParser.g:3655:1: rule__StorageMoveEmptySlot__Group__3__Impl : ( Slot ) ;
     public final void rule__StorageMoveEmptySlot__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3009:1: ( ( Slot ) )
-            // InternalFactoryLogicLangParser.g:3010:1: ( Slot )
+            // InternalFactoryLogicLangParser.g:3659:1: ( ( Slot ) )
+            // InternalFactoryLogicLangParser.g:3660:1: ( Slot )
             {
-            // InternalFactoryLogicLangParser.g:3010:1: ( Slot )
-            // InternalFactoryLogicLangParser.g:3011:2: Slot
+            // InternalFactoryLogicLangParser.g:3660:1: ( Slot )
+            // InternalFactoryLogicLangParser.g:3661:2: Slot
             {
              before(grammarAccess.getStorageMoveEmptySlotAccess().getSlotKeyword_3()); 
             match(input,Slot,FOLLOW_2); 
@@ -9384,16 +11435,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__4"
-    // InternalFactoryLogicLangParser.g:3020:1: rule__StorageMoveEmptySlot__Group__4 : rule__StorageMoveEmptySlot__Group__4__Impl rule__StorageMoveEmptySlot__Group__5 ;
+    // InternalFactoryLogicLangParser.g:3670:1: rule__StorageMoveEmptySlot__Group__4 : rule__StorageMoveEmptySlot__Group__4__Impl rule__StorageMoveEmptySlot__Group__5 ;
     public final void rule__StorageMoveEmptySlot__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3024:1: ( rule__StorageMoveEmptySlot__Group__4__Impl rule__StorageMoveEmptySlot__Group__5 )
-            // InternalFactoryLogicLangParser.g:3025:2: rule__StorageMoveEmptySlot__Group__4__Impl rule__StorageMoveEmptySlot__Group__5
+            // InternalFactoryLogicLangParser.g:3674:1: ( rule__StorageMoveEmptySlot__Group__4__Impl rule__StorageMoveEmptySlot__Group__5 )
+            // InternalFactoryLogicLangParser.g:3675:2: rule__StorageMoveEmptySlot__Group__4__Impl rule__StorageMoveEmptySlot__Group__5
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_6);
             rule__StorageMoveEmptySlot__Group__4__Impl();
 
             state._fsp--;
@@ -9422,17 +11473,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:3032:1: rule__StorageMoveEmptySlot__Group__4__Impl : ( To ) ;
+    // InternalFactoryLogicLangParser.g:3682:1: rule__StorageMoveEmptySlot__Group__4__Impl : ( To ) ;
     public final void rule__StorageMoveEmptySlot__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3036:1: ( ( To ) )
-            // InternalFactoryLogicLangParser.g:3037:1: ( To )
+            // InternalFactoryLogicLangParser.g:3686:1: ( ( To ) )
+            // InternalFactoryLogicLangParser.g:3687:1: ( To )
             {
-            // InternalFactoryLogicLangParser.g:3037:1: ( To )
-            // InternalFactoryLogicLangParser.g:3038:2: To
+            // InternalFactoryLogicLangParser.g:3687:1: ( To )
+            // InternalFactoryLogicLangParser.g:3688:2: To
             {
              before(grammarAccess.getStorageMoveEmptySlotAccess().getToKeyword_4()); 
             match(input,To,FOLLOW_2); 
@@ -9459,14 +11510,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__5"
-    // InternalFactoryLogicLangParser.g:3047:1: rule__StorageMoveEmptySlot__Group__5 : rule__StorageMoveEmptySlot__Group__5__Impl ;
+    // InternalFactoryLogicLangParser.g:3697:1: rule__StorageMoveEmptySlot__Group__5 : rule__StorageMoveEmptySlot__Group__5__Impl ;
     public final void rule__StorageMoveEmptySlot__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3051:1: ( rule__StorageMoveEmptySlot__Group__5__Impl )
-            // InternalFactoryLogicLangParser.g:3052:2: rule__StorageMoveEmptySlot__Group__5__Impl
+            // InternalFactoryLogicLangParser.g:3701:1: ( rule__StorageMoveEmptySlot__Group__5__Impl )
+            // InternalFactoryLogicLangParser.g:3702:2: rule__StorageMoveEmptySlot__Group__5__Impl
             {
             pushFollow(FOLLOW_2);
             rule__StorageMoveEmptySlot__Group__5__Impl();
@@ -9492,21 +11543,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__Group__5__Impl"
-    // InternalFactoryLogicLangParser.g:3058:1: rule__StorageMoveEmptySlot__Group__5__Impl : ( ( rule__StorageMoveEmptySlot__DestinationAssignment_5 ) ) ;
+    // InternalFactoryLogicLangParser.g:3708:1: rule__StorageMoveEmptySlot__Group__5__Impl : ( ( rule__StorageMoveEmptySlot__DestinationAssignment_5 ) ) ;
     public final void rule__StorageMoveEmptySlot__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3062:1: ( ( ( rule__StorageMoveEmptySlot__DestinationAssignment_5 ) ) )
-            // InternalFactoryLogicLangParser.g:3063:1: ( ( rule__StorageMoveEmptySlot__DestinationAssignment_5 ) )
+            // InternalFactoryLogicLangParser.g:3712:1: ( ( ( rule__StorageMoveEmptySlot__DestinationAssignment_5 ) ) )
+            // InternalFactoryLogicLangParser.g:3713:1: ( ( rule__StorageMoveEmptySlot__DestinationAssignment_5 ) )
             {
-            // InternalFactoryLogicLangParser.g:3063:1: ( ( rule__StorageMoveEmptySlot__DestinationAssignment_5 ) )
-            // InternalFactoryLogicLangParser.g:3064:2: ( rule__StorageMoveEmptySlot__DestinationAssignment_5 )
+            // InternalFactoryLogicLangParser.g:3713:1: ( ( rule__StorageMoveEmptySlot__DestinationAssignment_5 ) )
+            // InternalFactoryLogicLangParser.g:3714:2: ( rule__StorageMoveEmptySlot__DestinationAssignment_5 )
             {
              before(grammarAccess.getStorageMoveEmptySlotAccess().getDestinationAssignment_5()); 
-            // InternalFactoryLogicLangParser.g:3065:2: ( rule__StorageMoveEmptySlot__DestinationAssignment_5 )
-            // InternalFactoryLogicLangParser.g:3065:3: rule__StorageMoveEmptySlot__DestinationAssignment_5
+            // InternalFactoryLogicLangParser.g:3715:2: ( rule__StorageMoveEmptySlot__DestinationAssignment_5 )
+            // InternalFactoryLogicLangParser.g:3715:3: rule__StorageMoveEmptySlot__DestinationAssignment_5
             {
             pushFollow(FOLLOW_2);
             rule__StorageMoveEmptySlot__DestinationAssignment_5();
@@ -9538,17 +11589,567 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__StorageMoveEmptySlot__Group__5__Impl"
 
 
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__0"
+    // InternalFactoryLogicLangParser.g:3724:1: rule__StorageMoveVariableSlot__Group__0 : rule__StorageMoveVariableSlot__Group__0__Impl rule__StorageMoveVariableSlot__Group__1 ;
+    public final void rule__StorageMoveVariableSlot__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3728:1: ( rule__StorageMoveVariableSlot__Group__0__Impl rule__StorageMoveVariableSlot__Group__1 )
+            // InternalFactoryLogicLangParser.g:3729:2: rule__StorageMoveVariableSlot__Group__0__Impl rule__StorageMoveVariableSlot__Group__1
+            {
+            pushFollow(FOLLOW_31);
+            rule__StorageMoveVariableSlot__Group__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__Group__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__0"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__0__Impl"
+    // InternalFactoryLogicLangParser.g:3736:1: rule__StorageMoveVariableSlot__Group__0__Impl : ( ( rule__StorageMoveVariableSlot__DeviceAssignment_0 ) ) ;
+    public final void rule__StorageMoveVariableSlot__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3740:1: ( ( ( rule__StorageMoveVariableSlot__DeviceAssignment_0 ) ) )
+            // InternalFactoryLogicLangParser.g:3741:1: ( ( rule__StorageMoveVariableSlot__DeviceAssignment_0 ) )
+            {
+            // InternalFactoryLogicLangParser.g:3741:1: ( ( rule__StorageMoveVariableSlot__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:3742:2: ( rule__StorageMoveVariableSlot__DeviceAssignment_0 )
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getDeviceAssignment_0()); 
+            // InternalFactoryLogicLangParser.g:3743:2: ( rule__StorageMoveVariableSlot__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:3743:3: rule__StorageMoveVariableSlot__DeviceAssignment_0
+            {
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__DeviceAssignment_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getDeviceAssignment_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__0__Impl"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__1"
+    // InternalFactoryLogicLangParser.g:3751:1: rule__StorageMoveVariableSlot__Group__1 : rule__StorageMoveVariableSlot__Group__1__Impl rule__StorageMoveVariableSlot__Group__2 ;
+    public final void rule__StorageMoveVariableSlot__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3755:1: ( rule__StorageMoveVariableSlot__Group__1__Impl rule__StorageMoveVariableSlot__Group__2 )
+            // InternalFactoryLogicLangParser.g:3756:2: rule__StorageMoveVariableSlot__Group__1__Impl rule__StorageMoveVariableSlot__Group__2
+            {
+            pushFollow(FOLLOW_16);
+            rule__StorageMoveVariableSlot__Group__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__Group__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__1"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__1__Impl"
+    // InternalFactoryLogicLangParser.g:3763:1: rule__StorageMoveVariableSlot__Group__1__Impl : ( Move ) ;
+    public final void rule__StorageMoveVariableSlot__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3767:1: ( ( Move ) )
+            // InternalFactoryLogicLangParser.g:3768:1: ( Move )
+            {
+            // InternalFactoryLogicLangParser.g:3768:1: ( Move )
+            // InternalFactoryLogicLangParser.g:3769:2: Move
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getMoveKeyword_1()); 
+            match(input,Move,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getMoveKeyword_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__1__Impl"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__2"
+    // InternalFactoryLogicLangParser.g:3778:1: rule__StorageMoveVariableSlot__Group__2 : rule__StorageMoveVariableSlot__Group__2__Impl rule__StorageMoveVariableSlot__Group__3 ;
+    public final void rule__StorageMoveVariableSlot__Group__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3782:1: ( rule__StorageMoveVariableSlot__Group__2__Impl rule__StorageMoveVariableSlot__Group__3 )
+            // InternalFactoryLogicLangParser.g:3783:2: rule__StorageMoveVariableSlot__Group__2__Impl rule__StorageMoveVariableSlot__Group__3
+            {
+            pushFollow(FOLLOW_33);
+            rule__StorageMoveVariableSlot__Group__2__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__Group__3();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__2"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__2__Impl"
+    // InternalFactoryLogicLangParser.g:3790:1: rule__StorageMoveVariableSlot__Group__2__Impl : ( Slot ) ;
+    public final void rule__StorageMoveVariableSlot__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3794:1: ( ( Slot ) )
+            // InternalFactoryLogicLangParser.g:3795:1: ( Slot )
+            {
+            // InternalFactoryLogicLangParser.g:3795:1: ( Slot )
+            // InternalFactoryLogicLangParser.g:3796:2: Slot
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getSlotKeyword_2()); 
+            match(input,Slot,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getSlotKeyword_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__2__Impl"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__3"
+    // InternalFactoryLogicLangParser.g:3805:1: rule__StorageMoveVariableSlot__Group__3 : rule__StorageMoveVariableSlot__Group__3__Impl rule__StorageMoveVariableSlot__Group__4 ;
+    public final void rule__StorageMoveVariableSlot__Group__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3809:1: ( rule__StorageMoveVariableSlot__Group__3__Impl rule__StorageMoveVariableSlot__Group__4 )
+            // InternalFactoryLogicLangParser.g:3810:2: rule__StorageMoveVariableSlot__Group__3__Impl rule__StorageMoveVariableSlot__Group__4
+            {
+            pushFollow(FOLLOW_24);
+            rule__StorageMoveVariableSlot__Group__3__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__Group__4();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__3"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__3__Impl"
+    // InternalFactoryLogicLangParser.g:3817:1: rule__StorageMoveVariableSlot__Group__3__Impl : ( Of ) ;
+    public final void rule__StorageMoveVariableSlot__Group__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3821:1: ( ( Of ) )
+            // InternalFactoryLogicLangParser.g:3822:1: ( Of )
+            {
+            // InternalFactoryLogicLangParser.g:3822:1: ( Of )
+            // InternalFactoryLogicLangParser.g:3823:2: Of
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getOfKeyword_3()); 
+            match(input,Of,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getOfKeyword_3()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__3__Impl"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__4"
+    // InternalFactoryLogicLangParser.g:3832:1: rule__StorageMoveVariableSlot__Group__4 : rule__StorageMoveVariableSlot__Group__4__Impl rule__StorageMoveVariableSlot__Group__5 ;
+    public final void rule__StorageMoveVariableSlot__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3836:1: ( rule__StorageMoveVariableSlot__Group__4__Impl rule__StorageMoveVariableSlot__Group__5 )
+            // InternalFactoryLogicLangParser.g:3837:2: rule__StorageMoveVariableSlot__Group__4__Impl rule__StorageMoveVariableSlot__Group__5
+            {
+            pushFollow(FOLLOW_26);
+            rule__StorageMoveVariableSlot__Group__4__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__Group__5();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__4"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__4__Impl"
+    // InternalFactoryLogicLangParser.g:3844:1: rule__StorageMoveVariableSlot__Group__4__Impl : ( ( rule__StorageMoveVariableSlot__PositionAssignment_4 ) ) ;
+    public final void rule__StorageMoveVariableSlot__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3848:1: ( ( ( rule__StorageMoveVariableSlot__PositionAssignment_4 ) ) )
+            // InternalFactoryLogicLangParser.g:3849:1: ( ( rule__StorageMoveVariableSlot__PositionAssignment_4 ) )
+            {
+            // InternalFactoryLogicLangParser.g:3849:1: ( ( rule__StorageMoveVariableSlot__PositionAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:3850:2: ( rule__StorageMoveVariableSlot__PositionAssignment_4 )
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getPositionAssignment_4()); 
+            // InternalFactoryLogicLangParser.g:3851:2: ( rule__StorageMoveVariableSlot__PositionAssignment_4 )
+            // InternalFactoryLogicLangParser.g:3851:3: rule__StorageMoveVariableSlot__PositionAssignment_4
+            {
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__PositionAssignment_4();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getPositionAssignment_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__4__Impl"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__5"
+    // InternalFactoryLogicLangParser.g:3859:1: rule__StorageMoveVariableSlot__Group__5 : rule__StorageMoveVariableSlot__Group__5__Impl rule__StorageMoveVariableSlot__Group__6 ;
+    public final void rule__StorageMoveVariableSlot__Group__5() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3863:1: ( rule__StorageMoveVariableSlot__Group__5__Impl rule__StorageMoveVariableSlot__Group__6 )
+            // InternalFactoryLogicLangParser.g:3864:2: rule__StorageMoveVariableSlot__Group__5__Impl rule__StorageMoveVariableSlot__Group__6
+            {
+            pushFollow(FOLLOW_6);
+            rule__StorageMoveVariableSlot__Group__5__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__Group__6();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__5"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__5__Impl"
+    // InternalFactoryLogicLangParser.g:3871:1: rule__StorageMoveVariableSlot__Group__5__Impl : ( To ) ;
+    public final void rule__StorageMoveVariableSlot__Group__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3875:1: ( ( To ) )
+            // InternalFactoryLogicLangParser.g:3876:1: ( To )
+            {
+            // InternalFactoryLogicLangParser.g:3876:1: ( To )
+            // InternalFactoryLogicLangParser.g:3877:2: To
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getToKeyword_5()); 
+            match(input,To,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getToKeyword_5()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__5__Impl"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__6"
+    // InternalFactoryLogicLangParser.g:3886:1: rule__StorageMoveVariableSlot__Group__6 : rule__StorageMoveVariableSlot__Group__6__Impl ;
+    public final void rule__StorageMoveVariableSlot__Group__6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3890:1: ( rule__StorageMoveVariableSlot__Group__6__Impl )
+            // InternalFactoryLogicLangParser.g:3891:2: rule__StorageMoveVariableSlot__Group__6__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__Group__6__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__6"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__Group__6__Impl"
+    // InternalFactoryLogicLangParser.g:3897:1: rule__StorageMoveVariableSlot__Group__6__Impl : ( ( rule__StorageMoveVariableSlot__DestinationAssignment_6 ) ) ;
+    public final void rule__StorageMoveVariableSlot__Group__6__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:3901:1: ( ( ( rule__StorageMoveVariableSlot__DestinationAssignment_6 ) ) )
+            // InternalFactoryLogicLangParser.g:3902:1: ( ( rule__StorageMoveVariableSlot__DestinationAssignment_6 ) )
+            {
+            // InternalFactoryLogicLangParser.g:3902:1: ( ( rule__StorageMoveVariableSlot__DestinationAssignment_6 ) )
+            // InternalFactoryLogicLangParser.g:3903:2: ( rule__StorageMoveVariableSlot__DestinationAssignment_6 )
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getDestinationAssignment_6()); 
+            // InternalFactoryLogicLangParser.g:3904:2: ( rule__StorageMoveVariableSlot__DestinationAssignment_6 )
+            // InternalFactoryLogicLangParser.g:3904:3: rule__StorageMoveVariableSlot__DestinationAssignment_6
+            {
+            pushFollow(FOLLOW_2);
+            rule__StorageMoveVariableSlot__DestinationAssignment_6();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getDestinationAssignment_6()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__Group__6__Impl"
+
+
     // $ANTLR start "rule__StorageMoveSlot__Group__0"
-    // InternalFactoryLogicLangParser.g:3074:1: rule__StorageMoveSlot__Group__0 : rule__StorageMoveSlot__Group__0__Impl rule__StorageMoveSlot__Group__1 ;
+    // InternalFactoryLogicLangParser.g:3913:1: rule__StorageMoveSlot__Group__0 : rule__StorageMoveSlot__Group__0__Impl rule__StorageMoveSlot__Group__1 ;
     public final void rule__StorageMoveSlot__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3078:1: ( rule__StorageMoveSlot__Group__0__Impl rule__StorageMoveSlot__Group__1 )
-            // InternalFactoryLogicLangParser.g:3079:2: rule__StorageMoveSlot__Group__0__Impl rule__StorageMoveSlot__Group__1
+            // InternalFactoryLogicLangParser.g:3917:1: ( rule__StorageMoveSlot__Group__0__Impl rule__StorageMoveSlot__Group__1 )
+            // InternalFactoryLogicLangParser.g:3918:2: rule__StorageMoveSlot__Group__0__Impl rule__StorageMoveSlot__Group__1
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_31);
             rule__StorageMoveSlot__Group__0__Impl();
 
             state._fsp--;
@@ -9577,21 +12178,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:3086:1: rule__StorageMoveSlot__Group__0__Impl : ( ( rule__StorageMoveSlot__DeviceAssignment_0 ) ) ;
+    // InternalFactoryLogicLangParser.g:3925:1: rule__StorageMoveSlot__Group__0__Impl : ( ( rule__StorageMoveSlot__DeviceAssignment_0 ) ) ;
     public final void rule__StorageMoveSlot__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3090:1: ( ( ( rule__StorageMoveSlot__DeviceAssignment_0 ) ) )
-            // InternalFactoryLogicLangParser.g:3091:1: ( ( rule__StorageMoveSlot__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:3929:1: ( ( ( rule__StorageMoveSlot__DeviceAssignment_0 ) ) )
+            // InternalFactoryLogicLangParser.g:3930:1: ( ( rule__StorageMoveSlot__DeviceAssignment_0 ) )
             {
-            // InternalFactoryLogicLangParser.g:3091:1: ( ( rule__StorageMoveSlot__DeviceAssignment_0 ) )
-            // InternalFactoryLogicLangParser.g:3092:2: ( rule__StorageMoveSlot__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:3930:1: ( ( rule__StorageMoveSlot__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:3931:2: ( rule__StorageMoveSlot__DeviceAssignment_0 )
             {
              before(grammarAccess.getStorageMoveSlotAccess().getDeviceAssignment_0()); 
-            // InternalFactoryLogicLangParser.g:3093:2: ( rule__StorageMoveSlot__DeviceAssignment_0 )
-            // InternalFactoryLogicLangParser.g:3093:3: rule__StorageMoveSlot__DeviceAssignment_0
+            // InternalFactoryLogicLangParser.g:3932:2: ( rule__StorageMoveSlot__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:3932:3: rule__StorageMoveSlot__DeviceAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__StorageMoveSlot__DeviceAssignment_0();
@@ -9624,14 +12225,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__1"
-    // InternalFactoryLogicLangParser.g:3101:1: rule__StorageMoveSlot__Group__1 : rule__StorageMoveSlot__Group__1__Impl rule__StorageMoveSlot__Group__2 ;
+    // InternalFactoryLogicLangParser.g:3940:1: rule__StorageMoveSlot__Group__1 : rule__StorageMoveSlot__Group__1__Impl rule__StorageMoveSlot__Group__2 ;
     public final void rule__StorageMoveSlot__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3105:1: ( rule__StorageMoveSlot__Group__1__Impl rule__StorageMoveSlot__Group__2 )
-            // InternalFactoryLogicLangParser.g:3106:2: rule__StorageMoveSlot__Group__1__Impl rule__StorageMoveSlot__Group__2
+            // InternalFactoryLogicLangParser.g:3944:1: ( rule__StorageMoveSlot__Group__1__Impl rule__StorageMoveSlot__Group__2 )
+            // InternalFactoryLogicLangParser.g:3945:2: rule__StorageMoveSlot__Group__1__Impl rule__StorageMoveSlot__Group__2
             {
             pushFollow(FOLLOW_16);
             rule__StorageMoveSlot__Group__1__Impl();
@@ -9662,17 +12263,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:3113:1: rule__StorageMoveSlot__Group__1__Impl : ( Move ) ;
+    // InternalFactoryLogicLangParser.g:3952:1: rule__StorageMoveSlot__Group__1__Impl : ( Move ) ;
     public final void rule__StorageMoveSlot__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3117:1: ( ( Move ) )
-            // InternalFactoryLogicLangParser.g:3118:1: ( Move )
+            // InternalFactoryLogicLangParser.g:3956:1: ( ( Move ) )
+            // InternalFactoryLogicLangParser.g:3957:1: ( Move )
             {
-            // InternalFactoryLogicLangParser.g:3118:1: ( Move )
-            // InternalFactoryLogicLangParser.g:3119:2: Move
+            // InternalFactoryLogicLangParser.g:3957:1: ( Move )
+            // InternalFactoryLogicLangParser.g:3958:2: Move
             {
              before(grammarAccess.getStorageMoveSlotAccess().getMoveKeyword_1()); 
             match(input,Move,FOLLOW_2); 
@@ -9699,14 +12300,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__2"
-    // InternalFactoryLogicLangParser.g:3128:1: rule__StorageMoveSlot__Group__2 : rule__StorageMoveSlot__Group__2__Impl rule__StorageMoveSlot__Group__3 ;
+    // InternalFactoryLogicLangParser.g:3967:1: rule__StorageMoveSlot__Group__2 : rule__StorageMoveSlot__Group__2__Impl rule__StorageMoveSlot__Group__3 ;
     public final void rule__StorageMoveSlot__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3132:1: ( rule__StorageMoveSlot__Group__2__Impl rule__StorageMoveSlot__Group__3 )
-            // InternalFactoryLogicLangParser.g:3133:2: rule__StorageMoveSlot__Group__2__Impl rule__StorageMoveSlot__Group__3
+            // InternalFactoryLogicLangParser.g:3971:1: ( rule__StorageMoveSlot__Group__2__Impl rule__StorageMoveSlot__Group__3 )
+            // InternalFactoryLogicLangParser.g:3972:2: rule__StorageMoveSlot__Group__2__Impl rule__StorageMoveSlot__Group__3
             {
             pushFollow(FOLLOW_12);
             rule__StorageMoveSlot__Group__2__Impl();
@@ -9737,17 +12338,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:3140:1: rule__StorageMoveSlot__Group__2__Impl : ( Slot ) ;
+    // InternalFactoryLogicLangParser.g:3979:1: rule__StorageMoveSlot__Group__2__Impl : ( Slot ) ;
     public final void rule__StorageMoveSlot__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3144:1: ( ( Slot ) )
-            // InternalFactoryLogicLangParser.g:3145:1: ( Slot )
+            // InternalFactoryLogicLangParser.g:3983:1: ( ( Slot ) )
+            // InternalFactoryLogicLangParser.g:3984:1: ( Slot )
             {
-            // InternalFactoryLogicLangParser.g:3145:1: ( Slot )
-            // InternalFactoryLogicLangParser.g:3146:2: Slot
+            // InternalFactoryLogicLangParser.g:3984:1: ( Slot )
+            // InternalFactoryLogicLangParser.g:3985:2: Slot
             {
              before(grammarAccess.getStorageMoveSlotAccess().getSlotKeyword_2()); 
             match(input,Slot,FOLLOW_2); 
@@ -9774,16 +12375,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__3"
-    // InternalFactoryLogicLangParser.g:3155:1: rule__StorageMoveSlot__Group__3 : rule__StorageMoveSlot__Group__3__Impl rule__StorageMoveSlot__Group__4 ;
+    // InternalFactoryLogicLangParser.g:3994:1: rule__StorageMoveSlot__Group__3 : rule__StorageMoveSlot__Group__3__Impl rule__StorageMoveSlot__Group__4 ;
     public final void rule__StorageMoveSlot__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3159:1: ( rule__StorageMoveSlot__Group__3__Impl rule__StorageMoveSlot__Group__4 )
-            // InternalFactoryLogicLangParser.g:3160:2: rule__StorageMoveSlot__Group__3__Impl rule__StorageMoveSlot__Group__4
+            // InternalFactoryLogicLangParser.g:3998:1: ( rule__StorageMoveSlot__Group__3__Impl rule__StorageMoveSlot__Group__4 )
+            // InternalFactoryLogicLangParser.g:3999:2: rule__StorageMoveSlot__Group__3__Impl rule__StorageMoveSlot__Group__4
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_6);
             rule__StorageMoveSlot__Group__3__Impl();
 
             state._fsp--;
@@ -9812,17 +12413,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:3167:1: rule__StorageMoveSlot__Group__3__Impl : ( At ) ;
+    // InternalFactoryLogicLangParser.g:4006:1: rule__StorageMoveSlot__Group__3__Impl : ( At ) ;
     public final void rule__StorageMoveSlot__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3171:1: ( ( At ) )
-            // InternalFactoryLogicLangParser.g:3172:1: ( At )
+            // InternalFactoryLogicLangParser.g:4010:1: ( ( At ) )
+            // InternalFactoryLogicLangParser.g:4011:1: ( At )
             {
-            // InternalFactoryLogicLangParser.g:3172:1: ( At )
-            // InternalFactoryLogicLangParser.g:3173:2: At
+            // InternalFactoryLogicLangParser.g:4011:1: ( At )
+            // InternalFactoryLogicLangParser.g:4012:2: At
             {
              before(grammarAccess.getStorageMoveSlotAccess().getAtKeyword_3()); 
             match(input,At,FOLLOW_2); 
@@ -9849,16 +12450,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__4"
-    // InternalFactoryLogicLangParser.g:3182:1: rule__StorageMoveSlot__Group__4 : rule__StorageMoveSlot__Group__4__Impl rule__StorageMoveSlot__Group__5 ;
+    // InternalFactoryLogicLangParser.g:4021:1: rule__StorageMoveSlot__Group__4 : rule__StorageMoveSlot__Group__4__Impl rule__StorageMoveSlot__Group__5 ;
     public final void rule__StorageMoveSlot__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3186:1: ( rule__StorageMoveSlot__Group__4__Impl rule__StorageMoveSlot__Group__5 )
-            // InternalFactoryLogicLangParser.g:3187:2: rule__StorageMoveSlot__Group__4__Impl rule__StorageMoveSlot__Group__5
+            // InternalFactoryLogicLangParser.g:4025:1: ( rule__StorageMoveSlot__Group__4__Impl rule__StorageMoveSlot__Group__5 )
+            // InternalFactoryLogicLangParser.g:4026:2: rule__StorageMoveSlot__Group__4__Impl rule__StorageMoveSlot__Group__5
             {
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_26);
             rule__StorageMoveSlot__Group__4__Impl();
 
             state._fsp--;
@@ -9887,21 +12488,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:3194:1: rule__StorageMoveSlot__Group__4__Impl : ( ( rule__StorageMoveSlot__PositionAssignment_4 ) ) ;
+    // InternalFactoryLogicLangParser.g:4033:1: rule__StorageMoveSlot__Group__4__Impl : ( ( rule__StorageMoveSlot__PositionAssignment_4 ) ) ;
     public final void rule__StorageMoveSlot__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3198:1: ( ( ( rule__StorageMoveSlot__PositionAssignment_4 ) ) )
-            // InternalFactoryLogicLangParser.g:3199:1: ( ( rule__StorageMoveSlot__PositionAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:4037:1: ( ( ( rule__StorageMoveSlot__PositionAssignment_4 ) ) )
+            // InternalFactoryLogicLangParser.g:4038:1: ( ( rule__StorageMoveSlot__PositionAssignment_4 ) )
             {
-            // InternalFactoryLogicLangParser.g:3199:1: ( ( rule__StorageMoveSlot__PositionAssignment_4 ) )
-            // InternalFactoryLogicLangParser.g:3200:2: ( rule__StorageMoveSlot__PositionAssignment_4 )
+            // InternalFactoryLogicLangParser.g:4038:1: ( ( rule__StorageMoveSlot__PositionAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:4039:2: ( rule__StorageMoveSlot__PositionAssignment_4 )
             {
              before(grammarAccess.getStorageMoveSlotAccess().getPositionAssignment_4()); 
-            // InternalFactoryLogicLangParser.g:3201:2: ( rule__StorageMoveSlot__PositionAssignment_4 )
-            // InternalFactoryLogicLangParser.g:3201:3: rule__StorageMoveSlot__PositionAssignment_4
+            // InternalFactoryLogicLangParser.g:4040:2: ( rule__StorageMoveSlot__PositionAssignment_4 )
+            // InternalFactoryLogicLangParser.g:4040:3: rule__StorageMoveSlot__PositionAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__StorageMoveSlot__PositionAssignment_4();
@@ -9934,16 +12535,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__5"
-    // InternalFactoryLogicLangParser.g:3209:1: rule__StorageMoveSlot__Group__5 : rule__StorageMoveSlot__Group__5__Impl rule__StorageMoveSlot__Group__6 ;
+    // InternalFactoryLogicLangParser.g:4048:1: rule__StorageMoveSlot__Group__5 : rule__StorageMoveSlot__Group__5__Impl rule__StorageMoveSlot__Group__6 ;
     public final void rule__StorageMoveSlot__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3213:1: ( rule__StorageMoveSlot__Group__5__Impl rule__StorageMoveSlot__Group__6 )
-            // InternalFactoryLogicLangParser.g:3214:2: rule__StorageMoveSlot__Group__5__Impl rule__StorageMoveSlot__Group__6
+            // InternalFactoryLogicLangParser.g:4052:1: ( rule__StorageMoveSlot__Group__5__Impl rule__StorageMoveSlot__Group__6 )
+            // InternalFactoryLogicLangParser.g:4053:2: rule__StorageMoveSlot__Group__5__Impl rule__StorageMoveSlot__Group__6
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_6);
             rule__StorageMoveSlot__Group__5__Impl();
 
             state._fsp--;
@@ -9972,17 +12573,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__5__Impl"
-    // InternalFactoryLogicLangParser.g:3221:1: rule__StorageMoveSlot__Group__5__Impl : ( To ) ;
+    // InternalFactoryLogicLangParser.g:4060:1: rule__StorageMoveSlot__Group__5__Impl : ( To ) ;
     public final void rule__StorageMoveSlot__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3225:1: ( ( To ) )
-            // InternalFactoryLogicLangParser.g:3226:1: ( To )
+            // InternalFactoryLogicLangParser.g:4064:1: ( ( To ) )
+            // InternalFactoryLogicLangParser.g:4065:1: ( To )
             {
-            // InternalFactoryLogicLangParser.g:3226:1: ( To )
-            // InternalFactoryLogicLangParser.g:3227:2: To
+            // InternalFactoryLogicLangParser.g:4065:1: ( To )
+            // InternalFactoryLogicLangParser.g:4066:2: To
             {
              before(grammarAccess.getStorageMoveSlotAccess().getToKeyword_5()); 
             match(input,To,FOLLOW_2); 
@@ -10009,14 +12610,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__6"
-    // InternalFactoryLogicLangParser.g:3236:1: rule__StorageMoveSlot__Group__6 : rule__StorageMoveSlot__Group__6__Impl ;
+    // InternalFactoryLogicLangParser.g:4075:1: rule__StorageMoveSlot__Group__6 : rule__StorageMoveSlot__Group__6__Impl ;
     public final void rule__StorageMoveSlot__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3240:1: ( rule__StorageMoveSlot__Group__6__Impl )
-            // InternalFactoryLogicLangParser.g:3241:2: rule__StorageMoveSlot__Group__6__Impl
+            // InternalFactoryLogicLangParser.g:4079:1: ( rule__StorageMoveSlot__Group__6__Impl )
+            // InternalFactoryLogicLangParser.g:4080:2: rule__StorageMoveSlot__Group__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__StorageMoveSlot__Group__6__Impl();
@@ -10042,21 +12643,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__Group__6__Impl"
-    // InternalFactoryLogicLangParser.g:3247:1: rule__StorageMoveSlot__Group__6__Impl : ( ( rule__StorageMoveSlot__DestinationAssignment_6 ) ) ;
+    // InternalFactoryLogicLangParser.g:4086:1: rule__StorageMoveSlot__Group__6__Impl : ( ( rule__StorageMoveSlot__DestinationAssignment_6 ) ) ;
     public final void rule__StorageMoveSlot__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3251:1: ( ( ( rule__StorageMoveSlot__DestinationAssignment_6 ) ) )
-            // InternalFactoryLogicLangParser.g:3252:1: ( ( rule__StorageMoveSlot__DestinationAssignment_6 ) )
+            // InternalFactoryLogicLangParser.g:4090:1: ( ( ( rule__StorageMoveSlot__DestinationAssignment_6 ) ) )
+            // InternalFactoryLogicLangParser.g:4091:1: ( ( rule__StorageMoveSlot__DestinationAssignment_6 ) )
             {
-            // InternalFactoryLogicLangParser.g:3252:1: ( ( rule__StorageMoveSlot__DestinationAssignment_6 ) )
-            // InternalFactoryLogicLangParser.g:3253:2: ( rule__StorageMoveSlot__DestinationAssignment_6 )
+            // InternalFactoryLogicLangParser.g:4091:1: ( ( rule__StorageMoveSlot__DestinationAssignment_6 ) )
+            // InternalFactoryLogicLangParser.g:4092:2: ( rule__StorageMoveSlot__DestinationAssignment_6 )
             {
              before(grammarAccess.getStorageMoveSlotAccess().getDestinationAssignment_6()); 
-            // InternalFactoryLogicLangParser.g:3254:2: ( rule__StorageMoveSlot__DestinationAssignment_6 )
-            // InternalFactoryLogicLangParser.g:3254:3: rule__StorageMoveSlot__DestinationAssignment_6
+            // InternalFactoryLogicLangParser.g:4093:2: ( rule__StorageMoveSlot__DestinationAssignment_6 )
+            // InternalFactoryLogicLangParser.g:4093:3: rule__StorageMoveSlot__DestinationAssignment_6
             {
             pushFollow(FOLLOW_2);
             rule__StorageMoveSlot__DestinationAssignment_6();
@@ -10089,16 +12690,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__0"
-    // InternalFactoryLogicLangParser.g:3263:1: rule__StorageMarkSlot__Group__0 : rule__StorageMarkSlot__Group__0__Impl rule__StorageMarkSlot__Group__1 ;
+    // InternalFactoryLogicLangParser.g:4102:1: rule__StorageMarkSlot__Group__0 : rule__StorageMarkSlot__Group__0__Impl rule__StorageMarkSlot__Group__1 ;
     public final void rule__StorageMarkSlot__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3267:1: ( rule__StorageMarkSlot__Group__0__Impl rule__StorageMarkSlot__Group__1 )
-            // InternalFactoryLogicLangParser.g:3268:2: rule__StorageMarkSlot__Group__0__Impl rule__StorageMarkSlot__Group__1
+            // InternalFactoryLogicLangParser.g:4106:1: ( rule__StorageMarkSlot__Group__0__Impl rule__StorageMarkSlot__Group__1 )
+            // InternalFactoryLogicLangParser.g:4107:2: rule__StorageMarkSlot__Group__0__Impl rule__StorageMarkSlot__Group__1
             {
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_34);
             rule__StorageMarkSlot__Group__0__Impl();
 
             state._fsp--;
@@ -10127,21 +12728,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:3275:1: rule__StorageMarkSlot__Group__0__Impl : ( ( rule__StorageMarkSlot__DeviceAssignment_0 ) ) ;
+    // InternalFactoryLogicLangParser.g:4114:1: rule__StorageMarkSlot__Group__0__Impl : ( ( rule__StorageMarkSlot__DeviceAssignment_0 ) ) ;
     public final void rule__StorageMarkSlot__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3279:1: ( ( ( rule__StorageMarkSlot__DeviceAssignment_0 ) ) )
-            // InternalFactoryLogicLangParser.g:3280:1: ( ( rule__StorageMarkSlot__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:4118:1: ( ( ( rule__StorageMarkSlot__DeviceAssignment_0 ) ) )
+            // InternalFactoryLogicLangParser.g:4119:1: ( ( rule__StorageMarkSlot__DeviceAssignment_0 ) )
             {
-            // InternalFactoryLogicLangParser.g:3280:1: ( ( rule__StorageMarkSlot__DeviceAssignment_0 ) )
-            // InternalFactoryLogicLangParser.g:3281:2: ( rule__StorageMarkSlot__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:4119:1: ( ( rule__StorageMarkSlot__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:4120:2: ( rule__StorageMarkSlot__DeviceAssignment_0 )
             {
              before(grammarAccess.getStorageMarkSlotAccess().getDeviceAssignment_0()); 
-            // InternalFactoryLogicLangParser.g:3282:2: ( rule__StorageMarkSlot__DeviceAssignment_0 )
-            // InternalFactoryLogicLangParser.g:3282:3: rule__StorageMarkSlot__DeviceAssignment_0
+            // InternalFactoryLogicLangParser.g:4121:2: ( rule__StorageMarkSlot__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:4121:3: rule__StorageMarkSlot__DeviceAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__StorageMarkSlot__DeviceAssignment_0();
@@ -10174,14 +12775,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__1"
-    // InternalFactoryLogicLangParser.g:3290:1: rule__StorageMarkSlot__Group__1 : rule__StorageMarkSlot__Group__1__Impl rule__StorageMarkSlot__Group__2 ;
+    // InternalFactoryLogicLangParser.g:4129:1: rule__StorageMarkSlot__Group__1 : rule__StorageMarkSlot__Group__1__Impl rule__StorageMarkSlot__Group__2 ;
     public final void rule__StorageMarkSlot__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3294:1: ( rule__StorageMarkSlot__Group__1__Impl rule__StorageMarkSlot__Group__2 )
-            // InternalFactoryLogicLangParser.g:3295:2: rule__StorageMarkSlot__Group__1__Impl rule__StorageMarkSlot__Group__2
+            // InternalFactoryLogicLangParser.g:4133:1: ( rule__StorageMarkSlot__Group__1__Impl rule__StorageMarkSlot__Group__2 )
+            // InternalFactoryLogicLangParser.g:4134:2: rule__StorageMarkSlot__Group__1__Impl rule__StorageMarkSlot__Group__2
             {
             pushFollow(FOLLOW_16);
             rule__StorageMarkSlot__Group__1__Impl();
@@ -10212,17 +12813,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:3302:1: rule__StorageMarkSlot__Group__1__Impl : ( Mark ) ;
+    // InternalFactoryLogicLangParser.g:4141:1: rule__StorageMarkSlot__Group__1__Impl : ( Mark ) ;
     public final void rule__StorageMarkSlot__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3306:1: ( ( Mark ) )
-            // InternalFactoryLogicLangParser.g:3307:1: ( Mark )
+            // InternalFactoryLogicLangParser.g:4145:1: ( ( Mark ) )
+            // InternalFactoryLogicLangParser.g:4146:1: ( Mark )
             {
-            // InternalFactoryLogicLangParser.g:3307:1: ( Mark )
-            // InternalFactoryLogicLangParser.g:3308:2: Mark
+            // InternalFactoryLogicLangParser.g:4146:1: ( Mark )
+            // InternalFactoryLogicLangParser.g:4147:2: Mark
             {
              before(grammarAccess.getStorageMarkSlotAccess().getMarkKeyword_1()); 
             match(input,Mark,FOLLOW_2); 
@@ -10249,14 +12850,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__2"
-    // InternalFactoryLogicLangParser.g:3317:1: rule__StorageMarkSlot__Group__2 : rule__StorageMarkSlot__Group__2__Impl rule__StorageMarkSlot__Group__3 ;
+    // InternalFactoryLogicLangParser.g:4156:1: rule__StorageMarkSlot__Group__2 : rule__StorageMarkSlot__Group__2__Impl rule__StorageMarkSlot__Group__3 ;
     public final void rule__StorageMarkSlot__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3321:1: ( rule__StorageMarkSlot__Group__2__Impl rule__StorageMarkSlot__Group__3 )
-            // InternalFactoryLogicLangParser.g:3322:2: rule__StorageMarkSlot__Group__2__Impl rule__StorageMarkSlot__Group__3
+            // InternalFactoryLogicLangParser.g:4160:1: ( rule__StorageMarkSlot__Group__2__Impl rule__StorageMarkSlot__Group__3 )
+            // InternalFactoryLogicLangParser.g:4161:2: rule__StorageMarkSlot__Group__2__Impl rule__StorageMarkSlot__Group__3
             {
             pushFollow(FOLLOW_12);
             rule__StorageMarkSlot__Group__2__Impl();
@@ -10287,17 +12888,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:3329:1: rule__StorageMarkSlot__Group__2__Impl : ( Slot ) ;
+    // InternalFactoryLogicLangParser.g:4168:1: rule__StorageMarkSlot__Group__2__Impl : ( Slot ) ;
     public final void rule__StorageMarkSlot__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3333:1: ( ( Slot ) )
-            // InternalFactoryLogicLangParser.g:3334:1: ( Slot )
+            // InternalFactoryLogicLangParser.g:4172:1: ( ( Slot ) )
+            // InternalFactoryLogicLangParser.g:4173:1: ( Slot )
             {
-            // InternalFactoryLogicLangParser.g:3334:1: ( Slot )
-            // InternalFactoryLogicLangParser.g:3335:2: Slot
+            // InternalFactoryLogicLangParser.g:4173:1: ( Slot )
+            // InternalFactoryLogicLangParser.g:4174:2: Slot
             {
              before(grammarAccess.getStorageMarkSlotAccess().getSlotKeyword_2()); 
             match(input,Slot,FOLLOW_2); 
@@ -10324,16 +12925,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__3"
-    // InternalFactoryLogicLangParser.g:3344:1: rule__StorageMarkSlot__Group__3 : rule__StorageMarkSlot__Group__3__Impl rule__StorageMarkSlot__Group__4 ;
+    // InternalFactoryLogicLangParser.g:4183:1: rule__StorageMarkSlot__Group__3 : rule__StorageMarkSlot__Group__3__Impl rule__StorageMarkSlot__Group__4 ;
     public final void rule__StorageMarkSlot__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3348:1: ( rule__StorageMarkSlot__Group__3__Impl rule__StorageMarkSlot__Group__4 )
-            // InternalFactoryLogicLangParser.g:3349:2: rule__StorageMarkSlot__Group__3__Impl rule__StorageMarkSlot__Group__4
+            // InternalFactoryLogicLangParser.g:4187:1: ( rule__StorageMarkSlot__Group__3__Impl rule__StorageMarkSlot__Group__4 )
+            // InternalFactoryLogicLangParser.g:4188:2: rule__StorageMarkSlot__Group__3__Impl rule__StorageMarkSlot__Group__4
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_6);
             rule__StorageMarkSlot__Group__3__Impl();
 
             state._fsp--;
@@ -10362,17 +12963,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:3356:1: rule__StorageMarkSlot__Group__3__Impl : ( At ) ;
+    // InternalFactoryLogicLangParser.g:4195:1: rule__StorageMarkSlot__Group__3__Impl : ( At ) ;
     public final void rule__StorageMarkSlot__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3360:1: ( ( At ) )
-            // InternalFactoryLogicLangParser.g:3361:1: ( At )
+            // InternalFactoryLogicLangParser.g:4199:1: ( ( At ) )
+            // InternalFactoryLogicLangParser.g:4200:1: ( At )
             {
-            // InternalFactoryLogicLangParser.g:3361:1: ( At )
-            // InternalFactoryLogicLangParser.g:3362:2: At
+            // InternalFactoryLogicLangParser.g:4200:1: ( At )
+            // InternalFactoryLogicLangParser.g:4201:2: At
             {
              before(grammarAccess.getStorageMarkSlotAccess().getAtKeyword_3()); 
             match(input,At,FOLLOW_2); 
@@ -10399,16 +13000,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__4"
-    // InternalFactoryLogicLangParser.g:3371:1: rule__StorageMarkSlot__Group__4 : rule__StorageMarkSlot__Group__4__Impl rule__StorageMarkSlot__Group__5 ;
+    // InternalFactoryLogicLangParser.g:4210:1: rule__StorageMarkSlot__Group__4 : rule__StorageMarkSlot__Group__4__Impl rule__StorageMarkSlot__Group__5 ;
     public final void rule__StorageMarkSlot__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3375:1: ( rule__StorageMarkSlot__Group__4__Impl rule__StorageMarkSlot__Group__5 )
-            // InternalFactoryLogicLangParser.g:3376:2: rule__StorageMarkSlot__Group__4__Impl rule__StorageMarkSlot__Group__5
+            // InternalFactoryLogicLangParser.g:4214:1: ( rule__StorageMarkSlot__Group__4__Impl rule__StorageMarkSlot__Group__5 )
+            // InternalFactoryLogicLangParser.g:4215:2: rule__StorageMarkSlot__Group__4__Impl rule__StorageMarkSlot__Group__5
             {
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_35);
             rule__StorageMarkSlot__Group__4__Impl();
 
             state._fsp--;
@@ -10437,21 +13038,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:3383:1: rule__StorageMarkSlot__Group__4__Impl : ( ( rule__StorageMarkSlot__PositionAssignment_4 ) ) ;
+    // InternalFactoryLogicLangParser.g:4222:1: rule__StorageMarkSlot__Group__4__Impl : ( ( rule__StorageMarkSlot__PositionAssignment_4 ) ) ;
     public final void rule__StorageMarkSlot__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3387:1: ( ( ( rule__StorageMarkSlot__PositionAssignment_4 ) ) )
-            // InternalFactoryLogicLangParser.g:3388:1: ( ( rule__StorageMarkSlot__PositionAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:4226:1: ( ( ( rule__StorageMarkSlot__PositionAssignment_4 ) ) )
+            // InternalFactoryLogicLangParser.g:4227:1: ( ( rule__StorageMarkSlot__PositionAssignment_4 ) )
             {
-            // InternalFactoryLogicLangParser.g:3388:1: ( ( rule__StorageMarkSlot__PositionAssignment_4 ) )
-            // InternalFactoryLogicLangParser.g:3389:2: ( rule__StorageMarkSlot__PositionAssignment_4 )
+            // InternalFactoryLogicLangParser.g:4227:1: ( ( rule__StorageMarkSlot__PositionAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:4228:2: ( rule__StorageMarkSlot__PositionAssignment_4 )
             {
              before(grammarAccess.getStorageMarkSlotAccess().getPositionAssignment_4()); 
-            // InternalFactoryLogicLangParser.g:3390:2: ( rule__StorageMarkSlot__PositionAssignment_4 )
-            // InternalFactoryLogicLangParser.g:3390:3: rule__StorageMarkSlot__PositionAssignment_4
+            // InternalFactoryLogicLangParser.g:4229:2: ( rule__StorageMarkSlot__PositionAssignment_4 )
+            // InternalFactoryLogicLangParser.g:4229:3: rule__StorageMarkSlot__PositionAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__StorageMarkSlot__PositionAssignment_4();
@@ -10484,16 +13085,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__5"
-    // InternalFactoryLogicLangParser.g:3398:1: rule__StorageMarkSlot__Group__5 : rule__StorageMarkSlot__Group__5__Impl rule__StorageMarkSlot__Group__6 ;
+    // InternalFactoryLogicLangParser.g:4237:1: rule__StorageMarkSlot__Group__5 : rule__StorageMarkSlot__Group__5__Impl rule__StorageMarkSlot__Group__6 ;
     public final void rule__StorageMarkSlot__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3402:1: ( rule__StorageMarkSlot__Group__5__Impl rule__StorageMarkSlot__Group__6 )
-            // InternalFactoryLogicLangParser.g:3403:2: rule__StorageMarkSlot__Group__5__Impl rule__StorageMarkSlot__Group__6
+            // InternalFactoryLogicLangParser.g:4241:1: ( rule__StorageMarkSlot__Group__5__Impl rule__StorageMarkSlot__Group__6 )
+            // InternalFactoryLogicLangParser.g:4242:2: rule__StorageMarkSlot__Group__5__Impl rule__StorageMarkSlot__Group__6
             {
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_36);
             rule__StorageMarkSlot__Group__5__Impl();
 
             state._fsp--;
@@ -10522,17 +13123,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__5__Impl"
-    // InternalFactoryLogicLangParser.g:3410:1: rule__StorageMarkSlot__Group__5__Impl : ( As ) ;
+    // InternalFactoryLogicLangParser.g:4249:1: rule__StorageMarkSlot__Group__5__Impl : ( As ) ;
     public final void rule__StorageMarkSlot__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3414:1: ( ( As ) )
-            // InternalFactoryLogicLangParser.g:3415:1: ( As )
+            // InternalFactoryLogicLangParser.g:4253:1: ( ( As ) )
+            // InternalFactoryLogicLangParser.g:4254:1: ( As )
             {
-            // InternalFactoryLogicLangParser.g:3415:1: ( As )
-            // InternalFactoryLogicLangParser.g:3416:2: As
+            // InternalFactoryLogicLangParser.g:4254:1: ( As )
+            // InternalFactoryLogicLangParser.g:4255:2: As
             {
              before(grammarAccess.getStorageMarkSlotAccess().getAsKeyword_5()); 
             match(input,As,FOLLOW_2); 
@@ -10559,16 +13160,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__6"
-    // InternalFactoryLogicLangParser.g:3425:1: rule__StorageMarkSlot__Group__6 : rule__StorageMarkSlot__Group__6__Impl rule__StorageMarkSlot__Group__7 ;
+    // InternalFactoryLogicLangParser.g:4264:1: rule__StorageMarkSlot__Group__6 : rule__StorageMarkSlot__Group__6__Impl rule__StorageMarkSlot__Group__7 ;
     public final void rule__StorageMarkSlot__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3429:1: ( rule__StorageMarkSlot__Group__6__Impl rule__StorageMarkSlot__Group__7 )
-            // InternalFactoryLogicLangParser.g:3430:2: rule__StorageMarkSlot__Group__6__Impl rule__StorageMarkSlot__Group__7
+            // InternalFactoryLogicLangParser.g:4268:1: ( rule__StorageMarkSlot__Group__6__Impl rule__StorageMarkSlot__Group__7 )
+            // InternalFactoryLogicLangParser.g:4269:2: rule__StorageMarkSlot__Group__6__Impl rule__StorageMarkSlot__Group__7
             {
-            pushFollow(FOLLOW_26);
+            pushFollow(FOLLOW_29);
             rule__StorageMarkSlot__Group__6__Impl();
 
             state._fsp--;
@@ -10597,21 +13198,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__6__Impl"
-    // InternalFactoryLogicLangParser.g:3437:1: rule__StorageMarkSlot__Group__6__Impl : ( ( rule__StorageMarkSlot__Alternatives_6 ) ) ;
+    // InternalFactoryLogicLangParser.g:4276:1: rule__StorageMarkSlot__Group__6__Impl : ( ( rule__StorageMarkSlot__Alternatives_6 ) ) ;
     public final void rule__StorageMarkSlot__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3441:1: ( ( ( rule__StorageMarkSlot__Alternatives_6 ) ) )
-            // InternalFactoryLogicLangParser.g:3442:1: ( ( rule__StorageMarkSlot__Alternatives_6 ) )
+            // InternalFactoryLogicLangParser.g:4280:1: ( ( ( rule__StorageMarkSlot__Alternatives_6 ) ) )
+            // InternalFactoryLogicLangParser.g:4281:1: ( ( rule__StorageMarkSlot__Alternatives_6 ) )
             {
-            // InternalFactoryLogicLangParser.g:3442:1: ( ( rule__StorageMarkSlot__Alternatives_6 ) )
-            // InternalFactoryLogicLangParser.g:3443:2: ( rule__StorageMarkSlot__Alternatives_6 )
+            // InternalFactoryLogicLangParser.g:4281:1: ( ( rule__StorageMarkSlot__Alternatives_6 ) )
+            // InternalFactoryLogicLangParser.g:4282:2: ( rule__StorageMarkSlot__Alternatives_6 )
             {
              before(grammarAccess.getStorageMarkSlotAccess().getAlternatives_6()); 
-            // InternalFactoryLogicLangParser.g:3444:2: ( rule__StorageMarkSlot__Alternatives_6 )
-            // InternalFactoryLogicLangParser.g:3444:3: rule__StorageMarkSlot__Alternatives_6
+            // InternalFactoryLogicLangParser.g:4283:2: ( rule__StorageMarkSlot__Alternatives_6 )
+            // InternalFactoryLogicLangParser.g:4283:3: rule__StorageMarkSlot__Alternatives_6
             {
             pushFollow(FOLLOW_2);
             rule__StorageMarkSlot__Alternatives_6();
@@ -10644,14 +13245,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__7"
-    // InternalFactoryLogicLangParser.g:3452:1: rule__StorageMarkSlot__Group__7 : rule__StorageMarkSlot__Group__7__Impl ;
+    // InternalFactoryLogicLangParser.g:4291:1: rule__StorageMarkSlot__Group__7 : rule__StorageMarkSlot__Group__7__Impl ;
     public final void rule__StorageMarkSlot__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3456:1: ( rule__StorageMarkSlot__Group__7__Impl )
-            // InternalFactoryLogicLangParser.g:3457:2: rule__StorageMarkSlot__Group__7__Impl
+            // InternalFactoryLogicLangParser.g:4295:1: ( rule__StorageMarkSlot__Group__7__Impl )
+            // InternalFactoryLogicLangParser.g:4296:2: rule__StorageMarkSlot__Group__7__Impl
             {
             pushFollow(FOLLOW_2);
             rule__StorageMarkSlot__Group__7__Impl();
@@ -10677,29 +13278,29 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group__7__Impl"
-    // InternalFactoryLogicLangParser.g:3463:1: rule__StorageMarkSlot__Group__7__Impl : ( ( rule__StorageMarkSlot__Group_7__0 )? ) ;
+    // InternalFactoryLogicLangParser.g:4302:1: rule__StorageMarkSlot__Group__7__Impl : ( ( rule__StorageMarkSlot__Group_7__0 )? ) ;
     public final void rule__StorageMarkSlot__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3467:1: ( ( ( rule__StorageMarkSlot__Group_7__0 )? ) )
-            // InternalFactoryLogicLangParser.g:3468:1: ( ( rule__StorageMarkSlot__Group_7__0 )? )
+            // InternalFactoryLogicLangParser.g:4306:1: ( ( ( rule__StorageMarkSlot__Group_7__0 )? ) )
+            // InternalFactoryLogicLangParser.g:4307:1: ( ( rule__StorageMarkSlot__Group_7__0 )? )
             {
-            // InternalFactoryLogicLangParser.g:3468:1: ( ( rule__StorageMarkSlot__Group_7__0 )? )
-            // InternalFactoryLogicLangParser.g:3469:2: ( rule__StorageMarkSlot__Group_7__0 )?
+            // InternalFactoryLogicLangParser.g:4307:1: ( ( rule__StorageMarkSlot__Group_7__0 )? )
+            // InternalFactoryLogicLangParser.g:4308:2: ( rule__StorageMarkSlot__Group_7__0 )?
             {
              before(grammarAccess.getStorageMarkSlotAccess().getGroup_7()); 
-            // InternalFactoryLogicLangParser.g:3470:2: ( rule__StorageMarkSlot__Group_7__0 )?
-            int alt23=2;
-            int LA23_0 = input.LA(1);
+            // InternalFactoryLogicLangParser.g:4309:2: ( rule__StorageMarkSlot__Group_7__0 )?
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( (LA23_0==In) ) {
-                alt23=1;
+            if ( (LA28_0==In) ) {
+                alt28=1;
             }
-            switch (alt23) {
+            switch (alt28) {
                 case 1 :
-                    // InternalFactoryLogicLangParser.g:3470:3: rule__StorageMarkSlot__Group_7__0
+                    // InternalFactoryLogicLangParser.g:4309:3: rule__StorageMarkSlot__Group_7__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__StorageMarkSlot__Group_7__0();
@@ -10735,14 +13336,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group_7__0"
-    // InternalFactoryLogicLangParser.g:3479:1: rule__StorageMarkSlot__Group_7__0 : rule__StorageMarkSlot__Group_7__0__Impl rule__StorageMarkSlot__Group_7__1 ;
+    // InternalFactoryLogicLangParser.g:4318:1: rule__StorageMarkSlot__Group_7__0 : rule__StorageMarkSlot__Group_7__0__Impl rule__StorageMarkSlot__Group_7__1 ;
     public final void rule__StorageMarkSlot__Group_7__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3483:1: ( rule__StorageMarkSlot__Group_7__0__Impl rule__StorageMarkSlot__Group_7__1 )
-            // InternalFactoryLogicLangParser.g:3484:2: rule__StorageMarkSlot__Group_7__0__Impl rule__StorageMarkSlot__Group_7__1
+            // InternalFactoryLogicLangParser.g:4322:1: ( rule__StorageMarkSlot__Group_7__0__Impl rule__StorageMarkSlot__Group_7__1 )
+            // InternalFactoryLogicLangParser.g:4323:2: rule__StorageMarkSlot__Group_7__0__Impl rule__StorageMarkSlot__Group_7__1
             {
             pushFollow(FOLLOW_13);
             rule__StorageMarkSlot__Group_7__0__Impl();
@@ -10773,17 +13374,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group_7__0__Impl"
-    // InternalFactoryLogicLangParser.g:3491:1: rule__StorageMarkSlot__Group_7__0__Impl : ( In ) ;
+    // InternalFactoryLogicLangParser.g:4330:1: rule__StorageMarkSlot__Group_7__0__Impl : ( In ) ;
     public final void rule__StorageMarkSlot__Group_7__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3495:1: ( ( In ) )
-            // InternalFactoryLogicLangParser.g:3496:1: ( In )
+            // InternalFactoryLogicLangParser.g:4334:1: ( ( In ) )
+            // InternalFactoryLogicLangParser.g:4335:1: ( In )
             {
-            // InternalFactoryLogicLangParser.g:3496:1: ( In )
-            // InternalFactoryLogicLangParser.g:3497:2: In
+            // InternalFactoryLogicLangParser.g:4335:1: ( In )
+            // InternalFactoryLogicLangParser.g:4336:2: In
             {
              before(grammarAccess.getStorageMarkSlotAccess().getInKeyword_7_0()); 
             match(input,In,FOLLOW_2); 
@@ -10810,16 +13411,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group_7__1"
-    // InternalFactoryLogicLangParser.g:3506:1: rule__StorageMarkSlot__Group_7__1 : rule__StorageMarkSlot__Group_7__1__Impl rule__StorageMarkSlot__Group_7__2 ;
+    // InternalFactoryLogicLangParser.g:4345:1: rule__StorageMarkSlot__Group_7__1 : rule__StorageMarkSlot__Group_7__1__Impl rule__StorageMarkSlot__Group_7__2 ;
     public final void rule__StorageMarkSlot__Group_7__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3510:1: ( rule__StorageMarkSlot__Group_7__1__Impl rule__StorageMarkSlot__Group_7__2 )
-            // InternalFactoryLogicLangParser.g:3511:2: rule__StorageMarkSlot__Group_7__1__Impl rule__StorageMarkSlot__Group_7__2
+            // InternalFactoryLogicLangParser.g:4349:1: ( rule__StorageMarkSlot__Group_7__1__Impl rule__StorageMarkSlot__Group_7__2 )
+            // InternalFactoryLogicLangParser.g:4350:2: rule__StorageMarkSlot__Group_7__1__Impl rule__StorageMarkSlot__Group_7__2
             {
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_37);
             rule__StorageMarkSlot__Group_7__1__Impl();
 
             state._fsp--;
@@ -10848,21 +13449,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group_7__1__Impl"
-    // InternalFactoryLogicLangParser.g:3518:1: rule__StorageMarkSlot__Group_7__1__Impl : ( ( rule__StorageMarkSlot__QuantityAssignment_7_1 ) ) ;
+    // InternalFactoryLogicLangParser.g:4357:1: rule__StorageMarkSlot__Group_7__1__Impl : ( ( rule__StorageMarkSlot__QuantityAssignment_7_1 ) ) ;
     public final void rule__StorageMarkSlot__Group_7__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3522:1: ( ( ( rule__StorageMarkSlot__QuantityAssignment_7_1 ) ) )
-            // InternalFactoryLogicLangParser.g:3523:1: ( ( rule__StorageMarkSlot__QuantityAssignment_7_1 ) )
+            // InternalFactoryLogicLangParser.g:4361:1: ( ( ( rule__StorageMarkSlot__QuantityAssignment_7_1 ) ) )
+            // InternalFactoryLogicLangParser.g:4362:1: ( ( rule__StorageMarkSlot__QuantityAssignment_7_1 ) )
             {
-            // InternalFactoryLogicLangParser.g:3523:1: ( ( rule__StorageMarkSlot__QuantityAssignment_7_1 ) )
-            // InternalFactoryLogicLangParser.g:3524:2: ( rule__StorageMarkSlot__QuantityAssignment_7_1 )
+            // InternalFactoryLogicLangParser.g:4362:1: ( ( rule__StorageMarkSlot__QuantityAssignment_7_1 ) )
+            // InternalFactoryLogicLangParser.g:4363:2: ( rule__StorageMarkSlot__QuantityAssignment_7_1 )
             {
              before(grammarAccess.getStorageMarkSlotAccess().getQuantityAssignment_7_1()); 
-            // InternalFactoryLogicLangParser.g:3525:2: ( rule__StorageMarkSlot__QuantityAssignment_7_1 )
-            // InternalFactoryLogicLangParser.g:3525:3: rule__StorageMarkSlot__QuantityAssignment_7_1
+            // InternalFactoryLogicLangParser.g:4364:2: ( rule__StorageMarkSlot__QuantityAssignment_7_1 )
+            // InternalFactoryLogicLangParser.g:4364:3: rule__StorageMarkSlot__QuantityAssignment_7_1
             {
             pushFollow(FOLLOW_2);
             rule__StorageMarkSlot__QuantityAssignment_7_1();
@@ -10895,14 +13496,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group_7__2"
-    // InternalFactoryLogicLangParser.g:3533:1: rule__StorageMarkSlot__Group_7__2 : rule__StorageMarkSlot__Group_7__2__Impl ;
+    // InternalFactoryLogicLangParser.g:4372:1: rule__StorageMarkSlot__Group_7__2 : rule__StorageMarkSlot__Group_7__2__Impl ;
     public final void rule__StorageMarkSlot__Group_7__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3537:1: ( rule__StorageMarkSlot__Group_7__2__Impl )
-            // InternalFactoryLogicLangParser.g:3538:2: rule__StorageMarkSlot__Group_7__2__Impl
+            // InternalFactoryLogicLangParser.g:4376:1: ( rule__StorageMarkSlot__Group_7__2__Impl )
+            // InternalFactoryLogicLangParser.g:4377:2: rule__StorageMarkSlot__Group_7__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__StorageMarkSlot__Group_7__2__Impl();
@@ -10928,21 +13529,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__Group_7__2__Impl"
-    // InternalFactoryLogicLangParser.g:3544:1: rule__StorageMarkSlot__Group_7__2__Impl : ( ( rule__StorageMarkSlot__MeasureAssignment_7_2 ) ) ;
+    // InternalFactoryLogicLangParser.g:4383:1: rule__StorageMarkSlot__Group_7__2__Impl : ( ( rule__StorageMarkSlot__MeasureAssignment_7_2 ) ) ;
     public final void rule__StorageMarkSlot__Group_7__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3548:1: ( ( ( rule__StorageMarkSlot__MeasureAssignment_7_2 ) ) )
-            // InternalFactoryLogicLangParser.g:3549:1: ( ( rule__StorageMarkSlot__MeasureAssignment_7_2 ) )
+            // InternalFactoryLogicLangParser.g:4387:1: ( ( ( rule__StorageMarkSlot__MeasureAssignment_7_2 ) ) )
+            // InternalFactoryLogicLangParser.g:4388:1: ( ( rule__StorageMarkSlot__MeasureAssignment_7_2 ) )
             {
-            // InternalFactoryLogicLangParser.g:3549:1: ( ( rule__StorageMarkSlot__MeasureAssignment_7_2 ) )
-            // InternalFactoryLogicLangParser.g:3550:2: ( rule__StorageMarkSlot__MeasureAssignment_7_2 )
+            // InternalFactoryLogicLangParser.g:4388:1: ( ( rule__StorageMarkSlot__MeasureAssignment_7_2 ) )
+            // InternalFactoryLogicLangParser.g:4389:2: ( rule__StorageMarkSlot__MeasureAssignment_7_2 )
             {
              before(grammarAccess.getStorageMarkSlotAccess().getMeasureAssignment_7_2()); 
-            // InternalFactoryLogicLangParser.g:3551:2: ( rule__StorageMarkSlot__MeasureAssignment_7_2 )
-            // InternalFactoryLogicLangParser.g:3551:3: rule__StorageMarkSlot__MeasureAssignment_7_2
+            // InternalFactoryLogicLangParser.g:4390:2: ( rule__StorageMarkSlot__MeasureAssignment_7_2 )
+            // InternalFactoryLogicLangParser.g:4390:3: rule__StorageMarkSlot__MeasureAssignment_7_2
             {
             pushFollow(FOLLOW_2);
             rule__StorageMarkSlot__MeasureAssignment_7_2();
@@ -10975,16 +13576,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraScan__Group__0"
-    // InternalFactoryLogicLangParser.g:3560:1: rule__CameraScan__Group__0 : rule__CameraScan__Group__0__Impl rule__CameraScan__Group__1 ;
+    // InternalFactoryLogicLangParser.g:4399:1: rule__CameraScan__Group__0 : rule__CameraScan__Group__0__Impl rule__CameraScan__Group__1 ;
     public final void rule__CameraScan__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3564:1: ( rule__CameraScan__Group__0__Impl rule__CameraScan__Group__1 )
-            // InternalFactoryLogicLangParser.g:3565:2: rule__CameraScan__Group__0__Impl rule__CameraScan__Group__1
+            // InternalFactoryLogicLangParser.g:4403:1: ( rule__CameraScan__Group__0__Impl rule__CameraScan__Group__1 )
+            // InternalFactoryLogicLangParser.g:4404:2: rule__CameraScan__Group__0__Impl rule__CameraScan__Group__1
             {
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_38);
             rule__CameraScan__Group__0__Impl();
 
             state._fsp--;
@@ -11013,21 +13614,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraScan__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:3572:1: rule__CameraScan__Group__0__Impl : ( ( rule__CameraScan__DeviceAssignment_0 ) ) ;
+    // InternalFactoryLogicLangParser.g:4411:1: rule__CameraScan__Group__0__Impl : ( ( rule__CameraScan__DeviceAssignment_0 ) ) ;
     public final void rule__CameraScan__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3576:1: ( ( ( rule__CameraScan__DeviceAssignment_0 ) ) )
-            // InternalFactoryLogicLangParser.g:3577:1: ( ( rule__CameraScan__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:4415:1: ( ( ( rule__CameraScan__DeviceAssignment_0 ) ) )
+            // InternalFactoryLogicLangParser.g:4416:1: ( ( rule__CameraScan__DeviceAssignment_0 ) )
             {
-            // InternalFactoryLogicLangParser.g:3577:1: ( ( rule__CameraScan__DeviceAssignment_0 ) )
-            // InternalFactoryLogicLangParser.g:3578:2: ( rule__CameraScan__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:4416:1: ( ( rule__CameraScan__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:4417:2: ( rule__CameraScan__DeviceAssignment_0 )
             {
              before(grammarAccess.getCameraScanAccess().getDeviceAssignment_0()); 
-            // InternalFactoryLogicLangParser.g:3579:2: ( rule__CameraScan__DeviceAssignment_0 )
-            // InternalFactoryLogicLangParser.g:3579:3: rule__CameraScan__DeviceAssignment_0
+            // InternalFactoryLogicLangParser.g:4418:2: ( rule__CameraScan__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:4418:3: rule__CameraScan__DeviceAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__CameraScan__DeviceAssignment_0();
@@ -11060,14 +13661,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraScan__Group__1"
-    // InternalFactoryLogicLangParser.g:3587:1: rule__CameraScan__Group__1 : rule__CameraScan__Group__1__Impl rule__CameraScan__Group__2 ;
+    // InternalFactoryLogicLangParser.g:4426:1: rule__CameraScan__Group__1 : rule__CameraScan__Group__1__Impl rule__CameraScan__Group__2 ;
     public final void rule__CameraScan__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3591:1: ( rule__CameraScan__Group__1__Impl rule__CameraScan__Group__2 )
-            // InternalFactoryLogicLangParser.g:3592:2: rule__CameraScan__Group__1__Impl rule__CameraScan__Group__2
+            // InternalFactoryLogicLangParser.g:4430:1: ( rule__CameraScan__Group__1__Impl rule__CameraScan__Group__2 )
+            // InternalFactoryLogicLangParser.g:4431:2: rule__CameraScan__Group__1__Impl rule__CameraScan__Group__2
             {
             pushFollow(FOLLOW_18);
             rule__CameraScan__Group__1__Impl();
@@ -11098,17 +13699,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraScan__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:3599:1: rule__CameraScan__Group__1__Impl : ( Scan ) ;
+    // InternalFactoryLogicLangParser.g:4438:1: rule__CameraScan__Group__1__Impl : ( Scan ) ;
     public final void rule__CameraScan__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3603:1: ( ( Scan ) )
-            // InternalFactoryLogicLangParser.g:3604:1: ( Scan )
+            // InternalFactoryLogicLangParser.g:4442:1: ( ( Scan ) )
+            // InternalFactoryLogicLangParser.g:4443:1: ( Scan )
             {
-            // InternalFactoryLogicLangParser.g:3604:1: ( Scan )
-            // InternalFactoryLogicLangParser.g:3605:2: Scan
+            // InternalFactoryLogicLangParser.g:4443:1: ( Scan )
+            // InternalFactoryLogicLangParser.g:4444:2: Scan
             {
              before(grammarAccess.getCameraScanAccess().getScanKeyword_1()); 
             match(input,Scan,FOLLOW_2); 
@@ -11135,16 +13736,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraScan__Group__2"
-    // InternalFactoryLogicLangParser.g:3614:1: rule__CameraScan__Group__2 : rule__CameraScan__Group__2__Impl rule__CameraScan__Group__3 ;
+    // InternalFactoryLogicLangParser.g:4453:1: rule__CameraScan__Group__2 : rule__CameraScan__Group__2__Impl rule__CameraScan__Group__3 ;
     public final void rule__CameraScan__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3618:1: ( rule__CameraScan__Group__2__Impl rule__CameraScan__Group__3 )
-            // InternalFactoryLogicLangParser.g:3619:2: rule__CameraScan__Group__2__Impl rule__CameraScan__Group__3
+            // InternalFactoryLogicLangParser.g:4457:1: ( rule__CameraScan__Group__2__Impl rule__CameraScan__Group__3 )
+            // InternalFactoryLogicLangParser.g:4458:2: rule__CameraScan__Group__2__Impl rule__CameraScan__Group__3
             {
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_39);
             rule__CameraScan__Group__2__Impl();
 
             state._fsp--;
@@ -11173,17 +13774,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraScan__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:3626:1: rule__CameraScan__Group__2__Impl : ( Color ) ;
+    // InternalFactoryLogicLangParser.g:4465:1: rule__CameraScan__Group__2__Impl : ( Color ) ;
     public final void rule__CameraScan__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3630:1: ( ( Color ) )
-            // InternalFactoryLogicLangParser.g:3631:1: ( Color )
+            // InternalFactoryLogicLangParser.g:4469:1: ( ( Color ) )
+            // InternalFactoryLogicLangParser.g:4470:1: ( Color )
             {
-            // InternalFactoryLogicLangParser.g:3631:1: ( Color )
-            // InternalFactoryLogicLangParser.g:3632:2: Color
+            // InternalFactoryLogicLangParser.g:4470:1: ( Color )
+            // InternalFactoryLogicLangParser.g:4471:2: Color
             {
              before(grammarAccess.getCameraScanAccess().getColorKeyword_2()); 
             match(input,Color,FOLLOW_2); 
@@ -11210,22 +13811,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraScan__Group__3"
-    // InternalFactoryLogicLangParser.g:3641:1: rule__CameraScan__Group__3 : rule__CameraScan__Group__3__Impl rule__CameraScan__Group__4 ;
+    // InternalFactoryLogicLangParser.g:4480:1: rule__CameraScan__Group__3 : rule__CameraScan__Group__3__Impl ;
     public final void rule__CameraScan__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3645:1: ( rule__CameraScan__Group__3__Impl rule__CameraScan__Group__4 )
-            // InternalFactoryLogicLangParser.g:3646:2: rule__CameraScan__Group__3__Impl rule__CameraScan__Group__4
+            // InternalFactoryLogicLangParser.g:4484:1: ( rule__CameraScan__Group__3__Impl )
+            // InternalFactoryLogicLangParser.g:4485:2: rule__CameraScan__Group__3__Impl
             {
-            pushFollow(FOLLOW_20);
-            rule__CameraScan__Group__3__Impl();
-
-            state._fsp--;
-
             pushFollow(FOLLOW_2);
-            rule__CameraScan__Group__4();
+            rule__CameraScan__Group__3__Impl();
 
             state._fsp--;
 
@@ -11248,21 +13844,31 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraScan__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:3653:1: rule__CameraScan__Group__3__Impl : ( Into ) ;
+    // InternalFactoryLogicLangParser.g:4491:1: rule__CameraScan__Group__3__Impl : ( ( rule__CameraScan__VariableAssignment_3 ) ) ;
     public final void rule__CameraScan__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3657:1: ( ( Into ) )
-            // InternalFactoryLogicLangParser.g:3658:1: ( Into )
+            // InternalFactoryLogicLangParser.g:4495:1: ( ( ( rule__CameraScan__VariableAssignment_3 ) ) )
+            // InternalFactoryLogicLangParser.g:4496:1: ( ( rule__CameraScan__VariableAssignment_3 ) )
             {
-            // InternalFactoryLogicLangParser.g:3658:1: ( Into )
-            // InternalFactoryLogicLangParser.g:3659:2: Into
+            // InternalFactoryLogicLangParser.g:4496:1: ( ( rule__CameraScan__VariableAssignment_3 ) )
+            // InternalFactoryLogicLangParser.g:4497:2: ( rule__CameraScan__VariableAssignment_3 )
             {
-             before(grammarAccess.getCameraScanAccess().getIntoKeyword_3()); 
-            match(input,Into,FOLLOW_2); 
-             after(grammarAccess.getCameraScanAccess().getIntoKeyword_3()); 
+             before(grammarAccess.getCameraScanAccess().getVariableAssignment_3()); 
+            // InternalFactoryLogicLangParser.g:4498:2: ( rule__CameraScan__VariableAssignment_3 )
+            // InternalFactoryLogicLangParser.g:4498:3: rule__CameraScan__VariableAssignment_3
+            {
+            pushFollow(FOLLOW_2);
+            rule__CameraScan__VariableAssignment_3();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getCameraScanAccess().getVariableAssignment_3()); 
 
             }
 
@@ -11284,18 +13890,23 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__CameraScan__Group__3__Impl"
 
 
-    // $ANTLR start "rule__CameraScan__Group__4"
-    // InternalFactoryLogicLangParser.g:3668:1: rule__CameraScan__Group__4 : rule__CameraScan__Group__4__Impl ;
-    public final void rule__CameraScan__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__LoopVariable__Group__0"
+    // InternalFactoryLogicLangParser.g:4507:1: rule__LoopVariable__Group__0 : rule__LoopVariable__Group__0__Impl rule__LoopVariable__Group__1 ;
+    public final void rule__LoopVariable__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3672:1: ( rule__CameraScan__Group__4__Impl )
-            // InternalFactoryLogicLangParser.g:3673:2: rule__CameraScan__Group__4__Impl
+            // InternalFactoryLogicLangParser.g:4511:1: ( rule__LoopVariable__Group__0__Impl rule__LoopVariable__Group__1 )
+            // InternalFactoryLogicLangParser.g:4512:2: rule__LoopVariable__Group__0__Impl rule__LoopVariable__Group__1
             {
+            pushFollow(FOLLOW_24);
+            rule__LoopVariable__Group__0__Impl();
+
+            state._fsp--;
+
             pushFollow(FOLLOW_2);
-            rule__CameraScan__Group__4__Impl();
+            rule__LoopVariable__Group__1();
 
             state._fsp--;
 
@@ -11314,35 +13925,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__CameraScan__Group__4"
+    // $ANTLR end "rule__LoopVariable__Group__0"
 
 
-    // $ANTLR start "rule__CameraScan__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:3679:1: rule__CameraScan__Group__4__Impl : ( ( rule__CameraScan__NameAssignment_4 ) ) ;
-    public final void rule__CameraScan__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__LoopVariable__Group__0__Impl"
+    // InternalFactoryLogicLangParser.g:4519:1: rule__LoopVariable__Group__0__Impl : ( Each ) ;
+    public final void rule__LoopVariable__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3683:1: ( ( ( rule__CameraScan__NameAssignment_4 ) ) )
-            // InternalFactoryLogicLangParser.g:3684:1: ( ( rule__CameraScan__NameAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:4523:1: ( ( Each ) )
+            // InternalFactoryLogicLangParser.g:4524:1: ( Each )
             {
-            // InternalFactoryLogicLangParser.g:3684:1: ( ( rule__CameraScan__NameAssignment_4 ) )
-            // InternalFactoryLogicLangParser.g:3685:2: ( rule__CameraScan__NameAssignment_4 )
+            // InternalFactoryLogicLangParser.g:4524:1: ( Each )
+            // InternalFactoryLogicLangParser.g:4525:2: Each
             {
-             before(grammarAccess.getCameraScanAccess().getNameAssignment_4()); 
-            // InternalFactoryLogicLangParser.g:3686:2: ( rule__CameraScan__NameAssignment_4 )
-            // InternalFactoryLogicLangParser.g:3686:3: rule__CameraScan__NameAssignment_4
-            {
-            pushFollow(FOLLOW_2);
-            rule__CameraScan__NameAssignment_4();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getCameraScanAccess().getNameAssignment_4()); 
+             before(grammarAccess.getLoopVariableAccess().getEachKeyword_0()); 
+            match(input,Each,FOLLOW_2); 
+             after(grammarAccess.getLoopVariableAccess().getEachKeyword_0()); 
 
             }
 
@@ -11361,20 +13962,255 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__CameraScan__Group__4__Impl"
+    // $ANTLR end "rule__LoopVariable__Group__0__Impl"
+
+
+    // $ANTLR start "rule__LoopVariable__Group__1"
+    // InternalFactoryLogicLangParser.g:4534:1: rule__LoopVariable__Group__1 : rule__LoopVariable__Group__1__Impl ;
+    public final void rule__LoopVariable__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:4538:1: ( rule__LoopVariable__Group__1__Impl )
+            // InternalFactoryLogicLangParser.g:4539:2: rule__LoopVariable__Group__1__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__LoopVariable__Group__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__LoopVariable__Group__1"
+
+
+    // $ANTLR start "rule__LoopVariable__Group__1__Impl"
+    // InternalFactoryLogicLangParser.g:4545:1: rule__LoopVariable__Group__1__Impl : ( ( rule__LoopVariable__NameAssignment_1 ) ) ;
+    public final void rule__LoopVariable__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:4549:1: ( ( ( rule__LoopVariable__NameAssignment_1 ) ) )
+            // InternalFactoryLogicLangParser.g:4550:1: ( ( rule__LoopVariable__NameAssignment_1 ) )
+            {
+            // InternalFactoryLogicLangParser.g:4550:1: ( ( rule__LoopVariable__NameAssignment_1 ) )
+            // InternalFactoryLogicLangParser.g:4551:2: ( rule__LoopVariable__NameAssignment_1 )
+            {
+             before(grammarAccess.getLoopVariableAccess().getNameAssignment_1()); 
+            // InternalFactoryLogicLangParser.g:4552:2: ( rule__LoopVariable__NameAssignment_1 )
+            // InternalFactoryLogicLangParser.g:4552:3: rule__LoopVariable__NameAssignment_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__LoopVariable__NameAssignment_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getLoopVariableAccess().getNameAssignment_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__LoopVariable__Group__1__Impl"
+
+
+    // $ANTLR start "rule__GloablVariable__Group__0"
+    // InternalFactoryLogicLangParser.g:4561:1: rule__GloablVariable__Group__0 : rule__GloablVariable__Group__0__Impl rule__GloablVariable__Group__1 ;
+    public final void rule__GloablVariable__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:4565:1: ( rule__GloablVariable__Group__0__Impl rule__GloablVariable__Group__1 )
+            // InternalFactoryLogicLangParser.g:4566:2: rule__GloablVariable__Group__0__Impl rule__GloablVariable__Group__1
+            {
+            pushFollow(FOLLOW_24);
+            rule__GloablVariable__Group__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__GloablVariable__Group__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__GloablVariable__Group__0"
+
+
+    // $ANTLR start "rule__GloablVariable__Group__0__Impl"
+    // InternalFactoryLogicLangParser.g:4573:1: rule__GloablVariable__Group__0__Impl : ( Into ) ;
+    public final void rule__GloablVariable__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:4577:1: ( ( Into ) )
+            // InternalFactoryLogicLangParser.g:4578:1: ( Into )
+            {
+            // InternalFactoryLogicLangParser.g:4578:1: ( Into )
+            // InternalFactoryLogicLangParser.g:4579:2: Into
+            {
+             before(grammarAccess.getGloablVariableAccess().getIntoKeyword_0()); 
+            match(input,Into,FOLLOW_2); 
+             after(grammarAccess.getGloablVariableAccess().getIntoKeyword_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__GloablVariable__Group__0__Impl"
+
+
+    // $ANTLR start "rule__GloablVariable__Group__1"
+    // InternalFactoryLogicLangParser.g:4588:1: rule__GloablVariable__Group__1 : rule__GloablVariable__Group__1__Impl ;
+    public final void rule__GloablVariable__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:4592:1: ( rule__GloablVariable__Group__1__Impl )
+            // InternalFactoryLogicLangParser.g:4593:2: rule__GloablVariable__Group__1__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__GloablVariable__Group__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__GloablVariable__Group__1"
+
+
+    // $ANTLR start "rule__GloablVariable__Group__1__Impl"
+    // InternalFactoryLogicLangParser.g:4599:1: rule__GloablVariable__Group__1__Impl : ( ( rule__GloablVariable__NameAssignment_1 ) ) ;
+    public final void rule__GloablVariable__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:4603:1: ( ( ( rule__GloablVariable__NameAssignment_1 ) ) )
+            // InternalFactoryLogicLangParser.g:4604:1: ( ( rule__GloablVariable__NameAssignment_1 ) )
+            {
+            // InternalFactoryLogicLangParser.g:4604:1: ( ( rule__GloablVariable__NameAssignment_1 ) )
+            // InternalFactoryLogicLangParser.g:4605:2: ( rule__GloablVariable__NameAssignment_1 )
+            {
+             before(grammarAccess.getGloablVariableAccess().getNameAssignment_1()); 
+            // InternalFactoryLogicLangParser.g:4606:2: ( rule__GloablVariable__NameAssignment_1 )
+            // InternalFactoryLogicLangParser.g:4606:3: rule__GloablVariable__NameAssignment_1
+            {
+            pushFollow(FOLLOW_2);
+            rule__GloablVariable__NameAssignment_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getGloablVariableAccess().getNameAssignment_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__GloablVariable__Group__1__Impl"
 
 
     // $ANTLR start "rule__CranePickup__Group__0"
-    // InternalFactoryLogicLangParser.g:3695:1: rule__CranePickup__Group__0 : rule__CranePickup__Group__0__Impl rule__CranePickup__Group__1 ;
+    // InternalFactoryLogicLangParser.g:4615:1: rule__CranePickup__Group__0 : rule__CranePickup__Group__0__Impl rule__CranePickup__Group__1 ;
     public final void rule__CranePickup__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3699:1: ( rule__CranePickup__Group__0__Impl rule__CranePickup__Group__1 )
-            // InternalFactoryLogicLangParser.g:3700:2: rule__CranePickup__Group__0__Impl rule__CranePickup__Group__1
+            // InternalFactoryLogicLangParser.g:4619:1: ( rule__CranePickup__Group__0__Impl rule__CranePickup__Group__1 )
+            // InternalFactoryLogicLangParser.g:4620:2: rule__CranePickup__Group__0__Impl rule__CranePickup__Group__1
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_40);
             rule__CranePickup__Group__0__Impl();
 
             state._fsp--;
@@ -11403,21 +14239,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CranePickup__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:3707:1: rule__CranePickup__Group__0__Impl : ( ( rule__CranePickup__DeviceAssignment_0 ) ) ;
+    // InternalFactoryLogicLangParser.g:4627:1: rule__CranePickup__Group__0__Impl : ( ( rule__CranePickup__DeviceAssignment_0 ) ) ;
     public final void rule__CranePickup__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3711:1: ( ( ( rule__CranePickup__DeviceAssignment_0 ) ) )
-            // InternalFactoryLogicLangParser.g:3712:1: ( ( rule__CranePickup__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:4631:1: ( ( ( rule__CranePickup__DeviceAssignment_0 ) ) )
+            // InternalFactoryLogicLangParser.g:4632:1: ( ( rule__CranePickup__DeviceAssignment_0 ) )
             {
-            // InternalFactoryLogicLangParser.g:3712:1: ( ( rule__CranePickup__DeviceAssignment_0 ) )
-            // InternalFactoryLogicLangParser.g:3713:2: ( rule__CranePickup__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:4632:1: ( ( rule__CranePickup__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:4633:2: ( rule__CranePickup__DeviceAssignment_0 )
             {
              before(grammarAccess.getCranePickupAccess().getDeviceAssignment_0()); 
-            // InternalFactoryLogicLangParser.g:3714:2: ( rule__CranePickup__DeviceAssignment_0 )
-            // InternalFactoryLogicLangParser.g:3714:3: rule__CranePickup__DeviceAssignment_0
+            // InternalFactoryLogicLangParser.g:4634:2: ( rule__CranePickup__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:4634:3: rule__CranePickup__DeviceAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__CranePickup__DeviceAssignment_0();
@@ -11450,16 +14286,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CranePickup__Group__1"
-    // InternalFactoryLogicLangParser.g:3722:1: rule__CranePickup__Group__1 : rule__CranePickup__Group__1__Impl rule__CranePickup__Group__2 ;
+    // InternalFactoryLogicLangParser.g:4642:1: rule__CranePickup__Group__1 : rule__CranePickup__Group__1__Impl rule__CranePickup__Group__2 ;
     public final void rule__CranePickup__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3726:1: ( rule__CranePickup__Group__1__Impl rule__CranePickup__Group__2 )
-            // InternalFactoryLogicLangParser.g:3727:2: rule__CranePickup__Group__1__Impl rule__CranePickup__Group__2
+            // InternalFactoryLogicLangParser.g:4646:1: ( rule__CranePickup__Group__1__Impl rule__CranePickup__Group__2 )
+            // InternalFactoryLogicLangParser.g:4647:2: rule__CranePickup__Group__1__Impl rule__CranePickup__Group__2
             {
-            pushFollow(FOLLOW_39);
+            pushFollow(FOLLOW_41);
             rule__CranePickup__Group__1__Impl();
 
             state._fsp--;
@@ -11488,17 +14324,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CranePickup__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:3734:1: rule__CranePickup__Group__1__Impl : ( Pickup ) ;
+    // InternalFactoryLogicLangParser.g:4654:1: rule__CranePickup__Group__1__Impl : ( Pickup ) ;
     public final void rule__CranePickup__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3738:1: ( ( Pickup ) )
-            // InternalFactoryLogicLangParser.g:3739:1: ( Pickup )
+            // InternalFactoryLogicLangParser.g:4658:1: ( ( Pickup ) )
+            // InternalFactoryLogicLangParser.g:4659:1: ( Pickup )
             {
-            // InternalFactoryLogicLangParser.g:3739:1: ( Pickup )
-            // InternalFactoryLogicLangParser.g:3740:2: Pickup
+            // InternalFactoryLogicLangParser.g:4659:1: ( Pickup )
+            // InternalFactoryLogicLangParser.g:4660:2: Pickup
             {
              before(grammarAccess.getCranePickupAccess().getPickupKeyword_1()); 
             match(input,Pickup,FOLLOW_2); 
@@ -11525,14 +14361,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CranePickup__Group__2"
-    // InternalFactoryLogicLangParser.g:3749:1: rule__CranePickup__Group__2 : rule__CranePickup__Group__2__Impl rule__CranePickup__Group__3 ;
+    // InternalFactoryLogicLangParser.g:4669:1: rule__CranePickup__Group__2 : rule__CranePickup__Group__2__Impl rule__CranePickup__Group__3 ;
     public final void rule__CranePickup__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3753:1: ( rule__CranePickup__Group__2__Impl rule__CranePickup__Group__3 )
-            // InternalFactoryLogicLangParser.g:3754:2: rule__CranePickup__Group__2__Impl rule__CranePickup__Group__3
+            // InternalFactoryLogicLangParser.g:4673:1: ( rule__CranePickup__Group__2__Impl rule__CranePickup__Group__3 )
+            // InternalFactoryLogicLangParser.g:4674:2: rule__CranePickup__Group__2__Impl rule__CranePickup__Group__3
             {
             pushFollow(FOLLOW_12);
             rule__CranePickup__Group__2__Impl();
@@ -11563,17 +14399,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CranePickup__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:3761:1: rule__CranePickup__Group__2__Impl : ( Item ) ;
+    // InternalFactoryLogicLangParser.g:4681:1: rule__CranePickup__Group__2__Impl : ( Item ) ;
     public final void rule__CranePickup__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3765:1: ( ( Item ) )
-            // InternalFactoryLogicLangParser.g:3766:1: ( Item )
+            // InternalFactoryLogicLangParser.g:4685:1: ( ( Item ) )
+            // InternalFactoryLogicLangParser.g:4686:1: ( Item )
             {
-            // InternalFactoryLogicLangParser.g:3766:1: ( Item )
-            // InternalFactoryLogicLangParser.g:3767:2: Item
+            // InternalFactoryLogicLangParser.g:4686:1: ( Item )
+            // InternalFactoryLogicLangParser.g:4687:2: Item
             {
              before(grammarAccess.getCranePickupAccess().getItemKeyword_2()); 
             match(input,Item,FOLLOW_2); 
@@ -11600,16 +14436,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CranePickup__Group__3"
-    // InternalFactoryLogicLangParser.g:3776:1: rule__CranePickup__Group__3 : rule__CranePickup__Group__3__Impl rule__CranePickup__Group__4 ;
+    // InternalFactoryLogicLangParser.g:4696:1: rule__CranePickup__Group__3 : rule__CranePickup__Group__3__Impl rule__CranePickup__Group__4 ;
     public final void rule__CranePickup__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3780:1: ( rule__CranePickup__Group__3__Impl rule__CranePickup__Group__4 )
-            // InternalFactoryLogicLangParser.g:3781:2: rule__CranePickup__Group__3__Impl rule__CranePickup__Group__4
+            // InternalFactoryLogicLangParser.g:4700:1: ( rule__CranePickup__Group__3__Impl rule__CranePickup__Group__4 )
+            // InternalFactoryLogicLangParser.g:4701:2: rule__CranePickup__Group__3__Impl rule__CranePickup__Group__4
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_6);
             rule__CranePickup__Group__3__Impl();
 
             state._fsp--;
@@ -11638,17 +14474,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CranePickup__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:3788:1: rule__CranePickup__Group__3__Impl : ( At ) ;
+    // InternalFactoryLogicLangParser.g:4708:1: rule__CranePickup__Group__3__Impl : ( At ) ;
     public final void rule__CranePickup__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3792:1: ( ( At ) )
-            // InternalFactoryLogicLangParser.g:3793:1: ( At )
+            // InternalFactoryLogicLangParser.g:4712:1: ( ( At ) )
+            // InternalFactoryLogicLangParser.g:4713:1: ( At )
             {
-            // InternalFactoryLogicLangParser.g:3793:1: ( At )
-            // InternalFactoryLogicLangParser.g:3794:2: At
+            // InternalFactoryLogicLangParser.g:4713:1: ( At )
+            // InternalFactoryLogicLangParser.g:4714:2: At
             {
              before(grammarAccess.getCranePickupAccess().getAtKeyword_3()); 
             match(input,At,FOLLOW_2); 
@@ -11675,14 +14511,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CranePickup__Group__4"
-    // InternalFactoryLogicLangParser.g:3803:1: rule__CranePickup__Group__4 : rule__CranePickup__Group__4__Impl ;
+    // InternalFactoryLogicLangParser.g:4723:1: rule__CranePickup__Group__4 : rule__CranePickup__Group__4__Impl ;
     public final void rule__CranePickup__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3807:1: ( rule__CranePickup__Group__4__Impl )
-            // InternalFactoryLogicLangParser.g:3808:2: rule__CranePickup__Group__4__Impl
+            // InternalFactoryLogicLangParser.g:4727:1: ( rule__CranePickup__Group__4__Impl )
+            // InternalFactoryLogicLangParser.g:4728:2: rule__CranePickup__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__CranePickup__Group__4__Impl();
@@ -11708,21 +14544,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CranePickup__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:3814:1: rule__CranePickup__Group__4__Impl : ( ( rule__CranePickup__LocationAssignment_4 ) ) ;
+    // InternalFactoryLogicLangParser.g:4734:1: rule__CranePickup__Group__4__Impl : ( ( rule__CranePickup__LocationAssignment_4 ) ) ;
     public final void rule__CranePickup__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3818:1: ( ( ( rule__CranePickup__LocationAssignment_4 ) ) )
-            // InternalFactoryLogicLangParser.g:3819:1: ( ( rule__CranePickup__LocationAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:4738:1: ( ( ( rule__CranePickup__LocationAssignment_4 ) ) )
+            // InternalFactoryLogicLangParser.g:4739:1: ( ( rule__CranePickup__LocationAssignment_4 ) )
             {
-            // InternalFactoryLogicLangParser.g:3819:1: ( ( rule__CranePickup__LocationAssignment_4 ) )
-            // InternalFactoryLogicLangParser.g:3820:2: ( rule__CranePickup__LocationAssignment_4 )
+            // InternalFactoryLogicLangParser.g:4739:1: ( ( rule__CranePickup__LocationAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:4740:2: ( rule__CranePickup__LocationAssignment_4 )
             {
              before(grammarAccess.getCranePickupAccess().getLocationAssignment_4()); 
-            // InternalFactoryLogicLangParser.g:3821:2: ( rule__CranePickup__LocationAssignment_4 )
-            // InternalFactoryLogicLangParser.g:3821:3: rule__CranePickup__LocationAssignment_4
+            // InternalFactoryLogicLangParser.g:4741:2: ( rule__CranePickup__LocationAssignment_4 )
+            // InternalFactoryLogicLangParser.g:4741:3: rule__CranePickup__LocationAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__CranePickup__LocationAssignment_4();
@@ -11755,16 +14591,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__Group__0"
-    // InternalFactoryLogicLangParser.g:3830:1: rule__CraneDrop__Group__0 : rule__CraneDrop__Group__0__Impl rule__CraneDrop__Group__1 ;
+    // InternalFactoryLogicLangParser.g:4750:1: rule__CraneDrop__Group__0 : rule__CraneDrop__Group__0__Impl rule__CraneDrop__Group__1 ;
     public final void rule__CraneDrop__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3834:1: ( rule__CraneDrop__Group__0__Impl rule__CraneDrop__Group__1 )
-            // InternalFactoryLogicLangParser.g:3835:2: rule__CraneDrop__Group__0__Impl rule__CraneDrop__Group__1
+            // InternalFactoryLogicLangParser.g:4754:1: ( rule__CraneDrop__Group__0__Impl rule__CraneDrop__Group__1 )
+            // InternalFactoryLogicLangParser.g:4755:2: rule__CraneDrop__Group__0__Impl rule__CraneDrop__Group__1
             {
-            pushFollow(FOLLOW_40);
+            pushFollow(FOLLOW_42);
             rule__CraneDrop__Group__0__Impl();
 
             state._fsp--;
@@ -11793,21 +14629,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__Group__0__Impl"
-    // InternalFactoryLogicLangParser.g:3842:1: rule__CraneDrop__Group__0__Impl : ( ( rule__CraneDrop__DeviceAssignment_0 ) ) ;
+    // InternalFactoryLogicLangParser.g:4762:1: rule__CraneDrop__Group__0__Impl : ( ( rule__CraneDrop__DeviceAssignment_0 ) ) ;
     public final void rule__CraneDrop__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3846:1: ( ( ( rule__CraneDrop__DeviceAssignment_0 ) ) )
-            // InternalFactoryLogicLangParser.g:3847:1: ( ( rule__CraneDrop__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:4766:1: ( ( ( rule__CraneDrop__DeviceAssignment_0 ) ) )
+            // InternalFactoryLogicLangParser.g:4767:1: ( ( rule__CraneDrop__DeviceAssignment_0 ) )
             {
-            // InternalFactoryLogicLangParser.g:3847:1: ( ( rule__CraneDrop__DeviceAssignment_0 ) )
-            // InternalFactoryLogicLangParser.g:3848:2: ( rule__CraneDrop__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:4767:1: ( ( rule__CraneDrop__DeviceAssignment_0 ) )
+            // InternalFactoryLogicLangParser.g:4768:2: ( rule__CraneDrop__DeviceAssignment_0 )
             {
              before(grammarAccess.getCraneDropAccess().getDeviceAssignment_0()); 
-            // InternalFactoryLogicLangParser.g:3849:2: ( rule__CraneDrop__DeviceAssignment_0 )
-            // InternalFactoryLogicLangParser.g:3849:3: rule__CraneDrop__DeviceAssignment_0
+            // InternalFactoryLogicLangParser.g:4769:2: ( rule__CraneDrop__DeviceAssignment_0 )
+            // InternalFactoryLogicLangParser.g:4769:3: rule__CraneDrop__DeviceAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__CraneDrop__DeviceAssignment_0();
@@ -11840,16 +14676,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__Group__1"
-    // InternalFactoryLogicLangParser.g:3857:1: rule__CraneDrop__Group__1 : rule__CraneDrop__Group__1__Impl rule__CraneDrop__Group__2 ;
+    // InternalFactoryLogicLangParser.g:4777:1: rule__CraneDrop__Group__1 : rule__CraneDrop__Group__1__Impl rule__CraneDrop__Group__2 ;
     public final void rule__CraneDrop__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3861:1: ( rule__CraneDrop__Group__1__Impl rule__CraneDrop__Group__2 )
-            // InternalFactoryLogicLangParser.g:3862:2: rule__CraneDrop__Group__1__Impl rule__CraneDrop__Group__2
+            // InternalFactoryLogicLangParser.g:4781:1: ( rule__CraneDrop__Group__1__Impl rule__CraneDrop__Group__2 )
+            // InternalFactoryLogicLangParser.g:4782:2: rule__CraneDrop__Group__1__Impl rule__CraneDrop__Group__2
             {
-            pushFollow(FOLLOW_39);
+            pushFollow(FOLLOW_41);
             rule__CraneDrop__Group__1__Impl();
 
             state._fsp--;
@@ -11878,17 +14714,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__Group__1__Impl"
-    // InternalFactoryLogicLangParser.g:3869:1: rule__CraneDrop__Group__1__Impl : ( Drop ) ;
+    // InternalFactoryLogicLangParser.g:4789:1: rule__CraneDrop__Group__1__Impl : ( Drop ) ;
     public final void rule__CraneDrop__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3873:1: ( ( Drop ) )
-            // InternalFactoryLogicLangParser.g:3874:1: ( Drop )
+            // InternalFactoryLogicLangParser.g:4793:1: ( ( Drop ) )
+            // InternalFactoryLogicLangParser.g:4794:1: ( Drop )
             {
-            // InternalFactoryLogicLangParser.g:3874:1: ( Drop )
-            // InternalFactoryLogicLangParser.g:3875:2: Drop
+            // InternalFactoryLogicLangParser.g:4794:1: ( Drop )
+            // InternalFactoryLogicLangParser.g:4795:2: Drop
             {
              before(grammarAccess.getCraneDropAccess().getDropKeyword_1()); 
             match(input,Drop,FOLLOW_2); 
@@ -11915,14 +14751,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__Group__2"
-    // InternalFactoryLogicLangParser.g:3884:1: rule__CraneDrop__Group__2 : rule__CraneDrop__Group__2__Impl rule__CraneDrop__Group__3 ;
+    // InternalFactoryLogicLangParser.g:4804:1: rule__CraneDrop__Group__2 : rule__CraneDrop__Group__2__Impl rule__CraneDrop__Group__3 ;
     public final void rule__CraneDrop__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3888:1: ( rule__CraneDrop__Group__2__Impl rule__CraneDrop__Group__3 )
-            // InternalFactoryLogicLangParser.g:3889:2: rule__CraneDrop__Group__2__Impl rule__CraneDrop__Group__3
+            // InternalFactoryLogicLangParser.g:4808:1: ( rule__CraneDrop__Group__2__Impl rule__CraneDrop__Group__3 )
+            // InternalFactoryLogicLangParser.g:4809:2: rule__CraneDrop__Group__2__Impl rule__CraneDrop__Group__3
             {
             pushFollow(FOLLOW_12);
             rule__CraneDrop__Group__2__Impl();
@@ -11953,17 +14789,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__Group__2__Impl"
-    // InternalFactoryLogicLangParser.g:3896:1: rule__CraneDrop__Group__2__Impl : ( Item ) ;
+    // InternalFactoryLogicLangParser.g:4816:1: rule__CraneDrop__Group__2__Impl : ( Item ) ;
     public final void rule__CraneDrop__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3900:1: ( ( Item ) )
-            // InternalFactoryLogicLangParser.g:3901:1: ( Item )
+            // InternalFactoryLogicLangParser.g:4820:1: ( ( Item ) )
+            // InternalFactoryLogicLangParser.g:4821:1: ( Item )
             {
-            // InternalFactoryLogicLangParser.g:3901:1: ( Item )
-            // InternalFactoryLogicLangParser.g:3902:2: Item
+            // InternalFactoryLogicLangParser.g:4821:1: ( Item )
+            // InternalFactoryLogicLangParser.g:4822:2: Item
             {
              before(grammarAccess.getCraneDropAccess().getItemKeyword_2()); 
             match(input,Item,FOLLOW_2); 
@@ -11990,16 +14826,16 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__Group__3"
-    // InternalFactoryLogicLangParser.g:3911:1: rule__CraneDrop__Group__3 : rule__CraneDrop__Group__3__Impl rule__CraneDrop__Group__4 ;
+    // InternalFactoryLogicLangParser.g:4831:1: rule__CraneDrop__Group__3 : rule__CraneDrop__Group__3__Impl rule__CraneDrop__Group__4 ;
     public final void rule__CraneDrop__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3915:1: ( rule__CraneDrop__Group__3__Impl rule__CraneDrop__Group__4 )
-            // InternalFactoryLogicLangParser.g:3916:2: rule__CraneDrop__Group__3__Impl rule__CraneDrop__Group__4
+            // InternalFactoryLogicLangParser.g:4835:1: ( rule__CraneDrop__Group__3__Impl rule__CraneDrop__Group__4 )
+            // InternalFactoryLogicLangParser.g:4836:2: rule__CraneDrop__Group__3__Impl rule__CraneDrop__Group__4
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_6);
             rule__CraneDrop__Group__3__Impl();
 
             state._fsp--;
@@ -12028,17 +14864,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__Group__3__Impl"
-    // InternalFactoryLogicLangParser.g:3923:1: rule__CraneDrop__Group__3__Impl : ( At ) ;
+    // InternalFactoryLogicLangParser.g:4843:1: rule__CraneDrop__Group__3__Impl : ( At ) ;
     public final void rule__CraneDrop__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3927:1: ( ( At ) )
-            // InternalFactoryLogicLangParser.g:3928:1: ( At )
+            // InternalFactoryLogicLangParser.g:4847:1: ( ( At ) )
+            // InternalFactoryLogicLangParser.g:4848:1: ( At )
             {
-            // InternalFactoryLogicLangParser.g:3928:1: ( At )
-            // InternalFactoryLogicLangParser.g:3929:2: At
+            // InternalFactoryLogicLangParser.g:4848:1: ( At )
+            // InternalFactoryLogicLangParser.g:4849:2: At
             {
              before(grammarAccess.getCraneDropAccess().getAtKeyword_3()); 
             match(input,At,FOLLOW_2); 
@@ -12065,14 +14901,14 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__Group__4"
-    // InternalFactoryLogicLangParser.g:3938:1: rule__CraneDrop__Group__4 : rule__CraneDrop__Group__4__Impl ;
+    // InternalFactoryLogicLangParser.g:4858:1: rule__CraneDrop__Group__4 : rule__CraneDrop__Group__4__Impl ;
     public final void rule__CraneDrop__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3942:1: ( rule__CraneDrop__Group__4__Impl )
-            // InternalFactoryLogicLangParser.g:3943:2: rule__CraneDrop__Group__4__Impl
+            // InternalFactoryLogicLangParser.g:4862:1: ( rule__CraneDrop__Group__4__Impl )
+            // InternalFactoryLogicLangParser.g:4863:2: rule__CraneDrop__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__CraneDrop__Group__4__Impl();
@@ -12098,21 +14934,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__Group__4__Impl"
-    // InternalFactoryLogicLangParser.g:3949:1: rule__CraneDrop__Group__4__Impl : ( ( rule__CraneDrop__LocationAssignment_4 ) ) ;
+    // InternalFactoryLogicLangParser.g:4869:1: rule__CraneDrop__Group__4__Impl : ( ( rule__CraneDrop__LocationAssignment_4 ) ) ;
     public final void rule__CraneDrop__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3953:1: ( ( ( rule__CraneDrop__LocationAssignment_4 ) ) )
-            // InternalFactoryLogicLangParser.g:3954:1: ( ( rule__CraneDrop__LocationAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:4873:1: ( ( ( rule__CraneDrop__LocationAssignment_4 ) ) )
+            // InternalFactoryLogicLangParser.g:4874:1: ( ( rule__CraneDrop__LocationAssignment_4 ) )
             {
-            // InternalFactoryLogicLangParser.g:3954:1: ( ( rule__CraneDrop__LocationAssignment_4 ) )
-            // InternalFactoryLogicLangParser.g:3955:2: ( rule__CraneDrop__LocationAssignment_4 )
+            // InternalFactoryLogicLangParser.g:4874:1: ( ( rule__CraneDrop__LocationAssignment_4 ) )
+            // InternalFactoryLogicLangParser.g:4875:2: ( rule__CraneDrop__LocationAssignment_4 )
             {
              before(grammarAccess.getCraneDropAccess().getLocationAssignment_4()); 
-            // InternalFactoryLogicLangParser.g:3956:2: ( rule__CraneDrop__LocationAssignment_4 )
-            // InternalFactoryLogicLangParser.g:3956:3: rule__CraneDrop__LocationAssignment_4
+            // InternalFactoryLogicLangParser.g:4876:2: ( rule__CraneDrop__LocationAssignment_4 )
+            // InternalFactoryLogicLangParser.g:4876:3: rule__CraneDrop__LocationAssignment_4
             {
             pushFollow(FOLLOW_2);
             rule__CraneDrop__LocationAssignment_4();
@@ -12145,17 +14981,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Model__DeclarationsAssignment"
-    // InternalFactoryLogicLangParser.g:3965:1: rule__Model__DeclarationsAssignment : ( ruleDeclaration ) ;
+    // InternalFactoryLogicLangParser.g:4885:1: rule__Model__DeclarationsAssignment : ( ruleDeclaration ) ;
     public final void rule__Model__DeclarationsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3969:1: ( ( ruleDeclaration ) )
-            // InternalFactoryLogicLangParser.g:3970:2: ( ruleDeclaration )
+            // InternalFactoryLogicLangParser.g:4889:1: ( ( ruleDeclaration ) )
+            // InternalFactoryLogicLangParser.g:4890:2: ( ruleDeclaration )
             {
-            // InternalFactoryLogicLangParser.g:3970:2: ( ruleDeclaration )
-            // InternalFactoryLogicLangParser.g:3971:3: ruleDeclaration
+            // InternalFactoryLogicLangParser.g:4890:2: ( ruleDeclaration )
+            // InternalFactoryLogicLangParser.g:4891:3: ruleDeclaration
             {
              before(grammarAccess.getModelAccess().getDeclarationsDeclarationParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -12186,17 +15022,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__NameAssignment_3"
-    // InternalFactoryLogicLangParser.g:3980:1: rule__Crane__NameAssignment_3 : ( RULE_STRING ) ;
+    // InternalFactoryLogicLangParser.g:4900:1: rule__Crane__NameAssignment_3 : ( RULE_STRING ) ;
     public final void rule__Crane__NameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3984:1: ( ( RULE_STRING ) )
-            // InternalFactoryLogicLangParser.g:3985:2: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:4904:1: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:4905:2: ( RULE_STRING )
             {
-            // InternalFactoryLogicLangParser.g:3985:2: ( RULE_STRING )
-            // InternalFactoryLogicLangParser.g:3986:3: RULE_STRING
+            // InternalFactoryLogicLangParser.g:4905:2: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:4906:3: RULE_STRING
             {
              before(grammarAccess.getCraneAccess().getNameSTRINGTerminalRuleCall_3_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -12223,17 +15059,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Crane__ParametersAssignment_5"
-    // InternalFactoryLogicLangParser.g:3995:1: rule__Crane__ParametersAssignment_5 : ( ruleCraneParameter ) ;
+    // InternalFactoryLogicLangParser.g:4915:1: rule__Crane__ParametersAssignment_5 : ( ruleCraneParameter ) ;
     public final void rule__Crane__ParametersAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:3999:1: ( ( ruleCraneParameter ) )
-            // InternalFactoryLogicLangParser.g:4000:2: ( ruleCraneParameter )
+            // InternalFactoryLogicLangParser.g:4919:1: ( ( ruleCraneParameter ) )
+            // InternalFactoryLogicLangParser.g:4920:2: ( ruleCraneParameter )
             {
-            // InternalFactoryLogicLangParser.g:4000:2: ( ruleCraneParameter )
-            // InternalFactoryLogicLangParser.g:4001:3: ruleCraneParameter
+            // InternalFactoryLogicLangParser.g:4920:2: ( ruleCraneParameter )
+            // InternalFactoryLogicLangParser.g:4921:3: ruleCraneParameter
             {
              before(grammarAccess.getCraneAccess().getParametersCraneParameterParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -12264,17 +15100,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__DegreeAssignment_3"
-    // InternalFactoryLogicLangParser.g:4010:1: rule__CraneParameter__DegreeAssignment_3 : ( RULE_INT ) ;
+    // InternalFactoryLogicLangParser.g:4930:1: rule__CraneParameter__DegreeAssignment_3 : ( RULE_INT ) ;
     public final void rule__CraneParameter__DegreeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4014:1: ( ( RULE_INT ) )
-            // InternalFactoryLogicLangParser.g:4015:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:4934:1: ( ( RULE_INT ) )
+            // InternalFactoryLogicLangParser.g:4935:2: ( RULE_INT )
             {
-            // InternalFactoryLogicLangParser.g:4015:2: ( RULE_INT )
-            // InternalFactoryLogicLangParser.g:4016:3: RULE_INT
+            // InternalFactoryLogicLangParser.g:4935:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:4936:3: RULE_INT
             {
              before(grammarAccess.getCraneParameterAccess().getDegreeINTTerminalRuleCall_3_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -12301,17 +15137,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneParameter__NameAssignment_5"
-    // InternalFactoryLogicLangParser.g:4025:1: rule__CraneParameter__NameAssignment_5 : ( RULE_STRING ) ;
+    // InternalFactoryLogicLangParser.g:4945:1: rule__CraneParameter__NameAssignment_5 : ( RULE_STRING ) ;
     public final void rule__CraneParameter__NameAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4029:1: ( ( RULE_STRING ) )
-            // InternalFactoryLogicLangParser.g:4030:2: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:4949:1: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:4950:2: ( RULE_STRING )
             {
-            // InternalFactoryLogicLangParser.g:4030:2: ( RULE_STRING )
-            // InternalFactoryLogicLangParser.g:4031:3: RULE_STRING
+            // InternalFactoryLogicLangParser.g:4950:2: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:4951:3: RULE_STRING
             {
              before(grammarAccess.getCraneParameterAccess().getNameSTRINGTerminalRuleCall_5_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -12338,17 +15174,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__NameAssignment_3"
-    // InternalFactoryLogicLangParser.g:4040:1: rule__Storage__NameAssignment_3 : ( RULE_STRING ) ;
+    // InternalFactoryLogicLangParser.g:4960:1: rule__Storage__NameAssignment_3 : ( RULE_STRING ) ;
     public final void rule__Storage__NameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4044:1: ( ( RULE_STRING ) )
-            // InternalFactoryLogicLangParser.g:4045:2: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:4964:1: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:4965:2: ( RULE_STRING )
             {
-            // InternalFactoryLogicLangParser.g:4045:2: ( RULE_STRING )
-            // InternalFactoryLogicLangParser.g:4046:3: RULE_STRING
+            // InternalFactoryLogicLangParser.g:4965:2: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:4966:3: RULE_STRING
             {
              before(grammarAccess.getStorageAccess().getNameSTRINGTerminalRuleCall_3_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -12375,17 +15211,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Storage__ParametersAssignment_5"
-    // InternalFactoryLogicLangParser.g:4055:1: rule__Storage__ParametersAssignment_5 : ( ruleStorageParameter ) ;
+    // InternalFactoryLogicLangParser.g:4975:1: rule__Storage__ParametersAssignment_5 : ( ruleStorageParameter ) ;
     public final void rule__Storage__ParametersAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4059:1: ( ( ruleStorageParameter ) )
-            // InternalFactoryLogicLangParser.g:4060:2: ( ruleStorageParameter )
+            // InternalFactoryLogicLangParser.g:4979:1: ( ( ruleStorageParameter ) )
+            // InternalFactoryLogicLangParser.g:4980:2: ( ruleStorageParameter )
             {
-            // InternalFactoryLogicLangParser.g:4060:2: ( ruleStorageParameter )
-            // InternalFactoryLogicLangParser.g:4061:3: ruleStorageParameter
+            // InternalFactoryLogicLangParser.g:4980:2: ( ruleStorageParameter )
+            // InternalFactoryLogicLangParser.g:4981:3: ruleStorageParameter
             {
              before(grammarAccess.getStorageAccess().getParametersStorageParameterParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -12416,17 +15252,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageSlotParameter__SlotsAssignment_1"
-    // InternalFactoryLogicLangParser.g:4070:1: rule__StorageSlotParameter__SlotsAssignment_1 : ( RULE_INT ) ;
+    // InternalFactoryLogicLangParser.g:4990:1: rule__StorageSlotParameter__SlotsAssignment_1 : ( RULE_INT ) ;
     public final void rule__StorageSlotParameter__SlotsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4074:1: ( ( RULE_INT ) )
-            // InternalFactoryLogicLangParser.g:4075:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:4994:1: ( ( RULE_INT ) )
+            // InternalFactoryLogicLangParser.g:4995:2: ( RULE_INT )
             {
-            // InternalFactoryLogicLangParser.g:4075:2: ( RULE_INT )
-            // InternalFactoryLogicLangParser.g:4076:3: RULE_INT
+            // InternalFactoryLogicLangParser.g:4995:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:4996:3: RULE_INT
             {
              before(grammarAccess.getStorageSlotParameterAccess().getSlotsINTTerminalRuleCall_1_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -12453,17 +15289,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__SlotAssignment_4"
-    // InternalFactoryLogicLangParser.g:4085:1: rule__StoragePositionParameter__SlotAssignment_4 : ( RULE_INT ) ;
+    // InternalFactoryLogicLangParser.g:5005:1: rule__StoragePositionParameter__SlotAssignment_4 : ( RULE_INT ) ;
     public final void rule__StoragePositionParameter__SlotAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4089:1: ( ( RULE_INT ) )
-            // InternalFactoryLogicLangParser.g:4090:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5009:1: ( ( RULE_INT ) )
+            // InternalFactoryLogicLangParser.g:5010:2: ( RULE_INT )
             {
-            // InternalFactoryLogicLangParser.g:4090:2: ( RULE_INT )
-            // InternalFactoryLogicLangParser.g:4091:3: RULE_INT
+            // InternalFactoryLogicLangParser.g:5010:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5011:3: RULE_INT
             {
              before(grammarAccess.getStoragePositionParameterAccess().getSlotINTTerminalRuleCall_4_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -12490,17 +15326,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StoragePositionParameter__NameAssignment_6"
-    // InternalFactoryLogicLangParser.g:4100:1: rule__StoragePositionParameter__NameAssignment_6 : ( RULE_STRING ) ;
+    // InternalFactoryLogicLangParser.g:5020:1: rule__StoragePositionParameter__NameAssignment_6 : ( RULE_STRING ) ;
     public final void rule__StoragePositionParameter__NameAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4104:1: ( ( RULE_STRING ) )
-            // InternalFactoryLogicLangParser.g:4105:2: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5024:1: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5025:2: ( RULE_STRING )
             {
-            // InternalFactoryLogicLangParser.g:4105:2: ( RULE_STRING )
-            // InternalFactoryLogicLangParser.g:4106:3: RULE_STRING
+            // InternalFactoryLogicLangParser.g:5025:2: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5026:3: RULE_STRING
             {
              before(grammarAccess.getStoragePositionParameterAccess().getNameSTRINGTerminalRuleCall_6_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -12527,17 +15363,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__NameAssignment_3"
-    // InternalFactoryLogicLangParser.g:4115:1: rule__Camera__NameAssignment_3 : ( RULE_STRING ) ;
+    // InternalFactoryLogicLangParser.g:5035:1: rule__Camera__NameAssignment_3 : ( RULE_STRING ) ;
     public final void rule__Camera__NameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4119:1: ( ( RULE_STRING ) )
-            // InternalFactoryLogicLangParser.g:4120:2: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5039:1: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5040:2: ( RULE_STRING )
             {
-            // InternalFactoryLogicLangParser.g:4120:2: ( RULE_STRING )
-            // InternalFactoryLogicLangParser.g:4121:3: RULE_STRING
+            // InternalFactoryLogicLangParser.g:5040:2: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5041:3: RULE_STRING
             {
              before(grammarAccess.getCameraAccess().getNameSTRINGTerminalRuleCall_3_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -12564,17 +15400,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Camera__ParametersAssignment_5"
-    // InternalFactoryLogicLangParser.g:4130:1: rule__Camera__ParametersAssignment_5 : ( ruleCameraParameter ) ;
+    // InternalFactoryLogicLangParser.g:5050:1: rule__Camera__ParametersAssignment_5 : ( ruleCameraParameter ) ;
     public final void rule__Camera__ParametersAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4134:1: ( ( ruleCameraParameter ) )
-            // InternalFactoryLogicLangParser.g:4135:2: ( ruleCameraParameter )
+            // InternalFactoryLogicLangParser.g:5054:1: ( ( ruleCameraParameter ) )
+            // InternalFactoryLogicLangParser.g:5055:2: ( ruleCameraParameter )
             {
-            // InternalFactoryLogicLangParser.g:4135:2: ( ruleCameraParameter )
-            // InternalFactoryLogicLangParser.g:4136:3: ruleCameraParameter
+            // InternalFactoryLogicLangParser.g:5055:2: ( ruleCameraParameter )
+            // InternalFactoryLogicLangParser.g:5056:3: ruleCameraParameter
             {
              before(grammarAccess.getCameraAccess().getParametersCameraParameterParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -12605,17 +15441,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraParameter__ColorAssignment_2"
-    // InternalFactoryLogicLangParser.g:4145:1: rule__CameraParameter__ColorAssignment_2 : ( ruleCOLOR ) ;
+    // InternalFactoryLogicLangParser.g:5065:1: rule__CameraParameter__ColorAssignment_2 : ( ruleCOLOR ) ;
     public final void rule__CameraParameter__ColorAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4149:1: ( ( ruleCOLOR ) )
-            // InternalFactoryLogicLangParser.g:4150:2: ( ruleCOLOR )
+            // InternalFactoryLogicLangParser.g:5069:1: ( ( ruleCOLOR ) )
+            // InternalFactoryLogicLangParser.g:5070:2: ( ruleCOLOR )
             {
-            // InternalFactoryLogicLangParser.g:4150:2: ( ruleCOLOR )
-            // InternalFactoryLogicLangParser.g:4151:3: ruleCOLOR
+            // InternalFactoryLogicLangParser.g:5070:2: ( ruleCOLOR )
+            // InternalFactoryLogicLangParser.g:5071:3: ruleCOLOR
             {
              before(grammarAccess.getCameraParameterAccess().getColorCOLOREnumRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -12645,22 +15481,30 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__CameraParameter__ColorAssignment_2"
 
 
-    // $ANTLR start "rule__Conditional__VariableAssignment_1"
-    // InternalFactoryLogicLangParser.g:4160:1: rule__Conditional__VariableAssignment_1 : ( RULE_ID ) ;
-    public final void rule__Conditional__VariableAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__SourceAssignment_1"
+    // InternalFactoryLogicLangParser.g:5080:1: rule__DeviceConditional__SourceAssignment_1 : ( ( RULE_STRING ) ) ;
+    public final void rule__DeviceConditional__SourceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4164:1: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4165:2: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5084:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5085:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4165:2: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4166:3: RULE_ID
+            // InternalFactoryLogicLangParser.g:5085:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5086:3: ( RULE_STRING )
             {
-             before(grammarAccess.getConditionalAccess().getVariableIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getConditionalAccess().getVariableIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getDeviceConditionalAccess().getSourceDeviceCrossReference_1_0()); 
+            // InternalFactoryLogicLangParser.g:5087:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5088:4: RULE_STRING
+            {
+             before(grammarAccess.getDeviceConditionalAccess().getSourceDeviceSTRINGTerminalRuleCall_1_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getDeviceConditionalAccess().getSourceDeviceSTRINGTerminalRuleCall_1_0_1()); 
+
+            }
+
+             after(grammarAccess.getDeviceConditionalAccess().getSourceDeviceCrossReference_1_0()); 
 
             }
 
@@ -12679,74 +15523,29 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__VariableAssignment_1"
+    // $ANTLR end "rule__DeviceConditional__SourceAssignment_1"
 
 
-    // $ANTLR start "rule__Conditional__SourceAssignment_2_1"
-    // InternalFactoryLogicLangParser.g:4175:1: rule__Conditional__SourceAssignment_2_1 : ( ( RULE_ID ) ) ;
-    public final void rule__Conditional__SourceAssignment_2_1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalFactoryLogicLangParser.g:4179:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4180:2: ( ( RULE_ID ) )
-            {
-            // InternalFactoryLogicLangParser.g:4180:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4181:3: ( RULE_ID )
-            {
-             before(grammarAccess.getConditionalAccess().getSourceDeviceCrossReference_2_1_0()); 
-            // InternalFactoryLogicLangParser.g:4182:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4183:4: RULE_ID
-            {
-             before(grammarAccess.getConditionalAccess().getSourceDeviceIDTerminalRuleCall_2_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getConditionalAccess().getSourceDeviceIDTerminalRuleCall_2_1_0_1()); 
-
-            }
-
-             after(grammarAccess.getConditionalAccess().getSourceDeviceCrossReference_2_1_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Conditional__SourceAssignment_2_1"
-
-
-    // $ANTLR start "rule__Conditional__OperatorAssignment_4"
-    // InternalFactoryLogicLangParser.g:4194:1: rule__Conditional__OperatorAssignment_4 : ( ruleBOOLEAN_OPERATOR ) ;
-    public final void rule__Conditional__OperatorAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__OperatorAssignment_3"
+    // InternalFactoryLogicLangParser.g:5099:1: rule__DeviceConditional__OperatorAssignment_3 : ( ruleBOOLEAN_OPERATOR ) ;
+    public final void rule__DeviceConditional__OperatorAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4198:1: ( ( ruleBOOLEAN_OPERATOR ) )
-            // InternalFactoryLogicLangParser.g:4199:2: ( ruleBOOLEAN_OPERATOR )
+            // InternalFactoryLogicLangParser.g:5103:1: ( ( ruleBOOLEAN_OPERATOR ) )
+            // InternalFactoryLogicLangParser.g:5104:2: ( ruleBOOLEAN_OPERATOR )
             {
-            // InternalFactoryLogicLangParser.g:4199:2: ( ruleBOOLEAN_OPERATOR )
-            // InternalFactoryLogicLangParser.g:4200:3: ruleBOOLEAN_OPERATOR
+            // InternalFactoryLogicLangParser.g:5104:2: ( ruleBOOLEAN_OPERATOR )
+            // InternalFactoryLogicLangParser.g:5105:3: ruleBOOLEAN_OPERATOR
             {
-             before(grammarAccess.getConditionalAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_4_0()); 
+             before(grammarAccess.getDeviceConditionalAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
             ruleBOOLEAN_OPERATOR();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_4_0()); 
+             after(grammarAccess.getDeviceConditionalAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_3_0()); 
 
             }
 
@@ -12765,29 +15564,29 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__OperatorAssignment_4"
+    // $ANTLR end "rule__DeviceConditional__OperatorAssignment_3"
 
 
-    // $ANTLR start "rule__Conditional__Comparison_constAssignment_5_0"
-    // InternalFactoryLogicLangParser.g:4209:1: rule__Conditional__Comparison_constAssignment_5_0 : ( ruleCONST_VARIABLES ) ;
-    public final void rule__Conditional__Comparison_constAssignment_5_0() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Comparison_constAssignment_4_0"
+    // InternalFactoryLogicLangParser.g:5114:1: rule__DeviceConditional__Comparison_constAssignment_4_0 : ( ruleCONST_VARIABLES ) ;
+    public final void rule__DeviceConditional__Comparison_constAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4213:1: ( ( ruleCONST_VARIABLES ) )
-            // InternalFactoryLogicLangParser.g:4214:2: ( ruleCONST_VARIABLES )
+            // InternalFactoryLogicLangParser.g:5118:1: ( ( ruleCONST_VARIABLES ) )
+            // InternalFactoryLogicLangParser.g:5119:2: ( ruleCONST_VARIABLES )
             {
-            // InternalFactoryLogicLangParser.g:4214:2: ( ruleCONST_VARIABLES )
-            // InternalFactoryLogicLangParser.g:4215:3: ruleCONST_VARIABLES
+            // InternalFactoryLogicLangParser.g:5119:2: ( ruleCONST_VARIABLES )
+            // InternalFactoryLogicLangParser.g:5120:3: ruleCONST_VARIABLES
             {
-             before(grammarAccess.getConditionalAccess().getComparison_constCONST_VARIABLESEnumRuleCall_5_0_0()); 
+             before(grammarAccess.getDeviceConditionalAccess().getComparison_constCONST_VARIABLESEnumRuleCall_4_0_0()); 
             pushFollow(FOLLOW_2);
             ruleCONST_VARIABLES();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalAccess().getComparison_constCONST_VARIABLESEnumRuleCall_5_0_0()); 
+             after(grammarAccess.getDeviceConditionalAccess().getComparison_constCONST_VARIABLESEnumRuleCall_4_0_0()); 
 
             }
 
@@ -12806,29 +15605,29 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Comparison_constAssignment_5_0"
+    // $ANTLR end "rule__DeviceConditional__Comparison_constAssignment_4_0"
 
 
-    // $ANTLR start "rule__Conditional__Comparison_colorAssignment_5_1"
-    // InternalFactoryLogicLangParser.g:4224:1: rule__Conditional__Comparison_colorAssignment_5_1 : ( ruleCOLOR ) ;
-    public final void rule__Conditional__Comparison_colorAssignment_5_1() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Comparison_colorAssignment_4_1"
+    // InternalFactoryLogicLangParser.g:5129:1: rule__DeviceConditional__Comparison_colorAssignment_4_1 : ( ruleCOLOR ) ;
+    public final void rule__DeviceConditional__Comparison_colorAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4228:1: ( ( ruleCOLOR ) )
-            // InternalFactoryLogicLangParser.g:4229:2: ( ruleCOLOR )
+            // InternalFactoryLogicLangParser.g:5133:1: ( ( ruleCOLOR ) )
+            // InternalFactoryLogicLangParser.g:5134:2: ( ruleCOLOR )
             {
-            // InternalFactoryLogicLangParser.g:4229:2: ( ruleCOLOR )
-            // InternalFactoryLogicLangParser.g:4230:3: ruleCOLOR
+            // InternalFactoryLogicLangParser.g:5134:2: ( ruleCOLOR )
+            // InternalFactoryLogicLangParser.g:5135:3: ruleCOLOR
             {
-             before(grammarAccess.getConditionalAccess().getComparison_colorCOLOREnumRuleCall_5_1_0()); 
+             before(grammarAccess.getDeviceConditionalAccess().getComparison_colorCOLOREnumRuleCall_4_1_0()); 
             pushFollow(FOLLOW_2);
             ruleCOLOR();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalAccess().getComparison_colorCOLOREnumRuleCall_5_1_0()); 
+             after(grammarAccess.getDeviceConditionalAccess().getComparison_colorCOLOREnumRuleCall_4_1_0()); 
 
             }
 
@@ -12847,25 +15646,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Comparison_colorAssignment_5_1"
+    // $ANTLR end "rule__DeviceConditional__Comparison_colorAssignment_4_1"
 
 
-    // $ANTLR start "rule__Conditional__Comparison_intAssignment_5_2"
-    // InternalFactoryLogicLangParser.g:4239:1: rule__Conditional__Comparison_intAssignment_5_2 : ( RULE_INT ) ;
-    public final void rule__Conditional__Comparison_intAssignment_5_2() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__Comparison_intAssignment_4_2"
+    // InternalFactoryLogicLangParser.g:5144:1: rule__DeviceConditional__Comparison_intAssignment_4_2 : ( RULE_INT ) ;
+    public final void rule__DeviceConditional__Comparison_intAssignment_4_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4243:1: ( ( RULE_INT ) )
-            // InternalFactoryLogicLangParser.g:4244:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5148:1: ( ( RULE_INT ) )
+            // InternalFactoryLogicLangParser.g:5149:2: ( RULE_INT )
             {
-            // InternalFactoryLogicLangParser.g:4244:2: ( RULE_INT )
-            // InternalFactoryLogicLangParser.g:4245:3: RULE_INT
+            // InternalFactoryLogicLangParser.g:5149:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5150:3: RULE_INT
             {
-             before(grammarAccess.getConditionalAccess().getComparison_intINTTerminalRuleCall_5_2_0()); 
+             before(grammarAccess.getDeviceConditionalAccess().getComparison_intINTTerminalRuleCall_4_2_0()); 
             match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getConditionalAccess().getComparison_intINTTerminalRuleCall_5_2_0()); 
+             after(grammarAccess.getDeviceConditionalAccess().getComparison_intINTTerminalRuleCall_4_2_0()); 
 
             }
 
@@ -12884,29 +15683,29 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__Comparison_intAssignment_5_2"
+    // $ANTLR end "rule__DeviceConditional__Comparison_intAssignment_4_2"
 
 
-    // $ANTLR start "rule__Conditional__LogicsAssignment_8"
-    // InternalFactoryLogicLangParser.g:4254:1: rule__Conditional__LogicsAssignment_8 : ( ruleLogic ) ;
-    public final void rule__Conditional__LogicsAssignment_8() throws RecognitionException {
+    // $ANTLR start "rule__DeviceConditional__LogicsAssignment_7"
+    // InternalFactoryLogicLangParser.g:5159:1: rule__DeviceConditional__LogicsAssignment_7 : ( ruleLogic ) ;
+    public final void rule__DeviceConditional__LogicsAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4258:1: ( ( ruleLogic ) )
-            // InternalFactoryLogicLangParser.g:4259:2: ( ruleLogic )
+            // InternalFactoryLogicLangParser.g:5163:1: ( ( ruleLogic ) )
+            // InternalFactoryLogicLangParser.g:5164:2: ( ruleLogic )
             {
-            // InternalFactoryLogicLangParser.g:4259:2: ( ruleLogic )
-            // InternalFactoryLogicLangParser.g:4260:3: ruleLogic
+            // InternalFactoryLogicLangParser.g:5164:2: ( ruleLogic )
+            // InternalFactoryLogicLangParser.g:5165:3: ruleLogic
             {
-             before(grammarAccess.getConditionalAccess().getLogicsLogicParserRuleCall_8_0()); 
+             before(grammarAccess.getDeviceConditionalAccess().getLogicsLogicParserRuleCall_7_0()); 
             pushFollow(FOLLOW_2);
             ruleLogic();
 
             state._fsp--;
 
-             after(grammarAccess.getConditionalAccess().getLogicsLogicParserRuleCall_8_0()); 
+             after(grammarAccess.getDeviceConditionalAccess().getLogicsLogicParserRuleCall_7_0()); 
 
             }
 
@@ -12925,25 +15724,33 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Conditional__LogicsAssignment_8"
+    // $ANTLR end "rule__DeviceConditional__LogicsAssignment_7"
 
 
-    // $ANTLR start "rule__Loop__NameAssignment_2"
-    // InternalFactoryLogicLangParser.g:4269:1: rule__Loop__NameAssignment_2 : ( RULE_ID ) ;
-    public final void rule__Loop__NameAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__VariableConditional__SourceAssignment_1"
+    // InternalFactoryLogicLangParser.g:5174:1: rule__VariableConditional__SourceAssignment_1 : ( ( RULE_ID ) ) ;
+    public final void rule__VariableConditional__SourceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4273:1: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4274:2: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5178:1: ( ( ( RULE_ID ) ) )
+            // InternalFactoryLogicLangParser.g:5179:2: ( ( RULE_ID ) )
             {
-            // InternalFactoryLogicLangParser.g:4274:2: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4275:3: RULE_ID
+            // InternalFactoryLogicLangParser.g:5179:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5180:3: ( RULE_ID )
             {
-             before(grammarAccess.getLoopAccess().getNameIDTerminalRuleCall_2_0()); 
+             before(grammarAccess.getVariableConditionalAccess().getSourceVariableCrossReference_1_0()); 
+            // InternalFactoryLogicLangParser.g:5181:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5182:4: RULE_ID
+            {
+             before(grammarAccess.getVariableConditionalAccess().getSourceVariableIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getNameIDTerminalRuleCall_2_0()); 
+             after(grammarAccess.getVariableConditionalAccess().getSourceVariableIDTerminalRuleCall_1_0_1()); 
+
+            }
+
+             after(grammarAccess.getVariableConditionalAccess().getSourceVariableCrossReference_1_0()); 
 
             }
 
@@ -12962,111 +15769,29 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__NameAssignment_2"
+    // $ANTLR end "rule__VariableConditional__SourceAssignment_1"
 
 
-    // $ANTLR start "rule__Loop__ListAssignment_4"
-    // InternalFactoryLogicLangParser.g:4284:1: rule__Loop__ListAssignment_4 : ( RULE_ID ) ;
-    public final void rule__Loop__ListAssignment_4() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalFactoryLogicLangParser.g:4288:1: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4289:2: ( RULE_ID )
-            {
-            // InternalFactoryLogicLangParser.g:4289:2: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4290:3: RULE_ID
-            {
-             before(grammarAccess.getLoopAccess().getListIDTerminalRuleCall_4_0()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getListIDTerminalRuleCall_4_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Loop__ListAssignment_4"
-
-
-    // $ANTLR start "rule__Loop__SourceAssignment_5_1"
-    // InternalFactoryLogicLangParser.g:4299:1: rule__Loop__SourceAssignment_5_1 : ( ( RULE_ID ) ) ;
-    public final void rule__Loop__SourceAssignment_5_1() throws RecognitionException {
+    // $ANTLR start "rule__VariableConditional__OperatorAssignment_3"
+    // InternalFactoryLogicLangParser.g:5193:1: rule__VariableConditional__OperatorAssignment_3 : ( ruleBOOLEAN_OPERATOR ) ;
+    public final void rule__VariableConditional__OperatorAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4303:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4304:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5197:1: ( ( ruleBOOLEAN_OPERATOR ) )
+            // InternalFactoryLogicLangParser.g:5198:2: ( ruleBOOLEAN_OPERATOR )
             {
-            // InternalFactoryLogicLangParser.g:4304:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4305:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5198:2: ( ruleBOOLEAN_OPERATOR )
+            // InternalFactoryLogicLangParser.g:5199:3: ruleBOOLEAN_OPERATOR
             {
-             before(grammarAccess.getLoopAccess().getSourceDeviceCrossReference_5_1_0()); 
-            // InternalFactoryLogicLangParser.g:4306:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4307:4: RULE_ID
-            {
-             before(grammarAccess.getLoopAccess().getSourceDeviceIDTerminalRuleCall_5_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getSourceDeviceIDTerminalRuleCall_5_1_0_1()); 
-
-            }
-
-             after(grammarAccess.getLoopAccess().getSourceDeviceCrossReference_5_1_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Loop__SourceAssignment_5_1"
-
-
-    // $ANTLR start "rule__Loop__OperatorAssignment_8"
-    // InternalFactoryLogicLangParser.g:4318:1: rule__Loop__OperatorAssignment_8 : ( ruleBOOLEAN_OPERATOR ) ;
-    public final void rule__Loop__OperatorAssignment_8() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalFactoryLogicLangParser.g:4322:1: ( ( ruleBOOLEAN_OPERATOR ) )
-            // InternalFactoryLogicLangParser.g:4323:2: ( ruleBOOLEAN_OPERATOR )
-            {
-            // InternalFactoryLogicLangParser.g:4323:2: ( ruleBOOLEAN_OPERATOR )
-            // InternalFactoryLogicLangParser.g:4324:3: ruleBOOLEAN_OPERATOR
-            {
-             before(grammarAccess.getLoopAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_8_0()); 
+             before(grammarAccess.getVariableConditionalAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
             ruleBOOLEAN_OPERATOR();
 
             state._fsp--;
 
-             after(grammarAccess.getLoopAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_8_0()); 
+             after(grammarAccess.getVariableConditionalAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_3_0()); 
 
             }
 
@@ -13085,29 +15810,29 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__OperatorAssignment_8"
+    // $ANTLR end "rule__VariableConditional__OperatorAssignment_3"
 
 
-    // $ANTLR start "rule__Loop__Comparison_constAssignment_9_0"
-    // InternalFactoryLogicLangParser.g:4333:1: rule__Loop__Comparison_constAssignment_9_0 : ( ruleCONST_VARIABLES ) ;
-    public final void rule__Loop__Comparison_constAssignment_9_0() throws RecognitionException {
+    // $ANTLR start "rule__VariableConditional__Comparison_constAssignment_4_0"
+    // InternalFactoryLogicLangParser.g:5208:1: rule__VariableConditional__Comparison_constAssignment_4_0 : ( ruleCONST_VARIABLES ) ;
+    public final void rule__VariableConditional__Comparison_constAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4337:1: ( ( ruleCONST_VARIABLES ) )
-            // InternalFactoryLogicLangParser.g:4338:2: ( ruleCONST_VARIABLES )
+            // InternalFactoryLogicLangParser.g:5212:1: ( ( ruleCONST_VARIABLES ) )
+            // InternalFactoryLogicLangParser.g:5213:2: ( ruleCONST_VARIABLES )
             {
-            // InternalFactoryLogicLangParser.g:4338:2: ( ruleCONST_VARIABLES )
-            // InternalFactoryLogicLangParser.g:4339:3: ruleCONST_VARIABLES
+            // InternalFactoryLogicLangParser.g:5213:2: ( ruleCONST_VARIABLES )
+            // InternalFactoryLogicLangParser.g:5214:3: ruleCONST_VARIABLES
             {
-             before(grammarAccess.getLoopAccess().getComparison_constCONST_VARIABLESEnumRuleCall_9_0_0()); 
+             before(grammarAccess.getVariableConditionalAccess().getComparison_constCONST_VARIABLESEnumRuleCall_4_0_0()); 
             pushFollow(FOLLOW_2);
             ruleCONST_VARIABLES();
 
             state._fsp--;
 
-             after(grammarAccess.getLoopAccess().getComparison_constCONST_VARIABLESEnumRuleCall_9_0_0()); 
+             after(grammarAccess.getVariableConditionalAccess().getComparison_constCONST_VARIABLESEnumRuleCall_4_0_0()); 
 
             }
 
@@ -13126,29 +15851,29 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__Comparison_constAssignment_9_0"
+    // $ANTLR end "rule__VariableConditional__Comparison_constAssignment_4_0"
 
 
-    // $ANTLR start "rule__Loop__Comparison_colorAssignment_9_1"
-    // InternalFactoryLogicLangParser.g:4348:1: rule__Loop__Comparison_colorAssignment_9_1 : ( ruleCOLOR ) ;
-    public final void rule__Loop__Comparison_colorAssignment_9_1() throws RecognitionException {
+    // $ANTLR start "rule__VariableConditional__Comparison_colorAssignment_4_1"
+    // InternalFactoryLogicLangParser.g:5223:1: rule__VariableConditional__Comparison_colorAssignment_4_1 : ( ruleCOLOR ) ;
+    public final void rule__VariableConditional__Comparison_colorAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4352:1: ( ( ruleCOLOR ) )
-            // InternalFactoryLogicLangParser.g:4353:2: ( ruleCOLOR )
+            // InternalFactoryLogicLangParser.g:5227:1: ( ( ruleCOLOR ) )
+            // InternalFactoryLogicLangParser.g:5228:2: ( ruleCOLOR )
             {
-            // InternalFactoryLogicLangParser.g:4353:2: ( ruleCOLOR )
-            // InternalFactoryLogicLangParser.g:4354:3: ruleCOLOR
+            // InternalFactoryLogicLangParser.g:5228:2: ( ruleCOLOR )
+            // InternalFactoryLogicLangParser.g:5229:3: ruleCOLOR
             {
-             before(grammarAccess.getLoopAccess().getComparison_colorCOLOREnumRuleCall_9_1_0()); 
+             before(grammarAccess.getVariableConditionalAccess().getComparison_colorCOLOREnumRuleCall_4_1_0()); 
             pushFollow(FOLLOW_2);
             ruleCOLOR();
 
             state._fsp--;
 
-             after(grammarAccess.getLoopAccess().getComparison_colorCOLOREnumRuleCall_9_1_0()); 
+             after(grammarAccess.getVariableConditionalAccess().getComparison_colorCOLOREnumRuleCall_4_1_0()); 
 
             }
 
@@ -13167,25 +15892,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__Comparison_colorAssignment_9_1"
+    // $ANTLR end "rule__VariableConditional__Comparison_colorAssignment_4_1"
 
 
-    // $ANTLR start "rule__Loop__Comparison_intAssignment_9_2"
-    // InternalFactoryLogicLangParser.g:4363:1: rule__Loop__Comparison_intAssignment_9_2 : ( RULE_INT ) ;
-    public final void rule__Loop__Comparison_intAssignment_9_2() throws RecognitionException {
+    // $ANTLR start "rule__VariableConditional__Comparison_intAssignment_4_2"
+    // InternalFactoryLogicLangParser.g:5238:1: rule__VariableConditional__Comparison_intAssignment_4_2 : ( RULE_INT ) ;
+    public final void rule__VariableConditional__Comparison_intAssignment_4_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4367:1: ( ( RULE_INT ) )
-            // InternalFactoryLogicLangParser.g:4368:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5242:1: ( ( RULE_INT ) )
+            // InternalFactoryLogicLangParser.g:5243:2: ( RULE_INT )
             {
-            // InternalFactoryLogicLangParser.g:4368:2: ( RULE_INT )
-            // InternalFactoryLogicLangParser.g:4369:3: RULE_INT
+            // InternalFactoryLogicLangParser.g:5243:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5244:3: RULE_INT
             {
-             before(grammarAccess.getLoopAccess().getComparison_intINTTerminalRuleCall_9_2_0()); 
+             before(grammarAccess.getVariableConditionalAccess().getComparison_intINTTerminalRuleCall_4_2_0()); 
             match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getComparison_intINTTerminalRuleCall_9_2_0()); 
+             after(grammarAccess.getVariableConditionalAccess().getComparison_intINTTerminalRuleCall_4_2_0()); 
 
             }
 
@@ -13204,29 +15929,29 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__Comparison_intAssignment_9_2"
+    // $ANTLR end "rule__VariableConditional__Comparison_intAssignment_4_2"
 
 
-    // $ANTLR start "rule__Loop__LogicsAssignment_12"
-    // InternalFactoryLogicLangParser.g:4378:1: rule__Loop__LogicsAssignment_12 : ( ruleLogic ) ;
-    public final void rule__Loop__LogicsAssignment_12() throws RecognitionException {
+    // $ANTLR start "rule__VariableConditional__LogicsAssignment_7"
+    // InternalFactoryLogicLangParser.g:5253:1: rule__VariableConditional__LogicsAssignment_7 : ( ruleLogic ) ;
+    public final void rule__VariableConditional__LogicsAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4382:1: ( ( ruleLogic ) )
-            // InternalFactoryLogicLangParser.g:4383:2: ( ruleLogic )
+            // InternalFactoryLogicLangParser.g:5257:1: ( ( ruleLogic ) )
+            // InternalFactoryLogicLangParser.g:5258:2: ( ruleLogic )
             {
-            // InternalFactoryLogicLangParser.g:4383:2: ( ruleLogic )
-            // InternalFactoryLogicLangParser.g:4384:3: ruleLogic
+            // InternalFactoryLogicLangParser.g:5258:2: ( ruleLogic )
+            // InternalFactoryLogicLangParser.g:5259:3: ruleLogic
             {
-             before(grammarAccess.getLoopAccess().getLogicsLogicParserRuleCall_12_0()); 
+             before(grammarAccess.getVariableConditionalAccess().getLogicsLogicParserRuleCall_7_0()); 
             pushFollow(FOLLOW_2);
             ruleLogic();
 
             state._fsp--;
 
-             after(grammarAccess.getLoopAccess().getLogicsLogicParserRuleCall_12_0()); 
+             after(grammarAccess.getVariableConditionalAccess().getLogicsLogicParserRuleCall_7_0()); 
 
             }
 
@@ -13245,29 +15970,591 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__Loop__LogicsAssignment_12"
+    // $ANTLR end "rule__VariableConditional__LogicsAssignment_7"
+
+
+    // $ANTLR start "rule__NumberConditional__Source_intAssignment_1"
+    // InternalFactoryLogicLangParser.g:5268:1: rule__NumberConditional__Source_intAssignment_1 : ( RULE_INT ) ;
+    public final void rule__NumberConditional__Source_intAssignment_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5272:1: ( ( RULE_INT ) )
+            // InternalFactoryLogicLangParser.g:5273:2: ( RULE_INT )
+            {
+            // InternalFactoryLogicLangParser.g:5273:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5274:3: RULE_INT
+            {
+             before(grammarAccess.getNumberConditionalAccess().getSource_intINTTerminalRuleCall_1_0()); 
+            match(input,RULE_INT,FOLLOW_2); 
+             after(grammarAccess.getNumberConditionalAccess().getSource_intINTTerminalRuleCall_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Source_intAssignment_1"
+
+
+    // $ANTLR start "rule__NumberConditional__OperatorAssignment_3"
+    // InternalFactoryLogicLangParser.g:5283:1: rule__NumberConditional__OperatorAssignment_3 : ( ruleBOOLEAN_OPERATOR ) ;
+    public final void rule__NumberConditional__OperatorAssignment_3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5287:1: ( ( ruleBOOLEAN_OPERATOR ) )
+            // InternalFactoryLogicLangParser.g:5288:2: ( ruleBOOLEAN_OPERATOR )
+            {
+            // InternalFactoryLogicLangParser.g:5288:2: ( ruleBOOLEAN_OPERATOR )
+            // InternalFactoryLogicLangParser.g:5289:3: ruleBOOLEAN_OPERATOR
+            {
+             before(grammarAccess.getNumberConditionalAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_3_0()); 
+            pushFollow(FOLLOW_2);
+            ruleBOOLEAN_OPERATOR();
+
+            state._fsp--;
+
+             after(grammarAccess.getNumberConditionalAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_3_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__OperatorAssignment_3"
+
+
+    // $ANTLR start "rule__NumberConditional__Comparison_constAssignment_6_0"
+    // InternalFactoryLogicLangParser.g:5298:1: rule__NumberConditional__Comparison_constAssignment_6_0 : ( ruleCONST_VARIABLES ) ;
+    public final void rule__NumberConditional__Comparison_constAssignment_6_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5302:1: ( ( ruleCONST_VARIABLES ) )
+            // InternalFactoryLogicLangParser.g:5303:2: ( ruleCONST_VARIABLES )
+            {
+            // InternalFactoryLogicLangParser.g:5303:2: ( ruleCONST_VARIABLES )
+            // InternalFactoryLogicLangParser.g:5304:3: ruleCONST_VARIABLES
+            {
+             before(grammarAccess.getNumberConditionalAccess().getComparison_constCONST_VARIABLESEnumRuleCall_6_0_0()); 
+            pushFollow(FOLLOW_2);
+            ruleCONST_VARIABLES();
+
+            state._fsp--;
+
+             after(grammarAccess.getNumberConditionalAccess().getComparison_constCONST_VARIABLESEnumRuleCall_6_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Comparison_constAssignment_6_0"
+
+
+    // $ANTLR start "rule__NumberConditional__Comparison_colorAssignment_6_1"
+    // InternalFactoryLogicLangParser.g:5313:1: rule__NumberConditional__Comparison_colorAssignment_6_1 : ( ruleCOLOR ) ;
+    public final void rule__NumberConditional__Comparison_colorAssignment_6_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5317:1: ( ( ruleCOLOR ) )
+            // InternalFactoryLogicLangParser.g:5318:2: ( ruleCOLOR )
+            {
+            // InternalFactoryLogicLangParser.g:5318:2: ( ruleCOLOR )
+            // InternalFactoryLogicLangParser.g:5319:3: ruleCOLOR
+            {
+             before(grammarAccess.getNumberConditionalAccess().getComparison_colorCOLOREnumRuleCall_6_1_0()); 
+            pushFollow(FOLLOW_2);
+            ruleCOLOR();
+
+            state._fsp--;
+
+             after(grammarAccess.getNumberConditionalAccess().getComparison_colorCOLOREnumRuleCall_6_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Comparison_colorAssignment_6_1"
+
+
+    // $ANTLR start "rule__NumberConditional__Comparison_intAssignment_6_2"
+    // InternalFactoryLogicLangParser.g:5328:1: rule__NumberConditional__Comparison_intAssignment_6_2 : ( RULE_INT ) ;
+    public final void rule__NumberConditional__Comparison_intAssignment_6_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5332:1: ( ( RULE_INT ) )
+            // InternalFactoryLogicLangParser.g:5333:2: ( RULE_INT )
+            {
+            // InternalFactoryLogicLangParser.g:5333:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5334:3: RULE_INT
+            {
+             before(grammarAccess.getNumberConditionalAccess().getComparison_intINTTerminalRuleCall_6_2_0()); 
+            match(input,RULE_INT,FOLLOW_2); 
+             after(grammarAccess.getNumberConditionalAccess().getComparison_intINTTerminalRuleCall_6_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__Comparison_intAssignment_6_2"
+
+
+    // $ANTLR start "rule__NumberConditional__LogicsAssignment_9"
+    // InternalFactoryLogicLangParser.g:5343:1: rule__NumberConditional__LogicsAssignment_9 : ( ruleLogic ) ;
+    public final void rule__NumberConditional__LogicsAssignment_9() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5347:1: ( ( ruleLogic ) )
+            // InternalFactoryLogicLangParser.g:5348:2: ( ruleLogic )
+            {
+            // InternalFactoryLogicLangParser.g:5348:2: ( ruleLogic )
+            // InternalFactoryLogicLangParser.g:5349:3: ruleLogic
+            {
+             before(grammarAccess.getNumberConditionalAccess().getLogicsLogicParserRuleCall_9_0()); 
+            pushFollow(FOLLOW_2);
+            ruleLogic();
+
+            state._fsp--;
+
+             after(grammarAccess.getNumberConditionalAccess().getLogicsLogicParserRuleCall_9_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__NumberConditional__LogicsAssignment_9"
+
+
+    // $ANTLR start "rule__Loop__VariableAssignment_1"
+    // InternalFactoryLogicLangParser.g:5358:1: rule__Loop__VariableAssignment_1 : ( ruleLoopVariable ) ;
+    public final void rule__Loop__VariableAssignment_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5362:1: ( ( ruleLoopVariable ) )
+            // InternalFactoryLogicLangParser.g:5363:2: ( ruleLoopVariable )
+            {
+            // InternalFactoryLogicLangParser.g:5363:2: ( ruleLoopVariable )
+            // InternalFactoryLogicLangParser.g:5364:3: ruleLoopVariable
+            {
+             before(grammarAccess.getLoopAccess().getVariableLoopVariableParserRuleCall_1_0()); 
+            pushFollow(FOLLOW_2);
+            ruleLoopVariable();
+
+            state._fsp--;
+
+             after(grammarAccess.getLoopAccess().getVariableLoopVariableParserRuleCall_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Loop__VariableAssignment_1"
+
+
+    // $ANTLR start "rule__Loop__ListAssignment_3"
+    // InternalFactoryLogicLangParser.g:5373:1: rule__Loop__ListAssignment_3 : ( RULE_ID ) ;
+    public final void rule__Loop__ListAssignment_3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5377:1: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5378:2: ( RULE_ID )
+            {
+            // InternalFactoryLogicLangParser.g:5378:2: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5379:3: RULE_ID
+            {
+             before(grammarAccess.getLoopAccess().getListIDTerminalRuleCall_3_0()); 
+            match(input,RULE_ID,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getListIDTerminalRuleCall_3_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Loop__ListAssignment_3"
+
+
+    // $ANTLR start "rule__Loop__SourceAssignment_4_1"
+    // InternalFactoryLogicLangParser.g:5388:1: rule__Loop__SourceAssignment_4_1 : ( ( RULE_STRING ) ) ;
+    public final void rule__Loop__SourceAssignment_4_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5392:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5393:2: ( ( RULE_STRING ) )
+            {
+            // InternalFactoryLogicLangParser.g:5393:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5394:3: ( RULE_STRING )
+            {
+             before(grammarAccess.getLoopAccess().getSourceDeviceCrossReference_4_1_0()); 
+            // InternalFactoryLogicLangParser.g:5395:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5396:4: RULE_STRING
+            {
+             before(grammarAccess.getLoopAccess().getSourceDeviceSTRINGTerminalRuleCall_4_1_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getSourceDeviceSTRINGTerminalRuleCall_4_1_0_1()); 
+
+            }
+
+             after(grammarAccess.getLoopAccess().getSourceDeviceCrossReference_4_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Loop__SourceAssignment_4_1"
+
+
+    // $ANTLR start "rule__Loop__OperatorAssignment_7"
+    // InternalFactoryLogicLangParser.g:5407:1: rule__Loop__OperatorAssignment_7 : ( ruleBOOLEAN_OPERATOR ) ;
+    public final void rule__Loop__OperatorAssignment_7() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5411:1: ( ( ruleBOOLEAN_OPERATOR ) )
+            // InternalFactoryLogicLangParser.g:5412:2: ( ruleBOOLEAN_OPERATOR )
+            {
+            // InternalFactoryLogicLangParser.g:5412:2: ( ruleBOOLEAN_OPERATOR )
+            // InternalFactoryLogicLangParser.g:5413:3: ruleBOOLEAN_OPERATOR
+            {
+             before(grammarAccess.getLoopAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_7_0()); 
+            pushFollow(FOLLOW_2);
+            ruleBOOLEAN_OPERATOR();
+
+            state._fsp--;
+
+             after(grammarAccess.getLoopAccess().getOperatorBOOLEAN_OPERATOREnumRuleCall_7_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Loop__OperatorAssignment_7"
+
+
+    // $ANTLR start "rule__Loop__Comparison_constAssignment_8_0"
+    // InternalFactoryLogicLangParser.g:5422:1: rule__Loop__Comparison_constAssignment_8_0 : ( ruleCONST_VARIABLES ) ;
+    public final void rule__Loop__Comparison_constAssignment_8_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5426:1: ( ( ruleCONST_VARIABLES ) )
+            // InternalFactoryLogicLangParser.g:5427:2: ( ruleCONST_VARIABLES )
+            {
+            // InternalFactoryLogicLangParser.g:5427:2: ( ruleCONST_VARIABLES )
+            // InternalFactoryLogicLangParser.g:5428:3: ruleCONST_VARIABLES
+            {
+             before(grammarAccess.getLoopAccess().getComparison_constCONST_VARIABLESEnumRuleCall_8_0_0()); 
+            pushFollow(FOLLOW_2);
+            ruleCONST_VARIABLES();
+
+            state._fsp--;
+
+             after(grammarAccess.getLoopAccess().getComparison_constCONST_VARIABLESEnumRuleCall_8_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Loop__Comparison_constAssignment_8_0"
+
+
+    // $ANTLR start "rule__Loop__Comparison_colorAssignment_8_1"
+    // InternalFactoryLogicLangParser.g:5437:1: rule__Loop__Comparison_colorAssignment_8_1 : ( ruleCOLOR ) ;
+    public final void rule__Loop__Comparison_colorAssignment_8_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5441:1: ( ( ruleCOLOR ) )
+            // InternalFactoryLogicLangParser.g:5442:2: ( ruleCOLOR )
+            {
+            // InternalFactoryLogicLangParser.g:5442:2: ( ruleCOLOR )
+            // InternalFactoryLogicLangParser.g:5443:3: ruleCOLOR
+            {
+             before(grammarAccess.getLoopAccess().getComparison_colorCOLOREnumRuleCall_8_1_0()); 
+            pushFollow(FOLLOW_2);
+            ruleCOLOR();
+
+            state._fsp--;
+
+             after(grammarAccess.getLoopAccess().getComparison_colorCOLOREnumRuleCall_8_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Loop__Comparison_colorAssignment_8_1"
+
+
+    // $ANTLR start "rule__Loop__Comparison_intAssignment_8_2"
+    // InternalFactoryLogicLangParser.g:5452:1: rule__Loop__Comparison_intAssignment_8_2 : ( RULE_INT ) ;
+    public final void rule__Loop__Comparison_intAssignment_8_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5456:1: ( ( RULE_INT ) )
+            // InternalFactoryLogicLangParser.g:5457:2: ( RULE_INT )
+            {
+            // InternalFactoryLogicLangParser.g:5457:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5458:3: RULE_INT
+            {
+             before(grammarAccess.getLoopAccess().getComparison_intINTTerminalRuleCall_8_2_0()); 
+            match(input,RULE_INT,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getComparison_intINTTerminalRuleCall_8_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Loop__Comparison_intAssignment_8_2"
+
+
+    // $ANTLR start "rule__Loop__LogicsAssignment_11"
+    // InternalFactoryLogicLangParser.g:5467:1: rule__Loop__LogicsAssignment_11 : ( ruleLogic ) ;
+    public final void rule__Loop__LogicsAssignment_11() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5471:1: ( ( ruleLogic ) )
+            // InternalFactoryLogicLangParser.g:5472:2: ( ruleLogic )
+            {
+            // InternalFactoryLogicLangParser.g:5472:2: ( ruleLogic )
+            // InternalFactoryLogicLangParser.g:5473:3: ruleLogic
+            {
+             before(grammarAccess.getLoopAccess().getLogicsLogicParserRuleCall_11_0()); 
+            pushFollow(FOLLOW_2);
+            ruleLogic();
+
+            state._fsp--;
+
+             after(grammarAccess.getLoopAccess().getLogicsLogicParserRuleCall_11_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Loop__LogicsAssignment_11"
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__DeviceAssignment_0"
-    // InternalFactoryLogicLangParser.g:4393:1: rule__StorageMoveEmptySlot__DeviceAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5482:1: rule__StorageMoveEmptySlot__DeviceAssignment_0 : ( ( RULE_STRING ) ) ;
     public final void rule__StorageMoveEmptySlot__DeviceAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4397:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4398:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5486:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5487:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4398:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4399:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5487:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5488:3: ( RULE_STRING )
             {
              before(grammarAccess.getStorageMoveEmptySlotAccess().getDeviceStorageCrossReference_0_0()); 
-            // InternalFactoryLogicLangParser.g:4400:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4401:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5489:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5490:4: RULE_STRING
             {
-             before(grammarAccess.getStorageMoveEmptySlotAccess().getDeviceStorageIDTerminalRuleCall_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getStorageMoveEmptySlotAccess().getDeviceStorageIDTerminalRuleCall_0_0_1()); 
+             before(grammarAccess.getStorageMoveEmptySlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveEmptySlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1()); 
 
             }
 
@@ -13294,25 +16581,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveEmptySlot__DestinationAssignment_5"
-    // InternalFactoryLogicLangParser.g:4412:1: rule__StorageMoveEmptySlot__DestinationAssignment_5 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5501:1: rule__StorageMoveEmptySlot__DestinationAssignment_5 : ( ( RULE_STRING ) ) ;
     public final void rule__StorageMoveEmptySlot__DestinationAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4416:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4417:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5505:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5506:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4417:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4418:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5506:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5507:3: ( RULE_STRING )
             {
              before(grammarAccess.getStorageMoveEmptySlotAccess().getDestinationStoragePositionParameterCrossReference_5_0()); 
-            // InternalFactoryLogicLangParser.g:4419:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4420:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5508:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5509:4: RULE_STRING
             {
-             before(grammarAccess.getStorageMoveEmptySlotAccess().getDestinationStoragePositionParameterIDTerminalRuleCall_5_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getStorageMoveEmptySlotAccess().getDestinationStoragePositionParameterIDTerminalRuleCall_5_0_1()); 
+             before(grammarAccess.getStorageMoveEmptySlotAccess().getDestinationStoragePositionParameterSTRINGTerminalRuleCall_5_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveEmptySlotAccess().getDestinationStoragePositionParameterSTRINGTerminalRuleCall_5_0_1()); 
 
             }
 
@@ -13338,26 +16625,161 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__StorageMoveEmptySlot__DestinationAssignment_5"
 
 
+    // $ANTLR start "rule__StorageMoveVariableSlot__DeviceAssignment_0"
+    // InternalFactoryLogicLangParser.g:5520:1: rule__StorageMoveVariableSlot__DeviceAssignment_0 : ( ( RULE_STRING ) ) ;
+    public final void rule__StorageMoveVariableSlot__DeviceAssignment_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5524:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5525:2: ( ( RULE_STRING ) )
+            {
+            // InternalFactoryLogicLangParser.g:5525:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5526:3: ( RULE_STRING )
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getDeviceStorageCrossReference_0_0()); 
+            // InternalFactoryLogicLangParser.g:5527:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5528:4: RULE_STRING
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1()); 
+
+            }
+
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getDeviceStorageCrossReference_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__DeviceAssignment_0"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__PositionAssignment_4"
+    // InternalFactoryLogicLangParser.g:5539:1: rule__StorageMoveVariableSlot__PositionAssignment_4 : ( ( RULE_ID ) ) ;
+    public final void rule__StorageMoveVariableSlot__PositionAssignment_4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5543:1: ( ( ( RULE_ID ) ) )
+            // InternalFactoryLogicLangParser.g:5544:2: ( ( RULE_ID ) )
+            {
+            // InternalFactoryLogicLangParser.g:5544:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5545:3: ( RULE_ID )
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getPositionVariableCrossReference_4_0()); 
+            // InternalFactoryLogicLangParser.g:5546:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5547:4: RULE_ID
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getPositionVariableIDTerminalRuleCall_4_0_1()); 
+            match(input,RULE_ID,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getPositionVariableIDTerminalRuleCall_4_0_1()); 
+
+            }
+
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getPositionVariableCrossReference_4_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__PositionAssignment_4"
+
+
+    // $ANTLR start "rule__StorageMoveVariableSlot__DestinationAssignment_6"
+    // InternalFactoryLogicLangParser.g:5558:1: rule__StorageMoveVariableSlot__DestinationAssignment_6 : ( ( RULE_STRING ) ) ;
+    public final void rule__StorageMoveVariableSlot__DestinationAssignment_6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5562:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5563:2: ( ( RULE_STRING ) )
+            {
+            // InternalFactoryLogicLangParser.g:5563:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5564:3: ( RULE_STRING )
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getDestinationStoragePositionParameterCrossReference_6_0()); 
+            // InternalFactoryLogicLangParser.g:5565:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5566:4: RULE_STRING
+            {
+             before(grammarAccess.getStorageMoveVariableSlotAccess().getDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1()); 
+
+            }
+
+             after(grammarAccess.getStorageMoveVariableSlotAccess().getDestinationStoragePositionParameterCrossReference_6_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMoveVariableSlot__DestinationAssignment_6"
+
+
     // $ANTLR start "rule__StorageMoveSlot__DeviceAssignment_0"
-    // InternalFactoryLogicLangParser.g:4431:1: rule__StorageMoveSlot__DeviceAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5577:1: rule__StorageMoveSlot__DeviceAssignment_0 : ( ( RULE_STRING ) ) ;
     public final void rule__StorageMoveSlot__DeviceAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4435:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4436:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5581:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5582:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4436:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4437:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5582:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5583:3: ( RULE_STRING )
             {
              before(grammarAccess.getStorageMoveSlotAccess().getDeviceStorageCrossReference_0_0()); 
-            // InternalFactoryLogicLangParser.g:4438:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4439:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5584:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5585:4: RULE_STRING
             {
-             before(grammarAccess.getStorageMoveSlotAccess().getDeviceStorageIDTerminalRuleCall_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getStorageMoveSlotAccess().getDeviceStorageIDTerminalRuleCall_0_0_1()); 
+             before(grammarAccess.getStorageMoveSlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveSlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1()); 
 
             }
 
@@ -13384,25 +16806,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__PositionAssignment_4"
-    // InternalFactoryLogicLangParser.g:4450:1: rule__StorageMoveSlot__PositionAssignment_4 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5596:1: rule__StorageMoveSlot__PositionAssignment_4 : ( ( RULE_STRING ) ) ;
     public final void rule__StorageMoveSlot__PositionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4454:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4455:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5600:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5601:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4455:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4456:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5601:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5602:3: ( RULE_STRING )
             {
              before(grammarAccess.getStorageMoveSlotAccess().getPositionStoragePositionParameterCrossReference_4_0()); 
-            // InternalFactoryLogicLangParser.g:4457:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4458:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5603:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5604:4: RULE_STRING
             {
-             before(grammarAccess.getStorageMoveSlotAccess().getPositionStoragePositionParameterIDTerminalRuleCall_4_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getStorageMoveSlotAccess().getPositionStoragePositionParameterIDTerminalRuleCall_4_0_1()); 
+             before(grammarAccess.getStorageMoveSlotAccess().getPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveSlotAccess().getPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1()); 
 
             }
 
@@ -13429,25 +16851,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMoveSlot__DestinationAssignment_6"
-    // InternalFactoryLogicLangParser.g:4469:1: rule__StorageMoveSlot__DestinationAssignment_6 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5615:1: rule__StorageMoveSlot__DestinationAssignment_6 : ( ( RULE_STRING ) ) ;
     public final void rule__StorageMoveSlot__DestinationAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4473:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4474:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5619:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5620:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4474:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4475:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5620:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5621:3: ( RULE_STRING )
             {
              before(grammarAccess.getStorageMoveSlotAccess().getDestinationStoragePositionParameterCrossReference_6_0()); 
-            // InternalFactoryLogicLangParser.g:4476:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4477:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5622:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5623:4: RULE_STRING
             {
-             before(grammarAccess.getStorageMoveSlotAccess().getDestinationStoragePositionParameterIDTerminalRuleCall_6_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getStorageMoveSlotAccess().getDestinationStoragePositionParameterIDTerminalRuleCall_6_0_1()); 
+             before(grammarAccess.getStorageMoveSlotAccess().getDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getStorageMoveSlotAccess().getDestinationStoragePositionParameterSTRINGTerminalRuleCall_6_0_1()); 
 
             }
 
@@ -13474,25 +16896,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__DeviceAssignment_0"
-    // InternalFactoryLogicLangParser.g:4488:1: rule__StorageMarkSlot__DeviceAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5634:1: rule__StorageMarkSlot__DeviceAssignment_0 : ( ( RULE_STRING ) ) ;
     public final void rule__StorageMarkSlot__DeviceAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4492:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4493:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5638:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5639:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4493:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4494:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5639:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5640:3: ( RULE_STRING )
             {
              before(grammarAccess.getStorageMarkSlotAccess().getDeviceStorageCrossReference_0_0()); 
-            // InternalFactoryLogicLangParser.g:4495:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4496:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5641:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5642:4: RULE_STRING
             {
-             before(grammarAccess.getStorageMarkSlotAccess().getDeviceStorageIDTerminalRuleCall_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getStorageMarkSlotAccess().getDeviceStorageIDTerminalRuleCall_0_0_1()); 
+             before(grammarAccess.getStorageMarkSlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getStorageMarkSlotAccess().getDeviceStorageSTRINGTerminalRuleCall_0_0_1()); 
 
             }
 
@@ -13519,25 +16941,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__PositionAssignment_4"
-    // InternalFactoryLogicLangParser.g:4507:1: rule__StorageMarkSlot__PositionAssignment_4 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5653:1: rule__StorageMarkSlot__PositionAssignment_4 : ( ( RULE_STRING ) ) ;
     public final void rule__StorageMarkSlot__PositionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4511:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4512:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5657:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5658:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4512:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4513:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5658:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5659:3: ( RULE_STRING )
             {
              before(grammarAccess.getStorageMarkSlotAccess().getPositionStoragePositionParameterCrossReference_4_0()); 
-            // InternalFactoryLogicLangParser.g:4514:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4515:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5660:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5661:4: RULE_STRING
             {
-             before(grammarAccess.getStorageMarkSlotAccess().getPositionStoragePositionParameterIDTerminalRuleCall_4_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getStorageMarkSlotAccess().getPositionStoragePositionParameterIDTerminalRuleCall_4_0_1()); 
+             before(grammarAccess.getStorageMarkSlotAccess().getPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getStorageMarkSlotAccess().getPositionStoragePositionParameterSTRINGTerminalRuleCall_4_0_1()); 
 
             }
 
@@ -13563,26 +16985,71 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__StorageMarkSlot__PositionAssignment_4"
 
 
-    // $ANTLR start "rule__StorageMarkSlot__Comparison_constAssignment_6_0"
-    // InternalFactoryLogicLangParser.g:4526:1: rule__StorageMarkSlot__Comparison_constAssignment_6_0 : ( ruleCONST_VARIABLES ) ;
-    public final void rule__StorageMarkSlot__Comparison_constAssignment_6_0() throws RecognitionException {
+    // $ANTLR start "rule__StorageMarkSlot__Comparison_variableAssignment_6_0"
+    // InternalFactoryLogicLangParser.g:5672:1: rule__StorageMarkSlot__Comparison_variableAssignment_6_0 : ( ( RULE_ID ) ) ;
+    public final void rule__StorageMarkSlot__Comparison_variableAssignment_6_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4530:1: ( ( ruleCONST_VARIABLES ) )
-            // InternalFactoryLogicLangParser.g:4531:2: ( ruleCONST_VARIABLES )
+            // InternalFactoryLogicLangParser.g:5676:1: ( ( ( RULE_ID ) ) )
+            // InternalFactoryLogicLangParser.g:5677:2: ( ( RULE_ID ) )
             {
-            // InternalFactoryLogicLangParser.g:4531:2: ( ruleCONST_VARIABLES )
-            // InternalFactoryLogicLangParser.g:4532:3: ruleCONST_VARIABLES
+            // InternalFactoryLogicLangParser.g:5677:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5678:3: ( RULE_ID )
             {
-             before(grammarAccess.getStorageMarkSlotAccess().getComparison_constCONST_VARIABLESEnumRuleCall_6_0_0()); 
+             before(grammarAccess.getStorageMarkSlotAccess().getComparison_variableVariableCrossReference_6_0_0()); 
+            // InternalFactoryLogicLangParser.g:5679:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5680:4: RULE_ID
+            {
+             before(grammarAccess.getStorageMarkSlotAccess().getComparison_variableVariableIDTerminalRuleCall_6_0_0_1()); 
+            match(input,RULE_ID,FOLLOW_2); 
+             after(grammarAccess.getStorageMarkSlotAccess().getComparison_variableVariableIDTerminalRuleCall_6_0_0_1()); 
+
+            }
+
+             after(grammarAccess.getStorageMarkSlotAccess().getComparison_variableVariableCrossReference_6_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__StorageMarkSlot__Comparison_variableAssignment_6_0"
+
+
+    // $ANTLR start "rule__StorageMarkSlot__Comparison_constAssignment_6_1"
+    // InternalFactoryLogicLangParser.g:5691:1: rule__StorageMarkSlot__Comparison_constAssignment_6_1 : ( ruleCONST_VARIABLES ) ;
+    public final void rule__StorageMarkSlot__Comparison_constAssignment_6_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5695:1: ( ( ruleCONST_VARIABLES ) )
+            // InternalFactoryLogicLangParser.g:5696:2: ( ruleCONST_VARIABLES )
+            {
+            // InternalFactoryLogicLangParser.g:5696:2: ( ruleCONST_VARIABLES )
+            // InternalFactoryLogicLangParser.g:5697:3: ruleCONST_VARIABLES
+            {
+             before(grammarAccess.getStorageMarkSlotAccess().getComparison_constCONST_VARIABLESEnumRuleCall_6_1_0()); 
             pushFollow(FOLLOW_2);
             ruleCONST_VARIABLES();
 
             state._fsp--;
 
-             after(grammarAccess.getStorageMarkSlotAccess().getComparison_constCONST_VARIABLESEnumRuleCall_6_0_0()); 
+             after(grammarAccess.getStorageMarkSlotAccess().getComparison_constCONST_VARIABLESEnumRuleCall_6_1_0()); 
 
             }
 
@@ -13601,29 +17068,29 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__StorageMarkSlot__Comparison_constAssignment_6_0"
+    // $ANTLR end "rule__StorageMarkSlot__Comparison_constAssignment_6_1"
 
 
-    // $ANTLR start "rule__StorageMarkSlot__Comparison_colorAssignment_6_1"
-    // InternalFactoryLogicLangParser.g:4541:1: rule__StorageMarkSlot__Comparison_colorAssignment_6_1 : ( ruleCOLOR ) ;
-    public final void rule__StorageMarkSlot__Comparison_colorAssignment_6_1() throws RecognitionException {
+    // $ANTLR start "rule__StorageMarkSlot__Comparison_colorAssignment_6_2"
+    // InternalFactoryLogicLangParser.g:5706:1: rule__StorageMarkSlot__Comparison_colorAssignment_6_2 : ( ruleCOLOR ) ;
+    public final void rule__StorageMarkSlot__Comparison_colorAssignment_6_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4545:1: ( ( ruleCOLOR ) )
-            // InternalFactoryLogicLangParser.g:4546:2: ( ruleCOLOR )
+            // InternalFactoryLogicLangParser.g:5710:1: ( ( ruleCOLOR ) )
+            // InternalFactoryLogicLangParser.g:5711:2: ( ruleCOLOR )
             {
-            // InternalFactoryLogicLangParser.g:4546:2: ( ruleCOLOR )
-            // InternalFactoryLogicLangParser.g:4547:3: ruleCOLOR
+            // InternalFactoryLogicLangParser.g:5711:2: ( ruleCOLOR )
+            // InternalFactoryLogicLangParser.g:5712:3: ruleCOLOR
             {
-             before(grammarAccess.getStorageMarkSlotAccess().getComparison_colorCOLOREnumRuleCall_6_1_0()); 
+             before(grammarAccess.getStorageMarkSlotAccess().getComparison_colorCOLOREnumRuleCall_6_2_0()); 
             pushFollow(FOLLOW_2);
             ruleCOLOR();
 
             state._fsp--;
 
-             after(grammarAccess.getStorageMarkSlotAccess().getComparison_colorCOLOREnumRuleCall_6_1_0()); 
+             after(grammarAccess.getStorageMarkSlotAccess().getComparison_colorCOLOREnumRuleCall_6_2_0()); 
 
             }
 
@@ -13642,25 +17109,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__StorageMarkSlot__Comparison_colorAssignment_6_1"
+    // $ANTLR end "rule__StorageMarkSlot__Comparison_colorAssignment_6_2"
 
 
-    // $ANTLR start "rule__StorageMarkSlot__Comparison_intAssignment_6_2"
-    // InternalFactoryLogicLangParser.g:4556:1: rule__StorageMarkSlot__Comparison_intAssignment_6_2 : ( RULE_INT ) ;
-    public final void rule__StorageMarkSlot__Comparison_intAssignment_6_2() throws RecognitionException {
+    // $ANTLR start "rule__StorageMarkSlot__Comparison_intAssignment_6_3"
+    // InternalFactoryLogicLangParser.g:5721:1: rule__StorageMarkSlot__Comparison_intAssignment_6_3 : ( RULE_INT ) ;
+    public final void rule__StorageMarkSlot__Comparison_intAssignment_6_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4560:1: ( ( RULE_INT ) )
-            // InternalFactoryLogicLangParser.g:4561:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5725:1: ( ( RULE_INT ) )
+            // InternalFactoryLogicLangParser.g:5726:2: ( RULE_INT )
             {
-            // InternalFactoryLogicLangParser.g:4561:2: ( RULE_INT )
-            // InternalFactoryLogicLangParser.g:4562:3: RULE_INT
+            // InternalFactoryLogicLangParser.g:5726:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5727:3: RULE_INT
             {
-             before(grammarAccess.getStorageMarkSlotAccess().getComparison_intINTTerminalRuleCall_6_2_0()); 
+             before(grammarAccess.getStorageMarkSlotAccess().getComparison_intINTTerminalRuleCall_6_3_0()); 
             match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getStorageMarkSlotAccess().getComparison_intINTTerminalRuleCall_6_2_0()); 
+             after(grammarAccess.getStorageMarkSlotAccess().getComparison_intINTTerminalRuleCall_6_3_0()); 
 
             }
 
@@ -13679,21 +17146,21 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__StorageMarkSlot__Comparison_intAssignment_6_2"
+    // $ANTLR end "rule__StorageMarkSlot__Comparison_intAssignment_6_3"
 
 
     // $ANTLR start "rule__StorageMarkSlot__QuantityAssignment_7_1"
-    // InternalFactoryLogicLangParser.g:4571:1: rule__StorageMarkSlot__QuantityAssignment_7_1 : ( RULE_INT ) ;
+    // InternalFactoryLogicLangParser.g:5736:1: rule__StorageMarkSlot__QuantityAssignment_7_1 : ( RULE_INT ) ;
     public final void rule__StorageMarkSlot__QuantityAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4575:1: ( ( RULE_INT ) )
-            // InternalFactoryLogicLangParser.g:4576:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5740:1: ( ( RULE_INT ) )
+            // InternalFactoryLogicLangParser.g:5741:2: ( RULE_INT )
             {
-            // InternalFactoryLogicLangParser.g:4576:2: ( RULE_INT )
-            // InternalFactoryLogicLangParser.g:4577:3: RULE_INT
+            // InternalFactoryLogicLangParser.g:5741:2: ( RULE_INT )
+            // InternalFactoryLogicLangParser.g:5742:3: RULE_INT
             {
              before(grammarAccess.getStorageMarkSlotAccess().getQuantityINTTerminalRuleCall_7_1_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -13720,17 +17187,17 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__StorageMarkSlot__MeasureAssignment_7_2"
-    // InternalFactoryLogicLangParser.g:4586:1: rule__StorageMarkSlot__MeasureAssignment_7_2 : ( ruleTIME ) ;
+    // InternalFactoryLogicLangParser.g:5751:1: rule__StorageMarkSlot__MeasureAssignment_7_2 : ( ruleTIME ) ;
     public final void rule__StorageMarkSlot__MeasureAssignment_7_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4590:1: ( ( ruleTIME ) )
-            // InternalFactoryLogicLangParser.g:4591:2: ( ruleTIME )
+            // InternalFactoryLogicLangParser.g:5755:1: ( ( ruleTIME ) )
+            // InternalFactoryLogicLangParser.g:5756:2: ( ruleTIME )
             {
-            // InternalFactoryLogicLangParser.g:4591:2: ( ruleTIME )
-            // InternalFactoryLogicLangParser.g:4592:3: ruleTIME
+            // InternalFactoryLogicLangParser.g:5756:2: ( ruleTIME )
+            // InternalFactoryLogicLangParser.g:5757:3: ruleTIME
             {
              before(grammarAccess.getStorageMarkSlotAccess().getMeasureTIMEEnumRuleCall_7_2_0()); 
             pushFollow(FOLLOW_2);
@@ -13761,25 +17228,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CameraScan__DeviceAssignment_0"
-    // InternalFactoryLogicLangParser.g:4601:1: rule__CameraScan__DeviceAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5766:1: rule__CameraScan__DeviceAssignment_0 : ( ( RULE_STRING ) ) ;
     public final void rule__CameraScan__DeviceAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4605:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4606:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5770:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5771:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4606:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4607:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5771:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5772:3: ( RULE_STRING )
             {
              before(grammarAccess.getCameraScanAccess().getDeviceCameraCrossReference_0_0()); 
-            // InternalFactoryLogicLangParser.g:4608:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4609:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5773:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5774:4: RULE_STRING
             {
-             before(grammarAccess.getCameraScanAccess().getDeviceCameraIDTerminalRuleCall_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getCameraScanAccess().getDeviceCameraIDTerminalRuleCall_0_0_1()); 
+             before(grammarAccess.getCameraScanAccess().getDeviceCameraSTRINGTerminalRuleCall_0_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getCameraScanAccess().getDeviceCameraSTRINGTerminalRuleCall_0_0_1()); 
 
             }
 
@@ -13805,22 +17272,26 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__CameraScan__DeviceAssignment_0"
 
 
-    // $ANTLR start "rule__CameraScan__NameAssignment_4"
-    // InternalFactoryLogicLangParser.g:4620:1: rule__CameraScan__NameAssignment_4 : ( RULE_ID ) ;
-    public final void rule__CameraScan__NameAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__CameraScan__VariableAssignment_3"
+    // InternalFactoryLogicLangParser.g:5785:1: rule__CameraScan__VariableAssignment_3 : ( ruleGloablVariable ) ;
+    public final void rule__CameraScan__VariableAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4624:1: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4625:2: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5789:1: ( ( ruleGloablVariable ) )
+            // InternalFactoryLogicLangParser.g:5790:2: ( ruleGloablVariable )
             {
-            // InternalFactoryLogicLangParser.g:4625:2: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4626:3: RULE_ID
+            // InternalFactoryLogicLangParser.g:5790:2: ( ruleGloablVariable )
+            // InternalFactoryLogicLangParser.g:5791:3: ruleGloablVariable
             {
-             before(grammarAccess.getCameraScanAccess().getNameIDTerminalRuleCall_4_0()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getCameraScanAccess().getNameIDTerminalRuleCall_4_0()); 
+             before(grammarAccess.getCameraScanAccess().getVariableGloablVariableParserRuleCall_3_0()); 
+            pushFollow(FOLLOW_2);
+            ruleGloablVariable();
+
+            state._fsp--;
+
+             after(grammarAccess.getCameraScanAccess().getVariableGloablVariableParserRuleCall_3_0()); 
 
             }
 
@@ -13839,29 +17310,103 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__CameraScan__NameAssignment_4"
+    // $ANTLR end "rule__CameraScan__VariableAssignment_3"
+
+
+    // $ANTLR start "rule__LoopVariable__NameAssignment_1"
+    // InternalFactoryLogicLangParser.g:5800:1: rule__LoopVariable__NameAssignment_1 : ( RULE_ID ) ;
+    public final void rule__LoopVariable__NameAssignment_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5804:1: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5805:2: ( RULE_ID )
+            {
+            // InternalFactoryLogicLangParser.g:5805:2: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5806:3: RULE_ID
+            {
+             before(grammarAccess.getLoopVariableAccess().getNameIDTerminalRuleCall_1_0()); 
+            match(input,RULE_ID,FOLLOW_2); 
+             after(grammarAccess.getLoopVariableAccess().getNameIDTerminalRuleCall_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__LoopVariable__NameAssignment_1"
+
+
+    // $ANTLR start "rule__GloablVariable__NameAssignment_1"
+    // InternalFactoryLogicLangParser.g:5815:1: rule__GloablVariable__NameAssignment_1 : ( RULE_ID ) ;
+    public final void rule__GloablVariable__NameAssignment_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalFactoryLogicLangParser.g:5819:1: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5820:2: ( RULE_ID )
+            {
+            // InternalFactoryLogicLangParser.g:5820:2: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5821:3: RULE_ID
+            {
+             before(grammarAccess.getGloablVariableAccess().getNameIDTerminalRuleCall_1_0()); 
+            match(input,RULE_ID,FOLLOW_2); 
+             after(grammarAccess.getGloablVariableAccess().getNameIDTerminalRuleCall_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__GloablVariable__NameAssignment_1"
 
 
     // $ANTLR start "rule__CranePickup__DeviceAssignment_0"
-    // InternalFactoryLogicLangParser.g:4635:1: rule__CranePickup__DeviceAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5830:1: rule__CranePickup__DeviceAssignment_0 : ( ( RULE_STRING ) ) ;
     public final void rule__CranePickup__DeviceAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4639:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4640:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5834:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5835:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4640:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4641:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5835:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5836:3: ( RULE_STRING )
             {
              before(grammarAccess.getCranePickupAccess().getDeviceCraneCrossReference_0_0()); 
-            // InternalFactoryLogicLangParser.g:4642:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4643:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5837:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5838:4: RULE_STRING
             {
-             before(grammarAccess.getCranePickupAccess().getDeviceCraneIDTerminalRuleCall_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getCranePickupAccess().getDeviceCraneIDTerminalRuleCall_0_0_1()); 
+             before(grammarAccess.getCranePickupAccess().getDeviceCraneSTRINGTerminalRuleCall_0_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getCranePickupAccess().getDeviceCraneSTRINGTerminalRuleCall_0_0_1()); 
 
             }
 
@@ -13888,25 +17433,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CranePickup__LocationAssignment_4"
-    // InternalFactoryLogicLangParser.g:4654:1: rule__CranePickup__LocationAssignment_4 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5849:1: rule__CranePickup__LocationAssignment_4 : ( ( RULE_STRING ) ) ;
     public final void rule__CranePickup__LocationAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4658:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4659:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5853:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5854:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4659:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4660:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5854:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5855:3: ( RULE_STRING )
             {
              before(grammarAccess.getCranePickupAccess().getLocationCraneParameterCrossReference_4_0()); 
-            // InternalFactoryLogicLangParser.g:4661:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4662:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5856:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5857:4: RULE_STRING
             {
-             before(grammarAccess.getCranePickupAccess().getLocationCraneParameterIDTerminalRuleCall_4_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getCranePickupAccess().getLocationCraneParameterIDTerminalRuleCall_4_0_1()); 
+             before(grammarAccess.getCranePickupAccess().getLocationCraneParameterSTRINGTerminalRuleCall_4_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getCranePickupAccess().getLocationCraneParameterSTRINGTerminalRuleCall_4_0_1()); 
 
             }
 
@@ -13933,25 +17478,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__DeviceAssignment_0"
-    // InternalFactoryLogicLangParser.g:4673:1: rule__CraneDrop__DeviceAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5868:1: rule__CraneDrop__DeviceAssignment_0 : ( ( RULE_STRING ) ) ;
     public final void rule__CraneDrop__DeviceAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4677:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4678:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5872:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5873:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4678:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4679:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5873:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5874:3: ( RULE_STRING )
             {
              before(grammarAccess.getCraneDropAccess().getDeviceCraneCrossReference_0_0()); 
-            // InternalFactoryLogicLangParser.g:4680:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4681:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5875:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5876:4: RULE_STRING
             {
-             before(grammarAccess.getCraneDropAccess().getDeviceCraneIDTerminalRuleCall_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getCraneDropAccess().getDeviceCraneIDTerminalRuleCall_0_0_1()); 
+             before(grammarAccess.getCraneDropAccess().getDeviceCraneSTRINGTerminalRuleCall_0_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getCraneDropAccess().getDeviceCraneSTRINGTerminalRuleCall_0_0_1()); 
 
             }
 
@@ -13978,25 +17523,25 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__CraneDrop__LocationAssignment_4"
-    // InternalFactoryLogicLangParser.g:4692:1: rule__CraneDrop__LocationAssignment_4 : ( ( RULE_ID ) ) ;
+    // InternalFactoryLogicLangParser.g:5887:1: rule__CraneDrop__LocationAssignment_4 : ( ( RULE_STRING ) ) ;
     public final void rule__CraneDrop__LocationAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalFactoryLogicLangParser.g:4696:1: ( ( ( RULE_ID ) ) )
-            // InternalFactoryLogicLangParser.g:4697:2: ( ( RULE_ID ) )
+            // InternalFactoryLogicLangParser.g:5891:1: ( ( ( RULE_STRING ) ) )
+            // InternalFactoryLogicLangParser.g:5892:2: ( ( RULE_STRING ) )
             {
-            // InternalFactoryLogicLangParser.g:4697:2: ( ( RULE_ID ) )
-            // InternalFactoryLogicLangParser.g:4698:3: ( RULE_ID )
+            // InternalFactoryLogicLangParser.g:5892:2: ( ( RULE_STRING ) )
+            // InternalFactoryLogicLangParser.g:5893:3: ( RULE_STRING )
             {
              before(grammarAccess.getCraneDropAccess().getLocationCraneParameterCrossReference_4_0()); 
-            // InternalFactoryLogicLangParser.g:4699:3: ( RULE_ID )
-            // InternalFactoryLogicLangParser.g:4700:4: RULE_ID
+            // InternalFactoryLogicLangParser.g:5894:3: ( RULE_STRING )
+            // InternalFactoryLogicLangParser.g:5895:4: RULE_STRING
             {
-             before(grammarAccess.getCraneDropAccess().getLocationCraneParameterIDTerminalRuleCall_4_0_1()); 
-            match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getCraneDropAccess().getLocationCraneParameterIDTerminalRuleCall_4_0_1()); 
+             before(grammarAccess.getCraneDropAccess().getLocationCraneParameterSTRINGTerminalRuleCall_4_0_1()); 
+            match(input,RULE_STRING,FOLLOW_2); 
+             after(grammarAccess.getCraneDropAccess().getLocationCraneParameterSTRINGTerminalRuleCall_4_0_1()); 
 
             }
 
@@ -14024,47 +17569,93 @@ public class InternalFactoryLogicLangParser extends AbstractInternalContentAssis
     // Delegated rules
 
 
+    protected DFA10 dfa10 = new DFA10(this);
+    static final String dfa_1s = "\13\uffff";
+    static final String dfa_2s = "\1\64\1\16\4\uffff\1\22\1\52\3\uffff";
+    static final String dfa_3s = "\1\64\1\41\4\uffff\1\42\1\56\3\uffff";
+    static final String dfa_4s = "\2\uffff\1\5\1\6\1\3\1\7\2\uffff\1\1\1\4\1\2";
+    static final String dfa_5s = "\13\uffff}>";
+    static final String[] dfa_6s = {
+            "\1\1",
+            "\1\3\12\uffff\1\5\5\uffff\1\4\1\6\1\2",
+            "",
+            "",
+            "",
+            "",
+            "\1\10\17\uffff\1\7",
+            "\1\12\3\uffff\1\11",
+            "",
+            "",
+            ""
+    };
+
+    static final short[] dfa_1 = DFA.unpackEncodedString(dfa_1s);
+    static final char[] dfa_2 = DFA.unpackEncodedStringToUnsignedChars(dfa_2s);
+    static final char[] dfa_3 = DFA.unpackEncodedStringToUnsignedChars(dfa_3s);
+    static final short[] dfa_4 = DFA.unpackEncodedString(dfa_4s);
+    static final short[] dfa_5 = DFA.unpackEncodedString(dfa_5s);
+    static final short[][] dfa_6 = unpackEncodedStringArray(dfa_6s);
+
+    class DFA10 extends DFA {
+
+        public DFA10(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 10;
+            this.eot = dfa_1;
+            this.eof = dfa_1;
+            this.min = dfa_2;
+            this.max = dfa_3;
+            this.accept = dfa_4;
+            this.special = dfa_5;
+            this.transition = dfa_6;
+        }
+        public String getDescription() {
+            return "1035:1: rule__Operation__Alternatives : ( ( ruleStorageMoveEmptySlot ) | ( ruleStorageMoveSlot ) | ( ruleStorageMarkSlot ) | ( ruleStorageMoveVariableSlot ) | ( ruleCameraScan ) | ( ruleCranePickup ) | ( ruleCraneDrop ) );";
+        }
+    }
  
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0002042000001002L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0010084000001002L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000001000000002L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000002000000002L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0008000000000000L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000008000880000L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000300000000000L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x000400C0048C0070L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0002042000001000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000200400000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x00040080048C0040L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x000000000810A300L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000010001100000L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0008018009140070L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0010084000001000L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000008000080030L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0008010009140040L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000400800000000L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x000C010009140040L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x000000001020A300L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000200000000L});
     public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000000002000000L});
 
 }

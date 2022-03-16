@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -22,7 +23,6 @@ import xtext.factoryLogicLang.BOOLEAN_OPERATOR;
 import xtext.factoryLogicLang.COLOR;
 import xtext.factoryLogicLang.CONST_VARIABLES;
 import xtext.factoryLogicLang.Conditional;
-import xtext.factoryLogicLang.Device;
 import xtext.factoryLogicLang.FactoryLogicLangPackage;
 import xtext.factoryLogicLang.Logic;
 
@@ -34,39 +34,19 @@ import xtext.factoryLogicLang.Logic;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link xtext.factoryLogicLang.impl.ConditionalImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.ConditionalImpl#getSource <em>Source</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.ConditionalImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.ConditionalImpl#getComparison_const <em>Comparison const</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.ConditionalImpl#getComparison_color <em>Comparison color</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.ConditionalImpl#getComparison_int <em>Comparison int</em>}</li>
  *   <li>{@link xtext.factoryLogicLang.impl.ConditionalImpl#getLogics <em>Logics</em>}</li>
+ *   <li>{@link xtext.factoryLogicLang.impl.ConditionalImpl#getSource_int <em>Source int</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ConditionalImpl extends LogicImpl implements Conditional
 {
-  /**
-   * The default value of the '{@link #getVariable() <em>Variable</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVariable()
-   * @generated
-   * @ordered
-   */
-  protected static final String VARIABLE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getVariable() <em>Variable</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVariable()
-   * @generated
-   * @ordered
-   */
-  protected String variable = VARIABLE_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
    * <!-- begin-user-doc -->
@@ -75,7 +55,7 @@ public class ConditionalImpl extends LogicImpl implements Conditional
    * @generated
    * @ordered
    */
-  protected Device source;
+  protected EObject source;
 
   /**
    * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -168,6 +148,26 @@ public class ConditionalImpl extends LogicImpl implements Conditional
   protected EList<Logic> logics;
 
   /**
+   * The default value of the '{@link #getSource_int() <em>Source int</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSource_int()
+   * @generated
+   * @ordered
+   */
+  protected static final int SOURCE_INT_EDEFAULT = 0;
+
+  /**
+   * The cached value of the '{@link #getSource_int() <em>Source int</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSource_int()
+   * @generated
+   * @ordered
+   */
+  protected int source_int = SOURCE_INT_EDEFAULT;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -194,37 +194,12 @@ public class ConditionalImpl extends LogicImpl implements Conditional
    * @generated
    */
   @Override
-  public String getVariable()
-  {
-    return variable;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setVariable(String newVariable)
-  {
-    String oldVariable = variable;
-    variable = newVariable;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.CONDITIONAL__VARIABLE, oldVariable, variable));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Device getSource()
+  public EObject getSource()
   {
     if (source != null && source.eIsProxy())
     {
       InternalEObject oldSource = (InternalEObject)source;
-      source = (Device)eResolveProxy(oldSource);
+      source = eResolveProxy(oldSource);
       if (source != oldSource)
       {
         if (eNotificationRequired())
@@ -239,7 +214,7 @@ public class ConditionalImpl extends LogicImpl implements Conditional
    * <!-- end-user-doc -->
    * @generated
    */
-  public Device basicGetSource()
+  public EObject basicGetSource()
   {
     return source;
   }
@@ -250,9 +225,9 @@ public class ConditionalImpl extends LogicImpl implements Conditional
    * @generated
    */
   @Override
-  public void setSource(Device newSource)
+  public void setSource(EObject newSource)
   {
-    Device oldSource = source;
+    EObject oldSource = source;
     source = newSource;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.CONDITIONAL__SOURCE, oldSource, source));
@@ -379,6 +354,31 @@ public class ConditionalImpl extends LogicImpl implements Conditional
    * @generated
    */
   @Override
+  public int getSource_int()
+  {
+    return source_int;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setSource_int(int newSource_int)
+  {
+    int oldSource_int = source_int;
+    source_int = newSource_int;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryLogicLangPackage.CONDITIONAL__SOURCE_INT, oldSource_int, source_int));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -399,8 +399,6 @@ public class ConditionalImpl extends LogicImpl implements Conditional
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.CONDITIONAL__VARIABLE:
-        return getVariable();
       case FactoryLogicLangPackage.CONDITIONAL__SOURCE:
         if (resolve) return getSource();
         return basicGetSource();
@@ -414,6 +412,8 @@ public class ConditionalImpl extends LogicImpl implements Conditional
         return getComparison_int();
       case FactoryLogicLangPackage.CONDITIONAL__LOGICS:
         return getLogics();
+      case FactoryLogicLangPackage.CONDITIONAL__SOURCE_INT:
+        return getSource_int();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -429,11 +429,8 @@ public class ConditionalImpl extends LogicImpl implements Conditional
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.CONDITIONAL__VARIABLE:
-        setVariable((String)newValue);
-        return;
       case FactoryLogicLangPackage.CONDITIONAL__SOURCE:
-        setSource((Device)newValue);
+        setSource((EObject)newValue);
         return;
       case FactoryLogicLangPackage.CONDITIONAL__OPERATOR:
         setOperator((BOOLEAN_OPERATOR)newValue);
@@ -451,6 +448,9 @@ public class ConditionalImpl extends LogicImpl implements Conditional
         getLogics().clear();
         getLogics().addAll((Collection<? extends Logic>)newValue);
         return;
+      case FactoryLogicLangPackage.CONDITIONAL__SOURCE_INT:
+        setSource_int((Integer)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -465,11 +465,8 @@ public class ConditionalImpl extends LogicImpl implements Conditional
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.CONDITIONAL__VARIABLE:
-        setVariable(VARIABLE_EDEFAULT);
-        return;
       case FactoryLogicLangPackage.CONDITIONAL__SOURCE:
-        setSource((Device)null);
+        setSource((EObject)null);
         return;
       case FactoryLogicLangPackage.CONDITIONAL__OPERATOR:
         setOperator(OPERATOR_EDEFAULT);
@@ -486,6 +483,9 @@ public class ConditionalImpl extends LogicImpl implements Conditional
       case FactoryLogicLangPackage.CONDITIONAL__LOGICS:
         getLogics().clear();
         return;
+      case FactoryLogicLangPackage.CONDITIONAL__SOURCE_INT:
+        setSource_int(SOURCE_INT_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -500,8 +500,6 @@ public class ConditionalImpl extends LogicImpl implements Conditional
   {
     switch (featureID)
     {
-      case FactoryLogicLangPackage.CONDITIONAL__VARIABLE:
-        return VARIABLE_EDEFAULT == null ? variable != null : !VARIABLE_EDEFAULT.equals(variable);
       case FactoryLogicLangPackage.CONDITIONAL__SOURCE:
         return source != null;
       case FactoryLogicLangPackage.CONDITIONAL__OPERATOR:
@@ -514,6 +512,8 @@ public class ConditionalImpl extends LogicImpl implements Conditional
         return comparison_int != COMPARISON_INT_EDEFAULT;
       case FactoryLogicLangPackage.CONDITIONAL__LOGICS:
         return logics != null && !logics.isEmpty();
+      case FactoryLogicLangPackage.CONDITIONAL__SOURCE_INT:
+        return source_int != SOURCE_INT_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -529,9 +529,7 @@ public class ConditionalImpl extends LogicImpl implements Conditional
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (variable: ");
-    result.append(variable);
-    result.append(", operator: ");
+    result.append(" (operator: ");
     result.append(operator);
     result.append(", comparison_const: ");
     result.append(comparison_const);
@@ -539,6 +537,8 @@ public class ConditionalImpl extends LogicImpl implements Conditional
     result.append(comparison_color);
     result.append(", comparison_int: ");
     result.append(comparison_int);
+    result.append(", source_int: ");
+    result.append(source_int);
     result.append(')');
     return result.toString();
   }

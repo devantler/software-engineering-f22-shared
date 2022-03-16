@@ -156,6 +156,11 @@ public class FactoryLogicLangAdapterFactory extends AdapterFactoryImpl
         return createStorageMoveEmptySlotAdapter();
       }
       @Override
+      public Adapter caseStorageMoveVariableSlot(StorageMoveVariableSlot object)
+      {
+        return createStorageMoveVariableSlotAdapter();
+      }
+      @Override
       public Adapter caseStorageMoveSlot(StorageMoveSlot object)
       {
         return createStorageMoveSlotAdapter();
@@ -169,6 +174,11 @@ public class FactoryLogicLangAdapterFactory extends AdapterFactoryImpl
       public Adapter caseCameraScan(CameraScan object)
       {
         return createCameraScanAdapter();
+      }
+      @Override
+      public Adapter caseVariable(Variable object)
+      {
+        return createVariableAdapter();
       }
       @Override
       public Adapter caseCranePickup(CranePickup object)
@@ -443,6 +453,21 @@ public class FactoryLogicLangAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.StorageMoveVariableSlot <em>Storage Move Variable Slot</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.StorageMoveVariableSlot
+   * @generated
+   */
+  public Adapter createStorageMoveVariableSlotAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.StorageMoveSlot <em>Storage Move Slot</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -483,6 +508,21 @@ public class FactoryLogicLangAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCameraScanAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.factoryLogicLang.Variable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.factoryLogicLang.Variable
+   * @generated
+   */
+  public Adapter createVariableAdapter()
   {
     return null;
   }
