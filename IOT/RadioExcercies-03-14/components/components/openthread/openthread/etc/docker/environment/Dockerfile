@@ -1,5 +1,5 @@
 # Ubuntu image with tools required to build OpenThread
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG en_US.UTF-8
