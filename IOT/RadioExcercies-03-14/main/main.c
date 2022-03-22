@@ -15,7 +15,7 @@
 #include "esp_event.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
-#include "driver/temperature_sensor.h"
+#include "driver/temp_sensor.h"
 
 #include "lwip/err.h"
 #include "lwip/sys.h"
@@ -47,14 +47,53 @@ void task_count(void){
    }
    printf("Connected to socket\n");
    fflush(stdout);
-   uint16_t counter = 1;
-   char* buffer[7];
+   // uint16_t counter = 1;
+   // char* buffer[7];
+   // while(1){
+   //    sprintf(buffer, "%u\n", counter);
+   //    hl_wifi_tcp_tx(sock, buffer, strlen(buffer));
+   //    counter++;
+   //    vTaskDelay(1000 / portTICK_PERIOD_MS);
+   // }
+
+   /**
+    * @brief Handle for the temperature sensor
+    * 
+    */
+   temperature_sensor_handle_t temperature_handle = NULL;
+
+   /**
+    * @brief Define the range for measurement for the temperature sensor
+    * 
+    */
+   temperature_sensor_config_t temperature_config = {
+      .range_min = -10,
+      .range_max = 80,
+   };
+
+   /**
+    * @brief Initialize the temperature sensor
+    * 
+    */
+   ESP_ERROR_CHECK(temperature_sensor_install(&temperature_config, &temperature_handle));
+   ESP_ERROR_CHECK(temperature_sensor_start(temperature_handle));
+
    while(1){
-      sprintf(buffer, "%u\n", counter);
+      float temperature = 0;
+      ESP_ERROR_CHECK(temperature_sensor_get_celsius(temperature_handle, &temperature));
+      
+      char buffer[7];
+      sprintf(buffer, "%f\n", temperature);
       hl_wifi_tcp_tx(sock, buffer, strlen(buffer));
-      counter++;
       vTaskDelay(1000 / portTICK_PERIOD_MS);
    }
+   
+   /**
+    * @brief Disable the temperature sensor
+    * 
+    */
+   ESP_ERROR_CHECK(temperature_sensor_stop(temperature_handle));
+   ESP_ERROR_CHECK(temperature_Sensor_uninstall(&temperature_handle))
 
    vTaskDelete(NULL);
 }

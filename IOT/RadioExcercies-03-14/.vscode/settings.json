@@ -16,6 +16,7 @@
         "string.h": "c",
         "err.h": "c",
         "sockets.h": "c",
-        "event_groups.h": "c"
+        "event_groups.h": "c",
+        "temp_sensor.h": "c"
     }
 }

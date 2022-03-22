@@ -1,0 +1,9 @@
+**/components/
+**/build/
+**/.vscode/
+**/.devcontainer/
+/components/
+/cmake-build-debug/
+/.devcontainer/
+/.vscode/
+/.idea/

@@ -1,2 +1,2 @@
-idf_component_register(SRCS "hl_wifi.c" "station_example_main.c"
+idf_component_register(SRCS "hl_wifi.c" "main.c"
                     INCLUDE_DIRS ".")
