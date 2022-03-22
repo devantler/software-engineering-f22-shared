@@ -481,20 +481,6 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,csharp,visualstudiocode
 
-# Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
-
-ArduinoCode/Crane/.vscode/
-
-SemesterProject/ArduinoCode/Crane/.vscode/
-
-
-**/bin/
-**/.launch/
-*.class
-~*
-*~
-*.swp
-
 # Default ignored files
 /shelf/
 /workspace.xml
@@ -507,3 +493,16 @@ SemesterProject/ArduinoCode/Crane/.vscode/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
+# Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
+
+ArduinoCode/Crane/.vscode/
+
+SemesterProject/ArduinoCode/Crane/.vscode/
+**/bin/
+**/obj/
+**/.launch/
+*.class
+~*
+*~
+*.swp
