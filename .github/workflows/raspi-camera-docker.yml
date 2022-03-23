@@ -23,8 +23,6 @@ jobs:
 
       - name: Build and push
         run: |
-          tag=ghcr.io/devantler/software-engineering-f22/camera-color-scanner
           docker buildx create --use
-          docker buildx build --push -t $tag:latest -t $tag:${{github.sha}} --platform linux/arm/v7,linux/arm64,linux/amd64 ./SemesterProject/RaspberryPi/CameraColorScanner
-          
+          sh ./SemesterProject/RaspberryPi/CameraColorScanner/build.sh
           
