@@ -1,6 +1,18 @@
 #include "crane.h"
+#include "disk.h"
 #include "mqtt.h"
 #include "wifi.h"
+
+char *topics[] = {
+    (char*)"crane/angle",
+    (char*)"crane/elevation",
+    (char*)"crane/magnet",
+    (char*)"disk/zone"
+    };
+
+int topicSize;
+const int ZONES[] = { 0, 45, 90, 135, 180, 225, 270, 315 };
+
 
 void callback(char* topic, byte *message, unsigned int length)
 {
@@ -24,21 +36,17 @@ void callback(char* topic, byte *message, unsigned int length)
   {
     toggleMagnet(messageTemp.toInt());
   }
-  else if (topicTemp = "crane/elevation")
+  else if (topicTemp == "crane/elevation")
   {
     publish((char*)"crane/moving", (char*)"1");
     toggleElevation(messageTemp.toInt());
     publish((char*)"crane/moving", (char*)"0");
   }
+  else if (topicTemp == "disk/zone")
+  {
+    gotoAngle(ZONES[messageTemp.toInt()]); // Zone 0 is the first zone
+  }
 }
-
-char *topics[] = {
-    (char*)"crane/angle",
-    (char*)"crane/elevation",
-    (char*)"crane/magnet"
-    };
-
-int topicSize = 3;
 
 void setup()
 {
@@ -50,10 +58,16 @@ void setup()
   initWiFi();
   setupMqtt();
   setupCrane();
+  setupDisk();
 }
 
 void loop()
 {
-  mqttLoop();
+  topicSize = 3;
+  mqttLoop((char*)"crane");
+
+  topicSize = 1;
+  mqttLoop((char*)"disk");
+
   delay(1000);
 }

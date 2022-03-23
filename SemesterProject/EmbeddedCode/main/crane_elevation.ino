@@ -1,4 +1,5 @@
 #include "crane_elevation.h"
+#include <analogWrite.h>
 
 const int liftMotorPin1 = 2;
 const int liftMotorPin2 = 3;

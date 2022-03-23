@@ -6,6 +6,6 @@
 
 void setupMqtt();
 void reconnect(char* clientID);
-void mqttLoop();
+void mqttLoop(char* device);
 void publish(char* topic, char* message);
 #endif
