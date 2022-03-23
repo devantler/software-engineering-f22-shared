@@ -13,7 +13,6 @@ int wheelStepSize = 4;
 
 void setupElevationControls()
 {
-    pinMode(magnetPin, OUTPUT);
     pinMode(liftMotorPin1, OUTPUT);
     pinMode(liftMotorPin2, OUTPUT);
     pinMode(liftMotorEnablePin, OUTPUT);
