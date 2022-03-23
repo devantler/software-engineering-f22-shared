@@ -9,8 +9,8 @@ const int photoResistorPin = 0;
 int lastPhotoResistorVal;
 
 int distanceBetweenDiscAndCrane = 30;
-int wheelCircumference = 10;
-int wheelStepSize = 4;
+int wheelCircumference = 15;
+int wheelStepSize = 12;
 
 void setupElevationControls()
 {
