@@ -1,9 +1,9 @@
 #include "crane_elevation.h"
 #include <analogWrite.h>
 
-const int liftMotorPin1 = 2;
-const int liftMotorPin2 = 3;
-const int liftMotorEnablePin = 9;
+const int liftMotorPin1 = 14;
+const int liftMotorPin2 = 12;
+const int liftMotorEnablePin = 13;
 const int photoResistorPin = 0;
 
 int lastPhotoResistorVal;

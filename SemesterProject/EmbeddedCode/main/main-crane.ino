@@ -1,20 +1,16 @@
 #include "crane.h"
-#include "disk.h"
 #include "mqtt.h"
 #include "wifi.h"
 
 char *topics[] = {
-    (char*)"crane/angle",
-    (char*)"crane/elevation",
-    (char*)"crane/magnet",
-    (char*)"disk/zone"
-    };
+    (char *)"crane/angle",
+    (char *)"crane/elevation",
+    (char *)"crane/magnet",
+};
 
-int topicSize;
-const int ZONES[] = { 0, 45, 90, 135, 180, 225, 270, 315 };
+int topicSize = 3;
 
-
-void callback(char* topic, byte *message, unsigned int length)
+void callback(char *topic, byte *message, unsigned int length)
 {
   String topicTemp = String(topic);
   String messageTemp;
@@ -38,13 +34,9 @@ void callback(char* topic, byte *message, unsigned int length)
   }
   else if (topicTemp == "crane/elevation")
   {
-    publish((char*)"crane/moving", (char*)"1");
+    publish((char *)"crane/moving", (char *)"1");
     toggleElevation(messageTemp.toInt());
-    publish((char*)"crane/moving", (char*)"0");
-  }
-  else if (topicTemp == "disk/zone")
-  {
-    gotoAngle(ZONES[messageTemp.toInt()]); // Zone 0 is the first zone
+    publish((char *)"crane/moving", (char *)"0");
   }
 }
 
@@ -53,21 +45,17 @@ void setup()
   Serial.begin(9600);
   while (!Serial)
   {
+    // Waiting until serial is connected
   };
   Serial.println("Serial connected");
   initWiFi();
   setupMqtt();
   setupCrane();
-  setupDisk();
 }
 
 void loop()
 {
-  topicSize = 3;
-  mqttLoop((char*)"crane");
-
-  topicSize = 1;
-  mqttLoop((char*)"disk");
+  mqttLoop((char *)"crane");
 
   delay(1000);
 }
