@@ -1,47 +1,111 @@
+using System;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using CameraColorScanner.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MQTTnet.Client;
 using MQTTnet;
+using MQTTnet.Protocol;
 
 namespace CameraColorScanner.Services;
 
 public class MqttService : IHostedService
 {
-    private IConfiguration _Configuration;
+    private readonly IConfiguration _configuration;
+    private IConfiguration _mqttConfig;
+    private MqttClient _mqttClient;
+    private readonly IColorScannerAdapter _colorScanner;
 
-    public MqttService(IConfiguration configuration)
+    public MqttService(IConfiguration configuration, IColorScannerAdapter colorScannerAdapter)
     {
-        _Configuration = configuration;
+        _configuration = configuration;
+        _colorScanner = colorScannerAdapter;
     }
 
-    public Task StartAsync(CancellationToken cancellationToken)
+    public async Task StartAsync(CancellationToken cancellationToken)
     {
-        IConfiguration MQTTCongfig = _Configuration.GetRequiredSection("MQTT");
+        _mqttConfig = _configuration.GetRequiredSection("MQTT");
 
-        var mqttClient = new MqttFactory().CreateMqttClient();
+        _mqttClient = new MqttFactory().CreateMqttClient();
         var mqttOptionsBuilder = new MqttClientOptionsBuilder()
-            .WithClientId(MQTTCongfig["ClientId"])
-            .WithTcpServer(MQTTCongfig["Hostname"], MQTTCongfig.GetValue<int>("Port"));
-        if (MQTTCongfig.GetValue<string?>("Username") != null
-            && MQTTCongfig.GetValue<string?>("Password") != null)
+            .WithClientId(_mqttConfig["ClientId"])
+            .WithTcpServer(_mqttConfig["Hostname"], _mqttConfig.GetValue<int>("Port"));
+        if (_mqttConfig.GetValue<string?>("Username") != null
+            && _mqttConfig.GetValue<string?>("Password") != null)
         {
-            mqttOptionsBuilder.WithCredentials(MQTTCongfig["Username"], MQTTCongfig["Password"]);
+            mqttOptionsBuilder.WithCredentials(_mqttConfig["Username"], _mqttConfig["Password"]);
         }
 
-        if (MQTTCongfig.GetValue<bool>("UseSsl"))
+        if (_mqttConfig.GetValue<bool>("UseSsl"))
         {
             mqttOptionsBuilder.WithTls();
         }
-        
-        mqttClient.ConnectAsync(mqttOptionsBuilder.Build(), cancellationToken).Wait();
 
-        mqttClient.SubscribeAsync(
-        return Task.CompletedTask;
+        await _mqttClient.ConnectAsync(mqttOptionsBuilder.Build(), cancellationToken);
+
+        while (!_mqttClient.IsConnected)
+        {
+            await Task.Delay(50);
+        }
+
+        _mqttClient.ApplicationMessageReceivedAsync += MqttCallback;
     }
 
-    public Task StopAsync(CancellationToken cancellationToken)
+    private async Task MqttCallback(MqttApplicationMessageReceivedEventArgs args)
     {
-        throw new NotImplementedException();
+        var topic = args.ApplicationMessage.Topic;
+        var message = Encoding.UTF8.GetString(args.ApplicationMessage.Payload);
+
+        if (topic == _mqttConfig["CommandTopic"] && message == "GetColor")
+        {
+            var scannedColor = await _colorScanner.GetColor();
+
+            var resultTopic = _mqttConfig.GetValue<string>("ResultTopic");
+            if (resultTopic == null)
+            {
+                await SendMessage(
+                    _mqttConfig.GetValue<string>("LogTopic", "/log") + "/error",
+                    $"Result topic not defined.",
+                    true);
+            }
+            else
+            {
+                await SendMessage(
+                    _mqttConfig.GetValue<string>("ResultTopic")!,//The exclamation-point suppresses null warning
+                    scannedColor.ToString(),
+                    false);
+            }
+        }
+        else
+        {
+            await SendMessage(
+                _mqttConfig.GetValue<string>("LogTopic", "/log") + "/error",
+                $"Unknown topic: {topic} or command: {message}",
+                true);
+        }
+    }
+
+    public async Task SendMessage(string topic, string payload, bool retain = false)
+    {
+        await SendMessage(topic, Encoding.UTF8.GetBytes(payload), retain);
+    }
+
+    public async Task SendMessage(string topic, byte[] payload, bool retain = false)
+    {
+        var mqttMessage = new MqttApplicationMessageBuilder()
+            .WithTopic(topic)
+            .WithRetainFlag(retain)
+            .WithPayload(payload)
+            .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.ExactlyOnce);
+
+        await _mqttClient.PublishAsync(mqttMessage.Build(), CancellationToken.None);
+    }
+
+    public async Task StopAsync(CancellationToken cancellationToken)
+    {
+        await _mqttClient.DisconnectAsync();
     }
 }

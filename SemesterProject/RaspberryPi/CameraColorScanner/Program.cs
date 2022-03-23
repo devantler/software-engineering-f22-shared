@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Threading.Tasks;
+using CameraColorScanner.Adapters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,7 +17,7 @@ class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureServices((_, services) =>
             {
-                
+                services.Add(ServiceDescriptor.Singleton<IColorScannerAdapter, CameraScannerAdapter>());
             })
             .ConfigureAppConfiguration((hostingContext, configuration) =>
             {
@@ -25,8 +26,10 @@ class Program
                 var env = hostingContext.HostingEnvironment;
 
                 configuration
+                    .AddEnvironmentVariables()
                     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                    
 
                 var configurationRoot = configuration.Build();
             });

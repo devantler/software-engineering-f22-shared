@@ -8,12 +8,21 @@
     },
     "MQTT": {
         "Hostname": "172.17.0.1",
-        "Port": 8883,
+        "Port": 1883,
         "Username": "mydevice",
         "Password": "mydevice",
         "ClientId": "CameraColorScanner",
         "CommandTopic": "devices/CameraColorScanner/Commands",
         "ResultTopic": "devices/CameraColorScanner/Values/ScanResults",
+        "LogTopic": "sorter/scanner/1/log",
         "UseSsl": true
+    },
+    "Camera": {
+        "Crop":{
+            "x": 320,
+            "y": 180,
+            "width": 640,
+            "height": 360
+        }
     }
 }
