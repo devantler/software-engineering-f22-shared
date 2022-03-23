@@ -1,29 +1,5 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["CameraColorScanner.csproj", "./"]
-
-ARG TARGETPLATFORM
-
-RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-        RID=linux-x64 ; \
-    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-        RID=linux-arm64 ; \
-    elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then \
-        RID=linux-arm ; \
-    else\
-        RID=linux-x64 ; \
-    fi \
-    && dotnet restore -r $RID
-COPY . .
-RUN dotnet build "CameraColorScanner.csproj" -c Release -o /app/build
-RUN dotnet publish "CameraColorScanner.csproj" -c Release -o /app/publish
-
-FROM scratch as copy-state
-COPY --from=build /app/publish /
-
-#buildxprebuildabove
-
-FROM FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base AS final
+﻿FROM mcr.microsoft.com/dotnet/runtime:6.0 AS final
 WORKDIR /app
-COPY --from=copy-state /app/publish .
+ARG TARGETARCH
+ADD ./${TARGETARCH}.tar /app/publish
 ENTRYPOINT ["dotnet", "CameraColorScanner.dll"]
