@@ -1,29 +1,29 @@
-﻿FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base
-WORKDIR /app
-
-FROM mcr.microsoft.com/dotnet/sdk:6.0-bullseye-slim-amd64 AS build
-
+﻿FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["CameraColorScanner.csproj", "./"]
-ARG TARGETARCH
-RUN if [ "$TARGETARCH" = "amd64" ]; then \
+
+ARG TARGETPLATFORM
+
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
         RID=linux-x64 ; \
-    elif [ "$TARGETARCH" = "arm64" ]; then \
+    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
         RID=linux-arm64 ; \
-    elif [ "$TARGETARCH" = "arm" ]; then \
+    elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then \
         RID=linux-arm ; \
     else\
         RID=linux-x64 ; \
     fi \
-    && dotnet restore -r $RID "CameraColorScanner.csproj"
+    && dotnet restore -r $RID
 COPY . .
-WORKDIR "/src/"
 RUN dotnet build "CameraColorScanner.csproj" -c Release -o /app/build
-
-FROM build AS publish
 RUN dotnet publish "CameraColorScanner.csproj" -c Release -o /app/publish
 
-FROM base AS final
+FROM scratch as copy-state
+COPY --from=build /app/publish /
+
+#buildxprebuildabove
+
+FROM FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=copy-state /app/publish .
 ENTRYPOINT ["dotnet", "CameraColorScanner.dll"]
