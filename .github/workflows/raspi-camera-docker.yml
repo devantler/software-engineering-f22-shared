@@ -23,5 +23,6 @@ jobs:
 
       - name: Build and push
         run: |
+          docker buildx create --use
           sh ./SemesterProject/RaspberryPi/CameraColorScanner/build.sh
           
