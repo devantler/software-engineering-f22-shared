@@ -3,7 +3,7 @@
 #include "crane_elevation.h"
 
 const int stepsPerRevolution = 20200;
-const int magnetPin = 10;
+const int magnetPin = 2;
 int currentAngle = 0;
 
 

@@ -2,7 +2,15 @@
 #include "mqtt.h"
 #include "wifi.h"
 
-void callback(char* topic, byte *message, unsigned int length)
+char *topics[] = {
+    (char *)"crane/angle",
+    (char *)"crane/elevation",
+    (char *)"crane/magnet",
+};
+
+int topicSize = 3;
+
+void callback(char *topic, byte *message, unsigned int length)
 {
   String topicTemp = String(topic);
   String messageTemp;
@@ -24,27 +32,20 @@ void callback(char* topic, byte *message, unsigned int length)
   {
     toggleMagnet(messageTemp.toInt());
   }
-  else if (topicTemp = "crane/elevation")
+  else if (topicTemp == "crane/elevation")
   {
-    publish((char*)"crane/moving", (char*)"1");
+    publish((char *)"crane/moving", (char *)"1");
     toggleElevation(messageTemp.toInt());
-    publish((char*)"crane/moving", (char*)"0");
+    publish((char *)"crane/moving", (char *)"0");
   }
 }
-
-char *topics[] = {
-    (char*)"crane/angle",
-    (char*)"crane/elevation",
-    (char*)"crane/magnet"
-    };
-
-int topicSize = 3;
 
 void setup()
 {
   Serial.begin(9600);
   while (!Serial)
   {
+    // Waiting until serial is connected
   };
   Serial.println("Serial connected");
   initWiFi();
@@ -54,6 +55,7 @@ void setup()
 
 void loop()
 {
-  mqttLoop();
+  mqttLoop((char *)"crane");
+
   delay(1000);
 }
