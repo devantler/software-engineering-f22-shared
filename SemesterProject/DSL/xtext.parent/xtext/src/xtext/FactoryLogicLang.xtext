@@ -1,0 +1,130 @@
+grammar xtext.FactoryLogicLang with org.eclipse.xtext.common.Terminals
+
+generate factoryLogicLang "http:www.FactoryLogicLang.xtext"
+
+Model:
+	declarations+=Declaration+
+;
+
+Declaration:
+	Device | Logic
+;
+
+terminal BEGIN:
+	"synthetic:BEGIN"
+;
+
+terminal END:
+	"synthetic:END"
+;
+
+Device:
+	Crane | Storage | Camera
+;
+
+Crane:
+	'create' 'crane' 'named' name=STRING BEGIN parameters+=CraneParameter+ END
+;
+
+CraneParameter:
+	'with' 'position' 'at' degree=INT 'named' name=STRING
+;
+
+Storage:
+	'create' 'storage' 'named' name=STRING BEGIN parameters+=StorageParameter+ END
+;
+
+StorageParameter:
+	StoragePositionParameter | StorageSlotParameter
+;
+
+StorageSlotParameter:
+	"with" slots=INT "slots"
+;
+
+StoragePositionParameter:
+	'with' 'position' 'at' 'slot' slot=INT 'named' name=STRING
+;
+
+Camera:
+	'create' 'camera' 'named' name=STRING BEGIN parameters+=CameraParameter+ END
+;
+
+CameraParameter:
+	'with' 'color' color=COLOR
+;
+
+enum COLOR:
+	RED='red'|BLUE='blue'|GREEN='green'
+;
+
+enum CONST_VARIABLES:
+	FULL='full'|FINISHED='finished'|EMPTY='empty'
+;
+
+Logic:
+	DeviceConditional | NumberConditional | VariableConditional | Loop | Operation
+;
+
+DeviceConditional returns Conditional:
+	"if" source=[Device|STRING] 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+;
+
+VariableConditional returns Conditional:
+	"if" source=[Variable] 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+;
+
+NumberConditional returns Conditional:
+	'if' source_int=INT 'is' (operator=BOOLEAN_OPERATOR)? 'equal' 'to' ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+;
+
+enum BOOLEAN_OPERATOR:
+	NOT='not'|LESS='less than'|GREATER='greater than'
+;
+
+Loop:
+	'for' variable=LoopVariable 'in' list=ID ('of' source=[Device|STRING])? 'that' 'is' (operator=BOOLEAN_OPERATOR)? ((comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) 'then' BEGIN logics+=Logic+ END
+;
+
+Operation:
+	StorageMoveEmptySlot | StorageMoveSlot | StorageMarkSlot | StorageMoveVariableSlot | CameraScan | CranePickup | CraneDrop
+;
+
+StorageMoveEmptySlot:
+	device=[Storage|STRING] 'move' 'empty' 'slot' 'to' destination=[StoragePositionParameter|STRING]
+;
+
+StorageMoveVariableSlot:
+	device=[Storage|STRING] 'move' 'slot' 'of' position=[Variable] 'to' destination=[StoragePositionParameter|STRING] 
+;
+
+StorageMoveSlot:
+	device=[Storage|STRING] 'move' 'slot' 'at' position=[StoragePositionParameter|STRING] 'to' destination=[StoragePositionParameter|STRING] 
+;
+
+StorageMarkSlot:
+	device=[Storage|STRING] 'mark' 'slot' 'at' position=[StoragePositionParameter|STRING] 'as' ((comparison_variable=[Variable])|(comparison_const=CONST_VARIABLES)|(comparison_color=COLOR)|(comparison_int=INT)) ('in' quantity=INT measure=TIME)?
+;
+
+enum TIME:
+	SECOND='seconds'|SECOND='second'|MINUTE='minutes'|MINUTE='minute'|HOUR='hours'|HOUR='hour'
+;
+
+CameraScan:
+	device=[Camera|STRING] 'scan' 'color' variable=GloablVariable
+;
+
+LoopVariable returns Variable:
+	'each' name=ID
+;
+
+GloablVariable returns Variable:
+	'into' name=ID
+;
+CranePickup:
+	device=[Crane|STRING] 'pickup' 'item' 'at' location=[CraneParameter|STRING]
+;
+
+CraneDrop:
+	device=[Crane|STRING] 'drop' 'item' 'at' location=[CraneParameter|STRING]
+;

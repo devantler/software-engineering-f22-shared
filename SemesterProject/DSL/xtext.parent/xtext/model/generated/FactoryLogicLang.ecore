@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="factoryLogicLang" nsURI="http:www.FactoryLogicLang.xtext" nsPrefix="factoryLogicLang">
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declarations" upperBound="-1"
+        eType="#//Declaration" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Declaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Device" eSuperTypes="#//Declaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Crane" eSuperTypes="#//Device">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//CraneParameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CraneParameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="degree" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Storage" eSuperTypes="#//Device">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//StorageParameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StorageParameter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StorageSlotParameter" eSuperTypes="#//StorageParameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="slots" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StoragePositionParameter" eSuperTypes="#//StorageParameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="slot" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Camera" eSuperTypes="#//Device">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//CameraParameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CameraParameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//COLOR"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="COLOR">
+    <eLiterals name="RED" literal="red"/>
+    <eLiterals name="BLUE" value="1" literal="blue"/>
+    <eLiterals name="GREEN" value="2" literal="green"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CONST_VARIABLES">
+    <eLiterals name="FULL" literal="full"/>
+    <eLiterals name="FINISHED" value="1" literal="finished"/>
+    <eLiterals name="EMPTY" value="2" literal="empty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Logic" eSuperTypes="#//Declaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Conditional" eSuperTypes="#//Logic">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//BOOLEAN_OPERATOR"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison_const" eType="#//CONST_VARIABLES"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison_color" eType="#//COLOR"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison_int" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logics" upperBound="-1"
+        eType="#//Logic" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source_int" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BOOLEAN_OPERATOR">
+    <eLiterals name="NOT" literal="not"/>
+    <eLiterals name="LESS" value="1" literal="less than"/>
+    <eLiterals name="GREATER" value="2" literal="greater than"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//Logic">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="list" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Device"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//BOOLEAN_OPERATOR"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison_const" eType="#//CONST_VARIABLES"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison_color" eType="#//COLOR"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison_int" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logics" upperBound="-1"
+        eType="#//Logic" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Logic"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StorageMoveEmptySlot" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Storage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//StoragePositionParameter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StorageMoveVariableSlot" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Storage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="position" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//StoragePositionParameter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StorageMoveSlot" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Storage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="position" eType="#//StoragePositionParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//StoragePositionParameter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StorageMarkSlot" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Storage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="position" eType="#//StoragePositionParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comparison_variable" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison_const" eType="#//CONST_VARIABLES"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison_color" eType="#//COLOR"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison_int" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="measure" eType="#//TIME"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TIME">
+    <eLiterals name="SECOND" literal="seconds"/>
+    <eLiterals name="MINUTE" value="1" literal="minutes"/>
+    <eLiterals name="HOUR" value="2" literal="hours"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CameraScan" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Camera"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CranePickup" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Crane"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//CraneParameter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CraneDrop" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Crane"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//CraneParameter"/>
+  </eClassifiers>
+</ecore:EPackage>
