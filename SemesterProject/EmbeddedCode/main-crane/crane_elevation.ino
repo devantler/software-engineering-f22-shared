@@ -7,10 +7,12 @@ const int liftMotorEnablePin = 13;
 const int photoResistorPin = 34;
 
 int lastPhotoResistorVal;
+const int sensorValThreshold = 2000;
 
-int distanceBetweenDiscAndCrane = 20;
-int wheelCircumference = 15;
-int wheelStepSize = 12;
+float distanceBetweenDiscAndCrane = 200; // in mm
+float wheelCircumference = 141.37; // in mm
+float wheelStepSize = 12;
+const int stepsToTake = ceil(distanceBetweenDiscAndCrane / (wheelCircumference / wheelStepSize));
 
 void setupElevationControls()
 {
@@ -22,18 +24,18 @@ void setupElevationControls()
 
 void raise()
 {
-    int stepsToTake = ceil((float)(distanceBetweenDiscAndCrane / (wheelCircumference / wheelStepSize)));
-    enableMotor(true, 255);
+    enableMotor(true, 225);
     processSteps(stepsToTake);
     disableMotor();
+    lastPhotoResistorVal = analogRead(photoResistorPin);
 }
 
 void lower()
 {
-    int stepsToTake = ceil((float)(distanceBetweenDiscAndCrane / (wheelCircumference / wheelStepSize)));
-    enableMotor(false, 255);
+    enableMotor(false, 225);
     processSteps(stepsToTake);
     disableMotor();
+    lastPhotoResistorVal = analogRead(photoResistorPin);
 }
 
 void enableMotor(bool direction, uint8_t speed)
@@ -62,29 +64,35 @@ void disableMotor()
 void processSteps(int stepsToTake)
 {
     int stepsTaken = 0;
-    while (stepsToTake > stepsTaken)
+    while (stepsToTake <= stepsTaken)
     {
         int currentPhotoResistorVal = analogRead(photoResistorPin);
-        if (isSensingBlack(lastPhotoResistorVal) && isSensingWhite(currentPhotoResistorVal))
+        if (isSteppingFromBlackToWhite(lastPhotoResistorVal, currentPhotoResistorVal) ||
+            isSteppingFromWhiteToBlack(lastPhotoResistorVal, currentPhotoResistorVal))
         {
-            stepsTaken += 1;
-            Serial.print(stepsTaken);
+            stepsTaken++;
+            Serial.println(stepsTaken);
+            lastPhotoResistorVal = currentPhotoResistorVal;
         }
-        if(isSensingWhite(lastPhotoResistorVal) && isSensingBlack(currentPhotoResistorVal)){
-          stepsTaken += 1;
-          Serial.print(stepsTaken);
-        }
-        lastPhotoResistorVal = currentPhotoResistorVal;
-        //delay(50);
     }
+}
+
+bool isSteppingFromBlackToWhite(int lastPhotoResistorVal, int currentPhotoResistorVal)
+{
+    return isSensingBlack(lastPhotoResistorVal) && isSensingWhite(currentPhotoResistorVal);
+}
+
+bool isSteppingFromWhiteToBlack(int lastPhotoResistorVal, int currentPhotoResistorVal)
+{
+    return isSensingWhite(lastPhotoResistorVal) && isSensingBlack(currentPhotoResistorVal);
 }
 
 bool isSensingBlack(int sensingVal)
 {
-    return sensingVal < 1000;
+    return sensingVal < 700;
 };
 
 bool isSensingWhite(int sensingVal)
 {
-    return sensingVal > 1000;
+    return sensingVal > 1800;
 };
