@@ -8,6 +8,5 @@ services:
     ports:
       - "1883:1883"
   camera:
-    build: ./CameraColorScanner
     restart: unless-stopped
     image: "ghcr.io/devantler/software-engineering-f22/camera-color-scanner:latest"

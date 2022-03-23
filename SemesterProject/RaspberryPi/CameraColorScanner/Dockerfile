@@ -2,9 +2,20 @@
 WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+
 WORKDIR /src
 COPY ["CameraColorScanner.csproj", "./"]
-RUN dotnet restore "CameraColorScanner.csproj"
+ARG TARGETARCH
+RUN if [ "$TARGETARCH" = "amd64" ]; then \
+        RID=linux-x64 ; \
+    elif [ "$TARGETARCH" = "arm64" ]; then \
+        RID=linux-arm64 ; \
+    elif [ "$TARGETARCH" = "arm" ]; then \
+        RID=linux-arm ; \
+    else\
+        RID=linux-x64 ; \
+    fi \
+    && dotnet restore -r $RID "CameraColorScanner.csproj"
 COPY . .
 WORKDIR "/src/"
 RUN dotnet build "CameraColorScanner.csproj" -c Release -o /app/build
