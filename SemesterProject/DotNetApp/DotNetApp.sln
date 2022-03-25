@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSLParser", "DSLParser\DSLP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{7EE9D179-FBC2-4E17-A6E2-9CE0ECE657A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryLogic", "FactoryLogic\FactoryLogic.csproj", "{BC561475-D22B-4415-A9E9-3449B83F51F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{7EE9D179-FBC2-4E17-A6E2-9CE0ECE657A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EE9D179-FBC2-4E17-A6E2-9CE0ECE657A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EE9D179-FBC2-4E17-A6E2-9CE0ECE657A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC561475-D22B-4415-A9E9-3449B83F51F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC561475-D22B-4415-A9E9-3449B83F51F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC561475-D22B-4415-A9E9-3449B83F51F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC561475-D22B-4415-A9E9-3449B83F51F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
