@@ -17,9 +17,9 @@ public class Disc
         {
             _slots.Add(i, new Slot());
         }
-        _positionNames.Add("A", 1);
-        _positionNames.Add("B", 2);
-        _positionNames.Add("C", 3);
+        _positionNames.Add("crane", 3);
+        _positionNames.Add("camera", 6);
+        _positionNames.Add("intake", 1);
     }
 
     public int GetEmptySlot()
@@ -31,18 +31,63 @@ public class Disc
         return -1;
     }
 
-    public void MoveSlot(int slot, string positionName)
+    #region MoveSlot methods
+
+    public void MoveSlot(string fromPositionName, string toPositionName)
     {
-        //Mqtt stuff
-        var position = _positionNames[positionName];
-        var amountToMove = slot - position;
-        _currentOffset = _currentOffset + amountToMove % _slots.Count;
+        var fromPosition = _positionNames[fromPositionName];
+        var toPosition = _positionNames[toPositionName];
+        MoveSlot(fromPosition, toPosition);
     }
     
-    public void MoveSlot(int slot, int position)
+    public void MoveSlot(string fromPositionName, int toPosition)
+    {
+        var fromPosition = _positionNames[fromPositionName];
+        MoveSlot(fromPosition, toPosition);
+    }
+    
+    public void MoveSlot(int fromPosition, string positionName)
+    {
+        var toPosition = _positionNames[positionName];
+        MoveSlot(fromPosition, toPosition);
+    }
+
+    #endregion
+
+    public void MoveSlot(int fromPosition, int toPosition)
     {
         //Mqtt stuff
-        var amountToMove = slot - position;
+        var amountToMove = fromPosition - toPosition;
         _currentOffset = _currentOffset + amountToMove % _slots.Count;
+    }
+
+    public bool IsFull()
+    {
+        return _slots.All(x => x.Value.HasMark("full"));
+    }
+
+    public void MarkSlot(int slot, string mark)
+    {
+        _slots[slot].AddMark(mark);
+    }
+    
+    public void MarkSlot(string positionName, string mark)
+    {
+        _slots[_positionNames[positionName]].AddMark(mark);
+    }
+
+    public bool SlotHasMark(int slot, string mark)
+    {
+        return _slots[slot].HasMark(mark);
+    }
+    
+    public bool SlotHasMark(string positionName, string mark)
+    {
+        return _slots[_positionNames[positionName]].HasMark(mark);
+    }
+    
+    public List<int> GetSlotsWithMark(string mark)
+    {
+        return _slots.Where(x => x.Value.HasMark(mark)).Select(x => x.Key).ToList();
     }
 }

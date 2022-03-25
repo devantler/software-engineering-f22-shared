@@ -10,9 +10,16 @@ namespace Domain.Entities
         private Dictionary<string, int> _positions;
         private IMqttService _mqttService;
 
-        public Crane(Dictionary<string, int> positions, IMqttService mqttService)
+        public Crane(IMqttService mqttService)
         {
-            _positions = positions;
+            _positions = new Dictionary<string, int>()
+            {
+                {"intake", 30},
+                {"red", 120},
+                {"green", 140},
+                {"blue", 160},
+                
+            };
             _mqttService = mqttService;
         }
 

@@ -3,7 +3,6 @@ namespace Domain.Entities;
 public class Slot
 {
     private List<string> _marks = new List<string>();
-    public bool HasItem { get; set; }
     
     public bool HasMark(string mark)
     {
