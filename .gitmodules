@@ -2,3 +2,6 @@
 	path = SoftwareAnalysis/Assignment01/ieee-paper
 	url = https://git.overleaf.com/6225a5d72696657429d693d2
 	branch = master
+[submodule "SoftwareAnalysis/Mini-project/ieee-paper"]
+	path = SoftwareAnalysis/Mini-project/ieee-paper
+	url = https://git.overleaf.com/623d80490a6d43056cdb2a98
