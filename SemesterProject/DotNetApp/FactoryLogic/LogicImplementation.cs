@@ -76,27 +76,33 @@ public class LogicImplementation
             //for each thing in myStorage of "disc" that is finished then 
             foreach(var thing in disc.GetSlotsWithMark("finished"))
             {
-                
+                //"disc" move slot of thing to "disc.crane" 
+                disc.MoveSlot(thing, "crane");
+                //"fishing rod" pickup item at "fishing rod.intake"
+                crane.Goto("intake");
+                crane.PickupItem();
+                //if thing is red then
+                if(disc.SlotHasMark(thing, "red"))
+                {
+                    //"fishing rod" drop item at "fishing rod.red"
+                    crane.Goto("red");
+                    crane.DropItem();
+                }
+                //if thing is green then
+                if(disc.SlotHasMark(thing, "green"))
+                {
+                    //"fishing rod" drop item at "fishing rod.green"
+                    crane.Goto("green");
+                    crane.DropItem();
+                }
+                //if thing is blue then
+                if(disc.SlotHasMark(thing, "blue"))
+                {
+                    //"fishing rod" drop item at "fishing rod.blue"
+                    crane.Goto("blue");
+                    crane.DropItem();
+                }
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    "disc" move slot of thing to "disc.crane" 
-    "fishing rod" pickup item at "fishing rod.intake"
-    if thing is red then
-    "fishing rod" drop item at "fishing rod.red"
-    if thing is green then
-    "fishing rod" drop item at "fishing rod.green"
-    if thing is blue then
-    "fishing rod" drop item at "fishing rod.blue"
-    "disc" mark slot at "disc.intake" as empty
 }
