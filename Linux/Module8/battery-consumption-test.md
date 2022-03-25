@@ -10,6 +10,8 @@
 
 **Actual first test because someone used the wifi**
 
+Init: 15
+Time to post: 1
 8 mAh
 Init:
 RX: 13109267
@@ -23,7 +25,9 @@ TX: 19644
 
 **HTTP test**
 
-
+Init: 141ms
+Time to post: 10ms
+8 mAh
 Init:
 RX: 13112872
 TX: 49322546
