@@ -1,10 +1,10 @@
 # Remote controlled crane
 
 Group 9
-- Nikolai Emil Damm — [nidam16](nidam16@student.sdu.dk)
-- Peter Andreas Brændtgaard — [pebra18](pebra18@student.sdu.dk)
 - Frederik Alexander Hounsvad — [frhou18](frhou18@student.sdu.dk)
+- Nikolai Emil Damm — [nidam16](nidam16@student.sdu.dk)
 - Oliver Lind Nordestgaard — [olnor18](olnor18@student.sdu.dk)
+- Peter Andreas Brændtgaard — [pebra18](pebra18@student.sdu.dk)
 
 ## Overall Project Description
 
