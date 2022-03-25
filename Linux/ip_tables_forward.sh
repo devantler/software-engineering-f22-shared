@@ -31,12 +31,12 @@ fi
 selected_output_interface=$(grep -oE "^$1$" <<< $interfaces)
 
 # 
-if [[ $selected_output_interface == $2 ]]; then
-    echo "Interface $2 is available"
+if [[ $selected_output_interface == $1 ]]; then
+    echo "Interface $1 is available"
 else
-    echo "Interface $2 is not available" 1>&2
+    echo "Interface $1 is not available" 1>&2
     print_usage
 fi
 
 sysctl -w net.ipv4.ip_forward=1
-iptables -t nat -A POSTROUTING -o selected_output_interface -j MASQUERADE
+iptables -t nat -A POSTROUTING -o $selected_output_interface -j MASQUERADE
