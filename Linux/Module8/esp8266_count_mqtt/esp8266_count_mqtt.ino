@@ -148,7 +148,11 @@ void loop()
     if (millis() - prev_post_time >= PUBLISH_INTERVAL)
     {
       prev_post_time = millis();
+      long start_time = millis();
       publish_data();
+      long end_time = millis();
+      Serial.print("Hello i am time: ");
+      Serial.println(end_time-start_time);
     }
    
     if (millis() - prev_debug_time >= DEBUG_INTERVAL)
