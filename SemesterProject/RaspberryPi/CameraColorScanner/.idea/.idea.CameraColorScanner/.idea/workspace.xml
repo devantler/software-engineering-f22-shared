@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="57b3f044-5799-410a-9953-4595e999c55f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CameraColorScanner/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CameraColorScanner/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/MqttService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/MqttService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../SoftwareAnalysis/Assignment01/ieee-paper" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SoftwareAnalysis/Assignment01/ieee-paper" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1648028274100</updated>
       <workItem from="1648028278328" duration="6561000" />
+      <workItem from="1648194092557" duration="906000" />
     </task>
     <servers />
   </component>
@@ -67,7 +70,7 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

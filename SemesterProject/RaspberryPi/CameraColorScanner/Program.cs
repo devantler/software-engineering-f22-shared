@@ -29,7 +29,7 @@ class Program
                     .AddEnvironmentVariables()
                     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-                    
+
 
                 var configurationRoot = configuration.Build();
             });

@@ -74,7 +74,7 @@ public class MqttService : IHostedService
             else
             {
                 await SendMessage(
-                    _mqttConfig.GetValue<string>("ResultTopic")!,//The exclamation-point suppresses null warning
+                    _mqttConfig.GetValue<string>("ResultTopic")!, //The exclamation-point suppresses null warning
                     scannedColor.ToString(),
                     false);
             }
