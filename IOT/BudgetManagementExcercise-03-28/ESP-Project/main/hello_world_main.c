@@ -8,8 +8,10 @@
 */
 
 //To get the version of Q2 go to commit "IOT 03-28 Q2"
+//To get the version of Q3 go to commit "IOT 03-28 Q3"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -23,9 +25,12 @@
 #define TX_BUFFER_SIZE 10
 #define AVG_BUFFER_SIZE 10
 #define AVG_WINDOW_SIZE 7
+#define THRES_BUFFER_SIZE 10
+#define THRESHOLD 100
 
 QueueHandle_t tx_queue; //This is a pointer
 QueueHandle_t avg_queue;
+QueueHandle_t thres_queue;
 
 
 typedef struct stage_interface_t{
@@ -34,6 +39,7 @@ typedef struct stage_interface_t{
 };
 
 struct stage_interface_t avg_pair;
+struct stage_interface_t thres_pair;
 
 void TaskSample(void* pvParameters){
     QueueHandle_t output_queue = (QueueHandle_t)pvParameters;
@@ -42,7 +48,7 @@ void TaskSample(void* pvParameters){
     {
         value = adc1_get_raw((adc1_channel_t)ADC_CHANNEL_6);
         while(xQueueSendToBack(output_queue, &value, 10) != pdTRUE);
-        vTaskDelay(500 / portTICK_PERIOD_MS);
+        //vTaskDelay(500 / portTICK_PERIOD_MS);
     }
 }
 
@@ -54,7 +60,7 @@ void TaskTransmit(void* pvParameters){
     {
         while(xQueueReceive(input_queue, &value, 10) != pdPASS);
         printf("%d\n", value);
-        vTaskDelay(100 / portTICK_PERIOD_MS);
+        //vTaskDelay(100 / portTICK_PERIOD_MS);
     }
 }
 
@@ -85,6 +91,23 @@ void TaskAvg(void* pvParameters){
     }
 }
 
+void TaskThreshold(void* pvParameters){
+    struct stage_interface_t* pair = (struct stage_interface_t*)pvParameters;
+    QueueHandle_t input_queue = pair -> input;
+    QueueHandle_t output_queue = pair -> output;
+    int last = (4095)+THRESHOLD; //(2^12)-1
+    while(true){
+        int current;
+        while(xQueueReceive(input_queue, &current, 10) != pdPASS);
+        int diff = abs(current-last);
+        if(diff > THRESHOLD){
+            while(xQueueSendToBack(output_queue, &current, 10) != pdTRUE);
+            last = current;
+        }
+        
+    }
+}
+
 void app_main(void)
 {
     //Initialize the ADC
@@ -94,11 +117,16 @@ void app_main(void)
     //Initialize the queues
     tx_queue = xQueueCreate(TX_BUFFER_SIZE, sizeof(int));
     avg_queue = xQueueCreate(AVG_BUFFER_SIZE, sizeof(int));
-    avg_pair = (struct stage_interface_t){avg_queue, tx_queue};
+    thres_queue = xQueueCreate(THRES_BUFFER_SIZE, sizeof(int));
+
+    //Define Queue pairs
+    avg_pair = (struct stage_interface_t){avg_queue, thres_queue};
+    thres_pair = (struct stage_interface_t){thres_queue, tx_queue};
 
     //Initialize the tasks
     xTaskCreate(TaskSample, "sampleTask", 4096, avg_queue, 1, NULL);
     xTaskCreate(TaskTransmit, "transmitTask", 4096, tx_queue, 1, NULL);
     xTaskCreate(TaskAvg, "avgTask", 4096, &avg_pair, 1, NULL);
+    xTaskCreate(TaskThreshold, "thresholdTask", 4096, &thres_pair, 1, NULL);
 }
 
