@@ -1,0 +1,83 @@
+grammar xtext.factoryLang.FactoryLang with org.eclipse.xtext.common.Terminals
+
+generate factoryLang "http://www.factoryLang.xtext/FactoryLang"
+
+Model:
+	declarations+=Declaration+ statements+=Statement*;
+
+// ----- CONFIGURATION ----- //
+Declaration:
+	'create' device=Device;
+
+Device:
+	Crane | Disk | Camera;
+
+Crane returns Device:
+	{Crane} 'crane' 'named' name=STRING BEGIN parameters+=CraneParameter+ END;
+
+CraneParameter returns Parameter:
+	{CraneParameter} 'with' 'position' 'at' degree=INT 'named' name=STRING;
+
+Disk returns Device:
+	{Disk} 'disk' 'named' name=STRING BEGIN parameters+=DiskParameter+ END;
+
+DiskParameter returns Parameter:
+	DiskPositionParameter | DiskSlotParameter;
+
+DiskPositionParameter returns DiskParameter:
+	{DiskPositionParameter} 'with' 'position' 'at' 'slot' slot=INT 'named' name=STRING;
+
+DiskSlotParameter returns DiskParameter:
+	{DiskSlotParameter} 'with' slots=INT 'slots';
+
+Camera returns Device:
+	{Camera} 'camera' 'named' name=STRING BEGIN parameters+=CameraParameter+ END;
+
+CameraParameter returns Parameter:
+	{CameraParameter} 'with' 'scannable' 'color' color=COLOR;
+
+// ----- LOGIC ----- //
+Statement:
+	Conditional | Loop | Operation;
+
+Conditional returns Statement:
+	{Conditional} 'if' source=[Source] 'is' (operator=BOOLEAN_OPERATOR)? (disk_state=DiskStates)?;
+
+Source:
+	Device | Variable | Number;
+
+Loop returns Statement:
+;
+
+Operation returns Statement:
+	CraneOperation | DiskOperation | CameraOperation;
+
+CraneOperation returns Operation:
+;
+
+DiskOperation returns Operation:
+;
+
+CameraOperation returns Operation:
+;
+
+Variable:
+;
+
+Number:
+	value=INT;
+
+// ----- ENUMS ----- //
+enum COLOR:
+	RED='red' | GREEN='green' | BLUE='blue';
+	
+enum BOOLEAN_OPERATOR:
+	NOT='not' | LESS_THAN='less than' | GREATER_THAN='greater than'
+;
+
+// ----- TERMINALS ----- //
+terminal BEGIN:
+	'synthetic:BEGIN';
+
+terminal END:
+	'synthetic:END';

@@ -1,0 +1,16 @@
+create crane named "crane"
+    with position at 30 named "intake"
+    with position at 120 named "red"
+    with position at 140 named "green"
+    with position at 160 named "blue"
+
+create disk named "disk"
+    with 8 slots
+    with position at slot 3 named "crane"
+    with position at slot 6 named "camera"
+    with position at slot 1 named "intake"
+
+create camera named "camera"
+	with scannable color red
+	with scannable color blue
+	with scannable color green
