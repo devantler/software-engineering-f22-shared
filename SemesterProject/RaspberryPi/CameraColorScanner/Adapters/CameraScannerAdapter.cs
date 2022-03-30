@@ -27,7 +27,7 @@ public class CameraScannerAdapter : IColorScannerAdapter
 
     public CameraScannerAdapter(IServiceProvider provider, IConfiguration configuration)
     {
-        _mqttService = provider.GetRequiredService<MqttService>();;
+        _mqttService = provider.CreateScope().ServiceProvider.GetRequiredService<MqttService>();;
         _frame = new Mat();
         _capture = new VideoCapture(0);
         _cameraConfig = configuration.GetRequiredSection("Camera");
