@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,6 +10,7 @@ using OpenCvSharp;
 using Microsoft.Extensions.Configuration;
 using OpenCvSharp.Extensions;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using OpenCvSharp.Aruco;
 using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.Formats.Png;
@@ -23,9 +25,9 @@ public class CameraScannerAdapter : IColorScannerAdapter
     private readonly Mat _frame;
     private readonly IConfiguration _cameraConfig;
 
-    public CameraScannerAdapter(MqttService mqttService, IConfiguration configuration)
+    public CameraScannerAdapter(IServiceProvider provider, IConfiguration configuration)
     {
-        _mqttService = mqttService;
+        _mqttService = provider.GetRequiredService<MqttService>();;
         _frame = new Mat();
         _capture = new VideoCapture(0);
         _cameraConfig = configuration.GetRequiredSection("Camera");
