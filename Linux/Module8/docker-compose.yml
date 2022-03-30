@@ -1,0 +1,32 @@
+version: "3"
+services:
+  mqtt:
+    restart: unless-stopped
+    image: "eclipse-mosquitto"
+    volumes:
+      - "./mosquitto.conf:/mosquitto/config/mosquitto.conf"
+    ports:
+      - "1883:1883"
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - '8086:8086'
+    volumes:
+      - ./influxVolume:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=count
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=password
+
+  telegraf:
+    image: telegraf:latest
+    volumes:
+    - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    ports:
+    - '8125:8125'
+  grafana:
+    image: grafana/grafana:8.4.4
+    volumes:
+    - ./grafana_bull_shit:/var/lib/grafana
+    ports:
+    - "3000:3000"
