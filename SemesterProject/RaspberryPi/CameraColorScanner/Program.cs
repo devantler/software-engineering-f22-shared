@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CameraColorScanner.Adapters;
 using CameraColorScanner.Services;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +12,7 @@ class Program
 {
     static Task Main(string[] args)
     {
+        Console.WriteLine("Program Starting");
         return CreateHostBuilder(args).Build().RunAsync();
     }
 

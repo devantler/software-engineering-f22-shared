@@ -64,7 +64,7 @@ public class MqttService : IHostedService
         {
             if (_mqttConfig.GetValue<bool>("PrintDebug"))
             {
-                Console.Write("Got message!");
+                Console.WriteLine("Got message!");
             }
             var scannedColor = await _colorScanner.GetColor();
 
@@ -88,7 +88,7 @@ public class MqttService : IHostedService
         {
             if (_mqttConfig.GetValue<bool>("PrintDebug"))
             {
-                Console.Write($"Unknown topic: {topic} or command: {message}");
+                Console.WriteLine($"Unknown topic: {topic} or command: {message}");
             }
             await SendMessage(
                 _mqttConfig.GetValue<string>("LogTopic", "/log") + "/error",

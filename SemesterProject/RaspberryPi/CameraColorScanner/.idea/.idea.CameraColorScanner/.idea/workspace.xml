@@ -4,7 +4,11 @@
     <projectFile>CameraColorScanner.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57b3f044-5799-410a-9953-4595e999c55f" name="Changes" comment="" />
+    <list default="true" id="57b3f044-5799-410a-9953-4595e999c55f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CameraColorScanner/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CameraColorScanner/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Services/MqttService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Services/MqttService.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,6 +60,7 @@
       <workItem from="1648028278328" duration="6561000" />
       <workItem from="1648194092557" duration="906000" />
       <workItem from="1648449014861" duration="79000" />
+      <workItem from="1648633709970" duration="109000" />
     </task>
     <servers />
   </component>
