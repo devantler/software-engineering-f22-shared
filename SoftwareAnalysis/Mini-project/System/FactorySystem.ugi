@@ -1,0 +1,185 @@
+process DiscController graphinfo {
+trans RemoveItemReq Idle 1 (26,34);
+trans Idle RemoveItemReq 1 (-34,-9);
+sync Idle RemoveItemReq 1 (-16,-47);
+trans AddItemReq Idle 1 (-17,34);
+trans Idle AddItemReq 1 (34,-26);
+sync Idle AddItemReq 1 (52,-13);
+trans Position4 Idle 1 (-17,68);
+trans Idle Position4 1 (-59,102);
+sync Idle Position4 1 (-41,102);
+trans Position3 Idle 1 (9,-9);
+trans Idle Position3 1 (-8,42);
+sync Idle Position3 1 (-67,-30);
+trans Position2 Idle 1 (0,25);
+trans Idle Position2 1 (9,-17);
+sync Idle Position2 1 (-67,-26);
+trans Position1 Idle 1 (-17,-34);
+sync Idle Position1 1 (-67,-17);
+location Idle (-544,68);
+locationName Idle(-10,-30);
+location Position1 (-374,-68);
+locationName Position1(-10,-34);
+location Position2 (-374,68);
+locationName Position2(-10,-34);
+location Position3 (-374,204);
+locationName Position3(-10,-34);
+location Position4 (-374,340);
+locationName Position4(-10,-34);
+location AddItemReq (-748,0);
+locationName AddItemReq(-10,-34);
+location RemoveItemReq (-748,170);
+locationName RemoveItemReq(-10,-34);
+}
+process CraneController graphinfo {
+location L0 (40,80);
+locationName L0(-10,-30);
+}
+process MasterController graphinfo {
+location L0 (40,80);
+locationName L0(-10,-30);
+}
+process Disc graphinfo {
+location Position1 (40,80);
+locationName Position1(-10,-30);
+location Position2 (190,80);
+locationName Position2(-10,-30);
+location Position3 (190,230);
+locationName Position3(-10,-30);
+location Position4 (40,230);
+locationName Position4(-10,-30);
+location AddItem1Req (340,80);
+locationName AddItem1Req(-10,-30);
+location RemoveItem1Req (340,230);
+locationName RemoveItem1Req(-10,-30);
+location AddItem2Req (340,380);
+locationName AddItem2Req(-10,-30);
+location RemoveItem2Req (190,380);
+locationName RemoveItem2Req(-10,-30);
+location AddItem3Req (40,380);
+locationName AddItem3Req(-10,-30);
+location RemoveItem3Req (490,80);
+locationName RemoveItem3Req(-10,-30);
+location AddItem4Req (490,230);
+locationName AddItem4Req(-10,-30);
+location RemoveItem4Req (490,380);
+locationName RemoveItem4Req(-10,-30);
+sync Position4 Position2 1 (-60,-15);
+sync Position2 Position4 1 (-60,-15);
+sync Position1 Position3 1 (-60,-15);
+sync Position3 Position1 1 (-60,-15);
+sync Position4 Position3 1 (-60,-15);
+sync Position1 Position4 1 (-60,-15);
+sync Position2 Position1 1 (-60,-15);
+sync Position3 Position2 1 (-60,-15);
+sync Position1 Position2 1 (-60,-15);
+sync Position4 Position1 1 (-60,-15);
+sync Position3 Position4 1 (-60,-15);
+sync Position2 Position3 1 (-60,-15);
+sync Position1 AddItem1Req 1 (-60,-15);
+sync Position1 RemoveItem1Req 1 (-60,-15);
+sync Position2 AddItem2Req 1 (-60,-15);
+sync Position2 RemoveItem2Req 1 (-60,-15);
+sync Position3 AddItem3Req 1 (-60,-15);
+sync Position3 RemoveItem3Req 1 (-60,-15);
+sync Position4 AddItem4Req 1 (-60,-15);
+sync Position4 RemoveItem4Req 1 (-60,-15);
+sync AddItem1Req Position1 1 (-60,-15);
+sync RemoveItem1Req Position1 1 (-60,-15);
+sync AddItem2Req Position2 1 (-60,-15);
+sync RemoveItem2Req Position2 1 (-60,-15);
+sync AddItem3Req Position3 1 (-60,-15);
+sync RemoveItem3Req Position3 1 (-60,-15);
+sync AddItem4Req Position4 1 (-60,-15);
+sync RemoveItem4Req Position4 1 (-60,-15);
+}
+process DiscSlot1 graphinfo {
+location SlotEmpty (40,80);
+locationName SlotEmpty(-10,-30);
+location SlotFull (190,80);
+locationName SlotFull(-10,-30);
+location ErrorAddItemToFull (190,230);
+locationName ErrorAddItemToFull(-10,-30);
+location ErrorRemoveItemFromEmpty (40,230);
+locationName ErrorRemoveItemFromEmpty(-10,-30);
+sync SlotEmpty SlotFull 1 (-60,-15);
+sync SlotFull SlotEmpty 1 (-60,-15);
+sync SlotEmpty ErrorRemoveItemFromEmpty 1 (-60,-15);
+assign SlotEmpty ErrorRemoveItemFromEmpty 1 (0,0);
+sync SlotFull ErrorAddItemToFull 1 (-60,-15);
+assign SlotFull ErrorAddItemToFull 1 (0,0);
+}
+process DiscSlot2 graphinfo {
+location SlotEmpty (40,80);
+locationName SlotEmpty(-10,-30);
+location SlotFull (190,80);
+locationName SlotFull(-10,-30);
+location ErrorAddItemToFull (190,230);
+locationName ErrorAddItemToFull(-10,-30);
+location ErrorRemoveItemFromEmpty (40,230);
+locationName ErrorRemoveItemFromEmpty(-10,-30);
+sync SlotEmpty SlotFull 1 (-60,-15);
+sync SlotFull SlotEmpty 1 (-60,-15);
+sync SlotEmpty ErrorRemoveItemFromEmpty 1 (-60,-15);
+assign SlotEmpty ErrorRemoveItemFromEmpty 1 (0,0);
+sync SlotFull ErrorAddItemToFull 1 (-60,-15);
+assign SlotFull ErrorAddItemToFull 1 (0,0);
+}
+process DiscSlot3 graphinfo {
+location SlotEmpty (40,80);
+locationName SlotEmpty(-10,-30);
+location SlotFull (190,80);
+locationName SlotFull(-10,-30);
+location ErrorAddItemToFull (190,230);
+locationName ErrorAddItemToFull(-10,-30);
+location ErrorRemoveItemFromEmpty (40,230);
+locationName ErrorRemoveItemFromEmpty(-10,-30);
+sync SlotEmpty SlotFull 1 (-60,-15);
+sync SlotFull SlotEmpty 1 (-60,-15);
+sync SlotEmpty ErrorRemoveItemFromEmpty 1 (-60,-15);
+assign SlotEmpty ErrorRemoveItemFromEmpty 1 (0,0);
+sync SlotFull ErrorAddItemToFull 1 (-60,-15);
+assign SlotFull ErrorAddItemToFull 1 (0,0);
+}
+process DiscSlot4 graphinfo {
+location SlotEmpty (40,80);
+locationName SlotEmpty(-10,-30);
+location SlotFull (190,80);
+locationName SlotFull(-10,-30);
+location ErrorAddItemToFull (190,230);
+locationName ErrorAddItemToFull(-10,-30);
+location ErrorRemoveItemFromEmpty (40,230);
+locationName ErrorRemoveItemFromEmpty(-10,-30);
+sync SlotEmpty SlotFull 1 (-60,-15);
+sync SlotFull SlotEmpty 1 (-60,-15);
+sync SlotEmpty ErrorRemoveItemFromEmpty 1 (-60,-15);
+assign SlotEmpty ErrorRemoveItemFromEmpty 1 (0,0);
+sync SlotFull ErrorAddItemToFull 1 (-60,-15);
+assign SlotFull ErrorAddItemToFull 1 (0,0);
+}
+process DiscNamedSpots graphinfo {
+location Crane (40,80);
+locationName Crane(-10,-30);
+location Intake (190,80);
+locationName Intake(-10,-30);
+location Scanner (190,230);
+locationName Scanner(-10,-30);
+}
+process Crane graphinfo {
+location Intake (40,80);
+locationName Intake(-10,-30);
+location Red (190,80);
+locationName Red(-10,-30);
+location Green (190,230);
+locationName Green(-10,-30);
+location Blue (40,230);
+locationName Blue(-10,-30);
+location LoweredAtRed (340,80);
+locationName LoweredAtRed(-10,-30);
+location LoweredAtGreen (340,230);
+locationName LoweredAtGreen(-10,-30);
+location LoweredAtBlue (340,380);
+locationName LoweredAtBlue(-10,-30);
+location LoweredAtIntake (190,380);
+locationName LoweredAtIntake(-10,-30);
+}
