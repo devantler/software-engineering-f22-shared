@@ -2,12 +2,16 @@
 #include "Arduino.h"
 #include "crane_elevation.h"
 
-const int stepsPerRevolution = 20200;
+// Pins
 const int magnetPin = 2;
+const int stepperMotorPin1 = 35, stepperMotorPin2 = 32, stepperMotorPin3 = 33, stepperMotorPin4 = 25;
+
+// Other variables
+const int stepsPerRevolution = 20200;
 int currentAngle = 0;
 
 
-Stepper revolutionStepper(stepsPerRevolution, 33, 32, 35, 34);
+Stepper revolutionStepper(stepsPerRevolution, stepperMotorPin1, stepperMotorPin2, stepperMotorPin3, stepperMotorPin4);
 
 void setupCrane()
 {
