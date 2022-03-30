@@ -1,134 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
 <nta>
-	<declaration>// Place global declarations here.</declaration>
+	<declaration>chan goto1, goto2, goto3, goto4;</declaration>
 	<template>
-		<name>Disc</name>
-		<location id="id0" x="-340" y="0">
-			<name x="-350" y="-34">Position1</name>
-		</location>
-		<location id="id1" x="-238" y="-136">
-			<name x="-248" y="-170">Position2</name>
-		</location>
-		<location id="id2" x="-68" y="-204">
-			<name x="-78" y="-238">Position3</name>
-		</location>
-		<location id="id3" x="102" y="-136">
-			<name x="92" y="-170">Position4</name>
-		</location>
-		<location id="id4" x="170" y="0">
-			<name x="160" y="-34">Position5</name>
-		</location>
-		<location id="id5" x="102" y="136">
-			<name x="92" y="102">Position6</name>
-		</location>
-		<location id="id6" x="-68" y="238">
-			<name x="-78" y="204">Position7</name>
-		</location>
-		<location id="id7" x="-238" y="170">
-			<name x="-248" y="136">Position8</name>
+		<name>DiscController</name>
+		<location id="id0" x="0" y="0">
+			<name x="0" y="0">L0</name>
 		</location>
 		<init ref="id0"/>
+	</template>
+	<template>
+		<name>CraneController</name>
+		<location id="id1" x="0" y="0">
+			<name x="0" y="0">L0</name>
+		</location>
+		<init ref="id1"/>
+	</template>
+	<template>
+		<name>MasterController</name>
+		<location id="id2" x="0" y="0">
+			<name x="0" y="0">L0</name>
+		</location>
+		<init ref="id2"/>
+	</template>
+	<template>
+		<name>Disc</name>
+		<location id="id3" x="-161" y="170">
+			<name x="-171" y="136">Position1</name>
+		</location>
+		<location id="id4" x="-331" y="-110">
+			<name x="-341" y="-144">Position2</name>
+		</location>
+		<location id="id5" x="-102" y="-229">
+			<name x="-112" y="-263">Position3</name>
+		</location>
+		<location id="id6" x="110" y="-76">
+			<name x="100" y="-110">Position4</name>
+		</location>
+		<init ref="id3"/>
 		<transition>
-			<source ref="id2"/>
-			<target ref="id1"/>
-		</transition>
-		<transition>
-			<source ref="id1"/>
-			<target ref="id0"/>
-		</transition>
-		<transition>
-			<source ref="id3"/>
-			<target ref="id2"/>
+			<source ref="id6"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-92" y="-72">goto2?</label>
+			<nail x="-110" y="-34"/>
 		</transition>
 		<transition>
 			<source ref="id4"/>
-			<target ref="id3"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-110" y="-93">goto4?</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-131" y="-29">goto3?</label>
+			<nail x="-102" y="-42"/>
 		</transition>
 		<transition>
 			<source ref="id5"/>
-			<target ref="id4"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-131" y="-29">goto1?</label>
 		</transition>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id5"/>
+			<label kind="synchronisation" x="4" y="-152">goto3?</label>
+			<nail x="-68" y="-93"/>
 		</transition>
 		<transition>
-			<source ref="id7"/>
+			<source ref="id3"/>
 			<target ref="id6"/>
-		</transition>
-		<transition>
-			<source ref="id0"/>
-			<target ref="id7"/>
-		</transition>
-		<transition>
-			<source ref="id7"/>
-			<target ref="id0"/>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id7"/>
-		</transition>
-		<transition>
-			<source ref="id5"/>
-			<target ref="id6"/>
+			<label kind="synchronisation" x="-25" y="47">goto4?</label>
+			<nail x="-93" y="8"/>
 		</transition>
 		<transition>
 			<source ref="id4"/>
-			<target ref="id5"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-246" y="30">goto1?</label>
+			<nail x="-204" y="-25"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-216" y="-169">goto2?</label>
+			<nail x="-144" y="-127"/>
 		</transition>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id4"/>
+			<label kind="synchronisation" x="-313" y="13">goto2?</label>
 		</transition>
 		<transition>
-			<source ref="id2"/>
+			<source ref="id6"/>
 			<target ref="id3"/>
+			<label kind="synchronisation" x="-143" y="30">goto1?</label>
 		</transition>
 		<transition>
-			<source ref="id1"/>
-			<target ref="id2"/>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-84" y="-169">goto4?</label>
 		</transition>
 		<transition>
-			<source ref="id0"/>
-			<target ref="id1"/>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-313" y="-186">goto3?</label>
 		</transition>
 	</template>
 	<template>
-		<name x="5" y="5">Crane</name>
-		<declaration>// Place local declarations here.
-bool magnetPower =  false;</declaration>
-		<location id="id8" x="-578" y="-34">
-			<name x="-552" y="-59">Intake</name>
+		<name>DiscNamedSpots</name>
+		<location id="id7" x="-229" y="-17">
+			<name x="-239" y="-51">Crane</name>
 		</location>
-		<location id="id9" x="-476" y="-136">
-			<name x="-486" y="-170">Red</name>
+		<location id="id8" x="-102" y="-136">
+			<name x="-112" y="-170">Intake</name>
 		</location>
-		<location id="id10" x="-374" y="-34">
-			<name x="-384" y="-68">Green</name>
+		<location id="id9" x="-59" y="42">
+			<name x="-69" y="8">Scanner</name>
 		</location>
-		<location id="id11" x="-476" y="68">
-			<name x="-486" y="34">Blue</name>
-		</location>
-		<location id="id12" x="-467" y="-238">
-			<name x="-477" y="-272">LoweredAtRed</name>
-		</location>
-		<location id="id13" x="-255" y="-34">
-			<name x="-265" y="-68">LoweredAtGreen</name>
-		</location>
-		<location id="id14" x="-484" y="178">
-			<name x="-494" y="144">LoweredAtBlue</name>
-		</location>
-		<location id="id15" x="-680" y="-34">
-			<name x="-690" y="-68">LoweredAtIntake</name>
-		</location>
-		<init ref="id8"/>
+		<init ref="id7"/>
 		<transition>
-			<source ref="id15"/>
+			<source ref="id9"/>
 			<target ref="id8"/>
 		</transition>
 		<transition>
+			<source ref="id7"/>
+			<target ref="id9"/>
+		</transition>
+		<transition>
 			<source ref="id8"/>
+			<target ref="id7"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id7"/>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id9"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id8"/>
+		</transition>
+	</template>
+	<template>
+		<name>Crane</name>
+		<declaration>
+
+
+// Place local declarations here.
+bool magnetPower =  false;</declaration>
+		<location id="id10" x="-578" y="-34">
+			<name x="-552" y="-59">Intake</name>
+		</location>
+		<location id="id11" x="-476" y="-136">
+			<name x="-486" y="-170">Red</name>
+		</location>
+		<location id="id12" x="-374" y="-34">
+			<name x="-384" y="-68">Green</name>
+		</location>
+		<location id="id13" x="-476" y="68">
+			<name x="-486" y="34">Blue</name>
+		</location>
+		<location id="id14" x="-467" y="-238">
+			<name x="-477" y="-272">LoweredAtRed</name>
+		</location>
+		<location id="id15" x="-255" y="-34">
+			<name x="-265" y="-68">LoweredAtGreen</name>
+		</location>
+		<location id="id16" x="-484" y="178">
+			<name x="-494" y="144">LoweredAtBlue</name>
+		</location>
+		<location id="id17" x="-680" y="-34">
+			<name x="-690" y="-68">LoweredAtIntake</name>
+		</location>
+		<init ref="id10"/>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id10"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id17"/>
+		</transition>
+		<transition>
+			<source ref="id16"/>
+			<target ref="id13"/>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id16"/>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id12"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
 			<target ref="id15"/>
 		</transition>
 		<transition>
@@ -140,69 +207,51 @@ bool magnetPower =  false;</declaration>
 			<target ref="id14"/>
 		</transition>
 		<transition>
-			<source ref="id13"/>
+			<source ref="id12"/>
 			<target ref="id10"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id12"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id11"/>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id12"/>
 		</transition>
 		<transition>
 			<source ref="id10"/>
 			<target ref="id13"/>
 		</transition>
 		<transition>
-			<source ref="id12"/>
-			<target ref="id9"/>
+			<source ref="id13"/>
+			<target ref="id10"/>
 		</transition>
 		<transition>
-			<source ref="id9"/>
+			<source ref="id12"/>
+			<target ref="id13"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
 			<target ref="id12"/>
 		</transition>
 		<transition>
 			<source ref="id10"/>
-			<target ref="id8"/>
-		</transition>
-		<transition>
-			<source ref="id8"/>
-			<target ref="id10"/>
-		</transition>
-		<transition>
-			<source ref="id9"/>
-			<target ref="id8"/>
-		</transition>
-		<transition>
-			<source ref="id10"/>
-			<target ref="id9"/>
-		</transition>
-		<transition>
-			<source ref="id11"/>
-			<target ref="id10"/>
-		</transition>
-		<transition>
-			<source ref="id8"/>
 			<target ref="id11"/>
-		</transition>
-		<transition>
-			<source ref="id11"/>
-			<target ref="id8"/>
-		</transition>
-		<transition>
-			<source ref="id10"/>
-			<target ref="id11"/>
-		</transition>
-		<transition>
-			<source ref="id9"/>
-			<target ref="id10"/>
-		</transition>
-		<transition>
-			<source ref="id8"/>
-			<target ref="id9"/>
 		</transition>
 	</template>
-	<system>// Place template instantiations here.
-Crane = Crane();
-Disc = Disc();
-// List one or more processes to be composed into a system.
-system Crane;
-system Disc;
-    </system>
+	<system>
+
+
+// Place template instantiations here.
+// List one or more processes to be composed into a system.</system>
 	<queries>
 		<query>
 			<formula></formula>
