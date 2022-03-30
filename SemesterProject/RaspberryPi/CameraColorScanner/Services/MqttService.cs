@@ -51,6 +51,7 @@ public class MqttService : IHostedService
             await Task.Delay(50);
         }
 
+        await _mqttClient.SubscribeAsync(_mqttConfig["CommandTopic"], MqttQualityOfServiceLevel.ExactlyOnce, cancellationToken);
         _mqttClient.ApplicationMessageReceivedAsync += MqttCallback;
     }
 

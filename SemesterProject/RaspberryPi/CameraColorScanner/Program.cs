@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using CameraColorScanner.Adapters;
+using CameraColorScanner.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,6 +18,7 @@ class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureServices((_, services) =>
             {
+                services.AddHostedService<MqttService>();
                 services.Add(ServiceDescriptor.Singleton<IColorScannerAdapter, CameraScannerAdapter>());
             })
             .ConfigureAppConfiguration((hostingContext, configuration) =>
