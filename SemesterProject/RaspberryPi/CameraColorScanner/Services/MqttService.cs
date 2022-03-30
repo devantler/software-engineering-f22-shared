@@ -18,11 +18,13 @@ public class MqttService : IHostedService
     private IConfiguration _mqttConfig;
     private MqttClient _mqttClient;
     private readonly IColorScannerAdapter _colorScanner;
+    
 
     public MqttService(IConfiguration configuration, IColorScannerAdapter colorScannerAdapter)
     {
         _configuration = configuration;
         _colorScanner = colorScannerAdapter;
+        this.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)

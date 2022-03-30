@@ -20,7 +20,8 @@ class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureServices((_, services) =>
             {
-                services.AddHostedService<MqttService>();
+                services.AddSingleton<IColorScannerAdapter, CameraScannerAdapter>();
+                services.AddSingleton<MqttService>();
                 services.Add(ServiceDescriptor.Singleton<IColorScannerAdapter, CameraScannerAdapter>());
             })
             .ConfigureAppConfiguration((hostingContext, configuration) =>
