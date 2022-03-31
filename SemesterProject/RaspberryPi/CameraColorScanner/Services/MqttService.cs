@@ -29,32 +29,40 @@ public class MqttService : IHostedService
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        _mqttConfig = _configuration.GetRequiredSection("MQTT");
-
-        _mqttClient = new MqttFactory().CreateMqttClient();
-        var mqttOptionsBuilder = new MqttClientOptionsBuilder()
-            .WithClientId(_mqttConfig["ClientId"])
-            .WithTcpServer(_mqttConfig["Hostname"], _mqttConfig.GetValue<int>("Port"));
-        if (_mqttConfig.GetValue<string?>("Username") != null
-            && _mqttConfig.GetValue<string?>("Password") != null)
+        try
         {
-            mqttOptionsBuilder.WithCredentials(_mqttConfig["Username"], _mqttConfig["Password"]);
-        }
+            _mqttConfig = _configuration.GetRequiredSection("MQTT");
 
-        if (_mqttConfig.GetValue<bool>("UseSsl"))
+            _mqttClient = new MqttFactory().CreateMqttClient();
+            var mqttOptionsBuilder = new MqttClientOptionsBuilder()
+                .WithClientId(_mqttConfig["ClientId"])
+                .WithTcpServer(_mqttConfig["Hostname"], _mqttConfig.GetValue<int>("Port"));
+            if (_mqttConfig.GetValue<string?>("Username") != null
+                && _mqttConfig.GetValue<string?>("Password") != null)
+            {
+                mqttOptionsBuilder.WithCredentials(_mqttConfig["Username"], _mqttConfig["Password"]);
+            }
+
+            if (_mqttConfig.GetValue<bool>("UseSsl"))
+            {
+                mqttOptionsBuilder.WithTls();
+            }
+
+            await _mqttClient.ConnectAsync(mqttOptionsBuilder.Build(), cancellationToken);
+
+            while (!_mqttClient.IsConnected)
+            {
+                await Task.Delay(50);
+            }
+
+            await _mqttClient.SubscribeAsync(_mqttConfig["CommandTopic"], MqttQualityOfServiceLevel.ExactlyOnce,
+                cancellationToken);
+            _mqttClient.ApplicationMessageReceivedAsync += MqttCallback;
+        }
+        catch(Exception e)
         {
-            mqttOptionsBuilder.WithTls();
+            Console.WriteLine("Error in mqttservice start: "+e.Message +"\n"+ e.StackTrace);
         }
-
-        await _mqttClient.ConnectAsync(mqttOptionsBuilder.Build(), cancellationToken);
-
-        while (!_mqttClient.IsConnected)
-        {
-            await Task.Delay(50);
-        }
-
-        await _mqttClient.SubscribeAsync(_mqttConfig["CommandTopic"], MqttQualityOfServiceLevel.ExactlyOnce, cancellationToken);
-        _mqttClient.ApplicationMessageReceivedAsync += MqttCallback;
     }
 
     private async Task MqttCallback(MqttApplicationMessageReceivedEventArgs args)
