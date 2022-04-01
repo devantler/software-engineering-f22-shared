@@ -9,7 +9,7 @@ Model:
 Declaration:
 	'create' device=Device;
 
-Device:
+Device returns Reference:
 	Crane | Disk | Camera;
 
 Crane returns Device:
@@ -38,42 +38,62 @@ CameraParameter returns Parameter:
 
 // ----- LOGIC ----- //
 Statement:
-	Conditional | Loop | Operation;
+	Conditional; // | Loop | Operation;
 
-Conditional returns Statement:
-	{Conditional} 'if' source=[Source] 'is' (operator=BOOLEAN_OPERATOR)? (disk_state=DiskStates)?;
+Conditional:
+	DeviceConditional | VariableConditional | NumberConditional;
 
-Source:
-	Device | Variable | Number;
+DeviceConditional returns Conditional:
+	{DeviceConditional} 'if' source=[Device] 'is' operator=BOOLEAN_OPERATOR target=ConditionalTarget 'then' BEGIN
+	statements+=Statement+ END;
 
-Loop returns Statement:
-;
+CraneConditional returns Conditional:
+	{DeviceConditional} 'if' source=[Crane] 'is' operator=BOOLEAN_OPERATOR target=ConditionalTarget 'then' BEGIN
+	statements+=Statement+ END;
 
-Operation returns Statement:
-	CraneOperation | DiskOperation | CameraOperation;
+VariableConditional returns Conditional:
+	{VariableConditional} 'if' source=[Variable] 'is' operator=BOOLEAN_OPERATOR target=ConditionalTarget 'then' BEGIN
+	statements+=Statement+ END;
 
-CraneOperation returns Operation:
-;
+NumberConditional returns Conditional:
+	{NumberConditional} 'if' source=[Number] 'is' operator=BOOLEAN_OPERATOR target=ConditionalTarget 'then' BEGIN
+	statements+=Statement+ END;
 
-DiskOperation returns Operation:
-;
-
-CameraOperation returns Operation:
-;
-
-Variable:
-;
+ConditionalTarget:
+	disk_state=DISK_STATES | color=COLOR | value=INT;
+	
+Variable returns Reference:
+	{Variable} name=ID;
 
 Number:
 	value=INT;
 
+//Loop returns Statement:
+//	name=ID;
+//
+//Operation returns Statement:
+//	CraneOperation | DiskOperation | CameraOperation;
+//
+//CraneOperation returns Operation:
+//	name=ID;
+//
+//DiskOperation returns Operation:
+//	name=ID;
+//
+//CameraOperation returns Operation:
+//	name=ID;
+//
+
+
 // ----- ENUMS ----- //
 enum COLOR:
 	RED='red' | GREEN='green' | BLUE='blue';
-	
+
 enum BOOLEAN_OPERATOR:
-	NOT='not' | LESS_THAN='less than' | GREATER_THAN='greater than'
-;
+	NOT='not' | LESS_THAN='less than' | GREATER_THAN='greater than' | EQUAL_TO='equal to';
+
+enum DISK_STATES:
+	FREE='free' | IN_PROGRESS='in progress' | COMPLETE='complete';
 
 // ----- TERMINALS ----- //
 terminal BEGIN:

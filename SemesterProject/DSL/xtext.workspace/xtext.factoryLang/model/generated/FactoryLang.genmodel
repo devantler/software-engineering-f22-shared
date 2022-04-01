@@ -11,6 +11,16 @@
       <genEnumLiterals ecoreEnumLiteral="FactoryLang.ecore#//COLOR/GREEN"/>
       <genEnumLiterals ecoreEnumLiteral="FactoryLang.ecore#//COLOR/BLUE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="FactoryLang.ecore#//BOOLEAN_OPERATOR">
+      <genEnumLiterals ecoreEnumLiteral="FactoryLang.ecore#//BOOLEAN_OPERATOR/NOT"/>
+      <genEnumLiterals ecoreEnumLiteral="FactoryLang.ecore#//BOOLEAN_OPERATOR/LESS_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="FactoryLang.ecore#//BOOLEAN_OPERATOR/GREATER_THAN"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="FactoryLang.ecore#//DISK_STATES">
+      <genEnumLiterals ecoreEnumLiteral="FactoryLang.ecore#//DISK_STATES/FREE"/>
+      <genEnumLiterals ecoreEnumLiteral="FactoryLang.ecore#//DISK_STATES/IN_PROGRESS"/>
+      <genEnumLiterals ecoreEnumLiteral="FactoryLang.ecore#//DISK_STATES/COMPLETE"/>
+    </genEnums>
     <genClasses ecoreClass="FactoryLang.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryLang.ecore#//Model/declarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryLang.ecore#//Model/statements"/>
@@ -18,14 +28,27 @@
     <genClasses ecoreClass="FactoryLang.ecore#//Declaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryLang.ecore#//Declaration/device"/>
     </genClasses>
+    <genClasses ecoreClass="FactoryLang.ecore#//Reference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//Reference/name"/>
+    </genClasses>
     <genClasses ecoreClass="FactoryLang.ecore#//Device">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//Device/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryLang.ecore#//Device/parameters"/>
     </genClasses>
     <genClasses ecoreClass="FactoryLang.ecore#//Parameter"/>
     <genClasses ecoreClass="FactoryLang.ecore#//DiskParameter"/>
-    <genClasses ecoreClass="FactoryLang.ecore#//Statement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//Statement/name"/>
+    <genClasses ecoreClass="FactoryLang.ecore#//Statement"/>
+    <genClasses ecoreClass="FactoryLang.ecore#//Conditional">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//Conditional/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryLang.ecore#//Conditional/target"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryLang.ecore#//Conditional/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="FactoryLang.ecore#//ConditionalTarget">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//ConditionalTarget/disk_state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//ConditionalTarget/color"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//ConditionalTarget/value"/>
+    </genClasses>
+    <genClasses ecoreClass="FactoryLang.ecore#//Number">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//Number/value"/>
     </genClasses>
     <genClasses ecoreClass="FactoryLang.ecore#//Crane"/>
     <genClasses ecoreClass="FactoryLang.ecore#//CraneParameter">
@@ -44,5 +67,15 @@
     <genClasses ecoreClass="FactoryLang.ecore#//CameraParameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//CameraParameter/color"/>
     </genClasses>
+    <genClasses ecoreClass="FactoryLang.ecore#//DeviceConditional">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLang.ecore#//DeviceConditional/source"/>
+    </genClasses>
+    <genClasses ecoreClass="FactoryLang.ecore#//VariableConditional">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLang.ecore#//VariableConditional/source"/>
+    </genClasses>
+    <genClasses ecoreClass="FactoryLang.ecore#//NumberConditional">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryLang.ecore#//NumberConditional/source"/>
+    </genClasses>
+    <genClasses ecoreClass="FactoryLang.ecore#//Variable"/>
   </genPackages>
 </genmodel:GenModel>

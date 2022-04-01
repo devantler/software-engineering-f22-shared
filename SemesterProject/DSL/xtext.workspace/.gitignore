@@ -5,3 +5,4 @@
 # Keep selected folders
 !**/*-gen/.gitkeep
 !**/*-bin/.gitkeep
+/.metadata/

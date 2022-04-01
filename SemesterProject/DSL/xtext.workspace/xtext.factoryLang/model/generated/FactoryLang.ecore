@@ -9,23 +9,48 @@
         eType="#//Statement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Declaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Device"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Reference"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Device">
+  <eClassifiers xsi:type="ecore:EClass" name="Reference">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Device" eSuperTypes="#//Reference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter"/>
   <eClassifiers xsi:type="ecore:EClass" name="DiskParameter" eSuperTypes="#//Parameter"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Statement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Conditional" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//BOOLEAN_OPERATOR"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ConditionalTarget"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalTarget">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="disk_state" eType="#//DISK_STATES"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//COLOR"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Number">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="COLOR">
     <eLiterals name="RED" literal="red"/>
     <eLiterals name="GREEN" value="1" literal="green"/>
     <eLiterals name="BLUE" value="2" literal="blue"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BOOLEAN_OPERATOR">
+    <eLiterals name="NOT" literal="not"/>
+    <eLiterals name="LESS_THAN" value="1" literal="less than"/>
+    <eLiterals name="GREATER_THAN" value="2" literal="greater than"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DISK_STATES">
+    <eLiterals name="FREE" literal="free"/>
+    <eLiterals name="IN_PROGRESS" value="1" literal="in progress"/>
+    <eLiterals name="COMPLETE" value="2" literal="complete"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Crane" eSuperTypes="#//Device"/>
   <eClassifiers xsi:type="ecore:EClass" name="CraneParameter" eSuperTypes="#//Parameter">
@@ -44,4 +69,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="CameraParameter" eSuperTypes="#//Parameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//COLOR"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeviceConditional" eSuperTypes="#//Conditional">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Device"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableConditional" eSuperTypes="#//Conditional">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberConditional" eSuperTypes="#//Conditional">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Number"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//Reference"/>
 </ecore:EPackage>
