@@ -24,6 +24,7 @@ public class MqttService : IHostedService
         _colorScanner = colorScannerAdapter;
         _mqttConfig = configuration.GetRequiredSection("MQTT");
         _mqttClient = new MqttFactory().CreateMqttClient();
+        Console.WriteLine("Starting MQTT service...");
         this.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
     }
 
@@ -37,20 +38,25 @@ public class MqttService : IHostedService
             if (_mqttConfig.GetValue<string?>("Username") != null
                 && _mqttConfig.GetValue<string?>("Password") != null)
             {
+                Console.WriteLine("With credentials");
                 mqttOptionsBuilder.WithCredentials(_mqttConfig["Username"], _mqttConfig["Password"]);
             }
 
             if (_mqttConfig.GetValue<bool>("UseSsl"))
             {
+                Console.WriteLine("With tls");
                 mqttOptionsBuilder.WithTls();
             }
 
+            Console.WriteLine("Trying to connect...");
             await _mqttClient.ConnectAsync(mqttOptionsBuilder.Build(), cancellationToken);
 
             while (!_mqttClient.IsConnected)
             {
                 await Task.Delay(50);
+                Console.Write(".");
             }
+            Console.WriteLine("Connected!");
 
             await _mqttClient.SubscribeAsync(_mqttConfig["CommandTopic"], MqttQualityOfServiceLevel.ExactlyOnce,
                 cancellationToken);
@@ -66,6 +72,8 @@ public class MqttService : IHostedService
     {
         var topic = args.ApplicationMessage.Topic;
         var message = Encoding.UTF8.GetString(args.ApplicationMessage.Payload);
+        Console.WriteLine($"Message received: {message}");
+        Console.WriteLine("On topic: " + topic);
 
         if (topic == _mqttConfig["CommandTopic"] && message == "GetColor")
         {
