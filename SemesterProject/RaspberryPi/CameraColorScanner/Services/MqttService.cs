@@ -76,47 +76,54 @@ namespace CameraColorScanner.Services
 
         private async Task MqttCallback(MqttApplicationMessageReceivedEventArgs args)
         {
-            var topic = args.ApplicationMessage.Topic;
-            var message = Encoding.UTF8.GetString(args.ApplicationMessage.Payload);
-            Console.WriteLine($"Message received: {message}");
-            Console.WriteLine("On topic: " + topic);
-
-            if (topic == Configuration.Mqtt.CommandTopic && message == "GetColor")
+            try
             {
-                if (Configuration.Mqtt.PrintDebug)
-                {
-                    Console.WriteLine("Got message!");
-                }
+                var topic = args.ApplicationMessage.Topic;
+                var message = Encoding.UTF8.GetString(args.ApplicationMessage.Payload);
+                Console.WriteLine($"Message received: {message}");
+                Console.WriteLine("On topic: " + topic);
 
-                var scannedColor = await _colorScanner.GetColor();
-
-                var resultTopic = Configuration.Mqtt.ResultTopic;
-                if (resultTopic == null)
+                if (topic == Configuration.Mqtt.CommandTopic && message == "GetColor")
                 {
-                    await SendMessage(
-                        Configuration.Mqtt.LogTopic + "/error",
-                        $"Result topic not defined.",
-                        true);
+                    if (Configuration.Mqtt.PrintDebug)
+                    {
+                        Console.WriteLine("Got message!");
+                    }
+
+                    var scannedColor = await _colorScanner.GetColor();
+
+                    var resultTopic = Configuration.Mqtt.ResultTopic;
+                    if (resultTopic == null)
+                    {
+                        await SendMessage(
+                            Configuration.Mqtt.LogTopic + "/error",
+                            $"Result topic not defined.",
+                            true);
+                    }
+                    else
+                    {
+                        await SendMessage(
+                            Configuration.Mqtt.ResultTopic, //The exclamation-point suppresses null warning
+                            scannedColor.ToString(),
+                            false);
+                    }
                 }
                 else
                 {
+                    if (Configuration.Mqtt.PrintDebug)
+                    {
+                        Console.WriteLine($"Unknown topic: {topic} or command: {message}");
+                    }
+
                     await SendMessage(
-                        Configuration.Mqtt.ResultTopic, //The exclamation-point suppresses null warning
-                        scannedColor.ToString(),
-                        false);
+                        Configuration.Mqtt.LogTopic + "/error",
+                        $"Unknown topic: {topic} or command: {message}",
+                        true);
                 }
             }
-            else
+            catch (Exception e)
             {
-                if (Configuration.Mqtt.PrintDebug)
-                {
-                    Console.WriteLine($"Unknown topic: {topic} or command: {message}");
-                }
-
-                await SendMessage(
-                    Configuration.Mqtt.LogTopic + "/error",
-                    $"Unknown topic: {topic} or command: {message}",
-                    true);
+                Console.WriteLine($"Error getting color: {e.Message}\n{e.StackTrace}");
             }
         }
 
