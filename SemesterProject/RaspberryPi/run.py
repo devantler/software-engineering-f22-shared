@@ -16,10 +16,9 @@ while(True):
     response = requests.request("GET", url, headers=headers, data=payload)
     
     jsonObject = json.loads(response.text)
-    if jsonObject['total_count'] > lastRun and jsonObject['workflow_runs'][0]['conclusion'] == 'success':
+    if int(jsonObject['total_count']) > lastRun and jsonObject['workflow_runs'][0]['conclusion'] == 'success':
         lastRun = jsonObject['total_count']
         conclusion = jsonObject['workflow_runs'][0]['conclusion']
-        if conclusion == 'success':
-            print("Success")
-            subprocess.call(["./reload.sh"])
+        print("Success")
+        subprocess.run(["sh","-c","./reload.sh"])
     sleep(10)
