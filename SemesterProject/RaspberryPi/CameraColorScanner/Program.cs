@@ -20,6 +20,7 @@ class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureServices((_, services) =>
             {
+                services.AddScoped<ICamera, FileCamera>();
                 services.AddSingleton<IColorScannerAdapter, CameraScannerAdapter>();
                 services.AddSingleton<MqttService>();
                 services.Add(ServiceDescriptor.Singleton<IColorScannerAdapter, CameraScannerAdapter>());

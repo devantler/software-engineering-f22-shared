@@ -14,16 +14,16 @@ namespace CameraColorScanner.Services;
 
 public class MqttService : IHostedService
 {
-    private readonly IConfiguration _configuration;
-    private IConfiguration _mqttConfig;
+    private readonly IConfiguration _mqttConfig;
     private MqttClient _mqttClient;
     private readonly IColorScannerAdapter _colorScanner;
     
 
     public MqttService(IConfiguration configuration, IColorScannerAdapter colorScannerAdapter)
     {
-        _configuration = configuration;
         _colorScanner = colorScannerAdapter;
+        _mqttConfig = configuration.GetRequiredSection("MQTT");
+        _mqttClient = new MqttFactory().CreateMqttClient();
         this.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
     }
 
@@ -31,9 +31,6 @@ public class MqttService : IHostedService
     {
         try
         {
-            _mqttConfig = _configuration.GetRequiredSection("MQTT");
-
-            _mqttClient = new MqttFactory().CreateMqttClient();
             var mqttOptionsBuilder = new MqttClientOptionsBuilder()
                 .WithClientId(_mqttConfig["ClientId"])
                 .WithTcpServer(_mqttConfig["Hostname"], _mqttConfig.GetValue<int>("Port"));

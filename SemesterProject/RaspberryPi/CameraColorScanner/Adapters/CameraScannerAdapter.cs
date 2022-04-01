@@ -10,6 +10,7 @@ using OpenCvSharp;
 using Microsoft.Extensions.Configuration;
 using OpenCvSharp.Extensions;
 using System.Threading.Tasks;
+using CameraColorScanner.Adapters;
 using Microsoft.Extensions.DependencyInjection;
 using OpenCvSharp.Aruco;
 using SixLabors.ImageSharp.Advanced;
@@ -21,43 +22,33 @@ namespace CameraColorScanner.Adapters;
 public class CameraScannerAdapter : IColorScannerAdapter
 {
     private readonly MqttService _mqttService;
-    private readonly VideoCapture _capture;
-    private readonly Mat _frame;
+    private readonly ICamera _camera;
     private readonly IConfiguration _cameraConfig;
 
-    public CameraScannerAdapter(MqttService mqttService, IConfiguration configuration)
+    public CameraScannerAdapter(MqttService mqttService, ICamera camera, IConfiguration configuration)
     {
         _mqttService = mqttService;
-        _frame = new Mat();
-        _capture = new VideoCapture(0);
+        _camera = camera;
         _cameraConfig = configuration.GetRequiredSection("Camera");
     }
 
     public async Task<IColorScannerAdapter.Color> GetColor()
     {
-        _capture.Open(0);
-        while (!_capture.IsOpened())
-        {
-            await Task.Delay(200);
-        }
-
-        _capture.Read(_frame);
-        var image = _frame.ToBitmap();
+        var image = await _camera.GetImage();
         image = await CropImage(image);
-        return await GetAverageColor(image);
+        return GetAverageColor(image);
     }
 
-    private async Task<IColorScannerAdapter.Color> GetAverageColor(Bitmap image)
+    private IColorScannerAdapter.Color GetAverageColor(Bitmap image)
     {
-        var counts = await CountColors(image);
+        var counts = CountColors(image);
         var majorityColor = counts.OrderByDescending(i => i.Value).First();
-        IColorScannerAdapter.Color.TryParse((string?)majorityColor.Key.ToUpper(), out IColorScannerAdapter.Color returnValue);
+        Enum.TryParse((string?)majorityColor.Key.ToUpper(), out IColorScannerAdapter.Color returnValue);
         return returnValue;
     }
 
-    private async Task<ConcurrentDictionary<string, int>> CountColors(Bitmap image)
+    private ConcurrentDictionary<string, int> CountColors(Bitmap image)
     {
-        //TODO: Parralelize
         ConcurrentDictionary<string, int> counts = new();
         counts["Black"] = 0;
         counts["Red"] = 0;
@@ -114,7 +105,7 @@ public class CameraScannerAdapter : IColorScannerAdapter
             cropSection.GetValue<int>("height")
         );
         SixLabors.ImageSharp.Image garbageImage;
-        using (var memstream = new MemoryStream())
+        await using (var memstream = new MemoryStream())
         {
             image.Save(memstream, ImageFormat.Png);
             memstream.Seek(0, SeekOrigin.Begin);
@@ -122,7 +113,7 @@ public class CameraScannerAdapter : IColorScannerAdapter
         }
 
         garbageImage.Mutate(ctx => ctx.Crop(crop));
-        using (var memstream = new MemoryStream())
+        await using (var memstream = new MemoryStream())
         {
             var encoder = garbageImage.GetConfiguration().ImageFormatsManager.FindEncoder(PngFormat.Instance);
             await garbageImage.SaveAsync(memstream, encoder);
