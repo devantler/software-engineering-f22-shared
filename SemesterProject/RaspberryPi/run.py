@@ -16,6 +16,7 @@ while(True):
     response = requests.request("GET", url, headers=headers, data=payload)
     print("Got Respone")
     jsonObject = json.loads(response.text)
+    print('TotalCount: ',jsonObject['total_count'], 'conclusion: ', jsonObject['workflow_runs'][0]['conclusion'])
     if int(jsonObject['total_count']) > lastRun and jsonObject['workflow_runs'][0]['conclusion'] == 'success':
         print("Success")
         lastRun = jsonObject['total_count']
