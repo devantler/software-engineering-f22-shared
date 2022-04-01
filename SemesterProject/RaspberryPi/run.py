@@ -8,7 +8,7 @@ url = "https://api.github.com/repos/devantler/software-engineering-f22/actions/w
 payload={}
 headers = {
 'Accept': 'application/vnd.github.v3+json',
-'Authorization': 'Basic aG91bnN2YWQ6Z2hwX1BDekZQaWtVdGdNUlpvUE16NlVBM1ZtSzkzcVY3azJRSVFjeQ=='
+'Authorization': ''
 }
 
 lastRun = 0
