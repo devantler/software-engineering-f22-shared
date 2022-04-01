@@ -61,7 +61,7 @@ public class CameraScannerAdapter : IColorScannerAdapter
             for (int y = 0; y < image.Height; y++)
             {
                 var pixel = image.GetPixel(x, y);
-                if (pixel.GetBrightness() < 0.2)
+                if (pixel.GetBrightness() < 0.2f)
                 {
                     counts["Black"]++;
                     continue;
@@ -73,7 +73,7 @@ public class CameraScannerAdapter : IColorScannerAdapter
                     continue;
                 }
 
-                if (pixel.GetSaturation() < 0.25)
+                if (pixel.GetSaturation() < 0.25f)
                     continue;
 
                 switch (pixel.GetHue())
