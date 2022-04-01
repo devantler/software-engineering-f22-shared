@@ -5,7 +5,7 @@ using OpenCvSharp.Extensions;
 
 namespace CameraColorScanner.Adapters
 {
-    public class Camera : ICamera
+    public class Camera //: ICamera
     {
        private Mat _frame = new Mat();
        private VideoCapture _capture = new VideoCapture(0);

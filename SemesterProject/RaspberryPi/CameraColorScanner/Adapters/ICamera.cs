@@ -1,10 +1,12 @@
 using System.Drawing;
 using System.Threading.Tasks;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace CameraColorScanner.Adapters
 {
     public interface ICamera
     {
-        Task<Bitmap> GetImage();
+        Task<Image<Rgba32>> GetImage();
     }
 }
