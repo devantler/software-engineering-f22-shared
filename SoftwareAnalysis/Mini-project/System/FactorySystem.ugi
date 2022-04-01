@@ -1,40 +1,3 @@
-process DiscController graphinfo {
-trans RemoveItemReq Idle 1 (26,34);
-trans Idle RemoveItemReq 1 (-34,-9);
-sync Idle RemoveItemReq 1 (-16,-47);
-trans AddItemReq Idle 1 (-17,34);
-trans Idle AddItemReq 1 (34,-26);
-sync Idle AddItemReq 1 (52,-13);
-trans Position4 Idle 1 (-17,68);
-trans Idle Position4 1 (-59,102);
-sync Idle Position4 1 (-41,102);
-trans Position3 Idle 1 (9,-9);
-trans Idle Position3 1 (-8,42);
-sync Idle Position3 1 (-67,-30);
-trans Position2 Idle 1 (0,25);
-trans Idle Position2 1 (9,-17);
-sync Idle Position2 1 (-67,-26);
-trans Position1 Idle 1 (-17,-34);
-sync Idle Position1 1 (-67,-17);
-location Idle (-544,68);
-locationName Idle(-10,-30);
-location Position1 (-374,-68);
-locationName Position1(-10,-34);
-location Position2 (-374,68);
-locationName Position2(-10,-34);
-location Position3 (-374,204);
-locationName Position3(-10,-34);
-location Position4 (-374,340);
-locationName Position4(-10,-34);
-location AddItemReq (-748,0);
-locationName AddItemReq(-10,-34);
-location RemoveItemReq (-748,170);
-locationName RemoveItemReq(-10,-34);
-}
-process CraneController graphinfo {
-location L0 (40,80);
-locationName L0(-10,-30);
-}
 process MasterController graphinfo {
 location L0 (40,80);
 locationName L0(-10,-30);
@@ -178,8 +141,38 @@ location LoweredAtRed (340,80);
 locationName LoweredAtRed(-10,-30);
 location LoweredAtGreen (340,230);
 locationName LoweredAtGreen(-10,-30);
-location LoweredAtBlue (340,380);
+location LoweredAtBlue (-136,238);
 locationName LoweredAtBlue(-10,-30);
-location LoweredAtIntake (190,380);
+location LoweredAtIntake (-136,85);
 locationName LoweredAtIntake(-10,-30);
+sync LoweredAtIntake Intake 1 (0,0);
+sync Intake LoweredAtIntake 1 (0,0);
+sync LoweredAtBlue Blue 1 (0,0);
+sync Blue LoweredAtBlue 1 (0,0);
+sync LoweredAtGreen Green 1 (0,0);
+sync Green LoweredAtGreen 1 (0,0);
+sync LoweredAtRed Red 1 (0,0);
+sync Red LoweredAtRed 1 (0,0);
+sync Green Intake 1 (0,0);
+sync Intake Green 1 (0,0);
+sync Red Intake 1 (0,0);
+sync Green Red 1 (0,0);
+sync Blue Green 1 (0,0);
+sync Intake Blue 1 (0,0);
+sync Blue Intake 1 (0,0);
+sync Green Blue 1 (0,0);
+sync Red Green 1 (0,0);
+sync Intake Red 1 (0,0);
+sync Red Blue 1 (0,0);
+sync Blue Red 1 (0,0);
+}
+process CraneMagnet graphinfo {
+location MagnetOff (-68,34);
+locationName MagnetOff(-10,-34);
+location MagnetOn (-68,-204);
+locationName MagnetOn(-10,-34);
+trans MagnetOn MagnetOff 1 (76,9);
+sync MagnetOn MagnetOff 1 (18,-72);
+trans MagnetOff MagnetOn 1 (-68,9);
+sync MagnetOff MagnetOn 1 (-50,47);
 }

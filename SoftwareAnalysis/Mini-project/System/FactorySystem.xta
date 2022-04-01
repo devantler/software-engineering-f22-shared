@@ -1,6 +1,9 @@
-chan goto1, goto2, goto3, goto4;
+chan discGoto1, discGoto2, discGoto3, discGoto4;
 chan AddItem, RemoveItem;
 chan AddItem1, AddItem2, AddItem3, AddItem4, RemoveItem1, RemoveItem2, RemoveItem3, RemoveItem4;
+chan ToggleMagnet;
+chan LowerCrane, RaiseCrane;
+chan craneGotoIntake, craneGotoRed, craneGotoBlue, craneGotoGreen;
 /**
 1: Tried to remove item from empty disc slot
 2: Tried to add item to full slot
@@ -8,41 +11,6 @@ chan AddItem1, AddItem2, AddItem3, AddItem4, RemoveItem1, RemoveItem2, RemoveIte
 8:
 */
 int error;
-
-process DiscController() {
-
-state
-    Idle,
-    Position1,
-    Position2,
-    Position3,
-    Position4,
-    AddItemReq,
-    RemoveItemReq;
-init
-    Idle;
-trans
-    RemoveItemReq -> Idle { },
-    Idle -> RemoveItemReq { sync RemoveItem!; },
-    AddItemReq -> Idle { },
-    Idle -> AddItemReq { sync AddItem!; },
-    Position4 -> Idle { },
-    Idle -> Position4 { sync goto4!; },
-    Position3 -> Idle { },
-    Idle -> Position3 { sync goto3!; },
-    Position2 -> Idle { },
-    Idle -> Position2 { sync goto2!; },
-    Position1 -> Idle { },
-    Idle -> Position1 { sync goto1!; };
-}
-
-process CraneController() {
-
-state
-    L0;
-init
-    L0;
-}
 
 process MasterController() {
 
@@ -70,18 +38,18 @@ state
 init
     Position1;
 trans
-    Position4 -> Position2 { sync goto2?; },
-    Position2 -> Position4 { sync goto4?; },
-    Position1 -> Position3 { sync goto3?; },
-    Position3 -> Position1 { sync goto1?; },
-    Position4 -> Position3 { sync goto3?; },
-    Position1 -> Position4 { sync goto4?; },
-    Position2 -> Position1 { sync goto1?; },
-    Position3 -> Position2 { sync goto2?; },
-    Position1 -> Position2 { sync goto2?; },
-    Position4 -> Position1 { sync goto1?; },
-    Position3 -> Position4 { sync goto4?; },
-    Position2 -> Position3 { sync goto3?; },
+    Position4 -> Position2 { sync discGoto2?; },
+    Position2 -> Position4 { sync discGoto4?; },
+    Position1 -> Position3 { sync discGoto3?; },
+    Position3 -> Position1 { sync discGoto1?; },
+    Position4 -> Position3 { sync discGoto3?; },
+    Position1 -> Position4 { sync discGoto4?; },
+    Position2 -> Position1 { sync discGoto1?; },
+    Position3 -> Position2 { sync discGoto2?; },
+    Position1 -> Position2 { sync discGoto2?; },
+    Position4 -> Position1 { sync discGoto1?; },
+    Position3 -> Position4 { sync discGoto4?; },
+    Position2 -> Position3 { sync discGoto3?; },
     Position1 -> AddItem1Req { sync AddItem?; },
     Position1 -> RemoveItem1Req { sync RemoveItem?; },
     Position2 -> AddItem2Req { sync AddItem?; },
@@ -184,15 +152,6 @@ trans
 process Crane() {
 
 
-
-
-
-
-
-
-
-
-
 // Place local declarations here.
 bool magnetPower =  false;
 state
@@ -207,36 +166,42 @@ state
 init
     Intake;
 trans
-    LoweredAtIntake -> Intake { },
-    Intake -> LoweredAtIntake { },
-    LoweredAtBlue -> Blue { },
-    Blue -> LoweredAtBlue { },
-    LoweredAtGreen -> Green { },
-    Green -> LoweredAtGreen { },
-    LoweredAtRed -> Red { },
-    Red -> LoweredAtRed { },
-    Green -> Intake { },
-    Intake -> Green { },
-    Red -> Intake { },
-    Green -> Red { },
-    Blue -> Green { },
-    Intake -> Blue { },
-    Blue -> Intake { },
-    Green -> Blue { },
-    Red -> Green { },
-    Intake -> Red { };
+    LoweredAtIntake -> Intake { sync RaiseCrane?; },
+    Intake -> LoweredAtIntake { sync LowerCrane?; },
+    LoweredAtBlue -> Blue { sync RaiseCrane?; },
+    Blue -> LoweredAtBlue { sync LowerCrane?; },
+    LoweredAtGreen -> Green { sync RaiseCrane?; },
+    Green -> LoweredAtGreen { sync LowerCrane?; },
+    LoweredAtRed -> Red { sync RaiseCrane?; },
+    Red -> LoweredAtRed { sync LowerCrane?; },
+    Green -> Intake { sync craneGotoIntake?; },
+    Intake -> Green { sync craneGotoGreen?; },
+    Red -> Intake { sync craneGotoIntake?; },
+    Green -> Red { sync craneGotoRed?; },
+    Blue -> Green { sync craneGotoGreen?; },
+    Intake -> Blue { sync craneGotoBlue?; },
+    Blue -> Intake { sync craneGotoIntake?; },
+    Green -> Blue { sync craneGotoBlue?; },
+    Red -> Green { sync craneGotoGreen?; },
+    Intake -> Red { sync craneGotoRed?; },
+    Red -> Blue { sync craneGotoBlue?; },
+    Blue -> Red { sync craneGotoRed?; };
 }
 
+process CraneMagnet() {
 
-
-
-
-
-
-
+state
+    MagnetOff,
+    MagnetOn;
+init
+    MagnetOff;
+trans
+    MagnetOn -> MagnetOff { sync ToggleMagnet?; },
+    MagnetOff -> MagnetOn { sync ToggleMagnet?; };
+}
 
 
 
 // Place template instantiations here.
 // List one or more processes to be composed into a system.
-system DiscController, CraneController, MasterController, Disc, DiscNamedSpots, Crane;
+system MasterController, Disc, DiscNamedSpots, Crane, DiscSlot1, DiscSlot2, DiscSlot3, DiscSlot4;
