@@ -10,133 +10,138 @@ using MQTTnet.Client;
 using MQTTnet;
 using MQTTnet.Protocol;
 
-namespace CameraColorScanner.Services;
-
-public class MqttService : IHostedService
+namespace CameraColorScanner.Services
 {
-    private readonly IConfiguration _mqttConfig;
-    private MqttClient _mqttClient;
-    private readonly IColorScannerAdapter _colorScanner;
-    
 
-    public MqttService(IConfiguration configuration, IColorScannerAdapter colorScannerAdapter)
+    public class MqttService : IHostedService
     {
-        Console.WriteLine("Starting MQTT service...");
-        try
-        {
-            _colorScanner = colorScannerAdapter;
-            _mqttConfig = configuration.GetRequiredSection("MQTT");
-            _mqttClient = new MqttFactory().CreateMqttClient();
-            this.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Error starting MQTT service: {e.Message}\n{e.StackTrace}");
-        }
-    }
+        private readonly IConfiguration _mqttConfig;
+        private MqttClient _mqttClient;
+        private readonly IColorScannerAdapter _colorScanner;
 
-    public async Task StartAsync(CancellationToken cancellationToken)
-    {
-        try
+
+        public MqttService(IConfiguration configuration, IColorScannerAdapter colorScannerAdapter)
         {
-            var mqttOptionsBuilder = new MqttClientOptionsBuilder()
-                .WithClientId(_mqttConfig["ClientId"])
-                .WithTcpServer(_mqttConfig["Hostname"], _mqttConfig.GetValue<int>("Port"));
-            if (_mqttConfig.GetValue<string?>("Username") != null
-                && _mqttConfig.GetValue<string?>("Password") != null)
+            Console.WriteLine("Starting MQTT service...");
+            try
             {
-                Console.WriteLine("With credentials");
-                mqttOptionsBuilder.WithCredentials(_mqttConfig["Username"], _mqttConfig["Password"]);
+                _colorScanner = colorScannerAdapter;
+                _mqttConfig = configuration.GetRequiredSection("MQTT");
+                _mqttClient = new MqttFactory().CreateMqttClient();
+                this.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
             }
-
-            if (_mqttConfig.GetValue<bool>("UseSsl"))
+            catch (Exception e)
             {
-                Console.WriteLine("With tls");
-                mqttOptionsBuilder.WithTls();
+                Console.WriteLine($"Error starting MQTT service: {e.Message}\n{e.StackTrace}");
             }
-
-            Console.WriteLine("Trying to connect...");
-            await _mqttClient.ConnectAsync(mqttOptionsBuilder.Build(), cancellationToken);
-
-            while (!_mqttClient.IsConnected)
-            {
-                await Task.Delay(50);
-                Console.Write(".");
-            }
-            Console.WriteLine("Connected!");
-
-            await _mqttClient.SubscribeAsync(_mqttConfig["CommandTopic"], MqttQualityOfServiceLevel.ExactlyOnce,
-                cancellationToken);
-            _mqttClient.ApplicationMessageReceivedAsync += MqttCallback;
         }
-        catch(Exception e)
-        {
-            Console.WriteLine("Error in mqttservice start: "+e.Message +"\n"+ e.StackTrace);
-        }
-    }
 
-    private async Task MqttCallback(MqttApplicationMessageReceivedEventArgs args)
-    {
-        var topic = args.ApplicationMessage.Topic;
-        var message = Encoding.UTF8.GetString(args.ApplicationMessage.Payload);
-        Console.WriteLine($"Message received: {message}");
-        Console.WriteLine("On topic: " + topic);
-
-        if (topic == _mqttConfig["CommandTopic"] && message == "GetColor")
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
-            if (_mqttConfig.GetValue<bool>("PrintDebug"))
+            try
             {
-                Console.WriteLine("Got message!");
+                var mqttOptionsBuilder = new MqttClientOptionsBuilder()
+                    .WithClientId(_mqttConfig["ClientId"])
+                    .WithTcpServer(_mqttConfig["Hostname"], _mqttConfig.GetValue<int>("Port"));
+                if (_mqttConfig.GetValue<string?>("Username") != null
+                    && _mqttConfig.GetValue<string?>("Password") != null)
+                {
+                    Console.WriteLine("With credentials");
+                    mqttOptionsBuilder.WithCredentials(_mqttConfig["Username"], _mqttConfig["Password"]);
+                }
+
+                if (_mqttConfig.GetValue<bool>("UseSsl"))
+                {
+                    Console.WriteLine("With tls");
+                    mqttOptionsBuilder.WithTls();
+                }
+
+                Console.WriteLine("Trying to connect...");
+                await _mqttClient.ConnectAsync(mqttOptionsBuilder.Build(), cancellationToken);
+
+                while (!_mqttClient.IsConnected)
+                {
+                    await Task.Delay(50);
+                    Console.Write(".");
+                }
+
+                Console.WriteLine("Connected!");
+
+                await _mqttClient.SubscribeAsync(_mqttConfig["CommandTopic"], MqttQualityOfServiceLevel.ExactlyOnce,
+                    cancellationToken);
+                _mqttClient.ApplicationMessageReceivedAsync += MqttCallback;
             }
-            var scannedColor = await _colorScanner.GetColor();
-
-            var resultTopic = _mqttConfig.GetValue<string>("ResultTopic");
-            if (resultTopic == null)
+            catch (Exception e)
             {
-                await SendMessage(
-                    _mqttConfig.GetValue<string>("LogTopic", "/log") + "/error",
-                    $"Result topic not defined.",
-                    true);
+                Console.WriteLine("Error in mqttservice start: " + e.Message + "\n" + e.StackTrace);
+            }
+        }
+
+        private async Task MqttCallback(MqttApplicationMessageReceivedEventArgs args)
+        {
+            var topic = args.ApplicationMessage.Topic;
+            var message = Encoding.UTF8.GetString(args.ApplicationMessage.Payload);
+            Console.WriteLine($"Message received: {message}");
+            Console.WriteLine("On topic: " + topic);
+
+            if (topic == _mqttConfig["CommandTopic"] && message == "GetColor")
+            {
+                if (_mqttConfig.GetValue<bool>("PrintDebug"))
+                {
+                    Console.WriteLine("Got message!");
+                }
+
+                var scannedColor = await _colorScanner.GetColor();
+
+                var resultTopic = _mqttConfig.GetValue<string>("ResultTopic");
+                if (resultTopic == null)
+                {
+                    await SendMessage(
+                        _mqttConfig.GetValue<string>("LogTopic", "/log") + "/error",
+                        $"Result topic not defined.",
+                        true);
+                }
+                else
+                {
+                    await SendMessage(
+                        _mqttConfig.GetValue<string>("ResultTopic")!, //The exclamation-point suppresses null warning
+                        scannedColor.ToString(),
+                        false);
+                }
             }
             else
             {
+                if (_mqttConfig.GetValue<bool>("PrintDebug"))
+                {
+                    Console.WriteLine($"Unknown topic: {topic} or command: {message}");
+                }
+
                 await SendMessage(
-                    _mqttConfig.GetValue<string>("ResultTopic")!, //The exclamation-point suppresses null warning
-                    scannedColor.ToString(),
-                    false);
+                    _mqttConfig.GetValue<string>("LogTopic", "/log") + "/error",
+                    $"Unknown topic: {topic} or command: {message}",
+                    true);
             }
         }
-        else
+
+        public async Task SendMessage(string topic, string payload, bool retain = false)
         {
-            if (_mqttConfig.GetValue<bool>("PrintDebug"))
-            {
-                Console.WriteLine($"Unknown topic: {topic} or command: {message}");
-            }
-            await SendMessage(
-                _mqttConfig.GetValue<string>("LogTopic", "/log") + "/error",
-                $"Unknown topic: {topic} or command: {message}",
-                true);
+            await SendMessage(topic, Encoding.UTF8.GetBytes(payload), retain);
         }
-    }
 
-    public async Task SendMessage(string topic, string payload, bool retain = false)
-    {
-        await SendMessage(topic, Encoding.UTF8.GetBytes(payload), retain);
-    }
+        public async Task SendMessage(string topic, byte[] payload, bool retain = false)
+        {
+            var mqttMessage = new MqttApplicationMessageBuilder()
+                .WithTopic(topic)
+                .WithRetainFlag(retain)
+                .WithPayload(payload)
+                .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.ExactlyOnce);
 
-    public async Task SendMessage(string topic, byte[] payload, bool retain = false)
-    {
-        var mqttMessage = new MqttApplicationMessageBuilder()
-            .WithTopic(topic)
-            .WithRetainFlag(retain)
-            .WithPayload(payload)
-            .WithQualityOfServiceLevel(MqttQualityOfServiceLevel.ExactlyOnce);
+            await _mqttClient.PublishAsync(mqttMessage.Build(), CancellationToken.None);
+        }
 
-        await _mqttClient.PublishAsync(mqttMessage.Build(), CancellationToken.None);
-    }
-
-    public async Task StopAsync(CancellationToken cancellationToken)
-    {
-        await _mqttClient.DisconnectAsync();
+        public async Task StopAsync(CancellationToken cancellationToken)
+        {
+            await _mqttClient.DisconnectAsync();
+        }
     }
 }
