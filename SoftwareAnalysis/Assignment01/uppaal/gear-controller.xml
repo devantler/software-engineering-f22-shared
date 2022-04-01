@@ -13,7 +13,10 @@ chan ReqSpeed, ReqTorque, ReqZeroTorque;
 chan GearNeu, GearSet;
 chan SpeedSet;
 chan OpenClutch, CloseClutch, ClutchIsOpen, ClutchIsClosed;
-</declaration>
+
+// for lecture 09
+bool b;
+chan a, c;</declaration>
 	<template>
 		<name>Interface</name>
 		<location id="id0" x="-450" y="-144" color="#00ff00">
@@ -560,7 +563,36 @@ UseCase:=0</label>
 			<name x="-68" y="578">CheckClutchClosed2</name>
 			<label kind="invariant" x="-68" y="595">GCTimer&lt;=200</label>
 		</location>
+		<location id="id65" x="-374" y="-110">
+			<committed/>
+		</location>
+		<location id="id66" x="-306" y="51">
+			<committed/>
+		</location>
 		<init ref="id40"/>
+		<transition>
+			<source ref="id66"/>
+			<target ref="id42"/>
+			<label kind="synchronisation" x="-356" y="55">c!</label>
+		</transition>
+		<transition>
+			<source ref="id48"/>
+			<target ref="id66"/>
+			<label kind="synchronisation" x="-356" y="21">GearNeu?</label>
+			<label kind="assignment" x="-356" y="38">b = false</label>
+		</transition>
+		<transition>
+			<source ref="id65"/>
+			<target ref="id41"/>
+			<label kind="synchronisation" x="-374" y="-97">a!</label>
+		</transition>
+		<transition>
+			<source ref="id47"/>
+			<target ref="id65"/>
+			<label kind="guard" x="-374" y="-174">GCTimer &lt; 250</label>
+			<label kind="synchronisation" x="-374" y="-157">TorqueZero?</label>
+			<label kind="assignment" x="-374" y="-140">b = true</label>
+		</transition>
 		<transition>
 			<source ref="id64"/>
 			<target ref="id60"/>
@@ -747,21 +779,10 @@ GCTimer&lt;=200</label>
 			<label kind="assignment" x="-365" y="127">GCTimer:=0</label>
 		</transition>
 		<transition>
-			<source ref="id48"/>
-			<target ref="id42"/>
-			<label kind="synchronisation" x="-365" y="42">GearNeu?</label>
-		</transition>
-		<transition>
 			<source ref="id41"/>
 			<target ref="id48"/>
 			<label kind="synchronisation" x="-365" y="-34">ReqNeu!</label>
 			<label kind="assignment" x="-365" y="-18">GCTimer:=0</label>
-		</transition>
-		<transition>
-			<source ref="id47"/>
-			<target ref="id41"/>
-			<label kind="guard" x="-365" y="-110">GCTimer&lt;250</label>
-			<label kind="synchronisation" x="-365" y="-127">TorqueZero?</label>
 		</transition>
 		<transition>
 			<source ref="id46"/>
@@ -775,6 +796,37 @@ GCTimer&lt;=200</label>
 			<target ref="id46"/>
 			<label kind="synchronisation" x="-365" y="-323">ReqNewGear?</label>
 			<label kind="assignment" x="-365" y="-306">SysTimer:=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>Test</name>
+		<declaration>clock x;</declaration>
+		<location id="id67" x="8" y="-161">
+		</location>
+		<location id="id68" x="8" y="-25">
+			<label kind="invariant" x="-34" y="0">x &lt;= 250</label>
+		</location>
+		<location id="id69" x="110" y="-25">
+			<name x="100" y="-59">Error</name>
+		</location>
+		<init ref="id67"/>
+		<transition>
+			<source ref="id68"/>
+			<target ref="id69"/>
+			<label kind="guard" x="26" y="-59">x == 250</label>
+		</transition>
+		<transition>
+			<source ref="id68"/>
+			<target ref="id67"/>
+			<label kind="synchronisation" x="-51" y="-85">c?</label>
+			<nail x="-59" y="-25"/>
+			<nail x="-59" y="-161"/>
+		</transition>
+		<transition>
+			<source ref="id67"/>
+			<target ref="id68"/>
+			<label kind="synchronisation" x="8" y="-110">a?</label>
+			<label kind="assignment" x="8" y="-93">x = 0</label>
 		</transition>
 	</template>
 	<system>// List one or more processes to be composed into a system.
@@ -992,6 +1044,14 @@ UPPAAL is designed to report all the deadlocked states
 during state-space exploration. So if no deadlock is
 reported before the final answer is given, the system is
 deadlock-free.</comment>
+		</query>
+		<query>
+			<formula>A[] (b imply GearControl.GCTimer &lt;= 250)</formula>
+			<comment>For lecture 09 - reduction to reachability by decoration</comment>
+		</query>
+		<query>
+			<formula>A[] not Test.Error</formula>
+			<comment>For lecture 09 - reduction to reachability with a test automaton</comment>
 		</query>
 	</queries>
 </nta>
