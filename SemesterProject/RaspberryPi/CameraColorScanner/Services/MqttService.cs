@@ -21,11 +21,18 @@ public class MqttService : IHostedService
 
     public MqttService(IConfiguration configuration, IColorScannerAdapter colorScannerAdapter)
     {
-        _colorScanner = colorScannerAdapter;
-        _mqttConfig = configuration.GetRequiredSection("MQTT");
-        _mqttClient = new MqttFactory().CreateMqttClient();
         Console.WriteLine("Starting MQTT service...");
-        this.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
+        try
+        {
+            _colorScanner = colorScannerAdapter;
+            _mqttConfig = configuration.GetRequiredSection("MQTT");
+            _mqttClient = new MqttFactory().CreateMqttClient();
+            this.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error starting MQTT service: {e.Message}\n{e.StackTrace}");
+        }
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)

@@ -21,13 +21,11 @@ namespace CameraColorScanner.Adapters;
 
 public class CameraScannerAdapter : IColorScannerAdapter
 {
-    private readonly MqttService _mqttService;
     private readonly ICamera _camera;
     private readonly IConfiguration _cameraConfig;
 
-    public CameraScannerAdapter(MqttService mqttService, ICamera camera, IConfiguration configuration)
+    public CameraScannerAdapter(ICamera camera, IConfiguration configuration)
     {
-        _mqttService = mqttService;
         _camera = camera;
         _cameraConfig = configuration.GetRequiredSection("Camera");
     }

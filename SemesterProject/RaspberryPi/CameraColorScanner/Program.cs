@@ -22,7 +22,7 @@ class Program
             {
                 services.AddScoped<ICamera, FileCamera>();
                 services.AddSingleton<IColorScannerAdapter, CameraScannerAdapter>();
-                services.AddSingleton<MqttService>();
+                services.AddHostedService<MqttService>();
                 services.Add(ServiceDescriptor.Singleton<IColorScannerAdapter, CameraScannerAdapter>());
             })
             .ConfigureAppConfiguration((hostingContext, configuration) =>
