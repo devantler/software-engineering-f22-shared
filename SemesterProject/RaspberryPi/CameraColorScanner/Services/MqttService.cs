@@ -21,12 +21,9 @@ namespace CameraColorScanner.Services
 
         public MqttService(IColorScannerAdapter colorScannerAdapter)
         {
-            Console.WriteLine("Starting MQTT service...");
             try
             {
                 _colorScanner = colorScannerAdapter;
-                _mqttClient = new MqttFactory().CreateMqttClient();
-                this.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
             }
             catch (Exception e)
             {
@@ -38,6 +35,8 @@ namespace CameraColorScanner.Services
         {
             try
             {
+                Console.WriteLine("Starting MQTT service...");
+                _mqttClient = new MqttFactory().CreateMqttClient();
                 var mqttOptionsBuilder = new MqttClientOptionsBuilder()
                     .WithClientId(Configuration.Mqtt.ClientId)
                     .WithTcpServer(Configuration.Mqtt.Hostname, Configuration.Mqtt.Port);
