@@ -16,12 +16,10 @@ namespace CameraColorScanner.Adapters
     public class CameraScannerAdapter : IColorScannerAdapter
     {
         private readonly ICamera _camera;
-        private readonly IConfiguration _cameraConfig;
 
-        public CameraScannerAdapter(ICamera camera, IConfiguration configuration)
+        public CameraScannerAdapter(ICamera camera)
         {
             _camera = camera;
-            _cameraConfig = configuration.GetRequiredSection("Camera");
         }
 
         public async Task<IColorScannerAdapter.Color> GetColor()
@@ -89,12 +87,11 @@ namespace CameraColorScanner.Adapters
 
         private async Task<Bitmap> CropImage(Bitmap image)
         {
-            var cropSection = _cameraConfig.GetRequiredSection("crop");
             var crop = new SixLabors.ImageSharp.Rectangle(
-                cropSection.GetValue<int>("x"),
-                cropSection.GetValue<int>("y"),
-                cropSection.GetValue<int>("width"),
-                cropSection.GetValue<int>("height")
+                Configuration.Camera.Crop.x,
+                Configuration.Camera.Crop.y,
+                Configuration.Camera.Crop.Width,
+                Configuration.Camera.Crop.Height
             );
             SixLabors.ImageSharp.Image garbageImage;
             await using (var memstream = new MemoryStream())

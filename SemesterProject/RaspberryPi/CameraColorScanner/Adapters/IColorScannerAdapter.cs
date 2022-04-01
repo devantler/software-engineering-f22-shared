@@ -1,15 +1,17 @@
 using System.Threading.Tasks;
 
-namespace CameraColorScanner.Adapters;
-
-public interface IColorScannerAdapter
+namespace CameraColorScanner.Adapters
 {
-    Task<Color> GetColor();
-    
-    enum Color
+
+    public interface IColorScannerAdapter
     {
-        RED,
-        GREEN,
-        BLUE
+        Task<Color> GetColor();
+
+        enum Color
+        {
+            RED,
+            GREEN,
+            BLUE
+        }
     }
 }

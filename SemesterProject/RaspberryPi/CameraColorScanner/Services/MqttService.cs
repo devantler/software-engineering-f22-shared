@@ -15,18 +15,16 @@ namespace CameraColorScanner.Services
 
     public class MqttService : IHostedService
     {
-        private readonly IConfiguration _mqttConfig;
         private MqttClient _mqttClient;
         private readonly IColorScannerAdapter _colorScanner;
 
 
-        public MqttService(IConfiguration configuration, IColorScannerAdapter colorScannerAdapter)
+        public MqttService(IColorScannerAdapter colorScannerAdapter)
         {
             Console.WriteLine("Starting MQTT service...");
             try
             {
                 _colorScanner = colorScannerAdapter;
-                _mqttConfig = configuration.GetRequiredSection("MQTT");
                 _mqttClient = new MqttFactory().CreateMqttClient();
                 this.StartAsync(CancellationToken.None).GetAwaiter().GetResult();
             }
@@ -41,16 +39,16 @@ namespace CameraColorScanner.Services
             try
             {
                 var mqttOptionsBuilder = new MqttClientOptionsBuilder()
-                    .WithClientId(_mqttConfig["ClientId"])
-                    .WithTcpServer(_mqttConfig["Hostname"], _mqttConfig.GetValue<int>("Port"));
-                if (_mqttConfig.GetValue<string?>("Username") != null
-                    && _mqttConfig.GetValue<string?>("Password") != null)
+                    .WithClientId(Configuration.Mqtt.ClientId)
+                    .WithTcpServer(Configuration.Mqtt.Hostname, Configuration.Mqtt.Port);
+                if (Configuration.Mqtt.Username != null
+                    && Configuration.Mqtt.Password != null)
                 {
                     Console.WriteLine("With credentials");
-                    mqttOptionsBuilder.WithCredentials(_mqttConfig["Username"], _mqttConfig["Password"]);
+                    mqttOptionsBuilder.WithCredentials(Configuration.Mqtt.Username, Configuration.Mqtt.Password);
                 }
 
-                if (_mqttConfig.GetValue<bool>("UseSsl"))
+                if (Configuration.Mqtt.UseSsl)
                 {
                     Console.WriteLine("With tls");
                     mqttOptionsBuilder.WithTls();
@@ -67,7 +65,7 @@ namespace CameraColorScanner.Services
 
                 Console.WriteLine("Connected!");
 
-                await _mqttClient.SubscribeAsync(_mqttConfig["CommandTopic"], MqttQualityOfServiceLevel.ExactlyOnce,
+                await _mqttClient.SubscribeAsync(Configuration.Mqtt.CommandTopic, MqttQualityOfServiceLevel.ExactlyOnce,
                     cancellationToken);
                 _mqttClient.ApplicationMessageReceivedAsync += MqttCallback;
             }
@@ -84,40 +82,40 @@ namespace CameraColorScanner.Services
             Console.WriteLine($"Message received: {message}");
             Console.WriteLine("On topic: " + topic);
 
-            if (topic == _mqttConfig["CommandTopic"] && message == "GetColor")
+            if (topic == Configuration.Mqtt.CommandTopic && message == "GetColor")
             {
-                if (_mqttConfig.GetValue<bool>("PrintDebug"))
+                if (Configuration.Mqtt.PrintDebug)
                 {
                     Console.WriteLine("Got message!");
                 }
 
                 var scannedColor = await _colorScanner.GetColor();
 
-                var resultTopic = _mqttConfig.GetValue<string>("ResultTopic");
+                var resultTopic = Configuration.Mqtt.ResultTopic;
                 if (resultTopic == null)
                 {
                     await SendMessage(
-                        _mqttConfig.GetValue<string>("LogTopic", "/log") + "/error",
+                        Configuration.Mqtt.LogTopic + "/error",
                         $"Result topic not defined.",
                         true);
                 }
                 else
                 {
                     await SendMessage(
-                        _mqttConfig.GetValue<string>("ResultTopic")!, //The exclamation-point suppresses null warning
+                        Configuration.Mqtt.ResultTopic, //The exclamation-point suppresses null warning
                         scannedColor.ToString(),
                         false);
                 }
             }
             else
             {
-                if (_mqttConfig.GetValue<bool>("PrintDebug"))
+                if (Configuration.Mqtt.PrintDebug)
                 {
                     Console.WriteLine($"Unknown topic: {topic} or command: {message}");
                 }
 
                 await SendMessage(
-                    _mqttConfig.GetValue<string>("LogTopic", "/log") + "/error",
+                    Configuration.Mqtt.LogTopic + "/error",
                     $"Unknown topic: {topic} or command: {message}",
                     true);
             }

@@ -19,27 +19,12 @@ namespace CameraColorScanner
 
         static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((hostingContext, configuration) =>
-                {
-                    configuration.Sources.Clear();
-
-                    var env = hostingContext.HostingEnvironment;
-
-                    configuration
-                        .AddEnvironmentVariables()
-                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-
-
-                    configuration.Build();
-                })
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddScoped<ICamera, FileCamera>();
                     services.AddSingleton<IColorScannerAdapter, CameraScannerAdapter>();
                     services.AddHostedService<MqttService>();
                     services.Add(ServiceDescriptor.Singleton<IColorScannerAdapter, CameraScannerAdapter>());
-                    services.Configure<IConfiguration>(hostContext.Configuration);
                 });
 
     }
