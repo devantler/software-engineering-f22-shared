@@ -3,6 +3,8 @@ name: Raspi-Camera-Docker
 on:
   push:
     branches: ['main']
+    paths:
+      - 'SemesterProject/RaspberryPi/CameraColorScanner/**'
 
 jobs:
   build-and-push-image:
