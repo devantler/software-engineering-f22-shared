@@ -3,97 +3,167 @@ grammar xtext.factoryLang.FactoryLang with org.eclipse.xtext.common.Terminals
 generate factoryLang "http://www.factoryLang.xtext/FactoryLang"
 
 Model:
-	declarations+=Declaration+ statements+=Statement*;
+	configurations+=Configuration+ statements+=Statement*;
 
 // ----- CONFIGURATION ----- //
-Declaration:
+Configuration:
 	'create' device=Device;
 
-Device returns Reference:
+Device:
 	Crane | Disk | Camera;
 
+// ----- CONFIGURATION:CRANE ----- //
 Crane returns Device:
 	{Crane} 'crane' 'named' name=STRING BEGIN parameters+=CraneParameter+ END;
 
 CraneParameter returns Parameter:
+	CranePositionParameter;
+
+CranePositionParameter returns CraneParameter:
 	{CraneParameter} 'with' 'position' 'at' degree=INT 'named' name=STRING;
 
+// ----- CONFIGURATION:DISK ----- //
 Disk returns Device:
-	{Disk} 'disk' 'named' name=STRING BEGIN parameters+=DiskParameter+ END;
+	{Disk} 'disk' 'named' name=STRING BEGIN size=DiskSizeParameter parameters+=DiskParameter+ END;
 
 DiskParameter returns Parameter:
-	DiskPositionParameter | DiskSlotParameter;
+	DiskSlotParameter;
 
-DiskPositionParameter returns DiskParameter:
-	{DiskPositionParameter} 'with' 'position' 'at' 'slot' slot=INT 'named' name=STRING;
+DiskSizeParameter returns DiskParameter:
+	{DiskSizeParameter} 'with' size=INT 'slots';
 
 DiskSlotParameter returns DiskParameter:
-	{DiskSlotParameter} 'with' slots=INT 'slots';
+	{DiskSlotParameter} 'with' 'slot' slot=INT 'named' name=STRING;
 
+// ----- CONFIGURATION:CAMERA ----- //
 Camera returns Device:
 	{Camera} 'camera' 'named' name=STRING BEGIN parameters+=CameraParameter+ END;
 
 CameraParameter returns Parameter:
-	{CameraParameter} 'with' 'scannable' 'color' color=COLOR;
+	CameraColorParameter;
 
-// ----- LOGIC ----- //
+CameraColorParameter returns Parameter:
+	{CameraColorParameter} 'with' 'scannable' 'color' color=COLOR;
+
+// ----- STATEMENTS ----- //
 Statement:
-	Conditional; // | Loop | Operation;
+	Conditional | Operation | Loop;
 
-Conditional:
-	DeviceConditional | VariableConditional | NumberConditional;
+// ----- STATEMENTS:CONDITIONALS ----- //
+Conditional returns Statement:
+	CraneConditional | DiskConditional | CameraConditional | VariableConditional;
 
-DeviceConditional returns Conditional:
-	{DeviceConditional} 'if' source=[Device] 'is' operator=BOOLEAN_OPERATOR target=ConditionalTarget 'then' BEGIN
-	statements+=Statement+ END;
-
+// ----- STATEMENTS:CONDITIONALS:CRANE ----- //
 CraneConditional returns Conditional:
-	{DeviceConditional} 'if' source=[Crane] 'is' operator=BOOLEAN_OPERATOR target=ConditionalTarget 'then' BEGIN
+	{CraneConditional} 'if' source=[Crane|STRING] 'is' (operator='not')? 'at'
+	target=[CraneParameter|STRING]
+	'then' BEGIN statements+=Statement+ END;
+
+// ----- STATEMENTS:CONDITIONALS:DISK ----- //
+DiskConditional returns Conditional:
+	{DiskConditional} 'if' source=[Disk|STRING] 'is' (operator='not')? target=DiskStateValue 'then' BEGIN
 	statements+=Statement+ END;
 
+// ----- STATEMENTS:CONDITIONALS:CAMERA ----- //
+CameraConditional returns Conditional:
+	{CameraConditional} 'if' source=[Camera|STRING] 'is' (operator='not')? target=COLOR 'then' BEGIN
+	statements+=Statement+ END;
+
+// ----- STATEMENTS:CONDITIONALS:VARIABLE ----- //
 VariableConditional returns Conditional:
-	{VariableConditional} 'if' source=[Variable] 'is' operator=BOOLEAN_OPERATOR target=ConditionalTarget 'then' BEGIN
+	{VariableConditional} 'if' source=[Variable] 'is' (operator='not')? (comparison_operator=COMPARISON_OPERATOR)?
+	target=VariableValue 'then' BEGIN
 	statements+=Statement+ END;
 
-NumberConditional returns Conditional:
-	{NumberConditional} 'if' source=[Number] 'is' operator=BOOLEAN_OPERATOR target=ConditionalTarget 'then' BEGIN
-	statements+=Statement+ END;
+// ----- STATEMENTS:OPERATIONS ----- //
+Operation returns Statement:
+	CraneOperation | DiskOperation | CameraOperation;
 
-ConditionalTarget:
-	disk_state=DISK_STATES | color=COLOR | value=INT;
-	
-Variable returns Reference:
-	{Variable} name=ID;
+// ----- STATEMENTS:OPERATIONS:CRANE ----- //
+CraneOperation returns Operation:
+	CranePickupOperation | CraneDropOperation;
+
+CranePickupOperation returns CraneOperation:
+	device=[Crane|STRING] 'pickup' 'item' 'at' target=[CraneParameter|STRING];
+
+CraneDropOperation returns CraneOperation:
+	device=[Crane|STRING] 'drop' 'item' 'at' target=[CraneParameter|STRING];
+
+// ----- STATEMENTS:OPERATIONS:DISK ----- //
+DiskOperation returns Operation:
+	DiskMoveEmptySlotOperation | DiskMoveVariableSlotOperation | DiskMoveSlotOperation | DiskMarkSlotOperation;
+
+DiskMoveSlotOperation returns DiskOperation:
+	{DiskMoveSlotOperation} device=[Disk|STRING] 'move' 'slot' 'at' source=[DiskSlotParameter|STRING] 'to'
+	target=[DiskSlotParameter|STRING];
+
+DiskMoveVariableSlotOperation returns DiskOperation:
+	device=[Disk|STRING] 'move' 'slot' 'of' variable=[Variable] 'to' target=[DiskSlotParameter|STRING];
+
+DiskMoveEmptySlotOperation returns DiskOperation:
+	{DiskMoveEmptySlotOperation} device=[Disk|STRING] 'move' 'empty' 'slot' 'to' target=[DiskSlotParameter|STRING];
+
+DiskMarkSlotOperation returns DiskOperation:
+	{DiskMarkSlotOperation} device=[Disk|STRING] 'mark' 'slot' 'at' target=[DiskSlotParameter|STRING] 'as'
+	value=DiskSlotValue ('in' quantity=INT measure=TIME)?;
+
+// ----- STATEMENTS:OPERATIONS:CAMERA ----- //
+CameraOperation returns Operation:
+	CameraScanOperation;
+
+CameraScanOperation returns CameraOperation:
+	device=[Camera|STRING] 'scan' 'color' 'into' variable=GlobalVariable;
+
+// ----- STATEMENTS:LOOPS ----- //
+Loop returns Statement:
+	ForEach;
+
+// ----- STATEMENTS:LOOPS:FOREACH ----- //
+ForEach returns Loop:
+	'for' 'each' variable=LocalVariable 'in' source=[Device|STRING] 'that' 'is' (operator='not')? target=VariableValue
+	'then' BEGIN statements+=Statement+ END;
+
+// ----- VARIABLES ----- //
+LocalVariable returns Variable:
+	{LocalVariable} name=ID;
+
+GlobalVariable returns Variable:
+	{GlobalVariable} name=ID;
+
+// ----- VALUE TYPES ----- //
+DiskSlotValue:
+	DiskSlotStateValue | ColorValue | ref=[GlobalVariable];
+
+VariableValue:
+	DiskSlotStateValue | ColorValue | Number | DiskStateValue;
+
+DiskStateValue:
+	value=DISK_STATES;
+
+DiskSlotStateValue:
+	value=DISK_SLOT_STATES;
+
+ColorValue:
+	value=COLOR;
 
 Number:
 	value=INT;
 
-//Loop returns Statement:
-//	name=ID;
-//
-//Operation returns Statement:
-//	CraneOperation | DiskOperation | CameraOperation;
-//
-//CraneOperation returns Operation:
-//	name=ID;
-//
-//DiskOperation returns Operation:
-//	name=ID;
-//
-//CameraOperation returns Operation:
-//	name=ID;
-//
+// ----- SHARED ENUMS ----- //
+enum COMPARISON_OPERATOR:
+	LESS_THAN='less than' | GREATER_THAN='greater than';
 
-
-// ----- ENUMS ----- //
 enum COLOR:
 	RED='red' | GREEN='green' | BLUE='blue';
 
-enum BOOLEAN_OPERATOR:
-	NOT='not' | LESS_THAN='less than' | GREATER_THAN='greater than' | EQUAL_TO='equal to';
+enum DISK_SLOT_STATES:
+	FREE='free' | IN_PROGRESS='in-progress' | COMPLETE='complete';
 
 enum DISK_STATES:
-	FREE='free' | IN_PROGRESS='in progress' | COMPLETE='complete';
+	FULL='full' | EMPTY='empty';
+
+enum TIME:
+	SECONDS='seconds' | SECOND='second' | MINUTES='minutes' | MINUTE='minute' | HOURS='hours' | HOUR='hour';
 
 // ----- TERMINALS ----- //
 terminal BEGIN:
