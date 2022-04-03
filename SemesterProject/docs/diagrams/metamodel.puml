@@ -1,0 +1,56 @@
+@startuml
+left to right direction
+class Model
+class Reference
+class Declaration
+
+class Statement
+class Loop
+class Conditional 
+class DeviceConditional
+class VariableConditional
+class NumberConditional
+
+
+class Device
+class Parameter
+class DiskParameter
+class ConditionalTarget
+class Number
+class Crane
+class CraneParameter
+class Disk
+class DiskPositionParameter
+class DiskSlotParameter
+class Camera
+class CameraParameter
+class Variable
+enum COLOR
+enum BOOLEAN_OPERATOR
+enum DISK_STATES
+
+
+Device --|> Reference
+Declaration --|> Reference
+Statement --|> Reference
+Variable --|> Reference
+
+Conditional --|> Statement
+DeviceConditional --|> Conditional
+VariableConditional --|> Conditional
+NumberConditional --|> Conditional
+
+Loop --|> Statement
+Operation --|> Statement
+
+Disk --|> Device
+DiskParameter --|> Parameter
+DiskPositionParameter --|> DiskParameter
+DiskSlotParameter --|> DiskParameter
+
+Crane --|> Device
+CraneParameter --|> Parameter
+
+Camera --|> Device
+CameraParameter --|> Parameter
+@enduml

@@ -13,7 +13,7 @@ Declaration:
 terminal BEGIN:
 	"synthetic:BEGIN"
 ;
-
+ 
 terminal END:
 	"synthetic:END"
 ;
