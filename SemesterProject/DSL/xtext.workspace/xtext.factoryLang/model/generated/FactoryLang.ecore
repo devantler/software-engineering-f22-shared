@@ -23,6 +23,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiskParameter" eSuperTypes="#//Parameter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CameraParameter" eSuperTypes="#//Parameter"/>
   <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Conditional" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -37,7 +38,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DiskOperation" eSuperTypes="#//Operation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Disk"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//DiskSlotParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//DiskZoneParameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CameraOperation" eSuperTypes="#//Operation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Camera"/>
@@ -104,16 +105,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="size" eType="#//DiskParameter"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DiskSizeParameter" eSuperTypes="#//DiskParameter">
+  <eClassifiers xsi:type="ecore:EClass" name="DiskSlotParameter" eSuperTypes="#//DiskParameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DiskSlotParameter" eSuperTypes="#//DiskParameter">
+  <eClassifiers xsi:type="ecore:EClass" name="DiskZoneParameter" eSuperTypes="#//DiskParameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="zone" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="slot" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Camera" eSuperTypes="#//Device"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CameraColorParameter" eSuperTypes="#//Parameter">
+  <eClassifiers xsi:type="ecore:EClass" name="CameraColorParameter" eSuperTypes="#//CameraParameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//COLOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CraneConditional" eSuperTypes="#//Conditional">
@@ -136,7 +137,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiskMoveSlotOperation" eSuperTypes="#//DiskOperation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//DiskSlotParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//DiskZoneParameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiskMoveEmptySlotOperation" eSuperTypes="#//DiskOperation"/>
   <eClassifiers xsi:type="ecore:EClass" name="DiskMarkSlotOperation" eSuperTypes="#//DiskOperation">

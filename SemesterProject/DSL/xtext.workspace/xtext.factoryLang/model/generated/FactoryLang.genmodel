@@ -49,6 +49,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//CraneParameter/name"/>
     </genClasses>
     <genClasses ecoreClass="FactoryLang.ecore#//DiskParameter"/>
+    <genClasses ecoreClass="FactoryLang.ecore#//CameraParameter"/>
     <genClasses ecoreClass="FactoryLang.ecore#//Statement"/>
     <genClasses ecoreClass="FactoryLang.ecore#//Conditional">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//Conditional/operator"/>
@@ -98,13 +99,13 @@
     <genClasses ecoreClass="FactoryLang.ecore#//Disk">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryLang.ecore#//Disk/size"/>
     </genClasses>
-    <genClasses ecoreClass="FactoryLang.ecore#//DiskSizeParameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskSizeParameter/size"/>
-    </genClasses>
     <genClasses ecoreClass="FactoryLang.ecore#//DiskSlotParameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskSlotParameter/zone"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskSlotParameter/slot"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskSlotParameter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskSlotParameter/size"/>
+    </genClasses>
+    <genClasses ecoreClass="FactoryLang.ecore#//DiskZoneParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskZoneParameter/zone"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskZoneParameter/slot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskZoneParameter/name"/>
     </genClasses>
     <genClasses ecoreClass="FactoryLang.ecore#//Camera"/>
     <genClasses ecoreClass="FactoryLang.ecore#//CameraColorParameter">

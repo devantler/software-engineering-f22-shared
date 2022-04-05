@@ -24,16 +24,16 @@ CranePositionParameter returns CraneParameter:
 
 // ----- CONFIGURATION:DISK ----- //
 Disk returns Device:
-	{Disk} 'disk' 'named' name=STRING BEGIN size=DiskSlotsParameter parameters+=DiskParameter+ END;
+	{Disk} 'disk' 'named' name=STRING BEGIN size=DiskSlotParameter parameters+=DiskParameter+ END;
 
 DiskParameter returns Parameter:
 	DiskZoneParameter;
 
-DiskSlotsParameter returns DiskParameter:
-	{DiskSizeParameter} 'with' size=INT 'slots';
+DiskSlotParameter returns DiskParameter:
+	{DiskSlotParameter} 'with' size=INT 'slots';
 
 DiskZoneParameter returns DiskParameter:
-	{DiskSlotParameter} 'with' 'zone' zone=INT 'at' 'slot' slot=INT 'named' name=STRING;
+	{DiskZoneParameter} 'with' 'zone' zone=INT 'at' 'slot' slot=INT 'named' name=STRING;
 
 // ----- CONFIGURATION:CAMERA ----- //
 Camera returns Device:
@@ -42,7 +42,7 @@ Camera returns Device:
 CameraParameter returns Parameter:
 	CameraColorParameter;
 
-CameraColorParameter returns Parameter:
+CameraColorParameter returns CameraParameter:
 	{CameraColorParameter} 'with' 'scannable' 'color' color=COLOR;
 
 // ----- STATEMENTS ----- //
@@ -94,17 +94,17 @@ DiskOperation returns Operation:
 	DiskMoveEmptySlotOperation | DiskMoveVariableSlotOperation | DiskMoveSlotOperation | DiskMarkSlotOperation;
 
 DiskMoveSlotOperation returns DiskOperation:
-	{DiskMoveSlotOperation} device=[Disk|STRING] 'move' 'slot' 'at' source=[DiskSlotParameter|STRING] 'to'
-	target=[DiskSlotParameter|STRING];
+	{DiskMoveSlotOperation} device=[Disk|STRING] 'move' 'slot' 'at' source=[DiskZoneParameter|STRING] 'to'
+	target=[DiskZoneParameter|STRING];
 
 DiskMoveVariableSlotOperation returns DiskOperation:
-	device=[Disk|STRING] 'move' 'slot' 'of' variable=[Variable] 'to' target=[DiskSlotParameter|STRING];
+	device=[Disk|STRING] 'move' 'slot' 'of' variable=[Variable] 'to' target=[DiskZoneParameter|STRING];
 
 DiskMoveEmptySlotOperation returns DiskOperation:
-	{DiskMoveEmptySlotOperation} device=[Disk|STRING] 'move' 'empty' 'slot' 'to' target=[DiskSlotParameter|STRING];
+	{DiskMoveEmptySlotOperation} device=[Disk|STRING] 'move' 'empty' 'slot' 'to' target=[DiskZoneParameter|STRING];
 
 DiskMarkSlotOperation returns DiskOperation:
-	{DiskMarkSlotOperation} device=[Disk|STRING] 'mark' 'slot' 'at' target=[DiskSlotParameter|STRING] 'as'
+	{DiskMarkSlotOperation} device=[Disk|STRING] 'mark' 'slot' 'at' target=[DiskZoneParameter|STRING] 'as'
 	value=DiskSlotValue ('in' quantity=INT measure=TIME)?;
 
 // ----- STATEMENTS:OPERATIONS:CAMERA ----- //
