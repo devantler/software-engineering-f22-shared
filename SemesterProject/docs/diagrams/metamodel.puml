@@ -9,13 +9,7 @@ class Configuration {
 }
 
 class Statement
-class Loop {
-    + variable: Variable
-    + source: Device
-    + operator: string
-    + target: VariableValue
-    + statements: Statement
-}
+class Loop
 class Operation
 class Conditional {
     + operator: string
@@ -32,9 +26,27 @@ class Number {
     + value: int
 }
 class Crane
-class CraneParameter {
+class CraneParameter
+class CranePositionParameter {
     + degree: int
     + name: string
+}
+class CranePickupOperation
+class CraneDropOperation
+
+class DiskMoveVariableSlotOperation {
+    + variable: Variable
+}
+class CameraScanOperation {
+    + device: Camera
+    + variable: Variable
+}
+class ForEach {
+    + variable: Variable
+    + source: Device
+    + operator: string
+    + target: VariableValue
+    + statements: Statement
 }
 class CraneOperation {
     + device: Crane
@@ -66,7 +78,6 @@ class DiskConditional {
 }
 class DiskOperation {
     + device: Disk
-    + variable: Variable
     + target: DiskSlotParameter
 }
 class DiskPositionParameter
@@ -93,10 +104,7 @@ class Camera
 class CameraColorParameter {
     + color: COLOR
 }
-class CameraOperation {
-    + device: Camera
-    + variable: Variable
-}
+class CameraOperation
 class CameraConditional {
     + source: Camera
     + target: COLOR
@@ -171,6 +179,7 @@ CameraColorParameter *--> "1" COLOR
 ' Configuration:Device:Crane
 Crane --|> Device
 CraneParameter --|> Parameter
+CranePositionParameter --|> CraneParameter
 ' Statements
 ' Statements:Conditionals
 Conditional --|> Statement
@@ -201,6 +210,8 @@ Operation --|> Statement
 CraneOperation --|> Operation
 CraneOperation *--> "1" Crane
 CraneOperation *--> "1" CraneParameter
+CraneDropOperation --|> CraneOperation
+CranePickupOperation --|> CraneOperation
 
 DiskOperation --|> Operation
 DiskOperation *--> "1" Disk
@@ -208,11 +219,15 @@ DiskOperation *--> "1" Variable
 DiskOperation *--> "1" DiskSlotParameter
 
 CameraOperation --|> Operation
-CameraOperation *--> "1" Camera
-CameraOperation *--> "1" Variable
+CameraScanOperation --|> CameraOperation
+CameraScanOperation *--> "1" Camera
+CameraScanOperation *--> "1" Variable
 
 DiskMoveSlotOperation --|> DiskOperation
 DiskMoveSlotOperation *--> "1" DiskZoneParameter
+
+DiskMoveVariableSlotOperation --|> DiskOperation
+DiskMoveVariableSlotOperation *--> "1" Variable
 
 DiskMoveEmptySlotOperation --|> DiskOperation
 
@@ -222,10 +237,11 @@ DiskMarkSlotOperation *--> "1" TIME
 
 ' Statements:Loops
 Loop --|> Statement
-Loop *--> "1" Variable
-Loop *--> "1" Device 
-Loop *--> "1" VariableValue
-Loop *--> "1..*" Statement 
+ForEach --|> Loop
+ForEach *--> "1" Variable
+ForEach *--> "1" Device 
+ForEach *--> "1" VariableValue
+ForEach *--> "1..*" Statement 
 
 ' Variables
 LocalVariable --|> Variable
