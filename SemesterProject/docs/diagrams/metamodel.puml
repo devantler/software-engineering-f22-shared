@@ -4,7 +4,7 @@
 ' Remove the [hidden] part from arrows to show references. 
 ' This can be done by a search and replace for (-[hidden]->) with (-->)
 skinparam linetype polyline
-' skinparam linetype ortho
+skinparam linetype polyline
 class Model {
     + configurations: Configuration
     + statement: Statement

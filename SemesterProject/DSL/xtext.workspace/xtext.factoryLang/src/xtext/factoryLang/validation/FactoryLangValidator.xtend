@@ -23,7 +23,7 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 	public static val INVALID_VALUE = 'invalidValue'
 	
 	@Check
-	def checkCranePositionParameterDegree(CranePositionParameter parameter) {
+	def checkCranePositionParameter(CranePositionParameter parameter) {
 		if (!(parameter.degree >= 0 && parameter.degree <= 359)) {
 			error('Degree value should be between 0 and 359 degrees (inclusive)',
 				Literals.CRANE_POSITION_PARAMETER__DEGREE,
@@ -50,7 +50,7 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 	}
 	
 	@Check
-	def checkDiskMarkSlotOperationTime(DiskMarkSlotOperation operation) {
+	def checkDiskMarkSlotOperation(DiskMarkSlotOperation operation) {
 		if (!operation.eIsSet(Literals.DISK_MARK_SLOT_OPERATION__QUANTITY) ||
 			!operation.eIsSet(Literals.DISK_MARK_SLOT_OPERATION__MEASURE)) {
 			return
