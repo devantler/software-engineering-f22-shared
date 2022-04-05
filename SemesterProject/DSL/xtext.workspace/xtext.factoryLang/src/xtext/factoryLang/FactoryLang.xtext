@@ -55,18 +55,18 @@ Conditional returns Statement:
 
 // ----- STATEMENTS:CONDITIONALS:CRANE ----- //
 CraneConditional returns Conditional:
-	{CraneConditional} 'if' 'crane' source=[Crane] 'is' (operator='not')?
-	target=[CraneParameter]
+	{CraneConditional} 'if' 'crane' source=[Crane|QualifiedName] 'is' (operator='not')?
+	target=[CraneParameter|QualifiedName]
 	'then' BEGIN statements+=Statement* END;
 
 // ----- STATEMENTS:CONDITIONALS:DISK ----- //
 DiskConditional returns Conditional:
-	{DiskConditional} 'if' 'disk' source=[Disk] 'is' (operator='not')? target=DiskStateValue 'then' BEGIN
+	{DiskConditional} 'if' 'disk' source=[Disk|QualifiedName] 'is' (operator='not')? target=DiskStateValue 'then' BEGIN
 	statements+=Statement* END;
 
 // ----- STATEMENTS:CONDITIONALS:CAMERA ----- //
 CameraConditional returns Conditional:
-	{CameraConditional} 'if' 'camera' source=[Camera] 'is' (operator='not')? target=COLOR 'then' BEGIN
+	{CameraConditional} 'if' 'camera' source=[Camera|QualifiedName] 'is' (operator='not')? target=COLOR 'then' BEGIN
 	statements+=Statement* END;
 
 // ----- STATEMENTS:CONDITIONALS:VARIABLE ----- //
@@ -84,27 +84,27 @@ CraneOperation returns Operation:
 	CranePickupOperation | CraneDropOperation;
 
 CranePickupOperation returns CraneOperation:
-	{CranePickupOperation} device=[Crane] 'pickup' 'item' 'at' target=[CraneParameter];
+	{CranePickupOperation} device=[Crane|QualifiedName] 'pickup' 'item' 'at' target=[CraneParameter|QualifiedName];
 
 CraneDropOperation returns CraneOperation:
-	{CraneDropOperation} device=[Crane] 'drop' 'item' 'at' target=[CraneParameter];
+	{CraneDropOperation} device=[Crane|QualifiedName] 'drop' 'item' 'at' target=[CraneParameter|QualifiedName];
 
 // ----- STATEMENTS:OPERATIONS:DISK ----- //
 DiskOperation returns Operation:
 	DiskMoveEmptySlotOperation | DiskMoveVariableSlotOperation | DiskMoveSlotOperation | DiskMarkSlotOperation;
 
 DiskMoveSlotOperation returns DiskOperation:
-	{DiskMoveSlotOperation} device=[Disk] 'move' 'slot' 'at' source=[DiskZoneParameter] 'to'
-	target=[DiskZoneParameter];
+	{DiskMoveSlotOperation} device=[Disk|QualifiedName] 'move' 'slot' 'at' source=[DiskZoneParameter|QualifiedName] 'to'
+	target=[DiskZoneParameter|QualifiedName];
 
 DiskMoveVariableSlotOperation returns DiskOperation:
-	{DiskMoveVariableSlotOperation} device=[Disk] 'move' 'slot' 'of' variable=[Variable] 'to' target=[DiskZoneParameter];
+	{DiskMoveVariableSlotOperation} device=[Disk|QualifiedName] 'move' 'slot' 'of' variable=[Variable|QualifiedName] 'to' target=[DiskZoneParameter|QualifiedName];
 
 DiskMoveEmptySlotOperation returns DiskOperation:
-	{DiskMoveEmptySlotOperation} device=[Disk] 'move' 'empty' 'slot' 'to' target=[DiskZoneParameter];
+	{DiskMoveEmptySlotOperation} device=[Disk|QualifiedName] 'move' 'empty' 'slot' 'to' target=[DiskZoneParameter|QualifiedName];
 
 DiskMarkSlotOperation returns DiskOperation:
-	{DiskMarkSlotOperation} device=[Disk] 'mark' 'slot' 'at' target=[DiskZoneParameter] 'as'
+	{DiskMarkSlotOperation} device=[Disk|QualifiedName] 'mark' 'slot' 'at' target=[DiskZoneParameter|QualifiedName] 'as'
 	value=DiskSlotValue ('in' quantity=INT measure=TIME)?;
 
 // ----- STATEMENTS:OPERATIONS:CAMERA ----- //
@@ -112,7 +112,7 @@ CameraOperation returns Operation:
 	CameraScanOperation;
 
 CameraScanOperation returns CameraOperation:
-	{CameraScanOperation} device=[Camera] 'scan' 'color' 'into' variable=GlobalVariable;
+	{CameraScanOperation} device=[Camera|QualifiedName] 'scan' 'color' 'into' variable=GlobalVariable;
 
 // ----- STATEMENTS:LOOPS ----- //
 Loop returns Statement:
@@ -120,7 +120,7 @@ Loop returns Statement:
 
 // ----- STATEMENTS:LOOPS:FOREACH ----- //
 ForEach returns Loop:
-	{ForEach} 'for' 'each' variable=LocalVariable 'in' source=[Device] 'that' 'is' (operator='not')? target=VariableValue
+	{ForEach} 'for' 'each' variable=LocalVariable 'in' source=[Device|QualifiedName] 'that' 'is' (operator='not')? target=VariableValue
 	'then' BEGIN statements+=Statement* END;
 
 // ----- VARIABLES ----- //
@@ -132,7 +132,7 @@ GlobalVariable returns Variable:
 
 // ----- VALUE TYPES ----- //
 DiskSlotValue:
-	DiskSlotStateValue | ColorValue | ref=[GlobalVariable];
+	DiskSlotStateValue | ColorValue | ref=[GlobalVariable|QualifiedName];
 
 VariableValue:
 	DiskSlotStateValue | ColorValue | Number | DiskStateValue;
@@ -165,6 +165,10 @@ enum DISK_STATES:
 
 enum TIME:
 	SECONDS='seconds' | SECOND='second' | MINUTES='minutes' | MINUTE='minute' | HOURS='hours' | HOUR='hour';
+
+QualifiedName: 
+	ID ('.' ID)*
+;
 
 // ----- TERMINALS ----- //
 terminal BEGIN:
