@@ -1,14 +1,10 @@
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Advanced;
-using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.PixelFormats;
 using Image = SixLabors.ImageSharp.Image;
 
-namespace CameraColorScanner.Adapters
+namespace CameraColorScanner.Adapters.CameraAdapters
 {
     public class FileCamera : ICamera
     {

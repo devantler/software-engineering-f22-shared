@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CameraColorScanner.Adapters;
+using CameraColorScanner.Adapters.CameraAdapters;
 using CameraColorScanner.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

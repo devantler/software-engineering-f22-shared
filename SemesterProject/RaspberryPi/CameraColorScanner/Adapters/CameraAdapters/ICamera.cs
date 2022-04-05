@@ -1,9 +1,8 @@
-using System.Drawing;
 using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace CameraColorScanner.Adapters
+namespace CameraColorScanner.Adapters.CameraAdapters
 {
     public interface ICamera
     {
