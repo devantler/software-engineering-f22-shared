@@ -18,10 +18,7 @@
         eType="#//Parameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CraneParameter" eSuperTypes="#//Parameter">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="degree" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CraneParameter" eSuperTypes="#//Parameter"/>
   <eClassifiers xsi:type="ecore:EClass" name="DiskParameter" eSuperTypes="#//Parameter"/>
   <eClassifiers xsi:type="ecore:EClass" name="CameraParameter" eSuperTypes="#//Parameter"/>
   <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
@@ -37,24 +34,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiskOperation" eSuperTypes="#//Operation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Disk"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//DiskZoneParameter"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CameraOperation" eSuperTypes="#//Operation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Camera"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Device"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//VariableValue"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
-        eType="#//Statement" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CameraOperation" eSuperTypes="#//Operation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Variable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -101,8 +84,12 @@
     <eLiterals name="HOUR" value="5" literal="hour"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Crane" eSuperTypes="#//Device"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CranePositionParameter" eSuperTypes="#//CraneParameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="degree" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Disk" eSuperTypes="#//Device">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="size" eType="#//DiskParameter"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slotParameter" eType="#//DiskParameter"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiskSlotParameter" eSuperTypes="#//DiskParameter">
@@ -136,8 +123,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//VariableValue"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CranePickupOperation" eSuperTypes="#//CraneOperation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CraneDropOperation" eSuperTypes="#//CraneOperation"/>
   <eClassifiers xsi:type="ecore:EClass" name="DiskMoveSlotOperation" eSuperTypes="#//DiskOperation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//DiskZoneParameter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiskMoveVariableSlotOperation" eSuperTypes="#//DiskOperation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiskMoveEmptySlotOperation" eSuperTypes="#//DiskOperation"/>
   <eClassifiers xsi:type="ecore:EClass" name="DiskMarkSlotOperation" eSuperTypes="#//DiskOperation">
@@ -145,6 +137,21 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="measure" eType="#//TIME"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CameraScanOperation" eSuperTypes="#//CameraOperation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Camera"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForEach" eSuperTypes="#//Loop">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Device"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//VariableValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//Statement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocalVariable" eSuperTypes="#//Variable"/>
   <eClassifiers xsi:type="ecore:EClass" name="GlobalVariable" eSuperTypes="#//Variable"/>

@@ -3,6 +3,15 @@
  */
 package xtext.factoryLang.validation
 
+import org.eclipse.xtext.validation.Check
+import xtext.factoryLang.factoryLang.CranePositionParameter
+import xtext.factoryLang.factoryLang.FactoryLangPackage.Literals
+import xtext.factoryLang.factoryLang.DiskZoneParameter
+import org.eclipse.xtext.EcoreUtil2
+import xtext.factoryLang.factoryLang.Disk
+import xtext.factoryLang.factoryLang.DiskSlotParameter
+import xtext.factoryLang.factoryLang.DiskMarkSlotOperation
+import xtext.factoryLang.factoryLang.TIME
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +20,65 @@ package xtext.factoryLang.validation
  */
 class FactoryLangValidator extends AbstractFactoryLangValidator {
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					FactoryLangPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	public static val INVALID_VALUE = 'invalidValue'
+	
+	@Check
+	def checkCranePositionParameterDegree(CranePositionParameter parameter) {
+		if (!(parameter.degree >= 0 && parameter.degree <= 359)) {
+			error('Degree value should be between 0 and 359 degrees (inclusive)',
+				Literals.CRANE_POSITION_PARAMETER__DEGREE,
+				INVALID_VALUE)
+		}
+	}
+	
+	@Check
+	def checkDiskZoneParameter(DiskZoneParameter parameter) {
+		val disk = EcoreUtil2.getContainerOfType(parameter, Disk) as Disk
+		val nSlots = (disk.slotParameter as DiskSlotParameter).size
+		
+		if (!(parameter.zone > 0 && parameter.zone <= nSlots)) {
+			error('''Zone must be within available slots (1-«nSlots»)''',
+				Literals.DISK_ZONE_PARAMETER__ZONE,
+				INVALID_VALUE)
+		}
+		
+		if (!(parameter.slot > 0 && parameter.slot <= nSlots)) {
+			error('''Slot must be within available slots (1-«nSlots»)''',
+				Literals.DISK_ZONE_PARAMETER__SLOT,
+				INVALID_VALUE)
+		}
+	}
+	
+	@Check
+	def checkDiskMarkSlotOperationTime(DiskMarkSlotOperation operation) {
+		if (!operation.eIsSet(Literals.DISK_MARK_SLOT_OPERATION__QUANTITY) ||
+			!operation.eIsSet(Literals.DISK_MARK_SLOT_OPERATION__MEASURE)) {
+			return
+		}
+		
+		val quantity = operation.quantity
+		val measure = operation.measure
+				
+		if (quantity <= 1) {
+			if (!(measure == TIME.SECOND || measure == TIME.MINUTE || measure == TIME.HOUR)) {
+				error('Use singular unit notation when quantity is <= 1',
+				(Literals.DISK_MARK_SLOT_OPERATION__MEASURE),
+				INVALID_VALUE)	
+			}
+		}
+		else {
+			if (!(measure == TIME.SECONDS || measure == TIME.MINUTES || measure == TIME.HOURS)) {
+				error('Use plural unit notation when quantity is > 1',
+				Literals.DISK_MARK_SLOT_OPERATION__MEASURE,
+				INVALID_VALUE)	
+			}
+		}
+	}
+	
+	// needs to be implemented
+	@Check
+	def checkConditionalRelevantValues() {
+		
+	}
 	
 }

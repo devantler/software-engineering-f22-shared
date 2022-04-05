@@ -20,11 +20,11 @@ CraneParameter returns Parameter:
 	CranePositionParameter;
 
 CranePositionParameter returns CraneParameter:
-	{CraneParameter} 'with' 'position' 'at' degree=INT 'named' name=STRING;
+	{CranePositionParameter} 'with' 'position' 'at' degree=INT 'named' name=STRING;
 
 // ----- CONFIGURATION:DISK ----- //
 Disk returns Device:
-	{Disk} 'disk' 'named' name=STRING BEGIN size=DiskSlotParameter parameters+=DiskParameter+ END;
+	{Disk} 'disk' 'named' name=STRING BEGIN slotParameter=DiskSlotParameter parameters+=DiskParameter+ END;
 
 DiskParameter returns Parameter:
 	DiskZoneParameter;
@@ -84,10 +84,10 @@ CraneOperation returns Operation:
 	CranePickupOperation | CraneDropOperation;
 
 CranePickupOperation returns CraneOperation:
-	device=[Crane|STRING] 'pickup' 'item' 'at' target=[CraneParameter|STRING];
+	{CranePickupOperation} device=[Crane|STRING] 'pickup' 'item' 'at' target=[CraneParameter|STRING];
 
 CraneDropOperation returns CraneOperation:
-	device=[Crane|STRING] 'drop' 'item' 'at' target=[CraneParameter|STRING];
+	{CraneDropOperation} device=[Crane|STRING] 'drop' 'item' 'at' target=[CraneParameter|STRING];
 
 // ----- STATEMENTS:OPERATIONS:DISK ----- //
 DiskOperation returns Operation:
@@ -98,7 +98,7 @@ DiskMoveSlotOperation returns DiskOperation:
 	target=[DiskZoneParameter|STRING];
 
 DiskMoveVariableSlotOperation returns DiskOperation:
-	device=[Disk|STRING] 'move' 'slot' 'of' variable=[Variable] 'to' target=[DiskZoneParameter|STRING];
+	{DiskMoveVariableSlotOperation} device=[Disk|STRING] 'move' 'slot' 'of' variable=[Variable] 'to' target=[DiskZoneParameter|STRING];
 
 DiskMoveEmptySlotOperation returns DiskOperation:
 	{DiskMoveEmptySlotOperation} device=[Disk|STRING] 'move' 'empty' 'slot' 'to' target=[DiskZoneParameter|STRING];
@@ -112,7 +112,7 @@ CameraOperation returns Operation:
 	CameraScanOperation;
 
 CameraScanOperation returns CameraOperation:
-	device=[Camera|STRING] 'scan' 'color' 'into' variable=GlobalVariable;
+	{CameraScanOperation} device=[Camera|STRING] 'scan' 'color' 'into' variable=GlobalVariable;
 
 // ----- STATEMENTS:LOOPS ----- //
 Loop returns Statement:
@@ -120,7 +120,7 @@ Loop returns Statement:
 
 // ----- STATEMENTS:LOOPS:FOREACH ----- //
 ForEach returns Loop:
-	'for' 'each' variable=LocalVariable 'in' source=[Device|STRING] 'that' 'is' (operator='not')? target=VariableValue
+	{ForEach} 'for' 'each' variable=LocalVariable 'in' source=[Device|STRING] 'that' 'is' (operator='not')? target=VariableValue
 	'then' BEGIN statements+=Statement+ END;
 
 // ----- VARIABLES ----- //
