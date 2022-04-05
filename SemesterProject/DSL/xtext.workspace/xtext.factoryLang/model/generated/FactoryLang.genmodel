@@ -102,6 +102,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskSizeParameter/size"/>
     </genClasses>
     <genClasses ecoreClass="FactoryLang.ecore#//DiskSlotParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskSlotParameter/zone"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskSlotParameter/slot"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryLang.ecore#//DiskSlotParameter/name"/>
     </genClasses>

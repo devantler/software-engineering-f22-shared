@@ -24,16 +24,16 @@ CranePositionParameter returns CraneParameter:
 
 // ----- CONFIGURATION:DISK ----- //
 Disk returns Device:
-	{Disk} 'disk' 'named' name=STRING BEGIN size=DiskSizeParameter parameters+=DiskParameter+ END;
+	{Disk} 'disk' 'named' name=STRING BEGIN size=DiskSlotsParameter parameters+=DiskParameter+ END;
 
 DiskParameter returns Parameter:
-	DiskSlotParameter;
+	DiskZoneParameter;
 
-DiskSizeParameter returns DiskParameter:
+DiskSlotsParameter returns DiskParameter:
 	{DiskSizeParameter} 'with' size=INT 'slots';
 
-DiskSlotParameter returns DiskParameter:
-	{DiskSlotParameter} 'with' 'slot' slot=INT 'named' name=STRING;
+DiskZoneParameter returns DiskParameter:
+	{DiskSlotParameter} 'with' 'zone' zone=INT 'at' 'slot' slot=INT 'named' name=STRING;
 
 // ----- CONFIGURATION:CAMERA ----- //
 Camera returns Device:
@@ -55,7 +55,7 @@ Conditional returns Statement:
 
 // ----- STATEMENTS:CONDITIONALS:CRANE ----- //
 CraneConditional returns Conditional:
-	{CraneConditional} 'if' source=[Crane|STRING] 'is' (operator='not')? 'at'
+	{CraneConditional} 'if' source=[Crane|STRING] 'is' (operator='not')?
 	target=[CraneParameter|STRING]
 	'then' BEGIN statements+=Statement+ END;
 
@@ -137,6 +137,7 @@ DiskSlotValue:
 VariableValue:
 	DiskSlotStateValue | ColorValue | Number | DiskStateValue;
 
+// ----- VALUE TYPES:ACTUAL VALUES ----- //
 DiskStateValue:
 	value=DISK_STATES;
 
