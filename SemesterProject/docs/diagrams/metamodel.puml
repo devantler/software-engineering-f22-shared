@@ -58,7 +58,7 @@ class CraneConditional {
 }
 
 class Disk {
-    + size: DiskParameter
+    + slotParameter: DiskParameter
 }
 class DiskParameter
 class DiskSizeParameter {
