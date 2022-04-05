@@ -1,7 +1,6 @@
 {
     "recommendations": [
         "ms-vscode.cpptools-extension-pack",
-        "espressif.esp-idf-extension",
-        "vsciot-vscode.vscode-arduino"
+        "espressif.esp-idf-extension"
     ]
 }

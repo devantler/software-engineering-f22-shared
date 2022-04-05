@@ -63,7 +63,7 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 			if (!(measure == TIME.SECOND || measure == TIME.MINUTE || measure == TIME.HOUR)) {
 				error('Use singular unit notation when quantity is <= 1',
 				(Literals.DISK_MARK_SLOT_OPERATION__MEASURE),
-				INVALID_VALUE)	
+				INVALID_VALUE)
 			}
 		}
 		else {

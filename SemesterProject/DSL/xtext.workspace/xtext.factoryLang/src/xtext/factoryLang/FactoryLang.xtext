@@ -14,17 +14,17 @@ Device:
 
 // ----- CONFIGURATION:CRANE ----- //
 Crane returns Device:
-	{Crane} 'crane' 'named' name=STRING BEGIN parameters+=CraneParameter+ END;
+	{Crane} 'crane' 'named' name=ID BEGIN parameters+=CraneParameter+ END;
 
 CraneParameter returns Parameter:
 	CranePositionParameter;
 
 CranePositionParameter returns CraneParameter:
-	{CranePositionParameter} 'with' 'position' 'at' degree=INT 'named' name=STRING;
+	{CranePositionParameter} 'with' 'position' 'at' degree=INT 'named' name=ID;
 
 // ----- CONFIGURATION:DISK ----- //
 Disk returns Device:
-	{Disk} 'disk' 'named' name=STRING BEGIN slotParameter=DiskSlotParameter parameters+=DiskParameter+ END;
+	{Disk} 'disk' 'named' name=ID BEGIN slotParameter=DiskSlotParameter parameters+=DiskParameter+ END;
 
 DiskParameter returns Parameter:
 	DiskZoneParameter;
@@ -33,11 +33,11 @@ DiskSlotParameter returns DiskParameter:
 	{DiskSlotParameter} 'with' size=INT 'slots';
 
 DiskZoneParameter returns DiskParameter:
-	{DiskZoneParameter} 'with' 'zone' zone=INT 'at' 'slot' slot=INT 'named' name=STRING;
+	{DiskZoneParameter} 'with' 'zone' zone=INT 'at' 'slot' slot=INT 'named' name=ID;
 
 // ----- CONFIGURATION:CAMERA ----- //
 Camera returns Device:
-	{Camera} 'camera' 'named' name=STRING BEGIN parameters+=CameraParameter+ END;
+	{Camera} 'camera' 'named' name=ID BEGIN parameters+=CameraParameter+ END;
 
 CameraParameter returns Parameter:
 	CameraColorParameter;
@@ -55,25 +55,25 @@ Conditional returns Statement:
 
 // ----- STATEMENTS:CONDITIONALS:CRANE ----- //
 CraneConditional returns Conditional:
-	{CraneConditional} 'if' source=[Crane|STRING] 'is' (operator='not')?
-	target=[CraneParameter|STRING]
-	'then' BEGIN statements+=Statement+ END;
+	{CraneConditional} 'if' 'crane' source=[Crane] 'is' (operator='not')?
+	target=[CraneParameter]
+	'then' BEGIN statements+=Statement* END;
 
 // ----- STATEMENTS:CONDITIONALS:DISK ----- //
 DiskConditional returns Conditional:
-	{DiskConditional} 'if' source=[Disk|STRING] 'is' (operator='not')? target=DiskStateValue 'then' BEGIN
-	statements+=Statement+ END;
+	{DiskConditional} 'if' 'disk' source=[Disk] 'is' (operator='not')? target=DiskStateValue 'then' BEGIN
+	statements+=Statement* END;
 
 // ----- STATEMENTS:CONDITIONALS:CAMERA ----- //
 CameraConditional returns Conditional:
-	{CameraConditional} 'if' source=[Camera|STRING] 'is' (operator='not')? target=COLOR 'then' BEGIN
-	statements+=Statement+ END;
+	{CameraConditional} 'if' 'camera' source=[Camera] 'is' (operator='not')? target=COLOR 'then' BEGIN
+	statements+=Statement* END;
 
 // ----- STATEMENTS:CONDITIONALS:VARIABLE ----- //
 VariableConditional returns Conditional:
-	{VariableConditional} 'if' source=[Variable] 'is' (operator='not')? (comparison_operator=COMPARISON_OPERATOR)?
+	{VariableConditional} 'if' 'variable' source=[Variable] 'is' (operator='not')? (comparison_operator=COMPARISON_OPERATOR)?
 	target=VariableValue 'then' BEGIN
-	statements+=Statement+ END;
+	statements+=Statement* END;
 
 // ----- STATEMENTS:OPERATIONS ----- //
 Operation returns Statement:
@@ -84,27 +84,27 @@ CraneOperation returns Operation:
 	CranePickupOperation | CraneDropOperation;
 
 CranePickupOperation returns CraneOperation:
-	{CranePickupOperation} device=[Crane|STRING] 'pickup' 'item' 'at' target=[CraneParameter|STRING];
+	{CranePickupOperation} device=[Crane] 'pickup' 'item' 'at' target=[CraneParameter];
 
 CraneDropOperation returns CraneOperation:
-	{CraneDropOperation} device=[Crane|STRING] 'drop' 'item' 'at' target=[CraneParameter|STRING];
+	{CraneDropOperation} device=[Crane] 'drop' 'item' 'at' target=[CraneParameter];
 
 // ----- STATEMENTS:OPERATIONS:DISK ----- //
 DiskOperation returns Operation:
 	DiskMoveEmptySlotOperation | DiskMoveVariableSlotOperation | DiskMoveSlotOperation | DiskMarkSlotOperation;
 
 DiskMoveSlotOperation returns DiskOperation:
-	{DiskMoveSlotOperation} device=[Disk|STRING] 'move' 'slot' 'at' source=[DiskZoneParameter|STRING] 'to'
-	target=[DiskZoneParameter|STRING];
+	{DiskMoveSlotOperation} device=[Disk] 'move' 'slot' 'at' source=[DiskZoneParameter] 'to'
+	target=[DiskZoneParameter];
 
 DiskMoveVariableSlotOperation returns DiskOperation:
-	{DiskMoveVariableSlotOperation} device=[Disk|STRING] 'move' 'slot' 'of' variable=[Variable] 'to' target=[DiskZoneParameter|STRING];
+	{DiskMoveVariableSlotOperation} device=[Disk] 'move' 'slot' 'of' variable=[Variable] 'to' target=[DiskZoneParameter];
 
 DiskMoveEmptySlotOperation returns DiskOperation:
-	{DiskMoveEmptySlotOperation} device=[Disk|STRING] 'move' 'empty' 'slot' 'to' target=[DiskZoneParameter|STRING];
+	{DiskMoveEmptySlotOperation} device=[Disk] 'move' 'empty' 'slot' 'to' target=[DiskZoneParameter];
 
 DiskMarkSlotOperation returns DiskOperation:
-	{DiskMarkSlotOperation} device=[Disk|STRING] 'mark' 'slot' 'at' target=[DiskZoneParameter|STRING] 'as'
+	{DiskMarkSlotOperation} device=[Disk] 'mark' 'slot' 'at' target=[DiskZoneParameter] 'as'
 	value=DiskSlotValue ('in' quantity=INT measure=TIME)?;
 
 // ----- STATEMENTS:OPERATIONS:CAMERA ----- //
@@ -112,7 +112,7 @@ CameraOperation returns Operation:
 	CameraScanOperation;
 
 CameraScanOperation returns CameraOperation:
-	{CameraScanOperation} device=[Camera|STRING] 'scan' 'color' 'into' variable=GlobalVariable;
+	{CameraScanOperation} device=[Camera] 'scan' 'color' 'into' variable=GlobalVariable;
 
 // ----- STATEMENTS:LOOPS ----- //
 Loop returns Statement:
@@ -120,8 +120,8 @@ Loop returns Statement:
 
 // ----- STATEMENTS:LOOPS:FOREACH ----- //
 ForEach returns Loop:
-	{ForEach} 'for' 'each' variable=LocalVariable 'in' source=[Device|STRING] 'that' 'is' (operator='not')? target=VariableValue
-	'then' BEGIN statements+=Statement+ END;
+	{ForEach} 'for' 'each' variable=LocalVariable 'in' source=[Device] 'that' 'is' (operator='not')? target=VariableValue
+	'then' BEGIN statements+=Statement* END;
 
 // ----- VARIABLES ----- //
 LocalVariable returns Variable:
