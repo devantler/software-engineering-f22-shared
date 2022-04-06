@@ -22,7 +22,7 @@ namespace CameraColorScanner
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddScoped<ICamera, FileCamera>();
+                    services.AddScoped<ICamera, FswebcamCamera>();
                     services.AddSingleton<IColorScannerAdapter, CameraScannerAdapter>();
                     services.AddHostedService<MqttService>();
                     services.Add(ServiceDescriptor.Singleton<IColorScannerAdapter, CameraScannerAdapter>());
