@@ -3,7 +3,7 @@ grammar xtext.factoryLang.FactoryLang with org.eclipse.xtext.common.Terminals
 generate factoryLang "http://www.factoryLang.xtext/FactoryLang"
 
 Model:
-	configurations+=Configuration+ statements+=Statement*;
+	configurations+=Configuration+ statements+=Statement+;
 
 // ----- CONFIGURATION ----- //
 Configuration:
@@ -33,7 +33,7 @@ DiskSlotParameter returns DiskParameter:
 	{DiskSlotParameter} 'with' size=INT 'slots';
 
 DiskZoneParameter returns DiskParameter:
-	{DiskZoneParameter} 'with' 'zone' zone=INT 'at' 'slot' slot=INT 'named' name=ID;
+	{DiskZoneParameter} 'with' 'zone' 'named' name=ID 'at' 'slot' slot=INT;
 
 // ----- CONFIGURATION:CAMERA ----- //
 Camera returns Device:
@@ -55,7 +55,7 @@ Conditional returns Statement:
 
 // ----- STATEMENTS:CONDITIONALS:CRANE ----- //
 CraneConditional returns Conditional:
-	{CraneConditional} 'if' 'crane' source=[Crane|QualifiedName] 'is' (operator='not')?
+	{CraneConditional} 'if' 'crane' source=[Crane|QualifiedName] 'is' (operator='not')? 'at'
 	target=[CraneParameter|QualifiedName]
 	'then' BEGIN statements+=Statement* END;
 
