@@ -1,9 +1,30 @@
-chan discGoto1, discGoto2, discGoto3, discGoto4;
-chan AddItem, RemoveItem;
-chan AddItem1, AddItem2, AddItem3, AddItem4, RemoveItem1, RemoveItem2, RemoveItem3, RemoveItem4;
+const int numberOfDiscSlots = 4;
+typedef int[0,numberOfDiscSlots-1] id_t;
+
+//Zones: 
+int zones_intake = 1;
+int zones_crane = 2;
+int zones_camera = 3;
+
+chan discGoto[numberOfDiscSlots];
+chan AddItemCmd, RemoveItemCmd;
+chan AddItem[numberOfDiscSlots], RemoveItem[numberOfDiscSlots];
+chan getFreeSlot;
+chan freeSlot[numberOfDiscSlots];
+chan getColour;
+chan gottenColour;
 chan ToggleMagnet;
 chan LowerCrane, RaiseCrane;
 chan craneGotoIntake, craneGotoRed, craneGotoBlue, craneGotoGreen;
+bool occupiedSlots[numberOfDiscSlots];
+
+/**
+1: Red
+2: Green
+3: Blue
+*/
+int colour = 0;
+
 /**
 1: Tried to remove item from empty disc slot
 2: Tried to add item to full slot
@@ -15,9 +36,90 @@ int error;
 process MasterController() {
 
 state
-    L0;
+    Idle,
+    getEmptySlot,
+    slot1Empty,
+    slot2Empty,
+    slot3Empty,
+    slot4Empty,
+    gotoIntake1,
+    gotoIntake2,
+    gotoIntake3,
+    gotoIntake4,
+    fillSlot,
+    gotoCamera,
+    scanItem,
+    itemColour;
+commit
+    getEmptySlot,
+    scanItem;
 init
-    L0;
+    Idle;
+trans
+    getEmptySlot -> slot1Empty { sync freeSlot[0]?; },
+    getEmptySlot -> slot2Empty { sync freeSlot[1]?; },
+    getEmptySlot -> slot3Empty { sync freeSlot[2]?; },
+    getEmptySlot -> slot4Empty { sync freeSlot[3]?; },
+    slot1Empty -> gotoIntake1 { sync discGoto[(zones_intake + 0) % numberOfDiscSlots]!; },
+    slot2Empty -> gotoIntake2 { sync discGoto[(zones_intake + 1) % numberOfDiscSlots]!; },
+    slot3Empty -> gotoIntake3 { sync discGoto[(zones_intake + 2) % numberOfDiscSlots]!; },
+    slot4Empty -> gotoIntake4 { sync discGoto[(zones_intake + 3) % numberOfDiscSlots]!; },
+    gotoIntake1 -> fillSlot { sync AddItemCmd!; },
+    gotoIntake2 -> fillSlot { sync AddItemCmd!; },
+    gotoIntake3 -> fillSlot { sync AddItemCmd!; },
+    gotoIntake4 -> fillSlot { sync AddItemCmd!; },
+    fillSlot -> gotoCamera { },
+    gotoCamera -> scanItem { sync getColour!; },
+    scanItem -> itemColour { },
+    Idle -> getEmptySlot { sync getFreeSlot!; };
+}
+
+process Camera() {
+
+state
+    Idle,
+    Red,
+    Green,
+    Blue;
+commit
+    Red,
+    Green,
+    Blue;
+init
+    Idle;
+trans
+    Blue -> Idle { sync gottenColour!; },
+    Idle -> Blue { sync getColour?; assign colour = 3; },
+    Green -> Idle { sync gottenColour!; },
+    Idle -> Green { sync getColour?; assign colour=2; },
+    Red -> Idle { sync gottenColour!; },
+    Idle -> Red { sync getColour?; assign colour = 1; };
+}
+
+process GetEmptySlot() {
+
+state
+    Idle,
+    Get4,
+    Get1,
+    Get2,
+    Get3;
+commit
+    Get4,
+    Get1,
+    Get2,
+    Get3;
+init
+    Idle;
+trans
+    Get4 -> Idle { sync freeSlot[3]!; },
+    Idle -> Get4 { guard !occupiedSlots[3]; sync getFreeSlot?; },
+    Get3 -> Idle { sync freeSlot[2]!; },
+    Idle -> Get3 { guard !occupiedSlots[2]; sync getFreeSlot?; },
+    Get2 -> Idle { sync freeSlot[1]!; },
+    Idle -> Get2 { guard !occupiedSlots[1]; sync getFreeSlot?; },
+    Get1 -> Idle { sync freeSlot[0]!; },
+    Idle -> Get1 { guard !occupiedSlots[0]; sync getFreeSlot?; };
 }
 
 process Disc() {
@@ -38,37 +140,37 @@ state
 init
     Position1;
 trans
-    Position4 -> Position2 { sync discGoto2?; },
-    Position2 -> Position4 { sync discGoto4?; },
-    Position1 -> Position3 { sync discGoto3?; },
-    Position3 -> Position1 { sync discGoto1?; },
-    Position4 -> Position3 { sync discGoto3?; },
-    Position1 -> Position4 { sync discGoto4?; },
-    Position2 -> Position1 { sync discGoto1?; },
-    Position3 -> Position2 { sync discGoto2?; },
-    Position1 -> Position2 { sync discGoto2?; },
-    Position4 -> Position1 { sync discGoto1?; },
-    Position3 -> Position4 { sync discGoto4?; },
-    Position2 -> Position3 { sync discGoto3?; },
-    Position1 -> AddItem1Req { sync AddItem?; },
-    Position1 -> RemoveItem1Req { sync RemoveItem?; },
-    Position2 -> AddItem2Req { sync AddItem?; },
-    Position2 -> RemoveItem2Req { sync RemoveItem?; },
-    Position3 -> AddItem3Req { sync AddItem?; },
-    Position3 -> RemoveItem3Req { sync RemoveItem?; },
-    Position4 -> AddItem4Req { sync AddItem?; },
-    Position4 -> RemoveItem4Req { sync RemoveItem?; },
-    AddItem1Req -> Position1 { sync AddItem1!; },
-    RemoveItem1Req -> Position1 { sync RemoveItem1!; },
-    AddItem2Req -> Position2 { sync AddItem2!; },
-    RemoveItem2Req -> Position2 { sync RemoveItem2!; },
-    AddItem3Req -> Position3 { sync AddItem3!; },
-    RemoveItem3Req -> Position3 { sync RemoveItem3!; },
-    AddItem4Req -> Position4 { sync AddItem4!; },
-    RemoveItem4Req -> Position4 { sync RemoveItem4!; };
+    Position4 -> Position2 { sync discGoto[1]?; },
+    Position2 -> Position4 { sync discGoto[3]?; },
+    Position1 -> Position3 { sync discGoto[2]?; },
+    Position3 -> Position1 { sync discGoto[0]?; },
+    Position4 -> Position3 { sync discGoto[2]?; },
+    Position1 -> Position4 { sync discGoto[3]?; },
+    Position2 -> Position1 { sync discGoto[0]?; },
+    Position3 -> Position2 { sync discGoto[1]?; },
+    Position1 -> Position2 { sync discGoto[1]?; },
+    Position4 -> Position1 { sync discGoto[0]?; },
+    Position3 -> Position4 { sync discGoto[3]?; },
+    Position2 -> Position3 { sync discGoto[2]?; },
+    Position1 -> AddItem1Req { sync AddItemCmd?; },
+    Position1 -> RemoveItem1Req { sync RemoveItemCmd?; },
+    Position2 -> AddItem2Req { sync AddItemCmd?; },
+    Position2 -> RemoveItem2Req { sync RemoveItemCmd?; },
+    Position3 -> AddItem3Req { sync AddItemCmd?; },
+    Position3 -> RemoveItem3Req { sync RemoveItemCmd?; },
+    Position4 -> AddItem4Req { sync AddItemCmd?; },
+    Position4 -> RemoveItem4Req { sync RemoveItemCmd?; },
+    AddItem1Req -> Position1 { sync AddItem[0]!; },
+    RemoveItem1Req -> Position1 { sync RemoveItem[0]!; },
+    AddItem2Req -> Position2 { sync AddItem[1]!; },
+    RemoveItem2Req -> Position2 { sync RemoveItem[1]!; },
+    AddItem3Req -> Position3 { sync AddItem[2]!; },
+    RemoveItem3Req -> Position3 { sync RemoveItem[2]!; },
+    AddItem4Req -> Position4 { sync AddItem[3]!; },
+    RemoveItem4Req -> Position4 { sync RemoveItem[3]!; };
 }
 
-process DiscSlot1() {
+process DiscSlot(const id_t id) {
 
 state
     SlotEmpty,
@@ -78,58 +180,10 @@ state
 init
     SlotEmpty;
 trans
-    SlotEmpty -> SlotFull { sync AddItem1?; },
-    SlotFull -> SlotEmpty { sync RemoveItem1?; },
-    SlotEmpty -> ErrorRemoveItemFromEmpty { sync RemoveItem1?; assign error += 1; },
-    SlotFull -> ErrorAddItemToFull { sync AddItem1?; assign error += 2; };
-}
-
-process DiscSlot2() {
-
-state
-    SlotEmpty,
-    SlotFull,
-    ErrorAddItemToFull,
-    ErrorRemoveItemFromEmpty;
-init
-    SlotEmpty;
-trans
-    SlotEmpty -> SlotFull { sync AddItem2?; },
-    SlotFull -> SlotEmpty { sync RemoveItem2?; },
-    SlotEmpty -> ErrorRemoveItemFromEmpty { sync RemoveItem2?; assign error += 1; },
-    SlotFull -> ErrorAddItemToFull { sync AddItem2?; assign error += 2; };
-}
-
-process DiscSlot3() {
-
-state
-    SlotEmpty,
-    SlotFull,
-    ErrorAddItemToFull,
-    ErrorRemoveItemFromEmpty;
-init
-    SlotEmpty;
-trans
-    SlotEmpty -> SlotFull { sync AddItem3?; },
-    SlotFull -> SlotEmpty { sync RemoveItem3?; },
-    SlotEmpty -> ErrorRemoveItemFromEmpty { sync RemoveItem3?; assign error += 1; },
-    SlotFull -> ErrorAddItemToFull { sync AddItem3?; assign error += 2; };
-}
-
-process DiscSlot4() {
-
-state
-    SlotEmpty,
-    SlotFull,
-    ErrorAddItemToFull,
-    ErrorRemoveItemFromEmpty;
-init
-    SlotEmpty;
-trans
-    SlotEmpty -> SlotFull { sync AddItem4?; },
-    SlotFull -> SlotEmpty { sync RemoveItem4?; },
-    SlotEmpty -> ErrorRemoveItemFromEmpty { sync RemoveItem4?; assign error += 1; },
-    SlotFull -> ErrorAddItemToFull { sync AddItem4?; assign error += 2; };
+    SlotEmpty -> SlotFull { sync AddItem[id]?; assign occupiedSlots[id] = true; },
+    SlotFull -> SlotEmpty { sync RemoveItem[id]?; assign occupiedSlots[id] = false; },
+    SlotEmpty -> ErrorRemoveItemFromEmpty { sync RemoveItem[id]?; assign error += 1; },
+    SlotFull -> ErrorAddItemToFull { sync AddItem[id]?; assign error += 2; };
 }
 
 process DiscNamedSpots() {
@@ -150,6 +204,7 @@ trans
 }
 
 process Crane() {
+
 
 
 // Place local declarations here.
@@ -204,4 +259,4 @@ trans
 
 // Place template instantiations here.
 // List one or more processes to be composed into a system.
-system MasterController, Disc, DiscNamedSpots, Crane, DiscSlot1, DiscSlot2, DiscSlot3, DiscSlot4;
+system MasterController, Disc, DiscNamedSpots, Crane, DiscSlot, GetEmptySlot, CraneMagnet;
