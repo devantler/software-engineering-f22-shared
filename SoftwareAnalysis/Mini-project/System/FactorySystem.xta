@@ -10,13 +10,16 @@ chan discGoto[numberOfDiscSlots];
 chan AddItemCmd, RemoveItemCmd;
 chan AddItem[numberOfDiscSlots], RemoveItem[numberOfDiscSlots];
 chan getFreeSlot;
-chan freeSlot[numberOfDiscSlots];
+chan foundEmptySlot;
 chan getColour;
 chan gottenColour;
 chan ToggleMagnet;
 chan LowerCrane, RaiseCrane;
 chan craneGotoIntake, craneGotoRed, craneGotoBlue, craneGotoGreen;
+chan setColour[numberOfDiscSlots][3];
 bool occupiedSlots[numberOfDiscSlots];
+
+int emptySlot = -1;
 
 /**
 1: Red
@@ -38,39 +41,26 @@ process MasterController() {
 state
     Idle,
     getEmptySlot,
-    slot1Empty,
-    slot2Empty,
-    slot3Empty,
-    slot4Empty,
-    gotoIntake1,
-    gotoIntake2,
-    gotoIntake3,
-    gotoIntake4,
+    slotEmpty,
+    gotoIntake,
     fillSlot,
     gotoCamera,
     scanItem,
-    itemColour;
+    itemColour,
+    setItemColour;
 commit
     getEmptySlot,
     scanItem;
 init
     Idle;
 trans
-    getEmptySlot -> slot1Empty { sync freeSlot[0]?; },
-    getEmptySlot -> slot2Empty { sync freeSlot[1]?; },
-    getEmptySlot -> slot3Empty { sync freeSlot[2]?; },
-    getEmptySlot -> slot4Empty { sync freeSlot[3]?; },
-    slot1Empty -> gotoIntake1 { sync discGoto[(zones_intake + 0) % numberOfDiscSlots]!; },
-    slot2Empty -> gotoIntake2 { sync discGoto[(zones_intake + 1) % numberOfDiscSlots]!; },
-    slot3Empty -> gotoIntake3 { sync discGoto[(zones_intake + 2) % numberOfDiscSlots]!; },
-    slot4Empty -> gotoIntake4 { sync discGoto[(zones_intake + 3) % numberOfDiscSlots]!; },
-    gotoIntake1 -> fillSlot { sync AddItemCmd!; },
-    gotoIntake2 -> fillSlot { sync AddItemCmd!; },
-    gotoIntake3 -> fillSlot { sync AddItemCmd!; },
-    gotoIntake4 -> fillSlot { sync AddItemCmd!; },
+    itemColour -> setItemColour { sync setColour[emptySlot][colour]!; },
+    getEmptySlot -> slotEmpty { sync foundEmptySlot?; },
+    slotEmpty -> gotoIntake { sync discGoto[(zones_intake + emptySlot) % numberOfDiscSlots]!; },
+    gotoIntake -> fillSlot { sync AddItem[emptySlot]!; },
     fillSlot -> gotoCamera { },
     gotoCamera -> scanItem { sync getColour!; },
-    scanItem -> itemColour { },
+    scanItem -> itemColour { sync gottenColour?; },
     Idle -> getEmptySlot { sync getFreeSlot!; };
 }
 
@@ -112,13 +102,13 @@ commit
 init
     Idle;
 trans
-    Get4 -> Idle { sync freeSlot[3]!; },
+    Get4 -> Idle { sync foundEmptySlot!; assign emptySlot = 3; },
     Idle -> Get4 { guard !occupiedSlots[3]; sync getFreeSlot?; },
-    Get3 -> Idle { sync freeSlot[2]!; },
+    Get3 -> Idle { sync foundEmptySlot!; assign emptySlot = 2; },
     Idle -> Get3 { guard !occupiedSlots[2]; sync getFreeSlot?; },
-    Get2 -> Idle { sync freeSlot[1]!; },
+    Get2 -> Idle { sync foundEmptySlot!; assign emptySlot = 1; },
     Idle -> Get2 { guard !occupiedSlots[1]; sync getFreeSlot?; },
-    Get1 -> Idle { sync freeSlot[0]!; },
+    Get1 -> Idle { sync foundEmptySlot!; assign emptySlot = 0; },
     Idle -> Get1 { guard !occupiedSlots[0]; sync getFreeSlot?; };
 }
 
@@ -175,15 +165,27 @@ process DiscSlot(const id_t id) {
 state
     SlotEmpty,
     SlotFull,
+    SlotFullRed,
+    SlotFullGreen,
+    SlotFullBlue,
     ErrorAddItemToFull,
     ErrorRemoveItemFromEmpty;
 init
     SlotEmpty;
 trans
     SlotEmpty -> SlotFull { sync AddItem[id]?; assign occupiedSlots[id] = true; },
+    SlotFull -> SlotFullRed { sync setColour[id][1]?; },
+    SlotFull -> SlotFullGreen { sync setColour[id][2]?; },
+    SlotFull -> SlotFullBlue { sync setColour[id][3]?; },
     SlotFull -> SlotEmpty { sync RemoveItem[id]?; assign occupiedSlots[id] = false; },
+    SlotFullRed -> SlotEmpty { sync RemoveItem[id]?; assign occupiedSlots[id] = false; },
+    SlotFullGreen -> SlotEmpty { sync RemoveItem[id]?; assign occupiedSlots[id] = false; },
+    SlotFullBlue -> SlotEmpty { sync RemoveItem[id]?; assign occupiedSlots[id] = false; },
     SlotEmpty -> ErrorRemoveItemFromEmpty { sync RemoveItem[id]?; assign error += 1; },
-    SlotFull -> ErrorAddItemToFull { sync AddItem[id]?; assign error += 2; };
+    SlotFull -> ErrorAddItemToFull { sync AddItem[id]?; assign error += 2; },
+    SlotFullRed -> ErrorAddItemToFull { sync AddItem[id]?; assign error += 2; },
+    SlotFullGreen -> ErrorAddItemToFull { sync AddItem[id]?; assign error += 2; },
+    SlotFullBlue -> ErrorAddItemToFull { sync AddItem[id]?; assign error += 2; };
 }
 
 process DiscNamedSpots() {
@@ -204,6 +206,9 @@ trans
 }
 
 process Crane() {
+
+
+
 
 
 
@@ -254,6 +259,9 @@ trans
     MagnetOn -> MagnetOff { sync ToggleMagnet?; },
     MagnetOff -> MagnetOn { sync ToggleMagnet?; };
 }
+
+
+
 
 
 
