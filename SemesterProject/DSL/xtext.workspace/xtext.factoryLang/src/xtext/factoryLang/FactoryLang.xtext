@@ -51,29 +51,18 @@ Statement:
 
 // ----- STATEMENTS:CONDITIONALS ----- //
 Conditional returns Statement:
-	CraneConditional | DiskConditional | CameraConditional | VariableConditional;
+	DeviceConditional | VariableConditional;
 
-// ----- STATEMENTS:CONDITIONALS:CRANE ----- //
-CraneConditional returns Conditional:
-	{CraneConditional} 'if' 'crane' source=[Crane|QualifiedName] 'is' (operator='not')? 'at'
-	target=[CraneParameter|QualifiedName]
+DeviceConditional returns Conditional:
+	{DeviceConditional} 'if' 'device' source=[Device] 'is' (not_operator='not')? ('at')?
+	target=DeviceTargetValue
 	'then' BEGIN statements+=Statement* END;
 
-// ----- STATEMENTS:CONDITIONALS:DISK ----- //
-DiskConditional returns Conditional:
-	{DiskConditional} 'if' 'disk' source=[Disk|QualifiedName] 'is' (operator='not')? target=DiskStateValue 'then' BEGIN
-	statements+=Statement* END;
-
-// ----- STATEMENTS:CONDITIONALS:CAMERA ----- //
-CameraConditional returns Conditional:
-	{CameraConditional} 'if' 'camera' source=[Camera|QualifiedName] 'is' (operator='not')? target=COLOR 'then' BEGIN
-	statements+=Statement* END;
-
-// ----- STATEMENTS:CONDITIONALS:VARIABLE ----- //
 VariableConditional returns Conditional:
-	{VariableConditional} 'if' 'variable' source=[Variable] 'is' (operator='not')? (comparison_operator=COMPARISON_OPERATOR)?
-	target=VariableValue 'then' BEGIN
-	statements+=Statement* END;
+	{VariableConditional} 'if' 'variable' source=[Variable] 'is' (not_operator='not')?
+	(comparison_operator=COMPARISON_OPERATOR)?
+	target=VariableTargetValue
+	'then' BEGIN statements+=Statement* END;
 
 // ----- STATEMENTS:OPERATIONS ----- //
 Operation returns Statement:
@@ -84,27 +73,28 @@ CraneOperation returns Operation:
 	CranePickupOperation | CraneDropOperation;
 
 CranePickupOperation returns CraneOperation:
-	{CranePickupOperation} device=[Crane|QualifiedName] 'pickup' 'item' 'at' target=[CraneParameter|QualifiedName];
+	{CranePickupOperation} device=[Crane] 'pickup' 'item' 'at' target=[CraneParameter];
 
 CraneDropOperation returns CraneOperation:
-	{CraneDropOperation} device=[Crane|QualifiedName] 'drop' 'item' 'at' target=[CraneParameter|QualifiedName];
+	{CraneDropOperation} device=[Crane] 'drop' 'item' 'at' target=[CraneParameter];
 
 // ----- STATEMENTS:OPERATIONS:DISK ----- //
 DiskOperation returns Operation:
 	DiskMoveEmptySlotOperation | DiskMoveVariableSlotOperation | DiskMoveSlotOperation | DiskMarkSlotOperation;
 
 DiskMoveSlotOperation returns DiskOperation:
-	{DiskMoveSlotOperation} device=[Disk|QualifiedName] 'move' 'slot' 'at' source=[DiskZoneParameter|QualifiedName] 'to'
-	target=[DiskZoneParameter|QualifiedName];
+	{DiskMoveSlotOperation} device=[Disk] 'move' 'slot' 'at' source=[DiskZoneParameter] 'to'
+	target=[DiskZoneParameter];
 
 DiskMoveVariableSlotOperation returns DiskOperation:
-	{DiskMoveVariableSlotOperation} device=[Disk|QualifiedName] 'move' 'slot' 'of' variable=[Variable|QualifiedName] 'to' target=[DiskZoneParameter|QualifiedName];
+	{DiskMoveVariableSlotOperation} device=[Disk] 'move' 'slot' 'of' variable=[Variable] 'to'
+	target=[DiskZoneParameter];
 
 DiskMoveEmptySlotOperation returns DiskOperation:
-	{DiskMoveEmptySlotOperation} device=[Disk|QualifiedName] 'move' 'empty' 'slot' 'to' target=[DiskZoneParameter|QualifiedName];
+	{DiskMoveEmptySlotOperation} device=[Disk] 'move' 'empty' 'slot' 'to' target=[DiskZoneParameter];
 
 DiskMarkSlotOperation returns DiskOperation:
-	{DiskMarkSlotOperation} device=[Disk|QualifiedName] 'mark' 'slot' 'at' target=[DiskZoneParameter|QualifiedName] 'as'
+	{DiskMarkSlotOperation} device=[Disk] 'mark' 'slot' 'at' target=[DiskZoneParameter] 'as'
 	value=DiskSlotValue ('in' quantity=INT measure=TIME)?;
 
 // ----- STATEMENTS:OPERATIONS:CAMERA ----- //
@@ -112,7 +102,7 @@ CameraOperation returns Operation:
 	CameraScanOperation;
 
 CameraScanOperation returns CameraOperation:
-	{CameraScanOperation} device=[Camera|QualifiedName] 'scan' 'color' 'into' variable=GlobalVariable;
+	{CameraScanOperation} device=[Camera] 'scan' 'color' 'into' variable=GlobalVariable;
 
 // ----- STATEMENTS:LOOPS ----- //
 Loop returns Statement:
@@ -120,7 +110,8 @@ Loop returns Statement:
 
 // ----- STATEMENTS:LOOPS:FOREACH ----- //
 ForEach returns Loop:
-	{ForEach} 'for' 'each' variable=LocalVariable 'in' source=[Device|QualifiedName] 'that' 'is' (operator='not')? target=VariableValue
+	{ForEach} 'for' 'each' variable=LocalVariable 'in' source=[Device] 'that' 'is' (operator='not')?
+	target=VariableTargetValue
 	'then' BEGIN statements+=Statement* END;
 
 // ----- VARIABLES ----- //
@@ -131,13 +122,22 @@ GlobalVariable returns Variable:
 	{GlobalVariable} name=ID;
 
 // ----- VALUE TYPES ----- //
-DiskSlotValue:
-	DiskSlotStateValue | ColorValue | ref=[GlobalVariable|QualifiedName];
+DeviceTargetValue:
+	ParameterRefValue | DiskStateValue | ColorValue;
 
-VariableValue:
+DiskSlotValue:
+	DiskSlotStateValue | ColorValue | GlobalRefValue;
+
+VariableTargetValue:
 	DiskSlotStateValue | ColorValue | Number | DiskStateValue;
 
 // ----- VALUE TYPES:ACTUAL VALUES ----- //
+GlobalRefValue:
+	ref=[GlobalVariable];
+
+ParameterRefValue:
+	ref=[Parameter];
+
 DiskStateValue:
 	value=DISK_STATES;
 
@@ -165,10 +165,6 @@ enum DISK_STATES:
 
 enum TIME:
 	SECONDS='seconds' | SECOND='second' | MINUTES='minutes' | MINUTE='minute' | HOURS='hours' | HOUR='hour';
-
-QualifiedName: 
-	ID ('.' ID)*
-;
 
 // ----- TERMINALS ----- //
 terminal BEGIN:

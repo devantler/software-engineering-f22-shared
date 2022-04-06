@@ -3,6 +3,30 @@
  */
 package xtext.factoryLang.scoping
 
+import org.eclipse.xtext.scoping.IScope
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
+import xtext.factoryLang.factoryLang.FactoryLangPackage.Literals
+import xtext.factoryLang.factoryLang.Parameter
+import xtext.factoryLang.factoryLang.DiskZoneParameter
+import org.eclipse.xtext.EcoreUtil2
+import xtext.factoryLang.factoryLang.DiskOperation
+import xtext.factoryLang.factoryLang.Model
+import org.eclipse.xtext.scoping.Scopes
+import xtext.factoryLang.factoryLang.Operation
+import xtext.factoryLang.factoryLang.CraneOperation
+import xtext.factoryLang.factoryLang.CameraOperation
+import xtext.factoryLang.factoryLang.CameraScanOperation
+import xtext.factoryLang.factoryLang.DiskMoveSlotOperation
+import xtext.factoryLang.factoryLang.DiskMoveVariableSlotOperation
+import xtext.factoryLang.factoryLang.ForEach
+import xtext.factoryLang.factoryLang.VariableConditional
+import xtext.factoryLang.factoryLang.GlobalRefValue
+import xtext.factoryLang.factoryLang.GlobalVariable
+import org.eclipse.emf.common.util.ECollections
+import xtext.factoryLang.factoryLang.DeviceTargetValue
+import xtext.factoryLang.factoryLang.DeviceConditional
+import xtext.factoryLang.factoryLang.ParameterRefValue
 
 /**
  * This class contains custom scoping description.
@@ -11,5 +35,68 @@ package xtext.factoryLang.scoping
  * on how and when to use it.
  */
 class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
+
+	override IScope getScope(EObject context, EReference reference) {
+		switch (reference) {
+			case Literals.CRANE_OPERATION__TARGET,
+			case Literals.DISK_OPERATION__TARGET,
+			case Literals.DISK_MOVE_SLOT_OPERATION__SOURCE:
+				return getOperationTargetScope(context as Operation)
+			case Literals.VARIABLE_CONDITIONAL__SOURCE,
+			case Literals.DISK_MOVE_VARIABLE_SLOT_OPERATION__VARIABLE:
+				return getVariableScope(context, context)
+			case Literals.PARAMETER_REF_VALUE__REF:
+				return getParameterRefValueScope(context as ParameterRefValue)
+				
+		}
+		return super.getScope(context, reference)
+	}
+
+	def IScope getVariableScope(EObject currentContext, EObject context) {
+		val parent = currentContext.eContainer
+		val nextForEach = EcoreUtil2.getContainerOfType(parent, ForEach);
+
+		if (nextForEach !== null)
+			return Scopes.scopeFor(#[nextForEach.variable],
+				getVariableScope(nextForEach, context));
+		return getGlobalRefValueScope(context)
+	}
+
+	def IScope getOperationTargetScope(Operation operation) {
+		val root = EcoreUtil2.getRootContainer(operation) as Model
+		var tempDeviceName = ""
+		switch (operation) {
+			case operation instanceof CraneOperation: // xtend is little bitch
+				tempDeviceName = (operation as CraneOperation).device.name
+			case operation instanceof DiskOperation:
+				tempDeviceName = (operation as DiskOperation).device.name
+		}
+		val deviceName = tempDeviceName // xtend is more little bitch
+		val device = root.configurations.filter[device.name == deviceName].map[device].toList
+		val parameters = device.get(0).parameters
+
+		return Scopes.scopeFor(parameters)
+	}
+
+	// forward declaration does not work
+	def IScope getGlobalRefValueScope(EObject context) {
+		val root = EcoreUtil2.getRootContainer(context) as Model
+		val cameraScanOperations = EcoreUtil2.getAllContentsOfType(root, CameraScanOperation).map[variable].toList
+		// Scopes.index(context,)
+		// ExpressionsModelUtil.
+		return Scopes.scopeFor(cameraScanOperations);
+	}
+
+	// auto-complete does not work with this, but scoping does
+	def IScope getParameterRefValueScope(ParameterRefValue parameterRefValue) {
+		val deviceConditional = EcoreUtil2.getContainerOfType(parameterRefValue, DeviceConditional)
+		val deviceName = deviceConditional.source.name
+
+		val root = EcoreUtil2.getRootContainer(parameterRefValue) as Model
+		val device = root.configurations.filter[device.name == deviceName].map[device].toList
+		val parameters = device.get(0).parameters
+
+		return Scopes.scopeFor(parameters)
+	}
 
 }

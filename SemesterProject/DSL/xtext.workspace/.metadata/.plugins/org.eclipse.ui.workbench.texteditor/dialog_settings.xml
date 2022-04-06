@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Quantity"/>
+		<item key="selection" value="variable&apos;"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="quantity"/>
-			<item value="complete"/>
-			<item value="time"/>
-			<item value="s"/>
-			<item value="disk"/>
-			<item value="size"/>
-			<item value="zone"/>
-			<item value="cranepo"/>
-			<item value="cranedr"/>
-			<item value="camerascan"/>
-			<item value="camera"/>
-			<item value="cameraop"/>
-			<item value="craneop"/>
-			<item value="["/>
-			<item value="STRING"/>
+			<item value="Variable&apos;"/>
+			<item value="DiskSlotValue"/>
+			<item value="GlobalRefValue"/>
+			<item value="cranepa"/>
+			<item value="deviceT"/>
+			<item value="DeviceTargetValue"/>
+			<item value="GlobalVariable"/>
+			<item value="into"/>
+			<item value="variablec"/>
+			<item value="variablco"/>
+			<item value="ref=[GlobalVariable]"/>
+			<item value="LocalVariable"/>
+			<item value="[Variable"/>
+			<item value="device"/>
+			<item value="target"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

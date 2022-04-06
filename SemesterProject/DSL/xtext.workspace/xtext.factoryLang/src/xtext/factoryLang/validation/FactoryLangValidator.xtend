@@ -36,12 +36,6 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 		val disk = EcoreUtil2.getContainerOfType(parameter, Disk) as Disk
 		val nSlots = (disk.slotParameter as DiskSlotParameter).size
 		
-		if (!(parameter.zone > 0 && parameter.zone <= nSlots)) {
-			error('''Zone must be within available slots (1-«nSlots»)''',
-				Literals.DISK_ZONE_PARAMETER__ZONE,
-				INVALID_VALUE)
-		}
-		
 		if (!(parameter.slot > 0 && parameter.slot <= nSlots)) {
 			error('''Slot must be within available slots (1-«nSlots»)''',
 				Literals.DISK_ZONE_PARAMETER__SLOT,
@@ -59,12 +53,20 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 		val quantity = operation.quantity
 		val measure = operation.measure
 				
-		if (quantity <= 1) {
+				
+		if (quantity < 1) {
+			error('The time to finish should be >= 1',
+				(Literals.DISK_MARK_SLOT_OPERATION__QUANTITY),
+				INVALID_VALUE)
+			return
+		}
+		if (quantity == 1) {
 			if (!(measure == TIME.SECOND || measure == TIME.MINUTE || measure == TIME.HOUR)) {
 				error('Use singular unit notation when quantity is <= 1',
 				(Literals.DISK_MARK_SLOT_OPERATION__MEASURE),
 				INVALID_VALUE)
 			}
+			return
 		}
 		else {
 			if (!(measure == TIME.SECONDS || measure == TIME.MINUTES || measure == TIME.HOURS)) {
