@@ -21,9 +21,9 @@ namespace CameraColorScanner
             public class Crop
             {
                 public static int x = 320;
-                public static int y = 180;
+                public static int y = 270;
                 public static int Width = 640;
-                public static int Height = 360;
+                public static int Height = 540;
             }
         }
     }
