@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using CameraColorScanner.Adapters;
 using CameraColorScanner.Adapters.CameraAdapters;
@@ -12,10 +13,25 @@ namespace CameraColorScanner
 
     class Program
     {
-        static Task Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Program Starting");
-            return CreateHostBuilder(args).Build().RunAsync();
+            
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "fswebcam",
+                    Arguments = $"--set \"Brigthness\"=20",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                }
+            };
+            process.Start();
+            await process.WaitForExitAsync();
+            
+            await CreateHostBuilder(args).Build().RunAsync();
         }
 
         static IHostBuilder CreateHostBuilder(string[] args) =>
