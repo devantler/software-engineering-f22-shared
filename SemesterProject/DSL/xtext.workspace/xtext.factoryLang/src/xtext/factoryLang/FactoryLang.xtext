@@ -14,7 +14,7 @@ Device:
 
 // ----- CONFIGURATION:CRANE ----- //
 Crane returns Device:
-	{Crane} 'crane' 'named' name=ID BEGIN parameters+=CraneParameter+ END;
+	{Crane} 'crane' 'named' name=ID BEGIN targets+=CraneParameter+ END;
 
 CraneParameter returns Parameter:
 	CranePositionParameter;
@@ -24,7 +24,7 @@ CranePositionParameter returns CraneParameter:
 
 // ----- CONFIGURATION:DISK ----- //
 Disk returns Device:
-	{Disk} 'disk' 'named' name=ID BEGIN slotParameter=DiskSlotParameter parameters+=DiskParameter+ END;
+	{Disk} 'disk' 'named' name=ID BEGIN slotParameter=DiskSlotParameter targets+=DiskParameter+ END;
 
 DiskParameter returns Parameter:
 	DiskZoneParameter;
@@ -37,7 +37,7 @@ DiskZoneParameter returns DiskParameter:
 
 // ----- CONFIGURATION:CAMERA ----- //
 Camera returns Device:
-	{Camera} 'camera' 'named' name=ID BEGIN parameters+=CameraParameter+ END;
+	{Camera} 'camera' 'named' name=ID BEGIN targets+=CameraParameter+ END;
 
 CameraParameter returns Parameter:
 	CameraColorParameter;
@@ -54,14 +54,14 @@ Conditional returns Statement:
 	DeviceConditional | VariableConditional;
 
 DeviceConditional returns Conditional:
-	{DeviceConditional} 'if' 'device' source=[Device] 'is' (not_operator='not')? ('at')?
-	target=DeviceTargetValue
+	{DeviceConditional} 'if' 'device' device=[Device] 'is' (not_operator='not')? ('at')?
+	deviceValue=DeviceValue
 	'then' BEGIN statements+=Statement* END;
 
 VariableConditional returns Conditional:
-	{VariableConditional} 'if' 'variable' source=[Variable] 'is' (not_operator='not')?
+	{VariableConditional} 'if' 'variable' variable=[Variable] 'is' (not_operator='not')?
 	(comparison_operator=COMPARISON_OPERATOR)?
-	target=VariableTargetValue
+	variableValue=VariableValue
 	'then' BEGIN statements+=Statement* END;
 
 // ----- STATEMENTS:OPERATIONS ----- //
@@ -95,7 +95,7 @@ DiskMoveEmptySlotOperation returns DiskOperation:
 
 DiskMarkSlotOperation returns DiskOperation:
 	{DiskMarkSlotOperation} device=[Disk] 'mark' 'slot' 'at' target=[DiskZoneParameter] 'as'
-	value=DiskSlotValue ('in' quantity=INT measure=TIME)?;
+	diskSlotValue=DiskSlotValue ('in' quantity=INT measure=TIME)?;
 
 // ----- STATEMENTS:OPERATIONS:CAMERA ----- //
 CameraOperation returns Operation:
@@ -110,8 +110,8 @@ Loop returns Statement:
 
 // ----- STATEMENTS:LOOPS:FOREACH ----- //
 ForEach returns Loop:
-	{ForEach} 'for' 'each' variable=LocalVariable 'in' source=[Device] 'that' 'is' (operator='not')?
-	target=VariableTargetValue
+	{ForEach} 'for' 'each' variable=LocalVariable 'in' device=[Device] 'that' 'is' (operator='not')?
+	variableValue=VariableValue
 	'then' BEGIN statements+=Statement* END;
 
 // ----- VARIABLES ----- //
@@ -122,21 +122,16 @@ GlobalVariable returns Variable:
 	{GlobalVariable} name=ID;
 
 // ----- VALUE TYPES ----- //
-DeviceTargetValue:
-	ParameterRefValue | DiskStateValue | ColorValue;
+DeviceValue:
+	value=DiskStateValue | value=ColorValue | ref=[Parameter];
 
 DiskSlotValue:
-	DiskSlotStateValue | ColorValue | GlobalRefValue;
+	value=DiskSlotStateValue | value=ColorValue | ref=[Variable];
 
-VariableTargetValue:
-	DiskSlotStateValue | ColorValue | Number | DiskStateValue;
+VariableValue:
+	value=DiskSlotStateValue | value=ColorValue | value=Number | value=DiskStateValue | ref=[Variable];
 
 // ----- VALUE TYPES:ACTUAL VALUES ----- //
-GlobalRefValue:
-	ref=[GlobalVariable];
-
-ParameterRefValue:
-	ref=[Parameter];
 
 DiskStateValue:
 	value=DISK_STATES;

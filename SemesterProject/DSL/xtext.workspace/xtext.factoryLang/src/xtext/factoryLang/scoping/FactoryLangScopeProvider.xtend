@@ -7,26 +7,16 @@ import org.eclipse.xtext.scoping.IScope
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import xtext.factoryLang.factoryLang.FactoryLangPackage.Literals
-import xtext.factoryLang.factoryLang.Parameter
-import xtext.factoryLang.factoryLang.DiskZoneParameter
 import org.eclipse.xtext.EcoreUtil2
 import xtext.factoryLang.factoryLang.DiskOperation
 import xtext.factoryLang.factoryLang.Model
 import org.eclipse.xtext.scoping.Scopes
 import xtext.factoryLang.factoryLang.Operation
 import xtext.factoryLang.factoryLang.CraneOperation
-import xtext.factoryLang.factoryLang.CameraOperation
 import xtext.factoryLang.factoryLang.CameraScanOperation
-import xtext.factoryLang.factoryLang.DiskMoveSlotOperation
-import xtext.factoryLang.factoryLang.DiskMoveVariableSlotOperation
 import xtext.factoryLang.factoryLang.ForEach
-import xtext.factoryLang.factoryLang.VariableConditional
-import xtext.factoryLang.factoryLang.GlobalRefValue
-import xtext.factoryLang.factoryLang.GlobalVariable
-import org.eclipse.emf.common.util.ECollections
-import xtext.factoryLang.factoryLang.DeviceTargetValue
 import xtext.factoryLang.factoryLang.DeviceConditional
-import xtext.factoryLang.factoryLang.ParameterRefValue
+import xtext.factoryLang.factoryLang.DeviceValue
 
 /**
  * This class contains custom scoping description.
@@ -39,15 +29,14 @@ class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 	override IScope getScope(EObject context, EReference reference) {
 		switch (reference) {
 			case Literals.CRANE_OPERATION__TARGET,
-			case Literals.DISK_OPERATION__TARGET,
-			case Literals.DISK_MOVE_SLOT_OPERATION__SOURCE:
+			case Literals.DISK_MOVE_SLOT_OPERATION__SOURCE,
+			case Literals.DISK_OPERATION__TARGET:
 				return getOperationTargetScope(context as Operation)
-			case Literals.VARIABLE_CONDITIONAL__SOURCE,
-			case Literals.DISK_MOVE_VARIABLE_SLOT_OPERATION__VARIABLE:
+			case Literals.DISK_MOVE_VARIABLE_SLOT_OPERATION__VARIABLE,
+			case Literals.VARIABLE_CONDITIONAL__VARIABLE:
 				return getVariableScope(context, context)
-			case Literals.PARAMETER_REF_VALUE__REF:
-				return getParameterRefValueScope(context as ParameterRefValue)
-				
+			case Literals.DEVICE_VALUE__REF:
+				return getDeviceValueRefScope(context as DeviceValue)
 		}
 		return super.getScope(context, reference)
 	}
@@ -57,8 +46,7 @@ class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 		val nextForEach = EcoreUtil2.getContainerOfType(parent, ForEach);
 
 		if (nextForEach !== null)
-			return Scopes.scopeFor(#[nextForEach.variable],
-				getVariableScope(nextForEach, context));
+			return Scopes.scopeFor(#[nextForEach.variable], getVariableScope(nextForEach, context));
 		return getGlobalRefValueScope(context)
 	}
 
@@ -73,9 +61,9 @@ class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 		}
 		val deviceName = tempDeviceName // xtend is more little bitch
 		val device = root.configurations.filter[device.name == deviceName].map[device].toList
-		val parameters = device.get(0).parameters
+		val targets = device.get(0).targets
 
-		return Scopes.scopeFor(parameters)
+		return Scopes.scopeFor(targets)
 	}
 
 	// forward declaration does not work
@@ -88,15 +76,13 @@ class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 	}
 
 	// auto-complete does not work with this, but scoping does
-	def IScope getParameterRefValueScope(ParameterRefValue parameterRefValue) {
-		val deviceConditional = EcoreUtil2.getContainerOfType(parameterRefValue, DeviceConditional)
-		val deviceName = deviceConditional.source.name
+	def IScope getDeviceValueRefScope(DeviceValue deviceValue) {
+		val deviceConditional = EcoreUtil2.getContainerOfType(deviceValue, DeviceConditional)
+		val deviceName = deviceConditional.device.name
 
-		val root = EcoreUtil2.getRootContainer(parameterRefValue) as Model
-		val device = root.configurations.filter[device.name == deviceName].map[device].toList
-		val parameters = device.get(0).parameters
-
-		return Scopes.scopeFor(parameters)
+		val root = EcoreUtil2.getRootContainer(deviceValue) as Model
+		val device = root.configurations.filter[device.name == deviceName].map[device].get(0)
+		var targets = device.targets
+		return Scopes.scopeFor(targets)
 	}
-
 }

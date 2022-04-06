@@ -14,7 +14,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Device">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targets" upperBound="-1"
         eType="#//Parameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter"/>
@@ -41,25 +41,31 @@
   <eClassifiers xsi:type="ecore:EClass" name="Variable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DeviceTargetValue"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DiskSlotValue"/>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableTargetValue"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GlobalRefValue" eSuperTypes="#//DiskSlotValue">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//GlobalVariable"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ParameterRefValue" eSuperTypes="#//DeviceTargetValue">
+  <eClassifiers xsi:type="ecore:EClass" name="DeviceValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//Parameter"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DiskStateValue" eSuperTypes="#//DeviceTargetValue #//VariableTargetValue">
+  <eClassifiers xsi:type="ecore:EClass" name="DiskSlotValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableValue">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiskStateValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//DISK_STATES"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DiskSlotStateValue" eSuperTypes="#//DiskSlotValue #//VariableTargetValue">
+  <eClassifiers xsi:type="ecore:EClass" name="DiskSlotStateValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//DISK_SLOT_STATES"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ColorValue" eSuperTypes="#//DeviceTargetValue #//DiskSlotValue #//VariableTargetValue">
+  <eClassifiers xsi:type="ecore:EClass" name="ColorValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//COLOR"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Number" eSuperTypes="#//VariableTargetValue">
+  <eClassifiers xsi:type="ecore:EClass" name="Number">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="COMPARISON_OPERATOR">
@@ -109,14 +115,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//COLOR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeviceConditional" eSuperTypes="#//Conditional">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Device"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//DeviceTargetValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Device"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deviceValue" eType="#//DeviceValue"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableConditional" eSuperTypes="#//Conditional">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparison_operator" eType="#//COMPARISON_OPERATOR"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//VariableTargetValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableValue" eType="#//VariableValue"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CranePickupOperation" eSuperTypes="#//CraneOperation"/>
@@ -129,7 +135,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DiskMoveEmptySlotOperation" eSuperTypes="#//DiskOperation"/>
   <eClassifiers xsi:type="ecore:EClass" name="DiskMarkSlotOperation" eSuperTypes="#//DiskOperation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//DiskSlotValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diskSlotValue" eType="#//DiskSlotValue"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="measure" eType="#//TIME"/>
@@ -142,9 +148,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="ForEach" eSuperTypes="#//Loop">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//Variable"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Device"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device" eType="#//Device"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//VariableTargetValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableValue" eType="#//VariableValue"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//Statement" containment="true"/>
