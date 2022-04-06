@@ -36,7 +36,8 @@ namespace CameraColorScanner.Adapters.CameraAdapters
                 
                 //Read the image from the file
                 img = Image.Load<Rgba32>(fileName);
-
+                
+                File.Delete(fileName);
             }
             catch (Exception e)
             {
