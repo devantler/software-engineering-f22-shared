@@ -18,6 +18,7 @@ chan LowerCrane, RaiseCrane;
 chan craneGotoIntake, craneGotoRed, craneGotoBlue, craneGotoGreen;
 chan setColour[numberOfDiscSlots][3];
 bool occupiedSlots[numberOfDiscSlots];
+chan setFinished[numberOfDiscSlots];
 
 int emptySlot = -1;
 
@@ -37,7 +38,7 @@ int colour = 0;
 int error;
 
 process MasterController() {
-
+clock timer;
 state
     Idle,
     getEmptySlot,
@@ -47,13 +48,28 @@ state
     gotoCamera,
     scanItem,
     itemColour,
-    setItemColour;
+    setItemColour,
+    markSlotFinishedIn10Seconds,
+    markSlotFinishedIn20Seconds,
+    markSlotFinishedIn30Seconds,
+    SetFinsihedRed,
+    setFinishedGreen,
+    setFinishedBlue;
 commit
     getEmptySlot,
     scanItem;
 init
     Idle;
 trans
+    setFinishedBlue -> Idle { },
+    setFinishedGreen -> Idle { },
+    SetFinsihedRed -> Idle { },
+    markSlotFinishedIn30Seconds -> setFinishedBlue { guard timer >= 30; sync setFinished[emptySlot]!; },
+    markSlotFinishedIn20Seconds -> setFinishedGreen { guard timer >= 20; sync setFinished[emptySlot]!; },
+    markSlotFinishedIn10Seconds -> SetFinsihedRed { guard timer >= 10; sync setFinished[emptySlot]!; },
+    setItemColour -> markSlotFinishedIn30Seconds { guard colour == 3; assign timer = 0; },
+    setItemColour -> markSlotFinishedIn20Seconds { guard colour == 2; assign timer = 0; },
+    setItemColour -> markSlotFinishedIn10Seconds { guard colour == 1; assign timer = 0; },
     itemColour -> setItemColour { sync setColour[emptySlot][colour]!; },
     getEmptySlot -> slotEmpty { sync foundEmptySlot?; },
     slotEmpty -> gotoIntake { sync discGoto[(zones_intake + emptySlot) % numberOfDiscSlots]!; },
@@ -188,6 +204,18 @@ trans
     SlotFullBlue -> ErrorAddItemToFull { sync AddItem[id]?; assign error += 2; };
 }
 
+process SlotVariable_finished(const id_t id) {
+
+state
+    IsFinished,
+    IsNotFinished;
+init
+    IsNotFinished;
+trans
+    IsNotFinished -> IsFinished { sync setFinished[id]?; },
+    IsFinished -> IsNotFinished { sync setFinished[id]?; };
+}
+
 process DiscNamedSpots() {
 
 state
@@ -206,6 +234,7 @@ trans
 }
 
 process Crane() {
+
 
 
 
@@ -259,6 +288,7 @@ trans
     MagnetOn -> MagnetOff { sync ToggleMagnet?; },
     MagnetOff -> MagnetOn { sync ToggleMagnet?; };
 }
+
 
 
 

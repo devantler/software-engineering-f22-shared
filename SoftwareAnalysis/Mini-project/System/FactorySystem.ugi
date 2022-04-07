@@ -1,29 +1,53 @@
 process MasterController graphinfo {
-location Idle (40,80);
+guard markSlotFinishedIn30Seconds setFinishedBlue 1 (-84,-34);
+sync markSlotFinishedIn30Seconds setFinishedBlue 1 (-84,-17);
+guard markSlotFinishedIn20Seconds setFinishedGreen 1 (-84,-34);
+sync markSlotFinishedIn20Seconds setFinishedGreen 1 (-84,-17);
+guard markSlotFinishedIn10Seconds SetFinsihedRed 1 (-45,-34);
+sync markSlotFinishedIn10Seconds SetFinsihedRed 1 (-45,-17);
+guard setItemColour markSlotFinishedIn30Seconds 1 (-30,-13);
+assign setItemColour markSlotFinishedIn30Seconds 1 (-13,4);
+guard setItemColour markSlotFinishedIn20Seconds 1 (-77,-50);
+assign setItemColour markSlotFinishedIn20Seconds 1 (-8,-38);
+guard setItemColour markSlotFinishedIn10Seconds 1 (-12,-33);
+assign setItemColour markSlotFinishedIn10Seconds 1 (-12,-50);
+location Idle (700,212);
 locationName Idle(-10,-30);
-location getEmptySlot (190,80);
+location getEmptySlot (850,212);
 locationName getEmptySlot(-10,-30);
-location slotEmpty (204,-59);
+location slotEmpty (864,73);
 locationName slotEmpty(-10,-30);
-location gotoIntake (399,-51);
+location gotoIntake (1059,81);
 locationName gotoIntake(-10,-30);
-location fillSlot (569,51);
+location fillSlot (1229,183);
 locationName fillSlot(-10,-30);
-location gotoCamera (603,221);
+location gotoCamera (1263,353);
 locationName gotoCamera(-10,-30);
-location scanItem (340,380);
+location scanItem (1000,512);
 locationName scanItem(-10,-30);
-location itemColour (190,380);
+location itemColour (850,512);
 locationName itemColour(-10,-30);
-location setItemColour (0,382);
-locationName setItemColour(-10,-34);
-sync itemColour setItemColour 1 (-77,-17);
+location setItemColour (595,518);
+locationName setItemColour(-25,-42);
+sync itemColour setItemColour 1 (-44,-19);
 sync getEmptySlot slotEmpty 1 (134,49);
 sync slotEmpty gotoIntake 1 (107,225);
 sync gotoIntake fillSlot 1 (60,110);
 sync gotoCamera scanItem 1 (-191,-10);
 sync scanItem itemColour 1 (-44,2);
 sync Idle getEmptySlot 1 (-60,-15);
+location markSlotFinishedIn10Seconds (416,263);
+locationName markSlotFinishedIn10Seconds(-10,-34);
+location markSlotFinishedIn20Seconds (357,535);
+locationName markSlotFinishedIn20Seconds(-85,17);
+location markSlotFinishedIn30Seconds (467,680);
+locationName markSlotFinishedIn30Seconds(-10,-34);
+location SetFinsihedRed (289,161);
+locationName SetFinsihedRed(-10,-34);
+location setFinishedGreen (153,544);
+locationName setFinishedGreen(-10,-34);
+location setFinishedBlue (263,722);
+locationName setFinishedBlue(-10,-34);
 }
 process Camera graphinfo {
 location Idle (40,80);
@@ -164,6 +188,16 @@ sync SlotFullGreen ErrorAddItemToFull 1 (-46,-123);
 assign SlotFullGreen ErrorAddItemToFull 1 (-46,-123);
 sync SlotFullBlue ErrorAddItemToFull 1 (-225,-46);
 assign SlotFullBlue ErrorAddItemToFull 1 (-225,-46);
+}
+process SlotVariable_finished graphinfo {
+trans IsNotFinished IsFinished 1 (-4,-34);
+sync IsNotFinished IsFinished 1 (14,-34);
+trans IsFinished IsNotFinished 1 (13,42);
+sync IsFinished IsNotFinished 1 (-71,4);
+location IsFinished (0,0);
+locationName IsFinished(-10,-34);
+location IsNotFinished (178,0);
+locationName IsNotFinished(-10,-34);
 }
 process DiscNamedSpots graphinfo {
 location Crane (40,80);
