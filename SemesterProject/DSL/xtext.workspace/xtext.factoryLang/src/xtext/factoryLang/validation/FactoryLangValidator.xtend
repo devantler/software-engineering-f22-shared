@@ -18,6 +18,7 @@ import xtext.factoryLang.factoryLang.DiskStateValue
 import xtext.factoryLang.factoryLang.ColorValue
 import xtext.factoryLang.factoryLang.Camera
 import xtext.factoryLang.factoryLang.CraneParameter
+import xtext.factoryLang.factoryLang.VariableConditional
 
 /**
  * This class contains custom validation rules. 
@@ -93,7 +94,6 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 						INVALID_VALUE)
 					return
 				}
-
 				if (value instanceof ColorValue) {
 					error(device.name + ' cannot be compared to colors', Literals.DEVICE_CONDITIONAL__DEVICE_VALUE,
 						INVALID_VALUE)
@@ -102,12 +102,36 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 				return
 			}
 			case device instanceof Disk: {
-				// TODO
+				if (value instanceof ColorValue) {
+					error(device.name + ' cannot be compared to colors', Literals.DEVICE_CONDITIONAL__DEVICE_VALUE,
+						INVALID_VALUE)
+					return
+				}
 			}
 			case device instanceof Camera: {
-				// TODO
+				if (value instanceof DiskStateValue) {
+					error(device.name + ' cannot be compared to disk states', Literals.DEVICE_CONDITIONAL__DEVICE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+				if (value instanceof ColorValue) {
+					error(device.name + ' cannot be compared to colors', Literals.DEVICE_CONDITIONAL__DEVICE_VALUE,
+						INVALID_VALUE)
+					return
+				}
+				return
 			}
 		}
 	}
-}
+	
+//	@Check
+//	def checkVariableConditionalValues(VariableConditional variableConditional) {
+//		if (!variableConditional.eIsSet(Literals.VARIABLE_CONDITIONAL__VARIABLE) ||
+//			!variableConditional.eIsSet(Literals.VARIABLE_CONDITIONAL__VARIABLE_VALUE)) {
+//			return
+//		}
+//
+//		val variable = variableConditional.variable
+//		val value = variableConditional.variableValue.value
+//	}
 }
