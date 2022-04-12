@@ -16,11 +16,17 @@ chan gottenColour;
 chan ToggleMagnet;
 chan LowerCrane, RaiseCrane;
 chan craneGotoIntake, craneGotoRed, craneGotoBlue, craneGotoGreen;
-chan setColour[numberOfDiscSlots][3];
+chan setColour[numberOfDiscSlots][4];
 bool occupiedSlots[numberOfDiscSlots];
 chan setFinished[numberOfDiscSlots];
+chan getFinishedSlotChan;
+chan foundFinishedSlot;
+bool finishedSlots[numberOfDiscSlots];
+chan getColourSlot[numberOfDiscSlots];
+chan gottenColourSlot;
 
 int emptySlot = -1;
+int finishedSlot = -1;
 
 /**
 1: Red
@@ -28,6 +34,9 @@ int emptySlot = -1;
 3: Blue
 */
 int colour = 0;
+int colourSlot = 0;
+
+clock GlobalTimer;
 
 /**
 1: Tried to remove item from empty disc slot
@@ -38,6 +47,12 @@ int colour = 0;
 int error;
 
 process MasterController() {
+
+
+
+
+
+
 clock timer;
 state
     Idle,
@@ -54,13 +69,71 @@ state
     markSlotFinishedIn30Seconds,
     SetFinsihedRed,
     setFinishedGreen,
-    setFinishedBlue;
+    setFinishedBlue,
+    getFinishedSlot,
+    slotFinished,
+    gotoCrane,
+    gotoIntake_crane,
+    craneLower,
+    toggleMagnet_crane,
+    getColourOfSlot,
+    thingIsRed,
+    thingIsGreen,
+    thingIsBlue,
+    gotoRed_crane,
+    gotoGreen_crane,
+    gotoBlue_crane,
+    craneLowerBlue,
+    craneLowerGreen,
+    craneLowerRed,
+    toggleMagnetBlue,
+    toggleMagnetGreen,
+    toggleMagnetRed,
+    EndIf,
+    markEmpty,
+    IdleTime1,
+    IdleTime2,
+    IdleTime3;
 commit
     getEmptySlot,
-    scanItem;
+    scanItem,
+    getFinishedSlot,
+    getColourOfSlot;
 init
     Idle;
 trans
+    IdleTime3 -> markSlotFinishedIn30Seconds { },
+    markSlotFinishedIn30Seconds -> IdleTime3 { },
+    IdleTime2 -> markSlotFinishedIn20Seconds { },
+    markSlotFinishedIn20Seconds -> IdleTime2 { },
+    IdleTime1 -> markSlotFinishedIn10Seconds { },
+    markSlotFinishedIn10Seconds -> IdleTime1 { },
+    getEmptySlot -> Idle { guard GlobalTimer > 2; },
+    getFinishedSlot -> Idle { guard GlobalTimer > 2; },
+    markEmpty -> Idle { },
+    EndIf -> markEmpty { sync RemoveItem[finishedSlot]!; },
+    toggleMagnetRed -> EndIf { },
+    toggleMagnetGreen -> EndIf { },
+    toggleMagnetBlue -> EndIf { },
+    craneLowerRed -> toggleMagnetRed { sync ToggleMagnet!; },
+    craneLowerGreen -> toggleMagnetGreen { sync ToggleMagnet!; },
+    craneLowerBlue -> toggleMagnetBlue { sync ToggleMagnet!; },
+    gotoRed_crane -> craneLowerRed { sync LowerCrane!; },
+    gotoGreen_crane -> craneLowerGreen { sync LowerCrane!; },
+    gotoBlue_crane -> craneLowerBlue { sync LowerCrane!; },
+    thingIsBlue -> gotoBlue_crane { sync craneGotoBlue!; },
+    thingIsGreen -> gotoGreen_crane { sync craneGotoGreen!; },
+    thingIsRed -> gotoRed_crane { sync craneGotoRed!; },
+    getColourOfSlot -> thingIsBlue { guard colourSlot == 3; sync gottenColourSlot?; },
+    getColourOfSlot -> thingIsGreen { guard colourSlot == 2; sync gottenColourSlot?; },
+    getColourOfSlot -> thingIsRed { guard colourSlot == 1; sync gottenColourSlot?; },
+    toggleMagnet_crane -> getColourOfSlot { sync getColourSlot[finishedSlot]!; },
+    craneLower -> toggleMagnet_crane { sync ToggleMagnet!; },
+    gotoIntake_crane -> craneLower { sync LowerCrane!; },
+    gotoCrane -> gotoIntake_crane { sync craneGotoIntake!; },
+    slotFinished -> gotoCrane { sync discGoto[(zones_crane + finishedSlot) % numberOfDiscSlots]!; },
+    getFinishedSlot -> slotFinished { sync foundFinishedSlot?; },
+    Idle -> getFinishedSlot { sync getFinishedSlotChan!; assign GlobalTimer = 0; },
     setFinishedBlue -> Idle { },
     setFinishedGreen -> Idle { },
     SetFinsihedRed -> Idle { },
@@ -77,7 +150,7 @@ trans
     fillSlot -> gotoCamera { },
     gotoCamera -> scanItem { sync getColour!; },
     scanItem -> itemColour { sync gottenColour?; },
-    Idle -> getEmptySlot { sync getFreeSlot!; };
+    Idle -> getEmptySlot { sync getFreeSlot!; assign GlobalTimer = 0; };
 }
 
 process Camera() {
@@ -126,6 +199,32 @@ trans
     Idle -> Get2 { guard !occupiedSlots[1]; sync getFreeSlot?; },
     Get1 -> Idle { sync foundEmptySlot!; assign emptySlot = 0; },
     Idle -> Get1 { guard !occupiedSlots[0]; sync getFreeSlot?; };
+}
+
+process GetFinishedSlot() {
+
+state
+    Idle,
+    Get4,
+    Get1,
+    Get2,
+    Get3;
+commit
+    Get4,
+    Get1,
+    Get2,
+    Get3;
+init
+    Idle;
+trans
+    Get4 -> Idle { sync foundFinishedSlot!; assign finishedSlot = 3; },
+    Idle -> Get4 { guard !finishedSlots[3]; sync getFinishedSlotChan?; },
+    Get3 -> Idle { sync foundFinishedSlot!; assign finishedSlot = 2; },
+    Idle -> Get3 { guard !finishedSlots[2]; sync getFinishedSlotChan?; },
+    Get2 -> Idle { sync foundFinishedSlot!; assign finishedSlot = 1; },
+    Idle -> Get2 { guard !finishedSlots[1]; sync getFinishedSlotChan?; },
+    Get1 -> Idle { sync foundFinishedSlot!; assign finishedSlot = 0; },
+    Idle -> Get1 { guard !finishedSlots[0]; sync getFinishedSlotChan?; };
 }
 
 process Disc() {
@@ -182,15 +281,24 @@ state
     SlotEmpty,
     SlotFull,
     SlotFullRed,
+    GetColourRed,
     SlotFullGreen,
+    GetColourGreen,
     SlotFullBlue,
+    GetColourBlue,
     ErrorAddItemToFull,
     ErrorRemoveItemFromEmpty;
+commit
+    GetColourRed,
+    GetColourGreen,
+    GetColourBlue;
 init
     SlotEmpty;
 trans
     SlotEmpty -> SlotFull { sync AddItem[id]?; assign occupiedSlots[id] = true; },
     SlotFull -> SlotFullRed { sync setColour[id][1]?; },
+    SlotFullRed -> GetColourRed { sync getColourSlot[id]?; },
+    GetColourRed -> SlotFullRed { sync gottenColourSlot!; },
     SlotFull -> SlotFullGreen { sync setColour[id][2]?; },
     SlotFull -> SlotFullBlue { sync setColour[id][3]?; },
     SlotFull -> SlotEmpty { sync RemoveItem[id]?; assign occupiedSlots[id] = false; },
@@ -216,24 +324,13 @@ trans
     IsFinished -> IsNotFinished { sync setFinished[id]?; };
 }
 
-process DiscNamedSpots() {
-
-state
-    Crane,
-    Intake,
-    Scanner;
-init
-    Crane;
-trans
-    Scanner -> Intake { },
-    Crane -> Scanner { },
-    Intake -> Crane { },
-    Scanner -> Crane { },
-    Intake -> Scanner { },
-    Crane -> Intake { };
-}
-
 process Crane() {
+
+
+
+
+
+
 
 
 
@@ -295,6 +392,12 @@ trans
 
 
 
+
+
+
+
+
+
 // Place template instantiations here.
 // List one or more processes to be composed into a system.
-system MasterController, Disc, DiscNamedSpots, Crane, DiscSlot, GetEmptySlot, CraneMagnet;
+system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camera;

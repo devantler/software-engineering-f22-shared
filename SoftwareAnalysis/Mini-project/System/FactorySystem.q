@@ -3,4 +3,9 @@
 /*
 
 */
+A[] !deadlock
+
+/*
+
+*/
 //NO_QUERY
