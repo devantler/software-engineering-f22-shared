@@ -1,40 +1,39 @@
-create crane named "crane"  
-	with position at 0 named "in" 
-	with position at 30 named "out-red" 
-	with position at 60 named "out-green" 
-	with position at 90 named "out-blue"  
+create crane named crane1  
+	with position at 0 named intake 
+	with position at 30 named outRed 
+	with position at 60 named outGreen 
+	with position at 90 named outBlue  
 
-create disk named "disk"  
+create disk named disk1
 	with 8 slots
-	with zone 1 at slot 1 named "craneZone" 
-	with zone 2 at slot 3 named "cameraZone"
+	with zone named craneZone  at slot 1 
+	with zone named cameraZone at slot 3 
 
-create camera named "camera"  
+create camera named camera1  
 	with scannable color blue 
 	with scannable color green 
-	with scannable color red  
+	with scannable color red
 
-for each element in "disk" that is complete then  
-	"disk" move slot of element to "disk.craneZone" 
-	"crane" pickup item at "crane.in"  
-	"disk" mark slot at "disk.craneZone" as free 
-	if element is red then  
-		"crane" drop item at "crane.out-red"  
-	if element is green then  
-		"crane" drop item at "crane.out-green"  
-	if element is blue then  
-		"crane" drop item at "crane.out-blue"    
+for each element in disk1 that is complete then
+	disk1 move slot of element to craneZone
+	crane1 pickup item at intake
+	disk1 mark slot at craneZone as free
+	if variable element is red then  
+		crane1 drop item at outRed
+	if variable element is green then  
+		crane1 drop item at outGreen 
+	if variable element is blue then  
+		crane1 drop item at outBlue
 
-if "disk" is not full then  
-	"disk" move empty slot to "disk.craneZone" 
-	"disk" mark slot at "disk.craneZone" as in-progress 
-	"disk" move slot at "disk.craneZone" to "disk.cameraZone" 
-	"camera" scan color into currentItemColor 
-	"disk" mark slot at "disk.cameraZone" as currentItemColor 
-	if currentItemColor is red then  
-		"disk" mark slot at "disk.cameraZone" as complete in 10 seconds  
-	if currentItemColor is green then  
-		"disk" mark slot at "disk.cameraZone" as complete in 20 seconds  
-	if currentItemColor is blue then  
-		"disk" mark slot at "disk.cameraZone" as complete in 30 seconds
-
+if device disk1 is not full then  
+	disk1 move empty slot to craneZone
+	disk1 mark slot at craneZone as in-progress 
+	disk1 move slot at craneZone to cameraZone
+	camera1 scan color into currentItemColor 
+	disk1 mark slot at cameraZone as currentItemColor 
+	if variable currentItemColor is red then  
+		disk1 mark slot at cameraZone as complete in 10 seconds  
+	if variable currentItemColor is green then  
+		disk1 mark slot at cameraZone as complete in 20 seconds  
+	if variable currentItemColor is blue then  
+		disk1 mark slot at cameraZone as complete in 30 seconds
