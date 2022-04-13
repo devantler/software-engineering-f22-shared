@@ -1,73 +1,83 @@
 package xtext.factoryLang.generator.subgenerators
 
+import java.util.List
 import org.eclipse.xtext.generator.IFileSystemAccess2
+import xtext.factoryLang.factoryLang.Camera
+import xtext.factoryLang.factoryLang.CameraColorParameter
+import xtext.factoryLang.factoryLang.Crane
+import xtext.factoryLang.factoryLang.CranePositionParameter
+import xtext.factoryLang.factoryLang.Device
+import xtext.factoryLang.factoryLang.Disk
+import xtext.factoryLang.factoryLang.DiskSlotParameter
+import xtext.factoryLang.factoryLang.DiskZoneParameter
 
 class ProgramGenerator {
 	
-	def static generate(IFileSystemAccess2 fsa) {
+	def static generate(IFileSystemAccess2 fsa, List<Device> devices) {
 		fsa.generateFile('OrchestratorService/Program.cs', 
 			'''
 			using System;
 			using System.Collections.Generic;
-			using Mqtt;
 			using Entities;
+			using Mqtt;
 			
 			var mqtt = new MqttService();
-			var crane = new Crane(mqtt);
-			string[]? userInput;
-			do
-			{
-			    userInput = Console.ReadLine()?.Split(" ");
-			    switch (userInput?[0])
-			    {
-			        case "crane":
-			            CraneActions(userInput);
-			            break;
-			        case "disc":
-			            DiskActions(userInput);
-			            break;
-			        default:
-			            Console.WriteLine($"{userInput?[0]} is not a known entity");
-			            break;
-			    }
-			} while (userInput?[0] != "exit" || userInput?[0] != "q");
-			
-			void CraneActions(string[]? input)
-			{
-			    var firstParam = input?[2];
-			    switch (input?[1])
-			    {
-			        case "goto":
-			            if (int.TryParse(firstParam, out var angle))
-			            {
-			                Console.WriteLine($"Going to angle: {firstParam}");
-			                crane.Goto(angle);
-			            }
-			            if (firstParam != null)
-			            {
-			                Console.WriteLine($"Going to position: {firstParam}");
-			                crane.Goto(firstParam);
-			            }
-			            break;
-			        case "drop":
-			            Console.WriteLine("Dropping item");
-			            crane.DropItem();
-			            break;
-			        case "pickup":
-			            Console.WriteLine("Picking up item");
-			            crane.PickupItem();
-			            break;
-			        default:
-			            Console.WriteLine($"{input?[1]} is not a known crane action");
-			            break;
-			    }
-			}
-			
-			void DiskActions(string[]? input)
-			{
-			}
+			«generateCranes(devices.filter[it instanceof Crane].map[it as Crane].toList)»
+			«generateDisks(devices.filter[it instanceof Disk].map[it as Disk].toList)»
+			«generateCameras(devices.filter[it instanceof Camera].map[it as Camera].toList)»
 			'''
 		)
 	}
+	
+	protected def static CharSequence generateCameras(List<Camera> cameras)
+		'''
+		«IF cameras.size > 0»
+		
+		var cameras = new Dictionary<string, Camera>();
+		«FOR camera:cameras»
+		cameras.Add("«camera.name»", new Camera(new List<string>()
+		{
+			«FOR target:camera.targets.map[it as CameraColorParameter] SEPARATOR ","»
+			"«target.color»"
+			«ENDFOR»
+		}, mqtt));
+		«ENDFOR»
+		«ENDIF»
+		'''
+	
+	
+	protected def static CharSequence generateDisks(List<Disk> disks)
+		'''
+		«IF disks.size > 0» 
+		
+		var disks = new Dictionary<string, Disk>();
+		«FOR disk:disks»
+		disks.Add("«disk.name»", new Disk(«(disk.slotParameter as DiskSlotParameter).size», new Dictionary<string, int>()
+		{
+			«FOR target:disk.targets.map[it as DiskZoneParameter] SEPARATOR ","»
+			{"«target.name»", «target.slot»}
+			«ENDFOR»
+		}, mqtt));
+		«ENDFOR»
+		«ENDIF»
+		'''
+	
+	
+	protected def static CharSequence generateCranes(List<Crane> cranes)
+		'''
+		«IF cranes.size > 0» 
+		
+		var cranes = new Dictionary<string, Crane>();
+		«FOR crane:cranes»
+		cranes.Add("«crane.name»", new Crane(new Dictionary<string, int>()
+		{
+			«FOR target:crane.targets.map[it as CranePositionParameter] SEPARATOR ","»
+			{"«target.name»", «target.degree»}
+			«ENDFOR»
+		},mqtt));
+		«ENDFOR»
+		«ENDIF»
+		'''
+	
 	
 }

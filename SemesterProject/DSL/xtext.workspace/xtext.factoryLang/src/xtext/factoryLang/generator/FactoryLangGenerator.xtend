@@ -12,7 +12,9 @@ import xtext.factoryLang.generator.subgenerators.ProgramGenerator
 import xtext.factoryLang.generator.subgenerators.MqttGenerator
 import xtext.factoryLang.factoryLang.Model
 import xtext.factoryLang.factoryLang.Crane
-import xtext.factoryLang.generator.subgenerators.CraneGenerator
+import xtext.factoryLang.generator.subgenerators.EntityGenerator
+import xtext.factoryLang.factoryLang.Disk
+import xtext.factoryLang.factoryLang.Camera
 
 /**
  * Generates code from your model files on save.
@@ -22,224 +24,15 @@ import xtext.factoryLang.generator.subgenerators.CraneGenerator
 class FactoryLangGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		generateStaticFiles(fsa)
-		
-		val model = resource.allContents.filter(Model).next
-		val craneConfigurations = model.configurations.filter[it.device instanceof Crane]
-		for (craneConfiguration : craneConfigurations) {
-			CraneGenerator.generate(fsa, craneConfiguration.device as Crane)
-		}
-		fsa.generateFile('OrchestratorService/Entities/Crane.cs', 
-			'''
-			using System.Collections.Generic;
-			using System.Linq;
-			using System.Threading.Tasks;
-			using Mqtt;
-			
-			namespace Entities
-			{
-			    public class Crane
-			    {
-					private readonly Dictionary<string, int> _positions;
-					private readonly IMqttService _mqttService;
-			
-			        public Crane(IMqttService mqttService)
-					{
-						_positions = new Dictionary<string, int>()
-						{
-							{"intake", 30},
-							{"red", 120},
-							{"green", 140},
-							{"blue", 160}
-						};
-						_mqttService = mqttService;
-					}
-			        
-					public Crane(Dictionary<string, int> positions, IMqttService mqttService)
-					{
-						_positions = positions;
-						_mqttService = mqttService;
-					}
-			
-			        public void AddPosition(string name, int angle)
-			        {
-			            _positions.Add(name, angle);
-			        }
-			
-			        public async Task Goto(string position)
-			        {
-			            await _mqttService.SendMessage(MqttTopics.Crane.Angle, _positions[position].ToString());
-			        }
-			        
-			        public async Task Goto(int position)
-			        {
-			            await _mqttService.SendMessage(MqttTopics.Crane.Angle, position.ToString());
-			        }
-			
-			        public async Task PickupItem()
-			        {
-			            await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "LOW");
-			            await _mqttService.SendMessage(MqttTopics.Crane.Magnet, "1");
-			            while (_mqttService.GetMessage(MqttTopics.Crane.Moving) != "0")
-			            {
-			                await Task.Delay(100);
-			            }
-			            await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "HIGH");
-			        }
-			        
-			        public async Task DropItem()
-			        {
-			            await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "LOW");
-			            while (_mqttService.GetMessage(MqttTopics.Crane.Moving) != "0")
-			            {
-			                await Task.Delay(100);
-			            }
-			            await _mqttService.SendMessage(MqttTopics.Crane.Magnet, "0");
-			            await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "HIGH");
-			        }
-			    }
-			}
-			'''
-		)
-		//if disk is defined
-		fsa.generateFile('OrchestratorService/Entities/Disk.cs', 
-			'''
-			using Mqtt;
-			
-			namespace Entities;
-			
-			public class Disk
-			{
-			    private int _currentOffset = 0;
-			    private readonly Dictionary<int, Slot> _slots;
-			    private Dictionary<string, int> _positionNames = new Dictionary<string, int>();
-			    private IMqttService _mqttService;
-			    
-			    public Disk(IMqttService mqttService)
-			    {
-			        _mqttService = mqttService;
-			        _slots = new Dictionary<int, Slot>();
-			        for (int i = 0; i < 8; i++)
-			        {
-			            _slots.Add(i, new Slot());
-			        }
-			        _positionNames.Add("crane", 3);
-			        _positionNames.Add("camera", 6);
-			        _positionNames.Add("intake", 1);
-			    }
-			
-			    public int GetEmptySlot()
-			    {
-			        if (_slots.Any(x => !x.Value.HasItem))
-			        {
-			            return _slots.FirstOrDefault(x => !x.Value.HasItem).Key;
-			        }
-			        return -1;
-			    }
-			
-			    #region MoveSlot methods
-			
-			    public void MoveSlot(string fromPositionName, string toPositionName)
-			    {
-			        var fromPosition = _positionNames[fromPositionName];
-			        var toPosition = _positionNames[toPositionName];
-			        MoveSlot(fromPosition, toPosition);
-			    }
-			    
-			    public void MoveSlot(string fromPositionName, int toPosition)
-			    {
-			        var fromPosition = _positionNames[fromPositionName];
-			        MoveSlot(fromPosition, toPosition);
-			    }
-			    
-			    public void MoveSlot(int fromPosition, string positionName)
-			    {
-			        var toPosition = _positionNames[positionName];
-			        MoveSlot(fromPosition, toPosition);
-			    }
-			
-			    #endregion
-			
-			    public void MoveSlot(int fromPosition, int toPosition)
-			    {
-			        //Mqtt stuff
-			        var amountToMove = fromPosition - toPosition;
-			        _currentOffset = _currentOffset + amountToMove % _slots.Count;
-			    }
-			
-			    public bool IsFull()
-			    {
-			        return _slots.All(x => x.Value.HasMark("full"));
-			    }
-			
-			    public void MarkSlot(int slot, string mark)
-			    {
-			        _slots[slot].AddMark(mark);
-			    }
-			    
-			    public void MarkSlot(string positionName, string mark)
-			    {
-			        _slots[_positionNames[positionName]].AddMark(mark);
-			    }
-			
-			    public bool SlotHasMark(int slot, string mark)
-			    {
-			        return _slots[slot].HasMark(mark);
-			    }
-			    
-			    public bool SlotHasMark(string positionName, string mark)
-			    {
-			        return _slots[_positionNames[positionName]].HasMark(mark);
-			    }
-			    
-			    public List<int> GetSlotsWithMark(string mark)
-			    {
-			        return _slots.Where(x => x.Value.HasMark(mark)).Select(x => x.Key).ToList();
-			    }
-			}
-			'''
-		)
-		fsa.generateFile('OrchestratorService/Entities/Slot.cs', 
-			'''
-			namespace Entities;
-			
-			public class Slot
-			{
-			    private List<string> _marks = new List<string>();
-			    
-			    public bool HasMark(string mark)
-			    {
-			        return _marks.Contains(mark);
-			    }
-			    
-			    public void AddMark(string mark)
-			    {
-			        _marks.Add(mark);
-			    }
-			}
-			'''
-		)
-		//if camera is defined
-		fsa.generateFile('OrchestratorService/Entities/Camera.cs', 
-			'''
-			namespace Entities;
-			
-			public class Camera
-			{
-			    public string Scan()
-			    {
-			        //Scanner stuff
-			        return string.Empty;
-			    }
-			}
-			'''
-		)
-	}
-	
-	def generateStaticFiles(IFileSystemAccess2 fsa) {
 		CsprojGenerator.generate(fsa);
-		ProgramGenerator.generate(fsa);
 		MqttGenerator.generate(fsa);
+		val model = resource.allContents.filter(Model).next
+		val devices = model.configurations.map[device]
+		EntityGenerator.generate(fsa, 
+			devices.filter[it instanceof Crane].size, 
+			devices.filter[it instanceof Disk].size, 
+			devices.filter[it instanceof Camera].size
+		);
+		ProgramGenerator.generate(fsa, devices);
 	}
-	
 }
