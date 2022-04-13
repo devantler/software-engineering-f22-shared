@@ -1,0 +1,266 @@
+@startuml
+' By default only extension, composition and aggregation relations are shown.
+
+' Remove the [hidden] part from arrows to show references. 
+' This can be done by a search and replace for (-[hidden]->) with (-->)
+skinparam linetype polyline
+skinparam linetype polyline
+class Model {
+    + configurations: Configuration
+    + statement: Statement
+}
+
+
+class Configuration {
+    + device: Device
+}
+class Statement
+
+class Loop
+class ForEach {
+    + variable: Variable
+    + source: Device
+    + operator: string
+    + target: VariableValue
+    + statements: Statement
+}
+
+class Operation
+
+class CameraOperation
+class CameraScanOperation {
+    + device: Camera
+    + variable: Variable
+}
+
+
+class DiskOperation {
+    + device: Disk
+    + target: DiskSlotParameter
+}
+class DiskMoveVariableSlotOperation {
+    + variable: Variable
+}
+class DiskMoveSlotOperation {
+    + source: DiskZoneParameter
+}
+class DiskMoveEmptySlotOperation
+class DiskMarkSlotOperation {
+    + value: DiskSlotValue
+    + quantity: int
+    + measure: TIME
+}
+
+
+class CraneOperation {
+    + device: Crane
+    + target: CraneParameter
+}
+class CranePickupOperation
+class CraneDropOperation
+
+
+class Conditional {
+    + operator: string
+    + statements: Statement
+}
+class CraneConditional {
+    + source: Crane
+    + target: CraneParameter
+}
+class DiskConditional {
+    + source: Disk
+    + target: DiskStateValue
+}
+class CameraConditional {
+    + source: Camera
+    + target: COLOR
+}
+class VariableConditional {
+    + source: Variable
+    + comparison_operator: COMPARISON_OPERATOR
+    + target: VariableValue
+}
+
+
+
+class Device {
+    + name: string
+    + parameters: Parameter
+}
+class Camera
+class Disk {
+    + slotParameter: DiskParameter
+}
+class Crane
+
+
+class Parameter
+class CraneParameter
+class CranePositionParameter {
+    + degree: int
+    + name: string
+}
+class DiskParameter
+class DiskSlotParameter {
+    + size: int
+}
+class DiskPositionParameter
+class DiskZoneParameter {
+    + zone: int
+    + slot: int
+    + name: string
+}
+class CameraColorParameter {
+    + color: COLOR
+}
+
+class DiskSlotValue {
+    + ref: GlobalVariable
+}
+class DiskStateValue {
+    + value: DISK_STATES
+}
+class DiskSlotStateValue {
+    + value: DISK_SLOT_STATES
+}
+class VariableValue
+class Number {
+    + value: int
+}
+class ColorValue {
+    + value: COLOR
+}
+
+class Variable {
+    + name: string
+}
+
+class GlobalVariable
+class LocalVariable
+
+
+enum COMPARISON_OPERATOR {
+    LESS_THAN
+    GREATER_THAN
+}
+enum COLOR {
+    RED
+    GREEN
+    BLUE
+}
+enum DISK_STATES {
+    FULL
+    EMPTY
+}
+enum DISK_SLOT_STATES {
+    FREE
+    IN_PROGRESS
+    COMPLETE
+}
+enum TIME {
+    SECONDS
+    SECOND
+    MINUTES
+    MINUTE
+    HOURS
+    HOUR
+}
+
+' Model
+Model *-- "1..*" Configuration
+Model *-- "0..*" Statement
+
+' Configuration
+Configuration *-- "1" Device
+Device *-- "1..*" Parameter
+
+Crane -up-|> Device
+CraneParameter -up-|> Parameter
+CranePositionParameter -up-|> CraneParameter
+
+Disk -up-|> Device
+Disk *-- "1" DiskSlotParameter
+DiskParameter -up-|> Parameter
+DiskSlotParameter -up-|> DiskParameter
+DiskZoneParameter -up-|> DiskParameter
+
+Camera -up-|> Device
+CameraParameter -up-|> Parameter
+CameraColorParameter -up-|> CameraParameter
+CameraColorParameter *-- "1" COLOR
+
+' Statements:Conditionals
+Conditional -up-|> Statement
+
+CraneConditional -up-|> Conditional
+CraneConditional -[hidden]-> Crane
+CraneConditional -[hidden]-> CraneParameter
+
+DiskConditional -up-|> Conditional
+DiskConditional -[hidden]-> Disk
+DiskConditional *-- "1" DiskStateValue
+
+CameraConditional -up-|> Conditional
+CameraConditional -[hidden]-> Camera
+CameraConditional *-- "1" COLOR
+
+VariableConditional -up-|> Conditional
+VariableConditional -[hidden]-> Variable
+VariableConditional o-- "0..1" COMPARISON_OPERATOR
+VariableConditional *-- "1" VariableValue
+
+' Statements:Operations
+Operation -up-|> Statement
+
+CraneOperation -up-|> Operation
+CraneOperation -[hidden]-> Crane
+CraneOperation -[hidden]-> CraneParameter
+CraneDropOperation -up-|> CraneOperation
+CranePickupOperation -up-|> CraneOperation
+
+DiskOperation -up-|> Operation
+DiskOperation -[hidden]-> Disk
+DiskOperation -[hidden]-> DiskZoneParameter
+
+DiskMoveSlotOperation -up-|> DiskOperation
+
+DiskMoveVariableSlotOperation -up-|> DiskOperation
+DiskMoveVariableSlotOperation -[hidden]-> Variable
+
+DiskMoveEmptySlotOperation -up-|> DiskOperation
+
+DiskMarkSlotOperation -up-|> DiskOperation
+DiskMarkSlotOperation *-- "1" DiskSlotValue
+DiskMarkSlotOperation o-- "1" TIME
+
+CameraOperation -up-|> Operation
+CameraScanOperation -up-|> CameraOperation
+CameraScanOperation -[hidden]-> Camera
+CameraScanOperation *-- "1" GlobalVariable
+
+
+' Statements:Loops
+Loop -up-|> Statement
+ForEach -up-|> Loop
+ForEach *-[hidden]-> "1" LocalVariable
+ForEach -[hidden]-> Device 
+ForEach *-[hidden]-> "1" VariableValue
+
+' Variables
+LocalVariable -up-|> Variable
+GlobalVariable -up-|> Variable
+
+' Values
+DiskSlotValue -[hidden]-> GlobalVariable
+DiskStateValue -up-|> VariableValue
+DiskStateValue *-[hidden]-> "1" DISK_STATES
+DiskSlotStateValue -up-|> VariableValue
+DiskSlotStateValue -up-|> DiskSlotValue
+DiskSlotStateValue *-[hidden]-> "1" DISK_SLOT_STATES
+ColorValue -up-|> VariableValue
+ColorValue -up-|> DiskSlotValue
+ColorValue *-[hidden]-> "1" COLOR
+Number -up-|> VariableValue
+
+@enduml

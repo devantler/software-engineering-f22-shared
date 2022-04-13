@@ -1,0 +1,40 @@
+create crane named "crane"  
+	with position at 0 named "in" 
+	with position at 30 named "out-red" 
+	with position at 60 named "out-green" 
+	with position at 90 named "out-blue"  
+
+create disk named "disk"  
+	with 8 slots
+	with zone 1 at slot 1 named "craneZone" 
+	with zone 2 at slot 3 named "cameraZone"
+
+create camera named "camera"  
+	with scannable color blue 
+	with scannable color green 
+	with scannable color red  
+
+for each element in "disk" that is complete then  
+	"disk" move slot of element to "disk.craneZone" 
+	"crane" pickup item at "crane.in"  
+	"disk" mark slot at "disk.craneZone" as free 
+	if element is red then  
+		"crane" drop item at "crane.out-red"  
+	if element is green then  
+		"crane" drop item at "crane.out-green"  
+	if element is blue then  
+		"crane" drop item at "crane.out-blue"    
+
+if "disk" is not full then  
+	"disk" move empty slot to "disk.craneZone" 
+	"disk" mark slot at "disk.craneZone" as in-progress 
+	"disk" move slot at "disk.craneZone" to "disk.cameraZone" 
+	"camera" scan color into currentItemColor 
+	"disk" mark slot at "disk.cameraZone" as currentItemColor 
+	if currentItemColor is red then  
+		"disk" mark slot at "disk.cameraZone" as complete in 10 seconds  
+	if currentItemColor is green then  
+		"disk" mark slot at "disk.cameraZone" as complete in 20 seconds  
+	if currentItemColor is blue then  
+		"disk" mark slot at "disk.cameraZone" as complete in 30 seconds
+
