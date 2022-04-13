@@ -1,6 +1,7 @@
 **/*-gen/*
 **/*-bin/*
 **/bin/
+**/generated/*
 
 # Keep selected folders
 !**/*-gen/.gitkeep
