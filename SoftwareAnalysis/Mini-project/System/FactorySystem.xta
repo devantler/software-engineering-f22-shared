@@ -61,6 +61,7 @@ int error;
 process MasterController() {
 
 
+
 clock timer;
 state
     Idle,
@@ -348,6 +349,7 @@ trans
 process Crane() {
 
 
+
 // Place local declarations here.
 bool magnetPower =  false;
 state
@@ -399,6 +401,7 @@ trans
     MagnetOn -> MagnetOff { sync crane_toggleMagnet?; },
     MagnetOff -> MagnetOn { sync crane_toggleMagnet?; };
 }
+
 
 
 
