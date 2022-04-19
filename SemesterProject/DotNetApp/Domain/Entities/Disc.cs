@@ -24,15 +24,14 @@ public class Disc
 
     public int GetEmptySlot()
     {
-        if (_slots.Any(x => !x.Value.HasMark("full")))
+        if (_slots.Any(x => x.Value.HasMark("free")))
         {
-            return _slots.FirstOrDefault(x => !x.Value.HasMark("full")).Key;
+            return _slots.FirstOrDefault(x => x.Value.HasMark("free")).Key;
         }
         return -1;
     }
 
     #region MoveSlot methods
-
     public void MoveSlot(string fromPositionName, string toPositionName)
     {
         var fromPosition = _positionNames[fromPositionName];
@@ -51,9 +50,6 @@ public class Disc
         var toPosition = _positionNames[positionName];
         MoveSlot(fromPosition, toPosition);
     }
-
-    #endregion
-
     public void MoveSlot(int fromPosition, int toPosition)
     {
         //Mqtt stuff
@@ -61,12 +57,14 @@ public class Disc
         _currentOffset = _currentOffset + amountToMove % _slots.Count;
         _mqttService.SendMessage(MqttTopics.Disc.Slot, _currentOffset.ToString());
     }
+    #endregion
 
-    public bool IsFull()
-    {
+    public bool IsFull(){
         return _slots.All(x => x.Value.HasMark("full"));
     }
-
+    public bool IsEmpty(){
+        _slots.All(x => x.Value.HasMark("free"));
+    }
     public void MarkSlot(int slot, string mark)
     {
         _slots[slot].AddMark(mark);
@@ -81,7 +79,7 @@ public class Disc
     {
         return _slots[slot].HasMark(mark);
     }
-    
+
     public bool SlotHasMark(string positionName, string mark)
     {
         return _slots[_positionNames[positionName]].HasMark(mark);
