@@ -1,0 +1,51 @@
+//This file was generated from (Academic) UPPAAL 4.1.26-1 (rev. 7BCF30B7363A9518), February 2022
+
+/*
+
+*/
+A<> CraneMagnet.MagnetOn imply CraneMagnet.MagnetOff
+
+/*
+
+*/
+A[] !deadlock
+
+/*
+
+*/
+A[] (Crane.Red and CraneMagnet.MagnetOff) imply !(Crane.Red and CraneMagnet.MagnetOn)
+
+/*
+
+*/
+A[] (Crane.Red and CraneMagnet.MagnetOn) imply !(Crane.Red and CraneMagnet.MagnetOff)
+
+/*
+
+*/
+A[] MasterController.gotoIntake_crane imply disc_slots_finished[currentSlot_finished]
+
+/*
+
+*/
+A[] disc_slots_finished[1] imply disc_occupiedSlots[1]
+
+/*
+
+*/
+E<> forall (i : id_t) DiscSlot(i).SlotEmpty
+
+/*
+
+*/
+//NO_QUERY
+
+/*
+
+*/
+//NO_QUERY
+
+/*
+
+*/
+//NO_QUERY

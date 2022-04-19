@@ -49,6 +49,7 @@ int currentSlot_colour = 0;
 
 //--------------------defaults------------------------
 clock GlobalTimer;
+broadcast chan emergencyStop;
 
 /**
 1: Tried to remove item from empty disc slot
@@ -59,6 +60,11 @@ clock GlobalTimer;
 int error;
 
 process MasterController() {
+
+
+
+
+
 
 
 
@@ -254,10 +260,15 @@ state
     AddItem3Req,
     RemoveItem3Req,
     AddItem4Req,
-    RemoveItem4Req;
+    RemoveItem4Req,
+    Stopped;
 init
     Position1;
 trans
+    Position3 -> Stopped { sync emergencyStop?; },
+    Position2 -> Stopped { sync emergencyStop?; },
+    Position1 -> Stopped { sync emergencyStop?; },
+    Position4 -> Stopped { sync emergencyStop?; },
     Position4 -> Position2 { sync disc_goto[1]?; },
     Position2 -> Position4 { sync disc_goto[3]?; },
     Position1 -> Position3 { sync disc_goto[2]?; },
@@ -349,7 +360,6 @@ trans
 process Crane() {
 
 
-
 // Place local declarations here.
 bool magnetPower =  false;
 state
@@ -360,10 +370,19 @@ state
     LoweredAtRed,
     LoweredAtGreen,
     LoweredAtBlue,
-    LoweredAtIntake;
+    LoweredAtIntake,
+    Stopped;
 init
     Intake;
 trans
+    LoweredAtBlue -> Stopped { sync emergencyStop?; },
+    LoweredAtIntake -> Stopped { sync emergencyStop?; },
+    Intake -> Stopped { sync emergencyStop?; },
+    Blue -> Stopped { sync emergencyStop?; },
+    LoweredAtGreen -> Stopped { sync emergencyStop?; },
+    Green -> Stopped { sync emergencyStop?; },
+    Red -> Stopped { sync emergencyStop?; },
+    LoweredAtRed -> Stopped { sync emergencyStop?; },
     LoweredAtIntake -> Intake { sync crane_raiseMagnet?; },
     Intake -> LoweredAtIntake { sync crane_lowerMagnet?; },
     LoweredAtBlue -> Blue { sync crane_raiseMagnet?; },
@@ -394,13 +413,33 @@ process CraneMagnet() {
 
 state
     MagnetOff,
-    MagnetOn;
+    MagnetOn,
+    StoppedMagnetOn,
+    StoppedMagnetOff;
 init
     MagnetOff;
 trans
+    MagnetOn -> StoppedMagnetOff { sync emergencyStop?; },
+    MagnetOff -> StoppedMagnetOn { sync emergencyStop?; },
     MagnetOn -> MagnetOff { sync crane_toggleMagnet?; },
     MagnetOff -> MagnetOn { sync crane_toggleMagnet?; };
 }
+
+process EmergencyButton() {
+
+state
+    Running,
+    Stopped;
+init
+    Running;
+trans
+    Running -> Stopped { sync emergencyStop!; };
+}
+
+
+
+
+
 
 
 
@@ -422,4 +461,4 @@ trans
 
 // Place template instantiations here.
 // List one or more processes to be composed into a system.
-system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camera, SlotVariable_finished, GetFinishedSlot;
+system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camera, SlotVariable_finished, GetFinishedSlot, EmergencyButton;
