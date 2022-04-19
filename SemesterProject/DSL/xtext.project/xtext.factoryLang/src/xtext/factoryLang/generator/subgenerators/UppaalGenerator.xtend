@@ -10,6 +10,17 @@ import xtext.factoryLang.factoryLang.DiskSlotParameter
 import xtext.factoryLang.factoryLang.DiskSlotStateValue
 import xtext.factoryLang.factoryLang.DiskZoneParameter
 import xtext.factoryLang.factoryLang.CranePositionParameter
+import xtext.factoryLang.factoryLang.Statement
+import xtext.factoryLang.factoryLang.DeviceConditional
+import xtext.factoryLang.factoryLang.VariableConditional
+import xtext.factoryLang.factoryLang.CranePickupOperation
+import xtext.factoryLang.factoryLang.CraneDropOperation
+import xtext.factoryLang.factoryLang.DiskMoveSlotOperation
+import xtext.factoryLang.factoryLang.DiskMoveVariableSlotOperation
+import xtext.factoryLang.factoryLang.DiskMoveEmptySlotOperation
+import xtext.factoryLang.factoryLang.DiskMarkSlotOperation
+import xtext.factoryLang.factoryLang.CameraScanOperation
+import xtext.factoryLang.factoryLang.ForEach
 
 class UppaalGenerator {
 	def static generate(IFileSystemAccess2 fsa, Resource resource){
@@ -18,6 +29,8 @@ class UppaalGenerator {
 		val cranes = model.configurations.map[device].filter[it instanceof Crane].map[x|x as Crane]
 		val cameras = model.configurations.map[device].filter[it instanceof Camera].map[x|x as Camera]
 		val discSlotStateValues = resource.allContents.filter(DiskSlotStateValue).map[value].toSet
+		val statements = model.statements
+		
 		fsa.generateFile("uppaal/system.xml", 
 			'''
 			<?xml version="1.0" encoding="utf-8"?>
@@ -54,6 +67,7 @@ class UppaalGenerator {
 			«FOR zone : disc.targets.filter[it instanceof DiskZoneParameter].map[it as DiskZoneParameter]»
 			int «disc.name»_zones_«zone.name» = «zone.slot»;
 			«ENDFOR»
+			«ENDFOR»
 			
 			«FOR camera : cameras»
 			//«camera.name»
@@ -70,7 +84,9 @@ class UppaalGenerator {
 			«ENDFOR»
 			
 			//-----------------current slots-----------------------------
-			int currentSlot_empty = -1;
+			«FOR disc : discs»
+			int «disc.name»_currentSlot_empty = -1;
+			«ENDFOR»
 			int currentSlot_finished = -1;
 			
 			/**
@@ -94,7 +110,7 @@ class UppaalGenerator {
 			int error;</declaration>
 				<template>
 					<name>MasterController</name>
-					<declaration>
+					<declaration><
 			
 			
 			
@@ -103,9 +119,13 @@ class UppaalGenerator {
 			
 			
 			clock timer;</declaration>
-					<location id="id0" x="700" y="212">
-						<name x="690" y="182">Idle</name>
+					<location id="id0">
+						<name>Idle</name>
 					</location>
+					«FOR statement : statements»
+						«generateLocation(statement)»
+					«ENDFOR»
+					
 					<location id="id1" x="850" y="212">
 						<name x="840" y="182">getEmptySlot</name>
 						<committed/>
@@ -1418,4 +1438,45 @@ class UppaalGenerator {
 			'''
 		)
 	}
+	
+	def static dispatch String generateLocation(DeviceConditional statement) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def static dispatch String generateLocation(VariableConditional statement) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def static dispatch String generateLocation(CranePickupOperation statement) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def static dispatch String generateLocation(CraneDropOperation statement) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def static dispatch String generateLocation(DiskMoveSlotOperation statement) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def static dispatch String generateLocation(DiskMoveVariableSlotOperation statement) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def static dispatch String generateLocation(DiskMoveEmptySlotOperation statement) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def static dispatch String generateLocation(DiskMarkSlotOperation statement) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def static dispatch String generateLocation(CameraScanOperation statement) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def static dispatch String generateLocation(ForEach statement) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }
