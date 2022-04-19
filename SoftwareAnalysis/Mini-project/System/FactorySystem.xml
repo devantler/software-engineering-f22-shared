@@ -72,8 +72,8 @@ int error;</declaration>
 
 
 clock timer;</declaration>
-		<location id="id0">
-			<name>Idle</name>
+		<location id="id0" x="722" y="272">
+			<name x="712" y="242">Idle</name>
 		</location>
 		<location id="id1" x="850" y="212">
 			<name x="840" y="182">getEmptySlot</name>
