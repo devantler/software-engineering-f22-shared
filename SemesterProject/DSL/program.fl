@@ -8,6 +8,7 @@ create disk named disk1
 	with 8 slots
 	with zone named craneZone  at slot 1 
 	with zone named cameraZone at slot 3 
+	with zone named intakeZone at slot 6 
 
 create camera named camera1  
 	with scannable color blue 
@@ -26,9 +27,9 @@ for each element in disk1 that is complete then
 		crane1 drop item at outBlue
 
 if device disk1 is not full then  
-	disk1 move empty slot to craneZone
-	disk1 mark slot at craneZone as in-progress 
-	disk1 move slot at craneZone to cameraZone
+	disk1 move empty slot to intakeZone
+	disk1 mark slot at intakeZone as in-progress 
+	disk1 move slot at intakeZone to cameraZone
 	camera1 scan color into currentItemColor 
 	disk1 mark slot at cameraZone as currentItemColor 
 	if variable currentItemColor is red then  
