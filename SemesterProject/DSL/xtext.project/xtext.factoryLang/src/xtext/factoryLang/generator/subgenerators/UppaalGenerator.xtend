@@ -21,15 +21,19 @@ import xtext.factoryLang.factoryLang.DiskMoveEmptySlotOperation
 import xtext.factoryLang.factoryLang.DiskMarkSlotOperation
 import xtext.factoryLang.factoryLang.CameraScanOperation
 import xtext.factoryLang.factoryLang.ForEach
+import org.eclipse.emf.common.util.EList
 
 class UppaalGenerator {
+	
+	static EList<Statement> statements;
+	
 	def static generate(IFileSystemAccess2 fsa, Resource resource){
 		val model = resource.allContents.filter(Model).next
 		val discs = model.configurations.map[device].filter[it instanceof Disk].map[x|x as Disk]
 		val cranes = model.configurations.map[device].filter[it instanceof Crane].map[x|x as Crane]
 		val cameras = model.configurations.map[device].filter[it instanceof Camera].map[x|x as Camera]
 		val discSlotStateValues = resource.allContents.filter(DiskSlotStateValue).map[value].toSet
-		val statements = model.statements
+		statements = model.statements
 		
 		fsa.generateFile("uppaal/system.xml", 
 			'''
@@ -126,16 +130,7 @@ class UppaalGenerator {
 						«generateLocation(statement)»
 					«ENDFOR»
 					
-					<location id="id1" x="850" y="212">
-						<name x="840" y="182">getEmptySlot</name>
-						<committed/>
-					</location>
-					<location id="id2" x="864" y="73">
-						<name x="854" y="43">slotEmpty</name>
-					</location>
-					<location id="id3" x="1059" y="81">
-						<name x="1049" y="51">gotoIntake</name>
-					</location>
+					
 					<location id="id4" x="1229" y="183">
 						<name x="1219" y="153">fillSlot</name>
 					</location>
@@ -1464,7 +1459,18 @@ class UppaalGenerator {
 	}
 	
 	def static dispatch String generateLocation(DiskMoveEmptySlotOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''
+		<location id="id1">
+			<name>«statement.device.name»_getEmptySlot_statment«statements.indexOf(statement)»</name>
+			<committed/>
+		</location>
+		<location id="id2">
+			<name>«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»</name>
+		</location>
+		<location id="id3">
+			<name>«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»</name>
+		</location>
+		'''
 	}
 	
 	def static dispatch String generateLocation(DiskMarkSlotOperation statement) {
