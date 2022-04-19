@@ -3,7 +3,8 @@
 #include "wifi.h"
 
 char *topics[] = {
-    (char *)"disk/zone"};
+    (char *)"disk/zone",
+    (char *)"disk/moving",};
 
 int topicSize = 1;
 const int ZONES[] = {0, 45, 90, 135, 180, 225, 270, 315};
@@ -22,9 +23,11 @@ void callback(char *topic, byte *message, unsigned int length)
     Serial.println("On topic:");
     Serial.println(topicTemp);
 
-    if (topicTemp == "disk/zone")
+    if (topicTemp == topics[0])
     {
+        publish(topics[1], "Moving");
         gotoAngle(ZONES[messageTemp.toInt()]);
+        publish(topics[1], "Stopped");
     }
 }
 
