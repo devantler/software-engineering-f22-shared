@@ -2,11 +2,11 @@ using Entities;
 using Mqtt;
 
 #region Variables
-IMqttService mqtt;
+IMqttService mqtt = new MqttService();
 
-Dictionary<string, Crane> cranes;
-Dictionary<string, Disk> disks;
-Dictionary<string, Camera> cameras;
+Dictionary<string, Crane> cranes = new();
+Dictionary<string, Disk> disks = new();
+Dictionary<string, Camera> cameras = new();
 
 bool running = true;
 #endregion
@@ -18,9 +18,6 @@ Run();
 
 void Setup()
 {
-    mqtt = new MqttService();
-
-    cranes = new Dictionary<string, Crane>();
     cranes.Add("crane1", new Crane(new Dictionary<string, int>()
     {
         {"intake", 0},
@@ -29,7 +26,6 @@ void Setup()
         {"outBlue", 90}
     }, mqtt));
 
-    disks = new Dictionary<string, Disk>();
     disks.Add("disk1", new Disk(8, new Dictionary<string, int>()
     {
         {"craneZone", 1},
@@ -37,7 +33,6 @@ void Setup()
         {"intakeZone", 6}
     }, mqtt));
 
-    cameras = new Dictionary<string, Camera>();
     cameras.Add("camera1", new Camera(new List<string>()
     {
         "blue",
