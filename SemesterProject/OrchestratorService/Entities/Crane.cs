@@ -18,9 +18,9 @@ namespace Entities
             _positions.Add(name, angle);
         }
 
-        public async Task Goto(string position)
+        public async Task Goto(string positionName)
         {
-            await _mqttService.SendMessage(MqttTopics.Crane.Angle, _positions[position].ToString());
+            await _mqttService.SendMessage(MqttTopics.Crane.Angle, _positions[positionName].ToString());
         }
 
         public async Task Goto(int position)

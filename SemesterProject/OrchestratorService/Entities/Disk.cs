@@ -9,12 +9,13 @@ public class Disk
     private readonly Dictionary<string, int> _zones;
     private readonly IMqttService _mqttService;
 
-    public Disk(int slots, Dictionary<string, int> zones, IMqttService mqttService){
+    public Disk(int slots, Dictionary<string, int> zones, IMqttService mqttService)
+    {
         _slots = new Dictionary<int, Slot>();
-            for (int i = 0; i < slots; i++)
-            {
-                _slots.Add(i, new Slot(i));
-            }
+        for (int i = 0; i < slots; i++)
+        {
+            _slots.Add(i, new Slot(i));
+        }
         _zones = zones;
         _mqttService = mqttService;
     }
@@ -35,13 +36,13 @@ public class Disk
         var toZone = _zones[toZoneName];
         MoveSlot(fromZone, toZone);
     }
-    
+
     public void MoveSlot(string fromZoneName, int toZone)
     {
         var fromZone = _zones[fromZoneName];
         MoveSlot(fromZone, toZone);
     }
-    
+
     public void MoveSlot(int fromZone, string toZoneName)
     {
         var toZone = _zones[toZoneName];
@@ -56,17 +57,19 @@ public class Disk
     }
     #endregion
 
-    public bool IsFull(){
+    public bool IsFull()
+    {
         return _slots.All(x => x.Value.HasMark("full"));
     }
-    public bool IsEmpty(){
+    public bool IsEmpty()
+    {
         return _slots.All(x => x.Value.HasMark("free"));
     }
     public void MarkSlot(int slot, string mark)
     {
         _slots[slot].AddMark(mark);
     }
-    
+
     public void MarkSlot(string zoneName, string mark)
     {
         _slots[_zones[zoneName]].AddMark(mark);
@@ -90,5 +93,10 @@ public class Disk
     public List<Slot> GetSlotsWithMark(string mark)
     {
         return _slots.Where(x => x.Value.HasMark(mark)).Select(x => x.Value).ToList();
+    }
+
+    public int GetZone(string zoneName)
+    {
+        return _zones[zoneName];
     }
 }
