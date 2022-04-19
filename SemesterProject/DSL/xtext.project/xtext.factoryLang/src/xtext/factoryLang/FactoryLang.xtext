@@ -137,7 +137,7 @@ DiskStateValue:
 	value=DISK_STATES;
 
 DiskSlotStateValue:
-	value=DISK_SLOT_STATES;
+ 	value=DISK_SLOT_STATES;
 
 ColorValue:
 	value=COLOR;

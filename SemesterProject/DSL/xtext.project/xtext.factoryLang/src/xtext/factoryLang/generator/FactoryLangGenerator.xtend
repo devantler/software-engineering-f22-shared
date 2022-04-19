@@ -24,15 +24,18 @@ import xtext.factoryLang.factoryLang.Camera
 class FactoryLangGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		CsprojGenerator.generate(fsa);
-		MqttGenerator.generate(fsa);
+		CsprojGenerator.generate(fsa)
+		MqttGenerator.generate(fsa)
 		val model = resource.allContents.filter(Model).next
 		val devices = model.configurations.map[device]
+		
 		EntityGenerator.generate(fsa, 
 			devices.filter[it instanceof Crane].size, 
 			devices.filter[it instanceof Disk].size, 
 			devices.filter[it instanceof Camera].size
-		);
-		ProgramGenerator.generate(fsa, devices);
+		)
+		
+		val statements = model.statements
+		ProgramGenerator.generate(fsa, devices, statements)
 	}
 }

@@ -17,8 +17,6 @@ import xtext.factoryLang.factoryLang.Crane
 import xtext.factoryLang.factoryLang.DiskStateValue
 import xtext.factoryLang.factoryLang.ColorValue
 import xtext.factoryLang.factoryLang.Camera
-import xtext.factoryLang.factoryLang.CraneParameter
-import xtext.factoryLang.factoryLang.VariableConditional
 
 /**
  * This class contains custom validation rules. 
