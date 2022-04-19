@@ -75,6 +75,16 @@ public class Disk
         _slots[_zones[zoneName]].AddMark(mark);
     }
 
+    public void RemoveMarkSlot(int slot, string mark)
+    {
+        _slots[slot].RemoveMark(mark);
+    }
+
+    public void RemoveMarkSlot(string zoneName, string mark)
+    {
+        _slots[_zones[zoneName]].RemoveMark(mark);
+    }
+
     public bool SlotHasMark(int slot, string mark)
     {
         return _slots[slot].HasMark(mark);
