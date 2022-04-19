@@ -59,7 +59,7 @@ DeviceConditional returns Conditional:
 	'then' BEGIN statements+=Statement* END;
 
 VariableConditional returns Conditional:
-	{VariableConditional} 'if' 'variable' variable=[Variable] 'is' (not_operator='not')?
+	{VariableConditional} 'if' 'variable' variable=[Variable] 'is'
 	(comparison_operator=COMPARISON_OPERATOR)?
 	variableValue=VariableValue
 	'then' BEGIN statements+=Statement* END;
@@ -147,7 +147,7 @@ Number:
 
 // ----- SHARED ENUMS ----- //
 enum COMPARISON_OPERATOR:
-	LESS_THAN='less than' | GREATER_THAN='greater than';
+	LESS_THAN='less than' | GREATER_THAN='greater than' | NOT='not';
 
 enum COLOR:
 	RED='red' | GREEN='green' | BLUE='blue';

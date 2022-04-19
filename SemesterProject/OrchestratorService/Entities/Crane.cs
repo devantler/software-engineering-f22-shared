@@ -1,31 +1,17 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Mqtt;
 
 namespace Entities
 {
     public class Crane
     {
-		private readonly Dictionary<string, int> _positions;
-		private readonly IMqttService _mqttService;
-		      public Crane(IMqttService mqttService)
-		{
-			_positions = new Dictionary<string, int>()
-			{
-				{"intake", 30},
-				{"red", 120},
-				{"green", 140},
-				{"blue", 160}
-			};
-			_mqttService = mqttService;
-		}
-		      
-		public Crane(Dictionary<string, int> positions, IMqttService mqttService)
-		{
-			_positions = positions;
-			_mqttService = mqttService;
-		}
+        private readonly Dictionary<string, int> _positions;
+        private readonly IMqttService _mqttService;
+
+        public Crane(Dictionary<string, int> positions, IMqttService mqttService)
+        {
+            _positions = positions;
+            _mqttService = mqttService;
+        }
 
         public void AddPosition(string name, int angle)
         {
@@ -36,7 +22,7 @@ namespace Entities
         {
             await _mqttService.SendMessage(MqttTopics.Crane.Angle, _positions[position].ToString());
         }
-        
+
         public async Task Goto(int position)
         {
             await _mqttService.SendMessage(MqttTopics.Crane.Angle, position.ToString());
@@ -52,7 +38,7 @@ namespace Entities
             }
             await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "HIGH");
         }
-        
+
         public async Task DropItem()
         {
             await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "LOW");

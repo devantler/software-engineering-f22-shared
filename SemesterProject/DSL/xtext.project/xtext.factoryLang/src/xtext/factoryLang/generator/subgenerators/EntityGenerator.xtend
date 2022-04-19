@@ -4,15 +4,15 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 
 class EntityGenerator {
 
-	def static generate(IFileSystemAccess2 fsa, int numCranes, int numDisks, int numCameras) {
-		if (numCranes > 0) {
+	def static generate(IFileSystemAccess2 fsa, boolean shouldGenerateCranes, boolean shouldGenerateDisks, boolean shouldGenerateCameras) {
+		if (shouldGenerateCranes) {
 			generateCraneEntity(fsa)
 		}
-		if (numDisks > 0) {
+		if (shouldGenerateDisks) {
 			generateDiskEntity(fsa)
 			generateSlotEntity(fsa)
 		}
-		if (numCameras > 0) {
+		if (shouldGenerateCameras) {
 			generateCameraEntity(fsa)
 		}
 	}
