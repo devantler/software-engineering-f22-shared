@@ -52,6 +52,7 @@ int currentSlot_colour = 0;
 
 //--------------------defaults------------------------
 clock GlobalTimer;
+broadcast chan emergencyStop;
 
 /**
 1: Tried to remove item from empty disc slot
@@ -63,6 +64,8 @@ int error;</declaration>
 	<template>
 		<name>MasterController</name>
 		<declaration>
+
+
 
 
 
@@ -687,7 +690,30 @@ clock timer;</declaration>
 		<location id="id66" x="490" y="380">
 			<name x="480" y="350">RemoveItem4Req</name>
 		</location>
+		<location id="id67" x="-238" y="68">
+			<name x="-238" y="68">Stopped</name>
+		</location>
 		<init ref="id55"/>
+		<transition>
+			<source ref="id57"/>
+			<target ref="id67"/>
+			<label kind="synchronisation" x="-24" y="149">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id56"/>
+			<target ref="id67"/>
+			<label kind="synchronisation" x="-24" y="74">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id55"/>
+			<target ref="id67"/>
+			<label kind="synchronisation" x="-99" y="74">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id58"/>
+			<target ref="id67"/>
+			<label kind="synchronisation" x="-99" y="149">emergencyStop?</label>
+		</transition>
 		<transition>
 			<source ref="id58"/>
 			<target ref="id56"/>
@@ -860,145 +886,145 @@ clock timer;</declaration>
 	<template>
 		<name>DiscSlot</name>
 		<parameter>const id_t id</parameter>
-		<location id="id67" x="42" y="170">
+		<location id="id68" x="42" y="170">
 			<name x="2" y="90">SlotEmpty</name>
 		</location>
-		<location id="id68" x="190" y="80">
+		<location id="id69" x="190" y="80">
 			<name x="0" y="0">SlotFull</name>
 		</location>
-		<location id="id69" x="-238" y="17">
+		<location id="id70" x="-238" y="17">
 			<name x="-428" y="-213">SlotFullRed</name>
 		</location>
-		<location id="id70" x="40" y="230">
+		<location id="id71" x="40" y="230">
 			<name x="0" y="0">GetColourRed</name>
 			<committed/>
 		</location>
-		<location id="id71" x="340" y="80">
+		<location id="id72" x="340" y="80">
 			<name x="0" y="0">SlotFullGreen</name>
 		</location>
-		<location id="id72" x="340" y="230">
+		<location id="id73" x="340" y="230">
 			<name x="0" y="0">GetColourGreen</name>
 			<committed/>
 		</location>
-		<location id="id73" x="340" y="380">
+		<location id="id74" x="340" y="380">
 			<name x="0" y="0">SlotFullBlue</name>
 		</location>
-		<location id="id74" x="190" y="380">
+		<location id="id75" x="190" y="380">
 			<name x="0" y="0">GetColourBlue</name>
 			<committed/>
 		</location>
-		<location id="id75" x="40" y="380">
+		<location id="id76" x="40" y="380">
 			<name x="0" y="0">ErrorAddItemToFull</name>
 		</location>
-		<location id="id76" x="490" y="80">
+		<location id="id77" x="490" y="80">
 			<name x="0" y="0">ErrorRemoveItemFromEmpty</name>
 		</location>
-		<init ref="id67"/>
+		<init ref="id68"/>
 		<transition>
-			<source ref="id67"/>
-			<target ref="id68"/>
+			<source ref="id68"/>
+			<target ref="id69"/>
 			<label kind="synchronisation" x="0" y="0">disc_addItem[id]?</label>
 			<label kind="assignment" x="0" y="0">disc_occupiedSlots[id] = true</label>
 		</transition>
 		<transition>
-			<source ref="id68"/>
-			<target ref="id69"/>
+			<source ref="id69"/>
+			<target ref="id70"/>
 			<label kind="synchronisation" x="0" y="0">disc_setColour[id][1]?</label>
 		</transition>
 		<transition>
-			<source ref="id69"/>
-			<target ref="id70"/>
+			<source ref="id70"/>
+			<target ref="id71"/>
 			<label kind="synchronisation" x="0" y="0">disc_getColourSlot[id]?</label>
 			<label kind="assignment" x="0" y="0">currentSlot_colour = 1</label>
 		</transition>
 		<transition>
-			<source ref="id70"/>
-			<target ref="id69"/>
+			<source ref="id71"/>
+			<target ref="id70"/>
 			<label kind="synchronisation" x="115" y="230">disc_gottenColourSlot!</label>
 		</transition>
 		<transition>
-			<source ref="id68"/>
-			<target ref="id71"/>
+			<source ref="id69"/>
+			<target ref="id72"/>
 			<label kind="synchronisation" x="0" y="0">disc_setColour[id][2]?</label>
 		</transition>
 		<transition>
-			<source ref="id71"/>
-			<target ref="id72"/>
+			<source ref="id72"/>
+			<target ref="id73"/>
 			<label kind="synchronisation" x="0" y="0">disc_getColourSlot[id]?</label>
 			<label kind="assignment" x="0" y="0">currentSlot_colour = 2</label>
 		</transition>
 		<transition>
-			<source ref="id72"/>
-			<target ref="id71"/>
+			<source ref="id73"/>
+			<target ref="id72"/>
 			<label kind="synchronisation" x="340" y="155">disc_gottenColourSlot!</label>
 		</transition>
 		<transition>
-			<source ref="id68"/>
-			<target ref="id73"/>
+			<source ref="id69"/>
+			<target ref="id74"/>
 			<label kind="synchronisation" x="0" y="0">disc_setColour[id][3]?</label>
 		</transition>
 		<transition>
-			<source ref="id73"/>
-			<target ref="id74"/>
+			<source ref="id74"/>
+			<target ref="id75"/>
 			<label kind="synchronisation" x="0" y="0">disc_getColourSlot[id]?</label>
 			<label kind="assignment" x="0" y="0">currentSlot_colour = 3</label>
 		</transition>
 		<transition>
-			<source ref="id74"/>
-			<target ref="id73"/>
+			<source ref="id75"/>
+			<target ref="id74"/>
 			<label kind="synchronisation" x="265" y="380">disc_gottenColourSlot!</label>
 		</transition>
 		<transition>
-			<source ref="id68"/>
-			<target ref="id67"/>
-			<label kind="synchronisation" x="0" y="0">disc_removeItem[id]?</label>
-			<label kind="assignment" x="0" y="0">disc_occupiedSlots[id] = false, disc_slots_finished[id] = false</label>
-		</transition>
-		<transition>
 			<source ref="id69"/>
-			<target ref="id67"/>
+			<target ref="id68"/>
 			<label kind="synchronisation" x="0" y="0">disc_removeItem[id]?</label>
 			<label kind="assignment" x="0" y="0">disc_occupiedSlots[id] = false, disc_slots_finished[id] = false</label>
 		</transition>
 		<transition>
-			<source ref="id71"/>
-			<target ref="id67"/>
+			<source ref="id70"/>
+			<target ref="id68"/>
 			<label kind="synchronisation" x="0" y="0">disc_removeItem[id]?</label>
 			<label kind="assignment" x="0" y="0">disc_occupiedSlots[id] = false, disc_slots_finished[id] = false</label>
 		</transition>
 		<transition>
-			<source ref="id73"/>
-			<target ref="id67"/>
+			<source ref="id72"/>
+			<target ref="id68"/>
 			<label kind="synchronisation" x="0" y="0">disc_removeItem[id]?</label>
 			<label kind="assignment" x="0" y="0">disc_occupiedSlots[id] = false, disc_slots_finished[id] = false</label>
 		</transition>
 		<transition>
-			<source ref="id67"/>
-			<target ref="id76"/>
+			<source ref="id74"/>
+			<target ref="id68"/>
+			<label kind="synchronisation" x="0" y="0">disc_removeItem[id]?</label>
+			<label kind="assignment" x="0" y="0">disc_occupiedSlots[id] = false, disc_slots_finished[id] = false</label>
+		</transition>
+		<transition>
+			<source ref="id68"/>
+			<target ref="id77"/>
 			<label kind="synchronisation" x="0" y="0">disc_removeItem[id]?</label>
 			<label kind="assignment" x="0" y="0">error += 1</label>
 		</transition>
 		<transition>
-			<source ref="id68"/>
-			<target ref="id75"/>
-			<label kind="synchronisation" x="0" y="0">disc_addItem[id]?</label>
-			<label kind="assignment" x="0" y="0">error += 2</label>
-		</transition>
-		<transition>
 			<source ref="id69"/>
-			<target ref="id75"/>
+			<target ref="id76"/>
 			<label kind="synchronisation" x="0" y="0">disc_addItem[id]?</label>
 			<label kind="assignment" x="0" y="0">error += 2</label>
 		</transition>
 		<transition>
-			<source ref="id71"/>
-			<target ref="id75"/>
+			<source ref="id70"/>
+			<target ref="id76"/>
 			<label kind="synchronisation" x="0" y="0">disc_addItem[id]?</label>
 			<label kind="assignment" x="0" y="0">error += 2</label>
 		</transition>
 		<transition>
-			<source ref="id73"/>
-			<target ref="id75"/>
+			<source ref="id72"/>
+			<target ref="id76"/>
+			<label kind="synchronisation" x="0" y="0">disc_addItem[id]?</label>
+			<label kind="assignment" x="0" y="0">error += 2</label>
+		</transition>
+		<transition>
+			<source ref="id74"/>
+			<target ref="id76"/>
 			<label kind="synchronisation" x="0" y="0">disc_addItem[id]?</label>
 			<label kind="assignment" x="0" y="0">error += 2</label>
 		</transition>
@@ -1006,30 +1032,30 @@ clock timer;</declaration>
 	<template>
 		<name>SlotVariable_finished</name>
 		<parameter>const id_t id</parameter>
-		<location id="id77" x="0" y="0">
+		<location id="id78" x="0" y="0">
 			<name x="-10" y="-34">IsFinished</name>
 		</location>
-		<location id="id78" x="178" y="0">
+		<location id="id79" x="178" y="0">
 			<name x="168" y="-34">IsNotFinished</name>
 		</location>
-		<init ref="id78"/>
+		<init ref="id79"/>
 		<transition>
-			<source ref="id78"/>
-			<target ref="id77"/>
+			<source ref="id79"/>
+			<target ref="id78"/>
 			<label kind="synchronisation" x="103" y="-34">disc_set_finished[id]?</label>
 			<label kind="assignment" x="89" y="0">disc_slots_finished[id] = true</label>
 			<nail x="85" y="-34"/>
 		</transition>
 		<transition>
-			<source ref="id77"/>
-			<target ref="id78"/>
+			<source ref="id78"/>
+			<target ref="id79"/>
 			<label kind="synchronisation" x="18" y="4">disc_set_finished[id]?</label>
 			<label kind="assignment" x="89" y="0">disc_slots_finished[id] = false</label>
 			<nail x="102" y="42"/>
 		</transition>
 		<transition>
-			<source ref="id77"/>
-			<target ref="id78"/>
+			<source ref="id78"/>
+			<target ref="id79"/>
 			<label kind="synchronisation" x="89" y="0">disc_removeItem[id]?</label>
 			<label kind="assignment" x="89" y="0">disc_slots_finished[id] = false</label>
 		</transition>
@@ -1038,161 +1064,200 @@ clock timer;</declaration>
 		<name>Crane</name>
 		<declaration>
 
-
-
-
-
 // Place local declarations here.
 bool magnetPower =  false;</declaration>
-		<location id="id79" x="40" y="80">
+		<location id="id80" x="40" y="80">
 			<name x="30" y="50">Intake</name>
 		</location>
-		<location id="id80" x="190" y="80">
+		<location id="id81" x="190" y="80">
 			<name x="180" y="50">Red</name>
 		</location>
-		<location id="id81" x="190" y="230">
+		<location id="id82" x="190" y="230">
 			<name x="180" y="200">Green</name>
 		</location>
-		<location id="id82" x="40" y="230">
+		<location id="id83" x="40" y="230">
 			<name x="30" y="200">Blue</name>
 		</location>
-		<location id="id83" x="289" y="-110">
+		<location id="id84" x="289" y="-110">
 			<name x="279" y="-140">LoweredAtRed</name>
 		</location>
-		<location id="id84" x="399" y="399">
+		<location id="id85" x="399" y="399">
 			<name x="389" y="369">LoweredAtGreen</name>
 		</location>
-		<location id="id85" x="-297" y="255">
+		<location id="id86" x="-297" y="255">
 			<name x="-307" y="225">LoweredAtBlue</name>
 		</location>
-		<location id="id86" x="-93" y="-110">
+		<location id="id87" x="-93" y="-110">
 			<name x="-103" y="-140">LoweredAtIntake</name>
 		</location>
-		<init ref="id79"/>
+		<location id="id88" x="561" y="136">
+			<name x="551" y="102">Stopped</name>
+		</location>
+		<init ref="id80"/>
 		<transition>
 			<source ref="id86"/>
-			<target ref="id79"/>
+			<target ref="id88"/>
+			<label kind="synchronisation" x="132" y="195">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id87"/>
+			<target ref="id88"/>
+			<label kind="synchronisation" x="234" y="13">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id80"/>
+			<target ref="id88"/>
+			<label kind="synchronisation" x="300" y="108">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id83"/>
+			<target ref="id88"/>
+			<label kind="synchronisation" x="300" y="183">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id85"/>
+			<target ref="id88"/>
+			<label kind="synchronisation" x="480" y="267">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id82"/>
+			<target ref="id88"/>
+			<label kind="synchronisation" x="375" y="183">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id81"/>
+			<target ref="id88"/>
+			<label kind="synchronisation" x="375" y="108">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id84"/>
+			<target ref="id88"/>
+			<label kind="synchronisation" x="425" y="13">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id87"/>
+			<target ref="id80"/>
 			<label kind="synchronisation" x="55" y="215">crane_raiseMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id79"/>
-			<target ref="id86"/>
+			<source ref="id80"/>
+			<target ref="id87"/>
 			<label kind="synchronisation" x="55" y="215">crane_lowerMagnet?</label>
+		</transition>
+		<transition>
+			<source ref="id86"/>
+			<target ref="id83"/>
+			<label kind="synchronisation" x="130" y="290">crane_raiseMagnet?</label>
+		</transition>
+		<transition>
+			<source ref="id83"/>
+			<target ref="id86"/>
+			<label kind="synchronisation" x="130" y="290">crane_lowerMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id85"/>
 			<target ref="id82"/>
-			<label kind="synchronisation" x="130" y="290">crane_raiseMagnet?</label>
+			<label kind="synchronisation" x="205" y="215">crane_raiseMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id82"/>
 			<target ref="id85"/>
-			<label kind="synchronisation" x="130" y="290">crane_lowerMagnet?</label>
+			<label kind="synchronisation" x="205" y="215">crane_lowerMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id84"/>
 			<target ref="id81"/>
-			<label kind="synchronisation" x="205" y="215">crane_raiseMagnet?</label>
+			<label kind="synchronisation" x="205" y="65">crane_raiseMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id81"/>
 			<target ref="id84"/>
-			<label kind="synchronisation" x="205" y="215">crane_lowerMagnet?</label>
+			<label kind="synchronisation" x="205" y="65">crane_lowerMagnet?</label>
+		</transition>
+		<transition>
+			<source ref="id82"/>
+			<target ref="id80"/>
+			<label kind="synchronisation" x="55" y="140">crane_goto_intake?</label>
+		</transition>
+		<transition>
+			<source ref="id80"/>
+			<target ref="id82"/>
+			<label kind="synchronisation" x="55" y="140">crane_goto_green?</label>
+		</transition>
+		<transition>
+			<source ref="id81"/>
+			<target ref="id80"/>
+			<label kind="synchronisation" x="55" y="65">crane_goto_intake?</label>
+		</transition>
+		<transition>
+			<source ref="id82"/>
+			<target ref="id81"/>
+			<label kind="synchronisation" x="130" y="140">crane_goto_red?</label>
 		</transition>
 		<transition>
 			<source ref="id83"/>
-			<target ref="id80"/>
-			<label kind="synchronisation" x="205" y="65">crane_raiseMagnet?</label>
+			<target ref="id82"/>
+			<label kind="synchronisation" x="55" y="215">crane_goto_green?</label>
 		</transition>
 		<transition>
 			<source ref="id80"/>
 			<target ref="id83"/>
-			<label kind="synchronisation" x="205" y="65">crane_lowerMagnet?</label>
-		</transition>
-		<transition>
-			<source ref="id81"/>
-			<target ref="id79"/>
-			<label kind="synchronisation" x="55" y="140">crane_goto_intake?</label>
-		</transition>
-		<transition>
-			<source ref="id79"/>
-			<target ref="id81"/>
-			<label kind="synchronisation" x="55" y="140">crane_goto_green?</label>
-		</transition>
-		<transition>
-			<source ref="id80"/>
-			<target ref="id79"/>
-			<label kind="synchronisation" x="55" y="65">crane_goto_intake?</label>
-		</transition>
-		<transition>
-			<source ref="id81"/>
-			<target ref="id80"/>
-			<label kind="synchronisation" x="130" y="140">crane_goto_red?</label>
-		</transition>
-		<transition>
-			<source ref="id82"/>
-			<target ref="id81"/>
-			<label kind="synchronisation" x="55" y="215">crane_goto_green?</label>
-		</transition>
-		<transition>
-			<source ref="id79"/>
-			<target ref="id82"/>
 			<label kind="synchronisation" x="-20" y="140">crane_goto_blue?</label>
 		</transition>
 		<transition>
-			<source ref="id82"/>
-			<target ref="id79"/>
+			<source ref="id83"/>
+			<target ref="id80"/>
 			<label kind="synchronisation" x="-20" y="140">crane_goto_intake?</label>
+		</transition>
+		<transition>
+			<source ref="id82"/>
+			<target ref="id83"/>
+			<label kind="synchronisation" x="55" y="215">crane_goto_blue?</label>
 		</transition>
 		<transition>
 			<source ref="id81"/>
 			<target ref="id82"/>
-			<label kind="synchronisation" x="55" y="215">crane_goto_blue?</label>
+			<label kind="synchronisation" x="130" y="140">crane_goto_green?</label>
 		</transition>
 		<transition>
 			<source ref="id80"/>
 			<target ref="id81"/>
-			<label kind="synchronisation" x="130" y="140">crane_goto_green?</label>
-		</transition>
-		<transition>
-			<source ref="id79"/>
-			<target ref="id80"/>
 			<label kind="synchronisation" x="55" y="65">crane_goto_red?</label>
 		</transition>
 		<transition>
-			<source ref="id80"/>
-			<target ref="id82"/>
+			<source ref="id81"/>
+			<target ref="id83"/>
 			<label kind="synchronisation" x="55" y="140">crane_goto_blue?</label>
 		</transition>
 		<transition>
-			<source ref="id82"/>
-			<target ref="id80"/>
+			<source ref="id83"/>
+			<target ref="id81"/>
 			<label kind="synchronisation" x="55" y="140">crane_goto_red?</label>
 		</transition>
 		<transition>
-			<source ref="id79"/>
-			<target ref="id79"/>
+			<source ref="id80"/>
+			<target ref="id80"/>
 			<label kind="synchronisation" x="40" y="80">crane_goto_intake?</label>
 			<nail x="10" y="50"/>
 			<nail x="70" y="50"/>
 		</transition>
 		<transition>
-			<source ref="id80"/>
-			<target ref="id80"/>
+			<source ref="id81"/>
+			<target ref="id81"/>
 			<label kind="synchronisation" x="190" y="80">crane_goto_red?</label>
 			<nail x="160" y="50"/>
 			<nail x="220" y="50"/>
 		</transition>
 		<transition>
-			<source ref="id81"/>
-			<target ref="id81"/>
+			<source ref="id82"/>
+			<target ref="id82"/>
 			<label kind="synchronisation" x="190" y="230">crane_goto_green?</label>
 			<nail x="160" y="200"/>
 			<nail x="220" y="200"/>
 		</transition>
 		<transition>
-			<source ref="id82"/>
-			<target ref="id82"/>
+			<source ref="id83"/>
+			<target ref="id83"/>
 			<label kind="synchronisation" x="40" y="230">crane_goto_blue?</label>
 			<nail x="10" y="200"/>
 			<nail x="70" y="200"/>
@@ -1200,22 +1265,53 @@ bool magnetPower =  false;</declaration>
 	</template>
 	<template>
 		<name>CraneMagnet</name>
-		<location id="id87" x="40" y="80">
+		<location id="id89" x="40" y="80">
 			<name x="30" y="50">MagnetOff</name>
 		</location>
-		<location id="id88" x="190" y="80">
+		<location id="id90" x="190" y="80">
 			<name x="180" y="50">MagnetOn</name>
 		</location>
-		<init ref="id87"/>
+		<location id="id91" x="34" y="-34">
+			<name x="24" y="-68">StoppedMagnetOn</name>
+		</location>
+		<location id="id92" x="195" y="-34">
+			<name x="185" y="-68">StoppedMagnetOff</name>
+		</location>
+		<init ref="id89"/>
 		<transition>
-			<source ref="id88"/>
-			<target ref="id87"/>
+			<source ref="id90"/>
+			<target ref="id92"/>
+			<label kind="synchronisation" x="192" y="6">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id89"/>
+			<target ref="id91"/>
+			<label kind="synchronisation" x="37" y="6">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id90"/>
+			<target ref="id89"/>
 			<label kind="synchronisation" x="55" y="65">crane_toggleMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id87"/>
-			<target ref="id88"/>
+			<source ref="id89"/>
+			<target ref="id90"/>
 			<label kind="synchronisation" x="55" y="65">crane_toggleMagnet?</label>
+		</transition>
+	</template>
+	<template>
+		<name>EmergencyButton</name>
+		<location id="id93" x="0" y="0">
+			<name x="-10" y="-34">Running</name>
+		</location>
+		<location id="id94" x="204" y="-8">
+			<name x="194" y="-42">Stopped</name>
+		</location>
+		<init ref="id93"/>
+		<transition>
+			<source ref="id93"/>
+			<target ref="id94"/>
+			<label kind="synchronisation" x="18" y="-21">emergencyStop!</label>
 		</transition>
 	</template>
 	<system>
@@ -1240,16 +1336,18 @@ bool magnetPower =  false;</declaration>
 
 
 
+
+
 // Place template instantiations here.
 // List one or more processes to be composed into a system.
-system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camera, SlotVariable_finished, GetFinishedSlot;</system>
+system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camera, SlotVariable_finished, GetFinishedSlot, EmergencyButton;</system>
 	<queries>
 		<query>
 			<formula>A&lt;&gt; CraneMagnet.MagnetOn imply CraneMagnet.MagnetOff</formula>
 			<comment></comment>
 		</query>
 		<query>
-			<formula>A[] !deadlock</formula>
+			<formula>A[] !deadlock or EmergencyButton.Stopped</formula>
 			<comment></comment>
 		</query>
 		<query>
@@ -1273,11 +1371,11 @@ system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camer
 			<comment></comment>
 		</query>
 		<query>
-			<formula></formula>
+			<formula>A[] EmergencyButton.Stopped imply (Crane.Stopped and Disc.Stopped and (CraneMagnet.StoppedMagnetOff or CraneMagnet.StoppedMagnetOn))</formula>
 			<comment></comment>
 		</query>
 		<query>
-			<formula></formula>
+			<formula>A[] (EmergencyButton.Stopped and CraneMagnet.MagnetOn) imply CraneMagnet.StoppedMagnetOn</formula>
 			<comment></comment>
 		</query>
 		<query>
