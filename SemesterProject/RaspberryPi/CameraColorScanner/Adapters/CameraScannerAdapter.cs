@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
+using CameraColorScanner.Adapters.CameraAdapters;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.ColorSpaces.Conversion;

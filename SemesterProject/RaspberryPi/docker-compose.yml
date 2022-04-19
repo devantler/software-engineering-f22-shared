@@ -10,8 +10,8 @@ services:
   camera:
     restart: unless-stopped
     image: "ghcr.io/devantler/software-engineering-f22/camera-color-scanner:latest"
-      #    devices:
-      #- "/dev/video0:/dev/video0"
-      #- "/dev/video1:/dev/video1"
+    devices:
+      - "/dev/video0:/dev/video0"
+      - "/dev/video1:/dev/video1"
     volumes:
       - "./image.bmp:/app/image.bmp:ro"

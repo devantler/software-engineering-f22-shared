@@ -3,4 +3,11 @@
 /*
 
 */
-//NO_QUERY
+A<> CraneMagnet.MagnetOn imply CraneMagnet.MagnetOff
+
+/*
+
+/*
+Check deadlock
+*/
+A[] !deadlock
