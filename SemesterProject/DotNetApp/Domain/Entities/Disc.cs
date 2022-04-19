@@ -24,9 +24,9 @@ public class Disc
 
     public int GetEmptySlot()
     {
-        if (_slots.Any(x => !x.Value.HasItem))
+        if (_slots.Any(x => !x.Value.HasMark("full")))
         {
-            return _slots.FirstOrDefault(x => !x.Value.HasItem).Key;
+            return _slots.FirstOrDefault(x => !x.Value.HasMark("full")).Key;
         }
         return -1;
     }
@@ -59,6 +59,7 @@ public class Disc
         //Mqtt stuff
         var amountToMove = fromPosition - toPosition;
         _currentOffset = _currentOffset + amountToMove % _slots.Count;
+        _mqttService.SendMessage(MqttTopics.Disc.Slot, _currentOffset.ToString());
     }
 
     public bool IsFull()

@@ -13,4 +13,9 @@ public class Slot
     {
         _marks.Add(mark);
     }
+    
+    public void RemoveMark(string mark)
+    {
+        _marks.Remove(mark);
+    }
 }
