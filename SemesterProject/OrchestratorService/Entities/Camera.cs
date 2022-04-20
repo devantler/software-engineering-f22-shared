@@ -4,7 +4,6 @@ namespace Entities;
 
 public class Camera
 {
-    public Element? Element { get; set; }
 	private readonly IMqttService _mqttService;
 	private readonly List<string> _colors;
     public Camera(List<string> colors, IMqttService mqttService){

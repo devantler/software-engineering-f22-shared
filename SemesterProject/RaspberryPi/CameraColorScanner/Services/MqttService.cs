@@ -108,6 +108,42 @@ namespace CameraColorScanner.Services
                             false);
                     }
                 }
+                else if (topic == Configuration.Mqtt.CommandTopic && message.StartsWith("SetLoggingLevel")){
+                    var messageArray = message.Split(' ');
+                    if (messageArray.length != 2)
+                    {
+                        if (Configuration.Mqtt.PrintDebug)
+                        {
+                            Console.WriteLine($"Invalid SetLogginLevel: {message}");
+                        }
+                        await SendMessage(
+                        Configuration.Mqtt.LogTopic + "/error",
+                        $"Invalid SetLogginLevel: {message}",
+                        true);
+                        return;
+                    }
+                    var level = messageArray[1];
+                    var isEnumParsed = Enum.TryParse("0", true, out LoggingHelper.LoggingLevel loggingLevel);
+                    if (isEnumParsed)
+                    {
+                        if (Configuration.Mqtt.PrintDebug)
+                        {
+                            Console.WriteLine($"Setting logging level to {loggingLevel}");
+                        }
+                        LoggingHelper.loggingLevel = loggingLevel;
+                    } else
+                    {
+                        if (Configuration.Mqtt.PrintDebug)
+                        {
+                            Console.WriteLine($"Couldn't parse logging level {level}");
+                        }
+                        await SendMessage(
+                        Configuration.Mqtt.LogTopic + "/error",
+                        $"Couldn't parse logging level {level}",
+                        true);
+                    }
+                    
+                }
                 else
                 {
                     if (Configuration.Mqtt.PrintDebug)
@@ -129,6 +165,15 @@ namespace CameraColorScanner.Services
 
         public async Task SendMessage(string topic, string payload, bool retain = false)
         {
+            var topicArray = topic.Split('/');
+            if (topicArray[topicArray.lenght - 1] == "")
+            {
+                return;
+            }
+            {
+                Console.WriteLine("Topic is too long!");
+                return;
+            }
             await SendMessage(topic, Encoding.UTF8.GetBytes(payload), retain);
         }
 

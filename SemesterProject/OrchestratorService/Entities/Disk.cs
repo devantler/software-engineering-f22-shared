@@ -127,9 +127,14 @@ public class Disk
         return _slots.Select(x => x.Value).ToList();
     }
 
-    public List<Slot> GetSlotsWithElementState(ElementState elementState)
+    public List<Slot> GetSlotsWithElementMark(int mark)
     {
-        return _slots.Where(x => x.Value.Element?.HasMark(elementState) == true).Select(x => x.Value).ToList();
+        return _slots.Where(x => x.Value.Element?.HasMark(mark) == true).Select(x => x.Value).ToList();
+    }
+
+    public List<Slot> GetSlotsWithElementMark(ElementState mark)
+    {
+        return _slots.Where(x => x.Value.Element?.HasMark(mark) == true).Select(x => x.Value).ToList();
     }
 
     public List<Slot> GetSlotsWithElementMark(string mark)
