@@ -48,32 +48,33 @@ async void Run()
     var camera1 = cameras["camera1"];
     while (running)
     {
-        foreach (var slot in disk1.GetSlotsWithMark("complete")) //For each (not relevant for crane and camera i think)
+        foreach (var slot in disk1.GetSlotsWithElementState(ElementState.Completed)) //For each (not relevant for crane and camera i think)
         {
             disk1.MoveSlot(slot.Number, disk1.GetZone("craneZone")); //move slot of
             //pickup item at
+            var element = disk1.GetSlotElement(slot.Number);
             await crane1.Goto("intake");
-            await crane1.PickupItem();
+            await crane1.PickupItem(element);
             //mark slot at
-            disk1.MarkSlot("craneZone", "free");
+            disk1.SetSlotState("craneZone", SlotState.Empty);
             //if var statement
-            if (slot.HasMark("red"))
+            if (element.HasMark("red"))
             {
                 await crane1.Goto("outRed");
                 await crane1.DropItem();
-                slot.RemoveMark("red");
+                element.RemoveMark("red");
             }
-            if (slot.HasMark("green"))
+            if (element.HasMark("green"))
             {
                 await crane1.Goto("outGreen");
                 await crane1.DropItem();
-                slot.RemoveMark("green");
+                element.RemoveMark("green");
             }
-            if (slot.HasMark("blue"))
+            if (element.HasMark("blue"))
             {
                 await crane1.Goto("outBlue");
                 await crane1.DropItem();
-                slot.RemoveMark("blue");
+                element.RemoveMark("blue");
             }
         }
 
@@ -81,21 +82,20 @@ async void Run()
         if (!disk1.IsEmpty()) { }
         if (disk1.IsFull()) { }
         if (!disk1.IsFull()) { }
-
         if (!disk1.IsFull())
         {
-            disk1.MoveSlot(disk1.GetEmptySlot(), "craneZone"); //move empty slot
-            disk1.MarkSlot("craneZone", "in-progress"); //mark slot at
+            disk1.MoveSlot(disk1.GetEmptySlotNumber(), "craneZone"); //move empty slot
+            disk1.MarkSlotElementAt("craneZone", ElementState.InProgress); //mark slot at
             disk1.MoveSlot("craneZone", "cameraZone"); //move slot at
             var currentItemColor = camera1.Scan();
-            disk1.MarkSlot("cameraZone", currentItemColor); //mark slot at
+            disk1.MarkSlotElementAt("cameraZone", currentItemColor); //mark slot at
             if (currentItemColor == "red")
             {
                 await Task.Run(() =>
                 {
                     Thread.Sleep(10000);
-                    disk1.RemoveMarkSlot("cameraZone","in-progress");
-                    disk1.MarkSlot("cameraZone", "complete");
+                    disk1.RemoveElementMarkAt("cameraZone", ElementState.InProgress);
+                    disk1.MarkSlotElementAt("cameraZone", ElementState.Completed);
                 });
             }
             if (currentItemColor == "green")
@@ -104,8 +104,8 @@ async void Run()
                 await Task.Run(() =>
                 {
                     Thread.Sleep(20000);
-                    disk1.RemoveMarkSlot("cameraZone","in-progress");
-                    disk1.MarkSlot("cameraZone", "complete");
+                    disk1.RemoveElementMarkAt("cameraZone", ElementState.InProgress);
+                    disk1.MarkSlotElementAt("cameraZone", ElementState.Completed);
                 });
             }
             if (currentItemColor == "blue")
@@ -114,8 +114,8 @@ async void Run()
                 await Task.Run(() =>
                 {
                     Thread.Sleep(30000);
-                    disk1.RemoveMarkSlot("cameraZone","in-progress");
-                    disk1.MarkSlot("cameraZone", "complete");
+                    disk1.RemoveElementMarkAt("cameraZone", ElementState.InProgress);
+                    disk1.MarkSlotElementAt("cameraZone", ElementState.Completed);
                 });
             }
         }
