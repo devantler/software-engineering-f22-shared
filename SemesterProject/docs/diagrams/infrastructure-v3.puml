@@ -1,4 +1,4 @@
-@startuml component-diagram
+@startuml infrastructure-v3
 hide stereotype
 
 node RaspberryPi {
@@ -9,10 +9,7 @@ node RaspberryPi {
         component Orchestrator
     }
     node Camera as "Camera Color Sensor"{
-        component CameraLogic as "Camera Logic"{
-            artifact CameraLogicMqtt as "Mqtt Service"
-            artifact CameraImageProcessor as "Image Processor"
-        }
+        component cameraComponent as "Camera Logic"
         rectangle LightCurtainCamera as "Light Curtain"
         rectangle webcam as "Webcam"
     }
@@ -25,12 +22,7 @@ node RaspberryPi {
     WiFiAP -[hidden]down- ESP32Disc 
 }
 node ESP32Crane {
-    component ArduinoCraneLogic as "Crane Logic"{
-        artifact ArduinoCraneMqtt as "Mqtt Service"
-        artifact ArduinoCraneMagnet as "Magnet Manager"
-        artifact ArduinoCraneHoist as "Hoist Manager"
-        artifact ArduinoCraneRotation as "Rotation Manager"
-    }
+    component ArduinoCraneLogic as "Crane Logic"
     rectangle RotationMotorCrane
     rectangle ElectroMagnet
     rectangle WireMotor
@@ -38,29 +30,26 @@ node ESP32Crane {
 }
 
 node ESP32Disc {
-    component ArduinoDiscLogic as "Disc Logic"{
-        artifact ArduinoDiscMqtt as "Mqtt Service"
-        artifact ArduinoDiscRotation as "Rotation Manager"
-    }
+    component ArduinoDiscLogic as "Disc Logic"
     rectangle RotationMotorDisc
     rectangle LightCurtainDisc as "Light Curtain"
 }
 
 Orchestrator -left-> MQTT
-CameraLogic -right-> MQTT
+cameraComponent -right-> MQTT
 ArduinoCraneLogic -up-> MQTT
 ArduinoDiscLogic -up-> MQTT
 
 ArduinoCraneLogic -down-> RotationMotorCrane
-ArduinoCraneLogic -down-> WireMotor
-ArduinoCraneLogic -left-> ElectroMagnet
-ArduinoCraneLogic -left-> LightCurtainCrane
+ArduinoCraneLogic  -down-> WireMotor
+ArduinoCraneLogic -down-> ElectroMagnet
+LightCurtainCrane <- ArduinoCraneLogic 
 
-ArduinoDiscLogic -down-> RotationMotorDisc
-ArduinoDiscLogic -down-> LightCurtainDisc
+ArduinoDiscLogic -down->RotationMotorDisc
+LightCurtainDisc <-left- ArduinoDiscLogic 
 
-CameraLogic -up-> LightCurtainCamera
-webcam <-down- CameraLogic
+cameraComponent -up-> LightCurtainCamera
+cameraComponent -up-> webcam
 
 LogGatherer --> MQTT
 LogGatherer -left-> LoggingDatabase
