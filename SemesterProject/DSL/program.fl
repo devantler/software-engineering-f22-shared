@@ -15,26 +15,28 @@ create camera named camera1
 	with scannable color green 
 	with scannable color red
 
-for each element in disk1 that is complete then
-	disk1 move slot of element to craneZone
+for each diskSlot in disk1 that is complete then
+	disk1 move slot of diskSlot to craneZone
 	crane1 pickup item at intake
-	disk1 mark slot at craneZone as free
-	if variable element is red then  
+	if variable diskSlot is red then  
 		crane1 drop item at outRed
-	if variable element is green then  
-		crane1 drop item at outGreen 
-	if variable element is blue then  
+	if variable diskSlot is green then  
+		crane1 drop item at outGreen
+	if variable diskSlot is blue then  
 		crane1 drop item at outBlue
+	disk1 mark slot at craneZone as free
 
 if device disk1 is not full then  
 	disk1 move empty slot to intakeZone
 	disk1 mark slot at intakeZone as in-progress 
 	disk1 move slot at intakeZone to cameraZone
 	camera1 scan color into currentItemColor 
-	disk1 mark slot at cameraZone as currentItemColor 
+	disk1 mark slot at cameraZone as currentItemColor  
 	if variable currentItemColor is red then  
 		disk1 mark slot at cameraZone as complete in 10 seconds  
 	if variable currentItemColor is green then  
 		disk1 mark slot at cameraZone as complete in 20 seconds  
 	if variable currentItemColor is blue then  
 		disk1 mark slot at cameraZone as complete in 30 seconds
+
+	
