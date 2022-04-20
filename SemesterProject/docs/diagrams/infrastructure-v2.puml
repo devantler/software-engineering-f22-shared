@@ -1,0 +1,44 @@
+@startuml
+node RaspberryPi {
+    database LoggingDatabase
+    component LogGatherer
+    component Orchestrator
+    component Camera
+    component MQTT
+    component LightCurtainCamera
+}
+node ESP32Crane {
+    component ArduinoCraneLogic
+    artifact RotationMotorCrane
+    artifact ElectroMagnet
+    artifact WireMotor
+    component LightCurtainCrane
+}
+
+node ESP32Disc {
+    component ArduinoDiscLogic
+    artifact RotationMotorDisc
+    component LightCurtainDisc
+}
+
+Orchestrator --> MQTT
+Camera --> MQTT
+ArduinoCraneLogic -up-> MQTT
+ArduinoDiscLogic -up-> MQTT
+
+ArduinoCraneLogic -down-> RotationMotorCrane
+ArduinoCraneLogic  -down-> WireMotor
+ArduinoCraneLogic -down-> ElectroMagnet
+LightCurtainCrane -> ArduinoCraneLogic 
+
+ArduinoDiscLogic -down->RotationMotorDisc
+LightCurtainDisc -left->ArduinoDiscLogic 
+
+LightCurtainCamera -left-> Orchestrator 
+
+LogGatherer --> MQTT
+LogGatherer -left-> LoggingDatabase
+
+
+
+@enduml
