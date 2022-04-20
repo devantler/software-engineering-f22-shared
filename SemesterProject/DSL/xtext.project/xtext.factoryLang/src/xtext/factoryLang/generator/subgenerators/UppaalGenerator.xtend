@@ -22,10 +22,16 @@ import xtext.factoryLang.factoryLang.DiskMarkSlotOperation
 import xtext.factoryLang.factoryLang.CameraScanOperation
 import xtext.factoryLang.factoryLang.ForEach
 import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.common.util.EMap
+import java.util.HashMap
+import java.util.Map
+import xtext.factoryLang.factoryLang.ColorValue
+import xtext.factoryLang.uppaalParsers.EnumParser
 
 class UppaalGenerator {
 	
 	static EList<Statement> statements;
+	static Map<String, String> locationIds = new HashMap();
 	
 	def static generate(IFileSystemAccess2 fsa, Resource resource){
 		val model = resource.allContents.filter(Model).next
@@ -45,26 +51,26 @@ class UppaalGenerator {
 			//«disc.name»
 			
 			const int «disc.name»_numberOfSlots = «(disc.slotParameter as DiskSlotParameter).size»;
-			typedef int[0,«disc.name»numberOfSlots-1] id_t;
-			chan «disc.name»goto[«disc.name»numberOfSlots];
-			chan «disc.name»addItemCmd, «disc.name»removeItemCmd;
-			chan «disc.name»addItem[«disc.name»numberOfSlots];
-			broadcast chan «disc.name»removeItem[«disc.name»numberOfSlots];
+			typedef int[0,«disc.name»numberOfSlots-1] «disc.name»_id_t;
+			chan «disc.name»_goto[«disc.name»numberOfSlots];
+			chan «disc.name»_addItemCmd, «disc.name»removeItemCmd;
+			chan «disc.name»_addItem[«disc.name»numberOfSlots];
+			broadcast chan «disc.name»_removeItem[«disc.name»numberOfSlots];
 			
 			//default tags
-			chan «disc.name»getFreeSlot;
-			chan «disc.name»foundEmptySlot;
-			chan «disc.name»setColour[«disc.name»numberOfSlots][4];
-			bool «disc.name»occupiedSlots[«disc.name»numberOfSlots];
-			chan «disc.name»getColourSlot[«disc.name»numberOfSlots];
-			chan «disc.name»gottenColourSlot;
+			chan «disc.name»_getFreeSlot;
+			chan «disc.name»_foundEmptySlot;
+			chan «disc.name»_setColour[«disc.name»numberOfSlots][4];
+			bool «disc.name»_occupiedSlots[«disc.name»numberOfSlots];
+			chan «disc.name»_getColourSlot[«disc.name»numberOfSlots];
+			chan «disc.name»_gottenColourSlot;
 			
 			«FOR value : discSlotStateValues»
 			//«value» tag
-			chan «disc.name»set_«value»[«disc.name»numberOfSlots];
-			chan «disc.name»getSlot_«value»;
-			chan «disc.name»foundSlot_«value»;
-			bool «disc.name»slots_«value»[«disc.name»numberOfSlots];
+			chan «disc.name»_set_«value»[«disc.name»numberOfSlots];
+			chan «disc.name»_getSlot_«value»;
+			chan «disc.name»_foundSlot_«value»;
+			bool «disc.name»_slots_«value»[«disc.name»numberOfSlots];
 			«ENDFOR»
 			
 			//Zones: 
@@ -87,11 +93,8 @@ class UppaalGenerator {
 			chan «crane.name»_goto_«position.name»;
 			«ENDFOR»
 			
-			//-----------------current slots-----------------------------
-			«FOR disc : discs»
-			int «disc.name»_currentSlot_empty = -1;
-			«ENDFOR»
-			int currentSlot_finished = -1;
+			//-----------------current slot-----------------------------
+			int currentSlot = -1;
 			
 			/**
 			1: Red
@@ -114,138 +117,18 @@ class UppaalGenerator {
 			int error;</declaration>
 				<template>
 					<name>MasterController</name>
-					<declaration><
-			
-			
-			
-			
-			
-			
-			
+					<declaration>
 			clock timer;</declaration>
 					<location id="id0">
 						<name>Idle</name>
 					</location>
 					«FOR statement : statements»
-						«generateLocation(statement)»
+					«generateLocation(statement)»
 					«ENDFOR»
-					
-					
-					<location id="id4" x="1229" y="183">
-						<name x="1219" y="153">fillSlot</name>
-					</location>
-					<location id="id5" x="1263" y="353">
-						<name x="1253" y="323">gotoCamera</name>
-					</location>
-					<location id="id6" x="1000" y="512">
-						<name x="990" y="482">scanItem</name>
-						<committed/>
-					</location>
-					<location id="id7" x="850" y="512">
-						<name x="840" y="482">itemColour</name>
-					</location>
-					<location id="id8" x="595" y="518">
-						<name x="570" y="476">setItemColour</name>
-					</location>
-					<location id="id9" x="416" y="263">
-						<name x="406" y="229">markSlotFinishedIn10Seconds</name>
-					</location>
-					<location id="id10" x="357" y="535">
-						<name x="272" y="552">markSlotFinishedIn20Seconds</name>
-					</location>
-					<location id="id11" x="467" y="680">
-						<name x="457" y="646">markSlotFinishedIn30Seconds</name>
-					</location>
-					<location id="id12" x="289" y="161">
-						<name x="279" y="127">SetFinsihedRed</name>
-					</location>
-					<location id="id13" x="153" y="544">
-						<name x="143" y="510">setFinishedGreen</name>
-					</location>
-					<location id="id14" x="263" y="722">
-						<name x="253" y="688">setFinishedBlue</name>
-					</location>
-					<location id="id15" x="527" y="68">
-						<name x="517" y="34">getFinishedSlot</name>
-						<committed/>
-					</location>
-					<location id="id16" x="357" y="-17">
-						<name x="347" y="-51">slotFinished</name>
-					</location>
-					<location id="id17" x="382" y="-102">
-						<name x="372" y="-136">gotoCrane</name>
-					</location>
-					<location id="id18" x="561" y="-144">
-						<name x="551" y="-178">gotoIntake_crane</name>
-					</location>
-					<location id="id19" x="765" y="-136">
-						<name x="755" y="-170">craneLower</name>
-					</location>
-					<location id="id20" x="926" y="-127">
-						<name x="916" y="-161">toggleMagnet_crane</name>
-					</location>
-					<location id="id21" x="1096" y="-119">
-						<name x="1086" y="-153">getColourOfSlot</name>
-						<committed/>
-					</location>
-					<location id="id22" x="1300" y="-136">
-						<name x="1300" y="-136">thingIsRed</name>
-					</location>
-					<location id="id23" x="1292" y="-93">
-						<name x="1292" y="-93">thingIsGreen</name>
-					</location>
-					<location id="id24" x="1275" y="-34">
-						<name x="1275" y="-34">thingIsBlue</name>
-					</location>
-					<location id="id25" x="1453" y="-127">
-						<name x="1443" y="-161">gotoRed_crane</name>
-					</location>
-					<location id="id26" x="1436" y="-76">
-						<name x="1426" y="-110">gotoGreen_crane</name>
-					</location>
-					<location id="id27" x="1411" y="0">
-						<name x="1401" y="-34">gotoBlue_crane</name>
-					</location>
-					<location id="id28" x="1360" y="110">
-						<name x="1350" y="76">craneLowerBlue</name>
-					</location>
-					<location id="id29" x="1419" y="110">
-						<name x="1409" y="76">craneLowerGreen</name>
-					</location>
-					<location id="id30" x="1462" y="110">
-						<name x="1452" y="76">craneLowerRed</name>
-					</location>
-					<location id="id31" x="1360" y="187">
-						<name x="1350" y="153">toggleMagnetBlue</name>
-					</location>
-					<location id="id32" x="1419" y="178">
-						<name x="1409" y="144">toggleMagnetGreen</name>
-					</location>
-					<location id="id33" x="1470" y="187">
-						<name x="1460" y="153">toggleMagnetRed</name>
-					</location>
-					<location id="id34" x="1419" y="289">
-						<name x="1409" y="255">EndIf</name>
-					</location>
-					<location id="id35" x="1419" y="374">
-						<name x="1409" y="340">markEmpty</name>
-					</location>
-					<location id="id36" x="323" y="297">
-						<name x="313" y="263">IdleTime1</name>
-					</location>
-					<location id="id37" x="357" y="476">
-						<name x="347" y="442">IdleTime2</name>
-					</location>
-					<location id="id38" x="535" y="705">
-						<name x="525" y="671">IdleTime3</name>
-					</location>
-					<location id="id39" x="1011" y="-93">
-						<name x="1001" y="-127">craneRaise</name>
-					</location>
-					<location id="id40" x="1513" y="297">
-						<name x="1503" y="263">craneRaise1</name>
-					</location>
 					<init ref="id0"/>
+					«FOR statement : statements»
+					«generateTransistion(statement)»	
+					«ENDFOR»
 					<transition>
 						<source ref="id40"/>
 						<target ref="id35"/>
@@ -1361,29 +1244,6 @@ class UppaalGenerator {
 					</transition>
 				</template>
 				<system>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			// Place template instantiations here.
 			// List one or more processes to be composed into a system.
 			system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camera, SlotVariable_finished, GetFinishedSlot, EmergencyButton;</system>
@@ -1434,55 +1294,313 @@ class UppaalGenerator {
 		)
 	}
 	
+	static String lastTransistionState = "id0";
+	static String currentDisc = "ERROR_NO_DISC";
+	
 	def static dispatch String generateLocation(DeviceConditional statement) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
 	def static dispatch String generateLocation(VariableConditional statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''
+		<location id="«getIdOfLocation('''«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»''')»">
+			<name>«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»</name>
+			<committed/>
+		</location>
+		<location id="«getIdOfLocation('''«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»''')»">
+			<name>«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»</name>
+		</location>
+		<location id="«getIdOfLocation('''EndIf_«statements.indexOf(statement)»''')»">
+			<name>EndIf_«statements.indexOf(statement)»</name>
+		</location>
+		'''
+	}
+	
+	def static dispatch String generateTransistion(VariableConditional statement){
+		switch(statement.variableValue){
+			ColorValue:{
+				val trans = '''
+				<transition>
+					<source ref="«lastTransistionState»"/>
+					<target ref="«getIdOfLocation('''«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»''')»"/>
+					<label kind="synchronisation">«currentDisc»getColourSlot[currentSlot]!</label>
+				</transition>
+				<transition>
+					<source ref="«getIdOfLocation('''«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»''')»"/>
+					<target ref="«getIdOfLocation('''«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»''')»"/>
+					<label kind="guard">currentSlot_colour == «EnumParser.ColourToInt((statement.variableValue.value as ColorValue).value)»</label>
+					<label kind="synchronisation">«currentDisc»gottenColourSlot?</label>
+				</transition>
+				''';
+				lastTransistionState = getIdOfLocation('''«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»''')
+				return trans
+				}
+			default: throw new UnsupportedOperationException("This conditional value is not implemented yet")
+		}
 	}
 	
 	def static dispatch String generateLocation(CranePickupOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''
+		<location id="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
+		</location>
+		<location id="«getIdOfLocation('''«statement.device.name»_lower_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_lower_«statements.indexOf(statement)»</name>
+		</location>
+		<location id="«getIdOfLocation('''«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»</name>
+		</location>
+		<location id="«getIdOfLocation('''«statement.device.name»_raise_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_raise_«statements.indexOf(statement)»</name>
+		</location>
+		'''
+	}
+	
+	def static dispatch String generateTransistion(CranePickupOperation statement){
+		val trans = '''
+		<transition>
+			<source ref="«lastTransistionState»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»!</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_lower_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_lowerMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_lower_«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_toggleMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_raise_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_raiseMagnet!</label>
+		</transition>
+		''';
+		lastTransistionState = getIdOfLocation('''«statement.device.name»_raise_«statements.indexOf(statement)»''')
+		return trans
 	}
 	
 	def static dispatch String generateLocation(CraneDropOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''
+		<location id="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
+		</location>
+		<location id="«getIdOfLocation('''«statement.device.name»_lower_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_lower_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
+		</location>
+		<location id="«getIdOfLocation('''«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»</name>
+		</location>
+		<location id="«getIdOfLocation('''«statement.device.name»_raise_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_raise_«statements.indexOf(statement)»</name>
+		</location>
+		'''
+	}
+	
+	def static dispatch String generateTransistion(CraneDropOperation statement){
+		val trans = '''
+		<transition>
+			<source ref="«lastTransistionState»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»!</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_lower_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_lowerMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_lower_«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_toggleMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_raise_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_raiseMagnet!</label>
+		</transition>
+		''';
+		lastTransistionState = getIdOfLocation('''«statement.device.name»_raise_«statements.indexOf(statement)»''')
+		return trans
 	}
 	
 	def static dispatch String generateLocation(DiskMoveSlotOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''
+		<location id="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statement«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_goto_«statement.target.name»_statement«statements.indexOf(statement)»</name>
+		</location>
+		'''
+	}
+	
+	def static dispatch String generateTransistion(DiskMoveSlotOperation statement){
+		val trans = '''
+		<transition>
+			<source ref="«lastTransistionState»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statement«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»goto[(«statement.device.name»_zones_«statement.target.name» + currentSlot) % «statement.device.name»_numberOfSlots]!</label>
+		</transition>
+		'''
+		lastTransistionState = getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statement«statements.indexOf(statement)»''')
+		return trans
 	}
 	
 	def static dispatch String generateLocation(DiskMoveVariableSlotOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''
+		<location id="«getIdOfLocation('''«statement.device.name»goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»goto_«statement.target.name»_statment«statements.indexOf(statement)»</name>
+		</location>
+		'''
+	}
+	
+	def static dispatch String generateTransistion(DiskMoveVariableSlotOperation statement){
+		val trans = '''
+		<transition>
+			<source ref="«lastTransistionState»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»goto[(«statement.device.name»_zones_«statement.target.name» + currentSlot) % «statement.device.name»_numberOfSlots]!</label>
+		</transition>
+		'''
+		lastTransistionState = getIdOfLocation('''«statement.device.name»goto_«statement.target.name»_statment«statements.indexOf(statement)»''')
+		return trans
 	}
 	
 	def static dispatch String generateLocation(DiskMoveEmptySlotOperation statement) {
 		'''
-		<location id="id1">
+		<location id="«getIdOfLocation('''«statement.device.name»_getEmptySlot_statment«statements.indexOf(statement)»''')»">
 			<name>«statement.device.name»_getEmptySlot_statment«statements.indexOf(statement)»</name>
 			<committed/>
 		</location>
-		<location id="id2">
+		<location id="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»''')»">
 			<name>«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»</name>
 		</location>
-		<location id="id3">
+		<location id="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»">
 			<name>«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»</name>
 		</location>
 		'''
 	}
 	
+	def static dispatch String generateTransistion(DiskMoveEmptySlotOperation statement) {
+		val trans = '''
+		<transition>
+			<source ref="«lastTransistionState»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»getFreeSlot!</label>
+			<label kind="update">GlobalTimer = 0</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»foundEmptySlot?</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»''')»""/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»goto[(«statement.device.name»_zones_«statement.target.name» + currentSlot) % «statement.device.name»_numberOfSlots]!</label>
+		</transition>
+		'''
+		lastTransistionState = getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»''')
+		return trans
+	}
+	
+	
 	def static dispatch String generateLocation(DiskMarkSlotOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''
+		«IF statement.quantity > 0»
+		<location id="«getIdOfLocation('''«statement.device.name»_markSlot«statement.diskSlotValue»In«statement.quantity»«statement.measure»_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_markSlot«statement.diskSlotValue»In«statement.quantity»«statement.measure»_«statements.indexOf(statement)»</name>
+		</location>
+		«ENDIF»
+		<location id="«getIdOfLocation('''«statement.device.name»_markSlot«statement.diskSlotValue»_statement«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_markSlot«statement.diskSlotValue»_statement«statements.indexOf(statement)»</name>
+		</location>
+		'''
+	}
+	
+	def static dispatch String generateTransistion(DiskMarkSlotOperation statement) {
+		val trans = '''
+		«IF statement.quantity > 0»
+		<transition>
+			<source ref="«lastTransistionState»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_markSlot«statement.diskSlotValue»In«statement.quantity»«statement.measure»_«statements.indexOf(statement)»''')»"/>
+			<label kind="update">timer = 0</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_markSlot«statement.diskSlotValue»In«statement.quantity»«statement.measure»_«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_markSlot«statement.diskSlotValue»_statement«statements.indexOf(statement)»''')»"/>
+			<label kind="guard">timer &gt;= «statement.quantity»</label>
+			<label kind="synchronisation">«statement.device.name»_set_«statement.diskSlotValue»[currentSlot]</label>
+		</transition>
+		«ELSE»
+		<transition>
+			<source ref="«lastTransistionState»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_markSlot«statement.diskSlotValue»_statement«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_set_«statement.diskSlotValue»[currentSlot]</label>
+		</transition>
+		«ENDIF»
+		'''
+		lastTransistionState = getIdOfLocation('''«getIdOfLocation('''«statement.device.name»_markSlot«statement.diskSlotValue»_statement«statements.indexOf(statement)»''')»''')
+		return trans
 	}
 	
 	def static dispatch String generateLocation(CameraScanOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''
+		<location id="«getIdOfLocation('''«statement.device.name»_scanItem_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_scanItem_«statements.indexOf(statement)»</name>
+			<committed/>
+		</location>
+		<location id="«getIdOfLocation('''«statement.device.name»_itemColour_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_itemColour_«statements.indexOf(statement)»</name>
+		</location>
+		<location id="«getIdOfLocation('''«statement.device.name»_setItemColour_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_setItemColour_«statements.indexOf(statement)»</name>
+		</location>
+		'''
+	}
+	
+	def static dispatch String generateTransistion(CameraScanOperation statement) {
+		val trans = '''
+		<transition>
+			<source ref="«lastTransistionState»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_scanItem_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_getColour!</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_scanItem_«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_itemColour_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_gottenColour?</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»''')»""/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»goto[(«statement.device.name»_zones_«statement.target.name» + currentSlot) % «statement.device.name»_numberOfSlots]!</label>
+		</transition>
+		'''
+		lastTransistionState = getIdOfLocation('''«statement.device.name»_setItemColour_«statements.indexOf(statement)»''')
+		return trans
 	}
 	
 	def static dispatch String generateLocation(ForEach statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		'''
+		<location id="«getIdOfLocation('''«statement.device.name»_get«statement.variableValue.value»Slot_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_get«statement.variableValue.value»Slot_«statements.indexOf(statement)»</name>
+			<committed/>
+		</location>
+		<location id="«getIdOfLocation('''«statement.device.name»_gottenSlot«statement.variableValue.value»_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_gottenSlot«statement.variableValue.value»_«statements.indexOf(statement)»</name>
+		</location>
+		'''
+	}
+	
+	static int idCounter = 1;
+	def static String getIdOfLocation(String location){
+		if(locationIds.containsKey(location)){
+			return locationIds.get(location)
+		}else{
+			return locationIds.put(location, '''id«idCounter++»''')
+		}
 	}
 	
 }
