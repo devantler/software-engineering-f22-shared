@@ -4,28 +4,56 @@ import xtext.factoryLang.factoryLang.DISK_SLOT_STATES
 import xtext.factoryLang.factoryLang.COLOR
 import xtext.factoryLang.factoryLang.DISK_STATES
 import xtext.factoryLang.factoryLang.COMPARISON_OPERATOR
+import xtext.factoryLang.factoryLang.ForEach
+import xtext.factoryLang.factoryLang.DiskMarkSlotOperation
+import xtext.factoryLang.factoryLang.impl.ForEachImpl
+import xtext.factoryLang.factoryLang.impl.DiskMarkSlotOperationImpl
+import xtext.factoryLang.factoryLang.impl.LocalVariableImpl
+import xtext.factoryLang.factoryLang.impl.GlobalVariableImpl
 
 class EnumParser {
-	def static CharSequence parseDiskSlotState(DISK_SLOT_STATES diskSlotState) {
-		switch diskSlotState {
-			case DISK_SLOT_STATES.FREE: "free"
-			case DISK_SLOT_STATES.IN_PROGRESS: "in-progress"
-			case DISK_SLOT_STATES.COMPLETE: "complete"
+	def static CharSequence parseDiskSlotState(DISK_SLOT_STATES diskSlotState, Class<?> originClass) {
+		switch originClass {
+			case ForEachImpl: {	
+				switch diskSlotState {
+					case DISK_SLOT_STATES.FREE: 'GetSlotsWithMark(SlotState.Empty)'
+					case DISK_SLOT_STATES.IN_PROGRESS: 'GetSlotsWithMark(SlotState.InProgress)'
+					case DISK_SLOT_STATES.COMPLETE: 'GetSlotsWithMark(SlotState.Complete)'
+				}
+			}
+			case DiskMarkSlotOperationImpl: {
+				switch diskSlotState {
+					case DISK_SLOT_STATES.FREE: "SlotState.Empty"
+					case DISK_SLOT_STATES.IN_PROGRESS: "SlotState.InProgress"
+					case DISK_SLOT_STATES.COMPLETE: "SlotState.Complete"
+				}
+			}
 		}
 	}
 
-	def static CharSequence parseColor(COLOR color, boolean asCode) {
-		switch color {
-			case COLOR.RED: asCode ? '.HasMark("red")' : "red"
-			case COLOR.GREEN: asCode ? '.HasMark("green")' : "green"
-			case COLOR.BLUE: asCode ? '.HasMark("blue")' : "blue"
+	def static CharSequence parseColor(COLOR color, Class<?> originClass) {
+		switch originClass {
+			case LocalVariableImpl: {
+				switch color {
+					case COLOR.RED: 'HasMark("red")'
+					case COLOR.GREEN: 'HasMark("green")'
+					case COLOR.BLUE: 'HasMark("blue")'
+				}
+			}
+			case GlobalVariableImpl: {
+				switch color {
+					case COLOR.RED: "red"
+					case COLOR.GREEN: "green"
+					case COLOR.BLUE: "blue"
+				}
+			}
 		}
 	}
 
-	def static CharSequence parseDiskState(DISK_STATES diskState, boolean asCode) {
+	def static CharSequence parseDiskState(DISK_STATES diskState, Class<?> originClass) {
 		switch diskState {
-			case DISK_STATES.FULL: asCode ? ".IsFull()" : "full"
-			case DISK_STATES.EMPTY: asCode ? ".IsEmpty()" : "empty"
+			case DISK_STATES.FULL: originClass !== null ? "IsFull()" : "full"
+			case DISK_STATES.EMPTY: originClass !== null ? "IsEmpty()" : "empty"
 		}
 	}
 

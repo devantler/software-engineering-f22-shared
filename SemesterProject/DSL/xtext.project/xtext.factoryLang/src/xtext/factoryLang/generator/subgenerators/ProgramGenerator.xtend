@@ -14,8 +14,15 @@ import xtext.factoryLang.factoryLang.Statement
 import xtext.factoryLang.factoryLang.ForEach
 import xtext.factoryLang.factoryLang.DeviceConditional
 import xtext.factoryLang.parsers.ValueParser
-import xtext.factoryLang.parsers.TypeParser
 import xtext.factoryLang.factoryLang.VariableConditional
+import xtext.factoryLang.factoryLang.DiskMoveVariableSlotOperation
+import xtext.factoryLang.factoryLang.CranePickupOperation
+import xtext.factoryLang.factoryLang.DiskMarkSlotOperation
+import xtext.factoryLang.factoryLang.CraneDropOperation
+import xtext.factoryLang.factoryLang.DiskMoveEmptySlotOperation
+import xtext.factoryLang.factoryLang.DiskMoveSlotOperation
+import xtext.factoryLang.factoryLang.CameraScanOperation
+import xtext.factoryLang.factoryLang.impl.GlobalVariableImpl
 import xtext.factoryLang.parsers.EnumParser
 
 class ProgramGenerator {
@@ -24,33 +31,29 @@ class ProgramGenerator {
 		fsa.generateFile(
 			'OrchestratorService/Program.cs',
 			'''
-				using System;
-				using System.Collections.Generic;
 				using Entities;
 				using Mqtt;
 				
-				namespace OrchestratorService;
+				«generateVariables»
 				
-				«generateVariables»	
-				
-				«generateMainLoop»	
+				«generateMainLoop»
 				
 				«generateSetupMethod(devices)»
 				
-				«generateRunMethod(statements)»
+				«generateRunMethod(devices, statements)»
 			'''
 		)
 	}
 
 	protected def static CharSequence generateVariables() '''
 		#region Variables
-		private IMqttService mqtt;
+		IMqttService mqtt = new MqttService();
 		
-		private Dictionary<string, Crane> cranes;
-		private Dictionary<string, Disk> disks;
-		private Dictionary<string, Camera> cameras;
+		Dictionary<string, Crane> cranes = new();
+		Dictionary<string, Disk> disks = new();
+		Dictionary<string, Camera> cameras = new();
 		
-		private bool running = true;
+		bool running = true;
 		#endregion
 	'''
 
@@ -62,35 +65,33 @@ class ProgramGenerator {
 	'''
 
 	protected def static CharSequence generateSetupMethod(List<Device> devices) '''
-		public void Setup() {
-			var mqtt = new MqttService();
+		void Setup()
+		{
 			«generateCranes(devices.filter[it instanceof Crane].map[it as Crane].toList)»
+		
 			«generateDisks(devices.filter[it instanceof Disk].map[it as Disk].toList)»
+		
 			«generateCameras(devices.filter[it instanceof Camera].map[it as Camera].toList)»
 		}
 	'''
 
 	protected def static CharSequence generateCranes(List<Crane> cranes) '''
 		«IF cranes.size > 0» 
-			
-			var cranes = new Dictionary<string, Crane>();
 			«FOR crane:cranes»
-				cranes.Add("«crane.name»", new Crane(new Dictionary<string, int>()
+				cranes.Add("«crane.name»", new Crane("«crane.name»", new Dictionary<string, int>()
 				{
 					«FOR target:crane.targets.map[it as CranePositionParameter] SEPARATOR ","»
 						{"«target.name»", «target.degree»}
 					«ENDFOR»
-				},mqtt));
+				}, mqtt));
 			«ENDFOR»
 		«ENDIF»
 	'''
 
 	protected def static CharSequence generateDisks(List<Disk> disks) '''
-		«IF disks.size > 0» 
-			
-			var disks = new Dictionary<string, Disk>();
+		«IF disks.size > 0»
 			«FOR disk:disks»
-				disks.Add("«disk.name»", new Disk(«(disk.slotParameter as DiskSlotParameter).size», new Dictionary<string, int>()
+				disks.Add("«disk.name»", new Disk("«disk.name»", «(disk.slotParameter as DiskSlotParameter).size», new Dictionary<string, int>()
 				{
 					«FOR target:disk.targets.map[it as DiskZoneParameter] SEPARATOR ","»
 						{"«target.name»", «target.slot»}
@@ -102,10 +103,8 @@ class ProgramGenerator {
 
 	protected def static CharSequence generateCameras(List<Camera> cameras) '''
 		«IF cameras.size > 0»
-			
-			var cameras = new Dictionary<string, Camera>();
 			«FOR camera:cameras»
-				cameras.Add("«camera.name»", new Camera(new List<string>()
+				cameras.Add("«camera.name»", new Camera("«camera.name»", new List<string>()
 				{
 					«FOR target:camera.targets.map[it as CameraColorParameter] SEPARATOR ","»
 						"«target.color»"
@@ -115,10 +114,22 @@ class ProgramGenerator {
 		«ENDIF»
 	'''
 
-	protected def static CharSequence generateRunMethod(List<Statement> statements) {
+	protected def static CharSequence generateRunMethod(List<Device> devices, List<Statement> statements) {
 		'''
-			public void Run() {
-				while (running) {
+			async void Run()
+			{
+				«FOR crane : devices.filter[it instanceof Crane].map[it as Crane].toList»
+					var «crane.name» = cranes["«crane.name»"];
+				«ENDFOR»
+				«FOR disk : devices.filter[it instanceof Disk].map[it as Disk].toList»
+					var «disk.name» = disks["«disk.name»"];
+				«ENDFOR»
+				«FOR camera : devices.filter[it instanceof Camera].map[it as Camera].toList»
+					var «camera.name» = cameras["«camera.name»"];
+				«ENDFOR»
+			
+				while (running)
+				{
 					«FOR statement : statements»
 						«generateStatement(statement)»
 					«ENDFOR»
@@ -131,37 +142,112 @@ class ProgramGenerator {
 		// remember scope for local variables
 		switch statement {
 			ForEach: {
-				val deviceType = TypeParser.parseDeviceType(statement.device, true)
-				val specificDevice = '''«deviceType»["«statement.device.name»"]'''
 				val optionalNotOperator = '''«IF !statement.operator.isNullOrEmpty»!«ENDIF»'''
-				val methodCalledOnBoundVariable = ValueParser.parseVariableValue(statement.variableValue, true)
-				val filteredDevice = '''«specificDevice».Where(x => «optionalNotOperator»x«methodCalledOnBoundVariable»)''' //TODO: This needs to get the actual slots, crane item or camera item for comparison
+				val methodCalledOnBoundVariable = optionalNotOperator +
+					ValueParser.parseVariableValue(statement.variableValue, statement.getClass())
+				val filteredDevice = '''«statement.device.name».«methodCalledOnBoundVariable»'''
 				'''
-					foreach (var «statement.variable.name» in «filteredDevice») {
+					foreach (var «statement.variable.name» in «filteredDevice»)
+					{
 						«FOR nestedStatement : statement.statements»
 							«generateStatement(nestedStatement)»
 						«ENDFOR»
 					}
 				'''
 			}
-			DeviceConditional: '''
-				if («IF statement.deviceValue.ref === null»«statement.device.name» «IF !statement.not_operator.isNullOrEmpty»!=«ELSE»==«ENDIF» «ValueParser.parseDeviceValue(statement.deviceValue, false)»«ELSE»«IF !statement.not_operator.isNullOrEmpty»!«ENDIF»«statement.device.name»«ValueParser.parseDeviceValue(statement.deviceValue, true)»«ENDIF») {
-					«FOR nestedStatement : statement.statements»
-						«generateStatement(nestedStatement)»
-					«ENDFOR»
-				}
-			'''
-			VariableConditional: '''
-				if («statement.variable.name» «EnumParser.parseComparisonOperator(statement.comparison_operator)» "«ValueParser.parseVariableValue(statement.variableValue, false)»" {
-					«FOR nestedStatement : statement.statements»
-						«generateStatement(nestedStatement)»
-					«ENDFOR»
-				}
-			'''
+			DeviceConditional: {
+				val optionalNotOperator = '''«IF !statement.not_operator.isNullOrEmpty»!«ENDIF»'''
+				val deviceName = statement.device.name
+				val methodCalledOnBoundVariable = ValueParser.parseDeviceValue(statement.deviceValue,
+					statement.getClass())
+				'''
+					if («optionalNotOperator»«deviceName».«methodCalledOnBoundVariable»)
+					{
+						«FOR nestedStatement : statement.statements»
+							«generateStatement(nestedStatement)»
+						«ENDFOR»
+					}
+				'''
+			}
+			VariableConditional: {
+				val variableName = statement.variable.name
+				val variableType = statement.variable.getClass()
+				val dotOrComparisonOperator = variableType == GlobalVariableImpl ? " " +
+						EnumParser.parseComparisonOperator(statement.comparison_operator) + " " : "."
+				val conditionalQuotationMark = variableType == GlobalVariableImpl ? '"' : ''
+				val variableValue = ValueParser.parseVariableValue(statement.variableValue, variableType)
+				'''
+					if («variableName»«dotOrComparisonOperator»«conditionalQuotationMark»«variableValue»«conditionalQuotationMark»)
+					{
+						«FOR nestedStatement : statement.statements»
+							«generateStatement(nestedStatement)»
+						«ENDFOR»
+					}
+				'''
+			}
+			CranePickupOperation: {
+				val deviceName = statement.device.name
+				val targetName = (statement.target as CranePositionParameter).name
+				'''
+					await «deviceName».GoTo("«targetName»");
+					await «deviceName».PickupItem();
+				'''
+			}
+			CraneDropOperation: {
+				val deviceName = statement.device.name
+				val targetName = (statement.target as CranePositionParameter).name
+				'''
+					await «deviceName».GoTo("«targetName»");
+					await «deviceName».DropItem();
+				'''
+			}
+			DiskMarkSlotOperation: {
+				val deviceName = statement.device.name
+				val targetName = statement.target.name
+				val diskSlotValue = ValueParser.parseDiskSlotValue(statement.diskSlotValue, statement.getClass())
+				val quantity = statement.quantity
+				'''
+					«IF quantity > 0»
+						await Task.Run(() =>
+						{
+							Thread.Sleep(«quantity * 1000»);
+							«deviceName».MarkSlot("«targetName»", «diskSlotValue»);
+						});
+					«ELSE»
+						«deviceName».MarkSlot("«targetName»", «diskSlotValue»);
+					«ENDIF»	
+				'''
+			}
+			DiskMoveVariableSlotOperation: {
+				val deviceName = statement.device.name
+				val variableName = statement.variable.name
+				val targetName = statement.target.name
+				'''
+					«deviceName».MoveSlot(«variableName».Number, "«targetName»");
+				'''
+			}
+			DiskMoveEmptySlotOperation: {
+				val deviceName = statement.device.name
+				val targetName = statement.target.name
+				'''
+					«deviceName».MoveSlot(«deviceName».GetEmptySlotNumber(), "«targetName»");
+				'''
+			}
+			DiskMoveSlotOperation: {
+				val deviceName = statement.device.name
+				val sourceName = statement.source.name
+				val targetName = statement.target.name
+				'''
+					«deviceName».MoveSlot("«sourceName»", "«targetName»");
+				'''
+			}
+			CameraScanOperation: {
+				val deviceName = statement.device.name
+				val variableName = statement.variable.name
+				'''
+					var «variableName» = «deviceName».Scan();
+				'''
+			}
 		}
-//			{VariableConditional} 'if' 'variable' variable=[Variable] 'is'
-//			(comparison_operator=COMPARISON_OPERATOR)?
-//			variableValue=VariableValue
-//			'then' BEGIN statements+=Statement* END;
 	}
 }
