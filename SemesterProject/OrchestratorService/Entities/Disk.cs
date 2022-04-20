@@ -4,13 +4,15 @@ namespace Entities;
 
 public class Disk
 {
+    private readonly string _name;
     private int _currentOffset;
     private readonly Dictionary<int, Slot> _slots;
     private readonly Dictionary<string, int> _zones;
     private readonly IMqttService _mqttService;
 
-    public Disk(int slots, Dictionary<string, int> zones, IMqttService mqttService)
+    public Disk(string name, int slots, Dictionary<string, int> zones, IMqttService mqttService)
     {
+        _name = name;
         _slots = new Dictionary<int, Slot>();
         for (int i = 0; i < slots; i++)
         {
@@ -60,7 +62,7 @@ public class Disk
         //Mqtt stuff
         var zonesToMove = fromZone - toZone;
         _currentOffset = (_currentOffset + zonesToMove) % _slots.Count;
-        _mqttService.SendMessage(MqttTopics.Disk.Slot, _currentOffset.ToString()); //TODO: Might need to be changed to MqttTopics.Disk.Zone
+        _mqttService.SendMessage(MqttTopics.Disk.Slot(_name), _currentOffset.ToString()); //TODO: Might need to be changed to MqttTopics.Disk.Zone
     }
     #endregion
 

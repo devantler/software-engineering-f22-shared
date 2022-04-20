@@ -18,7 +18,7 @@ Run();
 
 void Setup()
 {
-    cranes.Add("crane1", new Crane(new Dictionary<string, int>()
+    cranes.Add("crane1", new Crane("crane1", new Dictionary<string, int>()
     {
         {"intake", 0},
         {"outRed", 30},
@@ -26,14 +26,14 @@ void Setup()
         {"outBlue", 90}
     }, mqtt));
 
-    disks.Add("disk1", new Disk(8, new Dictionary<string, int>()
+    disks.Add("disk1", new Disk("disk1", 8, new Dictionary<string, int>()
     {
         {"craneZone", 1},
         {"cameraZone", 3},
         {"intakeZone", 6}
     }, mqtt));
 
-    cameras.Add("camera1", new Camera(new List<string>()
+    cameras.Add("camera1", new Camera("camera1", new List<string>()
     {
         "blue",
         "green",
