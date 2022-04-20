@@ -4,7 +4,6 @@ namespace Entities
 {
     public class Crane
     {
-        public Element? Element { get; set; }
         private readonly Dictionary<string, int> _positions;
         private readonly IMqttService _mqttService;
 
@@ -19,19 +18,18 @@ namespace Entities
             _positions.Add(name, angle);
         }
 
-        public async Task Goto(string positionName)
+        public async Task GoTo(string positionName)
         {
             await _mqttService.SendMessage(MqttTopics.Crane.Angle, _positions[positionName].ToString());
         }
 
-        public async Task Goto(int position)
+        public async Task GoTo(int position)
         {
             await _mqttService.SendMessage(MqttTopics.Crane.Angle, position.ToString());
         }
 
-        public async Task PickupItem(Element element)
+        public async Task PickupItem()
         {
-            Element = element;
             await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "LOW");
             await _mqttService.SendMessage(MqttTopics.Crane.Magnet, "1");
             while (_mqttService.GetMessage(MqttTopics.Crane.Moving) != "0")
@@ -50,7 +48,6 @@ namespace Entities
             }
             await _mqttService.SendMessage(MqttTopics.Crane.Magnet, "0");
             await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "HIGH");
-            Element = null;
         }
     }
 }

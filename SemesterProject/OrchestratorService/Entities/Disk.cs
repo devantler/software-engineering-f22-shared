@@ -24,6 +24,7 @@ public class Disk
     {
         return _slots.FirstOrDefault(x => x.Value.SlotState == SlotState.Empty).Value;
     }
+
     public int GetEmptySlotNumber()
     {
         if (_slots.Any(x => x.Value.SlotState == SlotState.Empty))
@@ -34,6 +35,7 @@ public class Disk
     }
 
     #region MoveSlot methods
+
     public void MoveSlot(string fromZoneName, string toZoneName)
     {
         var fromZone = _zones[fromZoneName];
@@ -52,6 +54,7 @@ public class Disk
         var toZone = _zones[toZoneName];
         MoveSlot(fromZone, toZone);
     }
+
     public void MoveSlot(int fromZone, int toZone)
     {
         //Mqtt stuff
@@ -65,10 +68,12 @@ public class Disk
     {
         return _slots.All(x => x.Value.SlotState == SlotState.Full);
     }
+
     public bool IsEmpty()
     {
         return _slots.All(x => x.Value.SlotState == SlotState.Empty);
     }
+
     public Slot GetSlot(int slot)
     {
         return _slots[slot];
@@ -78,47 +83,58 @@ public class Disk
     {
         return _slots[_zones[slotName]];
     }
-    public void SetSlotState(string slotName, SlotState slotState)
+
+    #region MarkSlot methods
+    public bool SlotHasMark(int slot, ElementState mark)
     {
-        _slots[_zones[slotName]].SlotState = slotState;
+        return _slots[slot].HasMark(mark);
     }
 
-    public Element? GetSlotElement(string slotName)
+    public bool SlotHasMark(int slot, string mark)
     {
-        return GetSlot(slotName).Element;
+        return _slots[slot].HasMark(mark);
     }
 
-    public Element? GetSlotElement(int slot)
+    public bool SlotHasMark(int slot, int mark)
     {
-        return GetSlot(slot).Element;
+        return _slots[slot].HasMark(mark);
     }
 
-    #region MarkSlotElement methods
-    public void MarkSlotElementAt(string slotName, ElementState mark)
+    public void MarkSlot(string slotName, SlotState mark)
     {
-        GetSlotElement(slotName)?.AddMark(mark);
+        if(mark == SlotState.Empty)
+            GetSlot(slotName).RemoveAllMarks();
+        GetSlot(slotName).SlotState = mark;
     }
 
-    public void MarkSlotElementAt(string slotName, string mark)
+    public void MarkSlot(string slotName, ElementState mark)
     {
-        GetSlotElement(slotName)?.AddMark(mark);
+        GetSlot(slotName).AddMark(mark);
     }
 
-    public void MarkSlotElementAt(string slotName, int mark)
+    public void MarkSlot(string slotName, string mark)
     {
-        GetSlotElement(slotName)?.AddMark(mark);
+        GetSlot(slotName).AddMark(mark);
     }
-    public void RemoveElementMarkAt(string slotName, ElementState mark)
+
+    public void MarkSlot(string slotName, int mark)
     {
-        GetSlotElement(slotName)?.RemoveMark(mark);
+        GetSlot(slotName).AddMark(mark);
     }
-    public void RemoveElementMarkAt(string slotName, string mark)
+
+    public void RemoveSlotMark(int slotName, ElementState mark)
     {
-        GetSlotElement(slotName)?.RemoveMark(mark);
+        GetSlot(slotName).RemoveMark(mark);
     }
-    public void RemoveElementMarkAt(string slotName, int mark)
+
+    public void RemoveSlotMark(int slotName, string mark)
     {
-        GetSlotElement(slotName)?.RemoveMark(mark);
+        GetSlot(slotName).RemoveMark(mark);
+    }
+
+    public void RemoveSlotMark(int slotName, int mark)
+    {
+        GetSlot(slotName).RemoveMark(mark);
     }
     #endregion
 
@@ -127,19 +143,19 @@ public class Disk
         return _slots.Select(x => x.Value).ToList();
     }
 
-    public List<Slot> GetSlotsWithElementMark(int mark)
+    public List<Slot> GetSlotsWithMark(int mark)
     {
-        return _slots.Where(x => x.Value.Element?.HasMark(mark) == true).Select(x => x.Value).ToList();
+        return _slots.Where(x => x.Value.HasMark(mark)).Select(x => x.Value).ToList();
     }
 
-    public List<Slot> GetSlotsWithElementMark(ElementState mark)
+    public List<Slot> GetSlotsWithMark(ElementState mark)
     {
-        return _slots.Where(x => x.Value.Element?.HasMark(mark) == true).Select(x => x.Value).ToList();
+        return _slots.Where(x => x.Value.HasMark(mark)).Select(x => x.Value).ToList();
     }
 
-    public List<Slot> GetSlotsWithElementMark(string mark)
+    public List<Slot> GetSlotsWithMark(string mark)
     {
-        return _slots.Where(x => x.Value.Element?.HasMark(mark) == true).Select(x => x.Value).ToList();
+        return _slots.Where(x => x.Value.HasMark(mark)).Select(x => x.Value).ToList();
     }
 
     public int GetZone(string zoneName)
