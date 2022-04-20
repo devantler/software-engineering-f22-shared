@@ -1,11 +1,15 @@
 @startuml
 node RaspberryPi {
-    database LoggingDatabase
-    component LogGatherer
-    component Orchestrator
+    component Server {
+        component MQTT
+        database LoggingDatabase
+        component LogGatherer
+        component Orchestrator
+    }
     component Camera
-    component MQTT
+    
     component LightCurtainCamera
+    artifact WiFiAP as "WiFi AP"
 }
 node ESP32Crane {
     component ArduinoCraneLogic
@@ -21,8 +25,8 @@ node ESP32Disc {
     component LightCurtainDisc
 }
 
-Orchestrator --> MQTT
-Camera --> MQTT
+Orchestrator -left-> MQTT
+Camera -down-> MQTT
 ArduinoCraneLogic -up-> MQTT
 ArduinoDiscLogic -up-> MQTT
 
@@ -34,11 +38,12 @@ LightCurtainCrane -> ArduinoCraneLogic
 ArduinoDiscLogic -down->RotationMotorDisc
 LightCurtainDisc -left->ArduinoDiscLogic 
 
-LightCurtainCamera -left-> Orchestrator 
+LightCurtainCamera -left-> Camera
 
 LogGatherer --> MQTT
 LogGatherer -left-> LoggingDatabase
 
-
-
+ArduinoDiscLogic -up-> WiFiAP
+ArduinoCraneLogic --> WiFiAP
+skinparam linetype ortho
 @enduml
