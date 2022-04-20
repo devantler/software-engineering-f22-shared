@@ -1,0 +1,61 @@
+@startuml
+hide stereotype
+
+skinparam ComponentBackgroundColor<<dEvice>> red
+skinparam ComponentStyle<<dEvice>> uml1
+
+node RaspberryPi {
+    node Server {
+        component MQTT<<dEvice>>
+        database LoggingDatabase
+        component LogGatherer
+        component Orchestrator
+    }
+    node Camera as "Camera Color Sensor"{
+        component cameraComponent as "Camera Logic"
+        component LightCurtainCamera
+    }
+    
+    
+    component WiFiAP as "WiFi AP"
+    WiFiAP -[hidden]left- Camera 
+    WiFiAP -[hidden]left- Server 
+    WiFiAP -[hidden]down- ESP32Crane 
+    WiFiAP -[hidden]down- ESP32Disc 
+}
+node ESP32Crane {
+    component ArduinoCraneLogic
+    artifact RotationMotorCrane
+    artifact ElectroMagnet
+    artifact WireMotor
+    [LightCurtainCrane]<<dEvice>>
+}
+
+node ESP32Disc {
+    component ArduinoDiscLogic
+    artifact RotationMotorDisc
+    component LightCurtainDisc
+}
+
+Orchestrator -left-> MQTT
+cameraComponent -right-> MQTT
+ArduinoCraneLogic -up-> MQTT
+ArduinoDiscLogic -up-> MQTT
+
+ArduinoCraneLogic -down-> RotationMotorCrane
+ArduinoCraneLogic  -down-> WireMotor
+ArduinoCraneLogic -down-> ElectroMagnet
+LightCurtainCrane -> ArduinoCraneLogic 
+
+ArduinoDiscLogic -down->RotationMotorDisc
+LightCurtainDisc -left->ArduinoDiscLogic 
+
+LightCurtainCamera -down-> cameraComponent
+
+LogGatherer --> MQTT
+LogGatherer -left-> LoggingDatabase
+
+ArduinoDiscLogic -up-> WiFiAP
+ArduinoCraneLogic -up-> WiFiAP
+skinparam linetype ortho
+@enduml
