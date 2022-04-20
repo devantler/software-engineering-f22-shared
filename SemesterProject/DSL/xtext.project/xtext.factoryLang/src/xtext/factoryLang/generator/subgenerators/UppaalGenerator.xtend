@@ -132,6 +132,8 @@ class UppaalGenerator {
 				</template>
 				«FOR disc : discs»
 				«DiscGenerator.generate(disc)»
+				«DiscSlotGenerator.generate(disc)»
+				«»
 				«ENDFOR»
 				<template>
 					<name>GetEmptySlot</name>
