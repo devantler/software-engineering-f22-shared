@@ -147,7 +147,7 @@ Number:
 
 // ----- SHARED ENUMS ----- //
 enum COMPARISON_OPERATOR:
-	LESS_THAN='less than' | GREATER_THAN='greater than' | NOT='not';
+	UNDEFINED='undefined' | LESS_THAN='less than' | GREATER_THAN='greater than' | NOT='not';
 
 enum COLOR:
 	RED='red' | GREEN='green' | BLUE='blue';

@@ -4,11 +4,13 @@ namespace Entities
 {
     public class Crane
     {
+        private readonly string _name;
         private readonly Dictionary<string, int> _positions;
         private readonly IMqttService _mqttService;
 
-        public Crane(Dictionary<string, int> positions, IMqttService mqttService)
+        public Crane(string name,Dictionary<string, int> positions, IMqttService mqttService)
         {
+            _name = name;
             _positions = positions;
             _mqttService = mqttService;
         }
@@ -20,34 +22,39 @@ namespace Entities
 
         public async Task GoTo(string positionName)
         {
-            await _mqttService.SendMessage(MqttTopics.Crane.Angle, _positions[positionName].ToString());
+            await _mqttService.SendMessage(MqttTopics.Crane.Angle(_name), _positions[positionName].ToString());
         }
 
         public async Task GoTo(int position)
         {
-            await _mqttService.SendMessage(MqttTopics.Crane.Angle, position.ToString());
+            await _mqttService.SendMessage(MqttTopics.Crane.Angle(_name), position.ToString());
         }
 
         public async Task PickupItem()
         {
-            await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "LOW");
-            await _mqttService.SendMessage(MqttTopics.Crane.Magnet, "1");
-            while (_mqttService.GetMessage(MqttTopics.Crane.Moving) != "0")
+            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "LOW");
+            await _mqttService.SendMessage(MqttTopics.Crane.Magnet(_name), "1");
+            while (_mqttService.GetMessage(MqttTopics.Crane.Moving(_name)) != "0")
             {
                 await Task.Delay(100);
             }
-            await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "HIGH");
+            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "HIGH");
         }
 
         public async Task DropItem()
         {
-            await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "LOW");
-            while (_mqttService.GetMessage(MqttTopics.Crane.Moving) != "0")
+            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "LOW");
+            while (_mqttService.GetMessage(MqttTopics.Crane.Moving(_name)) != "0")
             {
                 await Task.Delay(100);
             }
-            await _mqttService.SendMessage(MqttTopics.Crane.Magnet, "0");
-            await _mqttService.SendMessage(MqttTopics.Crane.Elevation, "HIGH");
+            await _mqttService.SendMessage(MqttTopics.Crane.Magnet(_name), "0");
+            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "HIGH");
+        }
+
+        public string GetName()
+        {
+            return _name;
         }
     }
 }

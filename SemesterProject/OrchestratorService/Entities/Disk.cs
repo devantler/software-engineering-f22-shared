@@ -4,13 +4,15 @@ namespace Entities;
 
 public class Disk
 {
+    private readonly string _name;
     private int _currentOffset;
     private readonly Dictionary<int, Slot> _slots;
     private readonly Dictionary<string, int> _zones;
     private readonly IMqttService _mqttService;
 
-    public Disk(int slots, Dictionary<string, int> zones, IMqttService mqttService)
+    public Disk(string name, int slots, Dictionary<string, int> zones, IMqttService mqttService)
     {
+        _name = name;
         _slots = new Dictionary<int, Slot>();
         for (int i = 0; i < slots; i++)
         {
@@ -60,13 +62,13 @@ public class Disk
         //Mqtt stuff
         var zonesToMove = fromZone - toZone;
         _currentOffset = (_currentOffset + zonesToMove) % _slots.Count;
-        _mqttService.SendMessage(MqttTopics.Disk.Slot, _currentOffset.ToString()); //TODO: Might need to be changed to MqttTopics.Disk.Zone
+        _mqttService.SendMessage(MqttTopics.Disk.Slot(_name), _currentOffset.ToString()); //TODO: Might need to be changed to MqttTopics.Disk.Zone
     }
     #endregion
 
     public bool IsFull()
     {
-        return _slots.All(x => x.Value.SlotState == SlotState.Full);
+        return _slots.All(x => x.Value.SlotState == SlotState.InProgress || x.Value.SlotState == SlotState.Complete);
     }
 
     public bool IsEmpty()
@@ -85,11 +87,6 @@ public class Disk
     }
 
     #region MarkSlot methods
-    public bool SlotHasMark(int slot, ElementState mark)
-    {
-        return _slots[slot].HasMark(mark);
-    }
-
     public bool SlotHasMark(int slot, string mark)
     {
         return _slots[slot].HasMark(mark);
@@ -107,11 +104,6 @@ public class Disk
         GetSlot(slotName).SlotState = mark;
     }
 
-    public void MarkSlot(string slotName, ElementState mark)
-    {
-        GetSlot(slotName).AddMark(mark);
-    }
-
     public void MarkSlot(string slotName, string mark)
     {
         GetSlot(slotName).AddMark(mark);
@@ -120,11 +112,6 @@ public class Disk
     public void MarkSlot(string slotName, int mark)
     {
         GetSlot(slotName).AddMark(mark);
-    }
-
-    public void RemoveSlotMark(int slotName, ElementState mark)
-    {
-        GetSlot(slotName).RemoveMark(mark);
     }
 
     public void RemoveSlotMark(int slotName, string mark)
@@ -143,12 +130,12 @@ public class Disk
         return _slots.Select(x => x.Value).ToList();
     }
 
-    public List<Slot> GetSlotsWithMark(int mark)
+    public List<Slot> GetSlotsWithMark(SlotState mark)
     {
-        return _slots.Where(x => x.Value.HasMark(mark)).Select(x => x.Value).ToList();
+        return _slots.Where(x => x.Value.SlotState == mark).Select(x => x.Value).ToList();
     }
 
-    public List<Slot> GetSlotsWithMark(ElementState mark)
+    public List<Slot> GetSlotsWithMark(int mark)
     {
         return _slots.Where(x => x.Value.HasMark(mark)).Select(x => x.Value).ToList();
     }

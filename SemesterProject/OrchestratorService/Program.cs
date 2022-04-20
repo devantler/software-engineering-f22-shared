@@ -18,7 +18,7 @@ Run();
 
 void Setup()
 {
-    cranes.Add("crane1", new Crane(new Dictionary<string, int>()
+    cranes.Add("crane1", new Crane("crane1", new Dictionary<string, int>()
     {
         {"intake", 0},
         {"outRed", 30},
@@ -26,14 +26,14 @@ void Setup()
         {"outBlue", 90}
     }, mqtt));
 
-    disks.Add("disk1", new Disk(8, new Dictionary<string, int>()
+    disks.Add("disk1", new Disk("disk1", 8, new Dictionary<string, int>()
     {
         {"craneZone", 1},
         {"cameraZone", 3},
         {"intakeZone", 6}
     }, mqtt));
 
-    cameras.Add("camera1", new Camera(new List<string>()
+    cameras.Add("camera1", new Camera("camera1", new List<string>()
     {
         "blue",
         "green",
@@ -43,42 +43,41 @@ void Setup()
 
 async void Run()
 {
-    var disk1 = disks["disk1"];
     var crane1 = cranes["crane1"];
+    var disk1 = disks["disk1"];
     var camera1 = cameras["camera1"];
+
     while (running)
     {
-        foreach (var slot in disk1.GetSlotsWithMark(ElementState.Completed))
+        foreach (var diskSlot in disk1.GetSlotsWithMark(SlotState.Complete))
         {
-            disk1.MoveSlot(slot.Number, "craneZone");
+            disk1.MoveSlot(diskSlot.Number, "craneZone");
             await crane1.GoTo("intake");
             await crane1.PickupItem();
-    
-            if (slot.HasMark("red"))
+
+            if (diskSlot.HasMark("red"))
             {
                 await crane1.GoTo("outRed");
                 await crane1.DropItem();
-                disk1.MarkSlot("craneZone", SlotState.Empty); //This is a hack that removes all marks as our DSL does not support removing marks.
             }
-            if (slot.HasMark("green"))
+            if (diskSlot.HasMark("green"))
             {
                 await crane1.GoTo("outGreen");
                 await crane1.DropItem();
-                disk1.RemoveSlotMark(slot.Number, "green");
             }
-            if (slot.HasMark("blue"))
+            if (diskSlot.HasMark("blue"))
             {
                 await crane1.GoTo("outBlue");
                 await crane1.DropItem();
-                disk1.RemoveSlotMark(slot.Number, "blue");
             }
+            disk1.MarkSlot("craneZone", SlotState.Empty); //This is a hack that removes all marks as our DSL does not support removing marks yet.
         }
 
         if (!disk1.IsFull())
         {
-            disk1.MoveSlot(disk1.GetEmptySlotNumber(), "craneZone"); //move empty slot
-            disk1.MarkSlot("craneZone", ElementState.InProgress); //mark slot at
-            disk1.MoveSlot("craneZone", "cameraZone"); //move slot at
+            disk1.MoveSlot(disk1.GetEmptySlotNumber(), "intakeZone"); //move empty slot
+            disk1.MarkSlot("intakeZone", SlotState.InProgress); //mark slot at
+            disk1.MoveSlot("intakeZone", "cameraZone"); //move slot at
             var currentItemColor = camera1.Scan();
             disk1.MarkSlot("cameraZone", currentItemColor); //mark slot at
             if (currentItemColor == "red")
@@ -86,8 +85,7 @@ async void Run()
                 await Task.Run(() =>
                 {
                     Thread.Sleep(10000);
-                    disk1.RemoveElementMarkAt("cameraZone", ElementState.InProgress);
-                    disk1.MarkSlotElementAt("cameraZone", ElementState.Completed);
+                    disk1.MarkSlot("cameraZone", SlotState.Complete);
                 });
             }
             if (currentItemColor == "green")
@@ -96,8 +94,7 @@ async void Run()
                 await Task.Run(() =>
                 {
                     Thread.Sleep(20000);
-                    disk1.RemoveElementMarkAt("cameraZone", ElementState.InProgress);
-                    disk1.MarkSlotElementAt("cameraZone", ElementState.Completed);
+                    disk1.MarkSlot("cameraZone", SlotState.Complete);
                 });
             }
             if (currentItemColor == "blue")
@@ -106,8 +103,7 @@ async void Run()
                 await Task.Run(() =>
                 {
                     Thread.Sleep(30000);
-                    disk1.RemoveElementMarkAt("cameraZone", ElementState.InProgress);
-                    disk1.MarkSlotElementAt("cameraZone", ElementState.Completed);
+                    disk1.MarkSlot("cameraZone", SlotState.Complete);
                 });
             }
         }
