@@ -66,7 +66,7 @@ public class Disk
 
     public bool IsFull()
     {
-        return _slots.All(x => x.Value.SlotState == SlotState.Full);
+        return _slots.All(x => x.Value.SlotState == SlotState.InProgress || x.Value.SlotState == SlotState.Complete);
     }
 
     public bool IsEmpty()
@@ -85,11 +85,6 @@ public class Disk
     }
 
     #region MarkSlot methods
-    public bool SlotHasMark(int slot, ElementState mark)
-    {
-        return _slots[slot].HasMark(mark);
-    }
-
     public bool SlotHasMark(int slot, string mark)
     {
         return _slots[slot].HasMark(mark);
@@ -107,11 +102,6 @@ public class Disk
         GetSlot(slotName).SlotState = mark;
     }
 
-    public void MarkSlot(string slotName, ElementState mark)
-    {
-        GetSlot(slotName).AddMark(mark);
-    }
-
     public void MarkSlot(string slotName, string mark)
     {
         GetSlot(slotName).AddMark(mark);
@@ -120,11 +110,6 @@ public class Disk
     public void MarkSlot(string slotName, int mark)
     {
         GetSlot(slotName).AddMark(mark);
-    }
-
-    public void RemoveSlotMark(int slotName, ElementState mark)
-    {
-        GetSlot(slotName).RemoveMark(mark);
     }
 
     public void RemoveSlotMark(int slotName, string mark)
@@ -143,12 +128,12 @@ public class Disk
         return _slots.Select(x => x.Value).ToList();
     }
 
-    public List<Slot> GetSlotsWithMark(int mark)
+    public List<Slot> GetSlotsWithMark(SlotState mark)
     {
-        return _slots.Where(x => x.Value.HasMark(mark)).Select(x => x.Value).ToList();
+        return _slots.Where(x => x.Value.SlotState == mark).Select(x => x.Value).ToList();
     }
 
-    public List<Slot> GetSlotsWithMark(ElementState mark)
+    public List<Slot> GetSlotsWithMark(int mark)
     {
         return _slots.Where(x => x.Value.HasMark(mark)).Select(x => x.Value).ToList();
     }

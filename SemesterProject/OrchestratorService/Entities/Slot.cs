@@ -11,11 +11,6 @@ public class Slot
         Number = number;
     }
 
-    public bool HasMark(ElementState mark)
-    {
-        return _marks.Contains(mark.ToString());
-    }
-
     public bool HasMark(string mark)
     {
         return _marks.Contains(mark);
@@ -26,11 +21,6 @@ public class Slot
         return _marks.Contains(mark.ToString());
     }
 
-    public void AddMark(ElementState mark)
-    {
-        _marks.Add(mark.ToString());
-    }
-
     public void AddMark(string mark)
     {
         _marks.Add(mark);
@@ -39,11 +29,6 @@ public class Slot
     public void AddMark(int mark)
     {
         _marks.Add(mark.ToString());
-    }
-
-    public void RemoveMark(ElementState mark)
-    {
-        _marks.Remove(mark.ToString());
     }
 
     public void RemoveMark(string mark)
