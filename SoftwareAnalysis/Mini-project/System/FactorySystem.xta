@@ -1,9 +1,56 @@
-chan discGoto1, discGoto2, discGoto3, discGoto4;
-chan AddItem, RemoveItem;
-chan AddItem1, AddItem2, AddItem3, AddItem4, RemoveItem1, RemoveItem2, RemoveItem3, RemoveItem4;
-chan ToggleMagnet;
-chan LowerCrane, RaiseCrane;
-chan craneGotoIntake, craneGotoRed, craneGotoBlue, craneGotoGreen;
+//----------disc-----------------------------
+const int disc_numberOfSlots = 4;
+typedef int[0,disc_numberOfSlots-1] id_t;
+chan disc_goto[disc_numberOfSlots];
+chan disc_addItemCmd, disc_removeItemCmd;
+chan disc_addItem[disc_numberOfSlots];
+broadcast chan disc_removeItem[disc_numberOfSlots];
+
+//default tags
+chan disc_getFreeSlot;
+chan disc_foundEmptySlot;
+chan disc_setColour[disc_numberOfSlots][4];
+bool disc_occupiedSlots[disc_numberOfSlots];
+chan disc_getColourSlot[disc_numberOfSlots];
+chan disc_gottenColourSlot;
+
+//Finsihed tag
+chan disc_set_finished[disc_numberOfSlots];
+chan disc_getSlot_finished;
+chan disc_foundSlot_finished;
+bool disc_slots_finished[disc_numberOfSlots];
+
+//Zones: 
+int zones_intake = 1;
+int zones_crane = 2;
+int zones_camera = 3;
+
+//--------------------Camera------------------------
+chan camera_getColour;
+chan camera_gottenColour;
+
+//--------------------Crane------------------------
+chan crane_toggleMagnet;
+chan crane_lowerMagnet, crane_raiseMagnet;
+chan crane_goto_intake, crane_goto_red, crane_goto_blue, crane_goto_green;
+
+
+//-----------------current slots-----------------------------
+int currentSlot_empty = -1;
+int currentSlot_finished = -1;
+
+/**
+1: Red
+2: Green
+3: Blue
+*/
+int colour = 0;
+int currentSlot_colour = 0;
+
+//--------------------defaults------------------------
+clock GlobalTimer;
+broadcast chan emergencyStop;
+
 /**
 1: Tried to remove item from empty disc slot
 2: Tried to add item to full slot
@@ -14,10 +61,189 @@ int error;
 
 process MasterController() {
 
+
+
+
+
+
+
+
+clock timer;
 state
-    L0;
+    Idle,
+    getEmptySlot,
+    slotEmpty,
+    gotoIntake,
+    fillSlot,
+    gotoCamera,
+    scanItem,
+    itemColour,
+    setItemColour,
+    markSlotFinishedIn10Seconds,
+    markSlotFinishedIn20Seconds,
+    markSlotFinishedIn30Seconds,
+    SetFinsihedRed,
+    setFinishedGreen,
+    setFinishedBlue,
+    getFinishedSlot,
+    slotFinished,
+    gotoCrane,
+    gotoIntake_crane,
+    craneLower,
+    toggleMagnet_crane,
+    getColourOfSlot,
+    thingIsRed,
+    thingIsGreen,
+    thingIsBlue,
+    gotoRed_crane,
+    gotoGreen_crane,
+    gotoBlue_crane,
+    craneLowerBlue,
+    craneLowerGreen,
+    craneLowerRed,
+    toggleMagnetBlue,
+    toggleMagnetGreen,
+    toggleMagnetRed,
+    EndIf,
+    markEmpty,
+    IdleTime1,
+    IdleTime2,
+    IdleTime3,
+    craneRaise,
+    craneRaise1;
+commit
+    getEmptySlot,
+    scanItem,
+    getFinishedSlot,
+    getColourOfSlot;
 init
-    L0;
+    Idle;
+trans
+    craneRaise1 -> markEmpty { sync disc_removeItem[currentSlot_finished]!; },
+    EndIf -> craneRaise1 { sync crane_raiseMagnet!; },
+    IdleTime3 -> markSlotFinishedIn30Seconds { },
+    markSlotFinishedIn30Seconds -> IdleTime3 { guard timer < 30; },
+    IdleTime2 -> markSlotFinishedIn20Seconds { },
+    markSlotFinishedIn20Seconds -> IdleTime2 { guard timer < 20; },
+    IdleTime1 -> markSlotFinishedIn10Seconds { },
+    markSlotFinishedIn10Seconds -> IdleTime1 { guard timer < 10; },
+    getEmptySlot -> Idle { guard GlobalTimer > 2; },
+    getFinishedSlot -> Idle { guard GlobalTimer > 2; },
+    markEmpty -> Idle { },
+    toggleMagnetRed -> EndIf { },
+    toggleMagnetGreen -> EndIf { },
+    toggleMagnetBlue -> EndIf { },
+    craneLowerRed -> toggleMagnetRed { sync crane_toggleMagnet!; },
+    craneLowerGreen -> toggleMagnetGreen { sync crane_toggleMagnet!; },
+    craneLowerBlue -> toggleMagnetBlue { sync crane_toggleMagnet!; },
+    gotoRed_crane -> craneLowerRed { sync crane_lowerMagnet!; },
+    gotoGreen_crane -> craneLowerGreen { sync crane_lowerMagnet!; },
+    gotoBlue_crane -> craneLowerBlue { sync crane_lowerMagnet!; },
+    thingIsBlue -> gotoBlue_crane { sync crane_goto_blue!; },
+    thingIsGreen -> gotoGreen_crane { sync crane_goto_green!; },
+    thingIsRed -> gotoRed_crane { sync crane_goto_red!; },
+    getColourOfSlot -> thingIsBlue { guard currentSlot_colour == 3; sync disc_gottenColourSlot?; },
+    getColourOfSlot -> thingIsGreen { guard currentSlot_colour == 2; sync disc_gottenColourSlot?; },
+    getColourOfSlot -> thingIsRed { guard currentSlot_colour == 1; sync disc_gottenColourSlot?; },
+    toggleMagnet_crane -> craneRaise { sync crane_raiseMagnet!; },
+    craneRaise -> getColourOfSlot { sync disc_getColourSlot[currentSlot_finished]!; },
+    craneLower -> toggleMagnet_crane { sync crane_toggleMagnet!; },
+    gotoIntake_crane -> craneLower { sync crane_lowerMagnet!; },
+    gotoCrane -> gotoIntake_crane { sync crane_goto_intake!; },
+    slotFinished -> gotoCrane { sync disc_goto[(zones_crane + currentSlot_finished) % disc_numberOfSlots]!; },
+    getFinishedSlot -> slotFinished { sync disc_foundSlot_finished?; },
+    Idle -> getFinishedSlot { sync disc_getSlot_finished!; assign GlobalTimer = 0; },
+    setFinishedBlue -> Idle { },
+    setFinishedGreen -> Idle { },
+    SetFinsihedRed -> Idle { },
+    markSlotFinishedIn30Seconds -> setFinishedBlue { guard timer >= 30; sync disc_set_finished[currentSlot_empty]!; },
+    markSlotFinishedIn20Seconds -> setFinishedGreen { guard timer >= 20; sync disc_set_finished[currentSlot_empty]!; },
+    markSlotFinishedIn10Seconds -> SetFinsihedRed { guard timer >= 10; sync disc_set_finished[currentSlot_empty]!; },
+    setItemColour -> markSlotFinishedIn30Seconds { guard colour == 3; assign timer = 0; },
+    setItemColour -> markSlotFinishedIn20Seconds { guard colour == 2; assign timer = 0; },
+    setItemColour -> markSlotFinishedIn10Seconds { guard colour == 1; assign timer = 0; },
+    itemColour -> setItemColour { sync disc_setColour[currentSlot_empty][colour]!; },
+    getEmptySlot -> slotEmpty { sync disc_foundEmptySlot?; },
+    slotEmpty -> gotoIntake { sync disc_goto[(zones_intake + currentSlot_empty) % disc_numberOfSlots]!; },
+    gotoIntake -> fillSlot { sync disc_addItem[currentSlot_empty]!; },
+    fillSlot -> gotoCamera { },
+    gotoCamera -> scanItem { sync camera_getColour!; },
+    scanItem -> itemColour { sync camera_gottenColour?; },
+    Idle -> getEmptySlot { sync disc_getFreeSlot!; assign GlobalTimer = 0; };
+}
+
+process Camera() {
+
+state
+    Idle,
+    Red,
+    Green,
+    Blue;
+commit
+    Red,
+    Green,
+    Blue;
+init
+    Idle;
+trans
+    Blue -> Idle { sync camera_gottenColour!; },
+    Idle -> Blue { sync camera_getColour?; assign colour = 3; },
+    Green -> Idle { sync camera_gottenColour!; },
+    Idle -> Green { sync camera_getColour?; assign colour=2; },
+    Red -> Idle { sync camera_gottenColour!; },
+    Idle -> Red { sync camera_getColour?; assign colour = 1; };
+}
+
+process GetEmptySlot() {
+
+state
+    Idle,
+    Get4,
+    Get1,
+    Get2,
+    Get3;
+commit
+    Get4,
+    Get1,
+    Get2,
+    Get3;
+init
+    Idle;
+trans
+    Get4 -> Idle { sync disc_foundEmptySlot!; assign currentSlot_empty = 3; },
+    Idle -> Get4 { guard !disc_occupiedSlots[3]; sync disc_getFreeSlot?; },
+    Get3 -> Idle { sync disc_foundEmptySlot!; assign currentSlot_empty = 2; },
+    Idle -> Get3 { guard !disc_occupiedSlots[2]; sync disc_getFreeSlot?; },
+    Get2 -> Idle { sync disc_foundEmptySlot!; assign currentSlot_empty = 1; },
+    Idle -> Get2 { guard !disc_occupiedSlots[1]; sync disc_getFreeSlot?; },
+    Get1 -> Idle { sync disc_foundEmptySlot!; assign currentSlot_empty = 0; },
+    Idle -> Get1 { guard !disc_occupiedSlots[0]; sync disc_getFreeSlot?; };
+}
+
+process GetFinishedSlot() {
+
+state
+    Idle,
+    Get4,
+    Get1,
+    Get2,
+    Get3;
+commit
+    Get4,
+    Get1,
+    Get2,
+    Get3;
+init
+    Idle;
+trans
+    Get4 -> Idle { sync disc_foundSlot_finished!; assign currentSlot_finished = 3; },
+    Idle -> Get4 { guard disc_slots_finished[3]; sync disc_getSlot_finished?; },
+    Get3 -> Idle { sync disc_foundSlot_finished!; assign currentSlot_finished = 2; },
+    Idle -> Get3 { guard disc_slots_finished[2]; sync disc_getSlot_finished?; },
+    Get2 -> Idle { sync disc_foundSlot_finished!; assign currentSlot_finished = 1; },
+    Idle -> Get2 { guard disc_slots_finished[1]; sync disc_getSlot_finished?; },
+    Get1 -> Idle { sync disc_foundSlot_finished!; assign currentSlot_finished = 0; },
+    Idle -> Get1 { guard disc_slots_finished[0]; sync disc_getSlot_finished?; };
 }
 
 process Disc() {
@@ -34,119 +260,101 @@ state
     AddItem3Req,
     RemoveItem3Req,
     AddItem4Req,
-    RemoveItem4Req;
+    RemoveItem4Req,
+    Stopped;
 init
     Position1;
 trans
-    Position4 -> Position2 { sync discGoto2?; },
-    Position2 -> Position4 { sync discGoto4?; },
-    Position1 -> Position3 { sync discGoto3?; },
-    Position3 -> Position1 { sync discGoto1?; },
-    Position4 -> Position3 { sync discGoto3?; },
-    Position1 -> Position4 { sync discGoto4?; },
-    Position2 -> Position1 { sync discGoto1?; },
-    Position3 -> Position2 { sync discGoto2?; },
-    Position1 -> Position2 { sync discGoto2?; },
-    Position4 -> Position1 { sync discGoto1?; },
-    Position3 -> Position4 { sync discGoto4?; },
-    Position2 -> Position3 { sync discGoto3?; },
-    Position1 -> AddItem1Req { sync AddItem?; },
-    Position1 -> RemoveItem1Req { sync RemoveItem?; },
-    Position2 -> AddItem2Req { sync AddItem?; },
-    Position2 -> RemoveItem2Req { sync RemoveItem?; },
-    Position3 -> AddItem3Req { sync AddItem?; },
-    Position3 -> RemoveItem3Req { sync RemoveItem?; },
-    Position4 -> AddItem4Req { sync AddItem?; },
-    Position4 -> RemoveItem4Req { sync RemoveItem?; },
-    AddItem1Req -> Position1 { sync AddItem1!; },
-    RemoveItem1Req -> Position1 { sync RemoveItem1!; },
-    AddItem2Req -> Position2 { sync AddItem2!; },
-    RemoveItem2Req -> Position2 { sync RemoveItem2!; },
-    AddItem3Req -> Position3 { sync AddItem3!; },
-    RemoveItem3Req -> Position3 { sync RemoveItem3!; },
-    AddItem4Req -> Position4 { sync AddItem4!; },
-    RemoveItem4Req -> Position4 { sync RemoveItem4!; };
+    Position3 -> Stopped { sync emergencyStop?; },
+    Position2 -> Stopped { sync emergencyStop?; },
+    Position1 -> Stopped { sync emergencyStop?; },
+    Position4 -> Stopped { sync emergencyStop?; },
+    Position4 -> Position2 { sync disc_goto[1]?; },
+    Position2 -> Position4 { sync disc_goto[3]?; },
+    Position1 -> Position3 { sync disc_goto[2]?; },
+    Position3 -> Position1 { sync disc_goto[0]?; },
+    Position4 -> Position3 { sync disc_goto[2]?; },
+    Position1 -> Position4 { sync disc_goto[3]?; },
+    Position2 -> Position1 { sync disc_goto[0]?; },
+    Position3 -> Position2 { sync disc_goto[1]?; },
+    Position1 -> Position2 { sync disc_goto[1]?; },
+    Position4 -> Position1 { sync disc_goto[0]?; },
+    Position3 -> Position4 { sync disc_goto[3]?; },
+    Position2 -> Position3 { sync disc_goto[2]?; },
+    Position1 -> Position1 { sync disc_goto[0]?; },
+    Position2 -> Position2 { sync disc_goto[1]?; },
+    Position3 -> Position3 { sync disc_goto[2]?; },
+    Position4 -> Position4 { sync disc_goto[3]?; },
+    Position1 -> AddItem1Req { sync disc_addItemCmd?; },
+    Position1 -> RemoveItem1Req { sync disc_removeItemCmd?; },
+    Position2 -> AddItem2Req { sync disc_addItemCmd?; },
+    Position2 -> RemoveItem2Req { sync disc_removeItemCmd?; },
+    Position3 -> AddItem3Req { sync disc_addItemCmd?; },
+    Position3 -> RemoveItem3Req { sync disc_removeItemCmd?; },
+    Position4 -> AddItem4Req { sync disc_addItemCmd?; },
+    Position4 -> RemoveItem4Req { sync disc_removeItemCmd?; },
+    AddItem1Req -> Position1 { sync disc_addItem[0]!; },
+    RemoveItem1Req -> Position1 { sync disc_removeItem[0]!; },
+    AddItem2Req -> Position2 { sync disc_addItem[1]!; },
+    RemoveItem2Req -> Position2 { sync disc_removeItem[1]!; },
+    AddItem3Req -> Position3 { sync disc_addItem[2]!; },
+    RemoveItem3Req -> Position3 { sync disc_removeItem[2]!; },
+    AddItem4Req -> Position4 { sync disc_addItem[3]!; },
+    RemoveItem4Req -> Position4 { sync disc_removeItem[3]!; };
 }
 
-process DiscSlot1() {
+process DiscSlot(const id_t id) {
 
 state
     SlotEmpty,
     SlotFull,
+    SlotFullRed,
+    GetColourRed,
+    SlotFullGreen,
+    GetColourGreen,
+    SlotFullBlue,
+    GetColourBlue,
     ErrorAddItemToFull,
     ErrorRemoveItemFromEmpty;
+commit
+    GetColourRed,
+    GetColourGreen,
+    GetColourBlue;
 init
     SlotEmpty;
 trans
-    SlotEmpty -> SlotFull { sync AddItem1?; },
-    SlotFull -> SlotEmpty { sync RemoveItem1?; },
-    SlotEmpty -> ErrorRemoveItemFromEmpty { sync RemoveItem1?; assign error += 1; },
-    SlotFull -> ErrorAddItemToFull { sync AddItem1?; assign error += 2; };
+    SlotEmpty -> SlotFull { sync disc_addItem[id]?; assign disc_occupiedSlots[id] = true; },
+    SlotFull -> SlotFullRed { sync disc_setColour[id][1]?; },
+    SlotFullRed -> GetColourRed { sync disc_getColourSlot[id]?; assign currentSlot_colour = 1; },
+    GetColourRed -> SlotFullRed { sync disc_gottenColourSlot!; },
+    SlotFull -> SlotFullGreen { sync disc_setColour[id][2]?; },
+    SlotFullGreen -> GetColourGreen { sync disc_getColourSlot[id]?; assign currentSlot_colour = 2; },
+    GetColourGreen -> SlotFullGreen { sync disc_gottenColourSlot!; },
+    SlotFull -> SlotFullBlue { sync disc_setColour[id][3]?; },
+    SlotFullBlue -> GetColourBlue { sync disc_getColourSlot[id]?; assign currentSlot_colour = 3; },
+    GetColourBlue -> SlotFullBlue { sync disc_gottenColourSlot!; },
+    SlotFull -> SlotEmpty { sync disc_removeItem[id]?; assign disc_occupiedSlots[id] = false, disc_slots_finished[id] = false; },
+    SlotFullRed -> SlotEmpty { sync disc_removeItem[id]?; assign disc_occupiedSlots[id] = false, disc_slots_finished[id] = false; },
+    SlotFullGreen -> SlotEmpty { sync disc_removeItem[id]?; assign disc_occupiedSlots[id] = false, disc_slots_finished[id] = false; },
+    SlotFullBlue -> SlotEmpty { sync disc_removeItem[id]?; assign disc_occupiedSlots[id] = false, disc_slots_finished[id] = false; },
+    SlotEmpty -> ErrorRemoveItemFromEmpty { sync disc_removeItem[id]?; assign error += 1; },
+    SlotFull -> ErrorAddItemToFull { sync disc_addItem[id]?; assign error += 2; },
+    SlotFullRed -> ErrorAddItemToFull { sync disc_addItem[id]?; assign error += 2; },
+    SlotFullGreen -> ErrorAddItemToFull { sync disc_addItem[id]?; assign error += 2; },
+    SlotFullBlue -> ErrorAddItemToFull { sync disc_addItem[id]?; assign error += 2; };
 }
 
-process DiscSlot2() {
+process SlotVariable_finished(const id_t id) {
 
 state
-    SlotEmpty,
-    SlotFull,
-    ErrorAddItemToFull,
-    ErrorRemoveItemFromEmpty;
+    IsFinished,
+    IsNotFinished;
 init
-    SlotEmpty;
+    IsNotFinished;
 trans
-    SlotEmpty -> SlotFull { sync AddItem2?; },
-    SlotFull -> SlotEmpty { sync RemoveItem2?; },
-    SlotEmpty -> ErrorRemoveItemFromEmpty { sync RemoveItem2?; assign error += 1; },
-    SlotFull -> ErrorAddItemToFull { sync AddItem2?; assign error += 2; };
-}
-
-process DiscSlot3() {
-
-state
-    SlotEmpty,
-    SlotFull,
-    ErrorAddItemToFull,
-    ErrorRemoveItemFromEmpty;
-init
-    SlotEmpty;
-trans
-    SlotEmpty -> SlotFull { sync AddItem3?; },
-    SlotFull -> SlotEmpty { sync RemoveItem3?; },
-    SlotEmpty -> ErrorRemoveItemFromEmpty { sync RemoveItem3?; assign error += 1; },
-    SlotFull -> ErrorAddItemToFull { sync AddItem3?; assign error += 2; };
-}
-
-process DiscSlot4() {
-
-state
-    SlotEmpty,
-    SlotFull,
-    ErrorAddItemToFull,
-    ErrorRemoveItemFromEmpty;
-init
-    SlotEmpty;
-trans
-    SlotEmpty -> SlotFull { sync AddItem4?; },
-    SlotFull -> SlotEmpty { sync RemoveItem4?; },
-    SlotEmpty -> ErrorRemoveItemFromEmpty { sync RemoveItem4?; assign error += 1; },
-    SlotFull -> ErrorAddItemToFull { sync AddItem4?; assign error += 2; };
-}
-
-process DiscNamedSpots() {
-
-state
-    Crane,
-    Intake,
-    Scanner;
-init
-    Crane;
-trans
-    Scanner -> Intake { },
-    Crane -> Scanner { },
-    Intake -> Crane { },
-    Scanner -> Crane { },
-    Intake -> Scanner { },
-    Crane -> Intake { };
+    IsNotFinished -> IsFinished { sync disc_set_finished[id]?; assign disc_slots_finished[id] = true; },
+    IsFinished -> IsNotFinished { sync disc_set_finished[id]?; assign disc_slots_finished[id] = false; },
+    IsFinished -> IsNotFinished { sync disc_removeItem[id]?; assign disc_slots_finished[id] = false; };
 }
 
 process Crane() {
@@ -162,46 +370,95 @@ state
     LoweredAtRed,
     LoweredAtGreen,
     LoweredAtBlue,
-    LoweredAtIntake;
+    LoweredAtIntake,
+    Stopped;
 init
     Intake;
 trans
-    LoweredAtIntake -> Intake { sync RaiseCrane?; },
-    Intake -> LoweredAtIntake { sync LowerCrane?; },
-    LoweredAtBlue -> Blue { sync RaiseCrane?; },
-    Blue -> LoweredAtBlue { sync LowerCrane?; },
-    LoweredAtGreen -> Green { sync RaiseCrane?; },
-    Green -> LoweredAtGreen { sync LowerCrane?; },
-    LoweredAtRed -> Red { sync RaiseCrane?; },
-    Red -> LoweredAtRed { sync LowerCrane?; },
-    Green -> Intake { sync craneGotoIntake?; },
-    Intake -> Green { sync craneGotoGreen?; },
-    Red -> Intake { sync craneGotoIntake?; },
-    Green -> Red { sync craneGotoRed?; },
-    Blue -> Green { sync craneGotoGreen?; },
-    Intake -> Blue { sync craneGotoBlue?; },
-    Blue -> Intake { sync craneGotoIntake?; },
-    Green -> Blue { sync craneGotoBlue?; },
-    Red -> Green { sync craneGotoGreen?; },
-    Intake -> Red { sync craneGotoRed?; },
-    Red -> Blue { sync craneGotoBlue?; },
-    Blue -> Red { sync craneGotoRed?; };
+    LoweredAtBlue -> Stopped { sync emergencyStop?; },
+    LoweredAtIntake -> Stopped { sync emergencyStop?; },
+    Intake -> Stopped { sync emergencyStop?; },
+    Blue -> Stopped { sync emergencyStop?; },
+    LoweredAtGreen -> Stopped { sync emergencyStop?; },
+    Green -> Stopped { sync emergencyStop?; },
+    Red -> Stopped { sync emergencyStop?; },
+    LoweredAtRed -> Stopped { sync emergencyStop?; },
+    LoweredAtIntake -> Intake { sync crane_raiseMagnet?; },
+    Intake -> LoweredAtIntake { sync crane_lowerMagnet?; },
+    LoweredAtBlue -> Blue { sync crane_raiseMagnet?; },
+    Blue -> LoweredAtBlue { sync crane_lowerMagnet?; },
+    LoweredAtGreen -> Green { sync crane_raiseMagnet?; },
+    Green -> LoweredAtGreen { sync crane_lowerMagnet?; },
+    LoweredAtRed -> Red { sync crane_raiseMagnet?; },
+    Red -> LoweredAtRed { sync crane_lowerMagnet?; },
+    Green -> Intake { sync crane_goto_intake?; },
+    Intake -> Green { sync crane_goto_green?; },
+    Red -> Intake { sync crane_goto_intake?; },
+    Green -> Red { sync crane_goto_red?; },
+    Blue -> Green { sync crane_goto_green?; },
+    Intake -> Blue { sync crane_goto_blue?; },
+    Blue -> Intake { sync crane_goto_intake?; },
+    Green -> Blue { sync crane_goto_blue?; },
+    Red -> Green { sync crane_goto_green?; },
+    Intake -> Red { sync crane_goto_red?; },
+    Red -> Blue { sync crane_goto_blue?; },
+    Blue -> Red { sync crane_goto_red?; },
+    Intake -> Intake { sync crane_goto_intake?; },
+    Red -> Red { sync crane_goto_red?; },
+    Green -> Green { sync crane_goto_green?; },
+    Blue -> Blue { sync crane_goto_blue?; };
 }
 
 process CraneMagnet() {
 
 state
     MagnetOff,
-    MagnetOn;
+    MagnetOn,
+    StoppedMagnetOn,
+    StoppedMagnetOff;
 init
     MagnetOff;
 trans
-    MagnetOn -> MagnetOff { sync ToggleMagnet?; },
-    MagnetOff -> MagnetOn { sync ToggleMagnet?; };
+    MagnetOn -> StoppedMagnetOff { sync emergencyStop?; },
+    MagnetOff -> StoppedMagnetOn { sync emergencyStop?; },
+    MagnetOn -> MagnetOff { sync crane_toggleMagnet?; },
+    MagnetOff -> MagnetOn { sync crane_toggleMagnet?; };
 }
+
+process EmergencyButton() {
+
+state
+    Running,
+    Stopped;
+init
+    Running;
+trans
+    Running -> Stopped { sync emergencyStop!; };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 // Place template instantiations here.
 // List one or more processes to be composed into a system.
-system MasterController, Disc, DiscNamedSpots, Crane, DiscSlot1, DiscSlot2, DiscSlot3, DiscSlot4;
+system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camera, SlotVariable_finished, GetFinishedSlot, EmergencyButton;

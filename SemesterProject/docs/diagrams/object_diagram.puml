@@ -1,0 +1,26 @@
+@startuml
+object Model
+
+object Configuration
+object Device
+object Crane
+object Disk
+object Camera
+
+object Statement
+object Conditional
+object Loop
+object Operation
+
+Model <|-- Configuration
+Model <|-- Statement
+
+Configuration <|-- Device
+Device <|-- Crane
+Device <|-- Disk
+Device <|-- Camera
+
+Statement <|-- Conditional
+Statement <|-- Loop
+Statement <|-- Operation
+@enduml

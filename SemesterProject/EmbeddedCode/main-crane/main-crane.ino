@@ -6,6 +6,7 @@ char *topics[] = {
     (char *)"crane/angle",
     (char *)"crane/elevation",
     (char *)"crane/magnet",
+    (char *)"crane/moving",
 };
 
 int topicSize = 3;
@@ -24,19 +25,23 @@ void callback(char *topic, byte *message, unsigned int length)
   Serial.println("On topic:");
   Serial.println(topicTemp);
 
-  if (topicTemp == "crane/angle")
+  if (topicTemp == topics[0])
   {
+    publish(topics[3], "Moving");
     gotoAngle(messageTemp.toInt());
+    publish(topics[3], "Stopped");
   }
-  else if (topicTemp == "crane/magnet")
+  else if (topicTemp == topics[1]])
   {
+    publish(topics[3], "Moving");
     toggleMagnet(messageTemp.toInt());
+    publish(topics[3], "Stopped");
   }
-  else if (topicTemp == "crane/elevation")
+  else if (topicTemp == topics[2])
   {
-    publish((char *)"crane/moving", (char *)"1");
+    publish(topics[3], "Moving");
     toggleElevation(messageTemp.toInt());
-    publish((char *)"crane/moving", (char *)"0");
+    publish(topics[3], "Stopped");
   }
 }
 

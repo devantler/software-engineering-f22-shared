@@ -1,0 +1,49 @@
+@startuml
+node RaspberryPi {
+    component Server {
+        component MQTT
+        database LoggingDatabase
+        component LogGatherer
+        component Orchestrator
+    }
+    component Camera
+    
+    component LightCurtainCamera
+    artifact WiFiAP as "WiFi AP"
+}
+node ESP32Crane {
+    component ArduinoCraneLogic
+    artifact RotationMotorCrane
+    artifact ElectroMagnet
+    artifact WireMotor
+    component LightCurtainCrane
+}
+
+node ESP32Disc {
+    component ArduinoDiscLogic
+    artifact RotationMotorDisc
+    component LightCurtainDisc
+}
+
+Orchestrator -left-> MQTT
+Camera -down-> MQTT
+ArduinoCraneLogic -up-> MQTT
+ArduinoDiscLogic -up-> MQTT
+
+ArduinoCraneLogic -down-> RotationMotorCrane
+ArduinoCraneLogic  -down-> WireMotor
+ArduinoCraneLogic -down-> ElectroMagnet
+LightCurtainCrane -> ArduinoCraneLogic 
+
+ArduinoDiscLogic -down->RotationMotorDisc
+LightCurtainDisc -left->ArduinoDiscLogic 
+
+LightCurtainCamera -left-> Camera
+
+LogGatherer --> MQTT
+LogGatherer -left-> LoggingDatabase
+
+ArduinoDiscLogic -up-> WiFiAP
+ArduinoCraneLogic --> WiFiAP
+skinparam linetype ortho
+@enduml
