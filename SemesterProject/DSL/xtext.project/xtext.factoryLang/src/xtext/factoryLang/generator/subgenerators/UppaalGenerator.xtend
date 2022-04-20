@@ -22,10 +22,16 @@ import xtext.factoryLang.factoryLang.DiskMarkSlotOperation
 import xtext.factoryLang.factoryLang.CameraScanOperation
 import xtext.factoryLang.factoryLang.ForEach
 import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.common.util.EMap
+import java.util.HashMap
+import java.util.Map
+import xtext.factoryLang.factoryLang.ColorValue
+import xtext.factoryLang.uppaalParsers.EnumParser
 
 class UppaalGenerator {
 	
-	static EList<Statement> statements;
+	public static EList<Statement> statements;
+	static Map<String, String> locationIds = new HashMap();
 	
 	def static generate(IFileSystemAccess2 fsa, Resource resource){
 		val model = resource.allContents.filter(Model).next
@@ -45,26 +51,26 @@ class UppaalGenerator {
 			//«disc.name»
 			
 			const int «disc.name»_numberOfSlots = «(disc.slotParameter as DiskSlotParameter).size»;
-			typedef int[0,«disc.name»numberOfSlots-1] id_t;
-			chan «disc.name»goto[«disc.name»numberOfSlots];
-			chan «disc.name»addItemCmd, «disc.name»removeItemCmd;
-			chan «disc.name»addItem[«disc.name»numberOfSlots];
-			broadcast chan «disc.name»removeItem[«disc.name»numberOfSlots];
+			typedef int[0,«disc.name»numberOfSlots-1] «disc.name»_id_t;
+			chan «disc.name»_goto[«disc.name»numberOfSlots];
+			chan «disc.name»_addItemCmd, «disc.name»removeItemCmd;
+			chan «disc.name»_addItem[«disc.name»numberOfSlots];
+			broadcast chan «disc.name»_removeItem[«disc.name»numberOfSlots];
 			
 			//default tags
-			chan «disc.name»getFreeSlot;
-			chan «disc.name»foundEmptySlot;
-			chan «disc.name»setColour[«disc.name»numberOfSlots][4];
-			bool «disc.name»occupiedSlots[«disc.name»numberOfSlots];
-			chan «disc.name»getColourSlot[«disc.name»numberOfSlots];
-			chan «disc.name»gottenColourSlot;
+			chan «disc.name»_getFreeSlot;
+			chan «disc.name»_foundEmptySlot;
+			chan «disc.name»_setColour[«disc.name»numberOfSlots][4];
+			bool «disc.name»_occupiedSlots[«disc.name»numberOfSlots];
+			chan «disc.name»_getColourSlot[«disc.name»numberOfSlots];
+			chan «disc.name»_gottenColourSlot;
 			
 			«FOR value : discSlotStateValues»
 			//«value» tag
-			chan «disc.name»set_«value»[«disc.name»numberOfSlots];
-			chan «disc.name»getSlot_«value»;
-			chan «disc.name»foundSlot_«value»;
-			bool «disc.name»slots_«value»[«disc.name»numberOfSlots];
+			chan «disc.name»_set_«value»[«disc.name»numberOfSlots];
+			chan «disc.name»_getSlot_«value»;
+			chan «disc.name»_foundSlot_«value»;
+			bool «disc.name»_slots_«value»[«disc.name»numberOfSlots];
 			«ENDFOR»
 			
 			//Zones: 
@@ -87,11 +93,8 @@ class UppaalGenerator {
 			chan «crane.name»_goto_«position.name»;
 			«ENDFOR»
 			
-			//-----------------current slots-----------------------------
-			«FOR disc : discs»
-			int «disc.name»_currentSlot_empty = -1;
-			«ENDFOR»
-			int currentSlot_finished = -1;
+			//-----------------current slot-----------------------------
+			int currentSlot = -1;
 			
 			/**
 			1: Red
@@ -114,447 +117,18 @@ class UppaalGenerator {
 			int error;</declaration>
 				<template>
 					<name>MasterController</name>
-					<declaration><
-			
-			
-			
-			
-			
-			
-			
+					<declaration>
 			clock timer;</declaration>
 					<location id="id0">
 						<name>Idle</name>
 					</location>
 					«FOR statement : statements»
-						«generateLocation(statement)»
+					«UppaalMasterGenerator.generateLocation(statement)»
 					«ENDFOR»
-					
-					
-					<location id="id4" x="1229" y="183">
-						<name x="1219" y="153">fillSlot</name>
-					</location>
-					<location id="id5" x="1263" y="353">
-						<name x="1253" y="323">gotoCamera</name>
-					</location>
-					<location id="id6" x="1000" y="512">
-						<name x="990" y="482">scanItem</name>
-						<committed/>
-					</location>
-					<location id="id7" x="850" y="512">
-						<name x="840" y="482">itemColour</name>
-					</location>
-					<location id="id8" x="595" y="518">
-						<name x="570" y="476">setItemColour</name>
-					</location>
-					<location id="id9" x="416" y="263">
-						<name x="406" y="229">markSlotFinishedIn10Seconds</name>
-					</location>
-					<location id="id10" x="357" y="535">
-						<name x="272" y="552">markSlotFinishedIn20Seconds</name>
-					</location>
-					<location id="id11" x="467" y="680">
-						<name x="457" y="646">markSlotFinishedIn30Seconds</name>
-					</location>
-					<location id="id12" x="289" y="161">
-						<name x="279" y="127">SetFinsihedRed</name>
-					</location>
-					<location id="id13" x="153" y="544">
-						<name x="143" y="510">setFinishedGreen</name>
-					</location>
-					<location id="id14" x="263" y="722">
-						<name x="253" y="688">setFinishedBlue</name>
-					</location>
-					<location id="id15" x="527" y="68">
-						<name x="517" y="34">getFinishedSlot</name>
-						<committed/>
-					</location>
-					<location id="id16" x="357" y="-17">
-						<name x="347" y="-51">slotFinished</name>
-					</location>
-					<location id="id17" x="382" y="-102">
-						<name x="372" y="-136">gotoCrane</name>
-					</location>
-					<location id="id18" x="561" y="-144">
-						<name x="551" y="-178">gotoIntake_crane</name>
-					</location>
-					<location id="id19" x="765" y="-136">
-						<name x="755" y="-170">craneLower</name>
-					</location>
-					<location id="id20" x="926" y="-127">
-						<name x="916" y="-161">toggleMagnet_crane</name>
-					</location>
-					<location id="id21" x="1096" y="-119">
-						<name x="1086" y="-153">getColourOfSlot</name>
-						<committed/>
-					</location>
-					<location id="id22" x="1300" y="-136">
-						<name x="1300" y="-136">thingIsRed</name>
-					</location>
-					<location id="id23" x="1292" y="-93">
-						<name x="1292" y="-93">thingIsGreen</name>
-					</location>
-					<location id="id24" x="1275" y="-34">
-						<name x="1275" y="-34">thingIsBlue</name>
-					</location>
-					<location id="id25" x="1453" y="-127">
-						<name x="1443" y="-161">gotoRed_crane</name>
-					</location>
-					<location id="id26" x="1436" y="-76">
-						<name x="1426" y="-110">gotoGreen_crane</name>
-					</location>
-					<location id="id27" x="1411" y="0">
-						<name x="1401" y="-34">gotoBlue_crane</name>
-					</location>
-					<location id="id28" x="1360" y="110">
-						<name x="1350" y="76">craneLowerBlue</name>
-					</location>
-					<location id="id29" x="1419" y="110">
-						<name x="1409" y="76">craneLowerGreen</name>
-					</location>
-					<location id="id30" x="1462" y="110">
-						<name x="1452" y="76">craneLowerRed</name>
-					</location>
-					<location id="id31" x="1360" y="187">
-						<name x="1350" y="153">toggleMagnetBlue</name>
-					</location>
-					<location id="id32" x="1419" y="178">
-						<name x="1409" y="144">toggleMagnetGreen</name>
-					</location>
-					<location id="id33" x="1470" y="187">
-						<name x="1460" y="153">toggleMagnetRed</name>
-					</location>
-					<location id="id34" x="1419" y="289">
-						<name x="1409" y="255">EndIf</name>
-					</location>
-					<location id="id35" x="1419" y="374">
-						<name x="1409" y="340">markEmpty</name>
-					</location>
-					<location id="id36" x="323" y="297">
-						<name x="313" y="263">IdleTime1</name>
-					</location>
-					<location id="id37" x="357" y="476">
-						<name x="347" y="442">IdleTime2</name>
-					</location>
-					<location id="id38" x="535" y="705">
-						<name x="525" y="671">IdleTime3</name>
-					</location>
-					<location id="id39" x="1011" y="-93">
-						<name x="1001" y="-127">craneRaise</name>
-					</location>
-					<location id="id40" x="1513" y="297">
-						<name x="1503" y="263">craneRaise1</name>
-					</location>
 					<init ref="id0"/>
-					<transition>
-						<source ref="id40"/>
-						<target ref="id35"/>
-						<label kind="synchronisation" x="1437" y="318">«disc.name»removeItem[currentSlot_finished]!</label>
-					</transition>
-					<transition>
-						<source ref="id34"/>
-						<target ref="id40"/>
-						<label kind="synchronisation" x="1437" y="276">crane_raiseMagnet!</label>
-					</transition>
-					<transition>
-						<source ref="id38"/>
-						<target ref="id11"/>
-					</transition>
-					<transition>
-						<source ref="id11"/>
-						<target ref="id38"/>
-						<label kind="guard" x="501" y="692">timer &lt; 30</label>
-					</transition>
-					<transition>
-						<source ref="id37"/>
-						<target ref="id10"/>
-					</transition>
-					<transition>
-						<source ref="id10"/>
-						<target ref="id37"/>
-						<label kind="guard" x="357" y="505">timer &lt; 20</label>
-					</transition>
-					<transition>
-						<source ref="id36"/>
-						<target ref="id9"/>
-					</transition>
-					<transition>
-						<source ref="id9"/>
-						<target ref="id36"/>
-						<label kind="guard" x="369" y="280">timer &lt; 10</label>
-					</transition>
-					<transition>
-						<source ref="id1"/>
-						<target ref="id0"/>
-						<label kind="guard" x="718" y="148">GlobalTimer &gt; 2</label>
-						<nail x="790" y="153"/>
-					</transition>
-					<transition>
-						<source ref="id15"/>
-						<target ref="id0"/>
-						<label kind="guard" x="545" y="51">GlobalTimer &gt; 2</label>
-						<nail x="697" y="102"/>
-					</transition>
-					<transition>
-						<source ref="id35"/>
-						<target ref="id0"/>
-					</transition>
-					<transition>
-						<source ref="id33"/>
-						<target ref="id34"/>
-					</transition>
-					<transition>
-						<source ref="id32"/>
-						<target ref="id34"/>
-					</transition>
-					<transition>
-						<source ref="id31"/>
-						<target ref="id34"/>
-					</transition>
-					<transition>
-						<source ref="id30"/>
-						<target ref="id33"/>
-						<label kind="synchronisation" x="1466" y="131">crane_toggleMagnet!</label>
-					</transition>
-					<transition>
-						<source ref="id29"/>
-						<target ref="id32"/>
-						<label kind="synchronisation" x="1419" y="127">crane_toggleMagnet!</label>
-					</transition>
-					<transition>
-						<source ref="id28"/>
-						<target ref="id31"/>
-						<label kind="synchronisation" x="1360" y="131">crane_toggleMagnet!</label>
-					</transition>
-					<transition>
-						<source ref="id25"/>
-						<target ref="id30"/>
-						<label kind="synchronisation" x="1457" y="-25">crane_lowerMagnet!</label>
-					</transition>
-					<transition>
-						<source ref="id26"/>
-						<target ref="id29"/>
-						<label kind="synchronisation" x="1427" y="0">crane_lowerMagnet!</label>
-					</transition>
-					<transition>
-						<source ref="id27"/>
-						<target ref="id28"/>
-						<label kind="synchronisation" x="1385" y="38">crane_lowerMagnet!</label>
-					</transition>
-					<transition>
-						<source ref="id24"/>
-						<target ref="id27"/>
-						<label kind="synchronisation" x="1293" y="-34">crane_goto_blue!</label>
-					</transition>
-					<transition>
-						<source ref="id23"/>
-						<target ref="id26"/>
-						<label kind="synchronisation" x="1310" y="-101">crane_goto_green!</label>
-					</transition>
-					<transition>
-						<source ref="id22"/>
-						<target ref="id25"/>
-						<label kind="synchronisation" x="1318" y="-148">crane_goto_red!</label>
-					</transition>
-					<transition>
-						<source ref="id21"/>
-						<target ref="id24"/>
-						<label kind="guard" x="1114" y="-110">currentSlot_colour == 3</label>
-						<label kind="synchronisation" x="1114" y="-93">«disc.name»gottenColourSlot?</label>
-					</transition>
-					<transition>
-						<source ref="id21"/>
-						<target ref="id23"/>
-						<label kind="guard" x="1114" y="-140">currentSlot_colour == 2</label>
-						<label kind="synchronisation" x="1114" y="-123">«disc.name»gottenColourSlot?</label>
-					</transition>
-					<transition>
-						<source ref="id21"/>
-						<target ref="id22"/>
-						<label kind="guard" x="1114" y="-161">currentSlot_colour == 1</label>
-						<label kind="synchronisation" x="1114" y="-144">«disc.name»gottenColourSlot?</label>
-					</transition>
-					<transition>
-						<source ref="id20"/>
-						<target ref="id39"/>
-						<label kind="synchronisation" x="968" y="-110">crane_raiseMagnet!</label>
-					</transition>
-					<transition>
-						<source ref="id39"/>
-						<target ref="id21"/>
-						<label kind="synchronisation" x="1053" y="-106">«disc.name»getColourSlot[currentSlot_finished]!</label>
-					</transition>
-					<transition>
-						<source ref="id19"/>
-						<target ref="id20"/>
-						<label kind="synchronisation" x="783" y="-148">crane_toggleMagnet!</label>
-					</transition>
-					<transition>
-						<source ref="id18"/>
-						<target ref="id19"/>
-						<label kind="synchronisation" x="579" y="-157">crane_lowerMagnet!</label>
-					</transition>
-					<transition>
-						<source ref="id17"/>
-						<target ref="id18"/>
-						<label kind="synchronisation" x="400" y="-140">crane_goto_intake!</label>
-					</transition>
-					<transition>
-						<source ref="id16"/>
-						<target ref="id17"/>
-						<label kind="synchronisation" x="369" y="-76">«disc.name»goto[(zones_crane + currentSlot_finished) % «disc.name»numberOfSlots]!</label>
-					</transition>
-					<transition>
-						<source ref="id15"/>
-						<target ref="id16"/>
-						<label kind="synchronisation" x="375" y="8">«disc.name»foundSlot_finished?</label>
-					</transition>
-					<transition>
-						<source ref="id0"/>
-						<target ref="id15"/>
-						<label kind="synchronisation" x="545" y="123">«disc.name»getSlot_finished!</label>
-						<label kind="assignment" x="545" y="140">GlobalTimer = 0</label>
-					</transition>
-					<transition>
-						<source ref="id14"/>
-						<target ref="id0"/>
-					</transition>
-					<transition>
-						<source ref="id13"/>
-						<target ref="id0"/>
-					</transition>
-					<transition>
-						<source ref="id12"/>
-						<target ref="id0"/>
-					</transition>
-					<transition>
-						<source ref="id11"/>
-						<target ref="id14"/>
-						<label kind="guard" x="281" y="667">timer &gt;= 30</label>
-						<label kind="synchronisation" x="281" y="684">«disc.name»set_finished[currentSlot_empty]!</label>
-					</transition>
-					<transition>
-						<source ref="id10"/>
-						<target ref="id13"/>
-						<label kind="guard" x="171" y="505">timer &gt;= 20</label>
-						<label kind="synchronisation" x="171" y="522">«disc.name»set_finished[currentSlot_empty]!</label>
-					</transition>
-					<transition>
-						<source ref="id9"/>
-						<target ref="id12"/>
-						<label kind="guard" x="307" y="178">timer &gt;= 10</label>
-						<label kind="synchronisation" x="307" y="195">«disc.name»set_finished[currentSlot_empty]!</label>
-					</transition>
-					<transition>
-						<source ref="id8"/>
-						<target ref="id11"/>
-						<label kind="guard" x="501" y="586">colour == 3</label>
-						<label kind="assignment" x="518" y="603">timer = 0</label>
-					</transition>
-					<transition>
-						<source ref="id8"/>
-						<target ref="id10"/>
-						<label kind="guard" x="399" y="476">colour == 2</label>
-						<label kind="assignment" x="468" y="488">timer = 0</label>
-					</transition>
-					<transition>
-						<source ref="id8"/>
-						<target ref="id9"/>
-						<label kind="guard" x="493" y="357">colour == 1</label>
-						<label kind="assignment" x="493" y="340">timer = 0</label>
-					</transition>
-					<transition>
-						<source ref="id7"/>
-						<target ref="id8"/>
-						<label kind="synchronisation" x="678" y="496">«disc.name»setColour[currentSlot_empty][colour]!</label>
-					</transition>
-					<transition>
-						<source ref="id1"/>
-						<target ref="id2"/>
-						<label kind="synchronisation" x="991" y="191">«disc.name»foundEmptySlot?</label>
-					</transition>
-					<transition>
-						<source ref="id2"/>
-						<target ref="id3"/>
-						<label kind="synchronisation" x="918" y="25">«disc.name»goto[(zones_intake + currentSlot_empty) % «disc.name»numberOfSlots]!</label>
-					</transition>
-					<transition>
-						<source ref="id3"/>
-						<target ref="id4"/>
-						<label kind="synchronisation" x="1204" y="242">«disc.name»addItem[currentSlot_empty]!</label>
-					</transition>
-					<transition>
-						<source ref="id4"/>
-						<target ref="id5"/>
-					</transition>
-					<transition>
-						<source ref="id5"/>
-						<target ref="id6"/>
-						<label kind="synchronisation" x="940" y="422">camera_getColour!</label>
-					</transition>
-					<transition>
-						<source ref="id6"/>
-						<target ref="id7"/>
-						<label kind="synchronisation" x="881" y="514">camera_gottenColour?</label>
-					</transition>
-					<transition>
-						<source ref="id0"/>
-						<target ref="id1"/>
-						<label kind="synchronisation" x="715" y="197">«disc.name»getFreeSlot!</label>
-						<label kind="assignment" x="718" y="212">GlobalTimer = 0</label>
-					</transition>
-				</template>
-				<template>
-					<name>Camera</name>
-					<location id="id41" x="40" y="80">
-						<name x="30" y="50">Idle</name>
-					</location>
-					<location id="id42" x="190" y="80">
-						<name x="180" y="50">Red</name>
-						<committed/>
-					</location>
-					<location id="id43" x="190" y="230">
-						<name x="180" y="200">Green</name>
-						<committed/>
-					</location>
-					<location id="id44" x="40" y="230">
-						<name x="30" y="200">Blue</name>
-						<committed/>
-					</location>
-					<init ref="id41"/>
-					<transition>
-						<source ref="id44"/>
-						<target ref="id41"/>
-						<label kind="synchronisation" x="-20" y="140">camera_gottenColour!</label>
-					</transition>
-					<transition>
-						<source ref="id41"/>
-						<target ref="id44"/>
-						<label kind="synchronisation" x="-20" y="140">camera_getColour?</label>
-						<label kind="assignment" x="-20" y="155">colour = 3</label>
-					</transition>
-					<transition>
-						<source ref="id43"/>
-						<target ref="id41"/>
-						<label kind="synchronisation" x="55" y="140">camera_gottenColour!</label>
-					</transition>
-					<transition>
-						<source ref="id41"/>
-						<target ref="id43"/>
-						<label kind="synchronisation" x="55" y="140">camera_getColour?</label>
-						<label kind="assignment" x="55" y="155">colour=2</label>
-					</transition>
-					<transition>
-						<source ref="id42"/>
-						<target ref="id41"/>
-						<label kind="synchronisation" x="55" y="65">camera_gottenColour!</label>
-					</transition>
-					<transition>
-						<source ref="id41"/>
-						<target ref="id42"/>
-						<label kind="synchronisation" x="55" y="65">camera_getColour?</label>
-						<label kind="assignment" x="55" y="80">colour = 1</label>
-					</transition>
+					«FOR statement : statements»
+					«UppaalMasterGenerator.generateTransistion(statement)»	
+					«ENDFOR»
 				</template>
 				<template>
 					<name>GetEmptySlot</name>
@@ -1361,29 +935,6 @@ class UppaalGenerator {
 					</transition>
 				</template>
 				<system>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			// Place template instantiations here.
 			// List one or more processes to be composed into a system.
 			system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camera, SlotVariable_finished, GetFinishedSlot, EmergencyButton;</system>
@@ -1434,55 +985,13 @@ class UppaalGenerator {
 		)
 	}
 	
-	def static dispatch String generateLocation(DeviceConditional statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	def static dispatch String generateLocation(VariableConditional statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	def static dispatch String generateLocation(CranePickupOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	def static dispatch String generateLocation(CraneDropOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	def static dispatch String generateLocation(DiskMoveSlotOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	def static dispatch String generateLocation(DiskMoveVariableSlotOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	def static dispatch String generateLocation(DiskMoveEmptySlotOperation statement) {
-		'''
-		<location id="id1">
-			<name>«statement.device.name»_getEmptySlot_statment«statements.indexOf(statement)»</name>
-			<committed/>
-		</location>
-		<location id="id2">
-			<name>«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»</name>
-		</location>
-		<location id="id3">
-			<name>«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»</name>
-		</location>
-		'''
-	}
-	
-	def static dispatch String generateLocation(DiskMarkSlotOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	def static dispatch String generateLocation(CameraScanOperation statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-	
-	def static dispatch String generateLocation(ForEach statement) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	static int idCounter = 1;
+	def static String getIdOfLocation(String location){
+		if(locationIds.containsKey(location)){
+			return locationIds.get(location)
+		}else{
+			return locationIds.put(location, '''id«idCounter++»''')
+		}
 	}
 	
 }
