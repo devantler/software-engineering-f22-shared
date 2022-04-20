@@ -27,6 +27,7 @@ import java.util.HashMap
 import java.util.Map
 import xtext.factoryLang.factoryLang.ColorValue
 import xtext.factoryLang.uppaalParsers.EnumParser
+import xtext.factoryLang.factoryLang.DISK_STATES
 
 class UppaalGenerator {
 	
@@ -38,7 +39,7 @@ class UppaalGenerator {
 		val discs = model.configurations.map[device].filter[it instanceof Disk].map[x|x as Disk]
 		val cranes = model.configurations.map[device].filter[it instanceof Crane].map[x|x as Crane]
 		val cameras = model.configurations.map[device].filter[it instanceof Camera].map[x|x as Camera]
-		val discSlotStateValues = resource.allContents.filter(DiskSlotStateValue).map[value].toSet
+		val discSlotStateValues = resource.allContents.filter(DiskSlotStateValue).map[value].toSet.map[toString]
 		statements = model.statements
 		
 		fsa.generateFile("uppaal/system.xml", 
@@ -133,79 +134,12 @@ class UppaalGenerator {
 				«FOR disc : discs»
 				«DiscGenerator.generate(disc)»
 				«DiscSlotGenerator.generate(disc)»
-				«»
+				«DiscGetVariableGenerator.generate(disc, DISK_STATES.EMPTY.toString)»
+				«FOR value : discSlotStateValues»
+				«DiscGetVariableGenerator.generate(disc, value)»
+				«DiscVariableGenerator.generate(disc, value)»
 				«ENDFOR»
-				<template>
-					<name>GetEmptySlot</name>
-					<location id="id45" x="40" y="80">
-						<name x="30" y="50">Idle</name>
-					</location>
-					<location id="id46" x="190" y="80">
-						<name x="180" y="50">Get4</name>
-						<committed/>
-					</location>
-					<location id="id47" x="190" y="230">
-						<name x="180" y="200">Get1</name>
-						<committed/>
-					</location>
-					<location id="id48" x="40" y="230">
-						<name x="30" y="200">Get2</name>
-						<committed/>
-					</location>
-					<location id="id49" x="340" y="80">
-						<name x="330" y="50">Get3</name>
-						<committed/>
-					</location>
-					<init ref="id45"/>
-					<transition>
-						<source ref="id46"/>
-						<target ref="id45"/>
-						<label kind="synchronisation" x="55" y="65">«disc.name»foundEmptySlot!</label>
-						<label kind="assignment" x="55" y="80">currentSlot_empty = 3</label>
-					</transition>
-					<transition>
-						<source ref="id45"/>
-						<target ref="id46"/>
-						<label kind="guard" x="55" y="50">!«disc.name»occupiedSlots[3]</label>
-						<label kind="synchronisation" x="55" y="65">«disc.name»getFreeSlot?</label>
-					</transition>
-					<transition>
-						<source ref="id49"/>
-						<target ref="id45"/>
-						<label kind="synchronisation" x="130" y="65">«disc.name»foundEmptySlot!</label>
-						<label kind="assignment" x="130" y="80">currentSlot_empty = 2</label>
-					</transition>
-					<transition>
-						<source ref="id45"/>
-						<target ref="id49"/>
-						<label kind="guard" x="130" y="50">!«disc.name»occupiedSlots[2]</label>
-						<label kind="synchronisation" x="130" y="65">«disc.name»getFreeSlot?</label>
-					</transition>
-					<transition>
-						<source ref="id48"/>
-						<target ref="id45"/>
-						<label kind="synchronisation" x="-20" y="140">«disc.name»foundEmptySlot!</label>
-						<label kind="assignment" x="-20" y="155">currentSlot_empty = 1</label>
-					</transition>
-					<transition>
-						<source ref="id45"/>
-						<target ref="id48"/>
-						<label kind="guard" x="-20" y="125">!«disc.name»occupiedSlots[1]</label>
-						<label kind="synchronisation" x="-20" y="140">«disc.name»getFreeSlot?</label>
-					</transition>
-					<transition>
-						<source ref="id47"/>
-						<target ref="id45"/>
-						<label kind="synchronisation" x="55" y="140">«disc.name»foundEmptySlot!</label>
-						<label kind="assignment" x="55" y="155">currentSlot_empty = 0</label>
-					</transition>
-					<transition>
-						<source ref="id45"/>
-						<target ref="id47"/>
-						<label kind="guard" x="55" y="125">!«disc.name»occupiedSlots[0]</label>
-						<label kind="synchronisation" x="55" y="140">«disc.name»getFreeSlot?</label>
-					</transition>
-				</template>
+				«ENDFOR»
 				<template>
 					<name>GetFinishedSlot</name>
 					<location id="id50" x="40" y="80">
@@ -277,237 +211,7 @@ class UppaalGenerator {
 						<label kind="synchronisation" x="0" y="0">«disc.name»getSlot_finished?</label>
 					</transition>
 				</template>
-				<template>
-					<name>Disc</name>
-					<location id="id55" x="40" y="80">
-						<name x="30" y="50">Position1</name>
-					</location>
-					<location id="id56" x="190" y="80">
-						<name x="180" y="50">Position2</name>
-					</location>
-					<location id="id57" x="190" y="230">
-						<name x="180" y="200">Position3</name>
-					</location>
-					<location id="id58" x="40" y="230">
-						<name x="30" y="200">Position4</name>
-					</location>
-					<location id="id59" x="340" y="80">
-						<name x="330" y="50">AddItem1Req</name>
-					</location>
-					<location id="id60" x="340" y="230">
-						<name x="330" y="200">RemoveItem1Req</name>
-					</location>
-					<location id="id61" x="340" y="380">
-						<name x="330" y="350">AddItem2Req</name>
-					</location>
-					<location id="id62" x="190" y="380">
-						<name x="180" y="350">RemoveItem2Req</name>
-					</location>
-					<location id="id63" x="40" y="380">
-						<name x="30" y="350">AddItem3Req</name>
-					</location>
-					<location id="id64" x="490" y="80">
-						<name x="480" y="50">RemoveItem3Req</name>
-					</location>
-					<location id="id65" x="490" y="230">
-						<name x="480" y="200">AddItem4Req</name>
-					</location>
-					<location id="id66" x="490" y="380">
-						<name x="480" y="350">RemoveItem4Req</name>
-					</location>
-					<location id="id67" x="-238" y="68">
-						<name x="-238" y="68">Stopped</name>
-					</location>
-					<init ref="id55"/>
-					<transition>
-						<source ref="id57"/>
-						<target ref="id67"/>
-						<label kind="synchronisation" x="-24" y="149">emergencyStop?</label>
-					</transition>
-					<transition>
-						<source ref="id56"/>
-						<target ref="id67"/>
-						<label kind="synchronisation" x="-24" y="74">emergencyStop?</label>
-					</transition>
-					<transition>
-						<source ref="id55"/>
-						<target ref="id67"/>
-						<label kind="synchronisation" x="-99" y="74">emergencyStop?</label>
-					</transition>
-					<transition>
-						<source ref="id58"/>
-						<target ref="id67"/>
-						<label kind="synchronisation" x="-99" y="149">emergencyStop?</label>
-					</transition>
-					<transition>
-						<source ref="id58"/>
-						<target ref="id56"/>
-						<label kind="synchronisation" x="55" y="140">«disc.name»goto[1]?</label>
-					</transition>
-					<transition>
-						<source ref="id56"/>
-						<target ref="id58"/>
-						<label kind="synchronisation" x="55" y="140">«disc.name»goto[3]?</label>
-					</transition>
-					<transition>
-						<source ref="id55"/>
-						<target ref="id57"/>
-						<label kind="synchronisation" x="55" y="140">«disc.name»goto[2]?</label>
-					</transition>
-					<transition>
-						<source ref="id57"/>
-						<target ref="id55"/>
-						<label kind="synchronisation" x="55" y="140">«disc.name»goto[0]?</label>
-					</transition>
-					<transition>
-						<source ref="id58"/>
-						<target ref="id57"/>
-						<label kind="synchronisation" x="55" y="215">«disc.name»goto[2]?</label>
-					</transition>
-					<transition>
-						<source ref="id55"/>
-						<target ref="id58"/>
-						<label kind="synchronisation" x="-20" y="140">«disc.name»goto[3]?</label>
-					</transition>
-					<transition>
-						<source ref="id56"/>
-						<target ref="id55"/>
-						<label kind="synchronisation" x="55" y="65">«disc.name»goto[0]?</label>
-					</transition>
-					<transition>
-						<source ref="id57"/>
-						<target ref="id56"/>
-						<label kind="synchronisation" x="130" y="140">«disc.name»goto[1]?</label>
-					</transition>
-					<transition>
-						<source ref="id55"/>
-						<target ref="id56"/>
-						<label kind="synchronisation" x="55" y="65">«disc.name»goto[1]?</label>
-					</transition>
-					<transition>
-						<source ref="id58"/>
-						<target ref="id55"/>
-						<label kind="synchronisation" x="-20" y="140">«disc.name»goto[0]?</label>
-					</transition>
-					<transition>
-						<source ref="id57"/>
-						<target ref="id58"/>
-						<label kind="synchronisation" x="55" y="215">«disc.name»goto[3]?</label>
-					</transition>
-					<transition>
-						<source ref="id56"/>
-						<target ref="id57"/>
-						<label kind="synchronisation" x="130" y="140">«disc.name»goto[2]?</label>
-					</transition>
-					<transition>
-						<source ref="id55"/>
-						<target ref="id55"/>
-						<label kind="synchronisation" x="40" y="80">«disc.name»goto[0]?</label>
-						<nail x="10" y="50"/>
-						<nail x="70" y="50"/>
-					</transition>
-					<transition>
-						<source ref="id56"/>
-						<target ref="id56"/>
-						<label kind="synchronisation" x="190" y="80">«disc.name»goto[1]?</label>
-						<nail x="160" y="50"/>
-						<nail x="220" y="50"/>
-					</transition>
-					<transition>
-						<source ref="id57"/>
-						<target ref="id57"/>
-						<label kind="synchronisation" x="190" y="230">«disc.name»goto[2]?</label>
-						<nail x="160" y="200"/>
-						<nail x="220" y="200"/>
-					</transition>
-					<transition>
-						<source ref="id58"/>
-						<target ref="id58"/>
-						<label kind="synchronisation" x="40" y="230">«disc.name»goto[3]?</label>
-						<nail x="10" y="200"/>
-						<nail x="70" y="200"/>
-					</transition>
-					<transition>
-						<source ref="id55"/>
-						<target ref="id59"/>
-						<label kind="synchronisation" x="130" y="65">«disc.name»addItemCmd?</label>
-					</transition>
-					<transition>
-						<source ref="id55"/>
-						<target ref="id60"/>
-						<label kind="synchronisation" x="130" y="140">«disc.name»removeItemCmd?</label>
-					</transition>
-					<transition>
-						<source ref="id56"/>
-						<target ref="id61"/>
-						<label kind="synchronisation" x="205" y="215">«disc.name»addItemCmd?</label>
-					</transition>
-					<transition>
-						<source ref="id56"/>
-						<target ref="id62"/>
-						<label kind="synchronisation" x="130" y="215">«disc.name»removeItemCmd?</label>
-					</transition>
-					<transition>
-						<source ref="id57"/>
-						<target ref="id63"/>
-						<label kind="synchronisation" x="55" y="290">«disc.name»addItemCmd?</label>
-					</transition>
-					<transition>
-						<source ref="id57"/>
-						<target ref="id64"/>
-						<label kind="synchronisation" x="280" y="140">«disc.name»removeItemCmd?</label>
-					</transition>
-					<transition>
-						<source ref="id58"/>
-						<target ref="id65"/>
-						<label kind="synchronisation" x="205" y="215">«disc.name»addItemCmd?</label>
-					</transition>
-					<transition>
-						<source ref="id58"/>
-						<target ref="id66"/>
-						<label kind="synchronisation" x="205" y="290">«disc.name»removeItemCmd?</label>
-					</transition>
-					<transition>
-						<source ref="id59"/>
-						<target ref="id55"/>
-						<label kind="synchronisation" x="130" y="65">«disc.name»addItem[0]!</label>
-					</transition>
-					<transition>
-						<source ref="id60"/>
-						<target ref="id55"/>
-						<label kind="synchronisation" x="130" y="140">«disc.name»removeItem[0]!</label>
-					</transition>
-					<transition>
-						<source ref="id61"/>
-						<target ref="id56"/>
-						<label kind="synchronisation" x="205" y="215">«disc.name»addItem[1]!</label>
-					</transition>
-					<transition>
-						<source ref="id62"/>
-						<target ref="id56"/>
-						<label kind="synchronisation" x="130" y="215">«disc.name»removeItem[1]!</label>
-					</transition>
-					<transition>
-						<source ref="id63"/>
-						<target ref="id57"/>
-						<label kind="synchronisation" x="55" y="290">«disc.name»addItem[2]!</label>
-					</transition>
-					<transition>
-						<source ref="id64"/>
-						<target ref="id57"/>
-						<label kind="synchronisation" x="280" y="140">«disc.name»removeItem[2]!</label>
-					</transition>
-					<transition>
-						<source ref="id65"/>
-						<target ref="id58"/>
-						<label kind="synchronisation" x="205" y="215">«disc.name»addItem[3]!</label>
-					</transition>
-					<transition>
-						<source ref="id66"/>
-						<target ref="id58"/>
-						<label kind="synchronisation" x="205" y="290">«disc.name»removeItem[3]!</label>
-					</transition>
-				</template>
+				
 				<template>
 					<name>DiscSlot</name>
 					<parameter>const id_t id</parameter>
