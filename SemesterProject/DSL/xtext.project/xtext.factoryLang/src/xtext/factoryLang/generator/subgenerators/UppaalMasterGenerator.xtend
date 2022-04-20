@@ -193,14 +193,14 @@ class UppaalMasterGenerator {
 	
 	def static dispatch String generateLocation(DiskMoveEmptySlotOperation statement) {
 		'''
-		<location id="«getIdOfLocation('''«statement.device.name»_getEmptySlot_statment«statements.indexOf(statement)»''')»">
+		<location id="«getIdOfLocation('''«statement.device.name»_getEmptySlot_statement«statements.indexOf(statement)»''')»">
 			<name>«statement.device.name»_getEmptySlot_statment«statements.indexOf(statement)»</name>
 			<committed/>
 		</location>
-		<location id="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»''')»">
+		<location id="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statement«statements.indexOf(statement)»''')»">
 			<name>«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»</name>
 		</location>
-		<location id="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»">
+		<location id="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statement«statements.indexOf(statement)»''')»">
 			<name>«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»</name>
 		</location>
 		'''
@@ -210,19 +210,24 @@ class UppaalMasterGenerator {
 		val trans = '''
 		<transition>
 			<source ref="«lastTransistionState»"/>
-			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_getEmptySlot_statement«statements.indexOf(statement)»''')»"/>
 			<label kind="synchronisation">«statement.device.name»_getFreeSlot!</label>
 			<label kind="assignment">GlobalTimer = 0</label>
 		</transition>
 		<transition>
-			<source ref="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»"/>
-			<target ref="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»''')»"/>
+			<source ref="«getIdOfLocation('''«statement.device.name»_getEmptySlot_statement«statements.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statement«statements.indexOf(statement)»''')»"/>
 			<label kind="synchronisation">«statement.device.name»_foundEmptySlot?</label>
 		</transition>
 		<transition>
-			<source ref="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»''')»""/>
-			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»"/>
+			<source ref="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statement«statements.indexOf(statement)»''')»""/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statement«statements.indexOf(statement)»''')»"/>
 			<label kind="synchronisation">«statement.device.name»_goto[(«statement.device.name»_zones_«statement.target.name» + currentSlot) % «statement.device.name»_numberOfSlots]!</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_getEmptySlot_statement«statements.indexOf(statement)»''')»""/>
+			<target ref="«lastTransistionState»"/>
+			<label kind="guard">GlobalTimer &gt; 2</label>
 		</transition>
 		'''
 		lastTransistionState = getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»''')
@@ -331,6 +336,11 @@ class UppaalMasterGenerator {
 			<source ref="«getIdOfLocation('''«statement.device.name»_get«statement.variableValue.value»Slot_«statements.indexOf(statement)»''')»"/>
 			<target ref="«getIdOfLocation('''«statement.device.name»_gottenSlot«statement.variableValue.value»_«statements.indexOf(statement)»''')»"/>
 			<label kind="synchronisation">«statement.device.name»_foundSlot_«statement.variableValue.value»?</label>
+		</transition>
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_get«statement.variableValue.value»Slot_«statements.indexOf(statement)»''')»""/>
+			<target ref="«lastTransistionState»"/>
+			<label kind="guard">GlobalTimer &gt; 2</label>
 		</transition>
 		'''
 		lastTransistionState = getIdOfLocation('''«statement.device.name»_gottenSlot«statement.variableValue.value»_«statements.indexOf(statement)»''')

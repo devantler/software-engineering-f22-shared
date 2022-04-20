@@ -130,6 +130,9 @@ class UppaalGenerator {
 					«UppaalMasterGenerator.generateTransistion(statement)»	
 					«ENDFOR»
 				</template>
+				«FOR disc : discs»
+				«DiscGenerator.generate(disc)»
+				«ENDFOR»
 				<template>
 					<name>GetEmptySlot</name>
 					<location id="id45" x="40" y="80">

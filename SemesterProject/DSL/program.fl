@@ -18,13 +18,13 @@ create camera named camera1
 for each element in disk1 that is complete then
 	disk1 move slot of element to craneZone
 	crane1 pickup item at intake
-	disk1 mark slot at craneZone as free
 	if variable element is red then  
 		crane1 drop item at outRed
 	if variable element is green then  
 		crane1 drop item at outGreen 
 	if variable element is blue then  
 		crane1 drop item at outBlue
+	disk1 mark slot at craneZone as free
 
 if device disk1 is not full then  
 	disk1 move empty slot to intakeZone
