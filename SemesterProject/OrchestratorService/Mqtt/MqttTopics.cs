@@ -1,22 +1,22 @@
 namespace Mqtt
 {
-    public class MqttTopics
+    public static class MqttTopics
     {
-        public class Crane
+        public static class Crane
         {
-            private static string parentName = "crane";
-
-            public static string Angle = $"{parentName}/angle";
-            public static string Elevation = $"{parentName}/elevation";
-            public static string Moving = $"{parentName}/moving";
-            public static string Magnet = $"{parentName}/magnet";
+            const string parentName = "crane";
+            public const string Angle = $"{parentName}/angle";
+            public const string Elevation = $"{parentName}/elevation";
+            public const string Moving = $"{parentName}/moving";
+            public const string Magnet = $"{parentName}/magnet";
         }
 
-        public class Disk
+        public static class Disk
         {
-            private static string parentName = "disk";
-
-            public static string Zone = $"{parentName}/zone";
+            public const string parentName = "disk";
+            public const string Slot = $"{parentName}/slot";
+            public const string Zone = $"{parentName}/zone";
+            public const string Moving = $"{parentName}/moving";
         }
     }
 }

@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using MQTTnet;
 using MQTTnet.Client.Connecting;
 using MQTTnet.Client.Disconnecting;
@@ -48,8 +45,8 @@ namespace Mqtt
 
         private void OnMessageReceived(MqttApplicationMessageReceivedEventArgs obj)
         {
-        	var topic = obj.ApplicationMessage.Topic;
-        	messages[topic] = Encoding.Default.GetString(obj.ApplicationMessage.Payload);
+            var topic = obj.ApplicationMessage.Topic;
+            messages[topic] = Encoding.Default.GetString(obj.ApplicationMessage.Payload);
         }
 
         public string? GetMessage(string topic)

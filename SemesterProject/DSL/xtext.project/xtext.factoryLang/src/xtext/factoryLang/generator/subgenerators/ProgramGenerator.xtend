@@ -15,6 +15,8 @@ import xtext.factoryLang.factoryLang.ForEach
 import xtext.factoryLang.factoryLang.DeviceConditional
 import xtext.factoryLang.parsers.ValueParser
 import xtext.factoryLang.parsers.TypeParser
+import xtext.factoryLang.factoryLang.VariableConditional
+import xtext.factoryLang.parsers.EnumParser
 
 class ProgramGenerator {
 
@@ -128,20 +130,38 @@ class ProgramGenerator {
 	protected def static CharSequence generateStatement(Statement statement) {
 		// remember scope for local variables
 		switch statement {
-			ForEach: '''
-				foreach (var «statement.variable.name» in «TypeParser.parseDeviceTypeInPlural(statement.device)»["«statement.device.name»"].Where(x => «IF !statement.operator.isNullOrEmpty»!«ENDIF»x.«ValueParser.parseVariableValue(statement.variableValue)»)) {
+			ForEach: {
+				val deviceType = TypeParser.parseDeviceType(statement.device, true)
+				val specificDevice = '''«deviceType»["«statement.device.name»"]'''
+				val optionalNotOperator = '''«IF !statement.operator.isNullOrEmpty»!«ENDIF»'''
+				val methodCalledOnBoundVariable = ValueParser.parseVariableValue(statement.variableValue, true)
+				val filteredDevice = '''«specificDevice».Where(x => «optionalNotOperator»x«methodCalledOnBoundVariable»)''' //TODO: This needs to get the actual slots, crane item or camera item for comparison
+				'''
+					foreach (var «statement.variable.name» in «filteredDevice») {
+						«FOR nestedStatement : statement.statements»
+							«generateStatement(nestedStatement)»
+						«ENDFOR»
+					}
+				'''
+			}
+			DeviceConditional: '''
+				if («IF statement.deviceValue.ref === null»«statement.device.name» «IF !statement.not_operator.isNullOrEmpty»!=«ELSE»==«ENDIF» «ValueParser.parseDeviceValue(statement.deviceValue, false)»«ELSE»«IF !statement.not_operator.isNullOrEmpty»!«ENDIF»«statement.device.name»«ValueParser.parseDeviceValue(statement.deviceValue, true)»«ENDIF») {
 					«FOR nestedStatement : statement.statements»
 						«generateStatement(nestedStatement)»
 					«ENDFOR»
 				}
 			'''
-			DeviceConditional: '''
-				if («IF !statement.not_operator.isNullOrEmpty»!«ENDIF»«statement.device.name».«ValueParser.parseDeviceValue(statement.deviceValue)») {
+			VariableConditional: '''
+				if («statement.variable.name» «EnumParser.parseComparisonOperator(statement.comparison_operator)» "«ValueParser.parseVariableValue(statement.variableValue, false)»" {
 					«FOR nestedStatement : statement.statements»
 						«generateStatement(nestedStatement)»
 					«ENDFOR»
 				}
 			'''
 		}
+//			{VariableConditional} 'if' 'variable' variable=[Variable] 'is'
+//			(comparison_operator=COMPARISON_OPERATOR)?
+//			variableValue=VariableValue
+//			'then' BEGIN statements+=Statement* END;
 	}
 }
