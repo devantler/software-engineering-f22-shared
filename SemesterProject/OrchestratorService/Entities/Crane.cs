@@ -22,34 +22,34 @@ namespace Entities
 
         public async Task GoTo(string positionName)
         {
-            await _mqttService.SendMessage(MqttTopics.Crane.Angle(_name), _positions[positionName].ToString());
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Angle, _positions[positionName].ToString());
         }
 
         public async Task GoTo(int position)
         {
-            await _mqttService.SendMessage(MqttTopics.Crane.Angle(_name), position.ToString());
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Angle, position.ToString());
         }
 
         public async Task PickupItem()
         {
-            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "LOW");
-            await _mqttService.SendMessage(MqttTopics.Crane.Magnet(_name), "1");
-            while (_mqttService.GetMessage(MqttTopics.Crane.Moving(_name)) != "0")
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "LOW");
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "1");
+            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0")
             {
                 await Task.Delay(100);
             }
-            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "HIGH");
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "HIGH");
         }
 
         public async Task DropItem()
         {
-            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "LOW");
-            while (_mqttService.GetMessage(MqttTopics.Crane.Moving(_name)) != "0")
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "LOW");
+            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0")
             {
                 await Task.Delay(100);
             }
-            await _mqttService.SendMessage(MqttTopics.Crane.Magnet(_name), "0");
-            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "HIGH");
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "0");
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "HIGH");
         }
 
         public string GetName()

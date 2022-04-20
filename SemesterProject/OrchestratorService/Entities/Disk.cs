@@ -62,7 +62,7 @@ public class Disk
         //Mqtt stuff
         var zonesToMove = fromZone - toZone;
         _currentOffset = (_currentOffset + zonesToMove) % _slots.Count;
-        _mqttService.SendMessage(MqttTopics.Disk.Slot(_name), _currentOffset.ToString()); //TODO: Might need to be changed to MqttTopics.Disk.Zone
+        _mqttService.SendMessage(MqttTopics.Disk(_name).Slot, _currentOffset.ToString());
     }
     #endregion
 

@@ -2,58 +2,66 @@ namespace Mqtt
 {
     public static class MqttTopics
     {
-        public static class Crane
+        public static CraneTopic Crane(string name)
         {
-            public static string Angle(string craneName)
-            {
-                return $"{craneName}/angle";
-            }
-
-            public static string Elevation(string craneName)
-            {
-                return $"{craneName}/elevation";
-            }
-
-            public static string Moving(string craneName)
-            {
-                return $"{craneName}/moving";
-            }
-
-            public static string Magnet(string craneName)
-            {
-                return $"{craneName}/magnet";
-            }
+            return new CraneTopic(name);
         }
 
-        public static class Disk
+        public class CraneTopic
         {
-            public static string Slot(string diskName)
-            {
-                return $"{diskName}/slot";
-            }
+            public string Name { get; }
 
-            public static string Zone(string diskName)
+            public CraneTopic(string name)
             {
-                return $"{diskName}/zone";
+                Name = name;
             }
+            public string Angle { get => $"{Name}/angle"; }
 
-            public static string Moving(string diskName)
-            {
-                return $"{diskName}/moving";
-            }
+            public string Elevation { get => $"{Name}/elevation"; }
+
+            public string Magnet { get => $"{Name}/magnet"; }
+
+            public string Moving { get => $"{Name}/moving"; }
         }
 
-        public static class Camera
+        public static DiskTopic Disk(string name)
         {
-            public static string Scan(string cameraName)
+            return new DiskTopic(name);
+        }
+
+        public class DiskTopic
+        {
+            public string Name { get; }
+
+            public DiskTopic(string name)
             {
-                return $"{cameraName}/scan";
+                Name = name;
             }
 
-            public static string Scanning(string cameraName)
+            public string Slot { get => $"{Name}/slot"; }
+
+            public string Moving { get => $"{Name}/moving"; }
+        }
+
+        public static CameraTopic Camera(string name)
+        {
+            return new CameraTopic(name);
+        }
+
+        public class CameraTopic
+        {
+            public string Name { get; }
+
+            public CameraTopic(string name)
             {
-                return $"{cameraName}/scanning";
+                Name = name;
             }
+
+            public string Scan { get => $"{Name}/scan"; }
+
+            public string Color { get => $"{Name}/color"; }
+
+            public string Scanning { get => $"{Name}/scanning"; }
         }
     }
 }

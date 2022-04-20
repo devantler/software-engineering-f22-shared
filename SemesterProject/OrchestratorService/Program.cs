@@ -70,16 +70,16 @@ async void Run()
                 await crane1.GoTo("outBlue");
                 await crane1.DropItem();
             }
-            disk1.MarkSlot("craneZone", SlotState.Empty); //This is a hack that removes all marks as our DSL does not support removing marks yet.
+            disk1.MarkSlot("craneZone", SlotState.Empty);
         }
 
         if (!disk1.IsFull())
         {
-            disk1.MoveSlot(disk1.GetEmptySlotNumber(), "intakeZone"); //move empty slot
-            disk1.MarkSlot("intakeZone", SlotState.InProgress); //mark slot at
-            disk1.MoveSlot("intakeZone", "cameraZone"); //move slot at
+            disk1.MoveSlot(disk1.GetEmptySlotNumber(), "intakeZone");
+            disk1.MarkSlot("intakeZone", SlotState.InProgress);
+            disk1.MoveSlot("intakeZone", "cameraZone");
             var currentItemColor = camera1.Scan();
-            disk1.MarkSlot("cameraZone", currentItemColor); //mark slot at
+            disk1.MarkSlot("cameraZone", currentItemColor);
             if (currentItemColor == "red")
             {
                 await Task.Run(() =>
@@ -90,7 +90,6 @@ async void Run()
             }
             if (currentItemColor == "green")
             {
-                //"disc" mark slot at "disc.camera" as finished in 10 seconds
                 await Task.Run(() =>
                 {
                     Thread.Sleep(20000);
@@ -99,7 +98,6 @@ async void Run()
             }
             if (currentItemColor == "blue")
             {
-                //"disc" mark slot at "disc.camera" as finished in 10 seconds
                 await Task.Run(() =>
                 {
                     Thread.Sleep(30000);
