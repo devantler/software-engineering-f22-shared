@@ -14,7 +14,7 @@
         "ClientId": "CameraColorScanner",
         "CommandTopic": "devices/CameraColorScanner/Commands",
         "ResultTopic": "devices/CameraColorScanner/Values/ScanResults",
-        "LogTopic": "sorter/scanner/1/log",
+        "LogTopic": "log/sorter/scanner/1",
         "UseSsl": true
     },
     "Camera": {
