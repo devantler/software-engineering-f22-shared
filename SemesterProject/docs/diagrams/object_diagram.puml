@@ -12,10 +12,10 @@ object Conditional
 object Loop
 object Operation
 
-Model <|-- Configuration
-Model <|-- Statement
+Model --> Configuration
+Model --> Statement
 
-Configuration <|-- Device
+Configuration --> Device
 Device <|-- Crane
 Device <|-- Disk
 Device <|-- Camera
