@@ -5,6 +5,7 @@
 [submodule "SoftwareAnalysis/Mini-project/ieee-paper"]
 	path = SoftwareAnalysis/Mini-project/ieee-paper
 	url = https://git.overleaf.com/623d80490a6d43056cdb2a98
+	branch = master
 [submodule "SemesterProject/report"]
 	path = SemesterProject/report
 	url = https://git.overleaf.com/624d5ff273bb892f9e62fbe4
