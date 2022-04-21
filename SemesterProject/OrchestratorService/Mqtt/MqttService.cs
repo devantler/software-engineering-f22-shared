@@ -15,31 +15,26 @@ namespace Mqtt
         private const int Port = 1883;
 
         private readonly IManagedMqttClient _mqttClient;
-        private readonly Dictionary<string, string> messages = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> messages = new();
 
         public MqttService()
         {
-            // Creates a new client
             MqttClientOptionsBuilder builder = new MqttClientOptionsBuilder()
                 .WithClientId(ClientId)
                 .WithTcpServer(Ip, Port);
 
-            // Create client options objects
             ManagedMqttClientOptions options = new ManagedMqttClientOptionsBuilder()
                 .WithAutoReconnectDelay(TimeSpan.FromSeconds(60))
                 .WithClientOptions(builder.Build())
                 .Build();
 
-            // Creates the client object
             _mqttClient = new MqttFactory().CreateManagedMqttClient();
 
-            // Set up handlers
             _mqttClient.ConnectedHandler = new MqttClientConnectedHandlerDelegate(OnConnected);
             _mqttClient.DisconnectedHandler = new MqttClientDisconnectedHandlerDelegate(OnDisconnected);
             _mqttClient.ConnectingFailedHandler = new ConnectingFailedHandlerDelegate(OnConnectingFailed);
             _mqttClient.ApplicationMessageReceivedHandler = new MqttApplicationMessageReceivedHandlerDelegate(OnMessageReceived);
 
-            // Starts a connection with the Broker
             _mqttClient.StartAsync(options).GetAwaiter().GetResult();
         }
 

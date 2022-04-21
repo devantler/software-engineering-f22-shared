@@ -47,34 +47,34 @@ class EntityGenerator {
 				
 				        public async Task GoTo(string positionName)
 				        {
-				            await _mqttService.SendMessage(MqttTopics.Crane.Angle(_name), _positions[positionName].ToString());
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Angle, _positions[positionName].ToString());
 				        }
 				
 				        public async Task GoTo(int position)
 				        {
-				            await _mqttService.SendMessage(MqttTopics.Crane.Angle(_name), position.ToString());
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Angle, position.ToString());
 				        }
 				
 				        public async Task PickupItem()
 				        {
-				            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "LOW");
-				            await _mqttService.SendMessage(MqttTopics.Crane.Magnet(_name), "1");
-				            while (_mqttService.GetMessage(MqttTopics.Crane.Moving(_name)) != "0")
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "LOW");
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "1");
+				            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0")
 				            {
 				                await Task.Delay(100);
 				            }
-				            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "HIGH");
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "HIGH");
 				        }
 				
 				        public async Task DropItem()
 				        {
-				            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "LOW");
-				            while (_mqttService.GetMessage(MqttTopics.Crane.Moving(_name)) != "0")
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "LOW");
+				            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0")
 				            {
 				                await Task.Delay(100);
 				            }
-				            await _mqttService.SendMessage(MqttTopics.Crane.Magnet(_name), "0");
-				            await _mqttService.SendMessage(MqttTopics.Crane.Elevation(_name), "HIGH");
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "0");
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "HIGH");
 				        }
 				
 				        public string GetName()
@@ -152,10 +152,9 @@ class EntityGenerator {
 				
 				    public void MoveSlot(int fromZone, int toZone)
 				    {
-				        //Mqtt stuff
 				        var zonesToMove = fromZone - toZone;
 				        _currentOffset = (_currentOffset + zonesToMove) % _slots.Count;
-				        _mqttService.SendMessage(MqttTopics.Disk.Slot(_name), _currentOffset.ToString()); //TODO: Might need to be changed to MqttTopics.Disk.Zone
+				        _mqttService.SendMessage(MqttTopics.Disk(_name).Slot, _currentOffset.ToString());
 				    }
 				    #endregion
 				
@@ -260,18 +259,22 @@ class EntityGenerator {
 				    private readonly string _name;
 					private readonly IMqttService _mqttService;
 					private readonly List<string> _colors;
-					
-				    public Camera(string name, List<string> colors, IMqttService mqttService)
-				    {
-				        _name = name;
-				        _colors = colors;
-				        _mqttService = mqttService;
-				    }
+					   
+					public Camera(string name, List<string> colors, IMqttService mqttService)
+					{
+						_name = name;
+						_colors = colors;
+						_mqttService = mqttService;
+					}
 				
 				    public string Scan()
 				    {
-				        //Scanner stuff
-				        return string.Empty;
+				        _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "1");
+				        while (_mqttService.GetMessage(MqttTopics.Camera(_name).Scanning) == "1")
+				        {
+				            Task.Delay(100);
+				        }
+				        return _mqttService.GetMessage(MqttTopics.Camera(_name).Color) ?? Scan();
 				    }
 				
 				    public string GetName()
@@ -344,7 +347,7 @@ class EntityGenerator {
 			'OrchestratorService/Entities/SlotState.cs',
 			'''
 				namespace Entities;
-				
+
 				public enum SlotState 
 				{
 				    Empty,

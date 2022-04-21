@@ -59,7 +59,6 @@ public class Disk
 
     public void MoveSlot(int fromZone, int toZone)
     {
-        //Mqtt stuff
         var zonesToMove = fromZone - toZone;
         _currentOffset = (_currentOffset + zonesToMove) % _slots.Count;
         _mqttService.SendMessage(MqttTopics.Disk(_name).Slot, _currentOffset.ToString());

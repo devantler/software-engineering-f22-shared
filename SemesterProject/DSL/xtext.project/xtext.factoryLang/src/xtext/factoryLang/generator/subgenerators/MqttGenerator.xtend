@@ -14,10 +14,7 @@ class MqttGenerator {
 		fsa.generateFile(
 			'OrchestratorService/Mqtt/MqttService.cs',
 			'''
-				using System;
-				using System.Collections.Generic;
 				using System.Text;
-				using System.Threading.Tasks;
 				using MQTTnet;
 				using MQTTnet.Client.Connecting;
 				using MQTTnet.Client.Disconnecting;
@@ -34,38 +31,33 @@ class MqttGenerator {
 				        private const int Port = 1883;
 				
 				        private readonly IManagedMqttClient _mqttClient;
-				        private readonly Dictionary<string, string> messages = new Dictionary<string, string>();
+				        private readonly Dictionary<string, string> messages = new();
 				
 				        public MqttService()
 				        {
-				    // Creates a new client
-				    MqttClientOptionsBuilder builder = new MqttClientOptionsBuilder()
-				        .WithClientId(ClientId)
-				        .WithTcpServer(Ip, Port);
+				            MqttClientOptionsBuilder builder = new MqttClientOptionsBuilder()
+				                .WithClientId(ClientId)
+				                .WithTcpServer(Ip, Port);
 				
-				            // Create client options objects
 				            ManagedMqttClientOptions options = new ManagedMqttClientOptionsBuilder()
 				                .WithAutoReconnectDelay(TimeSpan.FromSeconds(60))
 				                .WithClientOptions(builder.Build())
 				                .Build();
 				
-				            // Creates the client object
 				            _mqttClient = new MqttFactory().CreateManagedMqttClient();
 				
-				            // Set up handlers
 				            _mqttClient.ConnectedHandler = new MqttClientConnectedHandlerDelegate(OnConnected);
 				            _mqttClient.DisconnectedHandler = new MqttClientDisconnectedHandlerDelegate(OnDisconnected);
 				            _mqttClient.ConnectingFailedHandler = new ConnectingFailedHandlerDelegate(OnConnectingFailed);
 				            _mqttClient.ApplicationMessageReceivedHandler = new MqttApplicationMessageReceivedHandlerDelegate(OnMessageReceived);
 				
-				            // Starts a connection with the Broker
 				            _mqttClient.StartAsync(options).GetAwaiter().GetResult();
 				        }
 				
 				        private void OnMessageReceived(MqttApplicationMessageReceivedEventArgs obj)
 				        {
-				        	var topic = obj.ApplicationMessage.Topic;
-				        	messages[topic] = Encoding.Default.GetString(obj.ApplicationMessage.Payload);
+				            var topic = obj.ApplicationMessage.Topic;
+				            messages[topic] = Encoding.Default.GetString(obj.ApplicationMessage.Payload);
 				        }
 				
 				        public string? GetMessage(string topic)
@@ -108,8 +100,6 @@ class MqttGenerator {
 		fsa.generateFile(
 			'OrchestratorService/Mqtt/IMqttService.cs',
 			'''
-				using System.Threading.Tasks;
-				
 				namespace Mqtt
 				{
 				    public interface IMqttService
@@ -130,58 +120,66 @@ class MqttGenerator {
 				{
 				    public static class MqttTopics
 				    {
-				        public static class Crane
+				        public static CraneTopic Crane(string name)
 				        {
-				            public static string Angle(string craneName)
-				            {
-				                return $"{craneName}/angle";
-				            }
-				
-				            public static string Elevation(string craneName)
-				            {
-				                return $"{craneName}/elevation";
-				            }
-				
-				            public static string Moving(string craneName)
-				            {
-				                return $"{craneName}/moving";
-				            }
-				
-				            public static string Magnet(string craneName)
-				            {
-				                return $"{craneName}/magnet";
-				            }
+				            return new CraneTopic(name);
 				        }
 				
-				        public static class Disk
+				        public class CraneTopic
 				        {
-				            public static string Slot(string diskName)
-				            {
-				                return $"{diskName}/slot";
-				            }
+				            public string Name { get; }
 				
-				            public static string Zone(string diskName)
+				            public CraneTopic(string name)
 				            {
-				                return $"{diskName}/zone";
+				                Name = name;
 				            }
+				            public string Angle { get => $"{Name}/angle"; }
 				
-				            public static string Moving(string diskName)
-				            {
-				                return $"{diskName}/moving";
-				            }
+				            public string Elevation { get => $"{Name}/elevation"; }
+				
+				            public string Magnet { get => $"{Name}/magnet"; }
+				
+				            public string Moving { get => $"{Name}/moving"; }
 				        }
 				
-				        public static class Camera
+				        public static DiskTopic Disk(string name)
 				        {
-				            public static string Scan(string cameraName)
+				            return new DiskTopic(name);
+				        }
+				
+				        public class DiskTopic
+				        {
+				            public string Name { get; }
+				
+				            public DiskTopic(string name)
 				            {
-				                return $"{cameraName}/scan";
+				                Name = name;
 				            }
 				
-				            public static string Scanning(string cameraName)
+				            public string Slot { get => $"{Name}/slot"; }
+				
+				            public string Moving { get => $"{Name}/moving"; }
+				        }
+				
+				        public static CameraTopic Camera(string name)
+				        {
+				            return new CameraTopic(name);
+				        }
+				
+				        public class CameraTopic
+				        {
+				            public string Name { get; }
+				
+				            public CameraTopic(string name)
 				            {
-				                return $"{cameraName}/scanning";
+				                Name = name;
 				            }
+				
+				            public string Scan { get => $"{Name}/scan"; }
+				
+				            public string Color { get => $"{Name}/color"; }
+				
+				            public string Scanning { get => $"{Name}/scanning"; }
 				        }
 				    }
 				}

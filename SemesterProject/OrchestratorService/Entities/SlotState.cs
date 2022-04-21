@@ -1,5 +1,7 @@
 namespace Entities;
-public enum SlotState {
+
+public enum SlotState 
+{
     Empty,
     InProgress,
     Complete
