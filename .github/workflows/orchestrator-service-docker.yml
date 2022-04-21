@@ -3,8 +3,8 @@ name: Orchestrator-Service-Docker
 on:
   push:
     branches: ['main']
-    # paths:
-    #   - 'SemesterProject/RaspberryPi/OrchestratorService/**'
+    paths:
+      - 'SemesterProject/RaspberryPi/OrchestratorService/**'
 
 jobs:
   build-and-push-image:
