@@ -28,6 +28,7 @@ jobs:
         with:
           context: SemesterProject/RaspberryPi/OrchestratorService
           file: SemesterProject/RaspberryPi/OrchestratorService/Dockerfile
+          platform: linux/arm/v7
           push: true
           tags: devantler/software-engineering-f22/orchestrator-service:latest
           
