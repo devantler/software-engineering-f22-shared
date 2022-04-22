@@ -29,7 +29,7 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 
 	@Check
 	def checkCranePositionParameter(CranePositionParameter parameter) {
-		if (!(parameter.degree >= 0 && parameter.degree <= 359)) {
+		if (!(parameter.degree>= 0 && parameter.degree <= 359)) {
 			error('Degree value should be between 0 and 359 degrees (inclusive)',
 				Literals.CRANE_POSITION_PARAMETER__DEGREE, INVALID_VALUE)
 		}
@@ -40,7 +40,7 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 		val disk = EcoreUtil2.getContainerOfType(parameter, Disk) as Disk
 		val nSlots = (disk.slotParameter as DiskSlotParameter).size
 
-		if (!(parameter.slot > 0 && parameter.slot <= nSlots)) {
+		if (!(parameter.slot> 0 && parameter.slot <= nSlots)) {
 			error('''Slot must be within available slots (1-«nSlots»)''', Literals.DISK_ZONE_PARAMETER__SLOT,
 				INVALID_VALUE)
 		}
@@ -57,7 +57,7 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 		val measure = operation.measure
 
 		if (quantity < 1) {
-			error('The time to finish should be >= 1', (Literals.DISK_MARK_SLOT_OPERATION__QUANTITY), INVALID_VALUE)
+			error('The time to finish should be>= 1', (Literals.DISK_MARK_SLOT_OPERATION__QUANTITY), INVALID_VALUE)
 			return
 		}
 		if (quantity == 1) {
@@ -68,7 +68,7 @@ class FactoryLangValidator extends AbstractFactoryLangValidator {
 			return
 		} else {
 			if (!(measure == TIME.SECONDS || measure == TIME.MINUTES || measure == TIME.HOURS)) {
-				error('Use plural unit notation when quantity is > 1', Literals.DISK_MARK_SLOT_OPERATION__MEASURE,
+				error('Use plural unit notation when quantity is> 1', Literals.DISK_MARK_SLOT_OPERATION__MEASURE,
 					INVALID_VALUE)
 			}
 		}

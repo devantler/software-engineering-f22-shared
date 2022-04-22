@@ -6,9 +6,6 @@ import xtext.factoryLang.factoryLang.*
 class UppaalQueryGenerator {
 	def static String generateUpaalQuery(List<Crane> cranes, List<Disk> discs, List<Camera> cameras){
 		return '''
-		// Place template instantiations here.
-		// List one or more processes to be composed into a system.
-		system MasterController, «FOR disc : discs»«disc.name», «disc.name»_DiscSlot, «disc.name»_GetEmptySlot, «disc.name»_SlotVariable_finished, «disc.name»_GetFinishedSlot,«ENDFOR» «FOR crane: cranes»«crane.name»,«crane.name»_CraneMagnet,«ENDFOR» «FOR camera: cameras»«camera.name»,«ENDFOR» EmergencyButton;</system>
 			<queries>
 			    «FOR crane: cranes»
 			    <query>

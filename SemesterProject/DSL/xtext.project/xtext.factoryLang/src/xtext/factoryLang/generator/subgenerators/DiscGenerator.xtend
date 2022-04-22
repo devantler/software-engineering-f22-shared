@@ -8,49 +8,49 @@ class DiscGenerator {
 	def static String generate(Disk disc){
 		'''
 		<template>
-			<name>«disc.name»</name>
-			«FOR i : 1 ..(disc.targets.findFirst[it instanceof DiskSlotParameter] as DiskSlotParameter).size»
-			<location id="«getIdOfLocation('''Position«i»''')»">
-				<name>Position«i»</name>
+			<name>Â«disc.nameÂ»_ï¿½disc.nameï¿½</name>
+			ï¿½FOR i : 1 ..(disc.targets.findFirst[it instanceof DiskSlotParameter] as DiskSlotParameter).sizeï¿½
+			<location id="ï¿½getIdOfLocation('''Positionï¿½iï¿½''')ï¿½">
+				<name>Â«disc.nameÂ»_Positionï¿½iï¿½</name>
 			</location>
-			<location id="«getIdOfLocation('''AddItem«i»Req''')»">
-				<name>AddItem«i»Req</name>
+			<location id="ï¿½getIdOfLocation('''AddItemï¿½iï¿½Req''')ï¿½">
+				<name>Â«disc.nameÂ»_AddItemï¿½iï¿½Req</name>
 			</location>
-			<location id="«getIdOfLocation('''RemoveItem«i»Req''')»">
-				<name>RemoveItem«i»Req</name>
+			<location id="ï¿½getIdOfLocation('''RemoveItemï¿½iï¿½Req''')ï¿½">
+				<name>Â«disc.nameÂ»_RemoveItemï¿½iï¿½Req</name>
 			</location>
-			«ENDFOR»
-			<location id="«getIdOfLocation('''«disc.name»_Stopped''')»">
-				<name>Stopped</name>
+			ï¿½ENDFORï¿½
+			<location id="ï¿½getIdOfLocation('''ï¿½disc.nameï¿½_Stopped''')ï¿½">
+				<name>Â«disc.nameÂ»_Stopped</name>
 			</location>
-			<init ref="«getIdOfLocation('''Position0''')»"/>
-			«FOR i : 1 ..(disc.targets.findFirst[it instanceof DiskSlotParameter] as DiskSlotParameter).size»
+			<init ref="ï¿½getIdOfLocation('''Position0''')ï¿½"/>
+			ï¿½FOR i : 1 ..(disc.targets.findFirst[it instanceof DiskSlotParameter] as DiskSlotParameter).sizeï¿½
 			<transition>
-				<source ref="«getIdOfLocation('''Position«i»''')»"/>
-				<target ref="«getIdOfLocation('''«disc.name»_Stopped''')»"/>
+				<source ref="ï¿½getIdOfLocation('''Positionï¿½iï¿½''')ï¿½"/>
+				<target ref="ï¿½getIdOfLocation('''ï¿½disc.nameï¿½_Stopped''')ï¿½"/>
 				<label kind="synchronisation">emergencyStop?</label>
 			</transition>
 			<transition>
-				<source ref="«getIdOfLocation('''Position«i»''')»"/>
-				<target ref="«getIdOfLocation('''AddItem«i»Req''')»"/>
-				<label kind="synchronisation">«disc.name»_addItemCmd?</label>
+				<source ref="ï¿½getIdOfLocation('''Positionï¿½iï¿½''')ï¿½"/>
+				<target ref="ï¿½getIdOfLocation('''AddItemï¿½iï¿½Req''')ï¿½"/>
+				<label kind="synchronisation">ï¿½disc.nameï¿½_addItemCmd?</label>
 			</transition>
 			<transition>
-				<source ref="«getIdOfLocation('''Position«i»''')»"/>
-				<target ref="«getIdOfLocation('''RemoveItem«i»Req''')»"/>
-				<label kind="synchronisation">«disc.name»_removeItemCmd?</label>
+				<source ref="ï¿½getIdOfLocation('''Positionï¿½iï¿½''')ï¿½"/>
+				<target ref="ï¿½getIdOfLocation('''RemoveItemï¿½iï¿½Req''')ï¿½"/>
+				<label kind="synchronisation">ï¿½disc.nameï¿½_removeItemCmd?</label>
 			</transition>
 			<transition>
-				<source ref="«getIdOfLocation('''AddItem«i»Req''')»"/>
-				<target ref="«getIdOfLocation('''Position«i»''')»"/>
-				<label kind="synchronisation">«disc.name»_addItem[«i-1»]!</label>
+				<source ref="ï¿½getIdOfLocation('''AddItemï¿½iï¿½Req''')ï¿½"/>
+				<target ref="ï¿½getIdOfLocation('''Positionï¿½iï¿½''')ï¿½"/>
+				<label kind="synchronisation">ï¿½disc.nameï¿½_addItem[ï¿½i-1ï¿½]!</label>
 			</transition>
 			<transition>
-				<source ref="«getIdOfLocation('''RemoveItem«i»Req''')»"/>
-				<target ref="«getIdOfLocation('''Position«i»''')»"/>
-				<label kind="synchronisation">«disc.name»_removeItem[«i-1»]!</label>
+				<source ref="ï¿½getIdOfLocation('''RemoveItemï¿½iï¿½Req''')ï¿½"/>
+				<target ref="ï¿½getIdOfLocation('''Positionï¿½iï¿½''')ï¿½"/>
+				<label kind="synchronisation">ï¿½disc.nameï¿½_removeItem[ï¿½i-1ï¿½]!</label>
 			</transition>
-			«ENDFOR»
+			ï¿½ENDFORï¿½
 		</template>
 		'''
 	}

@@ -31,9 +31,9 @@ class FactoryLangGenerator extends AbstractGenerator {
 		CsprojGenerator.generate(fsa)
 		MqttGenerator.generate(fsa)
 		EntityGenerator.generate(fsa, 
-			devices.filter[it instanceof Crane].size > 0, 
-			devices.filter[it instanceof Disk].size > 0, 
-			devices.filter[it instanceof Camera].size > 0
+			devices.filter[it instanceof Crane].size> 0, 
+			devices.filter[it instanceof Disk].size> 0, 
+			devices.filter[it instanceof Camera].size> 0
 		)
 		
 		ProgramGenerator.generate(fsa, devices, statements)

@@ -28,14 +28,14 @@ class UppaalMasterGenerator {
 	def static dispatch String generateLocation(VariableConditional statement) {
 		'''
 		<location id="«getIdOfLocation('''«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»''')»">
-			<name>«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»</name>
 			<committed/>
 		</location>
 		<location id="«getIdOfLocation('''«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»''')»">
-			<name>«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''EndIf_«statements.indexOf(statement)»''')»">
-			<name>EndIf_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_EndIf_«statements.indexOf(statement)»</name>
 		</location>
 		'''
 	}
@@ -66,16 +66,16 @@ class UppaalMasterGenerator {
 	def static dispatch String generateLocation(CranePickupOperation statement) {
 		'''
 		<location id="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_lower_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_lower_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_lower_«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_raise_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_raise_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_raise_«statements.indexOf(statement)»</name>
 		</location>
 		'''
 	}
@@ -110,16 +110,16 @@ class UppaalMasterGenerator {
 	def static dispatch String generateLocation(CraneDropOperation statement) {
 		'''
 		<location id="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_lower_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_lower_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_lower_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_raise_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_raise_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_raise_«statements.indexOf(statement)»</name>
 		</location>
 		'''
 	}
@@ -154,7 +154,7 @@ class UppaalMasterGenerator {
 	def static dispatch String generateLocation(DiskMoveSlotOperation statement) {
 		'''
 		<location id="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statement«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_goto_«statement.target.name»_statement«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_goto_«statement.target.name»_statement«statements.indexOf(statement)»</name>
 		</location>
 		'''
 	}
@@ -174,7 +174,7 @@ class UppaalMasterGenerator {
 	def static dispatch String generateLocation(DiskMoveVariableSlotOperation statement) {
 		'''
 		<location id="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»goto_«statement.target.name»_statment«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»goto_«statement.target.name»_statment«statements.indexOf(statement)»</name>
 		</location>
 		'''
 	}
@@ -194,14 +194,14 @@ class UppaalMasterGenerator {
 	def static dispatch String generateLocation(DiskMoveEmptySlotOperation statement) {
 		'''
 		<location id="«getIdOfLocation('''«statement.device.name»_getEmptySlot_statement«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_getEmptySlot_statment«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_getEmptySlot_statment«statements.indexOf(statement)»</name>
 			<committed/>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_gottenEmptySlot_statement«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_gottenEmptySlot_statment«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_goto_«statement.target.name»_statement«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_goto_«statement.target.name»_statment«statements.indexOf(statement)»</name>
 		</location>
 		'''
 	}
@@ -238,20 +238,20 @@ class UppaalMasterGenerator {
 	
 	def static dispatch String generateLocation(DiskMarkSlotOperation statement) {
 		'''
-		«IF statement.quantity > 0»
+		«IF statement.quantity> 0»
 		<location id="«getIdOfLocation('''«statement.device.name»_markSlot«statement.diskSlotValue»In«statement.quantity»«statement.measure»_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_markSlot«statement.diskSlotValue»In«statement.quantity»«statement.measure»_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_markSlot«statement.diskSlotValue»In«statement.quantity»«statement.measure»_«statements.indexOf(statement)»</name>
 		</location>
 		«ENDIF»
 		<location id="«getIdOfLocation('''«statement.device.name»_markSlot«statement.diskSlotValue»_statement«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_markSlot«statement.diskSlotValue»_statement«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_markSlot«statement.diskSlotValue»_statement«statements.indexOf(statement)»</name>
 		</location>
 		'''
 	}
 	
 	def static dispatch String generateTransistion(DiskMarkSlotOperation statement) {
 		val trans = '''
-		«IF statement.quantity > 0»
+		«IF statement.quantity> 0»
 		<transition>
 			<source ref="«lastTransistionState»"/>
 			<target ref="«getIdOfLocation('''«statement.device.name»_markSlot«statement.diskSlotValue»In«statement.quantity»«statement.measure»_«statements.indexOf(statement)»''')»"/>
@@ -278,14 +278,14 @@ class UppaalMasterGenerator {
 	def static dispatch String generateLocation(CameraScanOperation statement) {
 		'''
 		<location id="«getIdOfLocation('''«statement.device.name»_scanItem_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_scanItem_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_scanItem_«statements.indexOf(statement)»</name>
 			<committed/>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_itemColour_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_itemColour_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_itemColour_«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_setItemColour_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_setItemColour_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_setItemColour_«statements.indexOf(statement)»</name>
 		</location>
 		'''
 	}
@@ -315,11 +315,11 @@ class UppaalMasterGenerator {
 	def static dispatch String generateLocation(ForEach statement) {
 		'''
 		<location id="«getIdOfLocation('''«statement.device.name»_get«statement.variableValue.value»Slot_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_get«statement.variableValue.value»Slot_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_get«statement.variableValue.value»Slot_«statements.indexOf(statement)»</name>
 			<committed/>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_gottenSlot«statement.variableValue.value»_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_gottenSlot«statement.variableValue.value»_«statements.indexOf(statement)»</name>
+			<name>«disc.name»_«statement.device.name»_gottenSlot«statement.variableValue.value»_«statements.indexOf(statement)»</name>
 		</location>
 		'''
 	}

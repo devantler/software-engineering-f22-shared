@@ -8,13 +8,13 @@ class DiscGetVariableGenerator {
 	def static String generate(Disk disc, String variable){
 		'''
 		<template>
-			<name>«disc.name»_Get«variable»Slot</name>
+			<name>«disc.name»_«disc.name»_Get«variable»Slot</name>
 			<location id="«getIdOfLocation('''«disc.name»_Get«variable»Slot_Idle''')»">
-				<name>Idle</name>
+				<name>«disc.name»_Idle</name>
 			</location>
 			«FOR i : 1 .. (disc.targets.findFirst[it instanceof DiskSlotParameter] as DiskSlotParameter).size»
 			<location id="«getIdOfLocation('''«disc.name»_Get«i»''')»">
-				<name>Get«i»</name>
+				<name>«disc.name»_Get«i»</name>
 				<committed/>
 			</location>
 			«ENDFOR»
