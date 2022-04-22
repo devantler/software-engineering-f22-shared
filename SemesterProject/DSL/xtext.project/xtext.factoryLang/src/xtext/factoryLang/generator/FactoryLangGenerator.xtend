@@ -15,6 +15,7 @@ import xtext.factoryLang.factoryLang.Crane
 import xtext.factoryLang.generator.subgenerators.EntityGenerator
 import xtext.factoryLang.factoryLang.Disk
 import xtext.factoryLang.factoryLang.Camera
+import xtext.factoryLang.generator.subgenerators.UppaalGenerator
 
 /**
  * Generates code from your model files on save.
@@ -27,15 +28,22 @@ class FactoryLangGenerator extends AbstractGenerator {
 		val model = resource.allContents.filter(Model).next
 		val devices = model.configurations.map[device]
 		val statements = model.statements
+		try { 
+			ProgramGenerator.generate(fsa, devices, statements)
+			UppaalGenerator.generate(fsa, resource)
+			CsprojGenerator.generate(fsa)
+			MqttGenerator.generate(fsa)
+			EntityGenerator.generate(fsa, 
+				devices.filter[it instanceof Crane].size> 0, 
+				devices.filter[it instanceof Disk].size> 0, 
+				devices.filter[it instanceof Camera].size> 0
+			)
+			println("WHat even is this")
+		} catch (Exception e) {
+			e.printStackTrace()
+		}
 		
-		CsprojGenerator.generate(fsa)
-		MqttGenerator.generate(fsa)
-		EntityGenerator.generate(fsa, 
-			devices.filter[it instanceof Crane].size> 0, 
-			devices.filter[it instanceof Disk].size> 0, 
-			devices.filter[it instanceof Camera].size> 0
-		)
 		
-		ProgramGenerator.generate(fsa, devices, statements)
+
 	}
 }

@@ -41,7 +41,7 @@ class UppaalGenerator {
 		val cameras = model.configurations.map[device].filter[it instanceof Camera].map[x|x as Camera]
 		val discSlotStateValues = resource.allContents.filter(DiskSlotStateValue).map[value].toSet.map[toString]
 		statements = model.statements
-		
+		println("Hello darkness my old friend")
 		fsa.generateFile("uppaal/system.xml", 
 			'''
 			<?xml version="1.0" encoding="utf-8"?>
