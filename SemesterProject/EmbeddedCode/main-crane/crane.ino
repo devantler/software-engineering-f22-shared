@@ -4,7 +4,7 @@
 
 // Pins
 const int magnetPin = 2;
-const int stepperMotorPin1 = 35, stepperMotorPin2 = 32, stepperMotorPin3 = 33, stepperMotorPin4 = 25;
+const int stepperMotorPin1 = 15, stepperMotorPin2 = 32, stepperMotorPin3 = 33, stepperMotorPin4 = 25;
 
 // Other variables
 const int stepsPerRevolution = 20200;

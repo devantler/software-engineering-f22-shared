@@ -3,10 +3,10 @@
 #include "wifi.h"
 
 char *topics[] = {
-    (char *)"crane/angle",
-    (char *)"crane/elevation",
-    (char *)"crane/magnet",
-    (char *)"crane/moving",
+    (char *)"crane1/angle",
+    (char *)"crane1/elevation",
+    (char *)"crane1/magnet",
+    (char *)"crane1/moving",
 };
 
 int topicSize = 3;
@@ -27,21 +27,28 @@ void callback(char *topic, byte *message, unsigned int length)
 
   if (topicTemp == topics[0])
   {
-    publish(topics[3], "Moving");
+    publish(topics[3], (char *)"Moving");
     gotoAngle(messageTemp.toInt());
-    publish(topics[3], "Stopped");
+    publish(topics[3], (char *)"Stopped");
   }
-  else if (topicTemp == topics[1]])
+  else if (topicTemp == topics[1])
   {
-    publish(topics[3], "Moving");
-    toggleMagnet(messageTemp.toInt());
-    publish(topics[3], "Stopped");
+    publish(topics[3], (char *)"Moving");
+    toggleElevation(messageTemp.toInt());
+    publish(topics[3], (char *)"Stopped");
   }
   else if (topicTemp == topics[2])
   {
-    publish(topics[3], "Moving");
-    toggleElevation(messageTemp.toInt());
-    publish(topics[3], "Stopped");
+    int toggleVal = messageTemp.toInt();
+    if(toggleVal == 1)
+    {
+      Serial.println("Magnet on");
+    }
+    else
+    {
+      Serial.println("Magnet off");
+    }
+    toggleMagnet(toggleVal);
   }
 }
 
