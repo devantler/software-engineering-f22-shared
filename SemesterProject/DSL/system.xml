@@ -1498,7 +1498,7 @@ clock timer;</declaration>
 			<comment></comment>
 		</query>
 		<query>
-			<formula>A[] EmergencyButton.Stopped imply (crane1.xtext.factoryLang.factoryLang.impl.CraneImpl@7ec7efb7 (name: crane1)_Stopped and disk1.Stopped and (crane1_CraneMagnet.crane1_StoppedMagnetOff or crane1_CraneMagnet.crane1_StoppedMagnetOn))</formula>
+			<formula>A[] EmergencyButton.Stopped imply (crane1.crane1_Stopped and disk1.Stopped and (crane1_CraneMagnet.crane1_StoppedMagnetOff or crane1_CraneMagnet.crane1_StoppedMagnetOn))</formula>
 			<comment></comment>
 		</query>
 	</queries>
