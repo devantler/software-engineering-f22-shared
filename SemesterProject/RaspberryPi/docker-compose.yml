@@ -7,7 +7,11 @@ services:
       - "./mosquitto.conf:/mosquitto/config/mosquitto.conf"
     ports:
       - "1883:1883"
-      
+
+  orchestrator:
+    restart: unless-stopped
+    image: "ghcr.io/devantler/software-engineering-f22/orchestrator-service:latest"
+         
   camera:
     restart: unless-stopped
     image: "ghcr.io/devantler/software-engineering-f22/camera-color-scanner:latest"
