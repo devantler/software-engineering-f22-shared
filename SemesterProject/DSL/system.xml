@@ -12,7 +12,7 @@ chan disk1_addItem[disk1_numberOfSlots];
 broadcast chan disk1_removeItem[disk1_numberOfSlots];
 
 //default tags
-chan disk1_getfreeSlot;
+chan disk1_getemptySlot;
 chan disk1_foundemptySlot;
 chan disk1_setColour[disk1_numberOfSlots][4];
 bool disk1_notemptySlots[disk1_numberOfSlots];
@@ -21,19 +21,19 @@ chan disk1_gottenColourSlot;
 
 //complete tag
 chan disk1_set_complete[disk1_numberOfSlots];
-chan disk1_getSlot_complete;
-chan disk1_foundSlot_complete;
-bool disk1_slots_complete[disk1_numberOfSlots];
+chan disk1_getcompleteSlot;
+chan disk1_foundcompleteSlot;
+bool disk1_notcompleteSlots[disk1_numberOfSlots];
 //free tag
 chan disk1_set_free[disk1_numberOfSlots];
-chan disk1_getSlot_free;
-chan disk1_foundSlot_free;
-bool disk1_slots_free[disk1_numberOfSlots];
+chan disk1_getfreeSlot;
+chan disk1_foundfreeSlot;
+bool disk1_notfreeSlots[disk1_numberOfSlots];
 //in_progress tag
 chan disk1_set_in_progress[disk1_numberOfSlots];
-chan disk1_getSlot_in_progress;
-chan disk1_foundSlot_in_progress;
-bool disk1_slots_in_progress[disk1_numberOfSlots];
+chan disk1_getin_progressSlot;
+chan disk1_foundin_progressSlot;
+bool disk1_notin_progressSlots[disk1_numberOfSlots];
 
 //Zones: 
 int disk1_zones_craneZone = 1;
@@ -816,13 +816,13 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id49"/>
 			<target ref="id48"/>
-			<label kind="synchronisation">disk1set_complete[id]?</label>
+			<label kind="synchronisation">disk1_set_complete[id]?</label>
 			<label kind="assignment">disk1_slots_complete[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id48"/>
 			<target ref="id49"/>
-			<label kind="synchronisation">disk1set_complete[id]?</label>
+			<label kind="synchronisation">disk1_set_complete[id]?</label>
 			<label kind="assignment">disk1_slots_complete[id] = false</label>
 		</transition>
 		<transition>
@@ -980,13 +980,13 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id52"/>
 			<target ref="id51"/>
-			<label kind="synchronisation">disk1set_free[id]?</label>
+			<label kind="synchronisation">disk1_set_free[id]?</label>
 			<label kind="assignment">disk1_slots_free[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id51"/>
 			<target ref="id52"/>
-			<label kind="synchronisation">disk1set_free[id]?</label>
+			<label kind="synchronisation">disk1_set_free[id]?</label>
 			<label kind="assignment">disk1_slots_free[id] = false</label>
 		</transition>
 		<transition>
@@ -1144,13 +1144,13 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id55"/>
 			<target ref="id54"/>
-			<label kind="synchronisation">disk1set_in_progress[id]?</label>
+			<label kind="synchronisation">disk1_set_in_progress[id]?</label>
 			<label kind="assignment">disk1_slots_in_progress[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id54"/>
 			<target ref="id55"/>
-			<label kind="synchronisation">disk1set_in_progress[id]?</label>
+			<label kind="synchronisation">disk1_set_in_progress[id]?</label>
 			<label kind="assignment">disk1_slots_in_progress[id] = false</label>
 		</transition>
 		<transition>
