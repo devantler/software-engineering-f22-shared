@@ -91,7 +91,7 @@ clock timer;</declaration>
 		//TODO: NESTED STATEMENT LOOP
 		<init ref="id0"/>
 		<transition>
-			<source ref="id2"/>
+			<source ref="id0"/>
 			<target ref="id1"/>
 			<label kind="synchronisation">disk1_getSlot_complete!</label>
 			<label kind="assignment">GlobalTimer = 0</label>
@@ -103,7 +103,7 @@ clock timer;</declaration>
 		</transition>
 		<transition>
 			<source ref="id1"/>
-			<target ref="id2"/>
+			<target ref="id0"/>
 			<label kind="guard">GlobalTimer &gt; 2</label>
 		</transition>
 	</template>
@@ -1207,14 +1207,36 @@ clock timer;</declaration>
 		<location id="id61">
 			<name>crane1_LoweredAtintake</name>
 		</location>
+		<location id="id62">
+			<name>crane1_outRed</name>
+		</location>
+		<location id="id63">
+			<name>crane1_LoweredAtoutRed</name>
+		</location>
+		<location id="id64">
+			<name>crane1_outGreen</name>
+		</location>
+		<location id="id65">
+			<name>crane1_LoweredAtoutGreen</name>
+		</location>
+		<location id="id66">
+			<name>crane1_outBlue</name>
+		</location>
+		<location id="id67">
+			<name>crane1_LoweredAtoutBlue</name>
+		</location>
+		<location id="id68">
+			<name>crane1_Stopped</name>
+		</location>
+		<init ref="id60"/>
 		<transition>
 			<source ref="id60"/>
-			<target ref="id62"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id61"/>
-			<target ref="id62"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
@@ -1229,7 +1251,7 @@ clock timer;</declaration>
 		</transition>
 		<transition>
 			<source ref="id60"/>
-			<target ref="id63"/>
+			<target ref="id62"/>
 			<label kind="synchronisation">crane1crane_goto_outRed?</label>
 		</transition>
 		<transition>
@@ -1239,138 +1261,115 @@ clock timer;</declaration>
 		</transition>
 		<transition>
 			<source ref="id60"/>
-			<target ref="id65"/>
-			<label kind="synchronisation">crane1crane_goto_outBlue?</label>
-		</transition>
-		<location id="id63">
-			<name>crane1_outRed</name>
-		</location>
-		<location id="id66">
-			<name>crane1_LoweredAtoutRed</name>
-		</location>
-		<transition>
-			<source ref="id63"/>
-			<target ref="id62"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id66"/>
-			<target ref="id62"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id63"/>
 			<target ref="id66"/>
-			<label kind="synchronisation">crane1crane_lowerMagnet?</label>
+			<label kind="synchronisation">crane1crane_goto_outBlue?</label>
 		</transition>
 		<transition>
-			<source ref="id66"/>
-			<target ref="id63"/>
-			<label kind="synchronisation">crane1crane_raiseMagnet?</label>
+			<source ref="id62"/>
+			<target ref="id68"/>
+			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
+			<target ref="id68"/>
+			<label kind="synchronisation">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id62"/>
+			<target ref="id63"/>
+			<label kind="synchronisation">crane1crane_lowerMagnet?</label>
+		</transition>
+		<transition>
+			<source ref="id63"/>
+			<target ref="id62"/>
+			<label kind="synchronisation">crane1crane_raiseMagnet?</label>
+		</transition>
+		<transition>
+			<source ref="id62"/>
 			<target ref="id60"/>
 			<label kind="synchronisation">crane1crane_goto_intake?</label>
 		</transition>
 		<transition>
-			<source ref="id63"/>
+			<source ref="id62"/>
 			<target ref="id64"/>
 			<label kind="synchronisation">crane1crane_goto_outGreen?</label>
 		</transition>
 		<transition>
-			<source ref="id63"/>
-			<target ref="id65"/>
+			<source ref="id62"/>
+			<target ref="id66"/>
 			<label kind="synchronisation">crane1crane_goto_outBlue?</label>
 		</transition>
-		<location id="id64">
-			<name>crane1_outGreen</name>
-		</location>
-		<location id="id67">
-			<name>crane1_LoweredAtoutGreen</name>
-		</location>
 		<transition>
 			<source ref="id64"/>
-			<target ref="id62"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id67"/>
-			<target ref="id62"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id64"/>
-			<target ref="id67"/>
-			<label kind="synchronisation">crane1crane_lowerMagnet?</label>
-		</transition>
-		<transition>
-			<source ref="id67"/>
-			<target ref="id64"/>
-			<label kind="synchronisation">crane1crane_raiseMagnet?</label>
-		</transition>
-		<transition>
-			<source ref="id64"/>
-			<target ref="id60"/>
-			<label kind="synchronisation">crane1crane_goto_intake?</label>
-		</transition>
-		<transition>
-			<source ref="id64"/>
-			<target ref="id63"/>
-			<label kind="synchronisation">crane1crane_goto_outRed?</label>
-		</transition>
-		<transition>
-			<source ref="id64"/>
-			<target ref="id65"/>
-			<label kind="synchronisation">crane1crane_goto_outBlue?</label>
-		</transition>
-		<location id="id65">
-			<name>crane1_outBlue</name>
-		</location>
-		<location id="id68">
-			<name>crane1_LoweredAtoutBlue</name>
-		</location>
-		<transition>
-			<source ref="id65"/>
-			<target ref="id62"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id68"/>
-			<target ref="id62"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
 			<source ref="id65"/>
 			<target ref="id68"/>
-			<label kind="synchronisation">crane1crane_lowerMagnet?</label>
+			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id68"/>
+			<source ref="id64"/>
 			<target ref="id65"/>
-			<label kind="synchronisation">crane1crane_raiseMagnet?</label>
-		</transition>
-		<transition>
-			<source ref="id65"/>
-			<target ref="id60"/>
-			<label kind="synchronisation">crane1crane_goto_intake?</label>
-		</transition>
-		<transition>
-			<source ref="id65"/>
-			<target ref="id63"/>
-			<label kind="synchronisation">crane1crane_goto_outRed?</label>
+			<label kind="synchronisation">crane1crane_lowerMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id65"/>
 			<target ref="id64"/>
+			<label kind="synchronisation">crane1crane_raiseMagnet?</label>
+		</transition>
+		<transition>
+			<source ref="id64"/>
+			<target ref="id60"/>
+			<label kind="synchronisation">crane1crane_goto_intake?</label>
+		</transition>
+		<transition>
+			<source ref="id64"/>
+			<target ref="id62"/>
+			<label kind="synchronisation">crane1crane_goto_outRed?</label>
+		</transition>
+		<transition>
+			<source ref="id64"/>
+			<target ref="id66"/>
+			<label kind="synchronisation">crane1crane_goto_outBlue?</label>
+		</transition>
+		<transition>
+			<source ref="id66"/>
+			<target ref="id68"/>
+			<label kind="synchronisation">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id67"/>
+			<target ref="id68"/>
+			<label kind="synchronisation">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id66"/>
+			<target ref="id67"/>
+			<label kind="synchronisation">crane1crane_lowerMagnet?</label>
+		</transition>
+		<transition>
+			<source ref="id67"/>
+			<target ref="id66"/>
+			<label kind="synchronisation">crane1crane_raiseMagnet?</label>
+		</transition>
+		<transition>
+			<source ref="id66"/>
+			<target ref="id60"/>
+			<label kind="synchronisation">crane1crane_goto_intake?</label>
+		</transition>
+		<transition>
+			<source ref="id66"/>
+			<target ref="id62"/>
+			<label kind="synchronisation">crane1crane_goto_outRed?</label>
+		</transition>
+		<transition>
+			<source ref="id66"/>
+			<target ref="id64"/>
 			<label kind="synchronisation">crane1crane_goto_outGreen?</label>
 		</transition>
-		<location id="id62">
-			<name>crane1_Stopped</name>
-		</location>
-		<init ref="id60"/>
 	</template>
-	
 	<template>
 		<name>EmergencyButton</name>
 		<location id="id69">
