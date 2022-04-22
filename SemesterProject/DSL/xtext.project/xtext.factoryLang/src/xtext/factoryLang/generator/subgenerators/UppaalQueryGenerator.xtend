@@ -33,16 +33,16 @@ class UppaalQueryGenerator {
 				</query>
 				«FOR disc: discs»
 				<query>
-					<formula>A[] «disc.name»_slots_finished[1] imply «disc.name»_occupiedSlots[1]</formula>
+					<formula>A[] «disc.name»_slots_complete[1] imply «disc.name»_notemptySlots[1]</formula>
 					<comment></comment>
 				</query>
 				<query>
-					<formula>E&lt;&gt; forall (i : «disc.name»_id_t) «disc.name»_DiscSlot(i).SlotEmpty</formula>
+					<formula>E&lt;&gt; forall (i : «disc.name»_id_t) «disc.name»_DiscSlot(i).«disc.name»_SlotEmpty</formula>
 					<comment></comment>
 				</query>
 				«FOR crane: cranes»
 				<query>
-					<formula>A[] EmergencyButton.Stopped imply («crane.name».Stopped and «disc.name».Stopped and («crane.name»_CraneMagnet.«crane.name»_StoppedMagnetOff or «crane.name»_CraneMagnet.«crane.name»_StoppedMagnetOn))</formula>
+					<formula>A[] EmergencyButton.Stopped imply («crane.name».«crane.name»_Stopped and «disc.name».Stopped and («crane.name»_CraneMagnet.«crane.name»_StoppedMagnetOff or «crane.name»_CraneMagnet.«crane.name»_StoppedMagnetOn))</formula>
 					<comment></comment>
 				</query>
 				«ENDFOR»

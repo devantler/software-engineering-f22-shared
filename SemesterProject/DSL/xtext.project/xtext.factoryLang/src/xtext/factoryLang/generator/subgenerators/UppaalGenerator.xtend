@@ -52,26 +52,27 @@ class UppaalGenerator {
 			//«disc.name»
 			
 			const int «disc.name»_numberOfSlots = «(disc.slotParameter as DiskSlotParameter).size»;
-			typedef int[0,«disc.name»numberOfSlots-1] «disc.name»_id_t;
-			chan «disc.name»_goto[«disc.name»numberOfSlots];
-			chan «disc.name»_addItemCmd, «disc.name»removeItemCmd;
-			chan «disc.name»_addItem[«disc.name»numberOfSlots];
-			broadcast chan «disc.name»_removeItem[«disc.name»numberOfSlots];
+			typedef int[0,«disc.name»_numberOfSlots-1] «disc.name»_id_t;
+			chan «disc.name»_goto[«disc.name»_numberOfSlots];
+			chan «disc.name»_addItemCmd, «disc.name»_removeItemCmd;
+			chan «disc.name»_addItem[«disc.name»_numberOfSlots];
+			broadcast chan «disc.name»_removeItem[«disc.name»_numberOfSlots];
 			
 			//default tags
-			chan «disc.name»_getFreeSlot;
-			chan «disc.name»_foundEmptySlot;
-			chan «disc.name»_setColour[«disc.name»numberOfSlots][4];
-			bool «disc.name»_occupiedSlots[«disc.name»numberOfSlots];
-			chan «disc.name»_getColourSlot[«disc.name»numberOfSlots];
+			chan «disc.name»_getemptySlot;
+			chan «disc.name»_foundemptySlot;
+			chan «disc.name»_setColour[«disc.name»_numberOfSlots][4];
+			bool «disc.name»_notemptySlots[«disc.name»_numberOfSlots];
+			chan «disc.name»_getColourSlot[«disc.name»_numberOfSlots];
 			chan «disc.name»_gottenColourSlot;
 			
 			«FOR value : discSlotStateValues»
 			//«value» tag
-			chan «disc.name»_set_«value»[«disc.name»numberOfSlots];
-			chan «disc.name»_getSlot_«value»;
-			chan «disc.name»_foundSlot_«value»;
-			bool «disc.name»_slots_«value»[«disc.name»numberOfSlots];
+			chan «disc.name»_set_«value»[«disc.name»_numberOfSlots];
+			chan «disc.name»_get«value»Slot;
+			chan «disc.name»_found«value»Slot;
+			bool «disc.name»_not«value»Slots[«disc.name»_numberOfSlots];
+			bool «disc.name»_slots_«value»[«disc.name»_numberOfSlots];
 			«ENDFOR»
 			
 			//Zones: 
@@ -124,6 +125,7 @@ class UppaalGenerator {
 						<name>Idle</name>
 					</location>
 					«FOR statement : statements»
+					//TODO: NESTED STATEMENT LOOP
 					«UppaalMasterGenerator.generateLocation(statement)»
 					«ENDFOR»
 					<init ref="id0"/>
@@ -146,8 +148,13 @@ class UppaalGenerator {
 				«UppaalCraneGenerator.generateUppaalCraneTemplate(crane)»
 				«ENDFOR»
 				
+				«FOR camera : cameras»
+				«CameraGenerator.generate(camera)»
+				«ENDFOR»
 				«UppaalEmergencyButtonGenerator.generateUppaalEmergencyButtonTemplate()»
-			system MasterController, «FOR disc : discs»«disc.name», «disc.name»_DiscSlot, «disc.name»_GetEmptySlot, «FOR value: discSlotStateValues»«disc.name»_SlotVariable_«value», «disc.name»_Get«value»Slot,«ENDFOR»«ENDFOR» «FOR crane: cranes»«crane.name»,«crane.name»_CraneMagnet,«ENDFOR» «FOR camera: cameras»«camera.name»,«ENDFOR» EmergencyButton;</system>
+			<system>
+				system MasterController, «FOR disc : discs»«disc.name», «disc.name»_DiscSlot, «disc.name»_GetemptySlot, «FOR value: discSlotStateValues»«disc.name»_SlotVariable_«value», «disc.name»_Get«value»Slot,«ENDFOR»«ENDFOR» «FOR crane: cranes»«crane.name»,«crane.name»_CraneMagnet,«ENDFOR» «FOR camera: cameras»«camera.name»,«ENDFOR» EmergencyButton;
+			</system>
 			«UppaalQueryGenerator.generateUpaalQuery(cranes.toList(), discs.toList(), cameras.toList())»
 			'''
 		)
@@ -158,7 +165,8 @@ class UppaalGenerator {
 		if(locationIds.containsKey(location)){
 			return locationIds.get(location)
 		}else{
-			return locationIds.put(location, '''id«idCounter++»''')
+			locationIds.put(location, '''id«idCounter++»''')
+			return '''id«idCounter - 1»'''
 		}
 	}
 	

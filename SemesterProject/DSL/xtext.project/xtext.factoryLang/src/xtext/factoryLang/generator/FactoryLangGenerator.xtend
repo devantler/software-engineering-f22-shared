@@ -38,7 +38,6 @@ class FactoryLangGenerator extends AbstractGenerator {
 				devices.filter[it instanceof Disk].size> 0, 
 				devices.filter[it instanceof Camera].size> 0
 			)
-			println("WHat even is this")
 		} catch (Exception e) {
 			e.printStackTrace()
 		}
