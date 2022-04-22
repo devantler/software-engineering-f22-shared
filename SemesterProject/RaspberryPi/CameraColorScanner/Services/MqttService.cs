@@ -89,7 +89,10 @@ namespace CameraColorScanner.Services
                     {
                         Console.WriteLine("Got message!");
                     }
-
+                    await SendMessage(
+                            Configuration.Mqtt.ScanningTopic,
+                            "true",
+                            true);
                     var scannedColor = await _colorScanner.GetColor();
 
                     var resultTopic = Configuration.Mqtt.ResultTopic;
@@ -107,6 +110,10 @@ namespace CameraColorScanner.Services
                             scannedColor.ToString(),
                             false);
                     }
+                    await SendMessage(
+                            Configuration.Mqtt.ScanningTopic,
+                            "false",
+                            true);
                 }
                 else if (topic == Configuration.Mqtt.CommandTopic && message.StartsWith("SetLoggingLevel")){
                     var messageArray = message.Split(' ');
@@ -166,7 +173,7 @@ namespace CameraColorScanner.Services
         public async Task SendMessage(string topic, string payload, bool retain = false)
         {
             var topicArray = topic.Split('/');
-            if (topicArray[topicArray.lenght - 1] == "")
+            if (topicArray[topicArray.length - 1] == "")
             {
                 return;
             }
