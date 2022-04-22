@@ -1,15 +1,15 @@
 #include "Stepper.h"
 #include "Arduino.h"
 
-const int stepsPerRevolutionDisk = 20200; // TODO: the same as with crane motor? Also, is the moveDegrees() correct?
-int currentAngleDisk = 0;
+const int stepsPerRevolution = 20200; // TODO: the same as with crane motor? Also, is the moveDegrees() correct?
+int currentAngle = 0;
 
 
-Stepper revolutionStepperDisk(stepsPerRevolution, 33, 32, 35, 34);
+Stepper revolutionStepper(stepsPerRevolution, 33, 32, 35, 34);
 
 void setupDisk()
 {
-  revolutionStepperDisk.setSpeed(4);
+  revolutionStepper.setSpeed(4);
 }
 
 void gotoAngleDisk(int angle)

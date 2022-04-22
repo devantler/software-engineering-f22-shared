@@ -3,8 +3,8 @@
 #include "wifi.h"
 
 char *topics[] = {
-    (char *)"disk/zone",
-    (char *)"disk/moving",};
+    (char *)"disk1/zone",
+    (char *)"disk1/moving",};
 
 int topicSize = 1;
 const int ZONES[] = {0, 45, 90, 135, 180, 225, 270, 315};

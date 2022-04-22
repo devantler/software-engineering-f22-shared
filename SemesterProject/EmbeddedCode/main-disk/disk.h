@@ -4,7 +4,7 @@
 #include "Arduino.h"
 
 void setupDisk();
-void gotoAngleDisk(int angle);
+void gotoAngle(int angle);
 void toggleMagnet(int powerOn);
 void toggleElevation(int elevation);
 #endif
