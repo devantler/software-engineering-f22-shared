@@ -24,16 +24,19 @@ chan disk1_set_complete[disk1_numberOfSlots];
 chan disk1_getcompleteSlot;
 chan disk1_foundcompleteSlot;
 bool disk1_notcompleteSlots[disk1_numberOfSlots];
+bool disk1_slots_complete[disk1_numberOfSlots];
 //free tag
 chan disk1_set_free[disk1_numberOfSlots];
 chan disk1_getfreeSlot;
 chan disk1_foundfreeSlot;
 bool disk1_notfreeSlots[disk1_numberOfSlots];
+bool disk1_slots_free[disk1_numberOfSlots];
 //in_progress tag
 chan disk1_set_in_progress[disk1_numberOfSlots];
 chan disk1_getin_progressSlot;
 chan disk1_foundin_progressSlot;
 bool disk1_notin_progressSlots[disk1_numberOfSlots];
+bool disk1_slots_in_progress[disk1_numberOfSlots];
 
 //Zones: 
 int disk1_zones_craneZone = 1;
@@ -93,13 +96,13 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id1"/>
-			<label kind="synchronisation">disk1_getSlot_complete!</label>
+			<label kind="synchronisation">disk1_getcompleteSlot!</label>
 			<label kind="assignment">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="synchronisation">disk1_foundSlot_complete?</label>
+			<label kind="synchronisation">disk1_foundcompleteSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id1"/>
@@ -1189,12 +1192,12 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id57"/>
 			<target ref="id56"/>
-			<label kind="synchronisation">crane1_crane_toggleMagnet?</label>
+			<label kind="synchronisation">crane1_toggleMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id56"/>
 			<target ref="id57"/>
-			<label kind="synchronisation">crane1_crane_toggleMagnet?</label>
+			<label kind="synchronisation">crane1_toggleMagnet?</label>
 		</transition>
 	</template>
 	<template>
@@ -1242,27 +1245,27 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id61"/>
-			<label kind="synchronisation">crane1crane_lowerMagnet?</label>
+			<label kind="synchronisation">crane1_lowerMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id61"/>
 			<target ref="id60"/>
-			<label kind="synchronisation">crane1crane_raiseMagnet?</label>
+			<label kind="synchronisation">crane1_raiseMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id62"/>
-			<label kind="synchronisation">crane1crane_goto_outRed?</label>
+			<label kind="synchronisation">crane1_goto_outRed?</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id64"/>
-			<label kind="synchronisation">crane1crane_goto_outGreen?</label>
+			<label kind="synchronisation">crane1_goto_outGreen?</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id66"/>
-			<label kind="synchronisation">crane1crane_goto_outBlue?</label>
+			<label kind="synchronisation">crane1_goto_outBlue?</label>
 		</transition>
 		<transition>
 			<source ref="id62"/>
@@ -1277,27 +1280,27 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id62"/>
 			<target ref="id63"/>
-			<label kind="synchronisation">crane1crane_lowerMagnet?</label>
+			<label kind="synchronisation">crane1_lowerMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
 			<target ref="id62"/>
-			<label kind="synchronisation">crane1crane_raiseMagnet?</label>
+			<label kind="synchronisation">crane1_raiseMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id62"/>
 			<target ref="id60"/>
-			<label kind="synchronisation">crane1crane_goto_intake?</label>
+			<label kind="synchronisation">crane1_goto_intake?</label>
 		</transition>
 		<transition>
 			<source ref="id62"/>
 			<target ref="id64"/>
-			<label kind="synchronisation">crane1crane_goto_outGreen?</label>
+			<label kind="synchronisation">crane1_goto_outGreen?</label>
 		</transition>
 		<transition>
 			<source ref="id62"/>
 			<target ref="id66"/>
-			<label kind="synchronisation">crane1crane_goto_outBlue?</label>
+			<label kind="synchronisation">crane1_goto_outBlue?</label>
 		</transition>
 		<transition>
 			<source ref="id64"/>
@@ -1312,27 +1315,27 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id64"/>
 			<target ref="id65"/>
-			<label kind="synchronisation">crane1crane_lowerMagnet?</label>
+			<label kind="synchronisation">crane1_lowerMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id65"/>
 			<target ref="id64"/>
-			<label kind="synchronisation">crane1crane_raiseMagnet?</label>
+			<label kind="synchronisation">crane1_raiseMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id64"/>
 			<target ref="id60"/>
-			<label kind="synchronisation">crane1crane_goto_intake?</label>
+			<label kind="synchronisation">crane1_goto_intake?</label>
 		</transition>
 		<transition>
 			<source ref="id64"/>
 			<target ref="id62"/>
-			<label kind="synchronisation">crane1crane_goto_outRed?</label>
+			<label kind="synchronisation">crane1_goto_outRed?</label>
 		</transition>
 		<transition>
 			<source ref="id64"/>
 			<target ref="id66"/>
-			<label kind="synchronisation">crane1crane_goto_outBlue?</label>
+			<label kind="synchronisation">crane1_goto_outBlue?</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
@@ -1347,27 +1350,27 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id67"/>
-			<label kind="synchronisation">crane1crane_lowerMagnet?</label>
+			<label kind="synchronisation">crane1_lowerMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id67"/>
 			<target ref="id66"/>
-			<label kind="synchronisation">crane1crane_raiseMagnet?</label>
+			<label kind="synchronisation">crane1_raiseMagnet?</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id60"/>
-			<label kind="synchronisation">crane1crane_goto_intake?</label>
+			<label kind="synchronisation">crane1_goto_intake?</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id62"/>
-			<label kind="synchronisation">crane1crane_goto_outRed?</label>
+			<label kind="synchronisation">crane1_goto_outRed?</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id64"/>
-			<label kind="synchronisation">crane1crane_goto_outGreen?</label>
+			<label kind="synchronisation">crane1_goto_outGreen?</label>
 		</transition>
 	</template>
 	
