@@ -33,12 +33,12 @@ class UppaalCraneMagnetGenerator {
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation(crane.name+"_MagnetOn")»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation(crane.name+"_MagnetOff")»"/>
-				<label kind="synchronisation">«crane.name»_crane_toggleMagnet?</label>
+				<label kind="synchronisation">«crane.name»_toggleMagnet?</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation(crane.name+"_MagnetOff")»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation(crane.name+"_MagnetOn")»"/>
-				<label kind="synchronisation">«crane.name»_crane_toggleMagnet?</label>
+				<label kind="synchronisation">«crane.name»_toggleMagnet?</label>
 			</transition>
 		</template>
 		'''

@@ -46,109 +46,109 @@ class DiscSlotGenerator {
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFull''')»"/>
-				<label kind="synchronisation">«disc.name»addItem[id]?</label>
-				<label kind="assignment">«disc.name»occupiedSlots[id] = true</label>
+				<label kind="synchronisation">«disc.name»_addItem[id]?</label>
+				<label kind="assignment">«disc.name»_notemptySlots[id] = true</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFull''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullRed''')»"/>
-				<label kind="synchronisation">«disc.name»setColour[id][1]?</label>
+				<label kind="synchronisation">«disc.name»_setColour[id][1]?</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullRed''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_GetColourRed''')»"/>
-				<label kind="synchronisation">«disc.name»getColourSlot[id]?</label>
+				<label kind="synchronisation">«disc.name»_getColourSlot[id]?</label>
 				<label kind="assignment">currentSlot_colour = 1</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_GetColourRed''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullRed''')»"/>
-				<label kind="synchronisation">«disc.name»gottenColourSlot!</label>
+				<label kind="synchronisation">«disc.name»_gottenColourSlot!</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFull''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullGreen''')»"/>
-				<label kind="synchronisation">«disc.name»setColour[id][2]?</label>
+				<label kind="synchronisation">«disc.name»_setColour[id][2]?</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullGreen''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_GetColourGreen''')»"/>
-				<label kind="synchronisation">«disc.name»getColourSlot[id]?</label>
+				<label kind="synchronisation">«disc.name»_getColourSlot[id]?</label>
 				<label kind="assignment">currentSlot_colour = 2</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_GetColourGreen''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullGreen''')»"/>
-				<label kind="synchronisation">«disc.name»gottenColourSlot!</label>
+				<label kind="synchronisation">«disc.name»_gottenColourSlot!</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFull''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullBlue''')»"/>
-				<label kind="synchronisation">«disc.name»setColour[id][3]?</label>
+				<label kind="synchronisation">«disc.name»_setColour[id][3]?</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullBlue''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_GetColourBlue''')»"/>
-				<label kind="synchronisation">«disc.name»getColourSlot[id]?</label>
+				<label kind="synchronisation">«disc.name»_getColourSlot[id]?</label>
 				<label kind="assignment">currentSlot_colour = 3</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_GetColourBlue''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullBlue''')»"/>
-				<label kind="synchronisation">«disc.name»gottenColourSlot!</label>
+				<label kind="synchronisation">«disc.name»_gottenColourSlot!</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFull''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>
-				<label kind="synchronisation">«disc.name»removeItem[id]?</label>
-				<label kind="assignment">«disc.name»occupiedSlots[id] = false, «disc.name»slots_finished[id] = false</label>
+				<label kind="synchronisation">«disc.name»_removeItem[id]?</label>
+				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_slots_complete[id] = false</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullRed''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>
-				<label kind="synchronisation">«disc.name»removeItem[id]?</label>
-				<label kind="assignment">«disc.name»occupiedSlots[id] = false, «disc.name»slots_finished[id] = false</label>
+				<label kind="synchronisation">«disc.name»_removeItem[id]?</label>
+				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_slots_complete[id] = false</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullGreen''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>
-				<label kind="synchronisation">«disc.name»removeItem[id]?</label>
-				<label kind="assignment">«disc.name»occupiedSlots[id] = false, «disc.name»slots_finished[id] = false</label>
+				<label kind="synchronisation">«disc.name»_removeItem[id]?</label>
+				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_slots_complete[id] = false</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullBlue''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>
-				<label kind="synchronisation">«disc.name»removeItem[id]?</label>
-				<label kind="assignment">«disc.name»occupiedSlots[id] = false, «disc.name»slots_finished[id] = false</label>
+				<label kind="synchronisation">«disc.name»_removeItem[id]?</label>
+				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_slots_complete[id] = false</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_ErrorRemoveItemFromEmpty''')»"/>
-				<label kind="synchronisation">«disc.name»removeItem[id]?</label>
+				<label kind="synchronisation">«disc.name»_removeItem[id]?</label>
 				<label kind="assignment">error += 1</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFull''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_ErrorAddItemToFull''')»"/>
-				<label kind="synchronisation">«disc.name»addItem[id]?</label>
+				<label kind="synchronisation">«disc.name»_addItem[id]?</label>
 				<label kind="assignment">error += 2</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullRed''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_ErrorAddItemToFull''')»"/>
-				<label kind="synchronisation">«disc.name»addItem[id]?</label>
+				<label kind="synchronisation">«disc.name»_addItem[id]?</label>
 				<label kind="assignment">error += 2</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullGreen''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_ErrorAddItemToFull''')»"/>
-				<label kind="synchronisation">«disc.name»addItem[id]?</label>
+				<label kind="synchronisation">«disc.name»_addItem[id]?</label>
 				<label kind="assignment">error += 2</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullBlue''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_ErrorAddItemToFull''')»"/>
-				<label kind="synchronisation">«disc.name»addItem[id]?</label>
+				<label kind="synchronisation">«disc.name»_addItem[id]?</label>
 				<label kind="assignment">error += 2</label>
 			</transition>
 		</template>

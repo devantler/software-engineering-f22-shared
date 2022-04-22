@@ -153,7 +153,7 @@ enum COLOR:
 	RED='red' | GREEN='green' | BLUE='blue';
 
 enum DISK_SLOT_STATES:
-	FREE='free' | IN_PROGRESS='in-progress' | COMPLETE='complete';
+	FREE='free' | IN_PROGRESS='in_progress' | COMPLETE='complete';
 
 enum DISK_STATES:
 	FULL='full' | EMPTY='empty';
