@@ -29,15 +29,15 @@ class FactoryLangGenerator extends AbstractGenerator {
 		val devices = model.configurations.map[device]
 		val statements = model.statements
 		try { 
-			ProgramGenerator.generate(fsa, devices, statements)
+			//ProgramGenerator.generate(fsa, devices, statements)
 			UppaalGenerator.generate(fsa, resource)
-			CsprojGenerator.generate(fsa)
-			MqttGenerator.generate(fsa)
-			EntityGenerator.generate(fsa, 
+			//CsprojGenerator.generate(fsa)
+			//MqttGenerator.generate(fsa)
+			/*EntityGenerator.generate(fsa, 
 				devices.filter[it instanceof Crane].size> 0, 
 				devices.filter[it instanceof Disk].size> 0, 
 				devices.filter[it instanceof Camera].size> 0
-			)
+			)*/
 			println("WHat even is this")
 		} catch (Exception e) {
 			e.printStackTrace()
