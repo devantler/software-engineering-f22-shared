@@ -7,7 +7,7 @@
 const int disk1_numberOfSlots = 8;
 typedef int[0,disk1_numberOfSlots-1] disk1_id_t;
 chan disk1_goto[disk1_numberOfSlots];
-chan disk1_addItemCmd, disk1removeItemCmd;
+chan disk1_addItemCmd, disk1_removeItemCmd;
 chan disk1_addItem[disk1_numberOfSlots];
 broadcast chan disk1_removeItem[disk1_numberOfSlots];
 
@@ -426,109 +426,109 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id28"/>
 			<target ref="id29"/>
-			<label kind="synchronisation">disk1addItem[id]?</label>
-			<label kind="assignment">disk1occupiedSlots[id] = true</label>
+			<label kind="synchronisation">disk1_addItem[id]?</label>
+			<label kind="assignment">disk1_occupiedSlots[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id29"/>
 			<target ref="id30"/>
-			<label kind="synchronisation">disk1setColour[id][1]?</label>
+			<label kind="synchronisation">disk1_setColour[id][1]?</label>
 		</transition>
 		<transition>
 			<source ref="id30"/>
 			<target ref="id31"/>
-			<label kind="synchronisation">disk1getColourSlot[id]?</label>
+			<label kind="synchronisation">disk1_getColourSlot[id]?</label>
 			<label kind="assignment">currentSlot_colour = 1</label>
 		</transition>
 		<transition>
 			<source ref="id31"/>
 			<target ref="id30"/>
-			<label kind="synchronisation">disk1gottenColourSlot!</label>
+			<label kind="synchronisation">disk1_gottenColourSlot!</label>
 		</transition>
 		<transition>
 			<source ref="id29"/>
 			<target ref="id32"/>
-			<label kind="synchronisation">disk1setColour[id][2]?</label>
+			<label kind="synchronisation">disk1_setColour[id][2]?</label>
 		</transition>
 		<transition>
 			<source ref="id32"/>
 			<target ref="id33"/>
-			<label kind="synchronisation">disk1getColourSlot[id]?</label>
+			<label kind="synchronisation">disk1_getColourSlot[id]?</label>
 			<label kind="assignment">currentSlot_colour = 2</label>
 		</transition>
 		<transition>
 			<source ref="id33"/>
 			<target ref="id32"/>
-			<label kind="synchronisation">disk1gottenColourSlot!</label>
+			<label kind="synchronisation">disk1_gottenColourSlot!</label>
 		</transition>
 		<transition>
 			<source ref="id29"/>
 			<target ref="id34"/>
-			<label kind="synchronisation">disk1setColour[id][3]?</label>
+			<label kind="synchronisation">disk1_setColour[id][3]?</label>
 		</transition>
 		<transition>
 			<source ref="id34"/>
 			<target ref="id35"/>
-			<label kind="synchronisation">disk1getColourSlot[id]?</label>
+			<label kind="synchronisation">disk1_getColourSlot[id]?</label>
 			<label kind="assignment">currentSlot_colour = 3</label>
 		</transition>
 		<transition>
 			<source ref="id35"/>
 			<target ref="id34"/>
-			<label kind="synchronisation">disk1gottenColourSlot!</label>
+			<label kind="synchronisation">disk1_gottenColourSlot!</label>
 		</transition>
 		<transition>
 			<source ref="id29"/>
 			<target ref="id28"/>
-			<label kind="synchronisation">disk1removeItem[id]?</label>
-			<label kind="assignment">disk1occupiedSlots[id] = false, disk1slots_finished[id] = false</label>
+			<label kind="synchronisation">disk1_removeItem[id]?</label>
+			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_finished[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id30"/>
 			<target ref="id28"/>
-			<label kind="synchronisation">disk1removeItem[id]?</label>
-			<label kind="assignment">disk1occupiedSlots[id] = false, disk1slots_finished[id] = false</label>
+			<label kind="synchronisation">disk1_removeItem[id]?</label>
+			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_finished[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id32"/>
 			<target ref="id28"/>
-			<label kind="synchronisation">disk1removeItem[id]?</label>
-			<label kind="assignment">disk1occupiedSlots[id] = false, disk1slots_finished[id] = false</label>
+			<label kind="synchronisation">disk1_removeItem[id]?</label>
+			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_finished[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id34"/>
 			<target ref="id28"/>
-			<label kind="synchronisation">disk1removeItem[id]?</label>
-			<label kind="assignment">disk1occupiedSlots[id] = false, disk1slots_finished[id] = false</label>
+			<label kind="synchronisation">disk1_removeItem[id]?</label>
+			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_finished[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id28"/>
 			<target ref="id37"/>
-			<label kind="synchronisation">disk1removeItem[id]?</label>
+			<label kind="synchronisation">disk1_removeItem[id]?</label>
 			<label kind="assignment">error += 1</label>
 		</transition>
 		<transition>
 			<source ref="id29"/>
 			<target ref="id36"/>
-			<label kind="synchronisation">disk1addItem[id]?</label>
+			<label kind="synchronisation">disk1_addItem[id]?</label>
 			<label kind="assignment">error += 2</label>
 		</transition>
 		<transition>
 			<source ref="id30"/>
 			<target ref="id36"/>
-			<label kind="synchronisation">disk1addItem[id]?</label>
+			<label kind="synchronisation">disk1_addItem[id]?</label>
 			<label kind="assignment">error += 2</label>
 		</transition>
 		<transition>
 			<source ref="id32"/>
 			<target ref="id36"/>
-			<label kind="synchronisation">disk1addItem[id]?</label>
+			<label kind="synchronisation">disk1_addItem[id]?</label>
 			<label kind="assignment">error += 2</label>
 		</transition>
 		<transition>
 			<source ref="id34"/>
 			<target ref="id36"/>
-			<label kind="synchronisation">disk1addItem[id]?</label>
+			<label kind="synchronisation">disk1_addItem[id]?</label>
 			<label kind="assignment">error += 2</label>
 		</transition>
 	</template>
