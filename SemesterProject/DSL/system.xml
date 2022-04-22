@@ -534,7 +534,7 @@ clock timer;</declaration>
 	</template>
 	
 	<template>
-		<name>disk1_disk1_GetemptySlot</name>
+		<name>disk1_GetemptySlot</name>
 		<location id="id38">
 			<name>disk1_Idle</name>
 		</location>
@@ -669,7 +669,7 @@ clock timer;</declaration>
 		</transition>
 	</template>
 	<template>
-		<name>disk1_disk1_GetcompleteSlot</name>
+		<name>disk1_GetcompleteSlot</name>
 		<location id="id47">
 			<name>disk1_Idle</name>
 		</location>
@@ -833,7 +833,7 @@ clock timer;</declaration>
 		</transition>
 	</template>
 	<template>
-		<name>disk1_disk1_GetfreeSlot</name>
+		<name>disk1_GetfreeSlot</name>
 		<location id="id50">
 			<name>disk1_Idle</name>
 		</location>
@@ -997,7 +997,7 @@ clock timer;</declaration>
 		</transition>
 	</template>
 	<template>
-		<name>disk1_disk1_Getin_progressSlot</name>
+		<name>disk1_Getin_progressSlot</name>
 		<location id="id53">
 			<name>disk1_Idle</name>
 		</location>
@@ -1386,7 +1386,7 @@ clock timer;</declaration>
 		</transition>
 	</template>
 <system>
-	system MasterController, disk1, disk1_DiscSlot, disk1_GetEmptySlot, disk1_SlotVariable_complete, disk1_GetcompleteSlot,disk1_SlotVariable_free, disk1_GetfreeSlot,disk1_SlotVariable_in_progress, disk1_Getin_progressSlot, crane1,crane1_CraneMagnet, camera1, EmergencyButton;
+	system MasterController, disk1, disk1_DiscSlot, disk1_GetemptySlot, disk1_SlotVariable_complete, disk1_GetcompleteSlot,disk1_SlotVariable_free, disk1_GetfreeSlot,disk1_SlotVariable_in_progress, disk1_Getin_progressSlot, crane1,crane1_CraneMagnet, camera1, EmergencyButton;
 </system>
 	<queries>
 			    <query>
