@@ -12,9 +12,10 @@
         "Username": "mydevice",
         "Password": "mydevice",
         "ClientId": "CameraColorScanner",
-        "CommandTopic": "devices/CameraColorScanner/Commands",
-        "ResultTopic": "devices/CameraColorScanner/Values/ScanResults",
-        "LogTopic": "log/sorter/scanner/1",
+        "CommandTopic": "camera1/command",
+        "ResultTopic": "camera1/result",
+        "ScanningTopic": "camera1/scanning",
+        "LogTopic": "log/camera1",
         "UseSsl": true
     },
     "Camera": {

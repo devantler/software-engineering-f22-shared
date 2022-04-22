@@ -17,12 +17,12 @@ public class Camera
 
     public string Scan()
     {
-        _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "1");
-        while (_mqttService.GetMessage(MqttTopics.Camera(_name).Scanning) == "1")
+        _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "GetColor");
+        while (_mqttService.GetMessage(MqttTopics.Camera(_name).Scanning) == "true")
         {
             Task.Delay(100);
         }
-        return _mqttService.GetMessage(MqttTopics.Camera(_name).Color) ?? Scan();
+        return _mqttService.GetMessage(MqttTopics.Camera(_name).Color);
     }
 
     public string GetName()

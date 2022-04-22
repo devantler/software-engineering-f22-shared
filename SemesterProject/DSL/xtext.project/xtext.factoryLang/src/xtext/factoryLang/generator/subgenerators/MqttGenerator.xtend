@@ -175,9 +175,9 @@ class MqttGenerator {
 				                Name = name;
 				            }
 				
-				            public string Scan { get => $"{Name}/scan"; }
+				            public string Scan { get => $"{Name}/command"; }
 				
-				            public string Color { get => $"{Name}/color"; }
+				            public string Color { get => $"{Name}/result"; }
 				
 				            public string Scanning { get => $"{Name}/scanning"; }
 				        }
