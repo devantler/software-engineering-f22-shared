@@ -1370,18 +1370,71 @@ clock timer;</declaration>
 			<label kind="synchronisation">crane1crane_goto_outGreen?</label>
 		</transition>
 	</template>
+	
+	<template>
+		        <name>camera1</name>
+		        <location id="id69">
+		            <name>camera1_Idle</name>
+		        </location>
+		        <location id="id70">
+		            <name>camera1_Red</name>
+		            <committed/>
+		        </location>
+		        <location id="id71">
+		            <name>camera1_Green</name>
+		            <committed/>
+		        </location>
+		        <location id="id72">
+		            <name>camera1_Blue</name>
+		            <committed/>
+		        </location>
+		        <init ref="id69"/>
+		        <transition>
+		            <source ref="id72"/>
+		            <target ref="id69"/>
+		            <label kind="synchronisation">camera1_gottenColour!</label>
+		        </transition>
+		        <transition>
+		            <source ref="id69"/>
+		            <target ref="id72"/>
+		            <label kind="synchronisation">camera1_getColour?</label>
+		            <label kind="assignment">colour = 3</label>
+		        </transition>
+		        <transition>
+		            <source ref="id71"/>
+		            <target ref="id69"/>
+		            <label kind="synchronisation">camera1_gottenColour!</label>
+		        </transition>
+		        <transition>
+		            <source ref="id69"/>
+		            <target ref="id71"/>
+		            <label kind="synchronisation">camera1_getColour?</label>
+		            <label kind="assignment">colour=2</label>
+		        </transition>
+		        <transition>
+		            <source ref="id70"/>
+		            <target ref="id69"/>
+		            <label kind="synchronisation">camera1_gottenColour!</label>
+		        </transition>
+		        <transition>
+		            <source ref="id69"/>
+		            <target ref="id70"/>
+		            <label kind="synchronisation">camera1_getColour?</label>
+		            <label kind="assignment">colour = 1</label>
+		        </transition>
+		    </template>
 	<template>
 		<name>EmergencyButton</name>
-		<location id="id69">
+		<location id="id73">
 			<name>Running</name>
 		</location>
-		<location id="id70">
+		<location id="id74">
 			<name>Stopped</name>
 		</location>
-		<init ref="id69"/>
+		<init ref="id73"/>
 		<transition>
-			<source ref="id69"/>
-			<target ref="id70"/>
+			<source ref="id73"/>
+			<target ref="id74"/>
 			<label kind="synchronisation">emergencyStop!</label>
 		</transition>
 	</template>
