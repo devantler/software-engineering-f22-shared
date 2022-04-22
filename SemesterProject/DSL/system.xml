@@ -481,25 +481,25 @@ clock timer;</declaration>
 			<source ref="id29"/>
 			<target ref="id28"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_finished[id] = false</label>
+			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_complete[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id30"/>
 			<target ref="id28"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_finished[id] = false</label>
+			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_complete[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id32"/>
 			<target ref="id28"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_finished[id] = false</label>
+			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_complete[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id34"/>
 			<target ref="id28"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_finished[id] = false</label>
+			<label kind="assignment">disk1_occupiedSlots[id] = false, disk1_slots_complete[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id28"/>
@@ -1442,61 +1442,45 @@ clock timer;</declaration>
 	system MasterController, disk1, disk1_DiscSlot, disk1_GetemptySlot, disk1_SlotVariable_complete, disk1_GetcompleteSlot,disk1_SlotVariable_free, disk1_GetfreeSlot,disk1_SlotVariable_in_progress, disk1_Getin_progressSlot, crane1,crane1_CraneMagnet, camera1, EmergencyButton;
 </system>
 	<queries>
-			    <query>
-	<formula>A&lt;&gt; crane1_CraneMagnet.crane1_MagnetOn imply crane1_CraneMagnet.crane1_MagnetOff</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOn)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOff)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOn)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOff)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOn)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOff)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOn)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOff)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (EmergencyButton.Stopped and crane1_CraneMagnet.crane1_MagnetOn) imply crane1_CraneMagnet.crane1_StoppedMagnetOn</formula>
-	<comment></comment>
-</query>
+	    ï¿½FOR crane: cranesï¿½
+	    <query>
+			<formula>A&lt;&gt; ï¿½crane.nameï¿½_CraneMagnet.ï¿½crane.nameï¿½_MagnetOn imply ï¿½crane.nameï¿½_CraneMagnet.ï¿½crane.nameï¿½_MagnetOff</formula>
+			<comment></comment>
+		</query>
+		ï¿½FOR position: crane.targetsï¿½
+		<query>
+			<formula>A[] (ï¿½crane.nameï¿½.ï¿½crane.nameï¿½_ï¿½(position as CranePositionParameter).nameï¿½ and ï¿½crane.nameï¿½_CraneMagnet.ï¿½crane.nameï¿½_MagnetOff) imply !(ï¿½crane.nameï¿½.ï¿½crane.nameï¿½_ï¿½(position as CranePositionParameter).nameï¿½ and ï¿½crane.nameï¿½_CraneMagnet.ï¿½crane.nameï¿½_MagnetOn)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (ï¿½crane.nameï¿½.ï¿½crane.nameï¿½_ï¿½(position as CranePositionParameter).nameï¿½ and ï¿½crane.nameï¿½_CraneMagnet.ï¿½crane.nameï¿½_MagnetOn) imply !(ï¿½crane.nameï¿½.ï¿½crane.nameï¿½_ï¿½(position as CranePositionParameter).nameï¿½ and ï¿½crane.nameï¿½_CraneMagnet.ï¿½crane.nameï¿½_MagnetOff)</formula>
+			<comment></comment>
+		</query>
+		ï¿½ENDFORï¿½
+		<query>
+			<formula>A[] (EmergencyButton.Stopped and ï¿½crane.nameï¿½_CraneMagnet.ï¿½crane.nameï¿½_MagnetOn) imply ï¿½crane.nameï¿½_CraneMagnet.ï¿½crane.nameï¿½_StoppedMagnetOn</formula>
+			<comment></comment>
+		</query>
+	    ï¿½ENDFORï¿½
 		<query>
 			<formula>A[] !deadlock or EmergencyButton.Stopped</formula>
 			<comment></comment>
 		</query>
+		ï¿½FOR disc: discsï¿½
 		<query>
-			<formula>A[] disk1_slots_finished[1] imply disk1_occupiedSlots[1]</formula>
+			<formula>A[] ï¿½disc.nameï¿½_slots_complete[1] imply ï¿½disc.nameï¿½_occupiedSlots[1]</formula>
 			<comment></comment>
 		</query>
 		<query>
-			<formula>E&lt;&gt; forall (i : disk1_id_t) disk1_DiscSlot(i).SlotEmpty</formula>
+			<formula>E&lt;&gt; forall (i : ï¿½disc.nameï¿½_id_t) ï¿½disc.nameï¿½_DiscSlot(i).SlotEmpty</formula>
 			<comment></comment>
 		</query>
+		ï¿½FOR crane: cranesï¿½
 		<query>
-			<formula>A[] EmergencyButton.Stopped imply (crane1.Stopped and disk1.Stopped and (crane1_CraneMagnet.crane1_StoppedMagnetOff or crane1_CraneMagnet.crane1_StoppedMagnetOn))</formula>
+			<formula>A[] EmergencyButton.Stopped imply (ï¿½crane.nameï¿½.Stopped and ï¿½disc.nameï¿½.Stopped and (ï¿½crane.nameï¿½_CraneMagnet.ï¿½crane.nameï¿½_StoppedMagnetOff or ï¿½crane.nameï¿½_CraneMagnet.ï¿½crane.nameï¿½_StoppedMagnetOn))</formula>
 			<comment></comment>
 		</query>
+		ï¿½ENDFORï¿½
+		ï¿½ENDFORï¿½
 	</queries>
 </nta>
