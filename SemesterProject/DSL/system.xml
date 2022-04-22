@@ -12,10 +12,10 @@ chan disk1_addItem[disk1_numberOfSlots];
 broadcast chan disk1_removeItem[disk1_numberOfSlots];
 
 //default tags
-chan disk1_getFreeSlot;
-chan disk1_foundEmptySlot;
+chan disk1_getfreeSlot;
+chan disk1_foundemptySlot;
 chan disk1_setColour[disk1_numberOfSlots][4];
-bool disk1_occupiedSlots[disk1_numberOfSlots];
+bool disk1_notemptySlots[disk1_numberOfSlots];
 chan disk1_getColourSlot[disk1_numberOfSlots];
 chan disk1_gottenColourSlot;
 
