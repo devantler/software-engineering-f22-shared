@@ -33,12 +33,12 @@ class UppaalMasterGenerator {
 	
 	def static dispatch String generateLocation(VariableConditional statement) {
 		'''
-		<location id="«getIdOfLocation('''«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»''')»">
-			<name>«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»</name>
+		<location id="«getIdOfLocation('''«statement.variable.name»_get«(statement.variableValue.value as ColorValue).value»_«statements.indexOf(statement)»''')»">
+			<name>«statement.variable.name»_get«(statement.variableValue.value as ColorValue).value»_«statements.indexOf(statement)»</name>
 			<committed/>
 		</location>
-		<location id="«getIdOfLocation('''«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»''')»">
-			<name>«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»</name>
+		<location id="«getIdOfLocation('''«statement.variable.name»Is«(statement.variableValue.value as ColorValue).value»_«statements.indexOf(statement)»''')»">
+			<name>«statement.variable.name»Is«(statement.variableValue.value as ColorValue).value»_«statements.indexOf(statement)»</name>
 		</location>
 		«FOR s : statement.statements»
 		«statements.add(s)»
@@ -56,12 +56,12 @@ class UppaalMasterGenerator {
 				val trans = '''
 				<transition>
 					<source ref="«lastTransistionState»"/>
-					<target ref="«getIdOfLocation('''«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»''')»"/>
+					<target ref="«getIdOfLocation('''«statement.variable.name»_get«(statement.variableValue.value as ColorValue).value»_«statements.indexOf(statement)»''')»"/>
 					<label kind="synchronisation">«currentDisc»_getColourSlot[currentSlot]!</label>
 				</transition>
 				<transition>
-					<source ref="«getIdOfLocation('''«statement.variable.name»_get«statement.variableValue.value»_«statements.indexOf(statement)»''')»"/>
-					<target ref="«getIdOfLocation('''«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»''')»"/>
+					<source ref="«getIdOfLocation('''«statement.variable.name»_get«(statement.variableValue.value as ColorValue).value»_«statements.indexOf(statement)»''')»"/>
+					<target ref="«getIdOfLocation('''«statement.variable.name»Is«(statement.variableValue.value as ColorValue).value»_«statements.indexOf(statement)»''')»"/>
 					<label kind="guard">currentSlot_colour == «EnumParser.ColourToInt((statement.variableValue.value as ColorValue).value)»</label>
 					<label kind="synchronisation">«currentDisc»_gottenColourSlot?</label>
 				</transition>
