@@ -91,10 +91,94 @@ clock timer;</declaration>
 		<location id="id2">
 			<name>disk1_gottenSlotcomplete_0</name>
 		</location>
+		<location id="id3">
+			<name>disk1goto_craneZone_statment-1</name>
+		</location>
+		<location id="id4">
+			<name>crane1_goto_intake_-1</name>
+		</location>
+		<location id="id5">
+			<name>crane1_lower_-1</name>
+		</location>
+		<location id="id6">
+			<name>crane1_toggleMagnet_-1</name>
+		</location>
+		<location id="id7">
+			<name>crane1_raise_-1</name>
+		</location>
+		<location id="id96">
+			<name>diskSlot_getxtext.factoryLang.factoryLang.impl.ColorValueImpl@5349ca92 (value: red)_-1</name>
+			<committed/>
+		</location>
+		<location id="id97">
+			<name>diskSlotIsxtext.factoryLang.factoryLang.impl.ColorValueImpl@5349ca92 (value: red)_-1</name>
+		</location>
+		<location id="id10">
+			<name>crane1_goto_outRed_-1</name>
+		</location>
+		<location id="id11">
+			<name>crane1_lower_outRed_-1</name>
+		</location>
+		<location id="id6">
+			<name>crane1_toggleMagnet_-1</name>
+		</location>
+		<location id="id7">
+			<name>crane1_raise_-1</name>
+		</location>
+		<location id="id12">
+			<name>EndIf_-1</name>
+		</location>
+		<location id="id98">
+			<name>diskSlot_getxtext.factoryLang.factoryLang.impl.ColorValueImpl@2b7e028b (value: green)_-1</name>
+			<committed/>
+		</location>
+		<location id="id99">
+			<name>diskSlotIsxtext.factoryLang.factoryLang.impl.ColorValueImpl@2b7e028b (value: green)_-1</name>
+		</location>
+		<location id="id15">
+			<name>crane1_goto_outGreen_-1</name>
+		</location>
+		<location id="id16">
+			<name>crane1_lower_outGreen_-1</name>
+		</location>
+		<location id="id6">
+			<name>crane1_toggleMagnet_-1</name>
+		</location>
+		<location id="id7">
+			<name>crane1_raise_-1</name>
+		</location>
+		<location id="id12">
+			<name>EndIf_-1</name>
+		</location>
+		<location id="id100">
+			<name>diskSlot_getxtext.factoryLang.factoryLang.impl.ColorValueImpl@1fed4616 (value: blue)_-1</name>
+			<committed/>
+		</location>
+		<location id="id101">
+			<name>diskSlotIsxtext.factoryLang.factoryLang.impl.ColorValueImpl@1fed4616 (value: blue)_-1</name>
+		</location>
+		<location id="id19">
+			<name>crane1_goto_outBlue_-1</name>
+		</location>
+		<location id="id20">
+			<name>crane1_lower_outBlue_-1</name>
+		</location>
+		<location id="id6">
+			<name>crane1_toggleMagnet_-1</name>
+		</location>
+		<location id="id7">
+			<name>crane1_raise_-1</name>
+		</location>
+		<location id="id12">
+			<name>EndIf_-1</name>
+		</location>
+		<location id="id102">
+			<name>disk1_markSlotxtext.factoryLang.factoryLang.impl.DiskSlotValueImpl@59cd9ae4_statement-1</name>
+		</location>
 		//TODO: NESTED STATEMENT LOOP
 		<init ref="id0"/>
 		<transition>
-			<source ref="id0"/>
+			<source ref="id2"/>
 			<target ref="id1"/>
 			<label kind="synchronisation">disk1_getcompleteSlot!</label>
 			<label kind="assignment">GlobalTimer = 0</label>
@@ -105,267 +189,215 @@ clock timer;</declaration>
 			<label kind="synchronisation">disk1_foundcompleteSlot?</label>
 		</transition>
 		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="synchronisation">disk1_goto[(disk1_zones_craneZone + currentSlot) % disk1_numberOfSlots]!</label>
+		</transition>
+		<transition>
+			<source ref="id22"/>
+			<target ref="id4"/>
+			<label kind="synchronisation">crane1_goto_intake!</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="synchronisation">crane1_lowerMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation">crane1_toggleMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation">crane1_raiseMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id96"/>
+			<label kind="synchronisation">disk1_getColourSlot[currentSlot]!</label>
+		</transition>
+		<transition>
+			<source ref="id96"/>
+			<target ref="id97"/>
+			<label kind="guard">currentSlot_colour == 1</label>
+			<label kind="synchronisation">disk1_gottenColourSlot?</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id10"/>
+			<label kind="synchronisation">crane1_goto_outRed!</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id5"/>
+			<label kind="synchronisation">crane1_lowerMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation">crane1_toggleMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation">crane1_raiseMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id97"/>
+			<target ref="id98"/>
+			<label kind="synchronisation">disk1_getColourSlot[currentSlot]!</label>
+		</transition>
+		<transition>
+			<source ref="id98"/>
+			<target ref="id99"/>
+			<label kind="guard">currentSlot_colour == 2</label>
+			<label kind="synchronisation">disk1_gottenColourSlot?</label>
+		</transition>
+		<transition>
+			<source ref="id97"/>
+			<target ref="id15"/>
+			<label kind="synchronisation">crane1_goto_outGreen!</label>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id5"/>
+			<label kind="synchronisation">crane1_lowerMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation">crane1_toggleMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation">crane1_raiseMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id99"/>
+			<target ref="id100"/>
+			<label kind="synchronisation">disk1_getColourSlot[currentSlot]!</label>
+		</transition>
+		<transition>
+			<source ref="id100"/>
+			<target ref="id101"/>
+			<label kind="guard">currentSlot_colour == 3</label>
+			<label kind="synchronisation">disk1_gottenColourSlot?</label>
+		</transition>
+		<transition>
+			<source ref="id99"/>
+			<target ref="id19"/>
+			<label kind="synchronisation">crane1_goto_outBlue!</label>
+		</transition>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id5"/>
+			<label kind="synchronisation">crane1_lowerMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation">crane1_toggleMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation">crane1_raiseMagnet!</label>
+		</transition>
+		<transition>
+			<source ref="id101"/>
+			<target ref="id102"/>
+			<label kind="synchronisation">disk1_set_xtext.factoryLang.factoryLang.impl.DiskSlotValueImpl@59cd9ae4[currentSlot]</label>
+		</transition>
+		<transition>
 			<source ref="id1"/>
-			<target ref="id0"/>
+			<target ref="id2"/>
 			<label kind="guard">GlobalTimer &gt; 2</label>
 		</transition>
 	</template>
 	<template>
 		<name>disk1</name>
-		<location id="id3">
+		<location id="id24">
 			<name>Position1</name>
 		</location>
-		<location id="id4">
+		<location id="id25">
 			<name>AddItem1Req</name>
 		</location>
-		<location id="id5">
+		<location id="id26">
 			<name>RemoveItem1Req</name>
 		</location>
-		<location id="id6">
+		<location id="id27">
 			<name>Position2</name>
 		</location>
-		<location id="id7">
+		<location id="id28">
 			<name>AddItem2Req</name>
 		</location>
-		<location id="id8">
+		<location id="id29">
 			<name>RemoveItem2Req</name>
 		</location>
-		<location id="id9">
+		<location id="id30">
 			<name>Position3</name>
 		</location>
-		<location id="id10">
+		<location id="id31">
 			<name>AddItem3Req</name>
 		</location>
-		<location id="id11">
+		<location id="id32">
 			<name>RemoveItem3Req</name>
 		</location>
-		<location id="id12">
+		<location id="id33">
 			<name>Position4</name>
 		</location>
-		<location id="id13">
+		<location id="id34">
 			<name>AddItem4Req</name>
 		</location>
-		<location id="id14">
+		<location id="id35">
 			<name>RemoveItem4Req</name>
 		</location>
-		<location id="id15">
+		<location id="id36">
 			<name>Position5</name>
 		</location>
-		<location id="id16">
+		<location id="id37">
 			<name>AddItem5Req</name>
 		</location>
-		<location id="id17">
+		<location id="id38">
 			<name>RemoveItem5Req</name>
 		</location>
-		<location id="id18">
+		<location id="id39">
 			<name>Position6</name>
 		</location>
-		<location id="id19">
+		<location id="id40">
 			<name>AddItem6Req</name>
 		</location>
-		<location id="id20">
+		<location id="id41">
 			<name>RemoveItem6Req</name>
 		</location>
-		<location id="id21">
+		<location id="id42">
 			<name>Position7</name>
 		</location>
-		<location id="id22">
+		<location id="id43">
 			<name>AddItem7Req</name>
 		</location>
-		<location id="id23">
+		<location id="id44">
 			<name>RemoveItem7Req</name>
 		</location>
-		<location id="id24">
+		<location id="id45">
 			<name>Position8</name>
 		</location>
-		<location id="id25">
+		<location id="id46">
 			<name>AddItem8Req</name>
 		</location>
-		<location id="id26">
+		<location id="id47">
 			<name>RemoveItem8Req</name>
 		</location>
-		<location id="id27">
+		<location id="id48">
 			<name>Stopped</name>
 		</location>
-		<init ref="id3"/>
-		<transition>
-			<source ref="id3"/>
-			<target ref="id27"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id3"/>
-			<target ref="id4"/>
-			<label kind="synchronisation">disk1_addItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id3"/>
-			<target ref="id5"/>
-			<label kind="synchronisation">disk1_removeItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id4"/>
-			<target ref="id3"/>
-			<label kind="synchronisation">disk1_addItem[0]!</label>
-		</transition>
-		<transition>
-			<source ref="id5"/>
-			<target ref="id3"/>
-			<label kind="synchronisation">disk1_removeItem[0]!</label>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id27"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id7"/>
-			<label kind="synchronisation">disk1_addItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id6"/>
-			<target ref="id8"/>
-			<label kind="synchronisation">disk1_removeItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id7"/>
-			<target ref="id6"/>
-			<label kind="synchronisation">disk1_addItem[1]!</label>
-		</transition>
-		<transition>
-			<source ref="id8"/>
-			<target ref="id6"/>
-			<label kind="synchronisation">disk1_removeItem[1]!</label>
-		</transition>
-		<transition>
-			<source ref="id9"/>
-			<target ref="id27"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id9"/>
-			<target ref="id10"/>
-			<label kind="synchronisation">disk1_addItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id9"/>
-			<target ref="id11"/>
-			<label kind="synchronisation">disk1_removeItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id10"/>
-			<target ref="id9"/>
-			<label kind="synchronisation">disk1_addItem[2]!</label>
-		</transition>
-		<transition>
-			<source ref="id11"/>
-			<target ref="id9"/>
-			<label kind="synchronisation">disk1_removeItem[2]!</label>
-		</transition>
-		<transition>
-			<source ref="id12"/>
-			<target ref="id27"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id12"/>
-			<target ref="id13"/>
-			<label kind="synchronisation">disk1_addItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id12"/>
-			<target ref="id14"/>
-			<label kind="synchronisation">disk1_removeItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id13"/>
-			<target ref="id12"/>
-			<label kind="synchronisation">disk1_addItem[3]!</label>
-		</transition>
-		<transition>
-			<source ref="id14"/>
-			<target ref="id12"/>
-			<label kind="synchronisation">disk1_removeItem[3]!</label>
-		</transition>
-		<transition>
-			<source ref="id15"/>
-			<target ref="id27"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id15"/>
-			<target ref="id16"/>
-			<label kind="synchronisation">disk1_addItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id15"/>
-			<target ref="id17"/>
-			<label kind="synchronisation">disk1_removeItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id16"/>
-			<target ref="id15"/>
-			<label kind="synchronisation">disk1_addItem[4]!</label>
-		</transition>
-		<transition>
-			<source ref="id17"/>
-			<target ref="id15"/>
-			<label kind="synchronisation">disk1_removeItem[4]!</label>
-		</transition>
-		<transition>
-			<source ref="id18"/>
-			<target ref="id27"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id18"/>
-			<target ref="id19"/>
-			<label kind="synchronisation">disk1_addItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id18"/>
-			<target ref="id20"/>
-			<label kind="synchronisation">disk1_removeItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id19"/>
-			<target ref="id18"/>
-			<label kind="synchronisation">disk1_addItem[5]!</label>
-		</transition>
-		<transition>
-			<source ref="id20"/>
-			<target ref="id18"/>
-			<label kind="synchronisation">disk1_removeItem[5]!</label>
-		</transition>
-		<transition>
-			<source ref="id21"/>
-			<target ref="id27"/>
-			<label kind="synchronisation">emergencyStop?</label>
-		</transition>
-		<transition>
-			<source ref="id21"/>
-			<target ref="id22"/>
-			<label kind="synchronisation">disk1_addItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id21"/>
-			<target ref="id23"/>
-			<label kind="synchronisation">disk1_removeItemCmd?</label>
-		</transition>
-		<transition>
-			<source ref="id22"/>
-			<target ref="id21"/>
-			<label kind="synchronisation">disk1_addItem[6]!</label>
-		</transition>
-		<transition>
-			<source ref="id23"/>
-			<target ref="id21"/>
-			<label kind="synchronisation">disk1_removeItem[6]!</label>
-		</transition>
+		<init ref="id24"/>
 		<transition>
 			<source ref="id24"/>
-			<target ref="id27"/>
+			<target ref="id48"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
@@ -381,156 +413,331 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id25"/>
 			<target ref="id24"/>
-			<label kind="synchronisation">disk1_addItem[7]!</label>
+			<label kind="synchronisation">disk1_addItem[0]!</label>
 		</transition>
 		<transition>
 			<source ref="id26"/>
 			<target ref="id24"/>
+			<label kind="synchronisation">disk1_removeItem[0]!</label>
+		</transition>
+		<transition>
+			<source ref="id27"/>
+			<target ref="id48"/>
+			<label kind="synchronisation">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id27"/>
+			<target ref="id28"/>
+			<label kind="synchronisation">disk1_addItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id27"/>
+			<target ref="id29"/>
+			<label kind="synchronisation">disk1_removeItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id28"/>
+			<target ref="id27"/>
+			<label kind="synchronisation">disk1_addItem[1]!</label>
+		</transition>
+		<transition>
+			<source ref="id29"/>
+			<target ref="id27"/>
+			<label kind="synchronisation">disk1_removeItem[1]!</label>
+		</transition>
+		<transition>
+			<source ref="id30"/>
+			<target ref="id48"/>
+			<label kind="synchronisation">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id30"/>
+			<target ref="id31"/>
+			<label kind="synchronisation">disk1_addItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id30"/>
+			<target ref="id32"/>
+			<label kind="synchronisation">disk1_removeItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id31"/>
+			<target ref="id30"/>
+			<label kind="synchronisation">disk1_addItem[2]!</label>
+		</transition>
+		<transition>
+			<source ref="id32"/>
+			<target ref="id30"/>
+			<label kind="synchronisation">disk1_removeItem[2]!</label>
+		</transition>
+		<transition>
+			<source ref="id33"/>
+			<target ref="id48"/>
+			<label kind="synchronisation">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id33"/>
+			<target ref="id34"/>
+			<label kind="synchronisation">disk1_addItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id33"/>
+			<target ref="id35"/>
+			<label kind="synchronisation">disk1_removeItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id34"/>
+			<target ref="id33"/>
+			<label kind="synchronisation">disk1_addItem[3]!</label>
+		</transition>
+		<transition>
+			<source ref="id35"/>
+			<target ref="id33"/>
+			<label kind="synchronisation">disk1_removeItem[3]!</label>
+		</transition>
+		<transition>
+			<source ref="id36"/>
+			<target ref="id48"/>
+			<label kind="synchronisation">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id36"/>
+			<target ref="id37"/>
+			<label kind="synchronisation">disk1_addItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id36"/>
+			<target ref="id38"/>
+			<label kind="synchronisation">disk1_removeItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id37"/>
+			<target ref="id36"/>
+			<label kind="synchronisation">disk1_addItem[4]!</label>
+		</transition>
+		<transition>
+			<source ref="id38"/>
+			<target ref="id36"/>
+			<label kind="synchronisation">disk1_removeItem[4]!</label>
+		</transition>
+		<transition>
+			<source ref="id39"/>
+			<target ref="id48"/>
+			<label kind="synchronisation">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id39"/>
+			<target ref="id40"/>
+			<label kind="synchronisation">disk1_addItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id39"/>
+			<target ref="id41"/>
+			<label kind="synchronisation">disk1_removeItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id40"/>
+			<target ref="id39"/>
+			<label kind="synchronisation">disk1_addItem[5]!</label>
+		</transition>
+		<transition>
+			<source ref="id41"/>
+			<target ref="id39"/>
+			<label kind="synchronisation">disk1_removeItem[5]!</label>
+		</transition>
+		<transition>
+			<source ref="id42"/>
+			<target ref="id48"/>
+			<label kind="synchronisation">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id42"/>
+			<target ref="id43"/>
+			<label kind="synchronisation">disk1_addItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id42"/>
+			<target ref="id44"/>
+			<label kind="synchronisation">disk1_removeItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id43"/>
+			<target ref="id42"/>
+			<label kind="synchronisation">disk1_addItem[6]!</label>
+		</transition>
+		<transition>
+			<source ref="id44"/>
+			<target ref="id42"/>
+			<label kind="synchronisation">disk1_removeItem[6]!</label>
+		</transition>
+		<transition>
+			<source ref="id45"/>
+			<target ref="id48"/>
+			<label kind="synchronisation">emergencyStop?</label>
+		</transition>
+		<transition>
+			<source ref="id45"/>
+			<target ref="id46"/>
+			<label kind="synchronisation">disk1_addItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id45"/>
+			<target ref="id47"/>
+			<label kind="synchronisation">disk1_removeItemCmd?</label>
+		</transition>
+		<transition>
+			<source ref="id46"/>
+			<target ref="id45"/>
+			<label kind="synchronisation">disk1_addItem[7]!</label>
+		</transition>
+		<transition>
+			<source ref="id47"/>
+			<target ref="id45"/>
 			<label kind="synchronisation">disk1_removeItem[7]!</label>
 		</transition>
 	</template>
 	<template>
 		<name>disk1_DiscSlot</name>
 		<parameter>const disk1_id_t id</parameter>
-		<location id="id28">
+		<location id="id49">
 			<name>disk1_SlotEmpty</name>
 		</location>
-		<location id="id29">
+		<location id="id50">
 			<name>disk1_SlotFull</name>
 		</location>
-		<location id="id30">
+		<location id="id51">
 			<name>disk1_SlotFullRed</name>
 		</location>
-		<location id="id31">
+		<location id="id52">
 			<name>disk1_GetColourRed</name>
 			<committed/>
 		</location>
-		<location id="id32">
+		<location id="id53">
 			<name>disk1_SlotFullGreen</name>
 		</location>
-		<location id="id33">
+		<location id="id54">
 			<name>disk1_GetColourGreen</name>
 			<committed/>
 		</location>
-		<location id="id34">
+		<location id="id55">
 			<name>disk1_SlotFullBlue</name>
 		</location>
-		<location id="id35">
+		<location id="id56">
 			<name>disk1_GetColourBlue</name>
 			<committed/>
 		</location>
-		<location id="id36">
+		<location id="id57">
 			<name>disk1_ErrorAddItemToFull</name>
 		</location>
-		<location id="id37">
+		<location id="id58">
 			<name>disk1_ErrorRemoveItemFromEmpty</name>
 		</location>
-		<init ref="id28"/>
+		<init ref="id49"/>
 		<transition>
-			<source ref="id28"/>
-			<target ref="id29"/>
+			<source ref="id49"/>
+			<target ref="id50"/>
 			<label kind="synchronisation">disk1_addItem[id]?</label>
 			<label kind="assignment">disk1_notemptySlots[id] = true</label>
 		</transition>
 		<transition>
-			<source ref="id29"/>
-			<target ref="id30"/>
+			<source ref="id50"/>
+			<target ref="id51"/>
 			<label kind="synchronisation">disk1_setColour[id][1]?</label>
 		</transition>
 		<transition>
-			<source ref="id30"/>
-			<target ref="id31"/>
+			<source ref="id51"/>
+			<target ref="id52"/>
 			<label kind="synchronisation">disk1_getColourSlot[id]?</label>
 			<label kind="assignment">currentSlot_colour = 1</label>
 		</transition>
 		<transition>
-			<source ref="id31"/>
-			<target ref="id30"/>
+			<source ref="id52"/>
+			<target ref="id51"/>
 			<label kind="synchronisation">disk1_gottenColourSlot!</label>
 		</transition>
 		<transition>
-			<source ref="id29"/>
-			<target ref="id32"/>
+			<source ref="id50"/>
+			<target ref="id53"/>
 			<label kind="synchronisation">disk1_setColour[id][2]?</label>
 		</transition>
 		<transition>
-			<source ref="id32"/>
-			<target ref="id33"/>
+			<source ref="id53"/>
+			<target ref="id54"/>
 			<label kind="synchronisation">disk1_getColourSlot[id]?</label>
 			<label kind="assignment">currentSlot_colour = 2</label>
 		</transition>
 		<transition>
-			<source ref="id33"/>
-			<target ref="id32"/>
+			<source ref="id54"/>
+			<target ref="id53"/>
 			<label kind="synchronisation">disk1_gottenColourSlot!</label>
 		</transition>
 		<transition>
-			<source ref="id29"/>
-			<target ref="id34"/>
+			<source ref="id50"/>
+			<target ref="id55"/>
 			<label kind="synchronisation">disk1_setColour[id][3]?</label>
 		</transition>
 		<transition>
-			<source ref="id34"/>
-			<target ref="id35"/>
+			<source ref="id55"/>
+			<target ref="id56"/>
 			<label kind="synchronisation">disk1_getColourSlot[id]?</label>
 			<label kind="assignment">currentSlot_colour = 3</label>
 		</transition>
 		<transition>
-			<source ref="id35"/>
-			<target ref="id34"/>
+			<source ref="id56"/>
+			<target ref="id55"/>
 			<label kind="synchronisation">disk1_gottenColourSlot!</label>
 		</transition>
 		<transition>
-			<source ref="id29"/>
-			<target ref="id28"/>
+			<source ref="id50"/>
+			<target ref="id49"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
 			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_slots_complete[id] = false</label>
 		</transition>
 		<transition>
-			<source ref="id30"/>
-			<target ref="id28"/>
+			<source ref="id51"/>
+			<target ref="id49"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
 			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_slots_complete[id] = false</label>
 		</transition>
 		<transition>
-			<source ref="id32"/>
-			<target ref="id28"/>
+			<source ref="id53"/>
+			<target ref="id49"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
 			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_slots_complete[id] = false</label>
 		</transition>
 		<transition>
-			<source ref="id34"/>
-			<target ref="id28"/>
+			<source ref="id55"/>
+			<target ref="id49"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
 			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_slots_complete[id] = false</label>
 		</transition>
 		<transition>
-			<source ref="id28"/>
-			<target ref="id37"/>
+			<source ref="id49"/>
+			<target ref="id58"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
 			<label kind="assignment">error += 1</label>
 		</transition>
 		<transition>
-			<source ref="id29"/>
-			<target ref="id36"/>
+			<source ref="id50"/>
+			<target ref="id57"/>
 			<label kind="synchronisation">disk1_addItem[id]?</label>
 			<label kind="assignment">error += 2</label>
 		</transition>
 		<transition>
-			<source ref="id30"/>
-			<target ref="id36"/>
+			<source ref="id51"/>
+			<target ref="id57"/>
 			<label kind="synchronisation">disk1_addItem[id]?</label>
 			<label kind="assignment">error += 2</label>
 		</transition>
 		<transition>
-			<source ref="id32"/>
-			<target ref="id36"/>
+			<source ref="id53"/>
+			<target ref="id57"/>
 			<label kind="synchronisation">disk1_addItem[id]?</label>
 			<label kind="assignment">error += 2</label>
 		</transition>
 		<transition>
-			<source ref="id34"/>
-			<target ref="id36"/>
+			<source ref="id55"/>
+			<target ref="id57"/>
 			<label kind="synchronisation">disk1_addItem[id]?</label>
 			<label kind="assignment">error += 2</label>
 		</transition>
@@ -538,270 +745,270 @@ clock timer;</declaration>
 	
 	<template>
 		<name>disk1_GetemptySlot</name>
-		<location id="id38">
+		<location id="id59">
 			<name>disk1_Idle</name>
 		</location>
-		<location id="id39">
+		<location id="id60">
 			<name>disk1_Get1</name>
 			<committed/>
 		</location>
-		<location id="id40">
+		<location id="id61">
 			<name>disk1_Get2</name>
 			<committed/>
 		</location>
-		<location id="id41">
+		<location id="id62">
 			<name>disk1_Get3</name>
 			<committed/>
 		</location>
-		<location id="id42">
+		<location id="id63">
 			<name>disk1_Get4</name>
 			<committed/>
 		</location>
-		<location id="id43">
+		<location id="id64">
 			<name>disk1_Get5</name>
 			<committed/>
 		</location>
-		<location id="id44">
+		<location id="id65">
 			<name>disk1_Get6</name>
 			<committed/>
 		</location>
-		<location id="id45">
+		<location id="id66">
 			<name>disk1_Get7</name>
 			<committed/>
 		</location>
-		<location id="id46">
+		<location id="id67">
 			<name>disk1_Get8</name>
 			<committed/>
 		</location>
-		<init ref="id38"/>
+		<init ref="id59"/>
 		<transition>
-			<source ref="id39"/>
-			<target ref="id38"/>
+			<source ref="id60"/>
+			<target ref="id59"/>
 			<label kind="synchronisation">disk1_foundemptySlot!</label>
 			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
-			<source ref="id38"/>
-			<target ref="id39"/>
+			<source ref="id59"/>
+			<target ref="id60"/>
 			<label kind="guard">!disk1_notemptySlots[0]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
-			<source ref="id40"/>
-			<target ref="id38"/>
+			<source ref="id61"/>
+			<target ref="id59"/>
 			<label kind="synchronisation">disk1_foundemptySlot!</label>
 			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
-			<source ref="id38"/>
-			<target ref="id40"/>
+			<source ref="id59"/>
+			<target ref="id61"/>
 			<label kind="guard">!disk1_notemptySlots[1]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
-			<source ref="id41"/>
-			<target ref="id38"/>
+			<source ref="id62"/>
+			<target ref="id59"/>
 			<label kind="synchronisation">disk1_foundemptySlot!</label>
 			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
-			<source ref="id38"/>
-			<target ref="id41"/>
+			<source ref="id59"/>
+			<target ref="id62"/>
 			<label kind="guard">!disk1_notemptySlots[2]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
-			<source ref="id42"/>
-			<target ref="id38"/>
+			<source ref="id63"/>
+			<target ref="id59"/>
 			<label kind="synchronisation">disk1_foundemptySlot!</label>
 			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
-			<source ref="id38"/>
-			<target ref="id42"/>
+			<source ref="id59"/>
+			<target ref="id63"/>
 			<label kind="guard">!disk1_notemptySlots[3]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
-			<source ref="id43"/>
-			<target ref="id38"/>
+			<source ref="id64"/>
+			<target ref="id59"/>
 			<label kind="synchronisation">disk1_foundemptySlot!</label>
 			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
-			<source ref="id38"/>
-			<target ref="id43"/>
+			<source ref="id59"/>
+			<target ref="id64"/>
 			<label kind="guard">!disk1_notemptySlots[4]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
-			<source ref="id44"/>
-			<target ref="id38"/>
+			<source ref="id65"/>
+			<target ref="id59"/>
 			<label kind="synchronisation">disk1_foundemptySlot!</label>
 			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
-			<source ref="id38"/>
-			<target ref="id44"/>
+			<source ref="id59"/>
+			<target ref="id65"/>
 			<label kind="guard">!disk1_notemptySlots[5]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
-			<source ref="id45"/>
-			<target ref="id38"/>
+			<source ref="id66"/>
+			<target ref="id59"/>
 			<label kind="synchronisation">disk1_foundemptySlot!</label>
 			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
-			<source ref="id38"/>
-			<target ref="id45"/>
+			<source ref="id59"/>
+			<target ref="id66"/>
 			<label kind="guard">!disk1_notemptySlots[6]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
-			<source ref="id46"/>
-			<target ref="id38"/>
+			<source ref="id67"/>
+			<target ref="id59"/>
 			<label kind="synchronisation">disk1_foundemptySlot!</label>
 			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
-			<source ref="id38"/>
-			<target ref="id46"/>
+			<source ref="id59"/>
+			<target ref="id67"/>
 			<label kind="guard">!disk1_notemptySlots[7]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 	</template>
 	<template>
 		<name>disk1_GetcompleteSlot</name>
-		<location id="id47">
+		<location id="id68">
 			<name>disk1_Idle</name>
 		</location>
-		<location id="id39">
+		<location id="id60">
 			<name>disk1_Get1</name>
 			<committed/>
 		</location>
-		<location id="id40">
+		<location id="id61">
 			<name>disk1_Get2</name>
 			<committed/>
 		</location>
-		<location id="id41">
+		<location id="id62">
 			<name>disk1_Get3</name>
 			<committed/>
 		</location>
-		<location id="id42">
+		<location id="id63">
 			<name>disk1_Get4</name>
 			<committed/>
 		</location>
-		<location id="id43">
+		<location id="id64">
 			<name>disk1_Get5</name>
 			<committed/>
 		</location>
-		<location id="id44">
+		<location id="id65">
 			<name>disk1_Get6</name>
 			<committed/>
 		</location>
-		<location id="id45">
+		<location id="id66">
 			<name>disk1_Get7</name>
 			<committed/>
 		</location>
-		<location id="id46">
+		<location id="id67">
 			<name>disk1_Get8</name>
 			<committed/>
 		</location>
-		<init ref="id47"/>
+		<init ref="id68"/>
 		<transition>
-			<source ref="id39"/>
-			<target ref="id47"/>
+			<source ref="id60"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">disk1_foundcompleteSlot!</label>
 			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
-			<source ref="id47"/>
-			<target ref="id39"/>
+			<source ref="id68"/>
+			<target ref="id60"/>
 			<label kind="guard">!disk1_notcompleteSlots[0]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id40"/>
-			<target ref="id47"/>
+			<source ref="id61"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">disk1_foundcompleteSlot!</label>
 			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
-			<source ref="id47"/>
-			<target ref="id40"/>
+			<source ref="id68"/>
+			<target ref="id61"/>
 			<label kind="guard">!disk1_notcompleteSlots[1]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id41"/>
-			<target ref="id47"/>
+			<source ref="id62"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">disk1_foundcompleteSlot!</label>
 			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
-			<source ref="id47"/>
-			<target ref="id41"/>
+			<source ref="id68"/>
+			<target ref="id62"/>
 			<label kind="guard">!disk1_notcompleteSlots[2]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id42"/>
-			<target ref="id47"/>
+			<source ref="id63"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">disk1_foundcompleteSlot!</label>
 			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
-			<source ref="id47"/>
-			<target ref="id42"/>
+			<source ref="id68"/>
+			<target ref="id63"/>
 			<label kind="guard">!disk1_notcompleteSlots[3]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id43"/>
-			<target ref="id47"/>
+			<source ref="id64"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">disk1_foundcompleteSlot!</label>
 			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
-			<source ref="id47"/>
-			<target ref="id43"/>
+			<source ref="id68"/>
+			<target ref="id64"/>
 			<label kind="guard">!disk1_notcompleteSlots[4]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id44"/>
-			<target ref="id47"/>
+			<source ref="id65"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">disk1_foundcompleteSlot!</label>
 			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
-			<source ref="id47"/>
-			<target ref="id44"/>
+			<source ref="id68"/>
+			<target ref="id65"/>
 			<label kind="guard">!disk1_notcompleteSlots[5]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id45"/>
-			<target ref="id47"/>
+			<source ref="id66"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">disk1_foundcompleteSlot!</label>
 			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
-			<source ref="id47"/>
-			<target ref="id45"/>
+			<source ref="id68"/>
+			<target ref="id66"/>
 			<label kind="guard">!disk1_notcompleteSlots[6]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id46"/>
-			<target ref="id47"/>
+			<source ref="id67"/>
+			<target ref="id68"/>
 			<label kind="synchronisation">disk1_foundcompleteSlot!</label>
 			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
-			<source ref="id47"/>
-			<target ref="id46"/>
+			<source ref="id68"/>
+			<target ref="id67"/>
 			<label kind="guard">!disk1_notcompleteSlots[7]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
@@ -809,163 +1016,163 @@ clock timer;</declaration>
 	<template>
 		<name>disk1_SlotVariable_complete</name>
 		<parameter>const disk1_id_t id</parameter>
-		<location id="id48">
+		<location id="id69">
 			<name>disk1_Iscomplete</name>
 		</location>
-		<location id="id49">
+		<location id="id70">
 			<name>disk1_IsNotcomplete</name>
 		</location>
-		<init ref="id49"/>
+		<init ref="id70"/>
 		<transition>
-			<source ref="id49"/>
-			<target ref="id48"/>
+			<source ref="id70"/>
+			<target ref="id69"/>
 			<label kind="synchronisation">disk1_set_complete[id]?</label>
 			<label kind="assignment">disk1_slots_complete[id] = true</label>
 		</transition>
 		<transition>
-			<source ref="id48"/>
-			<target ref="id49"/>
+			<source ref="id69"/>
+			<target ref="id70"/>
 			<label kind="synchronisation">disk1_set_complete[id]?</label>
 			<label kind="assignment">disk1_slots_complete[id] = false</label>
 		</transition>
 		<transition>
-			<source ref="id48"/>
-			<target ref="id49"/>s
+			<source ref="id69"/>
+			<target ref="id70"/>s
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
 			<label kind="assignment">disk1_slots_complete[id] = false</label>
 		</transition>
 	</template>
 	<template>
 		<name>disk1_GetfreeSlot</name>
-		<location id="id50">
+		<location id="id71">
 			<name>disk1_Idle</name>
 		</location>
-		<location id="id39">
+		<location id="id60">
 			<name>disk1_Get1</name>
 			<committed/>
 		</location>
-		<location id="id40">
+		<location id="id61">
 			<name>disk1_Get2</name>
 			<committed/>
 		</location>
-		<location id="id41">
+		<location id="id62">
 			<name>disk1_Get3</name>
 			<committed/>
 		</location>
-		<location id="id42">
+		<location id="id63">
 			<name>disk1_Get4</name>
 			<committed/>
 		</location>
-		<location id="id43">
+		<location id="id64">
 			<name>disk1_Get5</name>
 			<committed/>
 		</location>
-		<location id="id44">
+		<location id="id65">
 			<name>disk1_Get6</name>
 			<committed/>
 		</location>
-		<location id="id45">
+		<location id="id66">
 			<name>disk1_Get7</name>
 			<committed/>
 		</location>
-		<location id="id46">
+		<location id="id67">
 			<name>disk1_Get8</name>
 			<committed/>
 		</location>
-		<init ref="id50"/>
+		<init ref="id71"/>
 		<transition>
-			<source ref="id39"/>
-			<target ref="id50"/>
+			<source ref="id60"/>
+			<target ref="id71"/>
 			<label kind="synchronisation">disk1_foundfreeSlot!</label>
 			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
-			<source ref="id50"/>
-			<target ref="id39"/>
+			<source ref="id71"/>
+			<target ref="id60"/>
 			<label kind="guard">!disk1_notfreeSlots[0]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id40"/>
-			<target ref="id50"/>
+			<source ref="id61"/>
+			<target ref="id71"/>
 			<label kind="synchronisation">disk1_foundfreeSlot!</label>
 			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
-			<source ref="id50"/>
-			<target ref="id40"/>
+			<source ref="id71"/>
+			<target ref="id61"/>
 			<label kind="guard">!disk1_notfreeSlots[1]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id41"/>
-			<target ref="id50"/>
+			<source ref="id62"/>
+			<target ref="id71"/>
 			<label kind="synchronisation">disk1_foundfreeSlot!</label>
 			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
-			<source ref="id50"/>
-			<target ref="id41"/>
+			<source ref="id71"/>
+			<target ref="id62"/>
 			<label kind="guard">!disk1_notfreeSlots[2]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id42"/>
-			<target ref="id50"/>
+			<source ref="id63"/>
+			<target ref="id71"/>
 			<label kind="synchronisation">disk1_foundfreeSlot!</label>
 			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
-			<source ref="id50"/>
-			<target ref="id42"/>
+			<source ref="id71"/>
+			<target ref="id63"/>
 			<label kind="guard">!disk1_notfreeSlots[3]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id43"/>
-			<target ref="id50"/>
+			<source ref="id64"/>
+			<target ref="id71"/>
 			<label kind="synchronisation">disk1_foundfreeSlot!</label>
 			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
-			<source ref="id50"/>
-			<target ref="id43"/>
+			<source ref="id71"/>
+			<target ref="id64"/>
 			<label kind="guard">!disk1_notfreeSlots[4]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id44"/>
-			<target ref="id50"/>
+			<source ref="id65"/>
+			<target ref="id71"/>
 			<label kind="synchronisation">disk1_foundfreeSlot!</label>
 			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
-			<source ref="id50"/>
-			<target ref="id44"/>
+			<source ref="id71"/>
+			<target ref="id65"/>
 			<label kind="guard">!disk1_notfreeSlots[5]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id45"/>
-			<target ref="id50"/>
+			<source ref="id66"/>
+			<target ref="id71"/>
 			<label kind="synchronisation">disk1_foundfreeSlot!</label>
 			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
-			<source ref="id50"/>
-			<target ref="id45"/>
+			<source ref="id71"/>
+			<target ref="id66"/>
 			<label kind="guard">!disk1_notfreeSlots[6]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id46"/>
-			<target ref="id50"/>
+			<source ref="id67"/>
+			<target ref="id71"/>
 			<label kind="synchronisation">disk1_foundfreeSlot!</label>
 			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
-			<source ref="id50"/>
-			<target ref="id46"/>
+			<source ref="id71"/>
+			<target ref="id67"/>
 			<label kind="guard">!disk1_notfreeSlots[7]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
@@ -973,163 +1180,163 @@ clock timer;</declaration>
 	<template>
 		<name>disk1_SlotVariable_free</name>
 		<parameter>const disk1_id_t id</parameter>
-		<location id="id51">
+		<location id="id72">
 			<name>disk1_Isfree</name>
 		</location>
-		<location id="id52">
+		<location id="id73">
 			<name>disk1_IsNotfree</name>
 		</location>
-		<init ref="id52"/>
+		<init ref="id73"/>
 		<transition>
-			<source ref="id52"/>
-			<target ref="id51"/>
+			<source ref="id73"/>
+			<target ref="id72"/>
 			<label kind="synchronisation">disk1_set_free[id]?</label>
 			<label kind="assignment">disk1_slots_free[id] = true</label>
 		</transition>
 		<transition>
-			<source ref="id51"/>
-			<target ref="id52"/>
+			<source ref="id72"/>
+			<target ref="id73"/>
 			<label kind="synchronisation">disk1_set_free[id]?</label>
 			<label kind="assignment">disk1_slots_free[id] = false</label>
 		</transition>
 		<transition>
-			<source ref="id51"/>
-			<target ref="id52"/>s
+			<source ref="id72"/>
+			<target ref="id73"/>s
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
 			<label kind="assignment">disk1_slots_free[id] = false</label>
 		</transition>
 	</template>
 	<template>
 		<name>disk1_Getin_progressSlot</name>
-		<location id="id53">
+		<location id="id74">
 			<name>disk1_Idle</name>
 		</location>
-		<location id="id39">
+		<location id="id60">
 			<name>disk1_Get1</name>
 			<committed/>
 		</location>
-		<location id="id40">
+		<location id="id61">
 			<name>disk1_Get2</name>
 			<committed/>
 		</location>
-		<location id="id41">
+		<location id="id62">
 			<name>disk1_Get3</name>
 			<committed/>
 		</location>
-		<location id="id42">
+		<location id="id63">
 			<name>disk1_Get4</name>
 			<committed/>
 		</location>
-		<location id="id43">
+		<location id="id64">
 			<name>disk1_Get5</name>
 			<committed/>
 		</location>
-		<location id="id44">
+		<location id="id65">
 			<name>disk1_Get6</name>
 			<committed/>
 		</location>
-		<location id="id45">
+		<location id="id66">
 			<name>disk1_Get7</name>
 			<committed/>
 		</location>
-		<location id="id46">
+		<location id="id67">
 			<name>disk1_Get8</name>
 			<committed/>
 		</location>
-		<init ref="id53"/>
+		<init ref="id74"/>
 		<transition>
-			<source ref="id39"/>
-			<target ref="id53"/>
+			<source ref="id60"/>
+			<target ref="id74"/>
 			<label kind="synchronisation">disk1_foundin_progressSlot!</label>
 			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
-			<source ref="id53"/>
-			<target ref="id39"/>
+			<source ref="id74"/>
+			<target ref="id60"/>
 			<label kind="guard">!disk1_notin_progressSlots[0]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id40"/>
-			<target ref="id53"/>
+			<source ref="id61"/>
+			<target ref="id74"/>
 			<label kind="synchronisation">disk1_foundin_progressSlot!</label>
 			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
-			<source ref="id53"/>
-			<target ref="id40"/>
+			<source ref="id74"/>
+			<target ref="id61"/>
 			<label kind="guard">!disk1_notin_progressSlots[1]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id41"/>
-			<target ref="id53"/>
+			<source ref="id62"/>
+			<target ref="id74"/>
 			<label kind="synchronisation">disk1_foundin_progressSlot!</label>
 			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
-			<source ref="id53"/>
-			<target ref="id41"/>
+			<source ref="id74"/>
+			<target ref="id62"/>
 			<label kind="guard">!disk1_notin_progressSlots[2]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id42"/>
-			<target ref="id53"/>
+			<source ref="id63"/>
+			<target ref="id74"/>
 			<label kind="synchronisation">disk1_foundin_progressSlot!</label>
 			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
-			<source ref="id53"/>
-			<target ref="id42"/>
+			<source ref="id74"/>
+			<target ref="id63"/>
 			<label kind="guard">!disk1_notin_progressSlots[3]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id43"/>
-			<target ref="id53"/>
+			<source ref="id64"/>
+			<target ref="id74"/>
 			<label kind="synchronisation">disk1_foundin_progressSlot!</label>
 			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
-			<source ref="id53"/>
-			<target ref="id43"/>
+			<source ref="id74"/>
+			<target ref="id64"/>
 			<label kind="guard">!disk1_notin_progressSlots[4]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id44"/>
-			<target ref="id53"/>
+			<source ref="id65"/>
+			<target ref="id74"/>
 			<label kind="synchronisation">disk1_foundin_progressSlot!</label>
 			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
-			<source ref="id53"/>
-			<target ref="id44"/>
+			<source ref="id74"/>
+			<target ref="id65"/>
 			<label kind="guard">!disk1_notin_progressSlots[5]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id45"/>
-			<target ref="id53"/>
+			<source ref="id66"/>
+			<target ref="id74"/>
 			<label kind="synchronisation">disk1_foundin_progressSlot!</label>
 			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
-			<source ref="id53"/>
-			<target ref="id45"/>
+			<source ref="id74"/>
+			<target ref="id66"/>
 			<label kind="guard">!disk1_notin_progressSlots[6]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
-			<source ref="id46"/>
-			<target ref="id53"/>
+			<source ref="id67"/>
+			<target ref="id74"/>
 			<label kind="synchronisation">disk1_foundin_progressSlot!</label>
 			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
-			<source ref="id53"/>
-			<target ref="id46"/>
+			<source ref="id74"/>
+			<target ref="id67"/>
 			<label kind="guard">!disk1_notin_progressSlots[7]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
@@ -1137,28 +1344,28 @@ clock timer;</declaration>
 	<template>
 		<name>disk1_SlotVariable_in_progress</name>
 		<parameter>const disk1_id_t id</parameter>
-		<location id="id54">
+		<location id="id75">
 			<name>disk1_Isin_progress</name>
 		</location>
-		<location id="id55">
+		<location id="id76">
 			<name>disk1_IsNotin_progress</name>
 		</location>
-		<init ref="id55"/>
+		<init ref="id76"/>
 		<transition>
-			<source ref="id55"/>
-			<target ref="id54"/>
+			<source ref="id76"/>
+			<target ref="id75"/>
 			<label kind="synchronisation">disk1_set_in_progress[id]?</label>
 			<label kind="assignment">disk1_slots_in_progress[id] = true</label>
 		</transition>
 		<transition>
-			<source ref="id54"/>
-			<target ref="id55"/>
+			<source ref="id75"/>
+			<target ref="id76"/>
 			<label kind="synchronisation">disk1_set_in_progress[id]?</label>
 			<label kind="assignment">disk1_slots_in_progress[id] = false</label>
 		</transition>
 		<transition>
-			<source ref="id54"/>
-			<target ref="id55"/>s
+			<source ref="id75"/>
+			<target ref="id76"/>s
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
 			<label kind="assignment">disk1_slots_in_progress[id] = false</label>
 		</transition>
@@ -1166,37 +1373,37 @@ clock timer;</declaration>
 	
 	<template>
 		<name>crane1_CraneMagnet</name>
-		<location id="id56">
+		<location id="id77">
 			<name>crane1_MagnetOff</name>
 		</location>
-		<location id="id57">
+		<location id="id78">
 			<name>crane1_MagnetOn</name>
 		</location>
-		<location id="id58">
+		<location id="id79">
 			<name>crane1_StoppedMagnetOn</name>
 		</location>
-		<location id="id59">
+		<location id="id80">
 			<name>crane1_StoppedMagnetOff</name>
 		</location>
-		<init ref="id56"/>
+		<init ref="id77"/>
 		<transition>
-			<source ref="id57"/>
-			<target ref="id59"/>
+			<source ref="id78"/>
+			<target ref="id80"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id56"/>
-			<target ref="id58"/>
+			<source ref="id77"/>
+			<target ref="id79"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id57"/>
-			<target ref="id56"/>
+			<source ref="id78"/>
+			<target ref="id77"/>
 			<label kind="synchronisation">crane1_toggleMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id56"/>
-			<target ref="id57"/>
+			<source ref="id77"/>
+			<target ref="id78"/>
 			<label kind="synchronisation">crane1_toggleMagnet?</label>
 		</transition>
 	</template>
@@ -1204,240 +1411,240 @@ clock timer;</declaration>
 		<name>crane1</name>
 		<declaration>
 		        </declaration>
-		<location id="id60">
+		<location id="id81">
 			<name>crane1_intake</name>
 		</location>
-		<location id="id61">
+		<location id="id82">
 			<name>crane1_LoweredAtintake</name>
 		</location>
-		<location id="id62">
+		<location id="id83">
 			<name>crane1_outRed</name>
 		</location>
-		<location id="id63">
+		<location id="id84">
 			<name>crane1_LoweredAtoutRed</name>
 		</location>
-		<location id="id64">
+		<location id="id85">
 			<name>crane1_outGreen</name>
 		</location>
-		<location id="id65">
+		<location id="id86">
 			<name>crane1_LoweredAtoutGreen</name>
 		</location>
-		<location id="id66">
+		<location id="id87">
 			<name>crane1_outBlue</name>
 		</location>
-		<location id="id67">
+		<location id="id88">
 			<name>crane1_LoweredAtoutBlue</name>
 		</location>
-		<location id="id68">
+		<location id="id89">
 			<name>crane1_Stopped</name>
 		</location>
-		<init ref="id60"/>
+		<init ref="id81"/>
 		<transition>
-			<source ref="id60"/>
-			<target ref="id68"/>
+			<source ref="id81"/>
+			<target ref="id89"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id61"/>
-			<target ref="id68"/>
+			<source ref="id82"/>
+			<target ref="id89"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id60"/>
-			<target ref="id61"/>
+			<source ref="id81"/>
+			<target ref="id82"/>
 			<label kind="synchronisation">crane1_lowerMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id61"/>
-			<target ref="id60"/>
+			<source ref="id82"/>
+			<target ref="id81"/>
 			<label kind="synchronisation">crane1_raiseMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id60"/>
-			<target ref="id62"/>
+			<source ref="id81"/>
+			<target ref="id83"/>
 			<label kind="synchronisation">crane1_goto_outRed?</label>
 		</transition>
 		<transition>
-			<source ref="id60"/>
-			<target ref="id64"/>
+			<source ref="id81"/>
+			<target ref="id85"/>
 			<label kind="synchronisation">crane1_goto_outGreen?</label>
 		</transition>
 		<transition>
-			<source ref="id60"/>
-			<target ref="id66"/>
+			<source ref="id81"/>
+			<target ref="id87"/>
 			<label kind="synchronisation">crane1_goto_outBlue?</label>
 		</transition>
 		<transition>
-			<source ref="id62"/>
-			<target ref="id68"/>
+			<source ref="id83"/>
+			<target ref="id89"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id63"/>
-			<target ref="id68"/>
+			<source ref="id84"/>
+			<target ref="id89"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id62"/>
-			<target ref="id63"/>
+			<source ref="id83"/>
+			<target ref="id84"/>
 			<label kind="synchronisation">crane1_lowerMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id63"/>
-			<target ref="id62"/>
+			<source ref="id84"/>
+			<target ref="id83"/>
 			<label kind="synchronisation">crane1_raiseMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id62"/>
-			<target ref="id60"/>
+			<source ref="id83"/>
+			<target ref="id81"/>
 			<label kind="synchronisation">crane1_goto_intake?</label>
 		</transition>
 		<transition>
-			<source ref="id62"/>
-			<target ref="id64"/>
+			<source ref="id83"/>
+			<target ref="id85"/>
 			<label kind="synchronisation">crane1_goto_outGreen?</label>
 		</transition>
 		<transition>
-			<source ref="id62"/>
-			<target ref="id66"/>
+			<source ref="id83"/>
+			<target ref="id87"/>
 			<label kind="synchronisation">crane1_goto_outBlue?</label>
 		</transition>
 		<transition>
-			<source ref="id64"/>
-			<target ref="id68"/>
+			<source ref="id85"/>
+			<target ref="id89"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id65"/>
-			<target ref="id68"/>
+			<source ref="id86"/>
+			<target ref="id89"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id64"/>
-			<target ref="id65"/>
+			<source ref="id85"/>
+			<target ref="id86"/>
 			<label kind="synchronisation">crane1_lowerMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id65"/>
-			<target ref="id64"/>
+			<source ref="id86"/>
+			<target ref="id85"/>
 			<label kind="synchronisation">crane1_raiseMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id64"/>
-			<target ref="id60"/>
+			<source ref="id85"/>
+			<target ref="id81"/>
 			<label kind="synchronisation">crane1_goto_intake?</label>
 		</transition>
 		<transition>
-			<source ref="id64"/>
-			<target ref="id62"/>
+			<source ref="id85"/>
+			<target ref="id83"/>
 			<label kind="synchronisation">crane1_goto_outRed?</label>
 		</transition>
 		<transition>
-			<source ref="id64"/>
-			<target ref="id66"/>
+			<source ref="id85"/>
+			<target ref="id87"/>
 			<label kind="synchronisation">crane1_goto_outBlue?</label>
 		</transition>
 		<transition>
-			<source ref="id66"/>
-			<target ref="id68"/>
+			<source ref="id87"/>
+			<target ref="id89"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id67"/>
-			<target ref="id68"/>
+			<source ref="id88"/>
+			<target ref="id89"/>
 			<label kind="synchronisation">emergencyStop?</label>
 		</transition>
 		<transition>
-			<source ref="id66"/>
-			<target ref="id67"/>
+			<source ref="id87"/>
+			<target ref="id88"/>
 			<label kind="synchronisation">crane1_lowerMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id67"/>
-			<target ref="id66"/>
+			<source ref="id88"/>
+			<target ref="id87"/>
 			<label kind="synchronisation">crane1_raiseMagnet?</label>
 		</transition>
 		<transition>
-			<source ref="id66"/>
-			<target ref="id60"/>
+			<source ref="id87"/>
+			<target ref="id81"/>
 			<label kind="synchronisation">crane1_goto_intake?</label>
 		</transition>
 		<transition>
-			<source ref="id66"/>
-			<target ref="id62"/>
+			<source ref="id87"/>
+			<target ref="id83"/>
 			<label kind="synchronisation">crane1_goto_outRed?</label>
 		</transition>
 		<transition>
-			<source ref="id66"/>
-			<target ref="id64"/>
+			<source ref="id87"/>
+			<target ref="id85"/>
 			<label kind="synchronisation">crane1_goto_outGreen?</label>
 		</transition>
 	</template>
 	
 	<template>
 		        <name>camera1</name>
-		        <location id="id69">
+		        <location id="id90">
 		            <name>camera1_Idle</name>
 		        </location>
-		        <location id="id70">
+		        <location id="id91">
 		            <name>camera1_Red</name>
 		            <committed/>
 		        </location>
-		        <location id="id71">
+		        <location id="id92">
 		            <name>camera1_Green</name>
 		            <committed/>
 		        </location>
-		        <location id="id72">
+		        <location id="id93">
 		            <name>camera1_Blue</name>
 		            <committed/>
 		        </location>
-		        <init ref="id69"/>
+		        <init ref="id90"/>
 		        <transition>
-		            <source ref="id72"/>
-		            <target ref="id69"/>
+		            <source ref="id93"/>
+		            <target ref="id90"/>
 		            <label kind="synchronisation">camera1_gottenColour!</label>
 		        </transition>
 		        <transition>
-		            <source ref="id69"/>
-		            <target ref="id72"/>
+		            <source ref="id90"/>
+		            <target ref="id93"/>
 		            <label kind="synchronisation">camera1_getColour?</label>
 		            <label kind="assignment">colour = 3</label>
 		        </transition>
 		        <transition>
-		            <source ref="id71"/>
-		            <target ref="id69"/>
+		            <source ref="id92"/>
+		            <target ref="id90"/>
 		            <label kind="synchronisation">camera1_gottenColour!</label>
 		        </transition>
 		        <transition>
-		            <source ref="id69"/>
-		            <target ref="id71"/>
+		            <source ref="id90"/>
+		            <target ref="id92"/>
 		            <label kind="synchronisation">camera1_getColour?</label>
 		            <label kind="assignment">colour=2</label>
 		        </transition>
 		        <transition>
-		            <source ref="id70"/>
-		            <target ref="id69"/>
+		            <source ref="id91"/>
+		            <target ref="id90"/>
 		            <label kind="synchronisation">camera1_gottenColour!</label>
 		        </transition>
 		        <transition>
-		            <source ref="id69"/>
-		            <target ref="id70"/>
+		            <source ref="id90"/>
+		            <target ref="id91"/>
 		            <label kind="synchronisation">camera1_getColour?</label>
 		            <label kind="assignment">colour = 1</label>
 		        </transition>
 		    </template>
 	<template>
 		<name>EmergencyButton</name>
-		<location id="id73">
+		<location id="id94">
 			<name>Running</name>
 		</location>
-		<location id="id74">
+		<location id="id95">
 			<name>Stopped</name>
 		</location>
-		<init ref="id73"/>
+		<init ref="id94"/>
 		<transition>
-			<source ref="id73"/>
-			<target ref="id74"/>
+			<source ref="id94"/>
+			<target ref="id95"/>
 			<label kind="synchronisation">emergencyStop!</label>
 		</transition>
 	</template>

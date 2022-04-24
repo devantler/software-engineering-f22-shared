@@ -17,6 +17,7 @@ import xtext.factoryLang.uppaalParsers.EnumParser
 import static xtext.factoryLang.generator.subgenerators.UppaalGenerator.getIdOfLocation
 import static xtext.factoryLang.generator.subgenerators.UppaalGenerator.statements
 import xtext.factoryLang.factoryLang.DiskSlotStateValue
+import xtext.factoryLang.factoryLang.CranePositionParameter
 
 class UppaalMasterGenerator {
 	static String lastTransistionState = "id0";
@@ -39,6 +40,10 @@ class UppaalMasterGenerator {
 		<location id="«getIdOfLocation('''«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»''')»">
 			<name>«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»</name>
 		</location>
+		«FOR s : statement.statements»
+		«statements.add(s)»
+		«generateLocation(s)»
+		«ENDFOR»
 		<location id="«getIdOfLocation('''EndIf_«statements.indexOf(statement)»''')»">
 			<name>EndIf_«statements.indexOf(statement)»</name>
 		</location>
@@ -46,7 +51,7 @@ class UppaalMasterGenerator {
 	}
 	
 	def static dispatch String generateTransistion(VariableConditional statement){
-		switch(statement.variableValue){
+		switch(statement.variableValue.value){
 			ColorValue:{
 				val trans = '''
 				<transition>
@@ -60,6 +65,9 @@ class UppaalMasterGenerator {
 					<label kind="guard">currentSlot_colour == «EnumParser.ColourToInt((statement.variableValue.value as ColorValue).value)»</label>
 					<label kind="synchronisation">«currentDisc»_gottenColourSlot?</label>
 				</transition>
+				«FOR s : statement.statements»
+				«generateTransistion(s)»
+				«ENDFOR»
 				''';
 				lastTransistionState = getIdOfLocation('''«statement.variable.name»Is«statement.variableValue.value»_«statements.indexOf(statement)»''')
 				return trans
@@ -70,8 +78,8 @@ class UppaalMasterGenerator {
 	
 	def static dispatch String generateLocation(CranePickupOperation statement) {
 		'''
-		<location id="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
+		<location id="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as CranePositionParameter).name»_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_goto_«(statement.target as CranePositionParameter).name»_«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_lower_«statements.indexOf(statement)»''')»">
 			<name>«statement.device.name»_lower_«statements.indexOf(statement)»</name>
@@ -89,11 +97,11 @@ class UppaalMasterGenerator {
 		val trans = '''
 		<transition>
 			<source ref="«lastTransistionState»"/>
-			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»!</label>
+			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as CranePositionParameter).name»_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_goto_«(statement.target as CranePositionParameter).name»!</label>
 		</transition>
 		<transition>
-			<source ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»"/>
+			<source ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as CranePositionParameter).name»_«statements.indexOf(statement)»''')»"/>
 			<target ref="«getIdOfLocation('''«statement.device.name»_lower_«statements.indexOf(statement)»''')»"/>
 			<label kind="synchronisation">«statement.device.name»_lowerMagnet!</label>
 		</transition>
@@ -114,11 +122,11 @@ class UppaalMasterGenerator {
 	
 	def static dispatch String generateLocation(CraneDropOperation statement) {
 		'''
-		<location id="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
+		<location id="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as CranePositionParameter).name»_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_goto_«(statement.target as CranePositionParameter).name»_«statements.indexOf(statement)»</name>
 		</location>
-		<location id="«getIdOfLocation('''«statement.device.name»_lower_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»">
-			<name>«statement.device.name»_lower_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»</name>
+		<location id="«getIdOfLocation('''«statement.device.name»_lower_«(statement.target as CranePositionParameter).name»_«statements.indexOf(statement)»''')»">
+			<name>«statement.device.name»_lower_«(statement.target as CranePositionParameter).name»_«statements.indexOf(statement)»</name>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»''')»">
 			<name>«statement.device.name»_toggleMagnet_«statements.indexOf(statement)»</name>
@@ -133,11 +141,11 @@ class UppaalMasterGenerator {
 		val trans = '''
 		<transition>
 			<source ref="«lastTransistionState»"/>
-			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»"/>
-			<label kind="synchronisation">«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»!</label>
+			<target ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as CranePositionParameter).name»_«statements.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_goto_«(statement.target as CranePositionParameter).name»!</label>
 		</transition>
 		<transition>
-			<source ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as DiskZoneParameter).name»_«statements.indexOf(statement)»''')»"/>
+			<source ref="«getIdOfLocation('''«statement.device.name»_goto_«(statement.target as CranePositionParameter).name»_«statements.indexOf(statement)»''')»"/>
 			<target ref="«getIdOfLocation('''«statement.device.name»_lower_«statements.indexOf(statement)»''')»"/>
 			<label kind="synchronisation">«statement.device.name»_lowerMagnet!</label>
 		</transition>
@@ -326,10 +334,14 @@ class UppaalMasterGenerator {
 		<location id="«getIdOfLocation('''«statement.device.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statements.indexOf(statement)»''')»">
 			<name>«statement.device.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statements.indexOf(statement)»</name>
 		</location>
+		«FOR s : statement.statements»
+		«generateLocation(s)»
+		«ENDFOR»
 		'''
 	}
 	
 	def static dispatch String generateTransistion(ForEach statement) {
+		val returnTransistion = lastTransistionState
 		val trans = '''
 		<transition>
 			<source ref="«lastTransistionState»"/>
@@ -342,9 +354,13 @@ class UppaalMasterGenerator {
 			<target ref="«getIdOfLocation('''«statement.device.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statements.indexOf(statement)»''')»"/>
 			<label kind="synchronisation">«statement.device.name»_found«(statement.variableValue.value as DiskSlotStateValue).value»Slot?</label>
 		</transition>
+		«FOR s : statement.statements»
+		«statements.add(s)»
+		«generateTransistion(s)»
+		«ENDFOR»
 		<transition>
 			<source ref="«getIdOfLocation('''«statement.device.name»_get«(statement.variableValue.value as DiskSlotStateValue).value»Slot_«statements.indexOf(statement)»''')»"/>
-			<target ref="«lastTransistionState»"/>
+			<target ref="«returnTransistion»"/>
 			<label kind="guard">GlobalTimer &gt; 2</label>
 		</transition>
 		'''
