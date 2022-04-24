@@ -1,37 +1,27 @@
 package xtext.factoryLang.generator.subgenerators
 
-import org.eclipse.xtext.generator.IFileSystemAccess2
+import java.util.ArrayList
+import java.util.HashMap
+import java.util.List
+import java.util.Map
 import org.eclipse.emf.ecore.resource.Resource
-import xtext.factoryLang.factoryLang.Model
-import xtext.factoryLang.factoryLang.Disk
-import xtext.factoryLang.factoryLang.Crane
+import org.eclipse.xtext.generator.IFileSystemAccess2
 import xtext.factoryLang.factoryLang.Camera
+import xtext.factoryLang.factoryLang.Conditional
+import xtext.factoryLang.factoryLang.Crane
+import xtext.factoryLang.factoryLang.CranePositionParameter
+import xtext.factoryLang.factoryLang.DISK_STATES
+import xtext.factoryLang.factoryLang.Disk
 import xtext.factoryLang.factoryLang.DiskSlotParameter
 import xtext.factoryLang.factoryLang.DiskSlotStateValue
 import xtext.factoryLang.factoryLang.DiskZoneParameter
-import xtext.factoryLang.factoryLang.CranePositionParameter
-import xtext.factoryLang.factoryLang.Statement
-import xtext.factoryLang.factoryLang.DeviceConditional
-import xtext.factoryLang.factoryLang.VariableConditional
-import xtext.factoryLang.factoryLang.CranePickupOperation
-import xtext.factoryLang.factoryLang.CraneDropOperation
-import xtext.factoryLang.factoryLang.DiskMoveSlotOperation
-import xtext.factoryLang.factoryLang.DiskMoveVariableSlotOperation
-import xtext.factoryLang.factoryLang.DiskMoveEmptySlotOperation
-import xtext.factoryLang.factoryLang.DiskMarkSlotOperation
-import xtext.factoryLang.factoryLang.CameraScanOperation
 import xtext.factoryLang.factoryLang.ForEach
-import org.eclipse.emf.common.util.EList
-import org.eclipse.emf.common.util.EMap
-import java.util.HashMap
-import java.util.Map
-import xtext.factoryLang.factoryLang.ColorValue
-import xtext.factoryLang.uppaalParsers.EnumParser
-import xtext.factoryLang.factoryLang.DISK_STATES
+import xtext.factoryLang.factoryLang.Model
+import xtext.factoryLang.factoryLang.Statement
 
 class UppaalGenerator {
 	
-	public static EList<Statement> statements;
+	public static List<Statement> statementsIndexer;
 	static Map<String, String> locationIds = new HashMap();
 	
 	def static generate(IFileSystemAccess2 fsa, Resource resource){
@@ -40,7 +30,7 @@ class UppaalGenerator {
 		val cranes = model.configurations.map[device].filter[it instanceof Crane].map[x|x as Crane]
 		val cameras = model.configurations.map[device].filter[it instanceof Camera].map[x|x as Camera]
 		val discSlotStateValues = resource.allContents.filter(DiskSlotStateValue).map[value].toSet.map[toString]
-		statements = model.statements
+		UppaalGenerator.statementsIndexer = getStatements(model.statements)
 		println("Hello darkness my old friend")
 		fsa.generateFile("uppaal/system.xml", 
 			'''
@@ -124,12 +114,11 @@ class UppaalGenerator {
 					<location id="id0">
 						<name>Idle</name>
 					</location>
-					«FOR statement : statements»
-					//TODO: NESTED STATEMENT LOOP
+					«FOR statement : model.statements»
 					«UppaalMasterGenerator.generateLocation(statement)»
 					«ENDFOR»
 					<init ref="id0"/>
-					«FOR statement : statements»
+					«FOR statement : model.statements»
 					«UppaalMasterGenerator.generateTransistion(statement)»	
 					«ENDFOR»
 				</template>
@@ -158,6 +147,18 @@ class UppaalGenerator {
 			«UppaalQueryGenerator.generateUpaalQuery(cranes.toList(), discs.toList(), cameras.toList())»
 			'''
 		)
+	}
+	
+	def static List<Statement> getStatements(List<Statement> statements){
+		val result = new ArrayList<Statement>();
+		result.addAll(statements)
+		for(s : statements){
+			switch(s){
+				Conditional: result.addAll(getStatements(s.statements))
+				ForEach: result.addAll(getStatements(s.statements))
+			}
+		}
+		return result
 	}
 	
 	static int idCounter = 1;
