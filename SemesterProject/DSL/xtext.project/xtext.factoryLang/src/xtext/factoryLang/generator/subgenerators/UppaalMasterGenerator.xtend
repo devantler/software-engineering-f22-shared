@@ -49,6 +49,7 @@ class UppaalMasterGenerator {
 	}
 	
 	def static dispatch String generateTransistion(VariableConditional statement){
+		val returnTransistion = lastTransistionState
 		switch(statement.variableValue.value){
 			ColorValue:{
 				val trans = '''
@@ -63,11 +64,16 @@ class UppaalMasterGenerator {
 					<label kind="guard">currentSlot_colour == «EnumParser.ColourToInt((statement.variableValue.value as ColorValue).value)»</label>
 					<label kind="synchronisation">«currentDisc»_gottenColourSlot?</label>
 				</transition>
+				«lastTransistionState = '''«getIdOfLocation('''«statement.variable.name»Is«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»''')»'''»
 				«FOR s : statement.statements»
 				«generateTransistion(s)»
 				«ENDFOR»
+				<transition>
+					<source ref="«getIdOfLocation('''«statement.variable.name»_get«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»''')»"/>
+					<target ref="«returnTransistion»"/>
+					<label kind="guard">GlobalTimer &gt; 2</label>
+				</transition>
 				''';
-				lastTransistionState = getIdOfLocation('''«statement.variable.name»Is«statement.variableValue.value»_«statementsIndexer.indexOf(statement)»''')
 				return trans
 				}
 			default: throw new UnsupportedOperationException("This conditional value is not implemented yet")
@@ -353,6 +359,7 @@ class UppaalMasterGenerator {
 			<target ref="«getIdOfLocation('''«statement.device.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexer.indexOf(statement)»''')»"/>
 			<label kind="synchronisation">«statement.device.name»_found«(statement.variableValue.value as DiskSlotStateValue).value»Slot?</label>
 		</transition>
+		«lastTransistionState = '''«getIdOfLocation('''«statement.device.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexer.indexOf(statement)»''')»'''»
 		«FOR s : statement.statements»
 		«generateTransistion(s)»
 		«ENDFOR»
@@ -362,7 +369,6 @@ class UppaalMasterGenerator {
 			<label kind="guard">GlobalTimer &gt; 2</label>
 		</transition>
 		'''
-		lastTransistionState = getIdOfLocation('''«statement.device.name»_gottenSlot«(statement.variableValue.value as DiskSlotStateValue).value»_«statementsIndexer.indexOf(statement)»''')
 		return trans
 	}
 }
