@@ -50,6 +50,13 @@ class DiscGenerator {
 				<target ref="«getIdOfLocation('''Position«i»''')»"/>
 				<label kind="synchronisation">«disc.name»_removeItem[«i-1»]!</label>
 			</transition>
+			«FOR j : 0 ..< (disc.slotParameter as DiskSlotParameter).size»
+			<transition>
+				<source ref="«getIdOfLocation('''Position«((i + j) % (disc.slotParameter as DiskSlotParameter).size) + 1»''')»"/>
+				<target ref="«getIdOfLocation('''Position«i»''')»"/>
+				<label kind="synchronisation">«disc.name»_goto[«i-1»]?</label>
+			</transition>
+			«ENDFOR»
 			«ENDFOR»
 		</template>
 		'''
