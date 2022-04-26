@@ -163,12 +163,14 @@ class UppaalGenerator {
 	
 	static int idCounter = 1;
 	def static String getIdOfLocation(String location){
+		var value = ""
 		if(locationIds.containsKey(location)){
-			return locationIds.get(location)
+			value = locationIds.get(location)
 		}else{
 			locationIds.put(location, '''id«idCounter++»''')
-			return '''id«idCounter - 1»'''
+			value = '''id«idCounter - 1»'''
 		}
+		return value
 	}
 	
 }
