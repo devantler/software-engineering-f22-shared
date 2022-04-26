@@ -24,8 +24,11 @@ void setupElevationControls()
 
 void raise()
 {
-    enableMotor(true, 225);
-    processSteps(stepsToTake);
+    // if runMotor returns anything else than zero we have an error.
+    if(runMotor(true, 100, 1) != 0){
+       //handle error
+    }
+    
     disableMotor();
     lastPhotoResistorVal = analogRead(photoResistorPin);
 }
@@ -38,7 +41,40 @@ void lower()
     lastPhotoResistorVal = analogRead(photoResistorPin);
 }
 
-void enableMotor(bool direction, uint8_t speed)
+//Acceleration is a value between 0-10
+int runMotor(bool direction, uint8_t speed, uint8_t acceleration){
+    int stepsTaken = 0;
+    int lastStepTime = 0;
+    while (stepsToTake <= stepsTaken)
+    {
+        
+        timeForStep = millis();
+        if(checkSteps()){
+            int newStepTime = millis();
+
+            int timePerStep = newStepTime - lastStepTime;
+
+            
+            stepsTaken++;
+            Serial.println(stepsTaken);
+            lastStepTime = newStepTime;
+        }  
+    }
+    enableMotor(direction, 225);
+    processSteps(stepsToTake);
+}
+
+bool checkSteps() {
+    int currentPhotoResistorVal = analogRead(photoResistorPin);
+    if (isSteppingFromBlackToWhite(lastPhotoResistorVal, currentPhotoResistorVal) ||
+        isSteppingFromWhiteToBlack(lastPhotoResistorVal, currentPhotoResistorVal))
+    {
+        lastPhotoResistorVal = currentPhotoResistorVal;
+        return true;
+    }
+}
+
+bool enableMotor(bool direction, uint8_t speed)
 {
     if (direction)
     {
@@ -63,18 +99,7 @@ void disableMotor()
 
 void processSteps(int stepsToTake)
 {
-    int stepsTaken = 0;
-    while (stepsToTake <= stepsTaken)
-    {
-        int currentPhotoResistorVal = analogRead(photoResistorPin);
-        if (isSteppingFromBlackToWhite(lastPhotoResistorVal, currentPhotoResistorVal) ||
-            isSteppingFromWhiteToBlack(lastPhotoResistorVal, currentPhotoResistorVal))
-        {
-            stepsTaken++;
-            Serial.println(stepsTaken);
-            lastPhotoResistorVal = currentPhotoResistorVal;
-        }
-    }
+
 }
 
 bool isSteppingFromBlackToWhite(int lastPhotoResistorVal, int currentPhotoResistorVal)
