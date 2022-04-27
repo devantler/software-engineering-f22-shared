@@ -411,7 +411,7 @@ clock timer;</declaration>
 			<label kind="syncronisation">disk1_set_empty[currentSlot]!</label>
 		</transition>
 		<transition>
-			<source ref="id27"/>
+			<source ref="id26"/>
 			<target ref="id0"/>
 		</transition>
 		<transition>

@@ -408,6 +408,9 @@ class UppaalMasterGenerator {
 		«ENDIF»
 		'''
 		lastTransistionState = getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')
+		if (value === "free" || value == "empty") {
+			lastTransistionState = getIdOfLocation('''«statement.device.name»_markSlotopposite_«statementsIndexer.indexOf(statement)»''')
+		}
 		return trans
 	}
 	
