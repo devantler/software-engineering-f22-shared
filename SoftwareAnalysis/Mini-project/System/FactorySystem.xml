@@ -1353,7 +1353,35 @@ system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camer
 			<comment></comment>
 		</query>
 		<query>
-			<formula>sup{MasterController.markEmpty} : GlobalTimer</formula>
+			<formula>A&lt;&gt; Disc.Position1</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Disc.Position2</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Disc.Position3</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Disc.Position4</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Disc.Position2 imply Disc.Position3</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Crane.Intake imply Crane.Red</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; Crane.LoweredAtRed imply (Crane.Red or Crane.Stopped)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula></formula>
 			<comment></comment>
 		</query>
 	</queries>
