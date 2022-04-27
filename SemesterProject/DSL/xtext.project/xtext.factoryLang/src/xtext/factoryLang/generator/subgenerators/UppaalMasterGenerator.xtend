@@ -354,7 +354,7 @@ class UppaalMasterGenerator {
 			<name>«statement.device.name»_markSlotfree_«statementsIndexer.indexOf(statement)»</name>
 		</location>
 		«ENDIF»
-		«IF value === "in-progress" »
+		«IF value === "in_progress" »
 		<location id="«getIdOfLocation('''«statement.device.name»_markSlotfull_«statementsIndexer.indexOf(statement)»''')»">
 			<name>«statement.device.name»_markSlotfull_«statementsIndexer.indexOf(statement)»</name>
 		</location>
