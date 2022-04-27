@@ -55,6 +55,7 @@ class DiscGenerator {
 				<source ref="«getIdOfLocation('''Position«((i + j) % (disc.slotParameter as DiskSlotParameter).size) + 1»''')»"/>
 				<target ref="«getIdOfLocation('''Position«i»''')»"/>
 				<label kind="synchronisation">«disc.name»_goto[«i-1»]?</label>
+				<label kind="assignment">currentSlot = «i-1»</label>
 			</transition>
 			«ENDFOR»
 			«ENDFOR»
