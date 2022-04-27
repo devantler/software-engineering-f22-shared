@@ -415,10 +415,12 @@ class UppaalMasterGenerator {
 		<transition>
 			<source ref="«getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')»"/>
 			<target ref="«getIdOfLocation('''«statement.device.name»_markSlotfull_«statementsIndexer.indexOf(statement)»''')»"/>
-			<label kind="syncronisation">«statement.device.name»_addItemCmd!</label>
+			<label kind="syncronisation">«statement.device.name»_set_complete[currentSlot]!</label>
 		</transition>
 		«ENDIF»
 		'''
+		//			<label kind="syncronisation">«statement.device.name»_addItemCmd!</label>
+		
 		lastTransistionState = getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')
 		if (value === "free" || value == "empty") {
 			lastTransistionState = getIdOfLocation('''«statement.device.name»_markSlotopposite_«statementsIndexer.indexOf(statement)»''')
