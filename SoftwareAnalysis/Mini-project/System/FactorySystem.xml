@@ -331,7 +331,8 @@ clock timer;</declaration>
 			<source ref="id0"/>
 			<target ref="id15"/>
 			<label kind="synchronisation" x="545" y="123">disc_getSlot_finished!</label>
-			<label kind="assignment" x="545" y="140">GlobalTimer = 0</label>
+			<label kind="assignment" x="545" y="140">GlobalTimer = 0,
+timer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id14"/>
@@ -419,7 +420,8 @@ clock timer;</declaration>
 			<source ref="id0"/>
 			<target ref="id1"/>
 			<label kind="synchronisation" x="715" y="197">disc_getFreeSlot!</label>
-			<label kind="assignment" x="718" y="212">GlobalTimer = 0</label>
+			<label kind="assignment" x="718" y="212">GlobalTimer = 0,
+timer = 0</label>
 		</transition>
 	</template>
 	<template>
@@ -1343,7 +1345,15 @@ system MasterController, Disc, Crane, DiscSlot, GetEmptySlot, CraneMagnet, Camer
 			<comment></comment>
 		</query>
 		<query>
-			<formula></formula>
+			<formula>A[] !deadlock</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>inf{MasterController.SetFinsihedRed} : MasterController.timer</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>sup{MasterController.markEmpty} : GlobalTimer</formula>
 			<comment></comment>
 		</query>
 	</queries>
