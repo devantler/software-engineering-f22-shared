@@ -411,7 +411,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id27"/>
 			<target ref="id26"/>
-			<label kind="synchronisation">disk1_set_empty[currentSlot]!</label>
+			<label kind="synchronisation">disk1_removeItemCmd!</label>
 		</transition>
 		<transition>
 			<source ref="id26"/>

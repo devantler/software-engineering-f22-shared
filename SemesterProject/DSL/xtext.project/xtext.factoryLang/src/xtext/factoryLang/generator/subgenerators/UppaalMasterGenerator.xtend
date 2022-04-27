@@ -405,7 +405,7 @@ class UppaalMasterGenerator {
 			<source ref="«getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')»"/>
 			<target ref="«getIdOfLocation('''«statement.device.name»_markSlotopposite_«statementsIndexer.indexOf(statement)»''')»"/>
 			«IF value === "free" »
-			<label kind="synchronisation">«statement.device.name»_set_empty[currentSlot]!</label>
+			<label kind="synchronisation">«statement.device.name»_removeItemCmd!</label>
 			«ELSE»
 			<label kind="synchronisation">«statement.device.name»_set_free[currentSlot]!</label>
 			«ENDIF»
