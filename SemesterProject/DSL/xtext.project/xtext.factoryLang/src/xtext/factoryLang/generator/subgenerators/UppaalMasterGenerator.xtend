@@ -405,9 +405,9 @@ class UppaalMasterGenerator {
 			<source ref="«getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')»"/>
 			<target ref="«getIdOfLocation('''«statement.device.name»_markSlotopposite_«statementsIndexer.indexOf(statement)»''')»"/>
 			«IF value === "free" »
-			<label kind="syncronisation">«statement.device.name»_set_empty[currentSlot]!</label>
+			<label kind="synchronisation">«statement.device.name»_set_empty[currentSlot]!</label>
 			«ELSE»
-			<label kind="syncronisation">«statement.device.name»_set_free[currentSlot]!</label>
+			<label kind="synchronisation">«statement.device.name»_set_free[currentSlot]!</label>
 			«ENDIF»
 		</transition>
 		«ENDIF»
@@ -415,11 +415,10 @@ class UppaalMasterGenerator {
 		<transition>
 			<source ref="«getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')»"/>
 			<target ref="«getIdOfLocation('''«statement.device.name»_markSlotfull_«statementsIndexer.indexOf(statement)»''')»"/>
-			<label kind="syncronisation">«statement.device.name»_set_complete[currentSlot]!</label>
+			<label kind="synchronisation">«statement.device.name»_addItemCmd!</label>
 		</transition>
 		«ENDIF»
 		'''
-		//			<label kind="syncronisation">«statement.device.name»_addItemCmd!</label>
 		
 		lastTransistionState = getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')
 		if (value === "free" || value == "empty") {
