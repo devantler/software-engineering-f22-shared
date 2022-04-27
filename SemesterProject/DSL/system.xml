@@ -80,234 +80,234 @@ int error;</declaration>
 		<name>MasterController</name>
 		<declaration>
 clock timer;</declaration>
-		<location id="id0">
-			<name>Idle</name>
+		<location id="id0" x="40" y="80">
+			<name x="30" y="50">Idle</name>
 		</location>
-		<location id="id1">
-			<name>disk1_getcompleteSlot_0</name>
+		<location id="id1" x="190" y="80">
+			<name x="180" y="50">disk1_getcompleteSlot_0</name>
 			<committed/>
 		</location>
-		<location id="id2">
-			<name>disk1_gottenSlotcomplete_0</name>
+		<location id="id2" x="190" y="230">
+			<name x="180" y="200">disk1_gottenSlotcomplete_0</name>
 		</location>
-		<location id="id3">
-			<name>disk1goto_craneZone_statment2</name>
+		<location id="id3" x="40" y="230">
+			<name x="30" y="200">disk1goto_craneZone_statment2</name>
 		</location>
-		<location id="id4">
-			<name>crane1_goto_intake_3</name>
+		<location id="id4" x="340" y="80">
+			<name x="330" y="50">crane1_goto_intake_3</name>
 		</location>
-		<location id="id5">
-			<name>crane1_lower_3</name>
+		<location id="id5" x="340" y="230">
+			<name x="330" y="200">crane1_lower_3</name>
 		</location>
-		<location id="id6">
-			<name>crane1_toggleMagnet_3</name>
+		<location id="id6" x="340" y="380">
+			<name x="330" y="350">crane1_toggleMagnet_3</name>
 		</location>
-		<location id="id7">
-			<name>crane1_raise_3</name>
+		<location id="id7" x="190" y="380">
+			<name x="180" y="350">crane1_raise_3</name>
 		</location>
-		<location id="id8">
-			<name>diskSlot_getred_4</name>
+		<location id="id8" x="40" y="380">
+			<name x="30" y="350">diskSlot_getred_4</name>
 			<committed/>
 		</location>
-		<location id="id9">
-			<name>diskSlot_Isred_4</name>
+		<location id="id9" x="490" y="80">
+			<name x="480" y="50">diskSlot_Isred_4</name>
 		</location>
-		<location id="id10">
-			<name>crane1_goto_outRed_8</name>
+		<location id="id10" x="490" y="230">
+			<name x="480" y="200">crane1_goto_outRed_8</name>
 		</location>
-		<location id="id11">
-			<name>crane1_lower_outRed_8</name>
+		<location id="id11" x="490" y="380">
+			<name x="480" y="350">crane1_lower_outRed_8</name>
 		</location>
-		<location id="id12">
-			<name>crane1_toggleMagnet_8</name>
+		<location id="id12" x="490" y="530">
+			<name x="480" y="500">crane1_toggleMagnet_8</name>
 		</location>
-		<location id="id13">
-			<name>crane1_raise_8</name>
+		<location id="id13" x="340" y="530">
+			<name x="330" y="500">crane1_raise_8</name>
 		</location>
-		<location id="id14">
-			<name>diskSlot_getgreen_5</name>
+		<location id="id14" x="190" y="530">
+			<name x="180" y="500">diskSlot_getgreen_5</name>
 			<committed/>
 		</location>
-		<location id="id15">
-			<name>diskSlot_Isgreen_5</name>
+		<location id="id15" x="40" y="530">
+			<name x="30" y="500">diskSlot_Isgreen_5</name>
 		</location>
-		<location id="id16">
-			<name>crane1_goto_outGreen_9</name>
+		<location id="id16" x="640" y="80">
+			<name x="630" y="50">crane1_goto_outGreen_9</name>
 		</location>
-		<location id="id17">
-			<name>crane1_lower_outGreen_9</name>
+		<location id="id17" x="640" y="230">
+			<name x="630" y="200">crane1_lower_outGreen_9</name>
 		</location>
-		<location id="id18">
-			<name>crane1_toggleMagnet_9</name>
+		<location id="id18" x="640" y="380">
+			<name x="630" y="350">crane1_toggleMagnet_9</name>
 		</location>
-		<location id="id19">
-			<name>crane1_raise_9</name>
+		<location id="id19" x="640" y="530">
+			<name x="630" y="500">crane1_raise_9</name>
 		</location>
-		<location id="id20">
-			<name>diskSlot_getblue_6</name>
+		<location id="id20" x="640" y="680">
+			<name x="630" y="650">diskSlot_getblue_6</name>
 			<committed/>
 		</location>
-		<location id="id21">
-			<name>diskSlot_Isblue_6</name>
+		<location id="id21" x="490" y="680">
+			<name x="480" y="650">diskSlot_Isblue_6</name>
 		</location>
-		<location id="id22">
-			<name>crane1_goto_outBlue_10</name>
+		<location id="id22" x="340" y="680">
+			<name x="330" y="650">crane1_goto_outBlue_10</name>
 		</location>
-		<location id="id23">
-			<name>crane1_lower_outBlue_10</name>
+		<location id="id23" x="190" y="680">
+			<name x="180" y="650">crane1_lower_outBlue_10</name>
 		</location>
-		<location id="id24">
-			<name>crane1_toggleMagnet_10</name>
+		<location id="id24" x="40" y="680">
+			<name x="30" y="650">crane1_toggleMagnet_10</name>
 		</location>
-		<location id="id25">
-			<name>crane1_raise_10</name>
+		<location id="id25" x="790" y="80">
+			<name x="780" y="50">crane1_raise_10</name>
 		</location>
-		<location id="id26">
-			<name>disk1_markSlotempty_7</name>
+		<location id="id26" x="790" y="230">
+			<name x="780" y="200">disk1_markSlotempty_7</name>
 		</location>
-		<location id="id27">
-			<name>disk1_markSlotfree_statement7</name>
+		<location id="id27" x="790" y="380">
+			<name x="780" y="350">disk1_markSlotfree_statement7</name>
 		</location>
-		<location id="id28">
-			<name>disk1_getempty_1</name>
+		<location id="id28" x="790" y="530">
+			<name x="780" y="500">disk1_getempty_1</name>
 			<committed/>
 		</location>
-		<location id="id29">
-			<name>disk1_Isempty_1</name>
+		<location id="id29" x="790" y="680">
+			<name x="780" y="650">disk1_Isempty_1</name>
 		</location>
-		<location id="id30">
-			<name>disk1_getemptySlot_statment11</name>
+		<location id="id30" x="790" y="830">
+			<name x="780" y="800">disk1_getemptySlot_statment11</name>
 			<committed/>
 		</location>
-		<location id="id31">
-			<name>disk1_gottenemptySlot_statment11</name>
+		<location id="id31" x="640" y="830">
+			<name x="630" y="800">disk1_gottenemptySlot_statment11</name>
 		</location>
-		<location id="id32">
-			<name>disk1_goto_intakeZone_statment11</name>
+		<location id="id32" x="490" y="830">
+			<name x="480" y="800">disk1_goto_intakeZone_statment11</name>
 		</location>
-		<location id="id33">
-			<name>disk1_markSlotin_progress_statement12</name>
+		<location id="id33" x="340" y="830">
+			<name x="330" y="800">disk1_markSlotin_progress_statement12</name>
 		</location>
-		<location id="id34">
-			<name>disk1_goto_cameraZone_statement13</name>
+		<location id="id34" x="190" y="830">
+			<name x="180" y="800">disk1_goto_cameraZone_statement13</name>
 		</location>
-		<location id="id35">
-			<name>camera1_scanItem_14</name>
+		<location id="id35" x="40" y="830">
+			<name x="30" y="800">camera1_scanItem_14</name>
 			<committed/>
 		</location>
-		<location id="id36">
-			<name>camera1_itemColour_14</name>
+		<location id="id36" x="940" y="80">
+			<name x="930" y="50">camera1_itemColour_14</name>
 		</location>
-		<location id="id37">
-			<name>disk1_markSlotColour_statement15</name>
+		<location id="id37" x="940" y="230">
+			<name x="930" y="200">disk1_markSlotColour_statement15</name>
 		</location>
-		<location id="id38">
-			<name>currentItemColor_getred_16</name>
+		<location id="id38" x="940" y="380">
+			<name x="930" y="350">currentItemColor_getred_16</name>
 			<committed/>
 		</location>
-		<location id="id39">
-			<name>currentItemColor_Isred_16</name>
+		<location id="id39" x="940" y="530">
+			<name x="930" y="500">currentItemColor_Isred_16</name>
 		</location>
-		<location id="id40">
-			<name>disk1_markSlotcompleteIn10seconds_19</name>
+		<location id="id40" x="940" y="680">
+			<name x="930" y="650">disk1_markSlotcompleteIn10seconds_19</name>
 		</location>
-		<location id="id41">
-			<name>disk1_markSlotcomplete_statement19</name>
+		<location id="id41" x="940" y="830">
+			<name x="930" y="800">disk1_markSlotcomplete_statement19</name>
 		</location>
-		<location id="id42">
-			<name>currentItemColor_getgreen_17</name>
+		<location id="id42" x="940" y="980">
+			<name x="930" y="950">currentItemColor_getgreen_17</name>
 			<committed/>
 		</location>
-		<location id="id43">
-			<name>currentItemColor_Isgreen_17</name>
+		<location id="id43" x="790" y="980">
+			<name x="780" y="950">currentItemColor_Isgreen_17</name>
 		</location>
-		<location id="id44">
-			<name>disk1_markSlotcompleteIn20seconds_20</name>
+		<location id="id44" x="640" y="980">
+			<name x="630" y="950">disk1_markSlotcompleteIn20seconds_20</name>
 		</location>
-		<location id="id45">
-			<name>disk1_markSlotcomplete_statement20</name>
+		<location id="id45" x="490" y="980">
+			<name x="480" y="950">disk1_markSlotcomplete_statement20</name>
 		</location>
-		<location id="id46">
-			<name>currentItemColor_getblue_18</name>
+		<location id="id46" x="340" y="980">
+			<name x="330" y="950">currentItemColor_getblue_18</name>
 			<committed/>
 		</location>
-		<location id="id47">
-			<name>currentItemColor_Isblue_18</name>
+		<location id="id47" x="190" y="980">
+			<name x="180" y="950">currentItemColor_Isblue_18</name>
 		</location>
-		<location id="id48">
-			<name>disk1_markSlotcompleteIn30seconds_21</name>
+		<location id="id48" x="40" y="980">
+			<name x="30" y="950">disk1_markSlotcompleteIn30seconds_21</name>
 		</location>
-		<location id="id49">
-			<name>disk1_markSlotcomplete_statement21</name>
+		<location id="id49" x="1090" y="80">
+			<name x="1080" y="50">disk1_markSlotcomplete_statement21</name>
 		</location>
 		<init ref="id0"/>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id1"/>
-			<label kind="synchronisation">disk1_getcompleteSlot!</label>
-			<label kind="assignment">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="55" y="65">disk1_getcompleteSlot!</label>
+			<label kind="assignment" x="55" y="80">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="synchronisation">disk1_foundcompleteSlot?</label>
+			<label kind="synchronisation" x="130" y="140">disk1_foundcompleteSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id2"/>
 			<target ref="id3"/>
-			<label kind="synchronisation">disk1_goto[(disk1_zones_craneZone + currentSlot) % disk1_numberOfSlots]!</label>
+			<label kind="synchronisation" x="55" y="215">disk1_goto[(disk1_zones_craneZone + currentSlot) % disk1_numberOfSlots]!</label>
 		</transition>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id4"/>
-			<label kind="synchronisation">crane1_goto_intake!</label>
+			<label kind="synchronisation" x="130" y="140">crane1_goto_intake!</label>
 		</transition>
 		<transition>
 			<source ref="id4"/>
 			<target ref="id5"/>
-			<label kind="synchronisation">crane1_lowerMagnet!</label>
+			<label kind="synchronisation" x="280" y="140">crane1_lowerMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id6"/>
-			<label kind="synchronisation">crane1_toggleMagnet!</label>
+			<label kind="synchronisation" x="280" y="290">crane1_toggleMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id7"/>
-			<label kind="synchronisation">crane1_raiseMagnet!</label>
+			<label kind="synchronisation" x="205" y="365">crane1_raiseMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
 			<target ref="id8"/>
-			<label kind="synchronisation">disk1_getColourSlot[currentSlot]!</label>
-			<label kind="assignment">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="55" y="365">disk1_getColourSlot[currentSlot]!</label>
+			<label kind="assignment" x="55" y="380">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id9"/>
-			<label kind="guard">currentSlot_colour == 1</label>
-			<label kind="synchronisation">disk1_gottenColourSlot?</label>
+			<label kind="guard" x="205" y="200">currentSlot_colour == 1</label>
+			<label kind="synchronisation" x="205" y="215">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id9"/>
 			<target ref="id10"/>
-			<label kind="synchronisation">crane1_goto_outRed!</label>
+			<label kind="synchronisation" x="430" y="140">crane1_goto_outRed!</label>
 		</transition>
 		<transition>
 			<source ref="id10"/>
 			<target ref="id11"/>
-			<label kind="synchronisation">crane1_lowerMagnet!</label>
+			<label kind="synchronisation" x="430" y="290">crane1_lowerMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id11"/>
 			<target ref="id12"/>
-			<label kind="synchronisation">crane1_toggleMagnet!</label>
+			<label kind="synchronisation" x="430" y="440">crane1_toggleMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id12"/>
 			<target ref="id13"/>
-			<label kind="synchronisation">crane1_raiseMagnet!</label>
+			<label kind="synchronisation" x="355" y="515">crane1_raiseMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id13"/>
@@ -316,39 +316,39 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id7"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard" x="55" y="350">GlobalTimer &gt; 2</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
 			<target ref="id14"/>
-			<label kind="synchronisation">disk1_getColourSlot[currentSlot]!</label>
-			<label kind="assignment">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="130" y="440">disk1_getColourSlot[currentSlot]!</label>
+			<label kind="assignment" x="130" y="455">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id14"/>
 			<target ref="id15"/>
-			<label kind="guard">currentSlot_colour == 2</label>
-			<label kind="synchronisation">disk1_gottenColourSlot?</label>
+			<label kind="guard" x="55" y="500">currentSlot_colour == 2</label>
+			<label kind="synchronisation" x="55" y="515">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id15"/>
 			<target ref="id16"/>
-			<label kind="synchronisation">crane1_goto_outGreen!</label>
+			<label kind="synchronisation" x="280" y="290">crane1_goto_outGreen!</label>
 		</transition>
 		<transition>
 			<source ref="id16"/>
 			<target ref="id17"/>
-			<label kind="synchronisation">crane1_lowerMagnet!</label>
+			<label kind="synchronisation" x="580" y="140">crane1_lowerMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id17"/>
 			<target ref="id18"/>
-			<label kind="synchronisation">crane1_toggleMagnet!</label>
+			<label kind="synchronisation" x="580" y="290">crane1_toggleMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id18"/>
 			<target ref="id19"/>
-			<label kind="synchronisation">crane1_raiseMagnet!</label>
+			<label kind="synchronisation" x="580" y="440">crane1_raiseMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id19"/>
@@ -357,39 +357,39 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id14"/>
 			<target ref="id7"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard" x="130" y="425">GlobalTimer &gt; 2</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
 			<target ref="id20"/>
-			<label kind="synchronisation">disk1_getColourSlot[currentSlot]!</label>
-			<label kind="assignment">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="355" y="515">disk1_getColourSlot[currentSlot]!</label>
+			<label kind="assignment" x="355" y="530">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id20"/>
 			<target ref="id21"/>
-			<label kind="guard">currentSlot_colour == 3</label>
-			<label kind="synchronisation">disk1_gottenColourSlot?</label>
+			<label kind="guard" x="505" y="650">currentSlot_colour == 3</label>
+			<label kind="synchronisation" x="505" y="665">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id21"/>
 			<target ref="id22"/>
-			<label kind="synchronisation">crane1_goto_outBlue!</label>
+			<label kind="synchronisation" x="355" y="665">crane1_goto_outBlue!</label>
 		</transition>
 		<transition>
 			<source ref="id22"/>
 			<target ref="id23"/>
-			<label kind="synchronisation">crane1_lowerMagnet!</label>
+			<label kind="synchronisation" x="205" y="665">crane1_lowerMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id23"/>
 			<target ref="id24"/>
-			<label kind="synchronisation">crane1_toggleMagnet!</label>
+			<label kind="synchronisation" x="55" y="665">crane1_toggleMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id24"/>
 			<target ref="id25"/>
-			<label kind="synchronisation">crane1_raiseMagnet!</label>
+			<label kind="synchronisation" x="355" y="365">crane1_raiseMagnet!</label>
 		</transition>
 		<transition>
 			<source ref="id25"/>
@@ -398,17 +398,16 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id20"/>
 			<target ref="id7"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard" x="355" y="500">GlobalTimer &gt; 2</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
 			<target ref="id27"/>
-			<label kind="synchronisation">disk1_set_free[currentSlot]!</label>
+			<label kind="synchronisation" x="430" y="365">disk1_set_free[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id27"/>
 			<target ref="id26"/>
-			<label kind="syncronisation">disk1_set_empty[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id26"/>
@@ -417,39 +416,39 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id0"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard" x="55" y="50">GlobalTimer &gt; 2</label>
 		</transition>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id28"/>
-			<label kind="synchronisation">disk1_getemptySlot!</label>
-			<label kind="assignment">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="355" y="290">disk1_getemptySlot!</label>
+			<label kind="assignment" x="355" y="305">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id28"/>
 			<target ref="id29"/>
-			<label kind="synchronisation">disk1_foundemptySlot?</label>
+			<label kind="synchronisation" x="730" y="590">disk1_foundemptySlot?</label>
 		</transition>
 		<transition>
 			<source ref="id29"/>
 			<target ref="id30"/>
-			<label kind="synchronisation">disk1_getemptySlot!</label>
-			<label kind="assignment">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="730" y="740">disk1_getemptySlot!</label>
+			<label kind="assignment" x="730" y="755">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id30"/>
 			<target ref="id31"/>
-			<label kind="synchronisation">disk1_foundemptySlot?</label>
+			<label kind="synchronisation" x="655" y="815">disk1_foundemptySlot?</label>
 		</transition>
 		<transition>
 			<source ref="id31"/>
 			<target ref="id32"/>
-			<label kind="synchronisation">disk1_goto[(disk1_zones_intakeZone + currentSlot) % disk1_numberOfSlots]!</label>
+			<label kind="synchronisation" x="505" y="815">disk1_goto[(disk1_zones_intakeZone + currentSlot) % disk1_numberOfSlots]!</label>
 		</transition>
 		<transition>
 			<source ref="id32"/>
 			<target ref="id33"/>
-			<label kind="synchronisation">disk1_set_in_progress[currentSlot]!</label>
+			<label kind="synchronisation" x="355" y="815">disk1_set_in_progress[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id33"/>
@@ -459,45 +458,45 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id50"/>
 			<target ref="id34"/>
-			<label kind="synchronisation">disk1_goto[(disk1_zones_cameraZone + currentSlot) % disk1_numberOfSlots]!</label>
+			<label kind="synchronisation" x="205" y="815">disk1_goto[(disk1_zones_cameraZone + currentSlot) % disk1_numberOfSlots]!</label>
 		</transition>
 		<transition>
 			<source ref="id34"/>
 			<target ref="id35"/>
-			<label kind="synchronisation">camera1_getColour!</label>
+			<label kind="synchronisation" x="55" y="815">camera1_getColour!</label>
 		</transition>
 		<transition>
 			<source ref="id35"/>
 			<target ref="id36"/>
-			<label kind="synchronisation">camera1_gottenColour?</label>
+			<label kind="synchronisation" x="430" y="440">camera1_gottenColour?</label>
 		</transition>
 		<transition>
 			<source ref="id36"/>
 			<target ref="id37"/>
-			<label kind="synchronisation">disk1_setColour[currentSlot][colour]!</label>
+			<label kind="synchronisation" x="880" y="140">disk1_setColour[currentSlot][colour]!</label>
 		</transition>
 		<transition>
 			<source ref="id37"/>
 			<target ref="id38"/>
-			<label kind="synchronisation">disk1_getColourSlot[currentSlot]!</label>
-			<label kind="assignment">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="880" y="290">disk1_getColourSlot[currentSlot]!</label>
+			<label kind="assignment" x="880" y="305">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id38"/>
 			<target ref="id39"/>
-			<label kind="guard">currentSlot_colour == 1</label>
-			<label kind="synchronisation">disk1_gottenColourSlot?</label>
+			<label kind="guard" x="880" y="425">currentSlot_colour == 1</label>
+			<label kind="synchronisation" x="880" y="440">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id39"/>
 			<target ref="id40"/>
-			<label kind="assignment">timer = 0</label>
+			<label kind="assignment" x="880" y="605">timer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id40"/>
 			<target ref="id41"/>
-			<label kind="guard">timer &gt;= 10</label>
-			<label kind="synchronisation">disk1_set_complete[currentSlot]!</label>
+			<label kind="guard" x="880" y="725">timer &gt;= 10</label>
+			<label kind="synchronisation" x="880" y="740">disk1_set_complete[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id41"/>
@@ -506,30 +505,30 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id38"/>
 			<target ref="id37"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard" x="880" y="275">GlobalTimer &gt; 2</label>
 		</transition>
 		<transition>
 			<source ref="id37"/>
 			<target ref="id42"/>
-			<label kind="synchronisation">disk1_getColourSlot[currentSlot]!</label>
-			<label kind="assignment">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="880" y="590">disk1_getColourSlot[currentSlot]!</label>
+			<label kind="assignment" x="880" y="605">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id42"/>
 			<target ref="id43"/>
-			<label kind="guard">currentSlot_colour == 2</label>
-			<label kind="synchronisation">disk1_gottenColourSlot?</label>
+			<label kind="guard" x="805" y="950">currentSlot_colour == 2</label>
+			<label kind="synchronisation" x="805" y="965">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id43"/>
 			<target ref="id44"/>
-			<label kind="assignment">timer = 0</label>
+			<label kind="assignment" x="655" y="980">timer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id44"/>
 			<target ref="id45"/>
-			<label kind="guard">timer &gt;= 20</label>
-			<label kind="synchronisation">disk1_set_complete[currentSlot]!</label>
+			<label kind="guard" x="505" y="950">timer &gt;= 20</label>
+			<label kind="synchronisation" x="505" y="965">disk1_set_complete[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id45"/>
@@ -538,30 +537,30 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id42"/>
 			<target ref="id37"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard" x="880" y="575">GlobalTimer &gt; 2</label>
 		</transition>
 		<transition>
 			<source ref="id37"/>
 			<target ref="id46"/>
-			<label kind="synchronisation">disk1_getColourSlot[currentSlot]!</label>
-			<label kind="assignment">GlobalTimer = 0</label>
+			<label kind="synchronisation" x="580" y="590">disk1_getColourSlot[currentSlot]!</label>
+			<label kind="assignment" x="580" y="605">GlobalTimer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id46"/>
 			<target ref="id47"/>
-			<label kind="guard">currentSlot_colour == 3</label>
-			<label kind="synchronisation">disk1_gottenColourSlot?</label>
+			<label kind="guard" x="205" y="950">currentSlot_colour == 3</label>
+			<label kind="synchronisation" x="205" y="965">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id47"/>
 			<target ref="id48"/>
-			<label kind="assignment">timer = 0</label>
+			<label kind="assignment" x="55" y="980">timer = 0</label>
 		</transition>
 		<transition>
 			<source ref="id48"/>
 			<target ref="id49"/>
-			<label kind="guard">timer &gt;= 30</label>
-			<label kind="synchronisation">disk1_set_complete[currentSlot]!</label>
+			<label kind="guard" x="505" y="500">timer &gt;= 30</label>
+			<label kind="synchronisation" x="505" y="515">disk1_set_complete[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id49"/>
@@ -570,7 +569,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id46"/>
 			<target ref="id37"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard" x="580" y="575">GlobalTimer &gt; 2</label>
 		</transition>
 		<transition>
 			<source ref="id37"/>
@@ -579,7 +578,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id28"/>
 			<target ref="id0"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard" x="355" y="275">GlobalTimer &gt; 2</label>
 		</transition>
 	</template>
 	<template>
@@ -1327,7 +1326,6 @@ clock timer;</declaration>
 			<label kind="assignment">error += 2</label>
 		</transition>
 	</template>
-	
 	<template>
 		<name>disk1_GetemptySlot</name>
 		<location id="id86">
@@ -1955,7 +1953,6 @@ clock timer;</declaration>
 			<label kind="assignment">disk1_slots_in_progress[id] = false</label>
 		</transition>
 	</template>
-	
 	<template>
 		<name>crane1_CraneMagnet</name>
 		<location id="id104">
@@ -2185,7 +2182,6 @@ clock timer;</declaration>
 			<label kind="synchronisation">crane1_goto_outGreen?</label>
 		</transition>
 	</template>
-	
 	<template>
 		        <name>camera1</name>
 		        <location id="id117">
@@ -2253,50 +2249,50 @@ clock timer;</declaration>
 			<label kind="synchronisation">emergencyStop!</label>
 		</transition>
 	</template>
-<system>
-	system MasterController, disk1, disk1_DiscSlot, disk1_GetemptySlot, disk1_SlotVariable_complete, disk1_GetcompleteSlot,disk1_SlotVariable_free, disk1_GetfreeSlot,disk1_SlotVariable_in_progress, disk1_Getin_progressSlot, crane1,crane1_CraneMagnet, camera1, EmergencyButton;
+	<system>
+	system MasterController, disk1, disk1_DiscSlot, disk1_GetemptySlot, disk1_SlotVariable_complete, disk1_GetcompleteSlot,disk1_SlotVariable_free, disk1_GetfreeSlot,disk1_SlotVariable_in_progress, disk1_Getin_progressSlot, crane1,crane1_CraneMagnet, camera1;//, EmergencyButton;
 </system>
 	<queries>
-			    <query>
-	<formula>A&lt;&gt; crane1_CraneMagnet.crane1_MagnetOn imply crane1_CraneMagnet.crane1_MagnetOff</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOn)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOff)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOn)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOff)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOn)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOff)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOn)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOff)</formula>
-	<comment></comment>
-</query>
-<query>
-	<formula>A[] (EmergencyButton.Stopped and crane1_CraneMagnet.crane1_MagnetOn) imply crane1_CraneMagnet.crane1_StoppedMagnetOn</formula>
-	<comment></comment>
-</query>
+		<query>
+			<formula>A&lt;&gt; crane1_CraneMagnet.crane1_MagnetOn imply crane1_CraneMagnet.crane1_MagnetOff</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOn)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOff)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOn)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOff)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOn)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_outGreen and crane1_CraneMagnet.crane1_MagnetOff)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOn)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOn) imply !(crane1.crane1_outBlue and crane1_CraneMagnet.crane1_MagnetOff)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (EmergencyButton.Stopped and crane1_CraneMagnet.crane1_MagnetOn) imply crane1_CraneMagnet.crane1_StoppedMagnetOn</formula>
+			<comment></comment>
+		</query>
 		<query>
 			<formula>A[] !deadlock or EmergencyButton.Stopped</formula>
 			<comment></comment>
