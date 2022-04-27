@@ -1378,7 +1378,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id86"/>
 			<target ref="id87"/>
-			<label kind="guard">!disk1_notemptySlots[0]</label>
+			<label kind="guard">disk1_notemptySlots[0]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
@@ -1390,7 +1390,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id86"/>
 			<target ref="id88"/>
-			<label kind="guard">!disk1_notemptySlots[1]</label>
+			<label kind="guard">disk1_notemptySlots[1]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
@@ -1402,7 +1402,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id86"/>
 			<target ref="id89"/>
-			<label kind="guard">!disk1_notemptySlots[2]</label>
+			<label kind="guard">disk1_notemptySlots[2]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
@@ -1414,7 +1414,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id86"/>
 			<target ref="id90"/>
-			<label kind="guard">!disk1_notemptySlots[3]</label>
+			<label kind="guard">disk1_notemptySlots[3]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
@@ -1426,7 +1426,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id86"/>
 			<target ref="id91"/>
-			<label kind="guard">!disk1_notemptySlots[4]</label>
+			<label kind="guard">disk1_notemptySlots[4]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
@@ -1438,7 +1438,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id86"/>
 			<target ref="id92"/>
-			<label kind="guard">!disk1_notemptySlots[5]</label>
+			<label kind="guard">disk1_notemptySlots[5]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
@@ -1450,7 +1450,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id86"/>
 			<target ref="id93"/>
-			<label kind="guard">!disk1_notemptySlots[6]</label>
+			<label kind="guard">disk1_notemptySlots[6]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 		<transition>
@@ -1462,7 +1462,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id86"/>
 			<target ref="id94"/>
-			<label kind="guard">!disk1_notemptySlots[7]</label>
+			<label kind="guard">disk1_notemptySlots[7]</label>
 			<label kind="synchronisation">disk1_getemptySlot?</label>
 		</transition>
 	</template>
@@ -1513,7 +1513,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id95"/>
 			<target ref="id87"/>
-			<label kind="guard">!disk1_notcompleteSlots[0]</label>
+			<label kind="guard">disk1_notcompleteSlots[0]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
@@ -1525,7 +1525,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id95"/>
 			<target ref="id88"/>
-			<label kind="guard">!disk1_notcompleteSlots[1]</label>
+			<label kind="guard">disk1_notcompleteSlots[1]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
@@ -1537,7 +1537,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id95"/>
 			<target ref="id89"/>
-			<label kind="guard">!disk1_notcompleteSlots[2]</label>
+			<label kind="guard">disk1_notcompleteSlots[2]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
@@ -1549,7 +1549,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id95"/>
 			<target ref="id90"/>
-			<label kind="guard">!disk1_notcompleteSlots[3]</label>
+			<label kind="guard">disk1_notcompleteSlots[3]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
@@ -1561,7 +1561,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id95"/>
 			<target ref="id91"/>
-			<label kind="guard">!disk1_notcompleteSlots[4]</label>
+			<label kind="guard">disk1_notcompleteSlots[4]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
@@ -1573,7 +1573,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id95"/>
 			<target ref="id92"/>
-			<label kind="guard">!disk1_notcompleteSlots[5]</label>
+			<label kind="guard">disk1_notcompleteSlots[5]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
@@ -1585,7 +1585,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id95"/>
 			<target ref="id93"/>
-			<label kind="guard">!disk1_notcompleteSlots[6]</label>
+			<label kind="guard">disk1_notcompleteSlots[6]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 		<transition>
@@ -1597,7 +1597,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id95"/>
 			<target ref="id94"/>
-			<label kind="guard">!disk1_notcompleteSlots[7]</label>
+			<label kind="guard">disk1_notcompleteSlots[7]</label>
 			<label kind="synchronisation">disk1_getcompleteSlot?</label>
 		</transition>
 	</template>
@@ -1677,7 +1677,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id98"/>
 			<target ref="id87"/>
-			<label kind="guard">!disk1_notfreeSlots[0]</label>
+			<label kind="guard">disk1_notfreeSlots[0]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
@@ -1689,7 +1689,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id98"/>
 			<target ref="id88"/>
-			<label kind="guard">!disk1_notfreeSlots[1]</label>
+			<label kind="guard">disk1_notfreeSlots[1]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
@@ -1701,7 +1701,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id98"/>
 			<target ref="id89"/>
-			<label kind="guard">!disk1_notfreeSlots[2]</label>
+			<label kind="guard">disk1_notfreeSlots[2]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
@@ -1713,7 +1713,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id98"/>
 			<target ref="id90"/>
-			<label kind="guard">!disk1_notfreeSlots[3]</label>
+			<label kind="guard">disk1_notfreeSlots[3]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
@@ -1725,7 +1725,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id98"/>
 			<target ref="id91"/>
-			<label kind="guard">!disk1_notfreeSlots[4]</label>
+			<label kind="guard">disk1_notfreeSlots[4]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
@@ -1737,7 +1737,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id98"/>
 			<target ref="id92"/>
-			<label kind="guard">!disk1_notfreeSlots[5]</label>
+			<label kind="guard">disk1_notfreeSlots[5]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
@@ -1749,7 +1749,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id98"/>
 			<target ref="id93"/>
-			<label kind="guard">!disk1_notfreeSlots[6]</label>
+			<label kind="guard">disk1_notfreeSlots[6]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 		<transition>
@@ -1761,7 +1761,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id98"/>
 			<target ref="id94"/>
-			<label kind="guard">!disk1_notfreeSlots[7]</label>
+			<label kind="guard">disk1_notfreeSlots[7]</label>
 			<label kind="synchronisation">disk1_getfreeSlot?</label>
 		</transition>
 	</template>
@@ -1841,7 +1841,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id101"/>
 			<target ref="id87"/>
-			<label kind="guard">!disk1_notin_progressSlots[0]</label>
+			<label kind="guard">disk1_notin_progressSlots[0]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
@@ -1853,7 +1853,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id101"/>
 			<target ref="id88"/>
-			<label kind="guard">!disk1_notin_progressSlots[1]</label>
+			<label kind="guard">disk1_notin_progressSlots[1]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
@@ -1865,7 +1865,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id101"/>
 			<target ref="id89"/>
-			<label kind="guard">!disk1_notin_progressSlots[2]</label>
+			<label kind="guard">disk1_notin_progressSlots[2]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
@@ -1877,7 +1877,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id101"/>
 			<target ref="id90"/>
-			<label kind="guard">!disk1_notin_progressSlots[3]</label>
+			<label kind="guard">disk1_notin_progressSlots[3]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
@@ -1889,7 +1889,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id101"/>
 			<target ref="id91"/>
-			<label kind="guard">!disk1_notin_progressSlots[4]</label>
+			<label kind="guard">disk1_notin_progressSlots[4]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
@@ -1901,7 +1901,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id101"/>
 			<target ref="id92"/>
-			<label kind="guard">!disk1_notin_progressSlots[5]</label>
+			<label kind="guard">disk1_notin_progressSlots[5]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
@@ -1913,7 +1913,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id101"/>
 			<target ref="id93"/>
-			<label kind="guard">!disk1_notin_progressSlots[6]</label>
+			<label kind="guard">disk1_notin_progressSlots[6]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 		<transition>
@@ -1925,7 +1925,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id101"/>
 			<target ref="id94"/>
-			<label kind="guard">!disk1_notin_progressSlots[7]</label>
+			<label kind="guard">disk1_notin_progressSlots[7]</label>
 			<label kind="synchronisation">disk1_getin_progressSlot?</label>
 		</transition>
 	</template>
