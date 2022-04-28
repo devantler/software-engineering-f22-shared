@@ -479,70 +479,70 @@ clock timer;</declaration>
 		<location id="id42" x="40" y="80">
 			<name x="30" y="50">Idle</name>
 		</location>
-		<location id="id43" x="190" y="80">
-			<name x="180" y="50">Get4</name>
+		<location id="id43" x="144" y="-34">
+			<name x="134" y="-64">Get4</name>
 			<committed/>
 		</location>
-		<location id="id44" x="190" y="230">
-			<name x="180" y="200">Get1</name>
+		<location id="id44" x="102" y="255">
+			<name x="92" y="225">Get1</name>
 			<committed/>
 		</location>
-		<location id="id45" x="40" y="230">
-			<name x="30" y="200">Get2</name>
+		<location id="id45" x="-161" y="221">
+			<name x="-171" y="191">Get2</name>
 			<committed/>
 		</location>
-		<location id="id46" x="340" y="80">
-			<name x="330" y="50">Get3</name>
+		<location id="id46" x="-170" y="34">
+			<name x="-180" y="4">Get3</name>
 			<committed/>
 		</location>
 		<init ref="id42"/>
 		<transition>
 			<source ref="id43"/>
 			<target ref="id42"/>
-			<label kind="synchronisation" x="55" y="65">disc_foundEmptySlot!</label>
-			<label kind="assignment" x="55" y="80">currentSlot_empty = 3</label>
+			<label kind="synchronisation" x="59" y="34">disc_foundEmptySlot!</label>
+			<label kind="assignment" x="34" y="0">currentSlot_empty = 3</label>
 		</transition>
 		<transition>
 			<source ref="id42"/>
 			<target ref="id43"/>
-			<label kind="guard" x="55" y="50">!disc_occupiedSlots[3]</label>
-			<label kind="synchronisation" x="55" y="65">disc_getFreeSlot?</label>
+			<label kind="guard" x="25" y="-17">!disc_occupiedSlots[3]</label>
+			<label kind="synchronisation" x="76" y="59">disc_getFreeSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id46"/>
 			<target ref="id42"/>
-			<label kind="synchronisation" x="130" y="65">disc_foundEmptySlot!</label>
-			<label kind="assignment" x="130" y="80">currentSlot_empty = 2</label>
+			<label kind="synchronisation" x="-127" y="42">disc_foundEmptySlot!</label>
+			<label kind="assignment" x="-127" y="17">currentSlot_empty = 2</label>
 		</transition>
 		<transition>
 			<source ref="id42"/>
 			<target ref="id46"/>
-			<label kind="guard" x="130" y="50">!disc_occupiedSlots[2]</label>
-			<label kind="synchronisation" x="130" y="65">disc_getFreeSlot?</label>
+			<label kind="guard" x="-127" y="0">!disc_occupiedSlots[2]</label>
+			<label kind="synchronisation" x="-144" y="-17">disc_getFreeSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id45"/>
 			<target ref="id42"/>
-			<label kind="synchronisation" x="-20" y="140">disc_foundEmptySlot!</label>
-			<label kind="assignment" x="-20" y="155">currentSlot_empty = 1</label>
+			<label kind="synchronisation" x="-238" y="119">disc_foundEmptySlot!</label>
+			<label kind="assignment" x="-238" y="136">currentSlot_empty = 1</label>
 		</transition>
 		<transition>
 			<source ref="id42"/>
 			<target ref="id45"/>
-			<label kind="guard" x="-20" y="125">!disc_occupiedSlots[1]</label>
-			<label kind="synchronisation" x="-20" y="140">disc_getFreeSlot?</label>
+			<label kind="guard" x="-238" y="153">!disc_occupiedSlots[1]</label>
+			<label kind="synchronisation" x="-238" y="102">disc_getFreeSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id44"/>
 			<target ref="id42"/>
-			<label kind="synchronisation" x="55" y="140">disc_foundEmptySlot!</label>
-			<label kind="assignment" x="55" y="155">currentSlot_empty = 0</label>
+			<label kind="synchronisation" x="0" y="153">disc_foundEmptySlot!</label>
+			<label kind="assignment" x="0" y="178">currentSlot_empty = 0</label>
 		</transition>
 		<transition>
 			<source ref="id42"/>
 			<target ref="id44"/>
-			<label kind="guard" x="55" y="125">!disc_occupiedSlots[0]</label>
-			<label kind="synchronisation" x="55" y="140">disc_getFreeSlot?</label>
+			<label kind="guard" x="-8" y="127">!disc_occupiedSlots[0]</label>
+			<label kind="synchronisation" x="34" y="195">disc_getFreeSlot?</label>
 		</transition>
 	</template>
 	<template>
