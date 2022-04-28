@@ -1,5 +1,5 @@
-#ifndef crane_h
-#define crane_h
+#ifndef disk_h
+#define disk_h
 
 #include "Arduino.h"
 
