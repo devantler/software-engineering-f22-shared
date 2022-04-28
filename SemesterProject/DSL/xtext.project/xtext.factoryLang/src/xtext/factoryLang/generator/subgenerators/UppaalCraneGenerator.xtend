@@ -26,6 +26,11 @@ class UppaalCraneGenerator {
 			«FOR position : crane.targets»
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation(crane.name + "_" + (position as CranePositionParameter).name)»"/>
+				<target ref="«UppaalGenerator.getIdOfLocation(crane.name + "_" + (position as CranePositionParameter).name)»"/>
+				<label kind="synchronisation">«crane.name»_goto_«(position as CranePositionParameter).name»?</label>
+			</transition>
+			<transition>
+				<source ref="«UppaalGenerator.getIdOfLocation(crane.name + "_" + (position as CranePositionParameter).name)»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation(crane.name + "_Stopped")»"/>
 				<label kind="synchronisation">emergencyStop?</label>
 			</transition>

@@ -11,6 +11,7 @@ const int whiteThreshold = 1200;
 //float wheelStepCount = 12;
 //const int stepsToTake = ceil(distanceBetweenDiscAndCrane / (wheelCircumference / wheelStepCount));
 int lastPhotoResistorVal = 0;
+int targetSpeed = 70;
 
 void setup() {
   Serial.begin(115200);
@@ -19,6 +20,21 @@ void setup() {
     // Waiting until serial is connected
   };
   Serial.println("Serial connected");
+  Serial.println("How fast(enter for default): ");
+  while(true){
+    String input = Serial.readString();
+    if(input.length() < 1){
+      continue;
+    }
+    if(input.toInt() == 0){
+      break;
+    }
+    targetSpeed = input.toInt();
+    Serial.println("Target speed: " + String(targetSpeed));
+    if(targetSpeed > 0 && targetSpeed <= 255){
+      break;
+    }
+  }  
   pinMode(liftMotorPin1, OUTPUT);
   pinMode(liftMotorPin2, OUTPUT);
   pinMode(liftMotorEnablePin, OUTPUT);
@@ -31,20 +47,42 @@ void setup() {
 }
 
 void loop() {
-  int targetSpeed;
-  
+  int numberOfSteps;
+  bool selectedDirection;
+  String selectedDirectionString;
+  Serial.println("Which direction and how far(u55 || d45): ");
   while(true){
-    targetSpeed = Serial.readString().toInt();
-    Serial.println("Target speed: " + String(targetSpeed));
+    String input = Serial.readString();
+    selectedDirectionString = input.substring(0,1);
+    if(input.length() < 2){
+      //Serial.println("Invalid input must start with u or d and end with a number of steps i.e. u65");
+      continue;
+    }
+    if(selectedDirectionString == "u"){
+      selectedDirection = true;
+    }else if(selectedDirectionString == "d"){
+      selectedDirection = false;
+    }else{
+      Serial.println("Invalid input must start with u or d and end with a number of steps i.e. u65");
+      continue;
+    }
+    
+    numberOfSteps = input.substring(1, input.length()-1).toInt();
+    
+    
+        
+    Serial.println("Input: "+ input);
+    Serial.println("Target speed: " + String(targetSpeed) + ", Target direction: " + selectedDirectionString + ", Target steps: " + String(numberOfSteps));
     if(targetSpeed > 0 && targetSpeed <= 255){
       break;
     }
-  }
+  } 
 
   int stepsTaken = 0;
   int oldTime = 0;
-  enableMotor(true, targetSpeed);
-  while(stepsTaken <= 9){
+  int startTimeMotor = millis();
+  enableMotor(selectedDirection, targetSpeed);
+  while(stepsTaken <= numberOfSteps){
     if(checkSteps()){
       int newTime = millis();
       stepsTaken++;
@@ -54,11 +92,12 @@ void loop() {
     }
   }
   disableMotor();
+  Serial.println("Time for excecution: " + String(millis() - startTimeMotor));
 }
 
 bool checkSteps() {
     int currentPhotoResistorVal = analogRead(photoResistorPin);
-    Serial.println("sensor val: " + String(currentPhotoResistorVal));
+    //Serial.println("sensor val: " + String(currentPhotoResistorVal));
     if (isSteppingFromBlackToWhite(lastPhotoResistorVal, currentPhotoResistorVal) ||
         isSteppingFromWhiteToBlack(lastPhotoResistorVal, currentPhotoResistorVal))
     {

@@ -344,6 +344,21 @@ class UppaalMasterGenerator {
 			<name>«statement.device.name»_markSlot«value»In«statement.quantity»«statement.measure»_«statementsIndexer.indexOf(statement)»</name>
 		</location>
 		«ENDIF»
+		«IF value === "free" »
+		<location id="«getIdOfLocation('''«statement.device.name»_markSlotopposite_«statementsIndexer.indexOf(statement)»''')»">
+			<name>«statement.device.name»_markSlotempty_«statementsIndexer.indexOf(statement)»</name>
+		</location>
+		«ENDIF»
+		«IF value === "empty" »
+		<location id="«getIdOfLocation('''«statement.device.name»_markSlotopposite_«statementsIndexer.indexOf(statement)»''')»">
+			<name>«statement.device.name»_markSlotfree_«statementsIndexer.indexOf(statement)»</name>
+		</location>
+		«ENDIF»
+		«IF value === "in_progress" »
+		<location id="«getIdOfLocation('''«statement.device.name»_markSlotfull_«statementsIndexer.indexOf(statement)»''')»">
+			<name>«statement.device.name»_markSlotfull_«statementsIndexer.indexOf(statement)»</name>
+		</location>
+		«ENDIF»
 		<location id="«getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')»">
 			<name>«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»</name>
 		</location>
@@ -385,8 +400,32 @@ class UppaalMasterGenerator {
 			«ENDIF»
 		</transition>
 		«ENDIF»
+		«IF value === "free" || value == "empty"»
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_markSlotopposite_«statementsIndexer.indexOf(statement)»''')»"/>
+			«IF value === "free" »
+			<label kind="synchronisation">«statement.device.name»_removeItemCmd!</label>
+			«ELSE»
+			<label kind="synchronisation">«statement.device.name»_set_free[currentSlot]!</label>
+			«ENDIF»
+		</transition>
+		«ENDIF»
+		«IF value === "in_progress"»
+		<transition>
+			<source ref="«getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')»"/>
+			<target ref="«getIdOfLocation('''«statement.device.name»_markSlotfull_«statementsIndexer.indexOf(statement)»''')»"/>
+			<label kind="synchronisation">«statement.device.name»_addItemCmd!</label>
+		</transition>
+		«ENDIF»
 		'''
+		
 		lastTransistionState = getIdOfLocation('''«statement.device.name»_markSlot«value»_statement«statementsIndexer.indexOf(statement)»''')
+		if (value === "free" || value == "empty") {
+			lastTransistionState = getIdOfLocation('''«statement.device.name»_markSlotopposite_«statementsIndexer.indexOf(statement)»''')
+		} else if (value == "in_progress"){
+			lastTransistionState = getIdOfLocation('''«statement.device.name»_markSlotfull_«statementsIndexer.indexOf(statement)»''')
+		}
 		return trans
 	}
 	
