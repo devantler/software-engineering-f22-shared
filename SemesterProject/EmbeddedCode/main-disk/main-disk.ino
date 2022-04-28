@@ -25,15 +25,15 @@ void callback(char *topic, byte *message, unsigned int length)
 
     if (topicTemp == topics[0])
     {
-        publish(topics[1], "Moving");
+        publish(topics[1], (char*)"Moving");
         gotoAngle(ZONES[messageTemp.toInt()]);
-        publish(topics[1], "Stopped");
+        publish(topics[1], (char*)"Stopped");
     }
 }
 
 void setup()
 {
-    Serial.begin(9600);
+    Serial.begin(115200);
     while (!Serial)
     {
         //Waiting until serial is connected
