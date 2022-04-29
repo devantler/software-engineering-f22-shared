@@ -7,7 +7,7 @@ public class Camera
     private readonly string _name;
 	private readonly IMqttService _mqttService;
 	private readonly List<string> _colors;
-	   
+
 	public Camera(string name, List<string> colors, IMqttService mqttService)
 	{
 		_name = name;
@@ -15,17 +15,23 @@ public class Camera
 		_mqttService = mqttService;
 	}
 
-    public string Scan()
+    public async Task<string?> Scan()
     {
-        _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "GetColor");
-        _mqttService.SendMessage(MqttTopics.Camera(_name).Color, "0");
-        while (_mqttService.GetMessage(MqttTopics.Camera(_name).Color) == "0")
-        {
-            Task.Delay(100);
-        }
+        await _mqttService.SendMessage(MqttTopics.Camera(_name).Color, "");
+        await _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "GetColor");
+        await WaitTillIdle();
         return _mqttService.GetMessage(MqttTopics.Camera(_name).Color);
     }
 
+    private async Task WaitTillIdle(){
+        while(!IsIdle())
+        {
+            await Task.Delay(100);
+        }
+    }
+    private bool IsIdle(){
+        return string.IsNullOrEmpty(_mqttService.GetMessage(MqttTopics.Camera(_name).Color));
+    }
     public string GetName()
     {
         return _name;

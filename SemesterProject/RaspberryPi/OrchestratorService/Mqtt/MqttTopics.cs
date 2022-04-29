@@ -9,7 +9,7 @@ namespace Mqtt
 
         public class CraneTopic
         {
-            public string Name { get; }
+            private string Name { get; }
 
             public CraneTopic(string name)
             {
@@ -31,14 +31,14 @@ namespace Mqtt
 
         public class DiskTopic
         {
-            public string Name { get; }
+            private string Name { get; }
 
             public DiskTopic(string name)
             {
                 Name = name;
             }
 
-            public string Slot { get => $"{Name}/slot"; }
+            public string Zone { get => $"{Name}/zone"; }
 
             public string Moving { get => $"{Name}/moving"; }
         }
@@ -50,7 +50,7 @@ namespace Mqtt
 
         public class CameraTopic
         {
-            public string Name { get; }
+            private string Name { get; }
 
             public CameraTopic(string name)
             {
@@ -62,6 +62,23 @@ namespace Mqtt
             public string Color { get => $"{Name}/result"; }
 
             public string Scanning { get => $"{Name}/scanning"; }
+        }
+
+        public static UtilityTopic Utility(string name)
+        {
+            return new UtilityTopic(name);
+        }
+
+        public class UtilityTopic
+        {
+            private string Name { get; }
+
+            public UtilityTopic(string name)
+            {
+                Name = name;
+            }
+
+            public string WaitForIntake { get => $"{Name}"; }
         }
     }
 }

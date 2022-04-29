@@ -22,34 +22,50 @@ namespace Entities
 
         public async Task GoTo(string positionName)
         {
+            await WaitTillIdle();
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "");
             await _mqttService.SendMessage(MqttTopics.Crane(_name).Angle, _positions[positionName].ToString());
+            await WaitTillIdle();
         }
 
         public async Task GoTo(int position)
         {
+            await WaitTillIdle();
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "");
             await _mqttService.SendMessage(MqttTopics.Crane(_name).Angle, position.ToString());
+            await WaitTillIdle();
         }
 
         public async Task PickupItem()
         {
-            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "LOW");
+            await WaitTillIdle();
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "");
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "0");
             await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "1");
-            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0")
-            {
-                await Task.Delay(100);
-            }
-            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "HIGH");
+            await WaitTillIdle();
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "");
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "1");
+            await WaitTillIdle();
         }
 
         public async Task DropItem()
         {
-            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "LOW");
-            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0")
+            await WaitTillIdle();
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "");
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "0");
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "0");
+            await WaitTillIdle();
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "1");
+        }
+
+        private async Task WaitTillIdle(){
+            while(!IsIdle())
             {
                 await Task.Delay(100);
             }
-            await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "0");
-            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "HIGH");
+        }
+        private bool IsIdle(){
+            return _mqttService.GetMessage(MqttTopics.Crane(_name).Moving) == "Stopped";
         }
 
         public string GetName()

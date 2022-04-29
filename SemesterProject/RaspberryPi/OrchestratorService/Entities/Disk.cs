@@ -38,32 +38,54 @@ public class Disk
 
     #region MoveSlot methods
 
-    public void MoveSlot(string fromZoneName, string toZoneName)
+    public async Task MoveSlot(string fromZoneName, string toZoneName)
     {
         var fromZone = _zones[fromZoneName];
         var toZone = _zones[toZoneName];
-        MoveSlot(fromZone, toZone);
+        await MoveSlot(fromZone, toZone);
     }
 
-    public void MoveSlot(string fromZoneName, int toZone)
+    public async Task MoveSlot(string fromZoneName, int toZone)
     {
         var fromZone = _zones[fromZoneName];
-        MoveSlot(fromZone, toZone);
+        await MoveSlot(fromZone, toZone);
     }
 
-    public void MoveSlot(int fromZone, string toZoneName)
+    public async Task MoveSlot(int fromZone, string toZoneName)
     {
         var toZone = _zones[toZoneName];
-        MoveSlot(fromZone, toZone);
+        await MoveSlot(fromZone, toZone);
     }
 
-    public void MoveSlot(int fromZone, int toZone)
+    public async Task MoveSlot(int fromZone, int toZone)
     {
         var zonesToMove = fromZone - toZone;
         _currentOffset = (_currentOffset + zonesToMove) % _slots.Count;
-        _mqttService.SendMessage(MqttTopics.Disk(_name).Slot, _currentOffset.ToString());
+        await WaitTillIdle();
+        await _mqttService.SendMessage(MqttTopics.Disk(_name).Moving, "");
+        await _mqttService.SendMessage(MqttTopics.Disk(_name).Zone, toZone.ToString()); //TODO: Test if this works, _currentOffset.ToString() might be correct
+        await WaitTillIdle();
+    }
+
+    internal async Task WaitForIntake()
+    {
+        await _mqttService.SendMessage("intake", "intake");
+        while (_mqttService.GetMessage("intake") != "done")
+        {
+            await Task.Delay(100);
+        }
     }
     #endregion
+
+    private async Task WaitTillIdle(){
+        while(!IsIdle())
+        {
+            await Task.Delay(100);
+        }
+    }
+    private bool IsIdle(){
+        return _mqttService.GetMessage(MqttTopics.Disk(_name).Moving) == "Stopped";
+    }
 
     public bool IsFull()
     {

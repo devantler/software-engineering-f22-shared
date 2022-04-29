@@ -34,27 +34,45 @@ namespace Mqtt
             _mqttClient.DisconnectedHandler = new MqttClientDisconnectedHandlerDelegate(OnDisconnected);
             _mqttClient.ConnectingFailedHandler = new ConnectingFailedHandlerDelegate(OnConnectingFailed);
             _mqttClient.ApplicationMessageReceivedHandler = new MqttApplicationMessageReceivedHandlerDelegate(OnMessageReceived);
-
             _mqttClient.StartAsync(options).GetAwaiter().GetResult();
+
+            var mqttSubscribeOptions = new MqttFactory().CreateSubscribeOptionsBuilder()
+                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Angle))
+                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Elevation))
+                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Magnet))
+                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Moving))
+                .WithTopicFilter(x => x.WithTopic(MqttTopics.Disk("+").Zone))
+                .WithTopicFilter(x => x.WithTopic(MqttTopics.Disk("+").Moving))
+                .WithTopicFilter(x => x.WithTopic(MqttTopics.Camera("+").Color))
+                .WithTopicFilter(x => x.WithTopic(MqttTopics.Camera("+").Scanning))
+                .WithTopicFilter(x => x.WithTopic(MqttTopics.Camera("+").Scan))
+                .WithTopicFilter(x => x.WithTopic(MqttTopics.Utility("intake").WaitForIntake))
+                .Build();
+            _mqttClient.SubscribeAsync(mqttSubscribeOptions.TopicFilters).GetAwaiter().GetResult();
         }
 
         private void OnMessageReceived(MqttApplicationMessageReceivedEventArgs obj)
         {
             var topic = obj.ApplicationMessage.Topic;
+            if (obj.ApplicationMessage.Payload == null) {
+                messages[topic] = "";
+                return;
+            }
             messages[topic] = Encoding.Default.GetString(obj.ApplicationMessage.Payload);
         }
 
-        public string? GetMessage(string topic)
+        public string GetMessage(string topic)
         {
             messages.TryGetValue(topic, out var msg);
-            return msg;
+            return msg ?? "";
         }
 
         public async Task SendMessage(string topic, string message)
         {
+            Console.WriteLine($"Sending message to {topic}: {message}");
             var mqttMessage = new MqttApplicationMessage()
             {
-                Topic = "test/" + topic,
+                Topic = topic,
                 Payload = Encoding.ASCII.GetBytes(message)
             };
             await _mqttClient.PublishAsync(mqttMessage);
