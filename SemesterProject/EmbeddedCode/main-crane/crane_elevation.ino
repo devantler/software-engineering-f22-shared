@@ -23,7 +23,7 @@ float distanceBetweenDiscAndCrane = 225; // in mm
 float wheelDiameter = 12.3; //in mm
 float wheelCircumference = wheelDiameter * M_PI; // in mm
 float wheelStepCount = 12; 
-const int stepsToTake = ceil(distanceBetweenDiscAndCrane / (wheelCircumference / wheelStepCount)); // results in 70 stesp with 225 mm distance between disc and crane
+const int stepsToTake = 68;//ceil(distanceBetweenDiscAndCrane / (wheelCircumference / wheelStepCount)); // results in 70 stesp with 225 mm distance between disc and crane
 
 //PID
 LinkedList<int> integratorValues;
