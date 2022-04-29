@@ -7,7 +7,7 @@ char *topics[] = {
     (char *)"disk1/moving",};
 
 int topicSize = 1;
-const int ZONES[] = {0, 45, 90, 135, 180, 225, 270, 315};
+
 
 void callback(char *topic, byte *message, unsigned int length)
 {
@@ -26,7 +26,7 @@ void callback(char *topic, byte *message, unsigned int length)
     if (topicTemp == topics[0])
     {
         publish(topics[1], (char*)"Moving");
-        gotoAngle(ZONES[messageTemp.toInt()]);
+        gotoZone(messageTemp.toInt());
         publish(topics[1], (char*)"Stopped");
     }
 }

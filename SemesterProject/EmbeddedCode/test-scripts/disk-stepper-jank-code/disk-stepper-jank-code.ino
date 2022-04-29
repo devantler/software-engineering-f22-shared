@@ -18,10 +18,12 @@ int motorPin3 = 25; // Yellow – 28BYJ48 pin 3
 int motorPin4 = 26; // Orange – 28BYJ48 pin 4
 // Red – 28BYJ48 pin 5 (VCC)
 
-int motorSpeed = 1200; //variable to set stepper speed
+int motorSpeed = 1000; //variable to set stepper speed
 int count = 0; // count of steps made
 int countsperrev = 512; // number of steps per full revolution
 int lookup[8] = {B01000, B01100, B00100, B00110, B00010, B00011, B00001, B01001};
+
+bool direction = true;
 
 //////////////////////////////////////////////////////////////////////////////
 void setup() {
@@ -35,13 +37,21 @@ Serial.begin(115200);
 
 //////////////////////////////////////////////////////////////////////////////
 void loop(){
-  if(count < countsperrev )
-    clockwise();
-  else if (count == countsperrev * 2)
+  if(count < countsperrev){
+    if(direction){
+        clockwise();
+    }
+    else{
+        anticlockwise();
+    }
+    count++;
+  }
+  else{
     count = 0;
-  else
-    anticlockwise();
-  count++;
+    direction = !direction;
+    off();
+    delay(1000);
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -67,8 +77,14 @@ void clockwise()
 
 void setOutput(int out)
 {
-digitalWrite(motorPin1, bitRead(lookup[out], 0));
-digitalWrite(motorPin2, bitRead(lookup[out], 1));
-digitalWrite(motorPin3, bitRead(lookup[out], 2));
-digitalWrite(motorPin4, bitRead(lookup[out], 3));
+  digitalWrite(motorPin1, bitRead(lookup[out], 0));
+  digitalWrite(motorPin2, bitRead(lookup[out], 1));
+  digitalWrite(motorPin3, bitRead(lookup[out], 2));
+  digitalWrite(motorPin4, bitRead(lookup[out], 3));
+}
+void off(){
+  digitalWrite(motorPin1, 0);
+  digitalWrite(motorPin2, 0);
+  digitalWrite(motorPin3, 0);
+  digitalWrite(motorPin4, 0);
 }
