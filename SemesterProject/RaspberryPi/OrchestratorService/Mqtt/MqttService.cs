@@ -54,7 +54,7 @@ namespace Mqtt
         {
             var mqttMessage = new MqttApplicationMessage()
             {
-                Topic = topic,
+                Topic = "test/" + topic,
                 Payload = Encoding.ASCII.GetBytes(message)
             };
             await _mqttClient.PublishAsync(mqttMessage);
