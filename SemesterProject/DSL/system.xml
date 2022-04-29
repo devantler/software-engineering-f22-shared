@@ -609,6 +609,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id59">
 			<name>AddItem1Req</name>
+			<committed/>
 		</location>
 		<location id="id60">
 			<name>RemoveItem1Req</name>
@@ -619,6 +620,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id62">
 			<name>AddItem2Req</name>
+			<committed/>
 		</location>
 		<location id="id63">
 			<name>RemoveItem2Req</name>
@@ -629,6 +631,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id65">
 			<name>AddItem3Req</name>
+			<committed/>
 		</location>
 		<location id="id66">
 			<name>RemoveItem3Req</name>
@@ -639,6 +642,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id68">
 			<name>AddItem4Req</name>
+			<committed/>
 		</location>
 		<location id="id69">
 			<name>RemoveItem4Req</name>
@@ -649,6 +653,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id71">
 			<name>AddItem5Req</name>
+			<committed/>
 		</location>
 		<location id="id72">
 			<name>RemoveItem5Req</name>
@@ -659,6 +664,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id74">
 			<name>AddItem6Req</name>
+			<committed/>
 		</location>
 		<location id="id75">
 			<name>RemoveItem6Req</name>
@@ -669,6 +675,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id77">
 			<name>AddItem7Req</name>
+			<committed/>
 		</location>
 		<location id="id78">
 			<name>RemoveItem7Req</name>
@@ -679,6 +686,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id80">
 			<name>AddItem8Req</name>
+			<committed/>
 		</location>
 		<location id="id81">
 			<name>RemoveItem8Req</name>

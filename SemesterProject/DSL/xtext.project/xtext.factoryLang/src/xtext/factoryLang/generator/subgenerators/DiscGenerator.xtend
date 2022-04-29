@@ -15,6 +15,7 @@ class DiscGenerator {
 			</location>
 			<location id="쳁etIdOfLocation('''AddItem쳃팕eq''')�">
 				<name>AddItem쳃팕eq</name>
+				<committed/>
 			</location>
 			<location id="쳁etIdOfLocation('''RemoveItem쳃팕eq''')�">
 				<name>RemoveItem쳃팕eq</name>
