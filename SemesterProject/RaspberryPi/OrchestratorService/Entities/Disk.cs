@@ -62,7 +62,7 @@ public class Disk
         var zonesToMove = fromZone - toZone;
         _currentOffset = (_currentOffset + zonesToMove) % _slots.Count;
         await WaitTillIdle();
-        await _mqttService.SendMessage(MqttTopics.Disk(_name).Moving, "");
+        await _mqttService.SendMessage(MqttTopics.Disk(_name).Moving, "Running");
         await _mqttService.SendMessage(MqttTopics.Disk(_name).Zone, toZone.ToString()); //TODO: Test if this works, _currentOffset.ToString() might be correct
         await WaitTillIdle();
     }
