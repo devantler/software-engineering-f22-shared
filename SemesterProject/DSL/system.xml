@@ -107,7 +107,6 @@ clock timer;</declaration>
 		</location>
 		<location id="id8">
 			<name>diskSlot_getred_4</name>
-			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id9">
 			<name>diskSlot_Isred_4</name>
@@ -126,7 +125,6 @@ clock timer;</declaration>
 		</location>
 		<location id="id14">
 			<name>diskSlot_getgreen_5</name>
-			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id15">
 			<name>diskSlot_Isgreen_5</name>
@@ -145,7 +143,6 @@ clock timer;</declaration>
 		</location>
 		<location id="id20">
 			<name>diskSlot_getblue_6</name>
-			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id21">
 			<name>diskSlot_Isblue_6</name>
@@ -170,7 +167,6 @@ clock timer;</declaration>
 		</location>
 		<location id="id28">
 			<name>disk1_getempty_1</name>
-			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id29">
 			<name>disk1_Isempty_1</name>
@@ -206,7 +202,6 @@ clock timer;</declaration>
 		</location>
 		<location id="id39">
 			<name>currentItemColor_getred_16</name>
-			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id40">
 			<name>currentItemColor_Isred_16</name>
@@ -219,7 +214,6 @@ clock timer;</declaration>
 		</location>
 		<location id="id43">
 			<name>currentItemColor_getgreen_17</name>
-			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id44">
 			<name>currentItemColor_Isgreen_17</name>
@@ -232,7 +226,6 @@ clock timer;</declaration>
 		</location>
 		<location id="id47">
 			<name>currentItemColor_getblue_18</name>
-			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id48">
 			<name>currentItemColor_Isblue_18</name>
@@ -319,7 +312,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id7"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard">currentSlot_colour != 1</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
@@ -360,7 +353,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id14"/>
 			<target ref="id7"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard">currentSlot_colour != 2</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
@@ -401,7 +394,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id20"/>
 			<target ref="id7"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard">currentSlot_colour != 3</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
@@ -509,7 +502,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id39"/>
 			<target ref="id38"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard">currentSlot_colour != 1</label>
 		</transition>
 		<transition>
 			<source ref="id38"/>
@@ -541,7 +534,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id43"/>
 			<target ref="id38"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard">currentSlot_colour != 2</label>
 		</transition>
 		<transition>
 			<source ref="id38"/>
@@ -573,7 +566,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id47"/>
 			<target ref="id38"/>
-			<label kind="guard">GlobalTimer &gt; 2</label>
+			<label kind="guard">currentSlot_colour != 3</label>
 		</transition>
 		<transition>
 			<source ref="id38"/>
