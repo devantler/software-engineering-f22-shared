@@ -1,29 +1,35 @@
 #include "Stepper.h"
 #include "Arduino.h"
 
-const int stepsPerRevolution = 20200; // TODO: the same as with crane motor? Also, is the moveDegrees() correct?
+const int stepsPerRevolution = 512; // TODO: the same as with crane motor? Also, is the moveDegrees() correct?
 int currentAngle = 0;
 
+const int PIN1 = 32;
+const int PIN2 = 33;
+const int PIN3 = 25;
+const int PIN4 = 26;
 
-Stepper revolutionStepper(stepsPerRevolution, 33, 32, 35, 34);
+
+Stepper revolutionStepper(stepsPerRevolution, PIN1, PIN2, PIN3, PIN4);
 
 void setupDisk()
 {
-  revolutionStepper.setSpeed(4);
+  revolutionStepper.setSpeed(20);
 }
 
-void gotoAngleDisk(int angle)
+void gotoAngle(int angle)
 {
-  if (angle > 359)
-  {
-    Serial.print("Angle is too large: " + angle);
-    return;
-  }
-  if (angle < 0)
-  {
-    Serial.print("Angle is negative: " + angle);
-    return;
-  }
+//  if (angle > 359)
+//  {
+//    Serial.print("Angle is too large: " + angle);
+//    return;
+//  }
+//  if (angle < 0)
+//  {
+//    Serial.print("Angle is negative: " + angle);
+//    return;
+//  }
+  angle = angle % 360
   int degreesToMove = (angle - currentAngle);
 
   moveDegreesDisk(degreesToMove);
@@ -35,14 +41,14 @@ void gotoAngleDisk(int angle)
 // degrees between two angles
 void moveDegreesDisk(int degrees)
 {
-  int stepsToGo = degrees * 112;
+  int stepsToGo = floor(degrees * 1.42);
   revolutionStepper.step(stepsToGo);
 }
 
 void disableTurning()
 {
-  digitalWrite(8, LOW);
-  digitalWrite(9, LOW);
-  digitalWrite(10, LOW);
-  digitalWrite(11, LOW);
+  digitalWrite(PIN1, LOW);
+  digitalWrite(PIN2, LOW);
+  digitalWrite(PIN3, LOW);
+  digitalWrite(PIN4, LOW);
 }

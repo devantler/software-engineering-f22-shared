@@ -1,0 +1,26 @@
+@startuml
+object MasterController
+object Camera
+object Disc
+object Crane
+object CraneMagnet
+object GetEmptySlot
+object GetFinishedSlot
+object DiscSlot
+object SlotVariable_finished
+object EmergencyButton
+
+MasterController --> Camera :  Scan
+MasterController --> Disc : "GoTo \n Add item \n Remove item"
+MasterController --> Crane : "GoTo \n Raise/Lower"
+MasterController --> CraneMagnet : Toggle
+MasterController --> GetEmptySlot
+MasterController --> GetFinishedSlot
+Disc --> DiscSlot : "Fill slot \n Empty slot"
+EmergencyButton --> Disc : Stop
+EmergencyButton --> Crane : Stop
+EmergencyButton --> CraneMagnet : Stop
+GetFinishedSlot --> SlotVariable_finished : Check slot state
+Disc --> SlotVariable_finished : Set slot state
+ 
+@enduml
