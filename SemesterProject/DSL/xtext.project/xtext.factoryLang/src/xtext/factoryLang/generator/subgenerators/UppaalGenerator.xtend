@@ -62,7 +62,6 @@ class UppaalGenerator {
 			chan «disc.name»_get«value»Slot;
 			chan «disc.name»_found«value»Slot;
 			bool «disc.name»_not«value»Slots[«disc.name»_numberOfSlots] = {«FOR i : 1..(disc.slotParameter as DiskSlotParameter).size SEPARATOR ", "»1«ENDFOR»};
-			bool «disc.name»_slots_«value»[«disc.name»_numberOfSlots];
 			«ENDFOR»
 			
 			//Zones: 
