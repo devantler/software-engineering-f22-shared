@@ -18,7 +18,8 @@ public class Camera
     public string Scan()
     {
         _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "GetColor");
-        while (_mqttService.GetMessage(MqttTopics.Camera(_name).Scanning) == "true")
+        _mqttService.SendMessage(MqttTopics.Camera(_name).Color, "0");
+        while (_mqttService.GetMessage(MqttTopics.Camera(_name).Color) == "0")
         {
             Task.Delay(100);
         }
