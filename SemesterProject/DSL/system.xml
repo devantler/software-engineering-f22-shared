@@ -1632,19 +1632,19 @@ clock timer;</declaration>
 			<source ref="id104"/>
 			<target ref="id103"/>
 			<label kind="synchronisation">disk1_set_complete[id]?</label>
-			<label kind="assignment">disk1_notcompleteSlots[id] = true</label>
+			<label kind="assignment">disk1_notcompleteSlots[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id103"/>
 			<target ref="id104"/>
 			<label kind="synchronisation">disk1_set_complete[id]?</label>
-			<label kind="assignment">disk1_notcompleteSlots[id] = false</label>
+			<label kind="assignment">disk1_notcompleteSlots[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id103"/>
 			<target ref="id104"/>s
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_notcompleteSlots[id] = false</label>
+			<label kind="assignment">disk1_notcompleteSlots[id] = true</label>
 		</transition>
 	</template>
 	<template>
@@ -1796,19 +1796,19 @@ clock timer;</declaration>
 			<source ref="id107"/>
 			<target ref="id106"/>
 			<label kind="synchronisation">disk1_set_free[id]?</label>
-			<label kind="assignment">disk1_notfreeSlots[id] = true</label>
+			<label kind="assignment">disk1_notfreeSlots[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id106"/>
 			<target ref="id107"/>
 			<label kind="synchronisation">disk1_set_free[id]?</label>
-			<label kind="assignment">disk1_notfreeSlots[id] = false</label>
+			<label kind="assignment">disk1_notfreeSlots[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id106"/>
 			<target ref="id107"/>s
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_notfreeSlots[id] = false</label>
+			<label kind="assignment">disk1_notfreeSlots[id] = true</label>
 		</transition>
 	</template>
 	<template>
@@ -1960,19 +1960,19 @@ clock timer;</declaration>
 			<source ref="id110"/>
 			<target ref="id109"/>
 			<label kind="synchronisation">disk1_set_in_progress[id]?</label>
-			<label kind="assignment">disk1_notin_progressSlots[id] = true</label>
+			<label kind="assignment">disk1_notin_progressSlots[id] = false</label>
 		</transition>
 		<transition>
 			<source ref="id109"/>
 			<target ref="id110"/>
 			<label kind="synchronisation">disk1_set_in_progress[id]?</label>
-			<label kind="assignment">disk1_notin_progressSlots[id] = false</label>
+			<label kind="assignment">disk1_notin_progressSlots[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id109"/>
 			<target ref="id110"/>s
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_notin_progressSlots[id] = false</label>
+			<label kind="assignment">disk1_notin_progressSlots[id] = true</label>
 		</transition>
 	</template>
 	
