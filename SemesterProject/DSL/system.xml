@@ -107,7 +107,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id8">
 			<name>diskSlot_getred_4</name>
-			<committed/>
+			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id9">
 			<name>diskSlot_Isred_4</name>
@@ -126,7 +126,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id14">
 			<name>diskSlot_getgreen_5</name>
-			<committed/>
+			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id15">
 			<name>diskSlot_Isgreen_5</name>
@@ -145,7 +145,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id20">
 			<name>diskSlot_getblue_6</name>
-			<committed/>
+			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id21">
 			<name>diskSlot_Isblue_6</name>
@@ -206,7 +206,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id39">
 			<name>currentItemColor_getred_16</name>
-			<committed/>
+			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id40">
 			<name>currentItemColor_Isred_16</name>
@@ -219,7 +219,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id43">
 			<name>currentItemColor_getgreen_17</name>
-			<committed/>
+			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id44">
 			<name>currentItemColor_Isgreen_17</name>
@@ -232,7 +232,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id47">
 			<name>currentItemColor_getblue_18</name>
-			<committed/>
+			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id48">
 			<name>currentItemColor_Isblue_18</name>
