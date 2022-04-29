@@ -48,6 +48,9 @@ class UppaalMasterGenerator {
 		<location id="«getIdOfLocation('''«statement.device.name»_Is«value»_«statementsIndexer.indexOf(statement)»''')»">
 			<name>«statement.device.name»_Is«value»_«statementsIndexer.indexOf(statement)»</name>
 		</location>
+		<location id="«getIdOfLocation('''«statement.device.name»_EndIf«value»_«statementsIndexer.indexOf(statement)»''')»">
+			<name>«statement.device.name»_EndIf«value»_«statementsIndexer.indexOf(statement)»</name>
+		</location>
 		«FOR s : statement.statements»
 		«generateLocation(s)»
 		«ENDFOR»
@@ -69,7 +72,7 @@ class UppaalMasterGenerator {
 			ColorValue: value = (statement.deviceValue.value as DiskStateValue).value.toString
 		}
 		currentDisc = statement.device.name
-		val returnTransistion = lastTransistionState
+		val returnTransistion = getIdOfLocation('''«statement.device.name»_EndIf«value»_«statementsIndexer.indexOf(statement)»''')
 		switch(statement.deviceValue.value){
 			DiskStateValue:{
 				val trans = '''
@@ -113,6 +116,9 @@ class UppaalMasterGenerator {
 		<location id="«getIdOfLocation('''«statement.variable.name»_Is«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»''')»">
 			<name>«statement.variable.name»_Is«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»</name>
 		</location>
+		<location id="«getIdOfLocation('''«statement.variable.name»_EndIf«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»''')»">
+			<name>«statement.variable.name»_EndIf«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»</name>
+		</location>
 		«FOR s : statement.statements»
 		«generateLocation(s)»
 		«ENDFOR»
@@ -124,7 +130,7 @@ class UppaalMasterGenerator {
 	}
 	
 	def static dispatch String generateTransistion(VariableConditional statement){
-		val returnTransistion = lastTransistionState
+		val returnTransistion = getIdOfLocation('''«statement.variable.name»_EndIf«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»''')
 		switch(statement.variableValue.value){
 			ColorValue:{
 				val trans = '''
