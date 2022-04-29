@@ -33,7 +33,7 @@ class UppaalQueryGenerator {
 				</query>
 				«FOR disc: discs»
 				<query>
-					<formula>A[] «disc.name»_slots_complete[1] imply «disc.name»_notemptySlots[1]</formula>
+					<formula>A[] !«disc.name»_notcompleteSlots[1] imply «disc.name»_notemptySlots[1]</formula>
 					<comment></comment>
 				</query>
 				<query>
