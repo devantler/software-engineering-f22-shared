@@ -1,12 +1,5 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY *.csproj .
-RUN dotnet restore
-
-COPY . .
-RUN dotnet publish -c Release -o /app --no-restore
-
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+﻿FROM mcr.microsoft.com/dotnet/runtime:6.0 AS final
 WORKDIR /app
-COPY --from=build /app .
-CMD ["dotnet", "OrchestratorService.dll"]
+ARG TARGETARCH
+ADD ./${TARGETARCH}.tar /app
+ENTRYPOINT ["dotnet", "OrchestratorService.dll"]
