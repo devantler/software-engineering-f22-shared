@@ -1275,25 +1275,25 @@ clock timer;</declaration>
 			<source ref="id77"/>
 			<target ref="id76"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_slots_complete[id] = false</label>
+			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_notcompleteSlots[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id78"/>
 			<target ref="id76"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_slots_complete[id] = false</label>
+			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_notcompleteSlots[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id80"/>
 			<target ref="id76"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_slots_complete[id] = false</label>
+			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_notcompleteSlots[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id82"/>
 			<target ref="id76"/>
 			<label kind="synchronisation">disk1_removeItem[id]?</label>
-			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_slots_complete[id] = false</label>
+			<label kind="assignment">disk1_notemptySlots[id] = false, disk1_notcompleteSlots[id] = true</label>
 		</transition>
 		<transition>
 			<source ref="id76"/>
