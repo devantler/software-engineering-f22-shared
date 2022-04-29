@@ -594,11 +594,11 @@ clock timer;</declaration>
 		</transition>
 		<transition>
 			<source ref="id55"/>
-			<target ref="id33"/>
+			<target ref="id0"/>
 		</transition>
 		<transition>
 			<source ref="id31"/>
-			<target ref="id33"/>
+			<target ref="id0"/>
 			<label kind="guard">GlobalTimer &gt; 2</label>
 		</transition>
 	</template>

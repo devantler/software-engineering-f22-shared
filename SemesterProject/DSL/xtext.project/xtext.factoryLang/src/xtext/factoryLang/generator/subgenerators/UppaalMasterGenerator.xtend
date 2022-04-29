@@ -22,6 +22,7 @@ import xtext.factoryLang.factoryLang.DISK_STATES
 import xtext.factoryLang.factoryLang.Variable
 import xtext.factoryLang.factoryLang.Camera
 import xtext.factoryLang.factoryLang.Parameter
+import xtext.factoryLang.factoryLang.Model
 
 class UppaalMasterGenerator {
 	static String lastTransistionState = "id0";
@@ -72,7 +73,12 @@ class UppaalMasterGenerator {
 			ColorValue: value = (statement.deviceValue.value as DiskStateValue).value.toString
 		}
 		currentDisc = statement.device.name
-		val returnTransistion = getIdOfLocation('''«statement.device.name»_EndIf«value»_«statementsIndexer.indexOf(statement)»''')
+		var returnTransistion = ""
+		if (statement.eContainer instanceof Model) {
+			returnTransistion = lastTransistionState
+		} else {
+			returnTransistion = getIdOfLocation('''«statement.device.name»_EndIf«value»_«statementsIndexer.indexOf(statement)»''')
+		}
 		switch(statement.deviceValue.value){
 			DiskStateValue:{
 				val trans = '''
