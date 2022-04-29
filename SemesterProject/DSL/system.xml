@@ -170,7 +170,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id28">
 			<name>disk1_getempty_1</name>
-			<committed/>
+			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="id29">
 			<name>disk1_Isempty_1</name>

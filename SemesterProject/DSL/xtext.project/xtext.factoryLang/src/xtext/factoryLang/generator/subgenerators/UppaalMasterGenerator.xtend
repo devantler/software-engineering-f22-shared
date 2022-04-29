@@ -44,7 +44,7 @@ class UppaalMasterGenerator {
 		'''
 		<location id="«getIdOfLocation('''«statement.device.name»_get«value»_«statementsIndexer.indexOf(statement)»''')»">
 			<name>«statement.device.name»_get«value»_«statementsIndexer.indexOf(statement)»</name>
-			<committed/>
+			<label kind="invariant">GlobalTimer &lt;=10</label>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_Is«value»_«statementsIndexer.indexOf(statement)»''')»">
 			<name>«statement.device.name»_Is«value»_«statementsIndexer.indexOf(statement)»</name>
