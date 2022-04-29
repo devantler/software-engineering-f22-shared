@@ -692,49 +692,41 @@ clock timer;</declaration>
 			<source ref="id54"/>
 			<target ref="id51"/>
 			<label kind="synchronisation">disk1_goto[0]?</label>
-			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
 			<source ref="id57"/>
 			<target ref="id51"/>
 			<label kind="synchronisation">disk1_goto[0]?</label>
-			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id51"/>
 			<label kind="synchronisation">disk1_goto[0]?</label>
-			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
 			<target ref="id51"/>
 			<label kind="synchronisation">disk1_goto[0]?</label>
-			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id51"/>
 			<label kind="synchronisation">disk1_goto[0]?</label>
-			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
 			<source ref="id69"/>
 			<target ref="id51"/>
 			<label kind="synchronisation">disk1_goto[0]?</label>
-			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
 			<source ref="id72"/>
 			<target ref="id51"/>
 			<label kind="synchronisation">disk1_goto[0]?</label>
-			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
 			<source ref="id51"/>
 			<target ref="id51"/>
 			<label kind="synchronisation">disk1_goto[0]?</label>
-			<label kind="assignment">currentSlot = 0</label>
 		</transition>
 		<transition>
 			<source ref="id54"/>
@@ -765,49 +757,41 @@ clock timer;</declaration>
 			<source ref="id57"/>
 			<target ref="id54"/>
 			<label kind="synchronisation">disk1_goto[1]?</label>
-			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id54"/>
 			<label kind="synchronisation">disk1_goto[1]?</label>
-			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
 			<target ref="id54"/>
 			<label kind="synchronisation">disk1_goto[1]?</label>
-			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id54"/>
 			<label kind="synchronisation">disk1_goto[1]?</label>
-			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
 			<source ref="id69"/>
 			<target ref="id54"/>
 			<label kind="synchronisation">disk1_goto[1]?</label>
-			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
 			<source ref="id72"/>
 			<target ref="id54"/>
 			<label kind="synchronisation">disk1_goto[1]?</label>
-			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
 			<source ref="id51"/>
 			<target ref="id54"/>
 			<label kind="synchronisation">disk1_goto[1]?</label>
-			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
 			<source ref="id54"/>
 			<target ref="id54"/>
 			<label kind="synchronisation">disk1_goto[1]?</label>
-			<label kind="assignment">currentSlot = 1</label>
 		</transition>
 		<transition>
 			<source ref="id57"/>
@@ -838,49 +822,41 @@ clock timer;</declaration>
 			<source ref="id60"/>
 			<target ref="id57"/>
 			<label kind="synchronisation">disk1_goto[2]?</label>
-			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
 			<target ref="id57"/>
 			<label kind="synchronisation">disk1_goto[2]?</label>
-			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id57"/>
 			<label kind="synchronisation">disk1_goto[2]?</label>
-			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
 			<source ref="id69"/>
 			<target ref="id57"/>
 			<label kind="synchronisation">disk1_goto[2]?</label>
-			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
 			<source ref="id72"/>
 			<target ref="id57"/>
 			<label kind="synchronisation">disk1_goto[2]?</label>
-			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
 			<source ref="id51"/>
 			<target ref="id57"/>
 			<label kind="synchronisation">disk1_goto[2]?</label>
-			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
 			<source ref="id54"/>
 			<target ref="id57"/>
 			<label kind="synchronisation">disk1_goto[2]?</label>
-			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
 			<source ref="id57"/>
 			<target ref="id57"/>
 			<label kind="synchronisation">disk1_goto[2]?</label>
-			<label kind="assignment">currentSlot = 2</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
@@ -911,49 +887,41 @@ clock timer;</declaration>
 			<source ref="id63"/>
 			<target ref="id60"/>
 			<label kind="synchronisation">disk1_goto[3]?</label>
-			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id60"/>
 			<label kind="synchronisation">disk1_goto[3]?</label>
-			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
 			<source ref="id69"/>
 			<target ref="id60"/>
 			<label kind="synchronisation">disk1_goto[3]?</label>
-			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
 			<source ref="id72"/>
 			<target ref="id60"/>
 			<label kind="synchronisation">disk1_goto[3]?</label>
-			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
 			<source ref="id51"/>
 			<target ref="id60"/>
 			<label kind="synchronisation">disk1_goto[3]?</label>
-			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
 			<source ref="id54"/>
 			<target ref="id60"/>
 			<label kind="synchronisation">disk1_goto[3]?</label>
-			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
 			<source ref="id57"/>
 			<target ref="id60"/>
 			<label kind="synchronisation">disk1_goto[3]?</label>
-			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id60"/>
 			<label kind="synchronisation">disk1_goto[3]?</label>
-			<label kind="assignment">currentSlot = 3</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
@@ -984,49 +952,41 @@ clock timer;</declaration>
 			<source ref="id66"/>
 			<target ref="id63"/>
 			<label kind="synchronisation">disk1_goto[4]?</label>
-			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
 			<source ref="id69"/>
 			<target ref="id63"/>
 			<label kind="synchronisation">disk1_goto[4]?</label>
-			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
 			<source ref="id72"/>
 			<target ref="id63"/>
 			<label kind="synchronisation">disk1_goto[4]?</label>
-			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
 			<source ref="id51"/>
 			<target ref="id63"/>
 			<label kind="synchronisation">disk1_goto[4]?</label>
-			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
 			<source ref="id54"/>
 			<target ref="id63"/>
 			<label kind="synchronisation">disk1_goto[4]?</label>
-			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
 			<source ref="id57"/>
 			<target ref="id63"/>
 			<label kind="synchronisation">disk1_goto[4]?</label>
-			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id63"/>
 			<label kind="synchronisation">disk1_goto[4]?</label>
-			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
 			<target ref="id63"/>
 			<label kind="synchronisation">disk1_goto[4]?</label>
-			<label kind="assignment">currentSlot = 4</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
@@ -1057,49 +1017,41 @@ clock timer;</declaration>
 			<source ref="id69"/>
 			<target ref="id66"/>
 			<label kind="synchronisation">disk1_goto[5]?</label>
-			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
 			<source ref="id72"/>
 			<target ref="id66"/>
 			<label kind="synchronisation">disk1_goto[5]?</label>
-			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
 			<source ref="id51"/>
 			<target ref="id66"/>
 			<label kind="synchronisation">disk1_goto[5]?</label>
-			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
 			<source ref="id54"/>
 			<target ref="id66"/>
 			<label kind="synchronisation">disk1_goto[5]?</label>
-			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
 			<source ref="id57"/>
 			<target ref="id66"/>
 			<label kind="synchronisation">disk1_goto[5]?</label>
-			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id66"/>
 			<label kind="synchronisation">disk1_goto[5]?</label>
-			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
 			<target ref="id66"/>
 			<label kind="synchronisation">disk1_goto[5]?</label>
-			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id66"/>
 			<label kind="synchronisation">disk1_goto[5]?</label>
-			<label kind="assignment">currentSlot = 5</label>
 		</transition>
 		<transition>
 			<source ref="id69"/>
@@ -1130,49 +1082,41 @@ clock timer;</declaration>
 			<source ref="id72"/>
 			<target ref="id69"/>
 			<label kind="synchronisation">disk1_goto[6]?</label>
-			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
 			<source ref="id51"/>
 			<target ref="id69"/>
 			<label kind="synchronisation">disk1_goto[6]?</label>
-			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
 			<source ref="id54"/>
 			<target ref="id69"/>
 			<label kind="synchronisation">disk1_goto[6]?</label>
-			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
 			<source ref="id57"/>
 			<target ref="id69"/>
 			<label kind="synchronisation">disk1_goto[6]?</label>
-			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id69"/>
 			<label kind="synchronisation">disk1_goto[6]?</label>
-			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
 			<target ref="id69"/>
 			<label kind="synchronisation">disk1_goto[6]?</label>
-			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id69"/>
 			<label kind="synchronisation">disk1_goto[6]?</label>
-			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
 			<source ref="id69"/>
 			<target ref="id69"/>
 			<label kind="synchronisation">disk1_goto[6]?</label>
-			<label kind="assignment">currentSlot = 6</label>
 		</transition>
 		<transition>
 			<source ref="id72"/>
@@ -1203,49 +1147,41 @@ clock timer;</declaration>
 			<source ref="id51"/>
 			<target ref="id72"/>
 			<label kind="synchronisation">disk1_goto[7]?</label>
-			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
 			<source ref="id54"/>
 			<target ref="id72"/>
 			<label kind="synchronisation">disk1_goto[7]?</label>
-			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
 			<source ref="id57"/>
 			<target ref="id72"/>
 			<label kind="synchronisation">disk1_goto[7]?</label>
-			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
 			<target ref="id72"/>
 			<label kind="synchronisation">disk1_goto[7]?</label>
-			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
 			<target ref="id72"/>
 			<label kind="synchronisation">disk1_goto[7]?</label>
-			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
 			<target ref="id72"/>
 			<label kind="synchronisation">disk1_goto[7]?</label>
-			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
 			<source ref="id69"/>
 			<target ref="id72"/>
 			<label kind="synchronisation">disk1_goto[7]?</label>
-			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 		<transition>
 			<source ref="id72"/>
 			<target ref="id72"/>
 			<label kind="synchronisation">disk1_goto[7]?</label>
-			<label kind="assignment">currentSlot = 7</label>
 		</transition>
 	</template>
 	<template>
