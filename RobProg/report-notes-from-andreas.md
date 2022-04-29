@@ -25,3 +25,5 @@
 * PID-controller
 	- kontrol af speed
 	- tung vs. let objekt skal køre op og ned med samme hastighed
+	- PID step response med rise time, overshoot, steady-state error
+	- test med ingen møtrik og den tungenste møtrik den kan bære
