@@ -37,10 +37,10 @@ void gotoAngle(int angle)
   moveDegrees(degreesToMove);
   currentAngle = angle;
   delay(100);
-  digitalWrite(8, LOW);
-  digitalWrite(9, LOW);
-  digitalWrite(10, LOW);
-  digitalWrite(11, LOW);
+  digitalWrite(stepperMotorPin1, LOW);
+  digitalWrite(stepperMotorPin2, LOW);
+  digitalWrite(stepperMotorPin3, LOW);
+  digitalWrite(stepperMotorPin4, LOW);
 }
 
 void toggleMagnet(int powerOn)

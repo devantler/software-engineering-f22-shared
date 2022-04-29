@@ -5,7 +5,7 @@ const int liftMotorPin2 = 12;
 const int liftMotorEnablePin = 13;
 const int photoResistorPin = 34;
 
-const int blackThreshold = 50;
+const int blackThreshold = 800;
 const int whiteThreshold = 1200;
 
 //float distanceBetweenDiscAndCrane = 100; // in mm
@@ -70,9 +70,7 @@ void loop() {
     }
     
     numberOfSteps = input.substring(1, input.length()-1).toInt();
-    
-    
-        
+      
     Serial.println("Input: "+ input);
     Serial.println("Target speed: " + String(targetSpeed) + ", Target direction: " + selectedDirectionString + ", Target steps: " + String(numberOfSteps));
     if(targetSpeed > 0 && targetSpeed <= 255){
