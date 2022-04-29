@@ -313,6 +313,7 @@ clock timer;</declaration>
 			<source ref="id8"/>
 			<target ref="id7"/>
 			<label kind="guard">currentSlot_colour != 1</label>
+			<label kind="synchronisation">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
@@ -354,6 +355,7 @@ clock timer;</declaration>
 			<source ref="id14"/>
 			<target ref="id7"/>
 			<label kind="guard">currentSlot_colour != 2</label>
+			<label kind="synchronisation">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
@@ -395,6 +397,7 @@ clock timer;</declaration>
 			<source ref="id20"/>
 			<target ref="id7"/>
 			<label kind="guard">currentSlot_colour != 3</label>
+			<label kind="synchronisation">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id7"/>
@@ -503,6 +506,7 @@ clock timer;</declaration>
 			<source ref="id39"/>
 			<target ref="id38"/>
 			<label kind="guard">currentSlot_colour != 1</label>
+			<label kind="synchronisation">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id38"/>
@@ -535,6 +539,7 @@ clock timer;</declaration>
 			<source ref="id43"/>
 			<target ref="id38"/>
 			<label kind="guard">currentSlot_colour != 2</label>
+			<label kind="synchronisation">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id38"/>
@@ -567,6 +572,7 @@ clock timer;</declaration>
 			<source ref="id47"/>
 			<target ref="id38"/>
 			<label kind="guard">currentSlot_colour != 3</label>
+			<label kind="synchronisation">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id38"/>
