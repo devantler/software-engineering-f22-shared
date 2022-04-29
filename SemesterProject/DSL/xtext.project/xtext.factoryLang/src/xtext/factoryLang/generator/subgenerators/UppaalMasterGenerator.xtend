@@ -44,7 +44,6 @@ class UppaalMasterGenerator {
 		'''
 		<location id="«getIdOfLocation('''«statement.device.name»_get«value»_«statementsIndexer.indexOf(statement)»''')»">
 			<name>«statement.device.name»_get«value»_«statementsIndexer.indexOf(statement)»</name>
-			<committed/>
 		</location>
 		<location id="«getIdOfLocation('''«statement.device.name»_Is«value»_«statementsIndexer.indexOf(statement)»''')»">
 			<name>«statement.device.name»_Is«value»_«statementsIndexer.indexOf(statement)»</name>
@@ -110,7 +109,6 @@ class UppaalMasterGenerator {
 		'''
 		<location id="«getIdOfLocation('''«statement.variable.name»_get«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»''')»">
 			<name>«statement.variable.name»_get«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»</name>
-			<committed/>
 		</location>
 		<location id="«getIdOfLocation('''«statement.variable.name»_Is«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»''')»">
 			<name>«statement.variable.name»_Is«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»</name>
@@ -153,7 +151,8 @@ class UppaalMasterGenerator {
 				<transition>
 					<source ref="«getIdOfLocation('''«statement.variable.name»_get«(statement.variableValue.value as ColorValue).value»_«statementsIndexer.indexOf(statement)»''')»"/>
 					<target ref="«returnTransistion»"/>
-					<label kind="guard">GlobalTimer &gt; 2</label>
+					<label kind="guard">currentSlot_colour != «EnumParser.ColourToInt((statement.variableValue.value as ColorValue).value)»</label>
+					<label kind="synchronisation">«currentDisc»_gottenColourSlot?</label>
 				</transition>
 				''';
 				lastTransistionState = returnTransistion

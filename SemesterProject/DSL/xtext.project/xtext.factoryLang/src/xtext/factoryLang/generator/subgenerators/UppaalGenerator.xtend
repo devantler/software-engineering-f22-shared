@@ -52,7 +52,7 @@ class UppaalGenerator {
 			chan «disc.name»_getemptySlot;
 			chan «disc.name»_foundemptySlot;
 			chan «disc.name»_setColour[«disc.name»_numberOfSlots][4];
-			bool «disc.name»_notemptySlots[«disc.name»_numberOfSlots] = {«FOR i : 1..(disc.slotParameter as DiskSlotParameter).size SEPARATOR ", "»1«ENDFOR»};
+			bool «disc.name»_notemptySlots[«disc.name»_numberOfSlots];
 			chan «disc.name»_getColourSlot[«disc.name»_numberOfSlots];
 			chan «disc.name»_gottenColourSlot;
 			
@@ -61,8 +61,7 @@ class UppaalGenerator {
 			chan «disc.name»_set_«value»[«disc.name»_numberOfSlots];
 			chan «disc.name»_get«value»Slot;
 			chan «disc.name»_found«value»Slot;
-			bool «disc.name»_not«value»Slots[«disc.name»_numberOfSlots];
-			bool «disc.name»_slots_«value»[«disc.name»_numberOfSlots];
+			bool «disc.name»_not«value»Slots[«disc.name»_numberOfSlots] = {«FOR i : 1..(disc.slotParameter as DiskSlotParameter).size SEPARATOR ", "»1«ENDFOR»};
 			«ENDFOR»
 			
 			//Zones: 

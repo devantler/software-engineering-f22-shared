@@ -101,25 +101,25 @@ class DiscSlotGenerator {
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFull''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>
 				<label kind="synchronisation">«disc.name»_removeItem[id]?</label>
-				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_slots_complete[id] = false</label>
+				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_notcompleteSlots[id] = true</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullRed''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>
 				<label kind="synchronisation">«disc.name»_removeItem[id]?</label>
-				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_slots_complete[id] = false</label>
+				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_notcompleteSlots[id] = true</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullGreen''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>
 				<label kind="synchronisation">«disc.name»_removeItem[id]?</label>
-				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_slots_complete[id] = false</label>
+				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_notcompleteSlots[id] = true</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotFullBlue''')»"/>
 				<target ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>
 				<label kind="synchronisation">«disc.name»_removeItem[id]?</label>
-				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_slots_complete[id] = false</label>
+				<label kind="assignment">«disc.name»_notemptySlots[id] = false, «disc.name»_notcompleteSlots[id] = true</label>
 			</transition>
 			<transition>
 				<source ref="«UppaalGenerator.getIdOfLocation('''«disc.name»_SlotEmpty''')»"/>

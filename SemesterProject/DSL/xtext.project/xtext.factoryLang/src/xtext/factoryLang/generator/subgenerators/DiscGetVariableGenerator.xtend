@@ -29,7 +29,7 @@ class DiscGetVariableGenerator {
 			<transition>
 				<source ref="«getIdOfLocation('''«disc.name»_Get«variable»Slot_Idle''')»"/>
 				<target ref="«getIdOfLocation('''«disc.name»_Get«i»''')»"/>
-				<label kind="guard">«disc.name»_not«variable»Slots[«i-1»]</label>
+				<label kind="guard">!«disc.name»_not«variable»Slots[«i-1»]</label>
 				<label kind="synchronisation">«disc.name»_get«variable»Slot?</label>
 			</transition>
 			«ENDFOR»
