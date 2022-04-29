@@ -43,12 +43,12 @@ class DiscGenerator {
 			<transition>
 				<source ref="«getIdOfLocation('''AddItem«i»Req''')»"/>
 				<target ref="«getIdOfLocation('''Position«i»''')»"/>
-				<label kind="synchronisation">«disc.name»_addItem[«i-1»]!</label>
+				<label kind="synchronisation">«disc.name»_addItem[currentSlot]!</label>
 			</transition>
 			<transition>
 				<source ref="«getIdOfLocation('''RemoveItem«i»Req''')»"/>
 				<target ref="«getIdOfLocation('''Position«i»''')»"/>
-				<label kind="synchronisation">«disc.name»_removeItem[«i-1»]!</label>
+				<label kind="synchronisation">«disc.name»_removeItem[currentSlot]!</label>
 			</transition>
 			«FOR j : 0 ..< (disc.slotParameter as DiskSlotParameter).size»
 			<transition>

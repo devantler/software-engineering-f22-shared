@@ -681,12 +681,12 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id52"/>
 			<target ref="id51"/>
-			<label kind="synchronisation">disk1_addItem[0]!</label>
+			<label kind="synchronisation">disk1_addItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id53"/>
 			<target ref="id51"/>
-			<label kind="synchronisation">disk1_removeItem[0]!</label>
+			<label kind="synchronisation">disk1_removeItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id54"/>
@@ -754,12 +754,12 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id55"/>
 			<target ref="id54"/>
-			<label kind="synchronisation">disk1_addItem[1]!</label>
+			<label kind="synchronisation">disk1_addItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id56"/>
 			<target ref="id54"/>
-			<label kind="synchronisation">disk1_removeItem[1]!</label>
+			<label kind="synchronisation">disk1_removeItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id57"/>
@@ -827,12 +827,12 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id58"/>
 			<target ref="id57"/>
-			<label kind="synchronisation">disk1_addItem[2]!</label>
+			<label kind="synchronisation">disk1_addItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id59"/>
 			<target ref="id57"/>
-			<label kind="synchronisation">disk1_removeItem[2]!</label>
+			<label kind="synchronisation">disk1_removeItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id60"/>
@@ -900,12 +900,12 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id61"/>
 			<target ref="id60"/>
-			<label kind="synchronisation">disk1_addItem[3]!</label>
+			<label kind="synchronisation">disk1_addItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id62"/>
 			<target ref="id60"/>
-			<label kind="synchronisation">disk1_removeItem[3]!</label>
+			<label kind="synchronisation">disk1_removeItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id63"/>
@@ -973,12 +973,12 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id64"/>
 			<target ref="id63"/>
-			<label kind="synchronisation">disk1_addItem[4]!</label>
+			<label kind="synchronisation">disk1_addItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id65"/>
 			<target ref="id63"/>
-			<label kind="synchronisation">disk1_removeItem[4]!</label>
+			<label kind="synchronisation">disk1_removeItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id66"/>
@@ -1046,12 +1046,12 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id67"/>
 			<target ref="id66"/>
-			<label kind="synchronisation">disk1_addItem[5]!</label>
+			<label kind="synchronisation">disk1_addItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id68"/>
 			<target ref="id66"/>
-			<label kind="synchronisation">disk1_removeItem[5]!</label>
+			<label kind="synchronisation">disk1_removeItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id69"/>
@@ -1119,12 +1119,12 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id70"/>
 			<target ref="id69"/>
-			<label kind="synchronisation">disk1_addItem[6]!</label>
+			<label kind="synchronisation">disk1_addItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id71"/>
 			<target ref="id69"/>
-			<label kind="synchronisation">disk1_removeItem[6]!</label>
+			<label kind="synchronisation">disk1_removeItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id72"/>
@@ -1192,12 +1192,12 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id73"/>
 			<target ref="id72"/>
-			<label kind="synchronisation">disk1_addItem[7]!</label>
+			<label kind="synchronisation">disk1_addItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id74"/>
 			<target ref="id72"/>
-			<label kind="synchronisation">disk1_removeItem[7]!</label>
+			<label kind="synchronisation">disk1_removeItem[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id51"/>
