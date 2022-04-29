@@ -23,19 +23,19 @@ chan disk1_gottenColourSlot;
 chan disk1_set_complete[disk1_numberOfSlots];
 chan disk1_getcompleteSlot;
 chan disk1_foundcompleteSlot;
-bool disk1_notcompleteSlots[disk1_numberOfSlots] = {0, 0, 0, 0, 0, 0, 0, 0};
+bool disk1_notcompleteSlots[disk1_numberOfSlots] = {1, 1, 1, 1, 1, 1, 1, 1};
 bool disk1_slots_complete[disk1_numberOfSlots];
 //free tag
 chan disk1_set_free[disk1_numberOfSlots];
 chan disk1_getfreeSlot;
 chan disk1_foundfreeSlot;
-bool disk1_notfreeSlots[disk1_numberOfSlots] = {0, 0, 0, 0, 0, 0, 0, 0};
+bool disk1_notfreeSlots[disk1_numberOfSlots] = {1, 1, 1, 1, 1, 1, 1, 1};
 bool disk1_slots_free[disk1_numberOfSlots];
 //in_progress tag
 chan disk1_set_in_progress[disk1_numberOfSlots];
 chan disk1_getin_progressSlot;
 chan disk1_foundin_progressSlot;
-bool disk1_notin_progressSlots[disk1_numberOfSlots] = {0, 0, 0, 0, 0, 0, 0, 0};
+bool disk1_notin_progressSlots[disk1_numberOfSlots] = {1, 1, 1, 1, 1, 1, 1, 1};
 bool disk1_slots_in_progress[disk1_numberOfSlots];
 
 //Zones: 
