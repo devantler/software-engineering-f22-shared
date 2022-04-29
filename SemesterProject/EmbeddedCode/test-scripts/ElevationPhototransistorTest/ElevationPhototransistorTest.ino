@@ -1,3 +1,5 @@
+#include <analogWrite.h>
+
 const int liftMotorPin1 = 14;
 const int liftMotorPin2 = 12;
 const int liftMotorEnablePin = 13;
@@ -27,12 +29,12 @@ void setup() {
 
 void loop() {
   int targetSpeed;
-  
-  while(true){
-    
+
+  Serial.println("Set a target speed (0-255)");
+  while(true){ 
     targetSpeed = Serial.readString().toInt();
-    Serial.println("Target speed: " + String(targetSpeed));
     if(targetSpeed > 0 && targetSpeed <= 255){
+      Serial.println("Target speed: " + String(targetSpeed));
       break;
     }
   }
