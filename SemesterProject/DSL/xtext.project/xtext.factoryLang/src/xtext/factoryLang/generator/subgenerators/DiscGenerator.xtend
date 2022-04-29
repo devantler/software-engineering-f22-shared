@@ -18,6 +18,7 @@ class DiscGenerator {
 			</location>
 			<location id="«getIdOfLocation('''RemoveItem«i»Req''')»">
 				<name>RemoveItem«i»Req</name>
+				<committed/>
 			</location>
 			«ENDFOR»
 			<location id="«getIdOfLocation('''«disc.name»_Stopped''')»">
