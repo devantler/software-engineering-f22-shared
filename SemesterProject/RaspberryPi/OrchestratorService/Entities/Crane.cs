@@ -55,6 +55,7 @@ namespace Entities
             await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "0");
             await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "0");
             await WaitTillIdle();
+            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "Running");
             await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "1");
         }
 
@@ -65,7 +66,7 @@ namespace Entities
             }
         }
         private bool IsIdle(){
-            return _mqttService.GetMessage(MqttTopics.Crane(_name).Moving) == "Stopped";
+            return _mqttService.GetMessage(MqttTopics.Crane(_name).Moving) == "Stopped" && _mqttService.GetMessage(MqttTopics.Disk(_name).Moving) == "Stopped";
         }
 
         public string GetName()
