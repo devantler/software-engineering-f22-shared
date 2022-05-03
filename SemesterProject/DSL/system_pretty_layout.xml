@@ -188,7 +188,7 @@ clock timer;</declaration>
 			<name x="30" y="800">disk1_goto_cameraZone_statement13</name>
 		</location>
 		<location id="id36" x="940" y="80">
-			<name x="930" y="50">camera1_scanItem_14</name>
+			<name x="926" y="42">camera1_scanItem_14</name>
 			<committed/>
 		</location>
 		<location id="id37" x="940" y="230">
@@ -248,7 +248,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id2"/>
 			<target ref="id3"/>
-			<label kind="synchronisation" x="55" y="215">disk1_goto[(disk1_zones_craneZone + currentSlot) % disk1_numberOfSlots]!</label>
+			<label kind="synchronisation" x="-25" y="263">disk1_goto[(disk1_zones_craneZone + currentSlot) % disk1_numberOfSlots]!</label>
 		</transition>
 		<transition>
 			<source ref="id3"/>
@@ -280,7 +280,7 @@ clock timer;</declaration>
 			<source ref="id8"/>
 			<target ref="id9"/>
 			<label kind="guard" x="205" y="200">currentSlot_colour == 1</label>
-			<label kind="synchronisation" x="205" y="215">disk1_gottenColourSlot?</label>
+			<label kind="synchronisation" x="51" y="246">disk1_gottenColourSlot?</label>
 		</transition>
 		<transition>
 			<source ref="id9"/>
@@ -465,7 +465,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id36"/>
 			<target ref="id37"/>
-			<label kind="synchronisation" x="880" y="140">camera1_gottenColour?</label>
+			<label kind="synchronisation" x="1224" y="136">camera1_gottenColour?</label>
 		</transition>
 		<transition>
 			<source ref="id37"/>
@@ -475,7 +475,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id38"/>
 			<target ref="id39"/>
-			<label kind="synchronisation" x="880" y="440">disk1_getColourSlot[currentSlot]!</label>
+			<label kind="synchronisation" x="1207" y="425">disk1_getColourSlot[currentSlot]!</label>
 			<label kind="assignment" x="880" y="455">GlobalTimer = 0</label>
 		</transition>
 		<transition>
@@ -558,8 +558,8 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id49"/>
 			<target ref="id50"/>
-			<label kind="guard" x="1030" y="125">timer &gt;= 30</label>
-			<label kind="synchronisation" x="1030" y="140">disk1_set_complete[currentSlot]!</label>
+			<label kind="guard" x="1241" y="127">timer &gt;= 30</label>
+			<label kind="synchronisation" x="1207" y="136">disk1_set_complete[currentSlot]!</label>
 		</transition>
 		<transition>
 			<source ref="id50"/>
@@ -587,7 +587,7 @@ clock timer;</declaration>
 			<name x="399" y="119">Position1</name>
 		</location>
 		<location id="id52" x="212" y="42">
-			<name x="202" y="12">AddItem1Req</name>
+			<name x="195" y="8">AddItem1Req</name>
 		</location>
 		<location id="id53" x="510" y="51">
 			<name x="500" y="21">RemoveItem1Req</name>
@@ -656,7 +656,8 @@ clock timer;</declaration>
 			<name x="1035" y="318">RemoveItem8Req</name>
 		</location>
 		<location id="id75" x="450" y="544">
-			<name x="459" y="501">Stopped</name>
+			<name x="450" y="493">Stopped</name>
+			<committed/>
 		</location>
 		<init ref="id51"/>
 		<transition>
@@ -2116,7 +2117,7 @@ clock timer;</declaration>
 			<name x="357" y="17">crane1_outGreen</name>
 		</location>
 		<location id="id137" x="680" y="501">
-			<name x="670" y="471">crane1_LoweredAtoutGreen</name>
+			<name x="705" y="484">crane1_LoweredAtoutGreen</name>
 		</location>
 		<location id="id138" x="-76" y="365">
 			<name x="-195" y="357">crane1_outBlue</name>
@@ -2126,6 +2127,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id140" x="204" y="671">
 			<name x="153" y="688">crane1_Stopped</name>
+			<committed/>
 		</location>
 		<init ref="id132"/>
 		<transition>
@@ -2388,8 +2390,64 @@ clock timer;</declaration>
 </system>
 	<queries>
 		<query>
+			<formula>E&lt;&gt; disk1.Position1 imply disk1.Position2</formula>
+			<comment>A.1.a</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; disk1.Position2 imply disk1.Position8</formula>
+			<comment>A.1.a</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; disk1.AddItem1Req imply (disk1_DiscSlot(1).disk1_SlotFull and forall(i : int[2,8]) disk1_DiscSlot(i).disk1_SlotEmpty)</formula>
+			<comment>A.1.d</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; crane1.crane1_intake imply crane1.crane1_outRed</formula>
+			<comment>A.2.a</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; crane1.crane1_outRed imply crane1.crane1_outBlue</formula>
+			<comment>A.2.a</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; crane1.crane1_outBlue imply crane1.crane1_intake</formula>
+			<comment>A.2.a</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; crane1.crane1_intake imply crane1.crane1_LoweredAtintake imply crane1.crane1_intake</formula>
+			<comment>A.2.b</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; crane1.crane1_outGreen imply crane1.crane1_LoweredAtoutGreen imply crane1.crane1_outGreen</formula>
+			<comment>A.2.b</comment>
+		</query>
+		<query>
 			<formula>A&lt;&gt; crane1_CraneMagnet.crane1_MagnetOn imply crane1_CraneMagnet.crane1_MagnetOff</formula>
-			<comment></comment>
+			<comment>A.2.c</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (camera1.camera1_Green or camera1.camera1_Blue or camera1.camera1_Red) and (colour &lt;= 3 or colour &gt; 0)</formula>
+			<comment>A.3.a</comment>
+		</query>
+		<query>
+			<formula>MasterController.camera1_scanItem_14 --&gt; MasterController.camera1_scanItem_14</formula>
+			<comment>A.3.b</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (crane1.crane1_LoweredAtintake and crane1_CraneMagnet.crane1_MagnetOn) imply (crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOn)</formula>
+			<comment>A.2.b, A.2.c</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOn) imply (crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOn)</formula>
+			<comment>A.2.a, A.2.b, A.2.c</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (crane1.crane1_outRed and crane1_CraneMagnet.crane1_MagnetOn) imply (crane1.crane1_LoweredAtoutRed and crane1_CraneMagnet.crane1_MagnetOn)</formula>
+			<comment>A.2.b, A.2.c</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (crane1.crane1_LoweredAtoutRed and crane1_CraneMagnet.crane1_MagnetOn) imply (crane1.crane1_LoweredAtoutRed and crane1_CraneMagnet.crane1_MagnetOff)</formula>
+			<comment>A.2.c</comment>
 		</query>
 		<query>
 			<formula>A[] (crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOff) imply !(crane1.crane1_intake and crane1_CraneMagnet.crane1_MagnetOn)</formula>
@@ -2441,7 +2499,31 @@ clock timer;</declaration>
 		</query>
 		<query>
 			<formula>A[] EmergencyButton.Stopped imply (crane1.crane1_Stopped and disk1.Stopped and (crane1_CraneMagnet.crane1_StoppedMagnetOff or crane1_CraneMagnet.crane1_StoppedMagnetOn))</formula>
-			<comment></comment>
+			<comment>A.1.f, A.1.g, A.2.f, A.2.g</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; EmergencyButton.Stopped imply (crane1.crane1_Stopped and disk1.Stopped and (crane1_CraneMagnet.crane1_StoppedMagnetOff or crane1_CraneMagnet.crane1_StoppedMagnetOn))</formula>
+			<comment>A.1.f, A.1.g, A.2.f, A.2.g</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; disk1.Stopped imply disk1.Position1</formula>
+			<comment>A.1.h</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; crane1.crane1_Stopped imply crane1.crane1_intake</formula>
+			<comment>A.2.h</comment>
+		</query>
+		<query>
+			<formula>disk1.Stopped --&gt; disk1.Position1</formula>
+			<comment>A.1.h</comment>
+		</query>
+		<query>
+			<formula>crane1.crane1_Stopped --&gt; crane1.crane1_intake</formula>
+			<comment>A.2.h</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; EmergencyButton.Stopped</formula>
+			<comment>A.1.f, A.2.f</comment>
 		</query>
 	</queries>
 </nta>
