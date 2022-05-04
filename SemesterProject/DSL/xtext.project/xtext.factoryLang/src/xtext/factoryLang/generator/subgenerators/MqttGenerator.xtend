@@ -50,8 +50,20 @@ class MqttGenerator {
 				            _mqttClient.DisconnectedHandler = new MqttClientDisconnectedHandlerDelegate(OnDisconnected);
 				            _mqttClient.ConnectingFailedHandler = new ConnectingFailedHandlerDelegate(OnConnectingFailed);
 				            _mqttClient.ApplicationMessageReceivedHandler = new MqttApplicationMessageReceivedHandlerDelegate(OnMessageReceived);
-				
 				            _mqttClient.StartAsync(options).GetAwaiter().GetResult();
+				
+				            var mqttSubscribeOptions = new MqttFactory().CreateSubscribeOptionsBuilder()
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Angle))
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Elevation))
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Magnet))
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Moving))
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Disk("+").Slot))
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Disk("+").Moving))
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Camera("+").Color))
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Camera("+").Scanning))
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Camera("+").Scan))
+				                .Build();
+				            _mqttClient.SubscribeAsync(mqttSubscribeOptions.TopicFilters).GetAwaiter().GetResult();
 				        }
 				
 				        private void OnMessageReceived(MqttApplicationMessageReceivedEventArgs obj)

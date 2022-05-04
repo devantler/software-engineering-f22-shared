@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2020 Frederik Alexander Hounsvad, Nikolai Emil Damm, Oliver Lind Nordestgaard, Peter Andreas Brændgaard, Troels Zink Kristensen
+Copyright (c) 2020 Frederik Alexander Hounsvad, Nikolai Emil Damm, Oliver Lind Nordestgaard, Peter Andreas Brændgaard, Troels Zink Kristensen and István Nagy.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
