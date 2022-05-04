@@ -82,7 +82,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id1" x="399" y="289">
 			<name x="348" y="255">disk1_getcompleteSlot_0</name>
-			<committed/>
+			<label kind="invariant" x="348" y="306">GlobalTimer &lt; 10</label>
 		</location>
 		<location id="id2" x="552" y="289">
 			<name x="493" y="306">disk1_gottenSlotcomplete_0</name>
@@ -104,6 +104,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id8" x="416" y="501">
 			<name x="416" y="467">diskSlot_getred_4</name>
+			<label kind="invariant" x="348" y="518">GlobalTimer &lt; 10</label>
 		</location>
 		<location id="id9" x="416" y="365">
 			<name x="340" y="331">diskSlot_Isred_4</name>
@@ -122,6 +123,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id14" x="731" y="773">
 			<name x="721" y="743">diskSlot_getgreen_5</name>
+			<label kind="invariant" x="731" y="756">GlobalTimer &lt; 10</label>
 		</location>
 		<location id="id15" x="875" y="858">
 			<name x="865" y="828">diskSlot_Isgreen_5</name>
@@ -140,6 +142,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id20" x="527" y="850">
 			<name x="535" y="824">diskSlot_getblue_6</name>
+			<label kind="invariant" x="399" y="858">GlobalTimer &lt; 10</label>
 		</location>
 		<location id="id21" x="680" y="850">
 			<name x="670" y="820">diskSlot_Isblue_6</name>
@@ -164,6 +167,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id28" x="229" y="748">
 			<name x="238" y="722">disk1_getempty_1</name>
+			<label kind="invariant" x="219" y="765">GlobalTimer &lt; 10</label>
 		</location>
 		<location id="id29" x="229" y="1079">
 			<name x="255" y="1054">disk1_Isempty_1</name>
@@ -199,6 +203,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id39" x="1674" y="433">
 			<name x="1664" y="403">currentItemColor_getred_16</name>
+			<label kind="invariant" x="1691" y="425">GlobalTimer &lt; 10</label>
 		</location>
 		<location id="id40" x="1742" y="595">
 			<name x="1742" y="561">currentItemColor_Isred_16</name>
@@ -211,6 +216,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id43" x="1394" y="620">
 			<name x="1301" y="629">currentItemColor_getgreen_17</name>
+			<label kind="invariant" x="1368" y="646">GlobalTimer &lt; 10</label>
 		</location>
 		<location id="id44" x="1572" y="782">
 			<name x="1581" y="782">currentItemColor_Isgreen_17</name>
@@ -223,6 +229,7 @@ clock timer;</declaration>
 		</location>
 		<location id="id47" x="1708" y="323">
 			<name x="1751" y="323">currentItemColor_getblue_18</name>
+			<label kind="invariant" x="1698" y="340">GlobalTimer &lt; 10</label>
 		</location>
 		<location id="id48" x="1802" y="187">
 			<name x="1802" y="153">currentItemColor_Isblue_18</name>
@@ -237,7 +244,7 @@ clock timer;</declaration>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id1"/>
-			<label kind="synchronisation" x="255" y="280">disk1_getcompleteSlot!</label>
+			<label kind="synchronisation" x="238" y="280">disk1_getcompleteSlot!</label>
 			<label kind="assignment" x="255" y="297">GlobalTimer = 0</label>
 			<nail x="297" y="306"/>
 		</transition>
@@ -665,7 +672,6 @@ clock timer;</declaration>
 		</location>
 		<location id="id75" x="450" y="544">
 			<name x="450" y="493">Stopped</name>
-			<committed/>
 		</location>
 		<init ref="id51"/>
 		<transition>
