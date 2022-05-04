@@ -59,7 +59,7 @@ class ProgramGenerator {
 	protected def static CharSequence generateMainLoop() '''
 		#region Main
 		Setup();
-		Run();
+		Run().GetAwaiter().GetResult();
 		#endregion
 	'''
 	protected def static CharSequence generateSetupMethod(List<Device> devices) '''
@@ -110,7 +110,7 @@ class ProgramGenerator {
 	'''
 	protected def static CharSequence generateRunMethod(List<Device> devices, List<Statement> statements) {
 		'''
-			async void Run()
+			async Task Run()	
 			{
 				«FOR crane : devices.filter[it instanceof Crane].map[it as Crane].toList»
 					var «crane.name» = cranes["«crane.name»"];
@@ -201,9 +201,9 @@ class ProgramGenerator {
 				val quantity = statement.quantity
 				'''
 					«IF quantity > 0»
-						await Task.Run(() =>
+						await Task.Run(async () =>
 						{
-							Thread.Sleep(«quantity * 1000»);
+							await Task.Delay(«quantity * 1000»);
 							«deviceName».MarkSlot("«targetName»", «diskSlotValue»);
 						});
 					«ELSE»

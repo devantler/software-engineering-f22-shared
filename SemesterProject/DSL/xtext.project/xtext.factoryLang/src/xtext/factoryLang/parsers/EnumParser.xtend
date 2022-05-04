@@ -35,16 +35,16 @@ class EnumParser {
 		switch originClass {
 			case LocalVariableImpl: {
 				switch color {
-					case COLOR.RED: 'HasMark("red")'
-					case COLOR.GREEN: 'HasMark("green")'
-					case COLOR.BLUE: 'HasMark("blue")'
+					case COLOR.RED: 'HasMark("RED")'
+					case COLOR.GREEN: 'HasMark("GREEN")'
+					case COLOR.BLUE: 'HasMark("BLUE")'
 				}
 			}
 			case GlobalVariableImpl: {
 				switch color {
-					case COLOR.RED: "red"
-					case COLOR.GREEN: "green"
-					case COLOR.BLUE: "blue"
+					case COLOR.RED: "RED"
+					case COLOR.GREEN: "GREEN"
+					case COLOR.BLUE: "BLUE"
 				}
 			}
 		}

@@ -59,7 +59,7 @@ class EntityGenerator {
 				        {
 				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "LOW");
 				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "1");
-				            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0")
+				            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0" && string.IsNullOrEmpty(_mqttService.GetMessage(MqttTopics.Crane(_name).Moving)))
 				            {
 				                await Task.Delay(100);
 				            }
@@ -69,7 +69,7 @@ class EntityGenerator {
 				        public async Task DropItem()
 				        {
 				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "LOW");
-				            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0")
+				            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0" && string.IsNullOrEmpty(_mqttService.GetMessage(MqttTopics.Crane(_name).Moving)))
 				            {
 				                await Task.Delay(100);
 				            }
@@ -270,7 +270,8 @@ class EntityGenerator {
 				    public string Scan()
 				    {
 				        _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "GetColor");
-				        while (_mqttService.GetMessage(MqttTopics.Camera(_name).Scanning) == "true")
+				        _mqttService.SendMessage(MqttTopics.Camera(_name).Color, "");
+				        while (string.IsNullOrEmpty(_mqttService.GetMessage(MqttTopics.Camera(_name).Color)))
 				        {
 				            Task.Delay(100);
 				        }
@@ -347,7 +348,7 @@ class EntityGenerator {
 			'OrchestratorService/Entities/SlotState.cs',
 			'''
 				namespace Entities;
-
+				
 				public enum SlotState 
 				{
 				    Empty,

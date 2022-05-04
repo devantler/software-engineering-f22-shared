@@ -1774,10 +1774,6 @@ clock timer;</declaration>
 			<comment></comment>
 		</query>
 		<query>
-			<formula>A[] disk1_slots_complete[1] imply disk1_notemptySlots[1]</formula>
-			<comment></comment>
-		</query>
-		<query>
 			<formula>E&lt;&gt; forall (i : disk1_id_t) disk1_DiscSlot(i).disk1_SlotEmpty</formula>
 			<comment></comment>
 		</query>
@@ -1808,6 +1804,10 @@ clock timer;</declaration>
 		<query>
 			<formula>E&lt;&gt; EmergencyButton.Stopped</formula>
 			<comment>A.1.f, A.2.f</comment>
+		</query>
+		<query>
+			<formula>A[] disk1.Stopped imply disk1.Position1</formula>
+			<comment></comment>
 		</query>
 	</queries>
 </nta>
