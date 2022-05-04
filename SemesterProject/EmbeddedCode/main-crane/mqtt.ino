@@ -17,6 +17,9 @@ void setupMqtt()
     client.setServer(mqtt_server, 1883);
     client.setCallback(callback);
     subscribeMQTT();
+    if (!client.connected()) {
+    reconnect("crane1");
+    }
 }
 
 void reconnect(char *clientID)
@@ -66,5 +69,5 @@ void publish(char *topic, char *message)
     Serial.println(message);
     Serial.println("On topic:");
     Serial.println(topic);
-    client.publish(topic, message);
+    client.publish(topic, message, true);
 }

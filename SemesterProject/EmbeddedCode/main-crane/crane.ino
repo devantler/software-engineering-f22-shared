@@ -77,8 +77,10 @@ void toggleElevation(int direction)
   {
     raise();
   }
-  else
+  else if (direction == 0)
   {
     lower();
+  }else{
+    publish("log/disk1/error", (char*)"Don't send me garbage");
   }
 }

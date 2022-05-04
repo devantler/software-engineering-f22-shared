@@ -39,7 +39,7 @@ void setupElevationControls()
     //Arbitrary scaling of the end movement speed of the motor
     int speedSetpoint = 5; 
     //Calculate steps pr seconds  
-    Setpoint = 52;//name should reflect that it is SPEEEEEED
+    Setpoint = 52.0;//name should reflect that it is SPEEEEEED
     myPID.SetOutputLimits(MIN_MOTOR_POWER, MAX_MOTOR_POWER);
     myPID.SetMode(AUTOMATIC);
 }
@@ -63,6 +63,7 @@ void elevate(bool direction){
   int lastStepTime = millis();
   int msPerStep = 0;
   int lastMsPerStep = 0;
+  int lastLastMsPerStep = 0;
   enableMotor(direction, MIN_MOTOR_POWER);
   while(stepsTaken < stepsToTake){
     //process steps
@@ -75,12 +76,14 @@ void elevate(bool direction){
       if(msPerStep == 0){
         speed = 0;
       }else{
-        speed = 1000/((msPerStep + lastMsPerStep)/2);
+        speed = 1000.0/((msPerStep + lastMsPerStep + lastLastMsPerStep)/3.0);
       }
       if(speed < MIN_SPEED){
         speed = MIN_SPEED;
       }
+      lastLastMsPerStep = lastMsPerStep;
       lastMsPerStep = msPerStep;
+      
       //Input = map(speed, MIN_SPEED, MAX_SPEED, 1, 100);
       Input = speed;
     }

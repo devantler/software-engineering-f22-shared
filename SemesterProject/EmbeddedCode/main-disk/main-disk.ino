@@ -42,6 +42,7 @@ void setup()
     initWiFi();
     setupMqtt();
     setupDisk();
+    publish(topics[1], (char*)"Stopped");
 }
 
 void loop()
