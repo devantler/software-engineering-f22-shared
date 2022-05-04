@@ -87,7 +87,7 @@ void loop() {
       int newTime = millis();
       stepsTaken++;
       int timeTaken = newTime - oldTime;
-      Serial.println("steps: " + String(stepsTaken) + ", time:" + String(timeTaken));
+      Serial.println("steps: " + String(stepsTaken) + ", time:" + String(timeTaken) + ", speed: " + String(floor(1000/timeTaken)));
       oldTime = newTime;   
     }
   }

@@ -3,6 +3,7 @@
 #include "Arduino.h"
 
 void setupElevationControls();
+void setTunings(double p, double i, double d);
 void raise();
 void lower();
 #endif

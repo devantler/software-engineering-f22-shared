@@ -7,9 +7,15 @@ char *topics[] = {
     (char *)"crane1/elevation",
     (char *)"crane1/magnet",
     (char *)"crane1/moving",
+    (char *)"crane1/p",
+    (char *)"crane1/i",
+    (char *)"crane1/d",
 };
 
-int topicSize = 3;
+double p = 0.35;
+double i = 0.80;
+double d = 0;
+int topicSize = 7;
 
 void callback(char *topic, byte *message, unsigned int length)
 {
@@ -42,6 +48,15 @@ void callback(char *topic, byte *message, unsigned int length)
     publish(topics[3], (char*)"Moving");
     toggleMagnet(messageTemp.toInt());
     publish(topics[3], (char*)"Stopped");
+  }else if (topicTemp == topics[4]){
+    p = messageTemp.toDouble();
+    setTunings(p,i,d);
+  }else if (topicTemp == topics[5]){
+    i = messageTemp.toDouble();
+    setTunings(p,i,d);
+  }else if (topicTemp == topics[6]){
+    d = messageTemp.toDouble();
+    setTunings(p,i,d);
   }
 }
 
@@ -56,11 +71,12 @@ void setup()
   initWiFi();
   setupMqtt();
   setupCrane();
-}
+  publish(topics[3], (char*)"Stopped");
+ }
 
 void loop()
 {
   mqttLoop((char *)"crane");
 
-  delay(1000);
+  delay(100);
 }
