@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using MQTTnet;
 using MQTTnet.Client.Connecting;
 using MQTTnet.Client.Disconnecting;
@@ -76,6 +79,10 @@ namespace Mqtt
                 Payload = Encoding.ASCII.GetBytes(message)
             };
             await _mqttClient.PublishAsync(mqttMessage);
+            if (!messages.TryAdd(topic, message))
+            {
+                messages[topic] = message;
+            }
         }
 
         private void OnConnected(MqttClientConnectedEventArgs obj)

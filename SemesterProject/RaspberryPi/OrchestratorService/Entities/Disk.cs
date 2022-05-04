@@ -1,3 +1,4 @@
+using System;
 using Mqtt;
 
 namespace Entities;
@@ -59,11 +60,21 @@ public class Disk
 
     public async Task MoveSlot(int fromZone, int toZone)
     {
-        var zonesToMove = fromZone - toZone;
-        _currentOffset = (_currentOffset + zonesToMove) % _slots.Count;
+        var zonesToMove = mod((toZone - fromZone), _slots.Count);
+        _currentOffset = zonesToMove;
         await WaitTillIdle();
         await _mqttService.SendMessage(MqttTopics.Disk(_name).Moving, "Running");
-        await _mqttService.SendMessage(MqttTopics.Disk(_name).Zone, toZone.ToString()); //TODO: Test if this works, _currentOffset.ToString() might be correct
+        await _mqttService.SendMessage(MqttTopics.Disk(_name).Zone, zonesToMove.ToString()); //TODO: Test if this works, _currentOffset.ToString() might be correct
+        await WaitTillIdle();
+    }
+    
+    public async Task MoveZoneToZone(string fromZone, string toZone)
+    {
+        var zonesToMove = mod((_currentOffset + (_zones[toZone] - _zones[fromZone])), _slots.Count());
+        _currentOffset = zonesToMove;
+        await WaitTillIdle();
+        await _mqttService.SendMessage(MqttTopics.Disk(_name).Moving, "Running");
+        await _mqttService.SendMessage(MqttTopics.Disk(_name).Zone, zonesToMove.ToString()); //TODO: Test if this works, _currentOffset.ToString() might be correct
         await WaitTillIdle();
     }
 
@@ -104,7 +115,9 @@ public class Disk
 
     public Slot GetSlot(string slotName)
     {
-        return _slots[_zones[slotName]];
+        var slot = _slots[mod((_currentOffset - _zones[slotName]), 8)];
+        Console.WriteLine($"Getting slot at: {slotName} Got slot: {slot.Number}");
+        return slot;
     }
 
     #region MarkSlot methods
@@ -120,12 +133,29 @@ public class Disk
 
     public void MarkSlot(string slotName, SlotState mark)
     {
+        var slot = GetSlot(slotName);
+        Console.WriteLine($"Marking slot at {slot.Number} with {Enum.GetName(mark)}");
         if(mark == SlotState.Empty)
-            GetSlot(slotName).RemoveAllMarks();
-        GetSlot(slotName).SlotState = mark;
+            slot.RemoveAllMarks();
+        slot.SlotState = mark;
+    }
+    
+    public void MarkSlot(int slotName, SlotState mark)
+    {
+        var slot = GetSlot(slotName);
+        Console.WriteLine($"Marking slot at {slot.Number} with {Enum.GetName(mark)}");
+        if(mark == SlotState.Empty)
+            slot.RemoveAllMarks();
+        slot.SlotState = mark;
     }
 
     public void MarkSlot(string slotName, string mark)
+    {
+        GetSlot(slotName).AddMark(mark);
+    }
+
+    
+    public void MarkSlot(int slotName, string mark)
     {
         GetSlot(slotName).AddMark(mark);
     }
@@ -169,5 +199,9 @@ public class Disk
     public int GetZone(string zoneName)
     {
         return _zones[zoneName];
+    }
+    
+    int mod(int x, int m) {
+        return (x%m + m)%m;
     }
 }

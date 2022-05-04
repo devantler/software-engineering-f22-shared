@@ -1,3 +1,4 @@
+using System;
 using Entities;
 using Mqtt;
 
@@ -21,9 +22,9 @@ void Setup()
     cranes.Add("crane1", new Crane("crane1", new Dictionary<string, int>()
     {
         {"intake", 0},
-        {"outRed", 90},
-        {"outGreen", 105},
-        {"outBlue", 120}
+        {"outRed", 40},
+        {"outGreen", 55},
+        {"outBlue", 70}
     }, mqtt));
 
     disks.Add("disk1", new Disk("disk1", 8, new Dictionary<string, int>()
@@ -69,38 +70,43 @@ async Task Run()
                 await crane1.GoTo("outBlue");
                 await crane1.DropItem();
             }
-            disk1.MarkSlot("craneZone", SlotState.Empty);
+            disk1.MarkSlot(diskSlot.Number, SlotState.Empty);
         }
         if (!disk1.IsFull())
         {
-            await disk1.MoveSlot(disk1.GetEmptySlotNumber(), "intakeZone");
+            var currentSlot = disk1.GetEmptySlotNumber();
+            await disk1.MoveSlot(currentSlot, "intakeZone");
+            Console.WriteLine($"Empty slot: {currentSlot}");
             await disk1.WaitForIntake();
-            disk1.MarkSlot("intakeZone", SlotState.InProgress);
-            await disk1.MoveSlot("intakeZone", "cameraZone");
+            disk1.MarkSlot(currentSlot, SlotState.InProgress);
+            await disk1.MoveZoneToZone("intakeZone", "cameraZone");
             var currentItemColor = await camera1.Scan() ?? "RED";
-            disk1.MarkSlot("cameraZone", currentItemColor);
+            disk1.MarkSlot(currentSlot, currentItemColor);
             if (currentItemColor == "RED")
             {
-                await Task.Run(async () =>
+                Task.Run(async () =>
                 {
-                    await Task.Delay(10000);
-                    disk1.MarkSlot("cameraZone", SlotState.Complete);
+                    var slotNo = currentSlot;
+                    await Task.Delay(3 * 90 * 1000);
+                    disk1.MarkSlot(slotNo, SlotState.Complete);
                 });
             }
             if (currentItemColor == "GREEN")
             {
-                await Task.Run(async () =>
+                Task.Run(async () =>
                 {
-                    await Task.Delay(20000);
-                    disk1.MarkSlot("cameraZone", SlotState.Complete);
+                    var slotNo = currentSlot;
+                    await Task.Delay(2 * 90 * 1000);
+                    disk1.MarkSlot(slotNo, SlotState.Complete);
                 });
             }
             if (currentItemColor == "BLUE")
             {
-                await Task.Run(async () =>
+                Task.Run(async () =>
                 {
-                    await Task.Delay(30000);
-                    disk1.MarkSlot("cameraZone", SlotState.Complete);
+                    var slotNo = currentSlot;
+                    await Task.Delay(4 * 60 * 1000);
+                    disk1.MarkSlot(slotNo, SlotState.Complete);
                 });
             }
         }

@@ -19,12 +19,12 @@ public class Camera
     {
         await _mqttService.SendMessage(MqttTopics.Camera(_name).Color, "");
         await _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "GetColor");
-        await WaitTillIdle();
+        await WaitWhileIdle();
         return _mqttService.GetMessage(MqttTopics.Camera(_name).Color);
     }
 
-    private async Task WaitTillIdle(){
-        while(!IsIdle())
+    private async Task WaitWhileIdle(){
+        while(IsIdle())
         {
             await Task.Delay(100);
         }

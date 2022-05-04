@@ -3,7 +3,7 @@ namespace Entities;
 public class Slot
 {
     private readonly List<string> _marks = new();
-    public SlotState SlotState { get; set; }
+    public SlotState SlotState { get; set; } = SlotState.Empty;
     public int Number { get; set; }
 
     public Slot(int number)

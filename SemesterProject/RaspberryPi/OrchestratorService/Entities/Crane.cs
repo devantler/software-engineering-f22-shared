@@ -43,6 +43,7 @@ namespace Entities
             await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "0");
             await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "1");
             await WaitTillIdle();
+            await Task.Delay(2000);
             await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "Running");
             await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "1");
             await WaitTillIdle();
