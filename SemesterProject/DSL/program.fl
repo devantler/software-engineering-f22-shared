@@ -1,5 +1,5 @@
 create crane named crane1  
-	with position at 0 named intake 
+	with position at 0 named pickup 
 	with position at 30 named outRed 
 	with position at 60 named outGreen 
 	with position at 90 named outBlue  
@@ -17,7 +17,7 @@ create camera named camera1
 
 for each diskSlot in disk1 that is complete then
 	disk1 move slot of diskSlot to craneZone
-	crane1 pickup item at intake
+	crane1 pickup item at pickup
 	if variable diskSlot is red then  
 		crane1 drop item at outRed
 	if variable diskSlot is green then  
@@ -28,7 +28,7 @@ for each diskSlot in disk1 that is complete then
 
 if device disk1 is not full then  
 	disk1 move empty slot to intakeZone
-	disk1 mark slot at intakeZone as in-progress 
+	disk1 mark slot at intakeZone as in_progress 
 	disk1 move slot at intakeZone to cameraZone
 	camera1 scan color into currentItemColor 
 	disk1 mark slot at cameraZone as currentItemColor  
