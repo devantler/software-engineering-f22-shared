@@ -9,6 +9,10 @@
 		"plantuml.exportSubFolder": false,
 		"markdownlint.config": {
 			"MD041": false
-		}
+		},
+		"grammarly.config.suggestions.OxfordComma": true,
+		"grammarly.config.documentDialect": "british",
+		"grammarly.config.suggestions.PassiveVoice": true,
+		"grammarly.config.documentDomain": "academic"
 	}
 }
