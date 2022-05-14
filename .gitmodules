@@ -10,3 +10,7 @@
 	path = SemesterProject/report
 	url = https://git.overleaf.com/624d5ff273bb892f9e62fbe4
 	branch = master
+[submodule "RobProg/robprog-report"]
+	path = RobProg/robprog-report
+	url = https://git.overleaf.com/624d601873bb8932e662ff91
+	branch = master
