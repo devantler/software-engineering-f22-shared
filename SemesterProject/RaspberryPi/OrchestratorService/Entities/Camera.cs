@@ -15,12 +15,12 @@ public class Camera
 		_mqttService = mqttService;
 	}
 
-    public async Task<string?> Scan()
+    public async Task<string> Scan()
     {
         await _mqttService.SendMessage(MqttTopics.Camera(_name).Color, "");
         await _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "GetColor");
         await WaitWhileIdle();
-        return _mqttService.GetMessage(MqttTopics.Camera(_name).Color);
+        return _mqttService.GetMessage(MqttTopics.Camera(_name).Color) ?? "RED";
     }
 
     private async Task WaitWhileIdle(){
@@ -29,9 +29,11 @@ public class Camera
             await Task.Delay(100);
         }
     }
+
     private bool IsIdle(){
         return string.IsNullOrEmpty(_mqttService.GetMessage(MqttTopics.Camera(_name).Color));
     }
+
     public string GetName()
     {
         return _name;
