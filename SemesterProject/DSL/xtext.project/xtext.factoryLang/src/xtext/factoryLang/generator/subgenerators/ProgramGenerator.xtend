@@ -24,6 +24,7 @@ import xtext.factoryLang.factoryLang.DiskMoveSlotOperation
 import xtext.factoryLang.factoryLang.CameraScanOperation
 import xtext.factoryLang.factoryLang.impl.GlobalVariableImpl
 import xtext.factoryLang.parsers.EnumParser
+import xtext.factoryLang.factoryLang.DiskWaitOperation
 
 class ProgramGenerator {
 
@@ -31,6 +32,7 @@ class ProgramGenerator {
 		fsa.generateFile(
 			'OrchestratorService/Program.cs',
 			'''
+				using System;
 				using Entities;
 				using Mqtt;
 				
@@ -199,9 +201,10 @@ class ProgramGenerator {
 				val targetName = statement.target.name
 				val diskSlotValue = ValueParser.parseDiskSlotValue(statement.diskSlotValue, statement.getClass())
 				val quantity = statement.quantity
+				
 				'''
 					«IF quantity > 0»
-						await Task.Run(async () =>
+						Task.Run(async () =>
 						{
 							await Task.Delay(«quantity * 1000»);
 							«deviceName».MarkSlot("«targetName»", «diskSlotValue»);
@@ -216,14 +219,14 @@ class ProgramGenerator {
 				val variableName = statement.variable.name
 				val targetName = statement.target.name
 				'''
-					«deviceName».MoveSlot(«variableName».Number, "«targetName»");
+					await «deviceName».MoveSlot(«variableName».Number, "«targetName»");
 				'''
 			}
 			DiskMoveEmptySlotOperation: {
 				val deviceName = statement.device.name
 				val targetName = statement.target.name
 				'''
-					«deviceName».MoveSlot(«deviceName».GetEmptySlotNumber(), "«targetName»");
+					await «deviceName».MoveSlot(«deviceName».GetEmptySlotNumber(), "«targetName»");
 				'''
 			}
 			DiskMoveSlotOperation: {
@@ -231,14 +234,20 @@ class ProgramGenerator {
 				val sourceName = statement.source.name
 				val targetName = statement.target.name
 				'''
-					«deviceName».MoveSlot("«sourceName»", "«targetName»");
+					await «deviceName».MoveSlot("«sourceName»", "«targetName»");
+				'''
+			}
+			DiskWaitOperation: {
+				val deviceName = statement.device.name
+				'''
+					await «deviceName».WaitForIntake();
 				'''
 			}
 			CameraScanOperation: {
 				val deviceName = statement.device.name
 				val variableName = statement.variable.name
 				'''
-					var «variableName» = «deviceName».Scan();
+					var «variableName» = await «deviceName».Scan();
 				'''
 			}
 		}

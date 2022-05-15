@@ -30,7 +30,10 @@ class FactoryLangScopeProvider extends AbstractFactoryLangScopeProvider {
 		switch (reference) {
 			case Literals.CRANE_OPERATION__TARGET,
 			case Literals.DISK_MOVE_SLOT_OPERATION__SOURCE,
-			case Literals.DISK_OPERATION__TARGET:
+			case Literals.DISK_MOVE_SLOT_OPERATION__TARGET,
+			case Literals.DISK_MOVE_VARIABLE_SLOT_OPERATION__TARGET,
+			case Literals.DISK_MOVE_EMPTY_SLOT_OPERATION__TARGET,
+			case Literals.DISK_MARK_SLOT_OPERATION__TARGET:
 				return getOperationTargetScope(context as Operation)
 			case Literals.DISK_MOVE_VARIABLE_SLOT_OPERATION__VARIABLE,
 			case Literals.VARIABLE_CONDITIONAL__VARIABLE:

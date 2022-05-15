@@ -30,7 +30,6 @@ class FactoryLangGenerator extends AbstractGenerator {
 		val statements = model.statements
 		try { 
 			ProgramGenerator.generate(fsa, devices, statements)
-			UppaalGenerator.generate(fsa, resource)
 			CsprojGenerator.generate(fsa)
 			MqttGenerator.generate(fsa)
 			EntityGenerator.generate(fsa, 
@@ -38,6 +37,7 @@ class FactoryLangGenerator extends AbstractGenerator {
 				devices.filter[it instanceof Disk].size> 0, 
 				devices.filter[it instanceof Camera].size> 0
 			)
+			UppaalGenerator.generate(fsa, resource)
 		} catch (Exception e) {
 			e.printStackTrace()
 		}

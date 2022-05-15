@@ -47,34 +47,52 @@ class EntityGenerator {
 				
 				        public async Task GoTo(string positionName)
 				        {
+				            await WaitTillIdle();
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "Running");
 				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Angle, _positions[positionName].ToString());
+				            await WaitTillIdle();
 				        }
 				
 				        public async Task GoTo(int position)
 				        {
+				            await WaitTillIdle();
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "Running");
 				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Angle, position.ToString());
+				            await WaitTillIdle();
 				        }
 				
 				        public async Task PickupItem()
 				        {
-				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "LOW");
+				            await WaitTillIdle();
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "Running");
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "0");
 				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "1");
-				            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0" && string.IsNullOrEmpty(_mqttService.GetMessage(MqttTopics.Crane(_name).Moving)))
-				            {
-				                await Task.Delay(100);
-				            }
-				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "HIGH");
+				            await WaitTillIdle();
+				            await Task.Delay(2000);
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "Running");
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "1");
+				            await WaitTillIdle();
 				        }
 				
 				        public async Task DropItem()
 				        {
-				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "LOW");
-				            while (_mqttService.GetMessage(MqttTopics.Crane(_name).Moving) != "0" && string.IsNullOrEmpty(_mqttService.GetMessage(MqttTopics.Crane(_name).Moving)))
+				            await WaitTillIdle();
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "Running");
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "0");
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "0");
+				            await WaitTillIdle();
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Moving, "Running");
+				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "1");
+				        }
+				
+				        private async Task WaitTillIdle(){
+				            while(!IsIdle())
 				            {
 				                await Task.Delay(100);
 				            }
-				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Magnet, "0");
-				            await _mqttService.SendMessage(MqttTopics.Crane(_name).Elevation, "HIGH");
+				        }
+				        private bool IsIdle(){
+				            return _mqttService.GetMessage(MqttTopics.Crane(_name).Moving) == "Stopped" && _mqttService.GetMessage(MqttTopics.Disk(_name).Moving) == "Stopped";
 				        }
 				
 				        public string GetName()
@@ -91,6 +109,7 @@ class EntityGenerator {
 		fsa.generateFile(
 			'OrchestratorService/Entities/Disk.cs',
 			'''
+				using System;
 				using Mqtt;
 				
 				namespace Entities;
@@ -131,32 +150,57 @@ class EntityGenerator {
 				
 				    #region MoveSlot methods
 				
-				    public void MoveSlot(string fromZoneName, string toZoneName)
+				    public async Task MoveSlot(string fromZoneName, string toZoneName)
+				    {
+				        var zonesToMove = mod(_currentOffset + (_zones[toZoneName] - _zones[fromZoneName]), _slots.Count);
+				        _currentOffset = zonesToMove;
+				        await WaitTillIdle();
+				        await _mqttService.SendMessage(MqttTopics.Disk(_name).Moving, "Running");
+				        await _mqttService.SendMessage(MqttTopics.Disk(_name).Zone, zonesToMove.ToString()); //TODO: Test if this works, _currentOffset.ToString() might be correct
+				        await WaitTillIdle();
+				    }
+				
+				    public async Task MoveSlot(string fromZoneName, int toZone)
 				    {
 				        var fromZone = _zones[fromZoneName];
-				        var toZone = _zones[toZoneName];
-				        MoveSlot(fromZone, toZone);
+				        await MoveSlot(fromZone, toZone);
 				    }
 				
-				    public void MoveSlot(string fromZoneName, int toZone)
-				    {
-				        var fromZone = _zones[fromZoneName];
-				        MoveSlot(fromZone, toZone);
-				    }
-				
-				    public void MoveSlot(int fromZone, string toZoneName)
+				    public async Task MoveSlot(int fromZone, string toZoneName)
 				    {
 				        var toZone = _zones[toZoneName];
-				        MoveSlot(fromZone, toZone);
+				        await MoveSlot(fromZone, toZone);
 				    }
 				
-				    public void MoveSlot(int fromZone, int toZone)
+				    public async Task MoveSlot(int fromZone, int toZone)
 				    {
-				        var zonesToMove = fromZone - toZone;
-				        _currentOffset = (_currentOffset + zonesToMove) % _slots.Count;
-				        _mqttService.SendMessage(MqttTopics.Disk(_name).Slot, _currentOffset.ToString());
+				        var zonesToMove = mod((toZone - fromZone), _slots.Count);
+				        _currentOffset = zonesToMove;
+				        await WaitTillIdle();
+				        await _mqttService.SendMessage(MqttTopics.Disk(_name).Moving, "Running");
+				        await _mqttService.SendMessage(MqttTopics.Disk(_name).Zone, zonesToMove.ToString()); //TODO: Test if this works, _currentOffset.ToString() might be correct
+				        await WaitTillIdle();
+				    }
+				
+				    internal async Task WaitForIntake()
+				    {
+				        await _mqttService.SendMessage("intake", "intake");
+				        while (_mqttService.GetMessage("intake") != "done")
+				        {
+				            await Task.Delay(100);
+				        }
 				    }
 				    #endregion
+				
+				    private async Task WaitTillIdle(){
+				        while(!IsIdle())
+				        {
+				            await Task.Delay(100);
+				        }
+				    }
+				    private bool IsIdle(){
+				        return _mqttService.GetMessage(MqttTopics.Disk(_name).Moving) == "Stopped";
+				    }
 				
 				    public bool IsFull()
 				    {
@@ -175,7 +219,9 @@ class EntityGenerator {
 				
 				    public Slot GetSlot(string slotName)
 				    {
-				        return _slots[_zones[slotName]];
+				        var slot = _slots[mod((_currentOffset - _zones[slotName]), 8)];
+				        Console.WriteLine($"Getting slot at: {slotName} Got slot: {slot.Number}");
+				        return slot;
 				    }
 				
 				    #region MarkSlot methods
@@ -191,12 +237,29 @@ class EntityGenerator {
 				
 				    public void MarkSlot(string slotName, SlotState mark)
 				    {
+				        var slot = GetSlot(slotName);
+				        Console.WriteLine($"Marking slot at {slot.Number} with {Enum.GetName(mark)}");
 				        if(mark == SlotState.Empty)
-				            GetSlot(slotName).RemoveAllMarks();
-				        GetSlot(slotName).SlotState = mark;
+				            slot.RemoveAllMarks();
+				        slot.SlotState = mark;
+				    }
+				    
+				    public void MarkSlot(int slotName, SlotState mark)
+				    {
+				        var slot = GetSlot(slotName);
+				        Console.WriteLine($"Marking slot at {slot.Number} with {Enum.GetName(mark)}");
+				        if(mark == SlotState.Empty)
+				            slot.RemoveAllMarks();
+				        slot.SlotState = mark;
 				    }
 				
 				    public void MarkSlot(string slotName, string mark)
+				    {
+				        GetSlot(slotName).AddMark(mark);
+				    }
+				
+				    
+				    public void MarkSlot(int slotName, string mark)
 				    {
 				        GetSlot(slotName).AddMark(mark);
 				    }
@@ -241,6 +304,10 @@ class EntityGenerator {
 				    {
 				        return _zones[zoneName];
 				    }
+				    
+				    int mod(int x, int m) {
+				        return (x%m + m)%m;
+				    }
 				}
 			'''
 		)
@@ -259,7 +326,7 @@ class EntityGenerator {
 				    private readonly string _name;
 					private readonly IMqttService _mqttService;
 					private readonly List<string> _colors;
-					   
+				
 					public Camera(string name, List<string> colors, IMqttService mqttService)
 					{
 						_name = name;
@@ -267,15 +334,23 @@ class EntityGenerator {
 						_mqttService = mqttService;
 					}
 				
-				    public string Scan()
+				    public async Task<string> Scan()
 				    {
-				        _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "GetColor");
-				        _mqttService.SendMessage(MqttTopics.Camera(_name).Color, "");
-				        while (string.IsNullOrEmpty(_mqttService.GetMessage(MqttTopics.Camera(_name).Color)))
+				        await _mqttService.SendMessage(MqttTopics.Camera(_name).Color, "");
+				        await _mqttService.SendMessage(MqttTopics.Camera(_name).Scan, "GetColor");
+				        await WaitWhileIdle();
+				        return _mqttService.GetMessage(MqttTopics.Camera(_name).Color) ?? "RED";
+				    }
+				
+				    private async Task WaitWhileIdle(){
+				        while(IsIdle())
 				        {
-				            Task.Delay(100);
+				            await Task.Delay(100);
 				        }
-				        return _mqttService.GetMessage(MqttTopics.Camera(_name).Color);
+				    }
+				
+				    private bool IsIdle(){
+				        return string.IsNullOrEmpty(_mqttService.GetMessage(MqttTopics.Camera(_name).Color));
 				    }
 				
 				    public string GetName()
@@ -296,7 +371,7 @@ class EntityGenerator {
 				public class Slot
 				{
 				    private readonly List<string> _marks = new();
-				    public SlotState SlotState { get; set; }
+				    public SlotState SlotState { get; set; } = SlotState.Empty;
 				    public int Number { get; set; }
 				
 				    public Slot(int number)

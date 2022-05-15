@@ -4,8 +4,6 @@ import xtext.factoryLang.factoryLang.DISK_SLOT_STATES
 import xtext.factoryLang.factoryLang.COLOR
 import xtext.factoryLang.factoryLang.DISK_STATES
 import xtext.factoryLang.factoryLang.COMPARISON_OPERATOR
-import xtext.factoryLang.factoryLang.ForEach
-import xtext.factoryLang.factoryLang.DiskMarkSlotOperation
 import xtext.factoryLang.factoryLang.impl.ForEachImpl
 import xtext.factoryLang.factoryLang.impl.DiskMarkSlotOperationImpl
 import xtext.factoryLang.factoryLang.impl.LocalVariableImpl

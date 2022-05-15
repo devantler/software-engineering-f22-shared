@@ -57,11 +57,12 @@ class MqttGenerator {
 				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Elevation))
 				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Magnet))
 				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Crane("+").Moving))
-				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Disk("+").Slot))
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Disk("+").Zone))
 				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Disk("+").Moving))
 				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Camera("+").Color))
 				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Camera("+").Scanning))
 				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Camera("+").Scan))
+				                .WithTopicFilter(x => x.WithTopic(MqttTopics.Utility("intake").WaitForIntake))
 				                .Build();
 				            _mqttClient.SubscribeAsync(mqttSubscribeOptions.TopicFilters).GetAwaiter().GetResult();
 				        }
@@ -69,23 +70,32 @@ class MqttGenerator {
 				        private void OnMessageReceived(MqttApplicationMessageReceivedEventArgs obj)
 				        {
 				            var topic = obj.ApplicationMessage.Topic;
+				            if (obj.ApplicationMessage.Payload == null) {
+				                messages[topic] = "";
+				                return;
+				            }
 				            messages[topic] = Encoding.Default.GetString(obj.ApplicationMessage.Payload);
 				        }
 				
-				        public string? GetMessage(string topic)
+				        public string GetMessage(string topic)
 				        {
 				            messages.TryGetValue(topic, out var msg);
-				            return msg;
+				            return msg ?? "";
 				        }
 				
 				        public async Task SendMessage(string topic, string message)
 				        {
+				            Console.WriteLine($"Sending message to {topic}: {message}");
 				            var mqttMessage = new MqttApplicationMessage()
 				            {
 				                Topic = topic,
 				                Payload = Encoding.ASCII.GetBytes(message)
 				            };
 				            await _mqttClient.PublishAsync(mqttMessage);
+				            if (!messages.TryAdd(topic, message))
+				            {
+				                messages[topic] = message;
+				            }
 				        }
 				
 				        private void OnConnected(MqttClientConnectedEventArgs obj)
@@ -117,7 +127,7 @@ class MqttGenerator {
 				    public interface IMqttService
 				    {
 				        Task SendMessage(string topic, string message);
-				        string? GetMessage(string topic);
+				        string GetMessage(string topic);
 				    }
 				}
 			'''
@@ -139,7 +149,7 @@ class MqttGenerator {
 				
 				        public class CraneTopic
 				        {
-				            public string Name { get; }
+				            private string Name { get; }
 				
 				            public CraneTopic(string name)
 				            {
@@ -161,14 +171,14 @@ class MqttGenerator {
 				
 				        public class DiskTopic
 				        {
-				            public string Name { get; }
+				            private string Name { get; }
 				
 				            public DiskTopic(string name)
 				            {
 				                Name = name;
 				            }
 				
-				            public string Slot { get => $"{Name}/slot"; }
+				            public string Zone { get => $"{Name}/zone"; }
 				
 				            public string Moving { get => $"{Name}/moving"; }
 				        }
@@ -180,7 +190,7 @@ class MqttGenerator {
 				
 				        public class CameraTopic
 				        {
-				            public string Name { get; }
+				            private string Name { get; }
 				
 				            public CameraTopic(string name)
 				            {
@@ -192,6 +202,23 @@ class MqttGenerator {
 				            public string Color { get => $"{Name}/result"; }
 				
 				            public string Scanning { get => $"{Name}/scanning"; }
+				        }
+				
+				        public static UtilityTopic Utility(string name)
+				        {
+				            return new UtilityTopic(name);
+				        }
+				
+				        public class UtilityTopic
+				        {
+				            private string Name { get; }
+				
+				            public UtilityTopic(string name)
+				            {
+				                Name = name;
+				            }
+				
+				            public string WaitForIntake { get => $"{Name}"; }
 				        }
 				    }
 				}

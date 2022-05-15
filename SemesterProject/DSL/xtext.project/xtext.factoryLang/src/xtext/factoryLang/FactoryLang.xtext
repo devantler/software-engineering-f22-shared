@@ -80,7 +80,7 @@ CraneDropOperation returns CraneOperation:
 
 // ----- STATEMENTS:OPERATIONS:DISK ----- //
 DiskOperation returns Operation:
-	DiskMoveEmptySlotOperation | DiskMoveVariableSlotOperation | DiskMoveSlotOperation | DiskMarkSlotOperation;
+	DiskMoveEmptySlotOperation | DiskMoveVariableSlotOperation | DiskMoveSlotOperation | DiskMarkSlotOperation | DiskWaitOperation;
 
 DiskMoveSlotOperation returns DiskOperation:
 	{DiskMoveSlotOperation} device=[Disk] 'move' 'slot' 'at' source=[DiskZoneParameter] 'to'
@@ -96,6 +96,9 @@ DiskMoveEmptySlotOperation returns DiskOperation:
 DiskMarkSlotOperation returns DiskOperation:
 	{DiskMarkSlotOperation} device=[Disk] 'mark' 'slot' 'at' target=[DiskZoneParameter] 'as'
 	diskSlotValue=DiskSlotValue ('in' quantity=INT measure=TIME)?;
+
+DiskWaitOperation returns DiskOperation:
+	{DiskWaitOperation} device=[Disk] 'wait' 'for' 'new' 'item';
 
 // ----- STATEMENTS:OPERATIONS:CAMERA ----- //
 CameraOperation returns Operation:
@@ -132,12 +135,11 @@ VariableValue:
 	value=DiskSlotStateValue | value=ColorValue | value=Number | value=DiskStateValue | ref=[Variable];
 
 // ----- VALUE TYPES:ACTUAL VALUES ----- //
-
 DiskStateValue:
 	value=DISK_STATES;
 
 DiskSlotStateValue:
- 	value=DISK_SLOT_STATES;
+	value=DISK_SLOT_STATES;
 
 ColorValue:
 	value=COLOR;

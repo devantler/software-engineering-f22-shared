@@ -23,6 +23,7 @@ import xtext.factoryLang.factoryLang.Variable
 import xtext.factoryLang.factoryLang.Camera
 import xtext.factoryLang.factoryLang.Parameter
 import xtext.factoryLang.factoryLang.Model
+import xtext.factoryLang.factoryLang.DiskWaitOperation
 
 class UppaalMasterGenerator {
 	static String lastTransistionState = "id0";
@@ -58,6 +59,15 @@ class UppaalMasterGenerator {
 		«ENDFOR»
 		'''
 	}
+	
+	def static dispatch String generateLocation(DiskWaitOperation statement){
+		
+	}
+	
+	def static dispatch String generateTransistion(DiskWaitOperation statement){
+		
+	}
+	
 	
 	def static dispatch String generateTransistion(DeviceConditional statement) {
 		var value = ""
